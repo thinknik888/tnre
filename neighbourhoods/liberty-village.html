@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liberty Village Condos & Floor Plans — Nikhil Oberoi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4;
+      --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2;
+      --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84;
+      --border: rgba(200,169,110,0.2);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); min-height: 100vh; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hero { padding: 6rem 3rem 5rem; border-bottom: 1px solid var(--border); }
+    .eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.5rem; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .desc { font-size: 1rem; line-height: 1.75; color: var(--text-mid); max-width: 560px; font-weight: 300; margin-bottom: 2rem; }
+    .stats { display: flex; gap: 3rem; }
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); }
+    .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+    .coming-soon { padding: 6rem 3rem; text-align: center; }
+    .coming-soon-icon { font-size: 3rem; margin-bottom: 1.5rem; opacity: 0.3; }
+    .coming-soon h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 1rem; }
+    .coming-soon p { font-size: 0.9rem; color: var(--text-muted); max-width: 400px; margin: 0 auto 2rem; line-height: 1.7; }
+    .btn-gold { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo span { color: var(--gold); }
+    @media (max-width: 768px) { nav, .hero, .coming-soon, .cta-strip, footer { padding-left: 1.5rem; padding-right: 1.5rem; } .stats { gap: 1.5rem; flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Nikhil <span>Oberoi</span></a>
+  <a href="../index.html" class="nav-back">← All neighbourhoods</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+<div class="hero">
+  <div class="eyebrow">Toronto · Neighbourhood</div>
+  <h1>Liberty Village <em>Floor Plans</em></h1>
+  <p class="desc">A tight-knit community with a creative edge. Liberty Village is perfect for young professionals who want style, convenience, and community.</p>
+  <div class="stats">
+    <div><div class="stat-val">10 buildings · 140+ floor plans</div><div class="stat-lbl">Buildings</div></div>
+    <div><div class="stat-val">$499K – $1.8M</div><div class="stat-lbl">Price range</div></div>
+  </div>
+</div>
+<div class="coming-soon">
+  <div class="coming-soon-icon">📐</div>
+  <h2>Floor plans coming soon</h2>
+  <p>I'm actively adding buildings and floor plans to this neighbourhood. In the meantime, call or email me and I'll pull up exactly what you're looking for.</p>
+  <a href="tel:6479240848" class="btn-gold">Call Nikhil — 647-924-0848</a>
+</div>
+<div class="cta-strip">
+  <div class="cta-headline">Looking for something in<br><em>Liberty Village?</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="mailto:nik@thinknik.ca" class="btn-outline">Email Nikhil</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Nikhil <span>Oberoi</span></div>
+  <div>Broker · Precondo.ca · © 2025</div>
+</footer>
+</body>
+</html>
