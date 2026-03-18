@@ -103,6 +103,8 @@
     .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
     .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
     .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-building { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--cream); color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; transition: all 0.2s; }
+    .btn-full-building:hover { background: var(--gold-pale); border-color: var(--gold); color: var(--gold); }
     .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* CTA STRIP */
@@ -117,6 +119,12 @@
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo span { color: var(--gold); }
 
+
+    .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .filter-btn { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 1.1rem; border: 1px solid var(--border); border-radius: 2px; background: none; color: var(--text-mid); cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .fp-card.hidden { display: none; }
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .page-header, .building-section { padding: 3rem 1.5rem; }
@@ -165,32 +173,21 @@
 
 <!-- 50 SCOLLARD -->
 <div class="building-section">
-  <div class="building-header">
-    <div class="building-info">
-      <div class="building-eyebrow">Lanterra Developments · Norman Foster Architect</div>
-      <div class="building-name">50 Scollard</div>
-      <div class="building-address">50 Scollard Street, Yorkville, Toronto · 41 Storeys · 64 Residences</div>
-      <div class="building-tags">
-        <span class="tag tag-gold">Luxury</span>
-        <span class="tag">Pre-construction</span>
-        <span class="tag">1 Bed + Den</span>
-        <span class="tag">2 Bed</span>
-        <span class="tag">3 Bed</span>
-        <span class="tag">Penthouse</span>
-      </div>
-    </div>
-    <div class="building-cta">
-      <div class="building-price">$3,341,900 – $7,951,900</div>
-      <div class="building-price-lbl">Starting from price</div>
-      <a href="tel:6479240848" class="btn-gold">Book a showing</a>
-    </div>
-  </div>
+  <div class="fp-section-label">10 floor plans — click any to view details</div>
 
-  <div class="fp-section-label">10 floor plans available — click any plan to view full details</div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterPlans('all')">All</button>
+    <button class="filter-btn" onclick="filterPlans('1bed')">1 Bed</button>
+    <button class="filter-btn" onclick="filterPlans('1bed-den')">1 Bed + Den</button>
+    <button class="filter-btn" onclick="filterPlans('2bed')">2 Bed</button>
+    <button class="filter-btn" onclick="filterPlans('2bed-den')">2 Bed + Den</button>
+    <button class="filter-btn" onclick="filterPlans('3bed')">3 Bed</button>
+    <button class="filter-btn" onclick="filterPlans('penthouse')">Penthouse</button>
+  </div>
 
   <div class="fp-grid">
 
-    <div class="fp-card" onclick="openModal('6-7jn')">
+    <div class="fp-card" onclick="openModal('6-7jn')" data-type="1bed-den">
       <div class="fp-image"><img src="images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 6-7 JN · Floors 6-7</div>
@@ -203,7 +200,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('20-22bn')">
+    <div class="fp-card" onclick="openModal('20-22bn')" data-type="1bed-den">
       <div class="fp-image"><img src="images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 20-22 BN · Floors 20-22</div>
@@ -216,7 +213,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('6hn')">
+    <div class="fp-card" onclick="openModal('6hn')" data-type="1bed-den">
       <div class="fp-image"><img src="images/50-scollard/suite-6hn.jpg" alt="Suite 6HN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 6HN · Floor 6</div>
@@ -229,7 +226,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('13-17fn')">
+    <div class="fp-card" onclick="openModal('13-17fn')" data-type="2bed">
       <div class="fp-image"><img src="images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 13-14 & 17 FN · Floors 13-14, 17</div>
@@ -242,7 +239,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('5an')">
+    <div class="fp-card" onclick="openModal('5an')" data-type="2bed">
       <div class="fp-image"><img src="images/50-scollard/suite-5an.jpg" alt="Suite 5AN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 5AN · Floor 5</div>
@@ -255,7 +252,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('7hn')">
+    <div class="fp-card" onclick="openModal('7hn')" data-type="2bed">
       <div class="fp-image"><img src="images/50-scollard/suite-7hn.jpg" alt="Suite 7HN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 7HN · Floor 7</div>
@@ -268,7 +265,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('6-8in')">
+    <div class="fp-card" onclick="openModal('6-8in')" data-type="2bed-den">
       <div class="fp-image"><img src="images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 6-8 IN · Floors 6-8</div>
@@ -281,7 +278,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('40an')">
+    <div class="fp-card" onclick="openModal('40an')" data-type="3bed">
       <div class="fp-image"><img src="images/50-scollard/suite-40an.jpg" alt="Suite 40AN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 40AN · Floor 40 · Duplex</div>
@@ -294,7 +291,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('23-25an')">
+    <div class="fp-card" onclick="openModal('23-25an')" data-type="3bed">
       <div class="fp-image"><img src="images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 23-25 AN · Floors 23-25</div>
@@ -307,7 +304,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('23-25an-b')">
+    <div class="fp-card" onclick="openModal('23-25an-b')" data-type="penthouse">
       <div class="fp-image"><img src="images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 28N · Floor 28 · Penthouse</div>
@@ -360,6 +357,7 @@
         <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
         <div class="detail-row"><span class="detail-label">Starting from</span><span class="detail-val" id="m-price"></span></div>
         <div class="modal-cta">
+          <a href="../buildings/50-scollard.html" class="btn-full-building">View 50 Scollard building page →</a>
           <div class="modal-cta-text">Questions about this floor plan? Nikhil can walk you through the layout, views, and availability.</div>
           <a href="tel:6479240848" class="btn-full">Call Nikhil — 647-924-0848</a>
           <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
@@ -409,6 +407,18 @@ function closeModalOutside(e) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function filterPlans(type) {
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.fp-card').forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
 </script>
 
 </body>
