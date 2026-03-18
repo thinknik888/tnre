@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>50 Scollard — Yorkville — Nikhil Oberoi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4;
+      --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2;
+      --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84;
+      --border: rgba(200,169,110,0.2);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem; background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 60vh; border-bottom: 1px solid var(--border);
+    }
+    .hero-left { padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 300; line-height: 1.0; margin-bottom: 0.5rem; }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--gold); margin-bottom: 1.5rem; }
+    .hero-divider { width: 48px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
+    .hero-desc { font-size: 0.9rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; max-width: 420px; margin-bottom: 2rem; }
+    .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--cream); color: var(--text-mid); padding: 0.3rem 0.75rem; border-radius: 2px; }
+    .tag-gold { background: rgba(200,169,110,0.15); color: var(--gold); }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-right { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 3rem; }
+    .quick-stats { width: 100%; max-width: 360px; }
+    .qs-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .qs-row { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .qs-row:last-child { border-bottom: none; }
+    .qs-label { color: var(--text-muted); }
+    .qs-val { font-weight: 500; text-align: right; }
+    .qs-val-gold { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+
+    /* SECTIONS */
+    section { padding: 5rem 3rem; border-bottom: 1px solid var(--border); }
+    .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 2.5vw, 2.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* PRICE LIST TABLE */
+    .price-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .price-table th { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0.75rem 1rem; text-align: left; border-bottom: 2px solid var(--border); font-weight: 400; }
+    .price-table td { padding: 1rem; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:hover td { background: var(--gold-pale); }
+    .price-table .model { font-weight: 500; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+    .price-table .price-val { font-weight: 500; }
+
+    /* AMENITIES */
+    .amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+    .amenity-item { background: var(--white); padding: 1.25rem 1.5rem; }
+    .amenity-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .amenity-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .amenity-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* FLOOR PLANS PREVIEW */
+    .fp-mini-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+    .fp-mini-card { background: var(--white); padding: 0.75rem; cursor: pointer; transition: background 0.2s; text-decoration: none; color: inherit; display: block; }
+    .fp-mini-card:hover { background: var(--gold-pale); }
+    .fp-mini-card img { width: 100%; aspect-ratio: 1; object-fit: contain; display: block; margin-bottom: 0.5rem; }
+    .fp-mini-type { font-size: 0.62rem; color: var(--text-muted); }
+    .fp-mini-size { font-size: 0.72rem; font-weight: 500; }
+
+    /* DEVELOPERS */
+    .dev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1.5rem; }
+    .dev-card { padding: 1.5rem; border: 1px solid var(--border); border-radius: 2px; }
+    .dev-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .dev-role { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .dev-desc { font-size: 0.78rem; line-height: 1.6; color: var(--text-mid); }
+
+    /* CTA */
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-bottom: none; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo span { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      nav, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .hero-right { padding: 2rem 1.5rem; }
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      .fp-mini-grid { grid-template-columns: repeat(3, 1fr); }
+      .dev-grid { grid-template-columns: 1fr; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Nikhil <span>Oberoi</span></a>
+  <a href="../neighbourhoods/yorkville.html" class="nav-back">← Yorkville floor plans</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Yorkville · Pre-construction · Lanterra Developments</div>
+    <h1 class="hero-title">50 Scollard</h1>
+    <div class="hero-subtitle">Yorkville, Toronto</div>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Designed by Pritzker Prize-winning architect Norman Foster, 50 Scollard is a 41-storey tower with only 64 residences — one of Toronto's most exclusive addresses. Interiors by Studio Munge, at the corner of Bay and Scollard in the heart of Yorkville.</p>
+    <div class="hero-tags">
+      <span class="tag tag-gold">Luxury</span>
+      <span class="tag">41 Storeys</span>
+      <span class="tag">64 Residences</span>
+      <span class="tag">Norman Foster</span>
+      <span class="tag">Studio Munge</span>
+    </div>
+    <div class="hero-actions">
+      <a href="tel:6479240848" class="btn-gold">Call Nikhil — 647-924-0848</a>
+      <a href="mailto:nik@thinknik.ca" class="btn-outline">Email for floor plans</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="quick-stats">
+      <div class="qs-title">Building at a glance</div>
+      <div class="qs-row"><span class="qs-label">Address</span><span class="qs-val">50 Scollard St, Toronto</span></div>
+      <div class="qs-row"><span class="qs-label">Neighbourhood</span><span class="qs-val">Yorkville</span></div>
+      <div class="qs-row"><span class="qs-label">Developer</span><span class="qs-val">Lanterra Developments</span></div>
+      <div class="qs-row"><span class="qs-label">Architect</span><span class="qs-val">Foster + Partners</span></div>
+      <div class="qs-row"><span class="qs-label">Interior Design</span><span class="qs-val">Studio Munge</span></div>
+      <div class="qs-row"><span class="qs-label">Storeys</span><span class="qs-val">41</span></div>
+      <div class="qs-row"><span class="qs-label">Total Residences</span><span class="qs-val">64</span></div>
+      <div class="qs-row"><span class="qs-label">Ceiling Heights</span><span class="qs-val">10'2"</span></div>
+      <div class="qs-row"><span class="qs-label">Starting from</span><span class="qs-val qs-val-gold">$3,341,900</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICE LIST -->
+<section>
+  <div class="section-eyebrow">Pricing</div>
+  <h2 class="section-title">Starting from <em>price list</em></h2>
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Floors</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Exposure</th>
+        <th>Starting from</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="model">6-7 JN</td><td>6–7</td><td>1 Bed + Den / 2 Bed</td><td>1,209 sq ft</td><td>West</td><td class="price-val">$3,341,900</td></tr>
+      <tr><td class="model">20-22 BN</td><td>20–22</td><td>1 Bed + Den</td><td>1,293 sq ft</td><td>West</td><td class="price-val">$3,675,900</td></tr>
+      <tr><td class="model">6HN-BF</td><td>6</td><td>1 Bed + Den</td><td>1,393 sq ft</td><td>West</td><td class="price-val">$3,659,900</td></tr>
+      <tr><td class="model">13-14 & 17FN</td><td>13–14, 17</td><td>2 Bedroom</td><td>1,306 sq ft</td><td>East/West</td><td class="price-val">$3,501,900</td></tr>
+      <tr><td class="model">5AN</td><td>5</td><td>2 Bedroom</td><td>1,793 sq ft</td><td>East/West</td><td class="price-val">$4,549,900</td></tr>
+      <tr><td class="model">7HN</td><td>7</td><td>2 Bedroom</td><td>1,393 sq ft</td><td>West</td><td class="price-val">$3,709,900</td></tr>
+      <tr><td class="model">6-8 IN</td><td>6–8</td><td>2 Bed + Den</td><td>1,425 sq ft</td><td>East/West</td><td class="price-val">$3,763,900</td></tr>
+      <tr><td class="model">40AN</td><td>40</td><td>3 Bedroom Duplex</td><td>1,453 sq ft</td><td>East/West</td><td class="price-val">$4,796,900</td></tr>
+      <tr><td class="model">23-25AN</td><td>23–25</td><td>3 Bedroom</td><td>2,166 sq ft</td><td>East/West</td><td class="price-val">$5,620,900</td></tr>
+      <tr><td class="model">21BN+AS</td><td>21–22</td><td>3 Bedroom</td><td>2,649 sq ft</td><td>West</td><td class="price-val">$7,089,900</td></tr>
+      <tr><td class="model">36DS</td><td>36</td><td>2 Bedroom</td><td>2,414 sq ft</td><td>East/West</td><td class="price-val">$7,951,900</td></tr>
+      <tr><td class="model">28N</td><td>28</td><td>3 Bed Penthouse</td><td>5,190 sq ft</td><td>East/West</td><td class="price-val">Contact for pricing</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FLOOR PLANS -->
+<section>
+  <div class="section-eyebrow">Floor Plans</div>
+  <h2 class="section-title">Browse all <em>layouts</em></h2>
+  <div class="fp-mini-grid">
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN" />
+      <div class="fp-mini-type">1 Bed + Den</div>
+      <div class="fp-mini-size">1,209 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN" />
+      <div class="fp-mini-type">1 Bed + Den</div>
+      <div class="fp-mini-size">1,293 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-6hn.jpg" alt="Suite 6HN" />
+      <div class="fp-mini-type">1 Bed + Den</div>
+      <div class="fp-mini-size">1,393 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN" />
+      <div class="fp-mini-type">2 Bedroom</div>
+      <div class="fp-mini-size">1,306 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-5an.jpg" alt="Suite 5AN" />
+      <div class="fp-mini-type">2 Bedroom</div>
+      <div class="fp-mini-size">1,793 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-7hn.jpg" alt="Suite 7HN" />
+      <div class="fp-mini-type">2 Bedroom</div>
+      <div class="fp-mini-size">1,393 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN" />
+      <div class="fp-mini-type">2 Bed + Den</div>
+      <div class="fp-mini-size">1,425 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-40an.jpg" alt="Suite 40AN" />
+      <div class="fp-mini-type">3 Bed Duplex</div>
+      <div class="fp-mini-size">1,453 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN" />
+      <div class="fp-mini-type">3 Bedroom</div>
+      <div class="fp-mini-size">2,166 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" />
+      <div class="fp-mini-type">Penthouse</div>
+      <div class="fp-mini-size">5,190 sq ft</div>
+    </a>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section>
+  <div class="section-eyebrow">Building amenities</div>
+  <h2 class="section-title">Five-star <em>living</em></h2>
+  <div class="amenities-grid">
+    <div class="amenity-item">
+      <div class="amenity-name">Indoor / Outdoor Pool</div>
+      <div class="amenity-desc">Year-round heated pool with seamless indoor-outdoor flow</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Fitness Centre & Yoga</div>
+      <div class="amenity-desc">State-of-the-art gym and dedicated yoga studio</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Wine Vault</div>
+      <div class="amenity-desc">Curated wine collection in a temperature-controlled vault</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Private Dining Room</div>
+      <div class="amenity-desc">Chef's kitchen and private dining for 18 guests</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Whirlpool & Sauna</div>
+      <div class="amenity-desc">European-inspired water circuit with dry sauna and steam room</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">24/7 Concierge & Valet</div>
+      <div class="amenity-desc">Full-service Forest Hill Group building management</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Porte-Cochère</div>
+      <div class="amenity-desc">Private drive-up entrance with dedicated porter service</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Luxury Vehicle Fleet</div>
+      <div class="amenity-desc">Building vehicles available for resident use with chauffeur</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Direct Elevator Access</div>
+      <div class="amenity-desc">Private elevator entry directly into your suite</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="section-eyebrow">The team behind the building</div>
+  <h2 class="section-title">World-class <em>talent</em></h2>
+  <div class="dev-grid">
+    <div class="dev-card">
+      <div class="dev-role">Developer</div>
+      <div class="dev-name">Lanterra Developments</div>
+      <div class="dev-desc">Multi-award-winning developer behind some of Toronto's most iconic buildings including ICE Condominiums, Teahouse, and Murano.</div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-role">Architect</div>
+      <div class="dev-name">Foster + Partners</div>
+      <div class="dev-desc">Pritzker Prize-winning firm founded by Norman Foster. Responsible for some of the world's most celebrated architectural works.</div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-role">Interior Design</div>
+      <div class="dev-name">Studio Munge</div>
+      <div class="dev-desc">Toronto-based Italian designer Alessandro Munge. Contract Magazine's Designer of the Year, known for masterful storytelling through design.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-headline">Interested in<br><em>50 Scollard?</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Nikhil <span>Oberoi</span></div>
+  <div>Broker · Precondo.ca · © 2025</div>
+</footer>
+
+</body>
+</html>
