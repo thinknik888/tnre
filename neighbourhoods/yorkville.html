@@ -24,10 +24,18 @@
     .page-stats { display: flex; gap: 3rem; margin-top: 2.5rem; }
     .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); }
     .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
-    .plans-section { padding: 4rem 3rem; }
-    .fp-section-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+    /* SQFT SECTIONS */
+    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .sqft-section:last-of-type { border-bottom: none; }
+    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .sqft-title em { font-style: italic; color: var(--gold); }
+    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* FLOOR PLAN GRID */
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; text-decoration: none; color: inherit; display: block; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
     .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); }
@@ -42,6 +50,8 @@
     .fp-price-promo { color: var(--gold); font-weight: 500; }
     .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
     .fp-save { font-size: 0.62rem; color: #5a7a5a; background: #f0f7f0; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block; }
+
+    /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
     .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
@@ -75,14 +85,9 @@
     footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo span { color: var(--gold); }
-    .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .filter-btn { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 1.1rem; border: 1px solid var(--border); border-radius: 2px; background: none; color: var(--text-mid); cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
-    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
-    .fp-card.hidden { display: none; }
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .page-header, .plans-section { padding: 3rem 1.5rem; }
+      .page-header, .sqft-section { padding: 3rem 1.5rem; }
       .fp-grid { grid-template-columns: repeat(2, 1fr); }
       .modal-body { grid-template-columns: 1fr; }
       .modal-image { border-bottom: 1px solid var(--border); }
@@ -102,6 +107,7 @@
   <a href="../index.html" class="nav-back">← All neighbourhoods</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
+
 <div class="page-header">
   <div class="page-eyebrow">Toronto · Neighbourhood</div>
   <h1 class="page-title">Yorkville <em>Floor Plans</em></h1>
@@ -112,47 +118,51 @@
     <div class="stat-item"><div class="stat-val">$930K+</div><div class="stat-lbl">Starting from</div></div>
   </div>
 </div>
-<div class="plans-section">
-  <div class="fp-section-label">14 floor plans — click any to view details</div>
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterPlans('all', this)">All</button>
-    <button class="filter-btn" onclick="filterPlans('1bed-den', this)">1 Bed + Den</button>
-    <button class="filter-btn" onclick="filterPlans('2bed', this)">2 Bed</button>
-    <button class="filter-btn" onclick="filterPlans('2bed-den', this)">2 Bed + Den</button>
-    <button class="filter-btn" onclick="filterPlans('2bed-media', this)">2 Bed + Media</button>
-    <button class="filter-btn" onclick="filterPlans('3bed', this)">3 Bed</button>
-    <button class="filter-btn" onclick="filterPlans('penthouse', this)">Penthouse</button>
+
+<!-- UNDER 1,000 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">Under <em>1,000</em> sq ft</div>
+    <div class="sqft-count">3 floor plans</div>
   </div>
-  <div class="fp-grid" id="fp-grid">
-    <!-- 782 sq ft -->
+  <div class="fp-grid">
     <div class="fp-card" onclick="openModal('yv32')" data-type="2bed"><div class="fp-image"><img src="images/yorkville-32.png" alt="Yorkville 32" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Yorkville 32 · Levels 31–43, Unit 02</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">Balcony 68 sq ft</div><div class="fp-meta"><span class="fp-sqft">782 sq ft</span><span class="fp-price"><s>$1,876,800</s> <span class="fp-price-promo">$930,580</span></span></div><div class="fp-save">Save $946,220</div></div></div>
-    <!-- 792 sq ft -->
     <div class="fp-card" onclick="openModal('yv35')" data-type="2bed-media"><div class="fp-image"><img src="images/yorkville-35.png" alt="Yorkville 35" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Yorkville 35 · Levels 38–62, Unit 07</div><div class="fp-type">2 Bedroom + Media</div><div class="fp-exposure">Balcony 68 sq ft</div><div class="fp-meta"><span class="fp-sqft">792 sq ft</span><span class="fp-price"><s>$1,900,800</s> <span class="fp-price-promo">$942,480</span></span></div><div class="fp-save">Save $958,320</div></div></div>
-    <!-- 987 sq ft -->
     <div class="fp-card" onclick="openModal('yv42b')" data-type="3bed"><div class="fp-image"><img src="images/yorkville-42b.png" alt="Yorkville 42B" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Yorkville 42B · Levels 31–39, Unit 09</div><div class="fp-type">3 Bedroom + Media</div><div class="fp-exposure">Balcony 68 sq ft</div><div class="fp-meta"><span class="fp-sqft">987 sq ft</span><span class="fp-price"><s>$2,368,800</s> <span class="fp-price-promo">$1,174,530</span></span></div><div class="fp-save">Save $1,194,270</div></div></div>
-    <!-- 1,209 sq ft -->
-    <div class="fp-card" onclick="openModal('6-7jn')" data-type="1bed-den"><div class="fp-image"><img src="images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 6-7 JN · Floors 6-7</div><div class="fp-type">1 Bed + Den / 2 Bedroom</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,209 sq ft</span><span class="fp-price">$3,341,900</span></div></div></div>
-    <!-- 1,293 sq ft -->
-    <div class="fp-card" onclick="openModal('20-22bn')" data-type="1bed-den"><div class="fp-image"><img src="images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 20-22 BN · Floors 20-22</div><div class="fp-type">1 Bedroom + Den</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,293 sq ft</span><span class="fp-price">$3,675,900</span></div></div></div>
-    <!-- 1,306 sq ft -->
-    <div class="fp-card" onclick="openModal('13-17fn')" data-type="2bed"><div class="fp-image"><img src="images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 13-14 &amp; 17 FN · Floors 13-14, 17</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,306 sq ft</span><span class="fp-price">$3,501,900</span></div></div></div>
-    <!-- 1,393 sq ft (x2) -->
-    <div class="fp-card" onclick="openModal('6hn')" data-type="1bed-den"><div class="fp-image"><img src="images/50-scollard/suite-6hn.jpg" alt="Suite 6HN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 6HN · Floor 6</div><div class="fp-type">1 Bedroom + Den</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,659,900</span></div></div></div>
-    <div class="fp-card" onclick="openModal('7hn')" data-type="2bed"><div class="fp-image"><img src="images/50-scollard/suite-7hn.jpg" alt="Suite 7HN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 7HN · Floor 7</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,709,900</span></div></div></div>
-    <!-- 1,425 sq ft -->
-    <div class="fp-card" onclick="openModal('6-8in')" data-type="2bed-den"><div class="fp-image"><img src="images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 6-8 IN · Floors 6-8</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,425 sq ft</span><span class="fp-price">$3,763,900</span></div></div></div>
-    <!-- 1,453 sq ft -->
-    <div class="fp-card" onclick="openModal('40an')" data-type="3bed"><div class="fp-image"><img src="images/50-scollard/suite-40an.jpg" alt="Suite 40AN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 40AN · Floor 40 · Duplex</div><div class="fp-type">3 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,453 sq ft</span><span class="fp-price">$4,796,900</span></div></div></div>
-    <!-- 1,517 sq ft -->
-    <div class="fp-card" onclick="openModal('yvph07')" data-type="penthouse"><div class="fp-image"><img src="images/ph-07.png" alt="PH 07" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">PH 07 · Floors 61–62</div><div class="fp-type">3 Bed + Flex + 3 Bath</div><div class="fp-exposure">Balcony 68 sq ft · W.I.C.</div><div class="fp-meta"><span class="fp-sqft">1,517 sq ft</span><span class="fp-price">$3,640,800</span></div></div></div>
-    <!-- 1,793 sq ft -->
-    <div class="fp-card" onclick="openModal('5an')" data-type="2bed"><div class="fp-image"><img src="images/50-scollard/suite-5an.jpg" alt="Suite 5AN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 5AN · Floor 5</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,793 sq ft</span><span class="fp-price">$4,549,900</span></div></div></div>
-    <!-- 2,166 sq ft -->
-    <div class="fp-card" onclick="openModal('23-25an')" data-type="3bed"><div class="fp-image"><img src="images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 23-25 AN · Floors 23-25</div><div class="fp-type">3 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">2,166 sq ft</span><span class="fp-price">$5,620,900</span></div></div></div>
-    <!-- 5,190 sq ft -->
-    <div class="fp-card" onclick="openModal('23-25an-b')" data-type="penthouse"><div class="fp-image"><img src="images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 28N · Floor 28 · Penthouse</div><div class="fp-type">3 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">5,190 sq ft</span><span class="fp-price">Contact for pricing</span></div></div></div>
   </div>
 </div>
+
+<!-- 1,000 – 2,000 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title"><em>1,000</em> – <em>2,000</em> sq ft</div>
+    <div class="sqft-count">10 floor plans</div>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('6-7jn')"><div class="fp-image"><img src="images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 6-7 JN · Floors 6-7</div><div class="fp-type">1 Bed + Den / 2 Bedroom</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,209 sq ft</span><span class="fp-price">$3,341,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('20-22bn')"><div class="fp-image"><img src="images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 20-22 BN · Floors 20-22</div><div class="fp-type">1 Bedroom + Den</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,293 sq ft</span><span class="fp-price">$3,675,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('13-17fn')"><div class="fp-image"><img src="images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 13-14 &amp; 17 FN · Floors 13-14, 17</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,306 sq ft</span><span class="fp-price">$3,501,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('6hn')"><div class="fp-image"><img src="images/50-scollard/suite-6hn.jpg" alt="Suite 6HN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 6HN · Floor 6</div><div class="fp-type">1 Bedroom + Den</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,659,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('7hn')"><div class="fp-image"><img src="images/50-scollard/suite-7hn.jpg" alt="Suite 7HN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 7HN · Floor 7</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">West exposure</div><div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,709,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('6-8in')"><div class="fp-image"><img src="images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 6-8 IN · Floors 6-8</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,425 sq ft</span><span class="fp-price">$3,763,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('40an')"><div class="fp-image"><img src="images/50-scollard/suite-40an.jpg" alt="Suite 40AN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 40AN · Floor 40 · Duplex</div><div class="fp-type">3 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,453 sq ft</span><span class="fp-price">$4,796,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('yvph07')"><div class="fp-image"><img src="images/ph-07.png" alt="PH 07" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">PH 07 · Floors 61–62</div><div class="fp-type">3 Bed + Flex + 3 Bath</div><div class="fp-exposure">Balcony 68 sq ft · W.I.C.</div><div class="fp-meta"><span class="fp-sqft">1,517 sq ft</span><span class="fp-price">$3,640,800</span></div></div></div>
+    <div class="fp-card" onclick="openModal('5an')"><div class="fp-image"><img src="images/50-scollard/suite-5an.jpg" alt="Suite 5AN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 5AN · Floor 5</div><div class="fp-type">2 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">1,793 sq ft</span><span class="fp-price">$4,549,900</span></div></div></div>
+  </div>
+</div>
+
+<!-- 2,000+ SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title"><em>2,000+</em> sq ft</div>
+    <div class="sqft-count">2 floor plans</div>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('23-25an')"><div class="fp-image"><img src="images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 23-25 AN · Floors 23-25</div><div class="fp-type">3 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">2,166 sq ft</span><span class="fp-price">$5,620,900</span></div></div></div>
+    <div class="fp-card" onclick="openModal('23-25an-b')"><div class="fp-image"><img src="images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" loading="lazy" /></div><div class="fp-info"><div class="fp-suite">Suite 28N · Floor 28 · Penthouse</div><div class="fp-type">3 Bedroom</div><div class="fp-exposure">East / West exposure</div><div class="fp-meta"><span class="fp-sqft">5,190 sq ft</span><span class="fp-price">Contact for pricing</span></div></div></div>
+  </div>
+</div>
+
 <div class="cta-strip">
   <div class="cta-headline">Interested in Yorkville?<br><em>Let's talk floor plans.</em></div>
   <div class="cta-actions">
@@ -164,6 +174,8 @@
   <div class="footer-logo">Nikhil <span>Oberoi</span></div>
   <div>Broker · Precondo.ca · © 2025</div>
 </footer>
+
+<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-header">
@@ -190,6 +202,7 @@
     </div>
   </div>
 </div>
+
 <script>
   const plans = {
     '6-7jn': { building: '50 Scollard', suite: 'Suite 6-7 JN', type: '1 Bed + Den / 2 Bedroom', size: '1,209 sq ft', exposure: 'West balcony', floors: '6–7', price: '$3,341,900', promo: null, savings: null, img: 'images/50-scollard/suite-6-7jn.jpg', buildingUrl: '../buildings/50-scollard.html' },
@@ -228,13 +241,6 @@
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-  function filterPlans(type, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.fp-card').forEach(card => {
-      card.classList.toggle('hidden', type !== 'all' && card.dataset.type !== type);
-    });
-  }
 </script>
 </body>
 </html>
