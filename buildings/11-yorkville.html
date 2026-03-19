@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11 Yorkville Condos — Nikhil Oberoi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .building-hero { padding: 5rem 3rem 4rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-address { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .stat-box { padding: 1.25rem; background: var(--white); border: 1px solid var(--border); }
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); }
+    .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .gallery-img { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); }
+    .gallery-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .gallery-img:hover img { transform: scale(1.03); }
+    .gallery-caption { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 0.75rem; background: var(--white); }
+
+    /* DETAILS */
+    .details-section { padding: 4rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; border-bottom: 1px solid var(--border); }
+    .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1.5rem; }
+    .section-body { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
+    .info-table { width: 100%; }
+    .info-row { display: flex; justify-content: space-between; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .info-label { color: var(--text-muted); }
+    .info-val { font-weight: 500; text-align: right; }
+
+    /* AMENITIES */
+    .amenities-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
+    .amenity-item { background: var(--white); padding: 1.5rem; }
+    .amenity-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .amenity-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.25rem; }
+    .amenity-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* FLOOR PLANS */
+    .fp-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .fp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; display: block; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); }
+    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-size: 0.82rem; font-weight: 500; }
+    .fp-price s { color: var(--text-muted); font-weight: 300; }
+    .fp-price-promo { color: var(--gold); font-weight: 500; }
+    .fp-save { font-size: 0.62rem; color: #5a7a5a; background: #f0f7f0; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; }
+    .detail-val s { color: var(--text-muted); font-weight: 300; }
+    .detail-val .promo { color: var(--gold); }
+    .detail-val .savings { display: block; font-size: 0.72rem; color: #5a7a5a; font-weight: 400; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* CTA */
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo span { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .building-hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+      .details-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+      .amenities-section, .fp-section { padding: 3rem 1.5rem; }
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      .fp-grid { grid-template-columns: 1fr; }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .amenities-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Nikhil <span>Oberoi</span></a>
+  <a href="../neighbourhoods/yorkville.html" class="nav-back">← Yorkville Floor Plans</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="building-hero">
+  <div>
+    <div class="hero-eyebrow">Yorkville · Toronto · Completed 2025</div>
+    <h1 class="hero-title">11 <em>Yorkville</em></h1>
+    <div class="hero-address">11 Yorkville Ave, Toronto, ON M4W 1L2</div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="stat-val">65</div><div class="stat-lbl">Storeys</div></div>
+      <div class="stat-box"><div class="stat-val">593</div><div class="stat-lbl">Units</div></div>
+      <div class="stat-box"><div class="stat-val">100</div><div class="stat-lbl">Walk Score</div></div>
+      <div class="stat-box"><div class="stat-val">97</div><div class="stat-lbl">Transit Score</div></div>
+      <div class="stat-box"><div class="stat-val">$930K</div><div class="stat-lbl">From (Promo)</div></div>
+      <div class="stat-box"><div class="stat-val">2025</div><div class="stat-lbl">Completed</div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:6479240848" class="btn-gold">Call Nikhil — 647-924-0848</a>
+      <a href="mailto:nik@thinknik.ca" class="btn-outline">Email for Pricing</a>
+    </div>
+  </div>
+  <div>
+    <div class="gallery">
+      <div>
+        <div class="gallery-img"><img src="../neighbourhoods/images/Screenshot_2026-03-18_at_7_34_08_PM.png" alt="Indoor/Outdoor Infinity Pool" /></div>
+        <div class="gallery-caption">Indoor / Outdoor Infinity Pool</div>
+      </div>
+      <div>
+        <div class="gallery-img"><img src="../neighbourhoods/images/Screenshot_2026-03-18_at_7_34_35_PM.png" alt="View from 62nd Floor" /></div>
+        <div class="gallery-caption">View from 62nd Floor</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAILS -->
+<div class="details-section">
+  <div>
+    <div class="section-eyebrow">About the Building</div>
+    <h2 class="section-title">A New Pinnacle in Yorkville</h2>
+    <p class="section-body">11 Yorkville — known as 11YV — is a landmark luxury condominium rising 65 storeys in the heart of Toronto's most prestigious neighbourhood. Developed by Metropia, RioCan Living, and Capital Developments, and designed by acclaimed Sweeny &amp; Co Architects, the building is a confident architectural statement that complements the heritage character of Yorkville while pushing the neighbourhood forward.</p>
+    <br />
+    <p class="section-body">Interiors are crafted by Cecconi Simone, featuring three curated colour schemes, polished marble countertops, Miele appliance packages, integrated wine fridges, and custom millwork throughout. From its dramatic 2-storey lobby to its infinity-edge pool surrounded by fireplaces and black marble, 11YV is a building composed with rare sophistication.</p>
+  </div>
+  <div>
+    <div class="section-eyebrow">Building Details</div>
+    <div class="info-table">
+      <div class="info-row"><span class="info-label">Address</span><span class="info-val">11 Yorkville Ave, Toronto</span></div>
+      <div class="info-row"><span class="info-label">Developers</span><span class="info-val">Metropia · RioCan Living · Capital Developments</span></div>
+      <div class="info-row"><span class="info-label">Architect</span><span class="info-val">Sweeny &amp; Co Architects</span></div>
+      <div class="info-row"><span class="info-label">Interior Design</span><span class="info-val">Cecconi Simone</span></div>
+      <div class="info-row"><span class="info-label">Landscape</span><span class="info-val">STUDIO TLA</span></div>
+      <div class="info-row"><span class="info-label">Storeys</span><span class="info-val">65</span></div>
+      <div class="info-row"><span class="info-label">Units</span><span class="info-val">593</span></div>
+      <div class="info-row"><span class="info-label">Suite Sizes</span><span class="info-val">530 – 1,517 sq ft</span></div>
+      <div class="info-row"><span class="info-label">Retail Space</span><span class="info-val">45,000 sq ft</span></div>
+      <div class="info-row"><span class="info-label">Completed</span><span class="info-val">2025</span></div>
+      <div class="info-row"><span class="info-label">Walk Score</span><span class="info-val">100 / 100</span></div>
+      <div class="info-row"><span class="info-label">Transit Score</span><span class="info-val">97 / 100</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- AMENITIES -->
+<div class="amenities-section">
+  <div class="section-eyebrow">Amenities</div>
+  <h2 class="section-title">World-Class Living</h2>
+  <div class="amenities-grid">
+    <div class="amenity-item"><div class="amenity-icon">🏊</div><div class="amenity-name">Indoor / Outdoor Infinity Pool</div><div class="amenity-desc">Dramatic infinity-edge pool surrounded by fireplaces and sleek black marble</div></div>
+    <div class="amenity-item"><div class="amenity-icon">💆</div><div class="amenity-name">Spa &amp; Plunge Pools</div><div class="amenity-desc">Hot and cold plunge pools for full wellness recovery</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🏋️</div><div class="amenity-name">Fitness Centre</div><div class="amenity-desc">Fully-equipped state-of-the-art gym</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🎉</div><div class="amenity-name">Party Room</div><div class="amenity-desc">Elegant entertaining space for private events</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🌿</div><div class="amenity-name">Rooftop Terrace</div><div class="amenity-desc">Landscaped outdoor spaces by STUDIO TLA</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🏛️</div><div class="amenity-name">2-Storey Grand Lobby</div><div class="amenity-desc">Dramatic double-height entrance with concierge</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🍷</div><div class="amenity-name">Wine Storage</div><div class="amenity-desc">Custom wine &amp; stemware storage in every suite</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🅿️</div><div class="amenity-name">Parking</div><div class="amenity-desc">Vast underground parking available</div></div>
+    <div class="amenity-item"><div class="amenity-icon">🌳</div><div class="amenity-name">Public Park</div><div class="amenity-desc">740 sq m of new urban park space dedicated to the neighbourhood</div></div>
+  </div>
+</div>
+
+<!-- FLOOR PLANS -->
+<div class="fp-section">
+  <div class="section-eyebrow">Available Floor Plans</div>
+  <h2 class="section-title">Promo Pricing — Limited Time</h2>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('yv32')">
+      <div class="fp-image"><img src="../neighbourhoods/images/yorkville-32.png" alt="Yorkville 32" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Yorkville 32 · Levels 31–43, Unit 02</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">782 sq ft</span><span class="fp-price"><s>$1,876,800</s> <span class="fp-price-promo">$930,580</span></span></div>
+        <div class="fp-save">Save $946,220</div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('yv35')">
+      <div class="fp-image"><img src="../neighbourhoods/images/yorkville-35.png" alt="Yorkville 35" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Yorkville 35 · Levels 38–62, Unit 07</div>
+        <div class="fp-type">2 Bedroom + Media</div>
+        <div class="fp-meta"><span class="fp-sqft">792 sq ft</span><span class="fp-price"><s>$1,900,800</s> <span class="fp-price-promo">$942,480</span></span></div>
+        <div class="fp-save">Save $958,320</div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('yv42b')">
+      <div class="fp-image"><img src="../neighbourhoods/images/yorkville-42b.png" alt="Yorkville 42B" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Yorkville 42B · Levels 31–39, Unit 09</div>
+        <div class="fp-type">3 Bedroom + Media</div>
+        <div class="fp-meta"><span class="fp-sqft">987 sq ft</span><span class="fp-price"><s>$2,368,800</s> <span class="fp-price-promo">$1,174,530</span></span></div>
+        <div class="fp-save">Save $1,194,270</div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('yvph07')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ph-07.png" alt="PH 07" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">PH 07 · Floors 61–62</div>
+        <div class="fp-type">3 Bed + Flex + 3 Bath</div>
+        <div class="fp-meta"><span class="fp-sqft">1,517 sq ft</span><span class="fp-price">$3,640,800</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-headline">Interested in 11 Yorkville?<br><em>Let's talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Nikhil <span>Oberoi</span></div>
+  <div>Broker · Precondo.ca · © 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val">11 Yorkville</span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
+        <div class="detail-row"><span class="detail-label">Pricing</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this floor plan? Nikhil can walk you through the layout, views, and availability.</div>
+          <a href="tel:6479240848" class="btn-full">Call Nikhil — 647-924-0848</a>
+          <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const plans = {
+    'yv32': { suite: 'Yorkville 32', type: '2 Bedroom', size: '782 sq ft', floors: '31–43 (Unit 02)', price: '$1,876,800', promo: '$930,580', savings: 'Save $946,220', img: '../neighbourhoods/images/yorkville-32.png' },
+    'yv35': { suite: 'Yorkville 35', type: '2 Bedroom + Media', size: '792 sq ft', floors: '38–62 (Unit 07)', price: '$1,900,800', promo: '$942,480', savings: 'Save $958,320', img: '../neighbourhoods/images/yorkville-35.png' },
+    'yv42b': { suite: 'Yorkville 42B', type: '3 Bedroom + Media', size: '987 sq ft', floors: '31–39 (Unit 09)', price: '$2,368,800', promo: '$1,174,530', savings: 'Save $1,194,270', img: '../neighbourhoods/images/yorkville-42b.png' },
+    'yvph07': { suite: 'PH 07', type: '3 Bed + Flex + 3 Bath', size: '1,517 sq ft', floors: '61–62', price: '$3,640,800', promo: null, savings: null, img: '../neighbourhoods/images/ph-07.png' },
+  };
+  function openModal(id) {
+    const p = plans[id]; if (!p) return;
+    document.getElementById('modal-suite').textContent = '11 Yorkville · ' + p.suite;
+    document.getElementById('modal-title').textContent = p.suite + ' — ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-floors').textContent = p.floors;
+    const priceEl = document.getElementById('m-price');
+    if (p.promo) { priceEl.innerHTML = '<s>' + p.price + '</s> <span class="promo" style="color:var(--gold)">' + p.promo + '</span>' + (p.savings ? '<span class="savings" style="display:block;font-size:0.72rem;color:#5a7a5a">' + p.savings + '</span>' : ''); }
+    else { priceEl.textContent = p.price; }
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
