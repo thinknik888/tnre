@@ -3,136 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Bedford — TNRE</title>
+  <title>The Bedford — Yorkville — TNRE</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --gold: #c8a96e;
-      --gold-light: #e8d5b0;
-      --gold-pale: #f7f0e4;
-      --white: #ffffff;
-      --off-white: #faf8f4;
-      --cream: #f3ede2;
-      --text: #1a1a18;
-      --text-mid: #4a4a46;
-      --text-muted: #8a8a84;
+      --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4;
+      --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2;
+      --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84;
       --border: rgba(200,169,110,0.2);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem; background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
     .nav-logo span { color: var(--gold); }
     .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--gold); }
-    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
     /* HERO */
-    .building-hero { padding: 5rem 3rem 4rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
-    .hero-title em { font-style: italic; color: var(--gold); }
-    .hero-address { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; }
-    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
-    .stat-box { padding: 1.25rem; background: var(--white); border: 1px solid var(--border); }
-    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); }
-    .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 60vh; border-bottom: 1px solid var(--border);
+    }
+    .hero-left { padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 300; line-height: 1.0; margin-bottom: 0.5rem; }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--gold); margin-bottom: 1.5rem; }
+    .hero-divider { width: 48px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
+    .hero-desc { font-size: 0.9rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; max-width: 420px; margin-bottom: 2rem; }
+    .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--cream); color: var(--text-mid); padding: 0.3rem 0.75rem; border-radius: 2px; }
+    .tag-gold { background: rgba(200,169,110,0.15); color: var(--gold); }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-gold { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
     .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-    /* GALLERY */
-    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-    .gallery-img { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); }
-    .gallery-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-    .gallery-img:hover img { transform: scale(1.03); }
-    .gallery-caption { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 0.75rem; background: var(--white); }
-    /* DETAILS */
-    .details-section { padding: 4rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; border-bottom: 1px solid var(--border); }
-    .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1.5rem; }
-    .section-body { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
-    .info-table { width: 100%; }
-    .info-row { display: flex; justify-content: space-between; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
-    .info-label { color: var(--text-muted); }
-    .info-val { font-weight: 500; text-align: right; }
-    /* PRICING */
-    .pricing-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
-    .pricing-card { background: var(--white); padding: 2rem 1.5rem; }
-    .pricing-type { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .pricing-from { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-    .pricing-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--text); line-height: 1.2; }
-    .pricing-val.sold-out { color: var(--text-muted); font-size: 1.2rem; font-style: italic; }
+
+    .hero-right { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 3rem; }
+    .quick-stats { width: 100%; max-width: 360px; }
+    .qs-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .qs-row { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .qs-row:last-child { border-bottom: none; }
+    .qs-label { color: var(--text-muted); }
+    .qs-val { font-weight: 500; text-align: right; }
+    .qs-val-gold { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+
+    /* SECTIONS */
+    section { padding: 5rem 3rem; border-bottom: 1px solid var(--border); }
+    .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 2.5vw, 2.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* PRICE LIST TABLE */
+    .price-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .price-table th { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0.75rem 1rem; text-align: left; border-bottom: 2px solid var(--border); font-weight: 400; }
+    .price-table td { padding: 1rem; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:hover td { background: var(--gold-pale); }
+    .price-table .model { font-weight: 500; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+    .price-table .price-val { font-weight: 500; }
+
     /* AMENITIES */
-    .amenities-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
-    .amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
-    .amenity-item { background: var(--white); padding: 1.5rem; }
-    .amenity-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .amenity-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.25rem; }
-    .amenity-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; }
-    /* FLOOR PLANS */
-    .fp-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
-    .fp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
-    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; display: block; }
-    .fp-card:hover { background: var(--gold-pale); }
-    .fp-card:hover .fp-image iframe { opacity: 0.92; }
-    .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); }
-    .fp-image iframe { width: 100%; height: 100%; border: none; display: block; pointer-events: none; }
-    .fp-info { padding: 1.25rem 1.5rem; }
-    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
-    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
-    .fp-floors { font-size: 0.72rem; color: var(--text-muted); }
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
-    .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
-    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
-    .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
-    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
-    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
-    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 420px; }
-    .modal-image iframe { width: 100%; height: 480px; border: none; display: block; }
-    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
-    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
-    .detail-row:last-of-type { border-bottom: none; }
-    .detail-label { color: var(--text-muted); }
-    .detail-val { font-weight: 500; }
-    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
-    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
-    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+    .amenity-item { background: var(--white); padding: 1.25rem 1.5rem; }
+    .amenity-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .amenity-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* FLOOR PLANS PREVIEW */
+    .fp-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+    .fp-mini-card { background: var(--white); padding: 0.75rem; cursor: pointer; transition: background 0.2s; text-decoration: none; color: inherit; display: block; }
+    .fp-mini-card:hover { background: var(--gold-pale); }
+    .fp-mini-card img { width: 100%; aspect-ratio: 1; object-fit: contain; display: block; margin-bottom: 0.5rem; }
+    .fp-mini-type { font-size: 0.62rem; color: var(--text-muted); }
+    .fp-mini-size { font-size: 0.72rem; font-weight: 500; }
+
+    /* DEVELOPERS */
+    .dev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1.5rem; }
+    .dev-card { padding: 1.5rem; border: 1px solid var(--border); border-radius: 2px; }
+    .dev-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .dev-role { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .dev-desc { font-size: 0.78rem; line-height: 1.6; color: var(--text-mid); }
+
     /* CTA */
-    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-bottom: none; }
     .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
     .cta-headline em { font-style: italic; color: var(--gold); }
-    .cta-actions { display: flex; gap: 1rem; }
-    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
-    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+
     footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo span { color: var(--gold); }
+
     @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .building-hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
-      .details-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
-      .amenities-section, .fp-section, .pricing-section { padding: 3rem 1.5rem; }
+      nav, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .hero-right { padding: 2rem 1.5rem; }
       .amenities-grid { grid-template-columns: repeat(2, 1fr); }
-      .fp-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-      .modal-body { grid-template-columns: 1fr; }
-      .modal-image { border-bottom: 1px solid var(--border); }
-      .modal-details { border-left: none; }
+      .fp-mini-grid { grid-template-columns: repeat(2, 1fr); }
+      .dev-grid { grid-template-columns: 1fr; }
       .cta-strip { padding: 3rem 1.5rem; }
       footer { padding: 1.5rem; }
-    }
-    @media (max-width: 600px) {
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .amenities-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -140,230 +121,170 @@
 
 <nav>
   <a href="../index.html" class="nav-logo"><span style="color:#c8a96e">TN</span><span style="color:#1a3a5c">RE</span></a>
-  <a href="../neighbourhoods/yorkville.html" class="nav-back">← Yorkville Floor Plans</a>
+  <a href="../neighbourhoods/yorkville.html" class="nav-back">← Yorkville floor plans</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
 <!-- HERO -->
-<div class="building-hero">
-  <div>
-    <div class="hero-eyebrow">Yorkville · Toronto · Occupancy 2028</div>
-    <h1 class="hero-title">The <em>Bedford</em></h1>
-    <div class="hero-address">287 Davenport Rd, Toronto, ON</div>
-    <div class="hero-stats">
-      <div class="stat-box"><div class="stat-val">13</div><div class="stat-lbl">Storeys</div></div>
-      <div class="stat-box"><div class="stat-val">90</div><div class="stat-lbl">Units</div></div>
-      <div class="stat-box"><div class="stat-val">1,853</div><div class="stat-lbl">Avg Sq Ft</div></div>
-      <div class="stat-box"><div class="stat-val">$2,187</div><div class="stat-lbl">PSF</div></div>
-      <div class="stat-box"><div class="stat-val">2028</div><div class="stat-lbl">Occupancy</div></div>
-      <div class="stat-box"><div class="stat-val">$2.5M+</div><div class="stat-lbl">From</div></div>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Yorkville-Annex · Pre-Construction · Burnac Corporation</div>
+    <h1 class="hero-title">The Bedford</h1>
+    <div class="hero-subtitle">287 Davenport Road, Toronto</div>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Inspired by the timeless elegance of Parisian Haussmann architecture, The Bedford is a 13-storey boutique residence offering only 90 suites. With architecture by Audax, interiors by Studio Paolo Ferrari, and five-star hotel-style services by Burnac, this is one of Yorkville's most distinguished new addresses.</p>
+    <div class="hero-tags">
+      <span class="tag tag-gold">Luxury</span>
+      <span class="tag">13 Storeys</span>
+      <span class="tag">90 Residences</span>
+      <span class="tag">Audax</span>
+      <span class="tag">Studio Paolo Ferrari</span>
+      <span class="tag">Parisian-Inspired</span>
     </div>
-    <div class="hero-cta">
+    <div class="hero-actions">
       <a href="tel:6479240848" class="btn-gold">Call Nikhil — 647-924-0848</a>
-      <a href="mailto:nik@thinknik.ca" class="btn-outline">Email for Pricing</a>
+      <a href="mailto:nik@thinknik.ca" class="btn-outline">Email for floor plans</a>
     </div>
   </div>
-  <div>
-    <div class="gallery">
-      <div>
-        <div class="gallery-img"><img src="https://lh3.googleusercontent.com/d/1Q134DMqny2_ZyGdDG6ixE9cuAlRbmRNF" alt="Hero Shot Evening" /></div>
-        <div class="gallery-caption">Evening Exterior</div>
-      </div>
-      <div>
-        <div class="gallery-img"><img src="https://lh3.googleusercontent.com/d/1NvtigqaPNeeFesBXFMnYv0QSwrX_35FV" alt="Full Tower" /></div>
-        <div class="gallery-caption">Full Tower</div>
-      </div>
-      <div>
-        <div class="gallery-img"><img src="https://lh3.googleusercontent.com/d/1zIMZMZzl8EwXcPmz-HCoQ0ceu-6uCs5k" alt="Living Room" /></div>
-        <div class="gallery-caption">Living Room</div>
-      </div>
-      <div>
-        <div class="gallery-img"><img src="https://lh3.googleusercontent.com/d/1td65rdcwaZ95bOGYI_SUt2IlvQ9vPW72" alt="Living & Dining" /></div>
-        <div class="gallery-caption">Living & Dining</div>
-      </div>
+  <div class="hero-right">
+    <div class="quick-stats">
+      <div class="qs-title">Building at a glance</div>
+      <div class="qs-row"><span class="qs-label">Address</span><span class="qs-val">287 Davenport Rd, Toronto</span></div>
+      <div class="qs-row"><span class="qs-label">Neighbourhood</span><span class="qs-val">Yorkville-Annex</span></div>
+      <div class="qs-row"><span class="qs-label">Developer</span><span class="qs-val">Burnac Corporation</span></div>
+      <div class="qs-row"><span class="qs-label">Architect</span><span class="qs-val">Audax</span></div>
+      <div class="qs-row"><span class="qs-label">Interior Design</span><span class="qs-val">Studio Paolo Ferrari</span></div>
+      <div class="qs-row"><span class="qs-label">Storeys</span><span class="qs-val">13</span></div>
+      <div class="qs-row"><span class="qs-label">Total Residences</span><span class="qs-val">90</span></div>
+      <div class="qs-row"><span class="qs-label">Suite Sizes</span><span class="qs-val">1,168 – 5,996 sq ft</span></div>
+      <div class="qs-row"><span class="qs-label">Starting from</span><span class="qs-val qs-val-gold">$2,499,900</span></div>
     </div>
   </div>
 </div>
 
-<!-- DETAILS -->
-<div class="details-section">
-  <div>
-    <div class="section-eyebrow">About the Building</div>
-    <h2 class="section-title">Parisian Refinement in the Heart of Yorkville</h2>
-    <p class="section-body">The Bedford is an intimate boutique residence at 287 Davenport Road — just 13 storeys and 90 exceptionally large suites inspired by the timeless elegance of Parisian Haussmann architecture. Developed by Burnac Corporation and designed by Audax Architecture, The Bedford brings a rare sense of human scale and European classicism to one of Toronto's most coveted addresses.</p>
-    <br />
-    <p class="section-body">Interiors by Studio Paolo Ferrari blend artisanal craftsmanship with contemporary luxury: rich material palettes, bespoke millwork, and generous proportions averaging 1,853 sq ft per suite. Landscape design by Ron Holbrook grounds the building in its lush midtown setting, while property management by Forest Hill Group ensures white-glove service from day one.</p>
-  </div>
-  <div>
-    <div class="section-eyebrow">Building Details</div>
-    <div class="info-table">
-      <div class="info-row"><span class="info-label">Address</span><span class="info-val">287 Davenport Rd, Toronto</span></div>
-      <div class="info-row"><span class="info-label">Developer</span><span class="info-val">Burnac Corporation</span></div>
-      <div class="info-row"><span class="info-label">Architect</span><span class="info-val">Audax</span></div>
-      <div class="info-row"><span class="info-label">Interior Design</span><span class="info-val">Studio Paolo Ferrari</span></div>
-      <div class="info-row"><span class="info-label">Landscape</span><span class="info-val">Ron Holbrook</span></div>
-      <div class="info-row"><span class="info-label">Property Mgmt</span><span class="info-val">Forest Hill Group</span></div>
-      <div class="info-row"><span class="info-label">Storeys</span><span class="info-val">13</span></div>
-      <div class="info-row"><span class="info-label">Units</span><span class="info-val">90</span></div>
-      <div class="info-row"><span class="info-label">Suite Sizes</span><span class="info-val">734 – 4,251 sq ft</span></div>
-      <div class="info-row"><span class="info-label">Average Size</span><span class="info-val">1,853 sq ft</span></div>
-      <div class="info-row"><span class="info-label">PSF</span><span class="info-val">$2,187</span></div>
-      <div class="info-row"><span class="info-label">Occupancy</span><span class="info-val">2028</span></div>
-      <div class="info-row"><span class="info-label">Parking</span><span class="info-val">$150,000 (EV Ready)</span></div>
-      <div class="info-row"><span class="info-label">Maintenance</span><span class="info-val">$1.15 / sq ft</span></div>
-      <div class="info-row"><span class="info-label">Inspiration</span><span class="info-val">Parisian Haussmann Architecture</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- PRICING -->
-<div class="pricing-section">
+<!-- PRICE LIST -->
+<section>
   <div class="section-eyebrow">Pricing</div>
-  <h2 class="section-title">Suite Pricing Overview</h2>
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <div class="pricing-type">1 Bedroom</div>
-      <div class="pricing-val sold-out">Sold Out</div>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-type">2 Bedroom</div>
-      <div class="pricing-from">Starting from</div>
-      <div class="pricing-val">$2,499,900</div>
-      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">to $3,449,900</div>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-type">3 Bedroom</div>
-      <div class="pricing-from">Starting from</div>
-      <div class="pricing-val">$6,799,900</div>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-type">3+ Bedroom</div>
-      <div class="pricing-from">Up to</div>
-      <div class="pricing-val">$10,499,900</div>
-    </div>
-  </div>
-</div>
-
-<!-- RENDERINGS GALLERY -->
-<div class="amenities-section">
-  <div class="section-eyebrow">Renderings</div>
-  <h2 class="section-title">A Residence of Rare Character</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2rem;">
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1vOwC7moad_8_YrqZWc-cLa8XwPu1OQVW" alt="Streetscape" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Streetscape</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1JCarTeAsMvl5mfs7tg_RVLT6pVLqhM8s" alt="Entrance" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Entrance</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1dny8tFME788_mppIr4EUKO2u5iwiXIJh" alt="Portico" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Portico</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/19GHJQpbvIWmb7MuzRQeYacjr_rh8k06R" alt="Lobby Bedford" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Lobby — Bedford</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1gn-F_WDn1cVQNQ4nd7xvEsRtz9c8KrEX" alt="Lobby Davenport" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Lobby — Davenport</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1_WJTYWUA3082ktIOSCGH2HXJTbJHdbK-" alt="Lobby Lounge" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Lobby Lounge</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1lJbFrQ_O8YVBZw1_HiH8ITc4-KsJZisd" alt="Dining Room" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Dining Room</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1RAG3f1Cb9uoI4mecfeRoP_VZcmncbdOc" alt="Lounge" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Lounge</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1HQUqSZeQzU-VxhS22ar3bwjfDfJuTt1V" alt="Gym" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Fitness Centre</div>
-    </div>
-    <div>
-      <div class="gallery-img" style="aspect-ratio:4/3"><img src="https://lh3.googleusercontent.com/d/1IZS_MeKktxK2LKsEipo_opo7KqWu7vrJ" alt="Terrace" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="gallery-caption">Terrace</div>
-    </div>
-  </div>
-</div>
+  <h2 class="section-title">Starting from <em>price list</em></h2>
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Suite</th>
+        <th>Floors</th>
+        <th>Type</th>
+        <th>Interior</th>
+        <th>Outdoor</th>
+        <th>Exposure</th>
+        <th>Starting from</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="model">1333</td><td>3–4</td><td>2 Bedroom</td><td>1,333 sq ft</td><td>Balcony 134 sq ft</td><td>N</td><td class="price-val">$2,499,900 – $2,529,900</td></tr>
+      <tr><td class="model">1295T</td><td>8</td><td>2 Bedroom</td><td>1,295 sq ft</td><td>Terrace 283 sq ft</td><td>N</td><td class="price-val">$2,849,900</td></tr>
+      <tr><td class="model">1535</td><td>5</td><td>2 Bedroom + Den</td><td>1,535 sq ft</td><td>Balcony 64 sq ft</td><td>N</td><td class="price-val">$2,869,900</td></tr>
+      <tr><td class="model">1605</td><td>5</td><td>2 Bedroom + Den</td><td>1,605 sq ft</td><td>Balcony 146 sq ft</td><td>NE</td><td class="price-val">$3,059,900</td></tr>
+      <tr><td class="model">1607</td><td>9</td><td>2 Bedroom</td><td>1,607 sq ft</td><td>Balcony 70 sq ft</td><td>NE</td><td class="price-val">$3,449,900</td></tr>
+      <tr><td class="model">2749</td><td>5</td><td>3 Bedroom</td><td>2,749 sq ft</td><td>Balcony 214 sq ft</td><td>SW</td><td class="price-val">$6,799,900</td></tr>
+    </tbody>
+  </table>
+</section>
 
 <!-- FLOOR PLANS -->
-<div class="fp-section">
-  <div class="section-eyebrow">Available Floor Plans</div>
-  <h2 class="section-title">12 Curated Residences</h2>
-  <div class="fp-grid">
-
-    <div class="fp-card" onclick="openModal('bd01')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1ro8GcvVGc6UZRire7RN3oPUMCMxRvPkv/preview" title="Plan 1" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 1</div><div class="fp-type">2 Bedroom</div><div class="fp-meta"><span class="fp-sqft">1,295 + 294 = 1,589 sq ft</span><span class="fp-floors">Floor 8</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd02')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1SuMKruUAkvvWTdOXwiwYQcqVvQxI3JBs/preview" title="Plan 2" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 2</div><div class="fp-type">2 Bedroom</div><div class="fp-meta"><span class="fp-sqft">1,333 + 140 = 1,473 sq ft</span><span class="fp-floors">Floors 3–6</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd03')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1w8FwIgXEp3IunXmU1GV-bOawutD6rMZY/preview" title="Plan 3" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 3</div><div class="fp-type">2 Bedroom</div><div class="fp-meta"><span class="fp-sqft">1,607 + 70 = 1,677 sq ft</span><span class="fp-floors">Floor 9</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd04')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1LOJiWMi5hi7EdMluSPF1FFpZ5B_H3LZH/preview" title="Plan 4" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 4</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">1,535 + 66 = 1,601 sq ft</span><span class="fp-floors">Floors 3–6</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd05')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1tVQ9YZRvftlbdaptj-6kya7hElU4YYn1/preview" title="Plan 5" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 5</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">1,605 + 140 = 1,745 sq ft</span><span class="fp-floors">Floors 5, 6</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd06')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/15vUmMf59C2OBylQWgry9SQjnS-fGeuiI/preview" title="Plan 6" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 6</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">1,658 + 103 = 1,761 sq ft</span><span class="fp-floors">Floors 3, 4</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd07')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1FDRUYHXC9sEp_DJ03GQvjh-CY74gjVOU/preview" title="Plan 7" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 7</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">1,903 + 70 = 1,973 sq ft</span><span class="fp-floors">Floors 4–6</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd08')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/11GgL3nXcsnxlUyujBLq7JBBZbMJ119LU/preview" title="Plan 8" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 8</div><div class="fp-type">2 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">2,208 + 714 = 2,922 sq ft</span><span class="fp-floors">Floor 7</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd09')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1hh3tuIGOqcRPbNO2SMQ0UnX7zBTMaCS9/preview" title="Plan 9" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 9</div><div class="fp-type">3 Bedroom</div><div class="fp-meta"><span class="fp-sqft">2,749 + 221 = 2,970 sq ft</span><span class="fp-floors">Floor 5</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd10')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1O_67uTdyXdUWNrTk6bHdtL6Vo_U1ha3M/preview" title="Plan 10" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 10</div><div class="fp-type">3 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">2,890 + 221 = 3,111 sq ft</span><span class="fp-floors">Floors 3–6</span></div></div>
-    </div>
-
-    <div class="fp-card" onclick="openModal('bd11')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1JwQKdJQVaODG1FBSriw9XSwXvSNtV0CU/preview" title="Plan 11" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 11</div><div class="fp-type">3 Bedroom + Den</div><div class="fp-meta"><span class="fp-sqft">3,679 + 925 = 4,604 sq ft</span><span class="fp-floors">Floors 13, 14</span></div></div>
-    </div>
-
-  2 <div class="fp-card" onclick="openModal('bd12')">
-      <div class="fp-image"><iframe src="https://drive.google.com/file/d/1gMD3CryUXa9BI3VrjVW19-uYQ4A2g2m5/preview" title="Plan 12" loading="lazy"></iframe></div>
-      <div class="fp-info"><div class="fp-suite">Plan 12</div><div class="fp-type">4 Bedroom</div><div class="fp-meta"><span class="fp-sqft">4,251 + 942 = 5,193 sq ft</span><span class="fp-floors">Floors 1, 2, 3</span></div></div>
-    </div>
-
+<section>
+  <div class="section-eyebrow">Floor Plans</div>
+  <h2 class="section-title">Browse all <em>layouts</em></h2>
+  <div class="fp-mini-grid">
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/the-bedford/suite-1295t.png" alt="Suite 1295T" />
+      <div class="fp-mini-type">2 Bedroom · Floor 8</div>
+      <div class="fp-mini-size">1,295 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/the-bedford/suite-1333.png" alt="Suite 1333" />
+      <div class="fp-mini-type">2 Bedroom · Floors 3–4</div>
+      <div class="fp-mini-size">1,333 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/the-bedford/suite-1535.png" alt="Suite 1535" />
+      <div class="fp-mini-type">2 Bed + Den · Floor 5</div>
+      <div class="fp-mini-size">1,535 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/the-bedford/suite-1605.png" alt="Suite 1605" />
+      <div class="fp-mini-type">2 Bed + Den · Floor 5</div>
+      <div class="fp-mini-size">1,605 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/the-bedford/suite-1607.png" alt="Suite 1607" />
+      <div class="fp-mini-type">2 Bedroom · Floor 9</div>
+      <div class="fp-mini-size">1,607 sq ft</div>
+    </a>
+    <a href="../neighbourhoods/yorkville.html" class="fp-mini-card">
+      <img src="../neighbourhoods/images/the-bedford/suite-2749.png" alt="Suite 2749" />
+      <div class="fp-mini-type">3 Bedroom · Floor 5</div>
+      <div class="fp-mini-size">2,749 sq ft</div>
+    </a>
   </div>
-</div>
+</section>
+
+<!-- AMENITIES -->
+<section>
+  <div class="section-eyebrow">Building amenities</div>
+  <h2 class="section-title">Five-star <em>living</em></h2>
+  <div class="amenities-grid">
+    <div class="amenity-item">
+      <div class="amenity-name">24-Hour Valet</div>
+      <div class="amenity-desc">Round-the-clock valet parking service for residents and guests</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Concierge Service</div>
+      <div class="amenity-desc">Dedicated concierge team providing hotel-calibre service at all hours</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Dedicated Porter</div>
+      <div class="amenity-desc">Personal porter staff to assist with every arrival and departure</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Private Wellness Centre</div>
+      <div class="amenity-desc">Exclusive fitness and wellness facilities for residents only</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Entertaining Spaces</div>
+      <div class="amenity-desc">Upscale private event and dining spaces for resident use</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-name">Heritage Views</div>
+      <div class="amenity-desc">Unobstructed views of the heritage-designated Yorkville-Annex neighbourhood</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="section-eyebrow">The team behind the building</div>
+  <h2 class="section-title">World-class <em>talent</em></h2>
+  <div class="dev-grid">
+    <div class="dev-card">
+      <div class="dev-role">Developer</div>
+      <div class="dev-name">Burnac Corporation</div>
+      <div class="dev-desc">A wholly family-owned Toronto business operating since the 1990s. ByBurnac is known for creating distinctive buildings that blend striking design, advanced construction, and exceptional amenities.</div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-role">Architect</div>
+      <div class="dev-name">Audax</div>
+      <div class="dev-desc">Inspired by the proportions and materiality of classic Parisian Haussmann architecture, Audax has designed The Bedford to complement the surrounding streetscape and honour the neighbourhood's character.</div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-role">Interior Design</div>
+      <div class="dev-name">Studio Paolo Ferrari</div>
+      <div class="dev-desc">Acclaimed Toronto-based design studio known for crafting immersive, narrative-driven interiors that blend art, architecture, and culture into singular residential experiences.</div>
+    </div>
+  </div>
+</section>
 
 <!-- CTA -->
 <div class="cta-strip">
-  <div class="cta-headline">Interested in The Bedford?<br><em>Let's talk floor plans.</em></div>
+  <div class="cta-headline">Interested in<br><em>The Bedford?</em></div>
   <div class="cta-actions">
     <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
     <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
@@ -374,78 +295,6 @@
   <div class="footer-logo"><span style="color:#c8a96e">TN</span><span style="color:#1a3a5c">RE</span></div>
   <div>Think Nik Real Estate · Precondo.ca · © 2025</div>
 </footer>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-image"><iframe id="modal-iframe" src="" title="Floor Plan" allowfullscreen></iframe></div>
-      <div class="modal-details">
-        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val">The Bedford</span></div>
-        <div class="detail-row"><span class="detail-label">Plan</span><span class="detail-val" id="m-suite"></span></div>
-        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
-        <div class="detail-row"><span class="detail-label">Interior</span><span class="detail-val" id="m-int"></span></div>
-        <div class="detail-row"><span class="detail-label">Exterior</span><span class="detail-val" id="m-ext"></span></div>
-        <div class="detail-row"><span class="detail-label">Total</span><span class="detail-val" id="m-total"></span></div>
-        <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
-        <div class="modal-cta">
-          <div class="modal-cta-text">Questions about this floor plan? Nikhil can walk you through the layout, views, and availability.</div>
-          <a href="tel:6479240848" class="btn-full">Call Nikhil — 647-924-0848</a>
-          <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-const plans = {
-  'bd01': { plan: 'Plan 1',  type: '2 Bedroom',       int: '1,295', ext: '294', total: '1,589', floors: '8',       driveId: '1ro8GcvVGc6UZRire7RN3oPUMCMxRvPkv' },
-  'bd02': { plan: 'Plan 2',  type: '2 Bedroom',       int: '1,333', ext: '140', total: '1,473', floors: '3–6',     driveId: '1SuMKruUAkvvWTdOXwiwYQcqVvQxI3JBs' },
-  'bd03': { plan: 'Plan 3',  type: '2 Bedroom',       int: '1,607', ext: '70',  total: '1,677', floors: '9',       driveId: '1w8FwIgXEp3IunXmU1GV-bOawutD6rMZY' },
-  'bd04': { plan: 'Plan 4',  type: '2 Bedroom + Den', int: '1,535', ext: '66',  total: '1,601', floors: '3–6',     driveId: '1LOJiWMi5hi7EdMluSPF1FFpZ5B_H3LZH' },
-  'bd05': { plan: 'Plan 5',  type: '2 Bedroom + Den', int: '1,605', ext: '140', total: '1,745', floors: '5, 6',    driveId: '1tVQ9YZRvftlbdaptj-6kya7hElU4YYn1' },
-  'bd06': { plan: 'Plan 6',  type: '2 Bedroom + Den', int: '1,658', ext: '103', total: '1,761', floors: '3, 4',    driveId: '15vUmMf59C2OBylQWgry9SQjnS-fGeuiI' },
-  'bd07': { plan: 'Plan 7',  type: '2 Bedroom + Den', int: '1,903', ext: '70',  total: '1,973', floors: '4–6',     driveId: '1FDRUYHXC9sEp_DJ03GQvjh-CY74gjVOU' },
-  'bd08': { plan: 'Plan 8',  type: '2 Bedroom + Den', int: '2,208', ext: '714', total: '2,922', floors: '7',       driveId: '11GgL3nXcsnxlUyujBLq7JBBZbMJ119LU' },
-  'bd09': { plan: 'Plan 9',  type: '3 Bedroom',       int: '2,749', ext: '221', total: '2,970', floors: '5',       driveId: '1hh3tuIGOqcRPbNO2SMQ0UnX7zBTMaCS9' },
-  'bd10': { plan: 'Plan 10', type: '3 Bedroom + Den', int: '2,890', ext: '221', total: '3,111', floors: '3–6',     driveId: '1O_67uTdyXdUWNrTk6bHdtL6Vo_U1ha3M' },
-  'bd11': { plan: 'Plan 11', type: '3 Bedroom + Den', int: '3,679', ext: '925', total: '4,604', floors: '13, 14',  driveId: '1JwQKdJQVaODG1FBSriw9XSwXvSNtV0CU' },
-  'bd12': { plan: 'Plan 12', type: '4 Bedroom',       int: '4,251', ext: '942', total: '5,193', floors: '1, 2, 3', driveId: '1gMD3CryUXa9BI3VrjVW19-uYQ4A2g2m5' },
-};
-
-function openModal(id) {
-  const p = plans[id];
-  if (!p) return;
-  document.getElementById('modal-suite').textContent = 'The Bedford · 287 Davenport Rd';
-  document.getElementById('modal-title').textContent = p.plan + ' — ' + p.type;
-  document.getElementById('modal-iframe').src = 'https://drive.google.com/file/d/' + p.driveId + '/preview';
-  document.getElementById('m-suite').textContent = p.plan;
-  document.getElementById('m-type').textContent = p.type;
-  document.getElementById('m-int').textContent = p.int + ' sq ft';
-  document.getElementById('m-ext').textContent = p.ext + ' sq ft';
-  document.getElementById('m-total').textContent = p.total + ' sq ft';
-  document.getElementById('m-floors').textContent = p.floors;
-  document.getElementById('modal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('modal-iframe').src = '';
-  document.getElementById('modal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function closeModalOutside(e) {
-  if (e.target === document.getElementById('modal')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-</script>
 
 </body>
 </html>
