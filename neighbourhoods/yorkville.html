@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)file:///Users/nik/Downloads/yorkville.html -->
+<!-- saved from url=(0044)file:///Users/nik/Downloads/yorkville_1.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +21,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
-
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem 3rem;
-      background: rgba(250,248,244,0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; z-index: 100;
-    }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
     .nav-logo span { color: var(--gold); }
     .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
@@ -36,26 +29,19 @@
     .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* PAGE HEADER */
-    .page-header {
-      padding: 5rem 3rem 3rem;
-      border-bottom: 1px solid var(--border);
-    }
+    .page-header { padding: 5rem 3rem 3rem; border-bottom: 1px solid var(--border); }
     .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
     .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
     .page-title em { font-style: italic; color: var(--gold); }
     .page-desc { font-size: 0.95rem; line-height: 1.75; color: var(--text-mid); max-width: 560px; font-weight: 300; }
     .page-stats { display: flex; gap: 3rem; margin-top: 2.5rem; }
-    .stat-item { }
     .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); }
     .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
 
     /* BUILDING SECTION */
     .building-section { padding: 4rem 3rem; }
-    .building-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      padding-bottom: 2rem; margin-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
+    .building-section + .building-section { border-top: 1px solid var(--border); }
+    .building-header { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 2rem; margin-bottom: 3rem; border-bottom: 1px solid var(--border); }
     .building-info {}
     .building-eyebrow { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
     .building-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; margin-bottom: 0.4rem; }
@@ -82,7 +68,10 @@
     .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
     .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
     .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .fp-price s { color: var(--text-muted); font-weight: 300; }
+    .fp-price-promo { color: var(--gold); font-weight: 500; }
     .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+    .fp-save { font-size: 0.62rem; letter-spacing: 0.06em; color: #5a7a5a; background: #f0f7f0; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block; }
 
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
@@ -100,6 +89,9 @@
     .detail-row:last-of-type { border-bottom: none; }
     .detail-label { color: var(--text-muted); }
     .detail-val { font-weight: 500; }
+    .detail-val s { color: var(--text-muted); font-weight: 300; }
+    .detail-val .promo { color: var(--gold); }
+    .detail-val .savings { display: block; font-size: 0.72rem; color: #5a7a5a; font-weight: 400; }
     .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
     .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
     .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
@@ -119,12 +111,15 @@
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo span { color: var(--gold); }
 
-
     .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
     .filter-btn { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 1.1rem; border: 1px solid var(--border); border-radius: 2px; background: none; color: var(--text-mid); cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
     .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
     .filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
     .fp-card.hidden { display: none; }
+
+    /* 11YV PROMO BADGE */
+    .promo-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(200,169,110,0.15); color: var(--gold); border: 1px solid rgba(200,169,110,0.4); padding: 0.2rem 0.6rem; border-radius: 2px; margin-left: 0.5rem; vertical-align: middle; }
+
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .page-header, .building-section { padding: 3rem 1.5rem; }
@@ -157,15 +152,15 @@
   <p class="page-desc">Toronto's most prestigious neighbourhood — home to world-class dining, luxury boutiques, and some of the city's finest residences. Every floor plan here is hand-curated.</p>
   <div class="page-stats">
     <div class="stat-item">
-      <div class="stat-val">1</div>
-      <div class="stat-lbl">Building listed</div>
+      <div class="stat-val">2</div>
+      <div class="stat-lbl">Buildings listed</div>
     </div>
     <div class="stat-item">
-      <div class="stat-val">10</div>
+      <div class="stat-val">14</div>
       <div class="stat-lbl">Floor plans</div>
     </div>
     <div class="stat-item">
-      <div class="stat-val">$3.3M+</div>
+      <div class="stat-val">$930K+</div>
       <div class="stat-lbl">Starting from</div>
     </div>
   </div>
@@ -174,20 +169,18 @@
 <!-- 50 SCOLLARD -->
 <div class="building-section">
   <div class="fp-section-label">10 floor plans — click any to view details</div>
-
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterPlans(&#39;all&#39;)">All</button>
-    <button class="filter-btn" onclick="filterPlans(&#39;1bed&#39;)">1 Bed</button>
-    <button class="filter-btn" onclick="filterPlans(&#39;1bed-den&#39;)">1 Bed + Den</button>
-    <button class="filter-btn" onclick="filterPlans(&#39;2bed&#39;)">2 Bed</button>
-    <button class="filter-btn" onclick="filterPlans(&#39;2bed-den&#39;)">2 Bed + Den</button>
-    <button class="filter-btn" onclick="filterPlans(&#39;3bed&#39;)">3 Bed</button>
-    <button class="filter-btn" onclick="filterPlans(&#39;penthouse&#39;)">Penthouse</button>
+    <button class="filter-btn active" onclick="filterPlans(&#39;all&#39;, this, &#39;scollard&#39;)">All</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;1bed&#39;, this, &#39;scollard&#39;)">1 Bed</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;1bed-den&#39;, this, &#39;scollard&#39;)">1 Bed + Den</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;2bed&#39;, this, &#39;scollard&#39;)">2 Bed</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;2bed-den&#39;, this, &#39;scollard&#39;)">2 Bed + Den</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;3bed&#39;, this, &#39;scollard&#39;)">3 Bed</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;penthouse&#39;, this, &#39;scollard&#39;)">Penthouse</button>
   </div>
 
-  <div class="fp-grid">
-
-    <div class="fp-card" onclick="openModal(&#39;6-7jn&#39;)" data-type="1bed-den">
+  <div class="fp-grid" id="grid-scollard">
+    <div class="fp-card" onclick="openModal(&#39;6-7jn&#39;)" data-type="1bed-den" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 6-7 JN · Floors 6-7</div>
@@ -199,8 +192,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;20-22bn&#39;)" data-type="1bed-den">
+    <div class="fp-card" onclick="openModal(&#39;20-22bn&#39;)" data-type="1bed-den" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 20-22 BN · Floors 20-22</div>
@@ -212,8 +204,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;6hn&#39;)" data-type="1bed-den">
+    <div class="fp-card" onclick="openModal(&#39;6hn&#39;)" data-type="1bed-den" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-6hn.jpg" alt="Suite 6HN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 6HN · Floor 6</div>
@@ -225,8 +216,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;13-17fn&#39;)" data-type="2bed">
+    <div class="fp-card" onclick="openModal(&#39;13-17fn&#39;)" data-type="2bed" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 13-14 &amp; 17 FN · Floors 13-14, 17</div>
@@ -238,8 +228,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;5an&#39;)" data-type="2bed">
+    <div class="fp-card" onclick="openModal(&#39;5an&#39;)" data-type="2bed" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-5an.jpg" alt="Suite 5AN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 5AN · Floor 5</div>
@@ -251,8 +240,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;7hn&#39;)" data-type="2bed">
+    <div class="fp-card" onclick="openModal(&#39;7hn&#39;)" data-type="2bed" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-7hn.jpg" alt="Suite 7HN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 7HN · Floor 7</div>
@@ -264,8 +252,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;6-8in&#39;)" data-type="2bed-den">
+    <div class="fp-card" onclick="openModal(&#39;6-8in&#39;)" data-type="2bed-den" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 6-8 IN · Floors 6-8</div>
@@ -277,8 +264,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;40an&#39;)" data-type="3bed">
+    <div class="fp-card" onclick="openModal(&#39;40an&#39;)" data-type="3bed" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-40an.jpg" alt="Suite 40AN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 40AN · Floor 40 · Duplex</div>
@@ -290,8 +276,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;23-25an&#39;)" data-type="3bed">
+    <div class="fp-card" onclick="openModal(&#39;23-25an&#39;)" data-type="3bed" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 23-25 AN · Floors 23-25</div>
@@ -303,8 +288,7 @@
         </div>
       </div>
     </div>
-
-    <div class="fp-card" onclick="openModal(&#39;23-25an-b&#39;)" data-type="penthouse">
+    <div class="fp-card" onclick="openModal(&#39;23-25an-b&#39;)" data-type="penthouse" data-building="scollard">
       <div class="fp-image"><img src="file:///Users/nik/Downloads/images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N Floor Plan" loading="lazy"></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 28N · Floor 28 · Penthouse</div>
@@ -316,16 +300,85 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
 
+<!-- 11 YORKVILLE -->
+<div class="building-section">
+  <div class="fp-section-label">4 floor plans — click any to view details</div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterPlans(&#39;all&#39;, this, &#39;11yv&#39;)">All</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;2bed&#39;, this, &#39;11yv&#39;)">2 Bed</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;2bed-media&#39;, this, &#39;11yv&#39;)">2 Bed + Media</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;3bed&#39;, this, &#39;11yv&#39;)">3 Bed</button>
+    <button class="filter-btn" onclick="filterPlans(&#39;penthouse&#39;, this, &#39;11yv&#39;)">Penthouse</button>
+  </div>
+
+  <div class="fp-grid" id="grid-11yv">
+    <!-- Yorkville 32 -->
+    <div class="fp-card" onclick="openModal(&#39;yv32&#39;)" data-type="2bed" data-building="11yv">
+      <div class="fp-image"><img src="file:///Users/nik/Downloads/images/11-yorkville/yorkville-32.png" alt="Yorkville 32 Floor Plan" loading="lazy"></div>
+      <div class="fp-info">
+        <div class="fp-suite">Yorkville 32 · Levels 31–43, Unit 02</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 68 sq ft</div>
+        <div class="fp-meta">
+          <span class="fp-sqft">782 sq ft</span>
+          <span class="fp-price"><s>$1,876,800</s> <span class="fp-price-promo">$930,580</span></span>
+        </div>
+        <div class="fp-save">Save $946,220</div>
+      </div>
+    </div>
+    <!-- Yorkville 35 -->
+    <div class="fp-card" onclick="openModal(&#39;yv35&#39;)" data-type="2bed-media" data-building="11yv">
+      <div class="fp-image"><img src="file:///Users/nik/Downloads/images/11-yorkville/yorkville-35.png" alt="Yorkville 35 Floor Plan" loading="lazy"></div>
+      <div class="fp-info">
+        <div class="fp-suite">Yorkville 35 · Levels 38–62, Unit 07</div>
+        <div class="fp-type">2 Bedroom + Media</div>
+        <div class="fp-exposure">Balcony 68 sq ft</div>
+        <div class="fp-meta">
+          <span class="fp-sqft">792 sq ft</span>
+          <span class="fp-price"><s>$1,900,800</s> <span class="fp-price-promo">$942,480</span></span>
+        </div>
+        <div class="fp-save">Save $958,320</div>
+      </div>
+    </div>
+    <!-- Yorkville 42B -->
+    <div class="fp-card" onclick="openModal(&#39;yv42b&#39;)" data-type="3bed" data-building="11yv">
+      <div class="fp-image"><img src="file:///Users/nik/Downloads/images/11-yorkville/yorkville-42b.png" alt="Yorkville 42B Floor Plan" loading="lazy"></div>
+      <div class="fp-info">
+        <div class="fp-suite">Yorkville 42B · Levels 31–39, Unit 09</div>
+        <div class="fp-type">3 Bedroom + Media</div>
+        <div class="fp-exposure">Balcony 68 sq ft</div>
+        <div class="fp-meta">
+          <span class="fp-sqft">987 sq ft</span>
+          <span class="fp-price"><s>$2,368,800</s> <span class="fp-price-promo">$1,174,530</span></span>
+        </div>
+        <div class="fp-save">Save $1,194,270</div>
+      </div>
+    </div>
+    <!-- PH 07 -->
+    <div class="fp-card" onclick="openModal(&#39;yvph07&#39;)" data-type="penthouse" data-building="11yv">
+      <div class="fp-image"><img src="file:///Users/nik/Downloads/images/11-yorkville/ph-07.png" alt="PH 07 Floor Plan" loading="lazy"></div>
+      <div class="fp-info">
+        <div class="fp-suite">PH 07 · Floors 61–62</div>
+        <div class="fp-type">3 Bed + Flex + 3 Bath</div>
+        <div class="fp-exposure">Balcony 68 sq ft · W.I.C.</div>
+        <div class="fp-meta">
+          <span class="fp-sqft">1,517 sq ft</span>
+          <span class="fp-price">$3,640,800</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-strip">
-  <div class="cta-headline">Interested in 50 Scollard?<br><em>Let's talk floor plans.</em></div>
+  <div class="cta-headline">Interested in Yorkville?<br><em>Let's talk floor plans.</em></div>
   <div class="cta-actions">
     <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
-    <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
+    <a href="file:///cdn-cgi/l/email-protection#d7b9bebc97a3bfbeb9bcb9bebcf9b4b6" class="btn-gold-outline">Email Nikhil</a>
   </div>
 </div>
 
@@ -346,81 +399,97 @@
     </div>
     <div class="modal-body">
       <div class="modal-image">
-        <img id="modal-img" src="file:///Users/nik/Downloads/yorkville.html" alt="Floor Plan">
+        <img id="modal-img" src="file:///Users/nik/Downloads/yorkville_1.html" alt="Floor Plan">
       </div>
       <div class="modal-details">
-        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val">50 Scollard</span></div>
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
         <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
         <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
         <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
-        <div class="detail-row"><span class="detail-label">Exposure</span><span class="detail-val" id="m-exposure"></span></div>
         <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
-        <div class="detail-row"><span class="detail-label">Starting from</span><span class="detail-val" id="m-price"></span></div>
+        <div class="detail-row" id="m-exposure-row"><span class="detail-label">Outdoor</span><span class="detail-val" id="m-exposure"></span></div>
+        <div class="detail-row"><span class="detail-label">Pricing</span><span class="detail-val" id="m-price"></span></div>
         <div class="modal-cta">
-          <a href="file:///Users/nik/buildings/50-scollard.html" class="btn-full-building">View 50 Scollard building page →</a>
+          <div id="m-building-link-wrap"></div>
           <div class="modal-cta-text">Questions about this floor plan? Nikhil can walk you through the layout, views, and availability.</div>
           <a href="tel:6479240848" class="btn-full">Call Nikhil — 647-924-0848</a>
-          <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
+          <a href="file:///cdn-cgi/l/email-protection#721c1b1932061a1b1c191c1b195c1113" class="btn-full-outline">Send an email</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-const plans = {
-  '6-7jn':    { suite: 'Suite 6-7 JN', type: '1 Bed + Den / 2 Bedroom', size: '1,209 sq ft', exposure: 'West', floors: '6–7', price: '$3,341,900', img: 'images/50-scollard/suite-6-7jn.jpg' },
-  '20-22bn':  { suite: 'Suite 20-22 BN', type: '1 Bedroom + Den', size: '1,293 sq ft', exposure: 'West', floors: '20–22', price: '$3,675,900', img: 'images/50-scollard/suite-20-22bn.jpg' },
-  '6hn':      { suite: 'Suite 6HN', type: '1 Bedroom + Den', size: '1,393 sq ft', exposure: 'West', floors: '6', price: '$3,659,900', img: 'images/50-scollard/suite-6hn.jpg' },
-  '13-17fn':  { suite: 'Suite 13-14 & 17 FN', type: '2 Bedroom', size: '1,306 sq ft', exposure: 'East / West', floors: '13–14, 17', price: '$3,501,900', img: 'images/50-scollard/suite-13-17fn.jpg' },
-  '5an':      { suite: 'Suite 5AN', type: '2 Bedroom', size: '1,793 sq ft', exposure: 'East / West', floors: '5', price: '$4,549,900', img: 'images/50-scollard/suite-5an.jpg' },
-  '7hn':      { suite: 'Suite 7HN', type: '2 Bedroom', size: '1,393 sq ft', exposure: 'West', floors: '7', price: '$3,709,900', img: 'images/50-scollard/suite-7hn.jpg' },
-  '6-8in':    { suite: 'Suite 6-8 IN', type: '2 Bedroom + Den', size: '1,425 sq ft', exposure: 'East / West', floors: '6–8', price: '$3,763,900', img: 'images/50-scollard/suite-6-8in.jpg' },
-  '40an':     { suite: 'Suite 40AN (Duplex)', type: '3 Bedroom', size: '1,453 sq ft', exposure: 'East / West', floors: '40–41', price: '$4,796,900', img: 'images/50-scollard/suite-40an.jpg' },
-  '23-25an':  { suite: 'Suite 23-25 AN', type: '3 Bedroom', size: '2,166 sq ft', exposure: 'East / West', floors: '23–25', price: '$5,620,900', img: 'images/50-scollard/suite-23-25an.jpg' },
-  '23-25an-b':{ suite: 'Suite 28N (Penthouse)', type: '3 Bedroom', size: '5,190 sq ft', exposure: 'East / West', floors: '28', price: 'Contact for pricing', img: 'images/50-scollard/suite-23-25an-b.jpg' },
-};
+<script data-cfasync="false" src="file:///cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const plans = {
+    // 50 SCOLLARD
+    '6-7jn':     { building: '50 Scollard', suite: 'Suite 6-7 JN', type: '1 Bed + Den / 2 Bedroom', size: '1,209 sq ft', exposure: 'West balcony', floors: '6–7',       price: '$3,341,900', promo: null, savings: null, img: 'images/50-scollard/suite-6-7jn.jpg',     buildingUrl: '../buildings/50-scollard.html' },
+    '20-22bn':   { building: '50 Scollard', suite: 'Suite 20-22 BN', type: '1 Bedroom + Den',       size: '1,293 sq ft', exposure: 'West balcony', floors: '20–22',      price: '$3,675,900', promo: null, savings: null, img: 'images/50-scollard/suite-20-22bn.jpg',   buildingUrl: '../buildings/50-scollard.html' },
+    '6hn':       { building: '50 Scollard', suite: 'Suite 6HN',      type: '1 Bedroom + Den',       size: '1,393 sq ft', exposure: 'West balcony', floors: '6',          price: '$3,659,900', promo: null, savings: null, img: 'images/50-scollard/suite-6hn.jpg',        buildingUrl: '../buildings/50-scollard.html' },
+    '13-17fn':   { building: '50 Scollard', suite: 'Suite 13-14 & 17 FN', type: '2 Bedroom',        size: '1,306 sq ft', exposure: 'East / West',  floors: '13–14, 17',  price: '$3,501,900', promo: null, savings: null, img: 'images/50-scollard/suite-13-17fn.jpg',   buildingUrl: '../buildings/50-scollard.html' },
+    '5an':       { building: '50 Scollard', suite: 'Suite 5AN',      type: '2 Bedroom',             size: '1,793 sq ft', exposure: 'East / West',  floors: '5',          price: '$4,549,900', promo: null, savings: null, img: 'images/50-scollard/suite-5an.jpg',        buildingUrl: '../buildings/50-scollard.html' },
+    '7hn':       { building: '50 Scollard', suite: 'Suite 7HN',      type: '2 Bedroom',             size: '1,393 sq ft', exposure: 'West balcony', floors: '7',          price: '$3,709,900', promo: null, savings: null, img: 'images/50-scollard/suite-7hn.jpg',        buildingUrl: '../buildings/50-scollard.html' },
+    '6-8in':     { building: '50 Scollard', suite: 'Suite 6-8 IN',   type: '2 Bedroom + Den',       size: '1,425 sq ft', exposure: 'East / West',  floors: '6–8',        price: '$3,763,900', promo: null, savings: null, img: 'images/50-scollard/suite-6-8in.jpg',      buildingUrl: '../buildings/50-scollard.html' },
+    '40an':      { building: '50 Scollard', suite: 'Suite 40AN (Duplex)', type: '3 Bedroom',         size: '1,453 sq ft', exposure: 'East / West',  floors: '40–41',      price: '$4,796,900', promo: null, savings: null, img: 'images/50-scollard/suite-40an.jpg',       buildingUrl: '../buildings/50-scollard.html' },
+    '23-25an':   { building: '50 Scollard', suite: 'Suite 23-25 AN', type: '3 Bedroom',             size: '2,166 sq ft', exposure: 'East / West',  floors: '23–25',      price: '$5,620,900', promo: null, savings: null, img: 'images/50-scollard/suite-23-25an.jpg',    buildingUrl: '../buildings/50-scollard.html' },
+    '23-25an-b': { building: '50 Scollard', suite: 'Suite 28N (Penthouse)', type: '3 Bedroom',       size: '5,190 sq ft', exposure: 'East / West',  floors: '28',         price: 'Contact for pricing', promo: null, savings: null, img: 'images/50-scollard/suite-23-25an-b.jpg', buildingUrl: '../buildings/50-scollard.html' },
+    // 11 YORKVILLE
+    'yv32':   { building: '11 Yorkville', suite: 'Yorkville 32', type: '2 Bedroom',            size: '782 sq ft',   exposure: 'Balcony 68 sq ft', floors: '31–43 (Unit 02)', price: '$1,876,800', promo: '$930,580',   savings: 'Save $946,220',   img: 'images/11-yorkville/yorkville-32.png', buildingUrl: null },
+    'yv35':   { building: '11 Yorkville', suite: 'Yorkville 35', type: '2 Bedroom + Media',    size: '792 sq ft',   exposure: 'Balcony 68 sq ft', floors: '38–62 (Unit 07)', price: '$1,900,800', promo: '$942,480',   savings: 'Save $958,320',   img: 'images/11-yorkville/yorkville-35.png', buildingUrl: null },
+    'yv42b':  { building: '11 Yorkville', suite: 'Yorkville 42B', type: '3 Bedroom + Media',   size: '987 sq ft',   exposure: 'Balcony 68 sq ft', floors: '31–39 (Unit 09)', price: '$2,368,800', promo: '$1,174,530', savings: 'Save $1,194,270', img: 'images/11-yorkville/yorkville-42b.png', buildingUrl: null },
+    'yvph07': { building: '11 Yorkville', suite: 'PH 07',         type: '3 Bed + Flex + 3 Bath', size: '1,517 sq ft', exposure: 'Balcony 68 sq ft · W.I.C.', floors: '61–62', price: '$3,640,800', promo: null, savings: null, img: 'images/11-yorkville/ph-07.png', buildingUrl: null },
+  };
 
-function openModal(id) {
-  const p = plans[id];
-  if (!p) return;
-  document.getElementById('modal-suite').textContent = '50 Scollard · Yorkville';
-  document.getElementById('modal-title').textContent = p.suite + ' — ' + p.type;
-  document.getElementById('modal-img').src = p.img;
-  document.getElementById('m-suite').textContent = p.suite;
-  document.getElementById('m-type').textContent = p.type;
-  document.getElementById('m-size').textContent = p.size;
-  document.getElementById('m-exposure').textContent = p.exposure;
-  document.getElementById('m-floors').textContent = p.floors;
-  document.getElementById('m-price').textContent = p.price;
-  document.getElementById('modal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+  function openModal(id) {
+    const p = plans[id];
+    if (!p) return;
+    document.getElementById('modal-suite').textContent = 'Yorkville · ' + p.building;
+    document.getElementById('modal-title').textContent = p.suite + ' — ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-building').textContent = p.building;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-floors').textContent = p.floors;
+    document.getElementById('m-exposure').textContent = p.exposure;
 
-function closeModal() {
-  document.getElementById('modal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function closeModalOutside(e) {
-  if (e.target === document.getElementById('modal')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-function filterPlans(type) {
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  document.querySelectorAll('.fp-card').forEach(card => {
-    if (type === 'all' || card.dataset.type === type) {
-      card.classList.remove('hidden');
+    // Price display
+    const priceEl = document.getElementById('m-price');
+    if (p.promo) {
+      priceEl.innerHTML = '<s>' + p.price + '</s> <span class="promo">' + p.promo + '</span>' + (p.savings ? '<span class="savings">' + p.savings + '</span>' : '');
     } else {
-      card.classList.add('hidden');
+      priceEl.textContent = p.price;
     }
-  });
-}
-</script>
 
+    // Building link
+    const linkWrap = document.getElementById('m-building-link-wrap');
+    if (p.buildingUrl) {
+      linkWrap.innerHTML = '<a href="' + p.buildingUrl + '" class="btn-full-building">View ' + p.building + ' building page →</a>';
+    } else {
+      linkWrap.innerHTML = '';
+    }
 
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-</body></html>
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function filterPlans(type, btn, building) {
+    // Update active button within the correct filter bar
+    const allBtns = btn.closest('.filter-bar').querySelectorAll('.filter-btn');
+    allBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const grid = document.getElementById('grid-' + building);
+    grid.querySelectorAll('.fp-card').forEach(card => {
+      if (type</script></body></html>
