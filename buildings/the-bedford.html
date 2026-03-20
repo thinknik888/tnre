@@ -104,6 +104,12 @@
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo span { color: var(--gold); }
 
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.3s; cursor: pointer; }
+    .gallery-grid img:hover { transform: scale(1.02); }
+    .gallery-wide { grid-column: span 2; }
+    .gallery-wide img { aspect-ratio: 16/9; }
+
     @media (max-width: 900px) {
       nav, section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .hero { grid-template-columns: 1fr; }
@@ -161,6 +167,56 @@
     </div>
   </div>
 </div>
+
+<!-- GALLERY -->
+<section>
+  <div class="section-eyebrow">Inside The Bedford</div>
+  <h2 class="section-title">Building <em>gallery</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-wide">
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_31_42_PM.png" alt="The Bedford at Sunset" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_31_03_PM.png" alt="Building Entrance" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_34_19_PM.png" alt="Porte-Cochère and Grand Arrival" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_32_09_PM.png" alt="Terraces" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_34_30_PM.png" alt="Davenport Lobby" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_34_37_PM.png" alt="Grand Staircase" />
+    </div>
+    <div class="gallery-wide">
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_35_25_PM.png" alt="Living and Dining with City Views" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_35_16_PM.png" alt="Kitchen" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_35_04_PM.png" alt="Primary Bedroom" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_35_08_PM.png" alt="Primary Bathroom" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_35_18_PM.png" alt="Living Room with Terrace" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_35_21_PM.png" alt="Backyard Oasis in the Sky" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_34_12_PM.png" alt="Grand Arrival Floor Plan" />
+    </div>
+    <div>
+      <img src="../buildings/images/the-bedford/Screenshot_2026-03-19_at_12_34_39_PM.png" alt="Second Level Floor Plan" />
+    </div>
+  </div>
+</section>
 
 <!-- PRICE LIST -->
 <section>
