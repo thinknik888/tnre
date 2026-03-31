@@ -189,6 +189,7 @@
         <div class="detail-row"><span class="detail-label">Property Tax</span><span class="detail-val" id="m-tax"></span></div>
         <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
         <div class="modal-cta">
+          <div id="m-building-link"></div>
           <div class="modal-cta-text">Questions about this floor plan? We can walk you through the layout, views, and availability.</div>
           <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
           <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20The%20Well." class="btn-full-outline">Book a Showing</a>
@@ -200,10 +201,10 @@
 
 <script>
   const plans = {
-    'well-2305': { building: 'The Well', series: 'Classic Series', suite: 'Suite 2305', type: '3 Bedroom', size: '1,260 sq ft', floors: '23rd', view: 'NW', exposure: '95 sq ft', baths: '2', maint: '$1,273 / mo', tax: '$1,065 / yr', price: '$1,695,000', img: 'images/suite-2305.webp' },
-    'well-gph9': { building: 'The Well', series: 'Classic Series', suite: 'Suite GPH9', type: '3 Bedroom', size: '1,313 sq ft', floors: 'GPH Only', view: '—', exposure: 'Yes', baths: '3', maint: '$1,628 / mo', tax: '$1,037 / yr', price: '$1,650,000', img: 'images/the well gph9.webp' },
-    'well-610':  { building: 'The Well', series: 'Signature Series', suite: 'Suite 610', type: '2 Bedroom', size: '1,515 sq ft', floors: '6th Only', view: 'NW', exposure: '60 sq ft', baths: '2.5', maint: '$1,773 / mo', tax: '$1,367 / yr', price: '$2,175,000', img: 'images/signature 6th .webp' },
-    'well-1205': { building: 'The Well', series: 'Signature Series', suite: 'Suite 1205', type: '2 Bedroom', size: '1,679 sq ft', floors: '12th Only', view: 'SE', exposure: '106 sq ft', baths: '2.5', maint: '$1,964 / mo', tax: '$1,505 / yr', price: '$2,395,000', img: 'images/SIGNATURE 12TH.webp' }
+    'well-2305': { building: 'The Well', series: 'Classic Series', suite: 'Suite 2305', type: '3 Bedroom', size: '1,260 sq ft', floors: '23rd', view: 'NW', exposure: '95 sq ft', baths: '2', maint: '$1,273 / mo', tax: '$1,065 / yr', price: '$1,695,000', img: 'images/suite-2305.webp', buildingLink: '../buildings/the-well.html' },
+    'well-gph9': { building: 'The Well', series: 'Classic Series', suite: 'Suite GPH9', type: '3 Bedroom', size: '1,313 sq ft', floors: 'GPH Only', view: '—', exposure: 'Yes', baths: '3', maint: '$1,628 / mo', tax: '$1,037 / yr', price: '$1,650,000', img: 'images/the well gph9.webp', buildingLink: '../buildings/the-well.html' },
+    'well-610':  { building: 'The Well', series: 'Signature Series', suite: 'Suite 610', type: '2 Bedroom', size: '1,515 sq ft', floors: '6th Only', view: 'NW', exposure: '60 sq ft', baths: '2.5', maint: '$1,773 / mo', tax: '$1,367 / yr', price: '$2,175,000', img: 'images/signature 6th .webp', buildingLink: '../buildings/the-well.html' },
+    'well-1205': { building: 'The Well', series: 'Signature Series', suite: 'Suite 1205', type: '2 Bedroom', size: '1,679 sq ft', floors: '12th Only', view: 'SE', exposure: '106 sq ft', baths: '2.5', maint: '$1,964 / mo', tax: '$1,505 / yr', price: '$2,395,000', img: 'images/SIGNATURE 12TH.webp', buildingLink: '../buildings/the-well.html' }
   };
 
   function openModal(id) {
@@ -223,6 +224,12 @@
     document.getElementById('m-maint').textContent = p.maint;
     document.getElementById('m-tax').textContent = p.tax;
     document.getElementById('m-price').textContent = p.price;
+    var linkEl = document.getElementById('m-building-link');
+    if (p.buildingLink) {
+      linkEl.innerHTML = '<a href="' + p.buildingLink + '" class="btn-full" style="background:var(--text);margin-bottom:1rem;">View Building Page →</a>';
+    } else {
+      linkEl.innerHTML = '';
+    }
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
