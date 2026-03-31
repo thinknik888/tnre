@@ -18,7 +18,7 @@
     .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* HERO */
-    .hero-img { width: 100%; height: 70vh; min-height: 500px; object-fit: cover; display: block; }
+    .hero-img { width: 100%; height: 80vh; min-height: 550px; object-fit: cover; object-position: center 30%; display: block; }
     .building-header { padding: 4rem 3rem 3rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .building-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
     .building-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
@@ -40,8 +40,16 @@
     .gallery-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
     .section-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
     .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 8px; }
-    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: opacity 0.2s; }
+    .gallery-grid img:hover { opacity: 0.85; }
     .gallery-grid img:first-child { grid-row: span 2; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.92); z-index: 300; align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close { position: fixed; top: 1.5rem; right: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 2rem; cursor: pointer; z-index: 301; line-height: 1; padding: 0.5rem; }
+    .lightbox-close:hover { color: var(--white); }
 
     /* SERIES SECTIONS */
     .series-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
@@ -307,7 +315,26 @@
   }
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeLightbox(); } });
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    if (!document.getElementById('modal').classList.contains('active')) document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-grid img').forEach(function(img) {
+    img.addEventListener('click', function() { openLightbox(this.src); });
+  });
 </script>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="Gallery Image" />
+</div>
 </body>
 </html>
