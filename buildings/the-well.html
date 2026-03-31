@@ -94,8 +94,15 @@
     footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo em { font-style: italic; color: var(--gold); }
+    /* RETAIL INFO */
+    .retail-section { background: #1e1c18; padding: 5rem 3rem; }
+    .retail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .retail-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--white); margin-bottom: 1rem; }
+    .retail-block h3 em { font-style: italic; color: var(--gold); }
+    .retail-block p { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.55); font-weight: 300; }
     @media (max-width: 900px) {
-      nav, .gallery-section, .series-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      nav, .gallery-section, .series-section, .retail-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .retail-grid { grid-template-columns: 1fr; gap: 2rem; }
       .building-header { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
@@ -154,6 +161,20 @@
     <img src="../neighbourhoods/images/the-well-pool.jpg" alt="The Well Rooftop Pool" />
     <img src="../neighbourhoods/images/the-well-signature-pool.jpg" alt="The Well Signature Pool" />
     <img src="../neighbourhoods/images/the-well-overview.jpg" alt="The Well Overview" />
+  </div>
+</div>
+
+<!-- RETAIL INFO -->
+<div class="retail-section">
+  <div class="retail-grid">
+    <div class="retail-block">
+      <h3>Extraordinary <em>Retail</em></h3>
+      <p>The design of The Well incorporates numerous unique features, including significant publicly accessible areas and three new north-south pedestrian streets intersecting a glass-canopied east-west pedestrian area connecting all buildings within the development. Total retail: 500,000 sq ft.</p>
+    </div>
+    <div class="retail-block">
+      <h3><em>3 Million</em> Sq Ft</h3>
+      <p>The Well offers 3 million sq ft of convenient services, food, entertainment, retail and workspace — all within one spectacular community. Residents experience the full spectrum of urban living without needing to leave.</p>
+    </div>
   </div>
 </div>
 
