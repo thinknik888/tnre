@@ -18,20 +18,22 @@
     .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* HERO */
-    .hero-img { width: 100%; height: 85vh; min-height: 560px; object-fit: cover; object-position: center center; display: block; }
-    .building-header { padding: 4rem 3rem 3rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .hero { position: relative; height: 90vh; min-height: 560px; background: url('../neighbourhoods/images/the-well-signature-pool.jpg') center / cover no-repeat; display: flex; align-items: flex-end; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,24,0.85) 0%, rgba(26,26,24,0.4) 40%, transparent 70%); }
+    .hero-content { position: relative; z-index: 1; padding: 4rem 3rem; max-width: 640px; }
     .building-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .building-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .building-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 0.75rem; color: var(--white); }
     .building-title em { font-style: italic; color: var(--gold); }
-    .building-address { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; }
-    .building-desc { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 2rem; }
+    .building-address { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+    .building-desc { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.65); font-weight: 300; margin-bottom: 2rem; }
     .building-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-gold { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
-    .btn-sms { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-sms { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.25); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
     .btn-sms:hover { border-color: var(--gold); color: var(--gold); }
 
     /* STATS */
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .stats-section { padding: 3rem; border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5rem; }
     .stat-box { background: var(--cream); padding: 1.5rem; border-radius: 2px; }
     .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); margin-bottom: 0.25rem; }
     .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
@@ -109,10 +111,10 @@
     .retail-block h3 em { font-style: italic; color: var(--gold); }
     .retail-block p { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.55); font-weight: 300; }
     @media (max-width: 900px) {
-      nav, .gallery-section, .series-section, .retail-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      nav, .gallery-section, .series-section, .retail-section, .stats-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .retail-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .building-header { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-content { padding: 2.5rem 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .gallery-grid img:first-child { grid-row: span 1; }
       .fp-grid { grid-template-columns: repeat(2, 1fr); }
@@ -125,7 +127,8 @@
     @media (max-width: 600px) {
       .fp-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
-      .hero-img { height: 300px; }
+      .hero { height: 80vh; min-height: 450px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -137,10 +140,8 @@
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
-<img class="hero-img" src="../neighbourhoods/images/the-well-signature-pool.jpg" alt="The Well Toronto" />
-
-<div class="building-header">
-  <div>
+<div class="hero">
+  <div class="hero-content">
     <div class="building-eyebrow">Downtown Toronto · King West</div>
     <h1 class="building-title">The <em>Well</em></h1>
     <div class="building-address">Front St W & Spadina Ave · Toronto, ON</div>
@@ -150,6 +151,9 @@
       <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20The%20Well." class="btn-sms">Book a Showing</a>
     </div>
   </div>
+</div>
+
+<div class="stats-section">
   <div class="stats-grid">
     <div class="stat-box"><div class="stat-val">99</div><div class="stat-lbl">Walk Score</div></div>
     <div class="stat-box"><div class="stat-val">100</div><div class="stat-lbl">Transit Score</div></div>
