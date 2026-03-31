@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Well — Building Page · CondosAround</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero-img { width: 100%; height: 520px; object-fit: cover; display: block; }
+    .building-header { padding: 4rem 3rem 3rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .building-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .building-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .building-title em { font-style: italic; color: var(--gold); }
+    .building-address { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .building-desc { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 2rem; }
+    .building-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    .btn-sms { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-sms:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .stat-box { background: var(--cream); padding: 1.5rem; border-radius: 2px; }
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); margin-bottom: 0.25rem; }
+    .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* GALLERY */
+    .gallery-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 8px; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-grid img:first-child { grid-row: span 2; }
+
+    /* SERIES SECTIONS */
+    .series-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .series-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .series-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 0.5rem; }
+    .series-title em { font-style: italic; color: var(--gold); }
+    .series-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; max-width: 600px; font-weight: 300; }
+    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); }
+    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; text-decoration: none; }
+
+    /* CTA STRIP */
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); }
+    @media (max-width: 900px) {
+      nav, .gallery-section, .series-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .building-header { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-grid img:first-child { grid-row: span 1; }
+      .fp-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .fp-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .hero-img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../neighbourhoods/cn-tower.html" class="nav-back">← CN Tower Floor Plans</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<img class="hero-img" src="../neighbourhoods/images/the-well-hero.jpg" alt="The Well Toronto" />
+
+<div class="building-header">
+  <div>
+    <div class="building-eyebrow">Downtown Toronto · King West</div>
+    <h1 class="building-title">The <em>Well</em></h1>
+    <div class="building-address">Front St W & Spadina Ave · Toronto, ON</div>
+    <p class="building-desc">The Well is Toronto's most ambitious mixed-use development — 7.8 acres at the corner of Front, Spadina and Wellington, combining 3.1 million square feet of retail, office, and residential space. Built by Tridel, Canada's leading condo developer with over 80,000 homes delivered. Two distinct series of residences: the soaring Classic Series towers along Front Street, and the intimate 14-storey Signature Series boutique building on Wellington.</p>
+    <div class="building-actions">
+      <a href="tel:6479240848" class="btn-gold">Call 647-924-0848</a>
+      <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20The%20Well." class="btn-sms">Book a Showing</a>
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-val">99</div><div class="stat-lbl">Walk Score</div></div>
+    <div class="stat-box"><div class="stat-val">100</div><div class="stat-lbl">Transit Score</div></div>
+    <div class="stat-box"><div class="stat-val">3</div><div class="stat-lbl">Condo Towers</div></div>
+    <div class="stat-box"><div class="stat-val">98</div><div class="stat-lbl">Signature Suites</div></div>
+    <div class="stat-box"><div class="stat-val">2024</div><div class="stat-lbl">Completed</div></div>
+    <div class="stat-box"><div class="stat-val">Tridel</div><div class="stat-lbl">Developer</div></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <div class="section-label">Gallery</div>
+  <div class="gallery-grid">
+    <img src="../neighbourhoods/images/the-well-exterior-signature.jpg" alt="The Well Exterior Signature" />
+    <img src="../neighbourhoods/images/the-well-amenities.jpg" alt="The Well Amenities" />
+    <img src="../neighbourhoods/images/the-well-pool.jpg" alt="The Well Rooftop Pool" />
+    <img src="../neighbourhoods/images/the-well-signature-pool.jpg" alt="The Well Signature Pool" />
+    <img src="../neighbourhoods/images/the-well-overview.jpg" alt="The Well Overview" />
+  </div>
+</div>
+
+<!-- CLASSIC SERIES -->
+<div class="series-section">
+  <div class="series-header">
+    <div class="section-label">Classic Series</div>
+    <h2 class="series-title">Soaring above <em>Front Street</em></h2>
+    <p class="series-desc">The Classic Series consists of two towers along Front Street with 400 and 258 suites respectively. Modern high-rise living with spectacular city views, leading-edge finishes, and direct access to The Well's 500,000 sq ft of retail and amenities below.</p>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('well-2305')">
+      <div class="fp-image"><img src="../neighbourhoods/images/suite-2305.webp" alt="Suite 2305" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Suite 2305 · Floor 23 · NW</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 95 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,260 sq ft</span><span class="fp-price">$1,695,000</span></div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('well-gph9')">
+      <div class="fp-image"><img src="../neighbourhoods/images/the well gph9.webp" alt="Suite GPH9" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Suite GPH9 · GPH Floor</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony · 3 Bath</div>
+        <div class="fp-meta"><span class="fp-sqft">1,313 sq ft</span><span class="fp-price">$1,650,000</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNATURE SERIES -->
+<div class="series-section">
+  <div class="series-header">
+    <div class="section-label">Signature Series</div>
+    <h2 class="series-title">Boutique living on <em>Wellington</em></h2>
+    <p class="series-desc">The Signature Series is a triumph of design — a luxury 14-storey boutique building with just 98 suites on the quiet side of Wellington Street. Expansive floor plans ranging from 1,059 to 3,253 sq ft, historic views, and a rare sense of calm steps from downtown's west end.</p>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('well-610')">
+      <div class="fp-image"><img src="../neighbourhoods/images/signature 6th .webp" alt="Suite 610" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Suite 610 · Floor 6 · NW</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 60 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,515 sq ft</span><span class="fp-price">$2,175,000</span></div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('well-1205')">
+      <div class="fp-image"><img src="../neighbourhoods/images/SIGNATURE 12TH.webp" alt="Suite 1205" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-suite">Suite 1205 · Floor 12 · SE</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 106 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,679 sq ft</span><span class="fp-price">$2,395,000</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Interested in The Well?<br><em>Let's talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20The%20Well." class="btn-gold-outline">Book a Showing</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com · © 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Series</span><span class="detail-val" id="m-series"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Floor</span><span class="detail-val" id="m-floors"></span></div>
+        <div class="detail-row"><span class="detail-label">View</span><span class="detail-val" id="m-view"></span></div>
+        <div class="detail-row"><span class="detail-label">Balcony</span><span class="detail-val" id="m-exposure"></span></div>
+        <div class="detail-row"><span class="detail-label">Bathrooms</span><span class="detail-val" id="m-baths"></span></div>
+        <div class="detail-row"><span class="detail-label">Maintenance</span><span class="detail-val" id="m-maint"></span></div>
+        <div class="detail-row"><span class="detail-label">Property Tax</span><span class="detail-val" id="m-tax"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this floor plan? We can walk you through the layout, views, and availability.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20The%20Well." class="btn-full-outline">Book a Showing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const plans = {
+    'well-2305': { series: 'Classic Series', suite: 'Suite 2305', type: '3 Bedroom', size: '1,260 sq ft', floors: '23rd', view: 'NW', exposure: '95 sq ft', baths: '2', maint: '$1,273 / mo', tax: '$1,065 / yr', price: '$1,695,000', img: '../neighbourhoods/images/suite-2305.webp' },
+    'well-gph9': { series: 'Classic Series', suite: 'Suite GPH9', type: '3 Bedroom', size: '1,313 sq ft', floors: 'GPH Only', view: '—', exposure: 'Yes', baths: '3', maint: '$1,628 / mo', tax: '$1,037 / yr', price: '$1,650,000', img: '../neighbourhoods/images/the well gph9.webp' },
+    'well-610':  { series: 'Signature Series', suite: 'Suite 610', type: '2 Bedroom', size: '1,515 sq ft', floors: '6th Only', view: 'NW', exposure: '60 sq ft', baths: '2.5', maint: '$1,773 / mo', tax: '$1,367 / yr', price: '$2,175,000', img: '../neighbourhoods/images/signature 6th .webp' },
+    'well-1205': { series: 'Signature Series', suite: 'Suite 1205', type: '2 Bedroom', size: '1,679 sq ft', floors: '12th Only', view: 'SE', exposure: '106 sq ft', baths: '2.5', maint: '$1,964 / mo', tax: '$1,505 / yr', price: '$2,395,000', img: '../neighbourhoods/images/SIGNATURE 12TH.webp' }
+  };
+  function openModal(id) {
+    const p = plans[id]; if (!p) return;
+    document.getElementById('modal-suite').textContent = 'The Well · ' + p.series;
+    document.getElementById('modal-title').textContent = p.suite + ' — ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-series').textContent = p.series;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-floors').textContent = p.floors;
+    document.getElementById('m-view').textContent = p.view;
+    document.getElementById('m-exposure').textContent = p.exposure;
+    document.getElementById('m-baths').textContent = p.baths;
+    document.getElementById('m-maint').textContent = p.maint;
+    document.getElementById('m-tax').textContent = p.tax;
+    document.getElementById('m-price').textContent = p.price;
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
