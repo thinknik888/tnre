@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yorkville Condos & Floor Plans Ã¢ÂÂ TNRE</title>
+  <title>Yorkville Condos & Floor Plans — CondosAround.com</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
@@ -24,16 +24,12 @@
     .page-stats { display: flex; gap: 3rem; margin-top: 2.5rem; }
     .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); }
     .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
-
-    /* SQFT SECTIONS */
     .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
     .sqft-section:last-of-type { border-bottom: none; }
     .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
     .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
     .sqft-title em { font-style: italic; color: var(--gold); }
     .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-
-    /* FLOOR PLAN GRID */
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; }
     .fp-card:hover { background: var(--gold-pale); }
@@ -43,7 +39,8 @@
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-meta { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-meta-row { display: flex; justify-content: space-between; align-items: baseline; }
     .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
     .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
     .fp-price s { color: var(--text-muted); font-weight: 300; }
@@ -51,8 +48,9 @@
     .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
     .fp-save { font-size: 0.62rem; color: #5a7a5a; background: #f0f7f0; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block; }
     .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
-
-    /* MODAL */
+    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
     .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
@@ -100,28 +98,19 @@
       .fp-grid { grid-template-columns: 1fr; }
       .page-stats { gap: 1.5rem; flex-wrap: wrap; }
     }
-  .fp-rebate { font-size: 0.72rem; color: #c8a96e; letter-spacing: 0.05em; margin-top: 4px; text-align: right; }
-.fp-rebate span { font-weight: 500; }
-.fp-rebate { font-size: 0.7rem; color: #c8a96e; letter-spacing: 0.05em; margin-top: 3px; text-align: right; }
-.fp-rebate span { font-weight: 500; }
-.fp-offers { font-style: italic; }
-
-    .fp-rebate { font-size: 0.68rem; color: var(--gold); letter-spacing: 0.04em; margin-top: 4px; text-align: right; display: block; }
-    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
-    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; margin-top: 4px; text-align: right; display: block; }
   </style>
 </head>
 <body>
 <nav>
   <a href="../index.html" class="nav-logo"><span style="color:#c8a96e">TN</span><span style="color:#1a3a5c">RE</span></a>
-  <a href="../index.html" class="nav-back">Ã¢ÂÂ All neighbourhoods</a>
+  <a href="../index.html" class="nav-back">&larr; All neighbourhoods</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
 <div class="page-header">
-  <div class="page-eyebrow">Toronto ÃÂ· Neighbourhood</div>
+  <div class="page-eyebrow">Toronto &middot; Neighbourhood</div>
   <h1 class="page-title">Yorkville <em>Floor Plans</em></h1>
-  <p class="page-desc">Toronto's most prestigious neighbourhood Ã¢ÂÂ home to world-class dining, luxury boutiques, and some of the city's finest residences. Every floor plan here is hand-curated.</p>
+  <p class="page-desc">Toronto's most prestigious neighbourhood &mdash; home to world-class dining, luxury boutiques, and some of the city's finest residences. Every floor plan here is hand-curated.</p>
   <div class="page-stats">
     <div class="stat-item"><div class="stat-val">3</div><div class="stat-lbl">Buildings listed</div></div>
     <div class="stat-item"><div class="stat-val">20</div><div class="stat-lbl">Floor plans</div></div>
@@ -140,190 +129,236 @@
       <div class="fp-image"><img src="images/yorkville-32.png" alt="Yorkville 32" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
-        <div class="fp-suite">Yorkville 32 ÃÂ· Levels 31Ã¢ÂÂ43, Unit 02</div>
+        <div class="fp-suite">Yorkville 32 &middot; Levels 31&ndash;43, Unit 02</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">Balcony 68 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">782 sq ft</span><span class="fp-price"><s>$1,876,800</s> <span class="fp-price-promo">$930,580</span></span><span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$800,580</span></div>
-        <div class="fp-save">Save $946,220</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">782 sq ft</span><span class="fp-price"><s>$1,876,800</s> <span class="fp-price-promo">$930,580</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$800,580</span>
+          <div class="fp-save">Save $946,220</div>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('yv35')">
       <div class="fp-image"><img src="images/yorkville-35.png" alt="Yorkville 35" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
-        <div class="fp-suite">Yorkville 35 ÃÂ· Levels 38Ã¢ÂÂ62, Unit 07</div>
+        <div class="fp-suite">Yorkville 35 &middot; Levels 38&ndash;62, Unit 07</div>
         <div class="fp-type">2 Bedroom + Media</div>
         <div class="fp-exposure">Balcony 68 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">792 sq ft</span><span class="fp-price"><s>$1,900,800</s> <span class="fp-price-promo">$942,480</span></span><span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$812,480</span></div>
-        <div class="fp-save">Save $958,320</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">792 sq ft</span><span class="fp-price"><s>$1,900,800</s> <span class="fp-price-promo">$942,480</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$812,480</span>
+          <div class="fp-save">Save $958,320</div>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('yv42b')">
       <div class="fp-image"><img src="images/yorkville-42b.png" alt="Yorkville 42B" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
-        <div class="fp-suite">Yorkville 42B ÃÂ· Levels 31Ã¢ÂÂ39, Unit 09</div>
+        <div class="fp-suite">Yorkville 42B &middot; Levels 31&ndash;39, Unit 09</div>
         <div class="fp-type">3 Bedroom + Media</div>
         <div class="fp-exposure">Balcony 68 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">987 sq ft</span><span class="fp-price"><s>$2,368,800</s> <span class="fp-price-promo">$1,174,530</span></span><span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$1,044,530</span></div>
-        <div class="fp-save">Save $1,194,270</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">987 sq ft</span><span class="fp-price"><s>$2,368,800</s> <span class="fp-price-promo">$1,174,530</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$1,044,530</span>
+          <div class="fp-save">Save $1,194,270</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 1,000 Ã¢ÂÂ 2,000 SQ FT -->
+<!-- 1,000 - 2,000 SQ FT -->
 <div class="sqft-section">
   <div class="sqft-header">
-    <div class="sqft-title"><em>1,000</em> Ã¢ÂÂ <em>2,000</em> sq ft</div>
+    <div class="sqft-title"><em>1,000</em> &ndash; <em>2,000</em> sq ft</div>
     <div class="sqft-count">15 floor plans</div>
   </div>
   <div class="fp-grid">
-
-    <!-- 50 Scollard -->
     <div class="fp-card" onclick="openModal('6-7jn')">
       <div class="fp-image"><img src="images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 6-7 JN ÃÂ· Floors 6-7</div>
+        <div class="fp-suite">Suite 6-7 JN &middot; Floors 6-7</div>
         <div class="fp-type">1 Bed + Den / 2 Bedroom</div>
         <div class="fp-exposure">West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,209 sq ft</span><span class="fp-price">$3,341,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,209 sq ft</span><span class="fp-price">$3,341,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('20-22bn')">
       <div class="fp-image"><img src="images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 20-22 BN ÃÂ· Floors 20-22</div>
+        <div class="fp-suite">Suite 20-22 BN &middot; Floors 20-22</div>
         <div class="fp-type">1 Bedroom + Den</div>
         <div class="fp-exposure">West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,293 sq ft</span><span class="fp-price">$3,675,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,293 sq ft</span><span class="fp-price">$3,675,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('13-17fn')">
       <div class="fp-image"><img src="images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 13-14 &amp; 17 FN ÃÂ· Floors 13-14, 17</div>
+        <div class="fp-suite">Suite 13-14 &amp; 17 FN &middot; Floors 13-14, 17</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">East / West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,306 sq ft</span><span class="fp-price">$3,501,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,306 sq ft</span><span class="fp-price">$3,501,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('6hn')">
       <div class="fp-image"><img src="images/50-scollard/suite-6hn.jpg" alt="Suite 6HN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 6HN ÃÂ· Floor 6</div>
+        <div class="fp-suite">Suite 6HN &middot; Floor 6</div>
         <div class="fp-type">1 Bedroom + Den</div>
         <div class="fp-exposure">West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,659,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,659,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('7hn')">
       <div class="fp-image"><img src="images/50-scollard/suite-7hn.jpg" alt="Suite 7HN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 7HN ÃÂ· Floor 7</div>
+        <div class="fp-suite">Suite 7HN &middot; Floor 7</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,709,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,709,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('6-8in')">
       <div class="fp-image"><img src="images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 6-8 IN ÃÂ· Floors 6-8</div>
+        <div class="fp-suite">Suite 6-8 IN &middot; Floors 6-8</div>
         <div class="fp-type">2 Bedroom + Den</div>
         <div class="fp-exposure">East / West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,425 sq ft</span><span class="fp-price">$3,763,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,425 sq ft</span><span class="fp-price">$3,763,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('40an')">
       <div class="fp-image"><img src="images/50-scollard/suite-40an.jpg" alt="Suite 40AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 40AN ÃÂ· Floor 40 ÃÂ· Duplex</div>
+        <div class="fp-suite">Suite 40AN &middot; Floor 40 &middot; Duplex</div>
         <div class="fp-type">3 Bedroom</div>
         <div class="fp-exposure">East / West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,453 sq ft</span><span class="fp-price">$4,796,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,453 sq ft</span><span class="fp-price">$4,796,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('yvph07')">
       <div class="fp-image"><img src="images/ph-07.png" alt="PH 07" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
-        <div class="fp-suite">PH 07 ÃÂ· Floors 61Ã¢ÂÂ62</div>
+        <div class="fp-suite">PH 07 &middot; Floors 61&ndash;62</div>
         <div class="fp-type">3 Bed + Flex + 3 Bath</div>
-        <div class="fp-exposure">Balcony 68 sq ft ÃÂ· W.I.C.</div>
-        <div class="fp-meta"><span class="fp-sqft">1,517 sq ft</span><span class="fp-price">$3,640,800</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-exposure">Balcony 68 sq ft &middot; W.I.C.</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,517 sq ft</span><span class="fp-price">$3,640,800</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('5an')">
       <div class="fp-image"><img src="images/50-scollard/suite-5an.jpg" alt="Suite 5AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 5AN ÃÂ· Floor 5</div>
+        <div class="fp-suite">Suite 5AN &middot; Floor 5</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">East / West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">1,793 sq ft</span><span class="fp-price">$4,549,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,793 sq ft</span><span class="fp-price">$4,549,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
-
-    <!-- The Bedford -->
     <div class="fp-card" id="bedford-1295t" onclick="openModal('bedford-1295t')">
       <div class="fp-image"><img src="images/the-bedford/suite-1295t.png" alt="Suite 1295T Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
-        <div class="fp-suite">Suite 1295T ÃÂ· Floor 8</div>
+        <div class="fp-suite">Suite 1295T &middot; Floor 8</div>
         <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">North exposure ÃÂ· Terrace 283 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">1,295 sq ft</span><span class="fp-price">$2,849,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-exposure">North exposure &middot; Terrace 283 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,295 sq ft</span><span class="fp-price">$2,849,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" id="bedford-1333" onclick="openModal('bedford-1333')">
       <div class="fp-image"><img src="images/the-bedford/suite-1333.png" alt="Suite 1333 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
-        <div class="fp-suite">Suite 1333 ÃÂ· Floors 3Ã¢ÂÂ4</div>
+        <div class="fp-suite">Suite 1333 &middot; Floors 3&ndash;4</div>
         <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">North exposure ÃÂ· Balcony 134 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">1,333 sq ft</span><span class="fp-price">$2,499,900 Ã¢ÂÂ $2,529,900</span></div>
+        <div class="fp-exposure">North exposure &middot; Balcony 134 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,333 sq ft</span><span class="fp-price">$2,499,900 &ndash; $2,529,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" id="bedford-1535" onclick="openModal('bedford-1535')">
       <div class="fp-image"><img src="images/the-bedford/suite-1535.png" alt="Suite 1535 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
-        <div class="fp-suite">Suite 1535 ÃÂ· Floor 5</div>
+        <div class="fp-suite">Suite 1535 &middot; Floor 5</div>
         <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">North exposure ÃÂ· Balcony 64 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">1,535 sq ft</span><span class="fp-price">$2,869,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-exposure">North exposure &middot; Balcony 64 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,535 sq ft</span><span class="fp-price">$2,869,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" id="bedford-1605" onclick="openModal('bedford-1605')">
       <div class="fp-image"><img src="images/the-bedford/suite-1605.png" alt="Suite 1605 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
-        <div class="fp-suite">Suite 1605 ÃÂ· Floor 5</div>
+        <div class="fp-suite">Suite 1605 &middot; Floor 5</div>
         <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">NE exposure ÃÂ· Balcony 146 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">1,605 sq ft</span><span class="fp-price">$3,059,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-exposure">NE exposure &middot; Balcony 146 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,605 sq ft</span><span class="fp-price">$3,059,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" id="bedford-1607" onclick="openModal('bedford-1607')">
       <div class="fp-image"><img src="images/the-bedford/suite-1607.png" alt="Suite 1607 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
-        <div class="fp-suite">Suite 1607 ÃÂ· Floor 9</div>
+        <div class="fp-suite">Suite 1607 &middot; Floor 9</div>
         <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">NE exposure ÃÂ· Balcony 70 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">1,607 sq ft</span><span class="fp-price">$3,449,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-exposure">NE exposure &middot; Balcony 70 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,607 sq ft</span><span class="fp-price">$3,449,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -338,30 +373,38 @@
       <div class="fp-image"><img src="images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 23-25 AN ÃÂ· Floors 23-25</div>
+        <div class="fp-suite">Suite 23-25 AN &middot; Floors 23-25</div>
         <div class="fp-type">3 Bedroom</div>
         <div class="fp-exposure">East / West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">2,166 sq ft</span><span class="fp-price">$5,620,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">2,166 sq ft</span><span class="fp-price">$5,620,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
     <div class="fp-card" onclick="openModal('23-25an-b')">
       <div class="fp-image"><img src="images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 28N ÃÂ· Floor 28 ÃÂ· Penthouse</div>
+        <div class="fp-suite">Suite 28N &middot; Floor 28 &middot; Penthouse</div>
         <div class="fp-type">3 Bedroom</div>
         <div class="fp-exposure">East / West exposure</div>
-        <div class="fp-meta"><span class="fp-sqft">5,190 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">5,190 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        </div>
       </div>
     </div>
     <div class="fp-card" id="bedford-2749" onclick="openModal('bedford-2749')">
       <div class="fp-image"><img src="images/the-bedford/suite-2749.png" alt="Suite 2749 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
-        <div class="fp-suite">Suite 2749 ÃÂ· Floor 5</div>
+        <div class="fp-suite">Suite 2749 &middot; Floor 5</div>
         <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">SW exposure ÃÂ· Balcony 214 sq ft</div>
-        <div class="fp-meta"><span class="fp-sqft">2,749 sq ft</span><span class="fp-price">$6,799,900</span><span class="fp-offers">Open to offers</span></div>
+        <div class="fp-exposure">SW exposure &middot; Balcony 214 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">2,749 sq ft</span><span class="fp-price">$6,799,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
       </div>
     </div>
   </div>
@@ -376,15 +419,14 @@
 </div>
 <footer>
   <div class="footer-logo"><span style="color:#c8a96e">TN</span><span style="color:#1a3a5c">RE</span></div>
-  <div>Think Nik Real Estate ÃÂ· Precondo.ca ÃÂ· ÃÂ© 2025</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
 </footer>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-header">
       <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
-      <button class="modal-close" onclick="closeModal()">Ã¢ÂÂ</button>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
     </div>
     <div class="modal-body">
       <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
@@ -399,7 +441,7 @@
         <div class="modal-cta">
           <div id="m-building-link-wrap"></div>
           <div class="modal-cta-text">Questions about this floor plan? Nikhil can walk you through the layout, views, and availability.</div>
-          <a href="tel:6479240848" class="btn-full">Call Nikhil Ã¢ÂÂ 647-924-0848</a>
+          <a href="tel:6479240848" class="btn-full">Call Nikhil &mdash; 647-924-0848</a>
           <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
         </div>
       </div>
@@ -409,22 +451,22 @@
 
 <script>
   const plans = {
-    '6-7jn':     { building: '50 Scollard', suite: 'Suite 6-7 JN',        type: '1 Bed + Den / 2 Bedroom', size: '1,209 sq ft', exposure: 'West balcony',           floors: '6Ã¢ÂÂ7',          price: '$3,341,900',              promo: null, savings: null, img: 'images/50-scollard/suite-6-7jn.jpg',     buildingUrl: '../buildings/50-scollard.html' },
-    '20-22bn':   { building: '50 Scollard', suite: 'Suite 20-22 BN',       type: '1 Bedroom + Den',         size: '1,293 sq ft', exposure: 'West balcony',           floors: '20Ã¢ÂÂ22',        price: '$3,675,900',              promo: null, savings: null, img: 'images/50-scollard/suite-20-22bn.jpg',   buildingUrl: '../buildings/50-scollard.html' },
+    '6-7jn':     { building: '50 Scollard', suite: 'Suite 6-7 JN',        type: '1 Bed + Den / 2 Bedroom', size: '1,209 sq ft', exposure: 'West balcony',           floors: '6\u20137',          price: '$3,341,900',              promo: null, savings: null, img: 'images/50-scollard/suite-6-7jn.jpg',     buildingUrl: '../buildings/50-scollard.html' },
+    '20-22bn':   { building: '50 Scollard', suite: 'Suite 20-22 BN',       type: '1 Bedroom + Den',         size: '1,293 sq ft', exposure: 'West balcony',           floors: '20\u201322',        price: '$3,675,900',              promo: null, savings: null, img: 'images/50-scollard/suite-20-22bn.jpg',   buildingUrl: '../buildings/50-scollard.html' },
     '6hn':       { building: '50 Scollard', suite: 'Suite 6HN',            type: '1 Bedroom + Den',         size: '1,393 sq ft', exposure: 'West balcony',           floors: '6',            price: '$3,659,900',              promo: null, savings: null, img: 'images/50-scollard/suite-6hn.jpg',        buildingUrl: '../buildings/50-scollard.html' },
-    '13-17fn':   { building: '50 Scollard', suite: 'Suite 13-14 & 17 FN',  type: '2 Bedroom',               size: '1,306 sq ft', exposure: 'East / West',           floors: '13Ã¢ÂÂ14, 17',    price: '$3,501,900',              promo: null, savings: null, img: 'images/50-scollard/suite-13-17fn.jpg',   buildingUrl: '../buildings/50-scollard.html' },
+    '13-17fn':   { building: '50 Scollard', suite: 'Suite 13-14 & 17 FN',  type: '2 Bedroom',               size: '1,306 sq ft', exposure: 'East / West',           floors: '13\u201314, 17',    price: '$3,501,900',              promo: null, savings: null, img: 'images/50-scollard/suite-13-17fn.jpg',   buildingUrl: '../buildings/50-scollard.html' },
     '5an':       { building: '50 Scollard', suite: 'Suite 5AN',            type: '2 Bedroom',               size: '1,793 sq ft', exposure: 'East / West',           floors: '5',            price: '$4,549,900',              promo: null, savings: null, img: 'images/50-scollard/suite-5an.jpg',        buildingUrl: '../buildings/50-scollard.html' },
     '7hn':       { building: '50 Scollard', suite: 'Suite 7HN',            type: '2 Bedroom',               size: '1,393 sq ft', exposure: 'West balcony',           floors: '7',            price: '$3,709,900',              promo: null, savings: null, img: 'images/50-scollard/suite-7hn.jpg',        buildingUrl: '../buildings/50-scollard.html' },
-    '6-8in':     { building: '50 Scollard', suite: 'Suite 6-8 IN',         type: '2 Bedroom + Den',         size: '1,425 sq ft', exposure: 'East / West',           floors: '6Ã¢ÂÂ8',          price: '$3,763,900',              promo: null, savings: null, img: 'images/50-scollard/suite-6-8in.jpg',      buildingUrl: '../buildings/50-scollard.html' },
-    '40an':      { building: '50 Scollard', suite: 'Suite 40AN (Duplex)',   type: '3 Bedroom',               size: '1,453 sq ft', exposure: 'East / West',           floors: '40Ã¢ÂÂ41',        price: '$4,796,900',              promo: null, savings: null, img: 'images/50-scollard/suite-40an.jpg',       buildingUrl: '../buildings/50-scollard.html' },
-    '23-25an':   { building: '50 Scollard', suite: 'Suite 23-25 AN',       type: '3 Bedroom',               size: '2,166 sq ft', exposure: 'East / West',           floors: '23Ã¢ÂÂ25',        price: '$5,620,900',              promo: null, savings: null, img: 'images/50-scollard/suite-23-25an.jpg',    buildingUrl: '../buildings/50-scollard.html' },
+    '6-8in':     { building: '50 Scollard', suite: 'Suite 6-8 IN',         type: '2 Bedroom + Den',         size: '1,425 sq ft', exposure: 'East / West',           floors: '6\u20138',          price: '$3,763,900',              promo: null, savings: null, img: 'images/50-scollard/suite-6-8in.jpg',      buildingUrl: '../buildings/50-scollard.html' },
+    '40an':      { building: '50 Scollard', suite: 'Suite 40AN (Duplex)',   type: '3 Bedroom',               size: '1,453 sq ft', exposure: 'East / West',           floors: '40\u201341',        price: '$4,796,900',              promo: null, savings: null, img: 'images/50-scollard/suite-40an.jpg',       buildingUrl: '../buildings/50-scollard.html' },
+    '23-25an':   { building: '50 Scollard', suite: 'Suite 23-25 AN',       type: '3 Bedroom',               size: '2,166 sq ft', exposure: 'East / West',           floors: '23\u201325',        price: '$5,620,900',              promo: null, savings: null, img: 'images/50-scollard/suite-23-25an.jpg',    buildingUrl: '../buildings/50-scollard.html' },
     '23-25an-b': { building: '50 Scollard', suite: 'Suite 28N (Penthouse)', type: '3 Bedroom',               size: '5,190 sq ft', exposure: 'East / West',           floors: '28',           price: 'Contact for pricing',     promo: null, savings: null, img: 'images/50-scollard/suite-23-25an-b.jpg',  buildingUrl: '../buildings/50-scollard.html' },
-    'yv32':      { building: '11 Yorkville', suite: 'Yorkville 32',        type: '2 Bedroom',               size: '782 sq ft',   exposure: 'Balcony 68 sq ft',      floors: '31Ã¢ÂÂ43 (Unit 02)', price: '$1,876,800',            promo: '$930,580',   savings: 'Save $946,220',   img: 'images/yorkville-32.png',  buildingUrl: '../buildings/11-yorkville.html' },
-    'yv35':      { building: '11 Yorkville', suite: 'Yorkville 35',        type: '2 Bedroom + Media',       size: '792 sq ft',   exposure: 'Balcony 68 sq ft',      floors: '38Ã¢ÂÂ62 (Unit 07)', price: '$1,900,800',            promo: '$942,480',   savings: 'Save $958,320',   img: 'images/yorkville-35.png',  buildingUrl: '../buildings/11-yorkville.html' },
-    'yv42b':     { building: '11 Yorkville', suite: 'Yorkville 42B',       type: '3 Bedroom + Media',       size: '987 sq ft',   exposure: 'Balcony 68 sq ft',      floors: '31Ã¢ÂÂ39 (Unit 09)', price: '$2,368,800',            promo: '$1,174,530', savings: 'Save $1,194,270', img: 'images/yorkville-42b.png', buildingUrl: '../buildings/11-yorkville.html' },
-    'yvph07':    { building: '11 Yorkville', suite: 'PH 07',               type: '3 Bed + Flex + 3 Bath',   size: '1,517 sq ft', exposure: 'Balcony 68 sq ft ÃÂ· W.I.C.', floors: '61Ã¢ÂÂ62',    price: '$3,640,800',              promo: null, savings: null, img: 'images/ph-07.png',         buildingUrl: '../buildings/11-yorkville.html' },
+    'yv32':      { building: '11 Yorkville', suite: 'Yorkville 32',        type: '2 Bedroom',               size: '782 sq ft',   exposure: 'Balcony 68 sq ft',      floors: '31\u201343 (Unit 02)', price: '$1,876,800',            promo: '$930,580',   savings: 'Save $946,220',   img: 'images/yorkville-32.png',  buildingUrl: '../buildings/11-yorkville.html' },
+    'yv35':      { building: '11 Yorkville', suite: 'Yorkville 35',        type: '2 Bedroom + Media',       size: '792 sq ft',   exposure: 'Balcony 68 sq ft',      floors: '38\u201362 (Unit 07)', price: '$1,900,800',            promo: '$942,480',   savings: 'Save $958,320',   img: 'images/yorkville-35.png',  buildingUrl: '../buildings/11-yorkville.html' },
+    'yv42b':     { building: '11 Yorkville', suite: 'Yorkville 42B',       type: '3 Bedroom + Media',       size: '987 sq ft',   exposure: 'Balcony 68 sq ft',      floors: '31\u201339 (Unit 09)', price: '$2,368,800',            promo: '$1,174,530', savings: 'Save $1,194,270', img: 'images/yorkville-42b.png', buildingUrl: '../buildings/11-yorkville.html' },
+    'yvph07':    { building: '11 Yorkville', suite: 'PH 07',               type: '3 Bed + Flex + 3 Bath',   size: '1,517 sq ft', exposure: 'Balcony 68 sq ft \u00b7 W.I.C.', floors: '61\u201362', price: '$3,640,800',            promo: null, savings: null, img: 'images/ph-07.png',         buildingUrl: '../buildings/11-yorkville.html' },
     'bedford-1295t': { building: 'The Bedford', suite: 'Suite 1295T', type: '2 Bedroom',        size: '1,295 sq ft', exposure: 'Terrace 283 sq ft',  floors: '8',   price: '$2,849,900',              promo: null, savings: null, img: 'images/the-bedford/suite-1295t.png', buildingUrl: '../buildings/the-bedford.html' },
-    'bedford-1333':  { building: 'The Bedford', suite: 'Suite 1333',  type: '2 Bedroom',        size: '1,333 sq ft', exposure: 'Balcony 134 sq ft',  floors: '3Ã¢ÂÂ4', price: '$2,499,900 Ã¢ÂÂ $2,529,900', promo: null, savings: null, img: 'images/the-bedford/suite-1333.png',  buildingUrl: '../buildings/the-bedford.html' },
+    'bedford-1333':  { building: 'The Bedford', suite: 'Suite 1333',  type: '2 Bedroom',        size: '1,333 sq ft', exposure: 'Balcony 134 sq ft',  floors: '3\u20134', price: '$2,499,900 \u2013 $2,529,900', promo: null, savings: null, img: 'images/the-bedford/suite-1333.png',  buildingUrl: '../buildings/the-bedford.html' },
     'bedford-1535':  { building: 'The Bedford', suite: 'Suite 1535',  type: '2 Bedroom + Den',  size: '1,535 sq ft', exposure: 'Balcony 64 sq ft',   floors: '5',   price: '$2,869,900',              promo: null, savings: null, img: 'images/the-bedford/suite-1535.png',  buildingUrl: '../buildings/the-bedford.html' },
     'bedford-1605':  { building: 'The Bedford', suite: 'Suite 1605',  type: '2 Bedroom + Den',  size: '1,605 sq ft', exposure: 'Balcony 146 sq ft',  floors: '5',   price: '$3,059,900',              promo: null, savings: null, img: 'images/the-bedford/suite-1605.png',  buildingUrl: '../buildings/the-bedford.html' },
     'bedford-1607':  { building: 'The Bedford', suite: 'Suite 1607',  type: '2 Bedroom',        size: '1,607 sq ft', exposure: 'Balcony 70 sq ft',   floors: '9',   price: '$3,449,900',              promo: null, savings: null, img: 'images/the-bedford/suite-1607.png',  buildingUrl: '../buildings/the-bedford.html' },
@@ -433,8 +475,8 @@
 
   function openModal(id) {
     const p = plans[id]; if (!p) return;
-    document.getElementById('modal-suite').textContent = 'Yorkville ÃÂ· ' + p.building;
-    document.getElementById('modal-title').textContent = p.suite + ' Ã¢ÂÂ ' + p.type;
+    document.getElementById('modal-suite').textContent = 'Yorkville \u00b7 ' + p.building;
+    document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
     document.getElementById('modal-img').src = p.img;
     document.getElementById('m-building').textContent = p.building;
     document.getElementById('m-suite').textContent = p.suite;
@@ -445,7 +487,7 @@
     const priceEl = document.getElementById('m-price');
     if (p.promo) { priceEl.innerHTML = '<s>' + p.price + '</s> <span class="promo">' + p.promo + '</span>' + (p.savings ? '<span class="savings">' + p.savings + '</span>' : ''); } else { priceEl.textContent = p.price; }
     const linkWrap = document.getElementById('m-building-link-wrap');
-    if (p.buildingUrl) { linkWrap.innerHTML = '<a href="' + p.buildingUrl + '" class="btn-full-building">View building page Ã¢ÂÂ</a>'; } else { linkWrap.innerHTML = ''; }
+    if (p.buildingUrl) { linkWrap.innerHTML = '<a href="' + p.buildingUrl + '" class="btn-full-building">View building page \u2192</a>'; } else { linkWrap.innerHTML = ''; }
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
