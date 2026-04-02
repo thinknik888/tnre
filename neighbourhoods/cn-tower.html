@@ -47,6 +47,10 @@
     .fp-series { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; font-weight: 500; }
     .fp-series.classic { color: var(--text-muted); }
     .fp-series.signature { color: var(--gold); }
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
     .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
     .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
     .fp-view-building { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 0.5rem; transition: color 0.2s; }
@@ -100,14 +104,22 @@
   </div>
 </div>
 
-<!-- 500 – 800 SQ FT -->
+<!-- FLOOR PLANS -->
 <div class="sqft-section">
   <div class="sqft-header">
-    <div class="sqft-title"><em>500</em> – <em>800</em> sq ft</div>
-    <div class="sqft-count">15 floor plans</div>
+    <div class="sqft-title">Floor <em>Plans</em></div>
+    <div class="sqft-count">26 floor plans</div>
   </div>
-  <div class="fp-grid">
-    <div class="fp-card" onclick="openModal('cch-4315')">
+
+  <div class="fp-filters">
+    <button class="fp-filter-btn active" data-filter="all">All</button>
+    <button class="fp-filter-btn" data-filter="500-800">500 &ndash; 800 sq ft</button>
+    <button class="fp-filter-btn" data-filter="800-1000">800 &ndash; 1,000 sq ft</button>
+    <button class="fp-filter-btn" data-filter="1000+">1,000+ sq ft</button>
+  </div>
+
+  <div class="fp-grid" id="fp-grid">
+    <div class="fp-card" data-sqft="492" onclick="openModal('cch-4315')">
       <div class="fp-image"><img src="images/4315.jpg" alt="Suite 4315 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -119,7 +131,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-1902')">
+    <div class="fp-card" data-sqft="502" onclick="openModal('cch-1902')">
       <div class="fp-image"><img src="images/1902.jpg" alt="Suite 1902 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -131,7 +143,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2712')">
+    <div class="fp-card" data-sqft="502" onclick="openModal('cch-2712')">
       <div class="fp-image"><img src="images/2712.jpg" alt="Suite 2712 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -143,7 +155,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-4012b')">
+    <div class="fp-card" data-sqft="505" onclick="openModal('cch-4012b')">
       <div class="fp-image"><img src="images/4012.jpg" alt="Suite 4012 Plan 12 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -155,7 +167,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2712b')">
+    <div class="fp-card" data-sqft="535" onclick="openModal('cch-2712b')">
       <div class="fp-image"><img src="images/2712.jpg" alt="Plan 09 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -166,7 +178,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-4012')">
+    <div class="fp-card" data-sqft="600" onclick="openModal('cch-4012')">
       <div class="fp-image"><img src="images/4012.jpg" alt="Suite 4012 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -178,7 +190,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2611')">
+    <div class="fp-card" data-sqft="650" onclick="openModal('cch-2611')">
       <div class="fp-image"><img src="images/2611.jpg" alt="Suite 2611 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -189,7 +201,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2706')">
+    <div class="fp-card" data-sqft="650" onclick="openModal('cch-2706')">
       <div class="fp-image"><img src="images/2206.jpg" alt="Suite 2706 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -201,7 +213,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-506')">
+    <div class="fp-card" data-sqft="660" onclick="openModal('cch-506')">
       <div class="fp-image"><img src="images/506.jpg" alt="Suite 506 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -212,7 +224,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2805')">
+    <div class="fp-card" data-sqft="692" onclick="openModal('cch-2805')">
       <div class="fp-image"><img src="images/2805.jpg" alt="Suite 2805 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -224,7 +236,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-3010')">
+    <div class="fp-card" data-sqft="718" onclick="openModal('cch-3010')">
       <div class="fp-image"><img src="images/3010.jpg" alt="Suite 3010 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -235,7 +247,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2803')">
+    <div class="fp-card" data-sqft="740" onclick="openModal('cch-2803')">
       <div class="fp-image"><img src="images/2803.jpg" alt="Suite 2803 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -247,7 +259,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-2703')">
+    <div class="fp-card" data-sqft="740" onclick="openModal('cch-2703')">
       <div class="fp-image"><img src="images/2803.jpg" alt="Suite 2703 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -259,7 +271,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-4701')">
+    <div class="fp-card" data-sqft="760" onclick="openModal('cch-4701')">
       <div class="fp-image"><img src="images/4701.jpg" alt="Suite 4701 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -271,7 +283,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-4808')">
+    <div class="fp-card" data-sqft="760" onclick="openModal('cch-4808')">
       <div class="fp-image"><img src="images/4808.jpg" alt="Suite 4808 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -282,27 +294,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- 800 – 1,000 SQ FT -->
-<div class="sqft-section">
-  <div class="sqft-header">
-    <div class="sqft-title"><em>800</em> – <em>1,000</em> sq ft</div>
-    <div class="sqft-count">0 floor plans</div>
-  </div>
-  <div class="fp-grid">
-  </div>
-</div>
-
-<!-- 1,000+ SQ FT -->
-<div class="sqft-section">
-  <div class="sqft-header">
-    <div class="sqft-title"><em>1,000+</em> sq ft</div>
-    <div class="sqft-count">11 floor plans</div>
-  </div>
-  <div class="fp-grid">
-    <div class="fp-card" onclick="openModal('cch-loft5707')">
+    <div class="fp-card" data-sqft="1032" onclick="openModal('cch-loft5707')">
       <div class="fp-image"><img src="images/Loft 5707.jpg" alt="Loft 5707 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -313,7 +305,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-loft5701')">
+    <div class="fp-card" data-sqft="1033" onclick="openModal('cch-loft5701')">
       <div class="fp-image"><img src="images/Loft 5701.jpg" alt="Loft 5701 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -324,7 +316,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-loft5712')">
+    <div class="fp-card" data-sqft="1033" onclick="openModal('cch-loft5712')">
       <div class="fp-image"><img src="images/Loft 5712.jpg" alt="Loft 5712 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -335,7 +327,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-loft5715')">
+    <div class="fp-card" data-sqft="1033" onclick="openModal('cch-loft5715')">
       <div class="fp-image"><img src="images/Loft 5715.jpg" alt="Loft 5715 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -346,7 +338,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-6301')">
+    <div class="fp-card" data-sqft="1038" onclick="openModal('cch-6301')">
       <div class="fp-image"><img src="images/6301.jpg" alt="Suite 6301 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -357,7 +349,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('cch-7805')">
+    <div class="fp-card" data-sqft="1198" onclick="openModal('cch-7805')">
       <div class="fp-image"><img src="images/7805.jpg" alt="Suite 7805 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -369,7 +361,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('well-2305')">
+    <div class="fp-card" data-sqft="1260" onclick="openModal('well-2305')">
       <div class="fp-image"><img src="images/suite-2305.webp" alt="The Well Suite 2305" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -380,7 +372,7 @@
         <div class="fp-meta"><span class="fp-sqft">1,260 sq ft</span><span class="fp-price">$1,695,000</span></div>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('well-gph9')">
+    <div class="fp-card" data-sqft="1313" onclick="openModal('well-gph9')">
       <div class="fp-image"><img src="images/the well gph9.webp" alt="The Well Suite GPH9" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -392,7 +384,7 @@
       </div>
     </div>
 
-    <div class="fp-card" onclick="openModal('cch-loft5703')">
+    <div class="fp-card" data-sqft="1500" onclick="openModal('cch-loft5703')">
       <div class="fp-image"><img src="images/Loft 5703.jpg" alt="Loft 5703 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -403,7 +395,7 @@
         <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('well-610')">
+    <div class="fp-card" data-sqft="1515" onclick="openModal('well-610')">
       <div class="fp-image"><img src="images/signature 6th .webp" alt="The Well Suite 610" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -414,7 +406,7 @@
         <div class="fp-meta"><span class="fp-sqft">1,515 sq ft</span><span class="fp-price">$2,175,000</span></div>
       </div>
     </div>
-    <div class="fp-card" onclick="openModal('well-1205')">
+    <div class="fp-card" data-sqft="1679" onclick="openModal('well-1205')">
       <div class="fp-image"><img src="images/SIGNATURE 12TH.webp" alt="The Well Suite 1205" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -536,6 +528,22 @@
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  document.querySelectorAll('.fp-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fp-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('#fp-grid .fp-card').forEach(card => {
+        const sqft = parseInt(card.dataset.sqft);
+        let show = true;
+        if (filter === '500-800') show = sqft < 800;
+        else if (filter === '800-1000') show = sqft >= 800 && sqft < 1000;
+        else if (filter === '1000+') show = sqft >= 1000;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
 </script>
 </body>
 </html>
