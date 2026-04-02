@@ -197,7 +197,7 @@
 <div class="sqft-section">
   <div class="sqft-header">
     <div class="sqft-title">Floor <em>Plans</em></div>
-    <div class="sqft-count">28 floor plans</div>
+    <div class="sqft-count">26 floor plans</div>
     <a href="#gallery" class="btn-gold-outline" style="margin-left:auto; padding:0.5rem 1.2rem; font-size:0.72rem;">Images &darr;</a>
   </div>
 
@@ -205,7 +205,8 @@
     <button class="fp-filter-btn active" data-filter="all">All</button>
     <button class="fp-filter-btn" data-filter="500-700">500 &ndash; 700 sq ft</button>
     <button class="fp-filter-btn" data-filter="700-900">700 &ndash; 900 sq ft</button>
-    <button class="fp-filter-btn" data-filter="900+">900+ sq ft</button>
+    <button class="fp-filter-btn" data-filter="900-1300">900 &ndash; 1,300 sq ft</button>
+    <button class="fp-filter-btn" data-filter="1300+">1,300+ sq ft (Combos)</button>
   </div>
 
   <div class="fp-grid" id="fp-grid">
@@ -521,32 +522,6 @@
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1724" onclick="openModal('t-combo3')">
-      <div class="fp-image"><img src="../neighbourhoods/images/placeholder.jpg" alt="Unit 506+507 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 506+507 &middot; 3 Bedroom</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">Floor 5</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,724 sq ft</span><span class="fp-price">$2,315,800</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1940" onclick="openModal('t-combo4')">
-      <div class="fp-image"><img src="../neighbourhoods/images/placeholder.jpg" alt="Unit 818+819 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 818+819 &middot; 3 Bedroom</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">Floor 8</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,940 sq ft</span><span class="fp-price">$2,754,800</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
     <div class="fp-card" data-sqft="1940" onclick="openModal('t-combo5')">
       <div class="fp-image"><img src="../neighbourhoods/images/8temple-1117-1118.jpg" alt="Unit 1117+1118 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
@@ -671,8 +646,6 @@
     't-combo1': { building: '8 Temple', suite: 'Unit 901+919', type: '2 Bedroom + Den', indoor: '1,358 sq ft', outdoor: '196 sq ft', floors: '9th', exposure: 'South', price: '$1,949,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-901-919-a.jpg' },
     't-combo1b': { building: '8 Temple', suite: 'Unit 901+919 (Layout B)', type: '2 Bedroom + Den', indoor: '1,358 sq ft', outdoor: '196 sq ft', floors: '9th', exposure: 'South', price: '$1,949,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-901-919-b.jpg' },
     't-combo2': { building: '8 Temple', suite: 'Unit 916+917', type: '3 Bedroom', indoor: '1,397 sq ft', outdoor: '327 sq ft', floors: '9th', exposure: 'North', price: '$2,039,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-916-917.jpg' },
-    't-combo3': { building: '8 Temple', suite: 'Unit 506+507', type: '3 Bedroom', indoor: '1,724 sq ft', outdoor: '\u2014', floors: '5th', exposure: '\u2014', price: '$2,315,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/placeholder.jpg' },
-    't-combo4': { building: '8 Temple', suite: 'Unit 818+819', type: '3 Bedroom', indoor: '1,940 sq ft', outdoor: '\u2014', floors: '8th', exposure: '\u2014', price: '$2,754,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/placeholder.jpg' },
     't-combo5': { building: '8 Temple', suite: 'Unit 1117+1118', type: '3 Bedroom + Den', indoor: '1,940 sq ft', outdoor: '387 sq ft', floors: '11th', exposure: 'South', price: '$2,829,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-1117-1118.jpg' },
     't-combo6': { building: '8 Temple', suite: 'Unit 1016+1017', type: '3 Bedroom', indoor: '2,156 sq ft', outdoor: '518 sq ft', floors: '10th', exposure: 'North / East / South', price: '$3,139,900', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-1016-1017.jpg' },
   };
@@ -718,7 +691,8 @@
         let show = true;
         if (filter === '500-700') show = sqft >= 500 && sqft < 700;
         else if (filter === '700-900') show = sqft >= 700 && sqft < 900;
-        else if (filter === '900+') show = sqft >= 900;
+        else if (filter === '900-1300') show = sqft >= 900 && sqft < 1300;
+        else if (filter === '1300+') show = sqft >= 1300;
         card.style.display = show ? '' : 'none';
       });
     });
