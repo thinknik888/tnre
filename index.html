@@ -33,7 +33,7 @@
     .nb-card { border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 24px 22px 28px; background: var(--cream); display: flex; flex-direction: column; justify-content: space-between; min-height: 190px; text-decoration: none; transition: background 0.2s; }
     .nb-card:hover { background: #e8e3da; }
     .nb-card:nth-child(3n) { border-right: none; }
-    .nb-card:nth-last-child(-n+3):nth-child(3n+1), .nb-card:nth-last-child(-n+2), .nb-card:last-child { border-bottom: none; }
+    .nb-card:nth-last-child(-n+3):nth-child(3n+1) ~ .nb-card, .nb-card:nth-last-child(-n+3):nth-child(3n+1) { border-bottom: none; }
     .nb-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
     .nb-icon { opacity: 0.38; }
     .nb-arrow { font-size: 16px; color: var(--muted); opacity: 0.7; line-height: 1; }
