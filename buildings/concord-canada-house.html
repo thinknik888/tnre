@@ -41,10 +41,9 @@
     .stat-item .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
 
     /* GALLERY */
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .gallery-item { overflow: hidden; cursor: pointer; background: var(--cream); }
-    .gallery-item img { width: 100%; display: block; object-fit: contain; transition: transform 0.4s; }
-    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery-item { cursor: pointer; }
+    .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
 
     /* LIGHTBOX */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 300; align-items: center; justify-content: center; }
@@ -222,7 +221,7 @@
     <img src="../neighbourhoods/images/Living Room.jpg" alt="Living room" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 8)">
-    <img src="../neighbourhoods/images/_East_View.jpg" alt="East view of CN Tower" />
+    <img src="../neighbourhoods/images/ East View.jpg" alt="East view of CN Tower" />
   </div>
 </div>
 
@@ -665,7 +664,7 @@
     '../neighbourhoods/images/Balcony Lake View.jpg',
     '../neighbourhoods/images/Balcony.jpg',
     '../neighbourhoods/images/Living Room.jpg',
-    '../neighbourhoods/images/_East_View.jpg'
+    '../neighbourhoods/images/ East View.jpg'
   ];
 
   let lbImages = [];
