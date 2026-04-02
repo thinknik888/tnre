@@ -565,6 +565,15 @@
     });
   });
 
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var size = params.get('size');
+    if (size) {
+      var btn = document.querySelector('.fp-filter-btn[data-filter="' + size + '"]');
+      if (btn) btn.click();
+    }
+  })();
+
   // Calculate avg price per sq ft by building
   function calcAvgPpsf(buildingName) {
     let total = 0, count = 0;

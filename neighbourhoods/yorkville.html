@@ -502,6 +502,21 @@
       applyFilters();
     });
   });
+
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var size = params.get('size');
+    var closing = params.get('closing');
+    if (size) {
+      var btn = document.querySelector('#sqft-filters .fp-filter-btn[data-filter="' + size + '"]');
+      if (btn) { document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeSqft = size; }
+    }
+    if (closing) {
+      var btn = document.querySelector('#closing-filters .fp-filter-btn[data-closing-filter="' + closing + '"]');
+      if (btn) { document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeClosing = closing; }
+    }
+    if (size || closing) applyFilters();
+  })();
 </script>
 </body>
 </html>
