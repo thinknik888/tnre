@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XO2 Condos &mdash; Floor Plans &amp; Suites | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero { position: relative; height: 70vh; min-height: 500px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.6) 100%); }
+    .hero-content { position: absolute; bottom: 3rem; left: 3rem; right: 3rem; color: var(--white); }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.75rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .hero-meta-item { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+    .hero-meta-item strong { color: var(--white); font-weight: 400; }
+
+    /* BUILDING INFO */
+    .building-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; }
+    .building-desc { padding: 4rem 3rem; border-right: 1px solid var(--border); }
+    .building-desc h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1.25rem; }
+    .building-desc h2 em { font-style: italic; color: var(--gold); }
+    .building-desc p { font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
+    .building-stats { padding: 4rem 3rem; background: var(--cream); }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); }
+    .stat-item .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery-item { cursor: pointer; }
+    .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 300; align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 2rem; cursor: pointer; z-index: 301; line-height: 1; padding: 0.5rem; }
+    .lightbox-close:hover { color: var(--white); }
+    .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.6); font-size: 2.5rem; cursor: pointer; padding: 1rem; z-index: 301; transition: color 0.2s; }
+    .lightbox-arrow:hover { color: var(--white); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+
+    /* FLOOR PLAN SECTIONS */
+    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .sqft-section:last-of-type { border-bottom: none; }
+    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .sqft-title em { font-style: italic; color: var(--gold); }
+    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* FILTER BUTTONS */
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+
+    /* FP GRID */
+    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    .fp-image img { width: 100%; height: 100%; object-fit: cover; object-position: 70% center; display: block; margin: auto; }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+    .fp-meta { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-meta-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-size: 1.13rem; font-weight: 500; color: var(--text); }
+    .fp-price s { color: var(--text-muted); font-weight: 300; }
+    .fp-price-promo { color: var(--gold); font-weight: 500; }
+    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-contact { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; text-align: right; max-width: 60%; }
+    .detail-val .promo { color: var(--gold); }
+    .detail-val .hst-rebate { display: block; font-size: 0.72rem; color: var(--gold); font-weight: 400; margin-top: 3px; }
+    .detail-val .hst-rebate-label { color: var(--text-muted); font-weight: 300; }
+    .detail-val .parking-note { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hst-disclaimer { font-size: 0.68rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; font-style: italic; }
+
+    /* CTA */
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 2rem; }
+      .building-info { grid-template-columns: 1fr; }
+      .building-desc { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
+      .building-stats { padding: 3rem 1.5rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .sqft-section { padding: 3rem 1.5rem; }
+      .fp-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .fp-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--gold)">.</span>com</a>
+  <a href="../index.html" class="nav-back">&larr; All Buildings</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="../neighbourhoods/images/XO2-Hero.jpg" alt="XO2 Condos rendering" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Toronto &middot; King West &middot; Lifetime x Pinedale</div>
+    <h1 class="hero-title">XO2 <em>Condos</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>1182 King Street West</strong></div>
+      <div class="hero-meta-item"><strong>19 Storeys</strong> &middot; 410 Suites</div>
+      <div class="hero-meta-item"><strong>Occupancy</strong> Now</div>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDING INFO -->
+<div class="building-info">
+  <div class="building-desc">
+    <h2>Move-in ready <em>on King West</em></h2>
+    <p>XO2 is a 19-storey boutique residence at 1182 King Street West, developed by Lifetime Developments and Pinedale Properties. Located in the heart of King West, one of Toronto&rsquo;s most desirable neighbourhoods, XO2 offers immediate occupancy with a Walk Score of 96 and Transit Score of 90.</p>
+    <p>With promo pricing and open offers on remaining inventory, XO2 represents one of the best value opportunities in King West. Suites range from studios to three-bedroom layouts with generous outdoor spaces.</p>
+  </div>
+  <div class="building-stats">
+    <div class="stat-grid">
+      <div class="stat-item"><div class="stat-val">410</div><div class="stat-lbl">Suites</div></div>
+      <div class="stat-item"><div class="stat-val">$500K</div><div class="stat-lbl">Starting from</div></div>
+      <div class="stat-item"><div class="stat-val">Now</div><div class="stat-lbl">Occupancy</div></div>
+      <div class="stat-item"><div class="stat-val">Lifetime</div><div class="stat-lbl">Developer</div></div>
+      <div class="stat-item"><div class="stat-val">King West</div><div class="stat-lbl">Neighbourhood</div></div>
+      <div class="stat-item"><div class="stat-val">96</div><div class="stat-lbl">Walk Score</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOOR PLANS -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">Floor <em>Plans</em></div>
+    <div class="sqft-count">29 floor plans</div>
+    <a href="#gallery" class="btn-gold-outline" style="margin-left:auto; padding:0.5rem 1.2rem; font-size:0.72rem;">Images &darr;</a>
+  </div>
+
+  <div class="fp-filters">
+    <button class="fp-filter-btn active" data-filter="all">All</button>
+    <button class="fp-filter-btn" data-filter="400-600">400 &ndash; 600 sq ft</button>
+    <button class="fp-filter-btn" data-filter="600-800">600 &ndash; 800 sq ft</button>
+    <button class="fp-filter-btn" data-filter="800-1000">800 &ndash; 1,000 sq ft</button>
+    <button class="fp-filter-btn" data-filter="1000+">1,000+ sq ft</button>
+  </div>
+
+  <div class="fp-grid" id="fp-grid">
+    <div class="fp-card" data-sqft="475" onclick="openModal('xo-1')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-1.jpg" alt="XX 475 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 475 &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 22 sq ft &middot; Level 7</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">475 sq ft</span><span class="fp-price"><s>$570,000</s> <span class="fp-price-promo">$500,175</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$459,152</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="483" onclick="openModal('xo-2')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-2.jpg" alt="XX 483-B Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 483-B &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 97 sq ft &middot; Levels 6-11</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">483 sq ft</span><span class="fp-price"><s>$579,600</s> <span class="fp-price-promo">$508,599</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$466,481</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="489" onclick="openModal('xo-3')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-3.jpg" alt="XX 489 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 489 &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 77 sq ft &middot; Levels 6-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">489 sq ft</span><span class="fp-price"><s>$586,800</s> <span class="fp-price-promo">$514,917</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$471,978</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="494" onclick="openModal('xo-4')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-4.jpg" alt="XX 494 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 494 &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 89 sq ft &middot; Levels 10-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">494 sq ft</span><span class="fp-price"><s>$592,800</s> <span class="fp-price-promo">$520,182</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$476,558</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="495" onclick="openModal('xo-5')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-5.jpg" alt="XX 495 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 495 &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 77 sq ft &middot; Levels 6-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">495 sq ft</span><span class="fp-price"><s>$594,000</s> <span class="fp-price-promo">$521,235</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$477,475</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="496" onclick="openModal('xo-6')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-6.jpg" alt="XX 496 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 496 &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 77 sq ft &middot; Levels 6-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">496 sq ft</span><span class="fp-price"><s>$595,200</s> <span class="fp-price-promo">$522,288</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$478,391</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="522" onclick="openModal('xo-7')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-7.jpg" alt="XX 522 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 522 &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 78 sq ft &middot; Levels 3-4</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">522 sq ft</span><span class="fp-price"><s>$626,400</s> <span class="fp-price-promo">$549,666</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$502,209</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="553" onclick="openModal('xo-8')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-8.jpg" alt="XX 553 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 553 &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 82 sq ft &middot; Levels 15-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">553 sq ft</span><span class="fp-price"><s>$663,600</s> <span class="fp-price-promo">$582,309</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$530,609</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="612" onclick="openModal('xo-9')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-9.jpg" alt="XX 612 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 612 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 81 sq ft &middot; Levels 12-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">612 sq ft</span><span class="fp-price"><s>$734,400</s> <span class="fp-price-promo">$644,436</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$584,659</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="667" onclick="openModal('xo-10')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-10.jpg" alt="XX 667 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 667 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 50 sq ft &middot; Levels 6-13</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">667 sq ft</span><span class="fp-price"><s>$800,400</s> <span class="fp-price-promo">$702,351</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$635,045</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="670" onclick="openModal('xo-11')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-11.jpg" alt="XX 670 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 670 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 81 sq ft &middot; Levels 9-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">670 sq ft</span><span class="fp-price"><s>$804,000</s> <span class="fp-price-promo">$705,510</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$637,794</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="690" onclick="openModal('xo-12')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-12.jpg" alt="XX 690 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 690 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 96 sq ft &middot; Levels 6-13</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">690 sq ft</span><span class="fp-price"><s>$828,000</s> <span class="fp-price-promo">$726,570</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$656,116</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="694" onclick="openModal('xo-13')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-13.jpg" alt="XX 694 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 694 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 93 sq ft &middot; Levels 14-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">694 sq ft</span><span class="fp-price"><s>$832,800</s> <span class="fp-price-promo">$730,782</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$659,780</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="703" onclick="openModal('xo-14')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-14.jpg" alt="XX 703-B Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 703-B &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 83 sq ft &middot; Levels 7-11</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">703 sq ft</span><span class="fp-price"><s>$843,600</s> <span class="fp-price-promo">$740,259</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$668,025</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="711" onclick="openModal('xo-15')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-15.jpg" alt="XX 711 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 711 &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 43 sq ft &middot; Levels 2-13</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">711 sq ft</span><span class="fp-price"><s>$853,200</s> <span class="fp-price-promo">$748,683</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$675,354</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="757" onclick="openModal('xo-16')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-16.jpg" alt="XX 757 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 757 &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 40 sq ft &middot; Levels 3-4</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">757 sq ft</span><span class="fp-price"><s>$908,400</s> <span class="fp-price-promo">$797,121</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$717,495</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="807" onclick="openModal('xo-17')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-17.jpg" alt="XX 807 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 807 &middot; 2 Bedroom + Flex</div>
+        <div class="fp-type">2 Bedroom + Flex</div>
+        <div class="fp-exposure">Balcony 189 sq ft &middot; Levels 3-4</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">807 sq ft</span><span class="fp-price"><s>$968,400</s> <span class="fp-price-promo">$849,771</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$763,301</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="807" onclick="openModal('xo-18')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-18.jpg" alt="XX 807-T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 807-T &middot; 2 Bedroom + Flex</div>
+        <div class="fp-type">2 Bedroom + Flex</div>
+        <div class="fp-exposure">Terrace 190 sq ft &middot; Level 2</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">807 sq ft</span><span class="fp-price"><s>$968,400</s> <span class="fp-price-promo">$849,771</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$763,301</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="817" onclick="openModal('xo-19')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-19.jpg" alt="XX 817-T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 817-T &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Terrace 297 sq ft &middot; Level 2</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">817 sq ft</span><span class="fp-price"><s>$980,400</s> <span class="fp-price-promo">$860,301</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$772,462</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="828" onclick="openModal('xo-20')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-20.jpg" alt="XX 828-T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 828-T &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">Terrace 1,399 sq ft &middot; Level 12</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">828 sq ft</span><span class="fp-price"><s>$993,600</s> <span class="fp-price-promo">$871,884</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$782,539</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="863" onclick="openModal('xo-21')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-21.jpg" alt="XX 863 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 863 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 336 sq ft &middot; Levels 6-11</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">863 sq ft</span><span class="fp-price"><s>$1,035,600</s> <span class="fp-price-promo">$908,739</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$814,603</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="867" onclick="openModal('xo-22')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-22.jpg" alt="XX 867-T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 867-T &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Terrace 538 sq ft &middot; Level 5</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">867 sq ft</span><span class="fp-price"><s>$1,040,400</s> <span class="fp-price-promo">$912,951</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$818,267</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="877" onclick="openModal('xo-23')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-23.jpg" alt="XX 877-T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 877-T &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Terrace 813 sq ft &middot; Level 5</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">877 sq ft</span><span class="fp-price"><s>$1,052,400</s> <span class="fp-price-promo">$923,481</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$827,429</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="905" onclick="openModal('xo-24')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-24.jpg" alt="XX 905-T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 905-T &middot; 3 Bedroom + Den</div>
+        <div class="fp-type">3 Bedroom + Den</div>
+        <div class="fp-exposure">Terrace 579 sq ft &middot; Level 12</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">905 sq ft</span><span class="fp-price"><s>$1,086,000</s> <span class="fp-price-promo">$952,965</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$853,080</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="948" onclick="openModal('xo-25')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-25.jpg" alt="XX 948 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 948 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 98 sq ft &middot; Levels 6-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">948 sq ft</span><span class="fp-price"><s>$1,137,600</s> <span class="fp-price-promo">$998,244</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$892,472</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1003" onclick="openModal('xo-26')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-26.jpg" alt="XX 1003 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 1003 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 187 sq ft &middot; Levels 2-4</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,003 sq ft</span><span class="fp-price"><s>$1,203,600</s> <span class="fp-price-promo">$1,056,159</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$942,858</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1045" onclick="openModal('xo-27')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-27.jpg" alt="XX 1045 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX 1045 &middot; 3 Bedroom + Den</div>
+        <div class="fp-type">3 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 91 sq ft &middot; Levels 6-19</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,045 sq ft</span><span class="fp-price"><s>$1,254,000</s> <span class="fp-price-promo">$1,100,385</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$981,335</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1383" onclick="openModal('xo-28')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-28.jpg" alt="XX TH1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX TH1 &middot; Townhouse</div>
+        <div class="fp-type">Townhouse</div>
+        <div class="fp-exposure">Level 1</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,383 sq ft</span><span class="fp-price"><s>$1,659,600</s> <span class="fp-price-promo">$1,456,299</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,290,980</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1135" onclick="openModal('xo-29')">
+      <div class="fp-image"><img src="../neighbourhoods/images/xo2-floorplan-29.jpg" alt="XX TH2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">XO2 Condos</div>
+        <div class="fp-suite">XX TH2 &middot; Townhouse</div>
+        <div class="fp-type">Townhouse</div>
+        <div class="fp-exposure">Level 1</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,135 sq ft</span><span class="fp-price"><s>$1,362,000</s> <span class="fp-price-promo">$1,195,155</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,063,785</span>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery" id="gallery">
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 0)"><img src="../neighbourhoods/images/XO2-Rendering.jpg" alt="XO2 Rendering" /></div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 1)"><img src="../neighbourhoods/images/XO2_EXT_Superman.jpg" alt="XO2 Exterior" /></div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 2)"><img src="../neighbourhoods/images/XO2_INT_Lobby.jpg" alt="XO2 Lobby" /></div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Interested in XO2?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">CondosAround<span style="color:#c8a96e">.</span>com</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Indoor</span><span class="detail-val" id="m-indoor"></span></div>
+        <div class="detail-row"><span class="detail-label">Outdoor</span><span class="detail-val" id="m-outdoor"></span></div>
+        <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
+        <div class="detail-row"><span class="detail-label">Exposure</span><span class="detail-val" id="m-exposure"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this suite? Nikhil can walk you through availability, views, and assignment options.</div>
+          <a href="tel:6479240848" class="btn-full">Call Nikhil &mdash; 647-924-0848</a>
+          <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
+          <div class="hst-disclaimer">* HST Rebate Price is estimated at promo price &times; 0.87 + $24,000 for eligible buyers. Promo pricing is limited time only &mdash; discount applied as credit on closing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" onclick="lightboxNav(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <button class="lightbox-arrow lightbox-next" onclick="lightboxNav(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+  const plans = {
+    'xo-1':  { building: 'XO2 Condos', suite: 'XX 475', type: '1 Bedroom', indoor: '475 sq ft', outdoor: 'Balcony 22 sq ft', floors: 'Level 7', exposure: 'Balcony', price: '$570,000', promo: '$500,175', rebate: '$459,152', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-1.jpg' },
+    'xo-2':  { building: 'XO2 Condos', suite: 'XX 483-B', type: '1 Bedroom', indoor: '483 sq ft', outdoor: 'Balcony 97 sq ft', floors: 'Levels 6-11', exposure: 'Balcony', price: '$579,600', promo: '$508,599', rebate: '$466,481', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-2.jpg' },
+    'xo-3':  { building: 'XO2 Condos', suite: 'XX 489', type: '1 Bedroom + Den', indoor: '489 sq ft', outdoor: 'Balcony 77 sq ft', floors: 'Levels 6-19', exposure: 'Balcony', price: '$586,800', promo: '$514,917', rebate: '$471,978', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-3.jpg' },
+    'xo-4':  { building: 'XO2 Condos', suite: 'XX 494', type: '1 Bedroom', indoor: '494 sq ft', outdoor: 'Balcony 89 sq ft', floors: 'Levels 10-19', exposure: 'Balcony', price: '$592,800', promo: '$520,182', rebate: '$476,558', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-4.jpg' },
+    'xo-5':  { building: 'XO2 Condos', suite: 'XX 495', type: '1 Bedroom + Den', indoor: '495 sq ft', outdoor: 'Balcony 77 sq ft', floors: 'Levels 6-19', exposure: 'Balcony', price: '$594,000', promo: '$521,235', rebate: '$477,475', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-5.jpg' },
+    'xo-6':  { building: 'XO2 Condos', suite: 'XX 496', type: '1 Bedroom + Den', indoor: '496 sq ft', outdoor: 'Balcony 77 sq ft', floors: 'Levels 6-19', exposure: 'Balcony', price: '$595,200', promo: '$522,288', rebate: '$478,391', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-6.jpg' },
+    'xo-7':  { building: 'XO2 Condos', suite: 'XX 522', type: '1 Bedroom + Den', indoor: '522 sq ft', outdoor: 'Balcony 78 sq ft', floors: 'Levels 3-4', exposure: 'Balcony', price: '$626,400', promo: '$549,666', rebate: '$502,209', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-7.jpg' },
+    'xo-8':  { building: 'XO2 Condos', suite: 'XX 553', type: '1 Bedroom + Den', indoor: '553 sq ft', outdoor: 'Balcony 82 sq ft', floors: 'Levels 15-19', exposure: 'Balcony', price: '$663,600', promo: '$582,309', rebate: '$530,609', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-8.jpg' },
+    'xo-9':  { building: 'XO2 Condos', suite: 'XX 612', type: '2 Bedroom', indoor: '612 sq ft', outdoor: 'Balcony 81 sq ft', floors: 'Levels 12-19', exposure: 'Balcony', price: '$734,400', promo: '$644,436', rebate: '$584,659', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-9.jpg' },
+    'xo-10': { building: 'XO2 Condos', suite: 'XX 667', type: '2 Bedroom', indoor: '667 sq ft', outdoor: 'Balcony 50 sq ft', floors: 'Levels 6-13', exposure: 'Balcony', price: '$800,400', promo: '$702,351', rebate: '$635,045', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-10.jpg' },
+    'xo-11': { building: 'XO2 Condos', suite: 'XX 670', type: '2 Bedroom', indoor: '670 sq ft', outdoor: 'Balcony 81 sq ft', floors: 'Levels 9-19', exposure: 'Balcony', price: '$804,000', promo: '$705,510', rebate: '$637,794', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-11.jpg' },
+    'xo-12': { building: 'XO2 Condos', suite: 'XX 690', type: '2 Bedroom', indoor: '690 sq ft', outdoor: 'Balcony 96 sq ft', floors: 'Levels 6-13', exposure: 'Balcony', price: '$828,000', promo: '$726,570', rebate: '$656,116', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-12.jpg' },
+    'xo-13': { building: 'XO2 Condos', suite: 'XX 694', type: '2 Bedroom', indoor: '694 sq ft', outdoor: 'Balcony 93 sq ft', floors: 'Levels 14-19', exposure: 'Balcony', price: '$832,800', promo: '$730,782', rebate: '$659,780', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-13.jpg' },
+    'xo-14': { building: 'XO2 Condos', suite: 'XX 703-B', type: '2 Bedroom', indoor: '703 sq ft', outdoor: 'Balcony 83 sq ft', floors: 'Levels 7-11', exposure: 'Balcony', price: '$843,600', promo: '$740,259', rebate: '$668,025', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-14.jpg' },
+    'xo-15': { building: 'XO2 Condos', suite: 'XX 711', type: '2 Bedroom + Den', indoor: '711 sq ft', outdoor: 'Balcony 43 sq ft', floors: 'Levels 2-13', exposure: 'Balcony', price: '$853,200', promo: '$748,683', rebate: '$675,354', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-15.jpg' },
+    'xo-16': { building: 'XO2 Condos', suite: 'XX 757', type: '2 Bedroom + Den', indoor: '757 sq ft', outdoor: 'Balcony 40 sq ft', floors: 'Levels 3-4', exposure: 'Balcony', price: '$908,400', promo: '$797,121', rebate: '$717,495', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-16.jpg' },
+    'xo-17': { building: 'XO2 Condos', suite: 'XX 807', type: '2 Bedroom + Flex', indoor: '807 sq ft', outdoor: 'Balcony 189 sq ft', floors: 'Levels 3-4', exposure: 'Balcony', price: '$968,400', promo: '$849,771', rebate: '$763,301', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-17.jpg' },
+    'xo-18': { building: 'XO2 Condos', suite: 'XX 807-T', type: '2 Bedroom + Flex', indoor: '807 sq ft', outdoor: 'Terrace 190 sq ft', floors: 'Level 2', exposure: 'Terrace', price: '$968,400', promo: '$849,771', rebate: '$763,301', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-18.jpg' },
+    'xo-19': { building: 'XO2 Condos', suite: 'XX 817-T', type: '3 Bedroom', indoor: '817 sq ft', outdoor: 'Terrace 297 sq ft', floors: 'Level 2', exposure: 'Terrace', price: '$980,400', promo: '$860,301', rebate: '$772,462', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-19.jpg' },
+    'xo-20': { building: 'XO2 Condos', suite: 'XX 828-T', type: '2 Bedroom + Den', indoor: '828 sq ft', outdoor: 'Terrace 1,399 sq ft', floors: 'Level 12', exposure: 'Terrace', price: '$993,600', promo: '$871,884', rebate: '$782,539', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-20.jpg' },
+    'xo-21': { building: 'XO2 Condos', suite: 'XX 863', type: '3 Bedroom', indoor: '863 sq ft', outdoor: 'Balcony 336 sq ft', floors: 'Levels 6-11', exposure: 'Balcony', price: '$1,035,600', promo: '$908,739', rebate: '$814,603', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-21.jpg' },
+    'xo-22': { building: 'XO2 Condos', suite: 'XX 867-T', type: '3 Bedroom', indoor: '867 sq ft', outdoor: 'Terrace 538 sq ft', floors: 'Level 5', exposure: 'Terrace', price: '$1,040,400', promo: '$912,951', rebate: '$818,267', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-22.jpg' },
+    'xo-23': { building: 'XO2 Condos', suite: 'XX 877-T', type: '3 Bedroom', indoor: '877 sq ft', outdoor: 'Terrace 813 sq ft', floors: 'Level 5', exposure: 'Terrace', price: '$1,052,400', promo: '$923,481', rebate: '$827,429', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-23.jpg' },
+    'xo-24': { building: 'XO2 Condos', suite: 'XX 905-T', type: '3 Bedroom + Den', indoor: '905 sq ft', outdoor: 'Terrace 579 sq ft', floors: 'Level 12', exposure: 'Terrace', price: '$1,086,000', promo: '$952,965', rebate: '$853,080', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-24.jpg' },
+    'xo-25': { building: 'XO2 Condos', suite: 'XX 948', type: '3 Bedroom', indoor: '948 sq ft', outdoor: 'Balcony 98 sq ft', floors: 'Levels 6-19', exposure: 'Balcony', price: '$1,137,600', promo: '$998,244', rebate: '$892,472', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-25.jpg' },
+    'xo-26': { building: 'XO2 Condos', suite: 'XX 1003', type: '3 Bedroom', indoor: '1,003 sq ft', outdoor: 'Balcony 187 sq ft', floors: 'Levels 2-4', exposure: 'Balcony', price: '$1,203,600', promo: '$1,056,159', rebate: '$942,858', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-26.jpg' },
+    'xo-27': { building: 'XO2 Condos', suite: 'XX 1045', type: '3 Bedroom + Den', indoor: '1,045 sq ft', outdoor: 'Balcony 91 sq ft', floors: 'Levels 6-19', exposure: 'Balcony', price: '$1,254,000', promo: '$1,100,385', rebate: '$981,335', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-27.jpg' },
+    'xo-28': { building: 'XO2 Condos', suite: 'XX TH1', type: 'Townhouse', indoor: '1,383 sq ft', outdoor: 'N/A', floors: 'Level 1', exposure: 'N/A', price: '$1,659,600', promo: '$1,456,299', rebate: '$1,290,980', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-28.jpg' },
+    'xo-29': { building: 'XO2 Condos', suite: 'XX TH2', type: 'Townhouse', indoor: '1,135 sq ft', outdoor: 'N/A', floors: 'Level 1', exposure: 'N/A', price: '$1,362,000', promo: '$1,195,155', rebate: '$1,063,785', openOffers: true, img: '../neighbourhoods/images/xo2-floorplan-29.jpg' },
+  };
+
+  function openModal(id) {
+    const p = plans[id]; if (!p) return;
+    document.getElementById('modal-eyebrow').textContent = 'XO2 Condos \u00b7 ' + p.type;
+    document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-building').textContent = p.building;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-indoor').textContent = p.indoor;
+    document.getElementById('m-outdoor').textContent = p.outdoor;
+    document.getElementById('m-floors').textContent = p.floors;
+    document.getElementById('m-exposure').textContent = p.exposure;
+    const priceEl = document.getElementById('m-price');
+    if (p.promo && p.rebate) {
+      priceEl.innerHTML = '<s>' + p.price + '</s> <span class="promo">' + p.promo + '</span><span class="hst-rebate"><span class="hst-rebate-label">HST Rebate </span>' + p.rebate + '</span>';
+      if (p.openOffers) {
+        priceEl.innerHTML += '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
+      }
+    } else if (p.openOffers) {
+      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
+    } else {
+      priceEl.textContent = p.price;
+    }
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeModal(); }
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+  document.querySelectorAll('.fp-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fp-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('#fp-grid .fp-card').forEach(card => {
+        const sqft = parseInt(card.dataset.sqft);
+        let show = true;
+        if (filter === '400-600') show = sqft >= 400 && sqft < 600;
+        else if (filter === '600-800') show = sqft >= 600 && sqft < 800;
+        else if (filter === '800-1000') show = sqft >= 800 && sqft < 1000;
+        else if (filter === '1000+') show = sqft >= 1000;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // Lightbox
+  const galleryImages = [
+    '../neighbourhoods/images/XO2-Rendering.jpg',
+    '../neighbourhoods/images/XO2_EXT_Superman.jpg',
+    '../neighbourhoods/images/XO2_INT_Lobby.jpg'
+  ];
+
+  let lbImages = [];
+  let lbIndex = 0;
+
+  function openLightbox(images, index) {
+    lbImages = images;
+    lbIndex = index;
+    showLightboxImage();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    if (!document.getElementById('modal').classList.contains('active')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-img')) {
+      closeLightbox();
+    }
+  }
+
+  function lightboxNav(dir) {
+    if (!lbImages.length) return;
+    lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+    showLightboxImage();
+  }
+
+  function showLightboxImage() {
+    document.getElementById('lightbox-img').src = lbImages[lbIndex];
+    document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+  }
+
+  // Floor plan image click -> lightbox with all floor plan images
+  const fpImgs = document.querySelectorAll('.fp-image img');
+  fpImgs.forEach(img => {
+    img.addEventListener('click', e => {
+      e.stopPropagation();
+      const allSrcs = Array.from(fpImgs).filter(i => i.closest('.fp-card').style.display !== 'none').map(i => i.src);
+      const idx = allSrcs.indexOf(img.src);
+      openLightbox(allSrcs, idx >= 0 ? idx : 0);
+    });
+  });
+</script>
+</body>
+</html>
