@@ -58,15 +58,15 @@
     .fp-view-building:hover { color: var(--text); }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
-    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal { background: var(--white); max-width: 1100px; width: 100%; max-height: 80vh; display: flex; flex-direction: column; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
     .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
     .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
-    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
-    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; }
-    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
-    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; flex: 1; min-height: 0; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 1.5rem; min-height: 0; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .modal-details { padding: 1.5rem 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
     .detail-label { color: var(--text-muted); }
