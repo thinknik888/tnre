@@ -138,6 +138,7 @@
       <button class="fp-filter-btn" data-filter="600-800">600 &ndash; 800 sq ft</button>
       <button class="fp-filter-btn" data-filter="800-1000">800 &ndash; 1,000 sq ft</button>
       <button class="fp-filter-btn" data-filter="1000-9999">1,000+ sq ft</button>
+      <button class="fp-filter-btn" data-filter="ph-1245">PH Units &mdash; 1,250+ sq ft</button>
     </div>
   </div>
 
@@ -1621,6 +1622,7 @@
       else if (activeSqft === '600-800') showSqft = sqft >= 600 && sqft < 800;
       else if (activeSqft === '800-1000') showSqft = sqft >= 800 && sqft < 1000;
       else if (activeSqft === '1000-9999') showSqft = sqft >= 1000;
+      else if (activeSqft === 'ph-1245') showSqft = sqft >= 1245;
       card.style.display = (showClosing && showSqft) ? '' : 'none';
     });
   }
