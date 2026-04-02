@@ -1637,12 +1637,21 @@
     });
   }
 
+  function updateUrl() {
+    var params = new URLSearchParams();
+    if (activeSqft !== 'all') params.set('size', activeSqft);
+    if (activeClosing !== 'all') params.set('closing', activeClosing);
+    var qs = params.toString();
+    history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+  }
+
   document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       activeClosing = btn.dataset.closingFilter;
       applyFilters();
+      updateUrl();
     });
   });
 
@@ -1652,6 +1661,7 @@
       btn.classList.add('active');
       activeSqft = btn.dataset.filter;
       applyFilters();
+      updateUrl();
     });
   });
 
