@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>101 Spadina &mdash; Floor Plans &amp; Suites | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero { position: relative; height: 70vh; min-height: 500px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.6) 100%); }
+    .hero-content { position: absolute; bottom: 3rem; left: 3rem; right: 3rem; color: var(--white); }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.75rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .hero-meta-item { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+    .hero-meta-item strong { color: var(--white); font-weight: 400; }
+
+    /* BUILDING INFO */
+    .building-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; }
+    .building-desc { padding: 4rem 3rem; border-right: 1px solid var(--border); }
+    .building-desc h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1.25rem; }
+    .building-desc h2 em { font-style: italic; color: var(--gold); }
+    .building-desc p { font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
+    .building-stats { padding: 4rem 3rem; background: var(--cream); }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); }
+    .stat-item .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery-item { cursor: pointer; }
+    .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 300; align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 2rem; cursor: pointer; z-index: 301; line-height: 1; padding: 0.5rem; }
+    .lightbox-close:hover { color: var(--white); }
+    .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.6); font-size: 2.5rem; cursor: pointer; padding: 1rem; z-index: 301; transition: color 0.2s; }
+    .lightbox-arrow:hover { color: var(--white); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+
+    /* FLOOR PLAN SECTIONS */
+    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .sqft-section:last-of-type { border-bottom: none; }
+    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .sqft-title em { font-style: italic; color: var(--gold); }
+    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* FP GRID */
+    .fp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; background: var(--white); padding: 1rem; }
+    .fp-image img { width: 100%; height: 100%; object-fit: cover; object-position: 70% center; display: block; margin: auto; }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-meta { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-contact { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; text-align: right; max-width: 60%; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* CTA */
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 2rem; }
+      .building-info { grid-template-columns: 1fr; }
+      .building-desc { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
+      .building-stats { padding: 3rem 1.5rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .sqft-section { padding: 3rem 1.5rem; }
+      .fp-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .fp-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--gold)">.</span></a>
+  <a href="../neighbourhoods/cn-tower.html" class="nav-back">&larr; CN Tower Floor Plans</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="../neighbourhoods/images/spadina-rendering-1.jpg" alt="101 Spadina rendering" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Toronto &middot; Entertainment District &middot; Devron Developments</div>
+    <h1 class="hero-title">101 <em>Spadina</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>101 Spadina Ave</strong></div>
+      <div class="hero-meta-item"><strong>39 Storeys</strong> &middot; 371 Suites</div>
+      <div class="hero-meta-item"><strong>Occupancy</strong> 2029</div>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDING INFO -->
+<div class="building-info">
+  <div class="building-desc">
+    <h2>A landmark residence <em>on Spadina</em></h2>
+    <p>101 Spadina is a striking 39-storey tower rising at 101 Spadina Avenue in the heart of Toronto&rsquo;s Entertainment District. Developed by Devron Developments, this landmark residence offers 371 thoughtfully designed suites with sweeping views of the city skyline, Lake Ontario, and the CN Tower. Steps from King West&rsquo;s best restaurants, theatres, and nightlife, 101 Spadina puts you at the centre of everything.</p>
+    <p>Residents will enjoy world-class amenities including a rooftop terrace with panoramic views, state-of-the-art fitness centre, co-working lounge, yoga studio, entertainment suite with private dining, outdoor pool and sun deck, pet spa, and a grand double-height lobby designed for arrival.</p>
+  </div>
+  <div class="building-stats">
+    <div class="stat-grid">
+      <div class="stat-item"><div class="stat-val">371</div><div class="stat-lbl">Suites</div></div>
+      <div class="stat-item"><div class="stat-val">Contact</div><div class="stat-lbl">Pricing</div></div>
+      <div class="stat-item"><div class="stat-val">2029</div><div class="stat-lbl">Occupancy</div></div>
+      <div class="stat-item"><div class="stat-val">Devron</div><div class="stat-lbl">Developer</div></div>
+      <div class="stat-item"><div class="stat-val">Entertainment District</div><div class="stat-lbl">Neighbourhood</div></div>
+      <div class="stat-item"><div class="stat-val">100</div><div class="stat-lbl">Walk Score</div></div>
+      <div class="stat-item"><div class="stat-val">100</div><div class="stat-lbl">Transit Score</div></div>
+      <div class="stat-item"><div class="stat-val">2029</div><div class="stat-lbl">Closing</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery" id="gallery">
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 0)"><img src="../neighbourhoods/images/spadina-rendering-1.jpg" alt="101 Spadina Rendering 1" /></div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 1)"><img src="../neighbourhoods/images/spadina-rendering-2.jpg" alt="101 Spadina Rendering 2" /></div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 2)"><img src="../neighbourhoods/images/spadina-rendering-3.jpg" alt="101 Spadina Rendering 3" /></div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 3)"><img src="../neighbourhoods/images/spadina-rendering-4.jpg" alt="101 Spadina Rendering 4" /></div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 4)"><img src="../neighbourhoods/images/spadina-rendering-5.jpg" alt="101 Spadina Rendering 5" /></div>
+</div>
+
+<!-- 2 BEDROOM SUITES -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">2 Bedroom <em>Suites</em></div>
+    <div class="sqft-count">5 floor plans</div>
+  </div>
+
+  <div class="fp-grid">
+    <div class="fp-card" data-sqft="928" onclick="openModal('sp-1')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-1.jpg" alt="Suite D928 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D928 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">928 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="993" onclick="openModal('sp-2')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-2.jpg" alt="Suite D993 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D993 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">993 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1396" onclick="openModal('sp-3')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-3.jpg" alt="Suite D1396 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D1396 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">1,396 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="2322" onclick="openModal('sp-4')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-4.jpg" alt="Suite D2322 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D2322 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">2,322 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="2448" onclick="openModal('sp-5')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-5.jpg" alt="Suite D2448 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D2448 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">2,448 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 BEDROOM SUITES -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">3 Bedroom <em>Suites</em></div>
+    <div class="sqft-count">5 floor plans</div>
+  </div>
+
+  <div class="fp-grid">
+    <div class="fp-card" data-sqft="1100" onclick="openModal('sp-6')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-6.jpg" alt="Suite E1100 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite E1100 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">1,100 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1169" onclick="openModal('sp-7')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-7.jpg" alt="Suite E1169 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite E1169 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">1,169 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1446" onclick="openModal('sp-8')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-8.jpg" alt="Suite E1446 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite E1446 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">1,446 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1465" onclick="openModal('sp-9')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-9.jpg" alt="Suite E1465 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite E1465 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">1,465 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1466" onclick="openModal('sp-10')">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-10.jpg" alt="Suite E1466 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite E1466 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta"><span class="fp-sqft">1,466 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-headline">Interested in 101 Spadina?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848&body=Hi%20Nikhil%2C%20I%27d%20like%20to%20book%20a%20showing%20for%20101%20Spadina." class="btn-gold-outline">SMS Book a Showing</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">CondosAround<span style="color:#c8a96e">.</span>com</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Developer</span><span class="detail-val" id="m-developer"></span></div>
+        <div class="detail-row"><span class="detail-label">Address</span><span class="detail-val" id="m-address"></span></div>
+        <div class="detail-row"><span class="detail-label">Occupancy</span><span class="detail-val" id="m-occupancy"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this suite? Nikhil can walk you through availability, views, and pricing details.</div>
+          <a href="tel:6479240848" class="btn-full">Call Nikhil &mdash; 647-924-0848</a>
+          <a href="101-spadina.html" class="btn-full-outline">View Building Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" onclick="lightboxNav(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <button class="lightbox-arrow lightbox-next" onclick="lightboxNav(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+  var plans = {
+    'sp-1':  { building: '101 Spadina', suite: 'Suite D928', type: '2 Bedroom', size: '928 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-1.jpg' },
+    'sp-2':  { building: '101 Spadina', suite: 'Suite D993', type: '2 Bedroom', size: '993 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-2.jpg' },
+    'sp-3':  { building: '101 Spadina', suite: 'Suite D1396', type: '2 Bedroom', size: '1,396 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-3.jpg' },
+    'sp-4':  { building: '101 Spadina', suite: 'Suite D2322', type: '2 Bedroom', size: '2,322 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-4.jpg' },
+    'sp-5':  { building: '101 Spadina', suite: 'Suite D2448', type: '2 Bedroom', size: '2,448 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-5.jpg' },
+    'sp-6':  { building: '101 Spadina', suite: 'Suite E1100', type: '3 Bedroom', size: '1,100 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-6.jpg' },
+    'sp-7':  { building: '101 Spadina', suite: 'Suite E1169', type: '3 Bedroom', size: '1,169 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-7.jpg' },
+    'sp-8':  { building: '101 Spadina', suite: 'Suite E1446', type: '3 Bedroom', size: '1,446 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-8.jpg' },
+    'sp-9':  { building: '101 Spadina', suite: 'Suite E1465', type: '3 Bedroom', size: '1,465 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-9.jpg' },
+    'sp-10': { building: '101 Spadina', suite: 'Suite E1466', type: '3 Bedroom', size: '1,466 sq ft', developer: 'Devron Developments', address: '101 Spadina Ave, Toronto', occupancy: '2029', price: 'Contact for pricing', img: '../neighbourhoods/images/spadina-fp-10.jpg' }
+  };
+
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    document.getElementById('modal-eyebrow').textContent = 'CN Tower \u00b7 101 Spadina';
+    document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-building').textContent = p.building;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-developer').textContent = p.developer;
+    document.getElementById('m-address').textContent = p.address;
+    document.getElementById('m-occupancy').textContent = p.occupancy;
+    document.getElementById('m-price').textContent = p.price;
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeLightbox(); closeModal(); }
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+  // Lightbox
+  var galleryImages = [
+    '../neighbourhoods/images/spadina-rendering-1.jpg',
+    '../neighbourhoods/images/spadina-rendering-2.jpg',
+    '../neighbourhoods/images/spadina-rendering-3.jpg',
+    '../neighbourhoods/images/spadina-rendering-4.jpg',
+    '../neighbourhoods/images/spadina-rendering-5.jpg'
+  ];
+
+  var lbImages = [];
+  var lbIndex = 0;
+
+  function openLightbox(images, index) {
+    lbImages = images;
+    lbIndex = index;
+    showLightboxImage();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    if (!document.getElementById('modal').classList.contains('active')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-img')) {
+      closeLightbox();
+    }
+  }
+
+  function lightboxNav(dir) {
+    if (!lbImages.length) return;
+    lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+    showLightboxImage();
+  }
+
+  function showLightboxImage() {
+    document.getElementById('lightbox-img').src = lbImages[lbIndex];
+    document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+  }
+
+  // Floor plan image click → lightbox with all floor plan images
+  var fpImgs = document.querySelectorAll('.fp-image img');
+  fpImgs.forEach(function(img) {
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var allSrcs = Array.from(fpImgs).filter(function(i) { return i.closest('.fp-card').style.display !== 'none'; }).map(function(i) { return i.src; });
+      var idx = allSrcs.indexOf(img.src);
+      openLightbox(allSrcs, idx >= 0 ? idx : 0);
+    });
+  });
+</script>
+</body>
+</html>
