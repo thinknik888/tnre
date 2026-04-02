@@ -47,6 +47,10 @@
     .fp-series { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; font-weight: 500; }
     .fp-series.classic { color: var(--text-muted); }
     .fp-series.signature { color: var(--gold); }
+    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-view-building { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 0.5rem; transition: color 0.2s; }
+    .fp-view-building:hover { color: var(--text); }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
     .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
@@ -90,9 +94,214 @@
   <h1 class="page-title">CN Tower <em>Floor Plans</em></h1>
   <p class="page-desc">One of Toronto's most iconic addresses — steps from the CN Tower, Harbourfront, and The Well. Large-format suites in a neighbourhood built for people who want to be at the centre of it all.</p>
   <div class="page-stats">
-    <div class="stat-item"><div class="stat-val">1</div><div class="stat-lbl">Buildings listed</div></div>
-    <div class="stat-item"><div class="stat-val">4</div><div class="stat-lbl">Floor plans</div></div>
-    <div class="stat-item"><div class="stat-val">$1.65M+</div><div class="stat-lbl">Starting from</div></div>
+    <div class="stat-item"><div class="stat-val">2</div><div class="stat-lbl">Buildings listed</div></div>
+    <div class="stat-item"><div class="stat-val">26</div><div class="stat-lbl">Floor plans</div></div>
+    <div class="stat-item"><div class="stat-val">$467K+</div><div class="stat-lbl">Starting from</div></div>
+  </div>
+</div>
+
+<!-- UNDER 500 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">Under <em>500</em> sq ft</div>
+    <div class="sqft-count">1 floor plan</div>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('cch-4315')">
+      <div class="fp-image"><img src="images/4315.jpg" alt="Suite 4315 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 4315 &middot; Plan 15</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">West &middot; Balcony 108 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">492 sq ft</span><span class="fp-price">$492,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$428,040</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 500 – 700 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title"><em>500</em> – <em>700</em> sq ft</div>
+    <div class="sqft-count">9 floor plans</div>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('cch-1902')">
+      <div class="fp-image"><img src="images/1902.jpg" alt="Suite 1902 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 1902 &middot; Plan 02</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">North &middot; Balcony 43 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$467,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$406,290</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2712')">
+      <div class="fp-image"><img src="images/2712.jpg" alt="Suite 2712 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 2712 &middot; Plan 12</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">North &middot; Balcony 43 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$521,130</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$453,383</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-4012b')">
+      <div class="fp-image"><img src="images/4012.jpg" alt="Suite 4012 Plan 12 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 4012 &middot; Plan 12</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">West &middot; Balcony 105 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">505 sq ft</span><span class="fp-price">$490,500</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$426,735</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2712b')">
+      <div class="fp-image"><img src="images/2712.jpg" alt="Plan 09 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Plan 09 &middot; Floors 17&ndash;59</div>
+        <div class="fp-type">1 Bedroom + Study</div>
+        <div class="fp-exposure">Balcony 145 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">535 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-4012')">
+      <div class="fp-image"><img src="images/4012.jpg" alt="Suite 4012 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 4012 &middot; Plan 08</div>
+        <div class="fp-type">1 Bedroom + Study</div>
+        <div class="fp-exposure">East &middot; Balcony 128 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">600 sq ft</span><span class="fp-price">$599,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$521,130</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2611')">
+      <div class="fp-image"><img src="images/2611.jpg" alt="Suite 2611 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 2611 &middot; Plan 06</div>
+        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
+        <div class="fp-exposure">Balcony 145 sq ft &middot; Floors 17&ndash;59</div>
+        <div class="fp-meta"><span class="fp-sqft">650 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2706')">
+      <div class="fp-image"><img src="images/2206.jpg" alt="Suite 2706 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 2706 &middot; Plan 06</div>
+        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
+        <div class="fp-exposure">East &middot; Balcony 145 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">650 sq ft</span><span class="fp-price">$655,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$569,850</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-506')">
+      <div class="fp-image"><img src="images/506.jpg" alt="Suite 506 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 506 &middot; Plan 06</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony / Terrace 43&ndash;50 sq ft &middot; Floors 3&ndash;5</div>
+        <div class="fp-meta"><span class="fp-sqft">660 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2805')">
+      <div class="fp-image"><img src="images/2805.jpg" alt="Suite 2805 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 2805 &middot; Plan 05</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NE &middot; Balcony 170 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">692 sq ft</span><span class="fp-price">$659,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$573,330</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 700 – 1,000 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title"><em>700</em> – <em>1,000</em> sq ft</div>
+    <div class="sqft-count">5 floor plans</div>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('cch-3010')">
+      <div class="fp-image"><img src="images/3010.jpg" alt="Suite 3010 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Plan 11 &middot; Floors 17&ndash;46, 49&ndash;56</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 217 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">718 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2803')">
+      <div class="fp-image"><img src="images/2803.jpg" alt="Suite 2803 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 2803 &middot; Plan 03</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NW &middot; Balcony 150 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">740 sq ft</span><span class="fp-price">$799,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$695,130</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-2703')">
+      <div class="fp-image"><img src="images/2803.jpg" alt="Suite 2703 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 2703 &middot; Plan 03</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NW &middot; Balcony 150 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">740 sq ft</span><span class="fp-price">$798,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$694,260</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-4701')">
+      <div class="fp-image"><img src="images/4701.jpg" alt="Suite 4701 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 4701 &middot; Plan O1</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NE &middot; Balcony 108 sq ft &middot; Floors 47&ndash;48</div>
+        <div class="fp-meta"><span class="fp-sqft">760 sq ft</span><span class="fp-price">$919,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$799,530</span>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-4808')">
+      <div class="fp-image"><img src="images/4808.jpg" alt="Suite 4808 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Plan 10 &middot; Floors 17&ndash;46, 49&ndash;56</div>
+        <div class="fp-type">2 Bedroom + Study</div>
+        <div class="fp-exposure">Balcony 208 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">760 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -100,58 +309,132 @@
 <div class="sqft-section">
   <div class="sqft-header">
     <div class="sqft-title"><em>1,000</em> – <em>2,000</em> sq ft</div>
-    <div class="sqft-count">4 floor plans</div>
+    <div class="sqft-count">11 floor plans</div>
   </div>
   <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('cch-loft5707')">
+      <div class="fp-image"><img src="images/Loft 5707.jpg" alt="Loft 5707 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Sky 5907 / Loft 5707 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Dual balconies 336 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,032 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-loft5701')">
+      <div class="fp-image"><img src="images/Loft 5701.jpg" alt="Loft 5701 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Sky 5901 / Loft 5701 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Balcony 100 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,033 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-loft5712')">
+      <div class="fp-image"><img src="images/Loft 5712.jpg" alt="Loft 5712 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Sky 5912 / Loft 5712 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Balcony 90 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,033 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-loft5715')">
+      <div class="fp-image"><img src="images/Loft 5715.jpg" alt="Loft 5715 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Sky 5915 / Loft 5715 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Balcony 100 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,033 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-6301')">
+      <div class="fp-image"><img src="images/6301.jpg" alt="Suite 6301 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Plan O1 &middot; East Tower Floors 61&ndash;68</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Dual balconies &middot; 88 sq ft outdoor</div>
+        <div class="fp-meta"><span class="fp-sqft">1,038 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('cch-7805')">
+      <div class="fp-image"><img src="images/7805.jpg" alt="Suite 7805 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Suite 7805 &middot; Plan 05</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East &middot; Balcony 277 sq ft &middot; Floors 67&ndash;79</div>
+        <div class="fp-meta"><span class="fp-sqft">1,198 sq ft</span><span class="fp-price">$1,549,900</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
 
     <div class="fp-card" onclick="openModal('well-2305')">
       <div class="fp-image"><img src="images/suite-2305.webp" alt="The Well Suite 2305" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
         <div class="fp-series classic">Classic Series</div>
-        <div class="fp-suite">Suite 2305 · Floor 23 · NW</div>
+        <div class="fp-suite">Suite 2305 &middot; Floor 23 &middot; NW</div>
         <div class="fp-type">3 Bedroom</div>
         <div class="fp-exposure">Balcony 95 sq ft</div>
         <div class="fp-meta"><span class="fp-sqft">1,260 sq ft</span><span class="fp-price">$1,695,000</span></div>
       </div>
     </div>
-
     <div class="fp-card" onclick="openModal('well-gph9')">
       <div class="fp-image"><img src="images/the well gph9.webp" alt="The Well Suite GPH9" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
         <div class="fp-series classic">Classic Series</div>
-        <div class="fp-suite">Suite GPH9 · GPH Floor · 3 Bath</div>
+        <div class="fp-suite">Suite GPH9 &middot; GPH Floor &middot; 3 Bath</div>
         <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">Balcony · W/D In-suite</div>
+        <div class="fp-exposure">Balcony &middot; W/D In-suite</div>
         <div class="fp-meta"><span class="fp-sqft">1,313 sq ft</span><span class="fp-price">$1,650,000</span></div>
       </div>
     </div>
 
+    <div class="fp-card" onclick="openModal('cch-loft5703')">
+      <div class="fp-image"><img src="images/Loft 5703.jpg" alt="Loft 5703 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Sky 5903 / Loft 5703 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">3 Bedroom + Family (2-Storey)</div>
+        <div class="fp-exposure">Balcony 236 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,500 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        <a href="../buildings/concord-canada-house.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
     <div class="fp-card" onclick="openModal('well-610')">
       <div class="fp-image"><img src="images/signature 6th .webp" alt="The Well Suite 610" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
         <div class="fp-series signature">Signature Series</div>
-        <div class="fp-suite">Suite 610 · Floor 6 · NW</div>
+        <div class="fp-suite">Suite 610 &middot; Floor 6 &middot; NW</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">Balcony 60 sq ft</div>
         <div class="fp-meta"><span class="fp-sqft">1,515 sq ft</span><span class="fp-price">$2,175,000</span></div>
       </div>
     </div>
-
     <div class="fp-card" onclick="openModal('well-1205')">
       <div class="fp-image"><img src="images/SIGNATURE 12TH.webp" alt="The Well Suite 1205" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
         <div class="fp-series signature">Signature Series</div>
-        <div class="fp-suite">Suite 1205 · Floor 12 · SE</div>
+        <div class="fp-suite">Suite 1205 &middot; Floor 12 &middot; SE</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">Balcony 106 sq ft</div>
         <div class="fp-meta"><span class="fp-sqft">1,679 sq ft</span><span class="fp-price">$2,395,000</span></div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -204,7 +487,29 @@
     'well-2305': { building: 'The Well', series: 'Classic Series', suite: 'Suite 2305', type: '3 Bedroom', size: '1,260 sq ft', floors: '23rd', view: 'NW', exposure: '95 sq ft', baths: '2', maint: '$1,273 / mo', tax: '$1,065 / yr', price: '$1,695,000', img: 'images/suite-2305.webp', buildingLink: '../buildings/the-well.html' },
     'well-gph9': { building: 'The Well', series: 'Classic Series', suite: 'Suite GPH9', type: '3 Bedroom', size: '1,313 sq ft', floors: 'GPH Only', view: '—', exposure: 'Yes', baths: '3', maint: '$1,628 / mo', tax: '$1,037 / yr', price: '$1,650,000', img: 'images/the well gph9.webp', buildingLink: '../buildings/the-well.html' },
     'well-610':  { building: 'The Well', series: 'Signature Series', suite: 'Suite 610', type: '2 Bedroom', size: '1,515 sq ft', floors: '6th Only', view: 'NW', exposure: '60 sq ft', baths: '2.5', maint: '$1,773 / mo', tax: '$1,367 / yr', price: '$2,175,000', img: 'images/signature 6th .webp', buildingLink: '../buildings/the-well.html' },
-    'well-1205': { building: 'The Well', series: 'Signature Series', suite: 'Suite 1205', type: '2 Bedroom', size: '1,679 sq ft', floors: '12th Only', view: 'SE', exposure: '106 sq ft', baths: '2.5', maint: '$1,964 / mo', tax: '$1,505 / yr', price: '$2,395,000', img: 'images/SIGNATURE 12TH.webp', buildingLink: '../buildings/the-well.html' }
+    'well-1205': { building: 'The Well', series: 'Signature Series', suite: 'Suite 1205', type: '2 Bedroom', size: '1,679 sq ft', floors: '12th Only', view: 'SE', exposure: '106 sq ft', baths: '2.5', maint: '$1,964 / mo', tax: '$1,505 / yr', price: '$2,395,000', img: 'images/SIGNATURE 12TH.webp', buildingLink: '../buildings/the-well.html' },
+    'cch-4315':    { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 4315', type: '1 Bedroom', size: '492 sq ft', floors: '17\u201359', view: 'West', exposure: '108 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$492,000', rebate: '$428,040', img: 'images/4315.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-1902':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Suite 1902', type: '1 Bedroom', size: '502 sq ft', floors: '17\u201346, 49\u201356', view: 'North', exposure: '43 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$467,000', rebate: '$406,290', img: 'images/1902.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2712':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Suite 2712', type: '1 Bedroom', size: '502 sq ft', floors: '17\u201346, 49\u201356', view: 'North', exposure: '43 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$521,130', rebate: '$453,383', img: 'images/2712.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-4012b':   { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 4012', type: '1 Bedroom', size: '505 sq ft', floors: '17\u201359', view: 'West', exposure: '105 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$490,500', rebate: '$426,735', img: 'images/4012.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2712b':   { building: 'Concord Canada House', series: 'East Tower', suite: 'Plan 09', type: '1 Bedroom + Study', size: '535 sq ft', floors: '17\u201359', view: '\u2014', exposure: '145 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/2712.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-4012':    { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 4012', type: '1 Bedroom + Study', size: '600 sq ft', floors: '17\u201359', view: 'East', exposure: '128 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$599,000', rebate: '$521,130', img: 'images/4012.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2611':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Suite 2611', type: '1 Bedroom + Den (2 Bath)', size: '650 sq ft', floors: '17\u201359', view: '\u2014', exposure: '145 sq ft', baths: '2', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/2611.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2706':    { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 2706', type: '1 Bedroom + Den (2 Bath)', size: '650 sq ft', floors: '17\u201359', view: 'East', exposure: '145 sq ft', baths: '2', maint: '\u2014', tax: '\u2014', price: '$655,000', rebate: '$569,850', img: 'images/2206.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-506':     { building: 'Concord Canada House', series: 'East Tower', suite: 'Suite 506', type: '1 Bedroom', size: '660 sq ft', floors: '3\u20135', view: '\u2014', exposure: '43\u201350 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/506.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2805':    { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 2805', type: '2 Bedroom', size: '692 sq ft', floors: '17\u201359', view: 'NE', exposure: '170 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$659,000', rebate: '$573,330', img: 'images/2805.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-3010':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Plan 11', type: '2 Bedroom', size: '718 sq ft', floors: '17\u201346, 49\u201356', view: '\u2014', exposure: '217 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/3010.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2803':    { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 2803', type: '2 Bedroom', size: '740 sq ft', floors: '17\u201359', view: 'NW', exposure: '150 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$799,000', rebate: '$695,130', img: 'images/2803.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-2703':    { building: 'Concord Canada House', series: 'West Tower', suite: 'Suite 2703', type: '2 Bedroom', size: '740 sq ft', floors: '17\u201359', view: 'NW', exposure: '150 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$798,000', rebate: '$694,260', img: 'images/2803.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-4701':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Suite 4701', type: '2 Bedroom', size: '760 sq ft', floors: '47\u201348', view: 'NE', exposure: '108 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$919,000', rebate: '$799,530', img: 'images/4701.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-4808':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Plan 10', type: '2 Bedroom + Study', size: '760 sq ft', floors: '17\u201346, 49\u201356', view: '\u2014', exposure: '208 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/4808.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-loft5707':{ building: 'Concord Canada House', series: 'East Tower \u2014 Sky Loft', suite: 'Sky 5907 / Loft 5707', type: '2 Bedroom (2-Storey)', size: '1,032 sq ft', floors: '57\u201360', view: '\u2014', exposure: '336 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/Loft 5707.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-loft5701':{ building: 'Concord Canada House', series: 'East Tower \u2014 Sky Loft', suite: 'Sky 5901 / Loft 5701', type: '2 Bedroom (2-Storey)', size: '1,033 sq ft', floors: '57\u201360', view: '\u2014', exposure: '100 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/Loft 5701.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-loft5712':{ building: 'Concord Canada House', series: 'East Tower \u2014 Sky Loft', suite: 'Sky 5912 / Loft 5712', type: '2 Bedroom (2-Storey)', size: '1,033 sq ft', floors: '57\u201360', view: '\u2014', exposure: '90 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/Loft 5712.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-loft5715':{ building: 'Concord Canada House', series: 'East Tower \u2014 Sky Loft', suite: 'Sky 5915 / Loft 5715', type: '2 Bedroom (2-Storey)', size: '1,033 sq ft', floors: '57\u201360', view: '\u2014', exposure: '100 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/Loft 5715.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-6301':    { building: 'Concord Canada House', series: 'East Tower', suite: 'Plan O1', type: '3 Bedroom', size: '1,038 sq ft', floors: '61\u201368', view: 'Dual exposure', exposure: '88 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/6301.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-7805':    { building: 'Concord Canada House', series: 'West Tower Upper', suite: 'Suite 7805', type: '3 Bedroom', size: '1,198 sq ft', floors: '67\u201379', view: 'East', exposure: '277 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$1,549,900', img: 'images/7805.jpg', buildingLink: '../buildings/concord-canada-house.html' },
+    'cch-loft5703':{ building: 'Concord Canada House', series: 'East Tower \u2014 Sky Loft', suite: 'Sky 5903 / Loft 5703', type: '3 Bedroom + Family (2-Storey)', size: '1,500 sq ft', floors: '57\u201360', view: '\u2014', exposure: '236 sq ft', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: 'Contact for pricing', img: 'images/Loft 5703.jpg', buildingLink: '../buildings/concord-canada-house.html' }
   };
 
   function openModal(id) {
@@ -223,7 +528,12 @@
     document.getElementById('m-baths').textContent = p.baths;
     document.getElementById('m-maint').textContent = p.maint;
     document.getElementById('m-tax').textContent = p.tax;
-    document.getElementById('m-price').textContent = p.price;
+    var priceEl = document.getElementById('m-price');
+    if (p.rebate) {
+      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.72rem;color:var(--gold);font-weight:400;margin-top:3px;"><span style="color:var(--text-muted);font-weight:300;">HST Rebate </span>' + p.rebate + '</span>';
+    } else {
+      priceEl.textContent = p.price;
+    }
     var linkEl = document.getElementById('m-building-link');
     if (p.buildingLink) {
       linkEl.innerHTML = '<a href="' + p.buildingLink + '" class="btn-full" style="background:var(--text);margin-bottom:1rem;">View Building Page →</a>';
