@@ -120,7 +120,8 @@
     <button class="fp-filter-btn" data-filter="400-600">400 &ndash; 600 sq ft</button>
     <button class="fp-filter-btn" data-filter="600-800">600 &ndash; 800 sq ft</button>
     <button class="fp-filter-btn" data-filter="800-1000">800 &ndash; 1,000 sq ft</button>
-    <button class="fp-filter-btn" data-filter="1000+">1,000+ sq ft</button>
+    <button class="fp-filter-btn" data-filter="1000-1500">1,000 &ndash; 1,500 sq ft</button>
+    <button class="fp-filter-btn" data-filter="1500-2500">1,500 &ndash; 2,500 sq ft</button>
   </div>
   <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:2rem; font-style:italic;">HST is included in the purchase price. All suites qualify for the <span style="color:var(--gold);">HST new housing rebate</span>.</div>
 
@@ -1023,14 +1024,15 @@
       btn.classList.add('active');
       const filter = btn.dataset.filter;
       const grid = document.getElementById('fp-grid');
-      grid.classList.toggle('cols-2', filter === '1000+');
+      grid.classList.toggle('cols-2', filter === '1000-1500' || filter === '1500-2500');
       document.querySelectorAll('#fp-grid .fp-card').forEach(card => {
         const sqft = parseInt(card.dataset.sqft);
         let show = true;
         if (filter === '400-600') show = sqft >= 400 && sqft < 600;
         else if (filter === '600-800') show = sqft >= 600 && sqft < 800;
         else if (filter === '800-1000') show = sqft >= 800 && sqft < 1000;
-        else if (filter === '1000+') show = sqft >= 1000;
+        else if (filter === '1000-1500') show = sqft >= 1000 && sqft < 1500;
+        else if (filter === '1500-2500') show = sqft >= 1500 && sqft < 2500;
         card.style.display = show ? '' : 'none';
       });
     });
