@@ -63,6 +63,10 @@
     .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
     .sqft-title em { font-style: italic; color: var(--gold); }
     .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
 
     /* FP GRID */
     .fp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -185,14 +189,21 @@
   <div class="gallery-item" onclick="openLightbox(galleryImages, 4)"><img src="../neighbourhoods/images/spadina-rendering-5.jpg" alt="101 Spadina Rendering 5" /></div>
 </div>
 
-<!-- 2 BEDROOM SUITES -->
+<!-- FLOOR PLANS -->
 <div class="sqft-section">
   <div class="sqft-header">
-    <div class="sqft-title">2 Bedroom <em>Suites</em></div>
-    <div class="sqft-count">5 floor plans</div>
+    <div class="sqft-title">Floor <em>Plans</em></div>
+    <div class="sqft-count">10 floor plans</div>
   </div>
 
-  <div class="fp-grid">
+  <div class="fp-filters" id="fp-filters">
+    <button class="fp-filter-btn active" data-filter="all">All</button>
+    <button class="fp-filter-btn" data-filter="under1000">Under 1,000 sq ft</button>
+    <button class="fp-filter-btn" data-filter="1000-1500">1,000 &ndash; 1,500 sq ft</button>
+    <button class="fp-filter-btn" data-filter="1500+">1,500+ sq ft</button>
+  </div>
+
+  <div class="fp-grid" id="fp-grid">
     <div class="fp-card" data-sqft="928" onclick="openModal('sp-1')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-1.jpg" alt="Suite D928 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
@@ -238,17 +249,6 @@
         <div class="fp-meta"><span class="fp-sqft">2,448 sq ft</span><span class="fp-contact">Contact for pricing</span></div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- 3 BEDROOM SUITES -->
-<div class="sqft-section">
-  <div class="sqft-header">
-    <div class="sqft-title">3 Bedroom <em>Suites</em></div>
-    <div class="sqft-count">5 floor plans</div>
-  </div>
-
-  <div class="fp-grid">
     <div class="fp-card" data-sqft="1100" onclick="openModal('sp-6')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-6.jpg" alt="Suite E1100 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
@@ -438,6 +438,23 @@
       var allSrcs = Array.from(fpImgs).filter(function(i) { return i.closest('.fp-card').style.display !== 'none'; }).map(function(i) { return i.src; });
       var idx = allSrcs.indexOf(img.src);
       openLightbox(allSrcs, idx >= 0 ? idx : 0);
+    });
+  });
+
+  // Sq ft filter
+  document.querySelectorAll('#fp-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#fp-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+      document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+        var sqft = parseInt(card.dataset.sqft);
+        var show = true;
+        if (filter === 'under1000') show = sqft < 1000;
+        else if (filter === '1000-1500') show = sqft >= 1000 && sqft < 1500;
+        else if (filter === '1500+') show = sqft >= 1500;
+        card.style.display = show ? '' : 'none';
+      });
     });
   });
 </script>
