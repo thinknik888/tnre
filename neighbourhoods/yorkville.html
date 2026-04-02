@@ -53,6 +53,7 @@
     .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
     .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
     .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
 
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
@@ -456,10 +457,15 @@
     const priceStr = p.promo || p.price;
     const price = parseInt(priceStr.replace(/[\$,]/g, ''));
     if (isNaN(price)) return;
-    const rebate = Math.round(price * 0.87);
     const span = document.createElement('span');
-    span.className = 'fp-rebate';
-    span.innerHTML = '<span class="fp-rebate-label">HST Rebate </span>$' + rebate.toLocaleString();
+    if (price > 1500000) {
+      span.className = 'fp-offers';
+      span.textContent = 'Open to offers';
+    } else {
+      const rebate = Math.round(price * 0.87);
+      span.className = 'fp-rebate';
+      span.innerHTML = '<span class="fp-rebate-label">HST Rebate </span>$' + rebate.toLocaleString();
+    }
     card.querySelector('.fp-meta').insertAdjacentElement('afterend', span);
   });
 </script>
