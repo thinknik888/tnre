@@ -30,12 +30,12 @@
     .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
     .sqft-title em { font-style: italic; color: var(--gold); }
     .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; background: var(--border); border: 1px solid var(--border); }
-    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; }
+    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
-    .fp-image { overflow: hidden; min-height: 400px; background: var(--cream); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
-    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); }
+    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    .fp-image img { width: 100%; height: 100%; object-fit: cover; object-position: 70% center; display: block; margin: auto; }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
