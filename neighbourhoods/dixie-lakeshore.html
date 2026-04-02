@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dixie &amp; Lakeshore Condos &amp; Floor Plans &mdash; CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .page-header { padding: 5rem 3rem 3rem; border-bottom: 1px solid var(--border); }
+    .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .page-title em { font-style: italic; color: var(--gold); }
+    .page-desc { font-size: 0.95rem; line-height: 1.75; color: var(--text-mid); max-width: 560px; font-weight: 300; }
+    .page-stats { display: flex; gap: 3rem; margin-top: 2.5rem; }
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); }
+    .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+    .promo-banner { background: #1e1c18; padding: 1.5rem 3rem; text-align: center; font-size: 0.88rem; color: #b89a56; letter-spacing: 0.04em; border-bottom: 1px solid var(--border); }
+
+    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .sqft-section:last-of-type { border-bottom: none; }
+    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .sqft-title em { font-style: italic; color: var(--gold); }
+    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .filter-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .filter-row:last-child { margin-bottom: 2rem; }
+    .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 110px; }
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .fp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; margin: auto; transition: transform 0.3s; }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-meta { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-meta-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-size: 1.13rem; font-weight: 500; color: var(--text); }
+    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-price s { color: var(--text-muted); font-weight: 300; }
+    .fp-price-promo { color: var(--gold); font-weight: 500; }
+    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-badge { font-size: 14px; color: #b89a56; background: rgba(184,154,86,0.1); padding: 0.2rem 0.6rem; border-radius: 2px; margin-top: 0.4rem; display: inline-block; letter-spacing: 0.02em; }
+    .fp-view-building { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 0.5rem; transition: color 0.2s; }
+    .fp-view-building:hover { color: var(--text); }
+
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; text-align: right; max-width: 60%; }
+    .detail-val .promo { color: var(--gold); }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .page-header, .sqft-section { padding: 3rem 1.5rem; } .promo-banner { padding: 1.25rem 1.5rem; } .fp-grid { grid-template-columns: 1fr; } .modal-body { grid-template-columns: 1fr; } .modal-image { border-bottom: 1px solid var(--border); } .modal-details { border-left: none; } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } }
+    @media (max-width: 600px) { .page-stats { gap: 1.5rem; flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../index.html" class="nav-back">&larr; All neighbourhoods</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Mississauga &middot; Neighbourhood</div>
+  <h1 class="page-title">Condos Around <em>Dixie &amp; Lakeshore</em></h1>
+  <p class="page-desc">Where Mississauga meets Etobicoke &mdash; lakefront living steps from Marie Curtis Park, Lakeshore trails, and Long Branch GO.</p>
+  <div class="page-stats">
+    <div class="stat-item"><div class="stat-val">1</div><div class="stat-lbl">Buildings listed</div></div>
+    <div class="stat-item"><div class="stat-val">99</div><div class="stat-lbl">Floor plans</div></div>
+    <div class="stat-item"><div class="stat-val">$409K+</div><div class="stat-lbl">Starting from</div></div>
+  </div>
+</div>
+
+<!-- FLOOR PLANS -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">Floor <em>Plans</em></div>
+    <div class="sqft-count">99 floor plans</div>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-label">Closing Date</span>
+    <div class="fp-filters" id="closing-filters">
+      <button class="fp-filter-btn active" data-closing-filter="all">Show All</button>
+      <button class="fp-filter-btn" data-closing-filter="2026">Ready Now</button>
+    </div>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Square Footage</span>
+    <div class="fp-filters" id="sqft-filters">
+      <button class="fp-filter-btn active" data-filter="all">All Sizes</button>
+      <button class="fp-filter-btn" data-filter="0-600">Under 600 sq ft</button>
+      <button class="fp-filter-btn" data-filter="600-800">600 &ndash; 800 sq ft</button>
+      <button class="fp-filter-btn" data-filter="800-1000">800 &ndash; 1,000 sq ft</button>
+      <button class="fp-filter-btn" data-filter="1000-9999">1,000+ sq ft</button>
+    </div>
+  </div>
+
+  <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:2rem; font-style:italic;">HST is included in the purchase price. All suites qualify for the <span style="color:var(--gold);">HST new housing rebate</span>.</div>
+
+  <div class="fp-grid" id="fp-grid">
+    <div class="fp-card" data-sqft="390" data-closing="2026" onclick="openModal('ex-1')">
+      <div class="fp-image"><img src="images/exhale-bachelor-ba5.jpg" alt="Suite BA Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite BA &middot; Bachelor</div>
+        <div class="fp-type">Bachelor</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">390 sq ft</span><span class="fp-price"><s>$468,000</s> <span class="fp-price-promo">$409,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$356,265</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="395" data-closing="2026" onclick="openModal('ex-2')">
+      <div class="fp-image"><img src="images/exhale-bachelor-ba2.jpg" alt="Suite BA2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite BA2 &middot; Bachelor</div>
+        <div class="fp-type">Bachelor</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">395 sq ft</span><span class="fp-price"><s>$474,000</s> <span class="fp-price-promo">$414,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$360,832</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="400" data-closing="2026" onclick="openModal('ex-3')">
+      <div class="fp-image"><img src="images/exhale-bachelor-ba3.jpg" alt="Suite BB Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite BB &middot; Bachelor</div>
+        <div class="fp-type">Bachelor</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">400 sq ft</span><span class="fp-price"><s>$480,000</s> <span class="fp-price-promo">$420,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$365,400</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="410" data-closing="2026" onclick="openModal('ex-4')">
+      <div class="fp-image"><img src="images/exhale-bachelor-ba6.jpg" alt="Suite BB2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite BB2 &middot; Bachelor</div>
+        <div class="fp-type">Bachelor</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">410 sq ft</span><span class="fp-price"><s>$492,000</s> <span class="fp-price-promo">$430,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$374,535</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="475" data-closing="2026" onclick="openModal('ex-5')">
+      <div class="fp-image"><img src="images/exhale-bachelor-jr1.jpg" alt="Suite BC Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite BC &middot; Bachelor</div>
+        <div class="fp-type">Bachelor</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">475 sq ft</span><span class="fp-price"><s>$570,000</s> <span class="fp-price-promo">$498,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$433,912</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="450" data-closing="2026" onclick="openModal('ex-6')">
+      <div class="fp-image"><img src="images/exhale-1bed-1a.jpg" alt="Suite 1A Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1A &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">450 sq ft</span><span class="fp-price"><s>$540,000</s> <span class="fp-price-promo">$472,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$411,075</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="450" data-closing="2026" onclick="openModal('ex-7')">
+      <div class="fp-image"><img src="images/exhale-1bed-1d.jpg" alt="Suite 1D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1D &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">450 sq ft</span><span class="fp-price"><s>$540,000</s> <span class="fp-price-promo">$472,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$411,075</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="485" data-closing="2026" onclick="openModal('ex-8')">
+      <div class="fp-image"><img src="images/exhale-1bed-1c.jpg" alt="Suite 1C Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1C &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">485 sq ft</span><span class="fp-price"><s>$582,000</s> <span class="fp-price-promo">$509,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$443,048</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="485" data-closing="2026" onclick="openModal('ex-9')">
+      <div class="fp-image"><img src="images/exhale-1bed-1e.jpg" alt="Suite 1E Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1E &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">485 sq ft</span><span class="fp-price"><s>$582,000</s> <span class="fp-price-promo">$509,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$443,048</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="500" data-closing="2026" onclick="openModal('ex-10')">
+      <div class="fp-image"><img src="images/exhale-1bed-1u.jpg" alt="Suite 1U Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1U &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">500 sq ft</span><span class="fp-price"><s>$600,000</s> <span class="fp-price-promo">$525,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$456,750</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="520" data-closing="2026" onclick="openModal('ex-11')">
+      <div class="fp-image"><img src="images/exhale-1bed-1m.jpg" alt="Suite 1M Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1M &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">520 sq ft</span><span class="fp-price"><s>$624,000</s> <span class="fp-price-promo">$546,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$475,020</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="525" data-closing="2026" onclick="openModal('ex-12')">
+      <div class="fp-image"><img src="images/exhale-1bed-1n.jpg" alt="Suite 1N Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1N &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">525 sq ft</span><span class="fp-price"><s>$630,000</s> <span class="fp-price-promo">$551,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$479,588</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="525" data-closing="2026" onclick="openModal('ex-13')">
+      <div class="fp-image"><img src="images/exhale-1bed-1f-and-1-bb.jpg" alt="Suite 1F &amp; 1BB Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1F &amp; 1BB &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">525 sq ft</span><span class="fp-price"><s>$630,000</s> <span class="fp-price-promo">$551,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$479,588</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="530" data-closing="2026" onclick="openModal('ex-14')">
+      <div class="fp-image"><img src="images/exhale-1bed-1b.jpg" alt="Suite 1B Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1B &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">530 sq ft</span><span class="fp-price"><s>$636,000</s> <span class="fp-price-promo">$556,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$484,155</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="530" data-closing="2026" onclick="openModal('ex-15')">
+      <div class="fp-image"><img src="images/exhale-1bed-1v.jpg" alt="Suite 1V Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1V &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">530 sq ft</span><span class="fp-price"><s>$636,000</s> <span class="fp-price-promo">$556,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$484,155</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="535" data-closing="2026" onclick="openModal('ex-16')">
+      <div class="fp-image"><img src="images/exhale-1bed-1t.jpg" alt="Suite 1T Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1T &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">535 sq ft</span><span class="fp-price"><s>$642,000</s> <span class="fp-price-promo">$561,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$488,722</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="535" data-closing="2026" onclick="openModal('ex-17')">
+      <div class="fp-image"><img src="images/exhale-1bed-1c-d.jpg" alt="Suite 1C+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1C+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">535 sq ft</span><span class="fp-price"><s>$642,000</s> <span class="fp-price-promo">$561,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$488,722</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="540" data-closing="2026" onclick="openModal('ex-18')">
+      <div class="fp-image"><img src="images/exhale-1bed-1y.jpg" alt="Suite 1Y Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1Y &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">540 sq ft</span><span class="fp-price"><s>$648,000</s> <span class="fp-price-promo">$567,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$493,290</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="545" data-closing="2026" onclick="openModal('ex-19')">
+      <div class="fp-image"><img src="images/exhale-1bed-1r.jpg" alt="Suite 1R Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1R &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">545 sq ft</span><span class="fp-price"><s>$654,000</s> <span class="fp-price-promo">$572,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$497,858</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="550" data-closing="2026" onclick="openModal('ex-20')">
+      <div class="fp-image"><img src="images/exhale-1bed-1k.jpg" alt="Suite 1K Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1K &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">550 sq ft</span><span class="fp-price"><s>$660,000</s> <span class="fp-price-promo">$577,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$502,425</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="550" data-closing="2026" onclick="openModal('ex-21')">
+      <div class="fp-image"><img src="images/exhale-1bed-1l.jpg" alt="Suite 1L Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1L &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">550 sq ft</span><span class="fp-price"><s>$660,000</s> <span class="fp-price-promo">$577,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$502,425</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="550" data-closing="2026" onclick="openModal('ex-22')">
+      <div class="fp-image"><img src="images/exhale-1bed-1o-d.jpg" alt="Suite 1O+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1O+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">550 sq ft</span><span class="fp-price"><s>$660,000</s> <span class="fp-price-promo">$577,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$502,425</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="555" data-closing="2026" onclick="openModal('ex-23')">
+      <div class="fp-image"><img src="images/exhale-1bed-1aa.jpg" alt="Suite 1AA Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1AA &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">555 sq ft</span><span class="fp-price"><s>$666,000</s> <span class="fp-price-promo">$582,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$506,992</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="560" data-closing="2026" onclick="openModal('ex-24')">
+      <div class="fp-image"><img src="images/exhale-1bed-1g.jpg" alt="Suite 1G Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1G &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">560 sq ft</span><span class="fp-price"><s>$672,000</s> <span class="fp-price-promo">$588,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$511,560</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="560" data-closing="2026" onclick="openModal('ex-25')">
+      <div class="fp-image"><img src="images/exhale-1bed-1s.jpg" alt="Suite 1S Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1S &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">560 sq ft</span><span class="fp-price"><s>$672,000</s> <span class="fp-price-promo">$588,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$511,560</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="580" data-closing="2026" onclick="openModal('ex-26')">
+      <div class="fp-image"><img src="images/exhale-1bed-1d-d.jpg" alt="Suite 1D+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1D+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">580 sq ft</span><span class="fp-price"><s>$696,000</s> <span class="fp-price-promo">$609,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$529,830</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="580" data-closing="2026" onclick="openModal('ex-27')">
+      <div class="fp-image"><img src="images/exhale-1bed-1p.jpg" alt="Suite 1P Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1P &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">580 sq ft</span><span class="fp-price"><s>$696,000</s> <span class="fp-price-promo">$609,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$529,830</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="585" data-closing="2026" onclick="openModal('ex-28')">
+      <div class="fp-image"><img src="images/exhale-1bed-1z.jpg" alt="Suite 1Z Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1Z &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">585 sq ft</span><span class="fp-price"><s>$702,000</s> <span class="fp-price-promo">$614,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$534,398</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="590" data-closing="2026" onclick="openModal('ex-29')">
+      <div class="fp-image"><img src="images/exhale-1bed-1k-d.jpg" alt="Suite 1K+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1K+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">590 sq ft</span><span class="fp-price"><s>$708,000</s> <span class="fp-price-promo">$619,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$538,965</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="595" data-closing="2026" onclick="openModal('ex-30')">
+      <div class="fp-image"><img src="images/exhale-1bed-1aa-d.jpg" alt="Suite 1AA+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1AA+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">595 sq ft</span><span class="fp-price"><s>$714,000</s> <span class="fp-price-promo">$624,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$543,532</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="595" data-closing="2026" onclick="openModal('ex-31')">
+      <div class="fp-image"><img src="images/exhale-1bed-1s-d.jpg" alt="Suite 1S+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1S+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">595 sq ft</span><span class="fp-price"><s>$714,000</s> <span class="fp-price-promo">$624,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$543,532</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="595" data-closing="2026" onclick="openModal('ex-32')">
+      <div class="fp-image"><img src="images/exhale-1bed-1t-d.jpg" alt="Suite 1T+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1T+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">595 sq ft</span><span class="fp-price"><s>$714,000</s> <span class="fp-price-promo">$624,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$543,532</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="600" data-closing="2026" onclick="openModal('ex-33')">
+      <div class="fp-image"><img src="images/exhale-1bed-1bb-d.jpg" alt="Suite 1BB+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1BB+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">600 sq ft</span><span class="fp-price"><s>$720,000</s> <span class="fp-price-promo">$630,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$548,100</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="600" data-closing="2026" onclick="openModal('ex-34')">
+      <div class="fp-image"><img src="images/exhale-1bed-1l-d.jpg" alt="Suite 1L+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1L+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">600 sq ft</span><span class="fp-price"><s>$720,000</s> <span class="fp-price-promo">$630,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$548,100</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="601" data-closing="2026" onclick="openModal('ex-35')">
+      <div class="fp-image"><img src="images/exhale-1bed-1ha-d.jpg" alt="Suite 1HA+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1HA+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">601 sq ft</span><span class="fp-price"><s>$721,200</s> <span class="fp-price-promo">$631,050</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$549,014</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="601" data-closing="2026" onclick="openModal('ex-36')">
+      <div class="fp-image"><img src="images/exhale-1bed-1ja-d.jpg" alt="Suite 1JA+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1JA+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">601 sq ft</span><span class="fp-price"><s>$721,200</s> <span class="fp-price-promo">$631,050</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$549,014</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="610" data-closing="2026" onclick="openModal('ex-37')">
+      <div class="fp-image"><img src="images/exhale-1bed-1cc-d.jpg" alt="Suite 1CC+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1CC+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">610 sq ft</span><span class="fp-price"><s>$732,000</s> <span class="fp-price-promo">$640,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$557,235</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="610" data-closing="2026" onclick="openModal('ex-38')">
+      <div class="fp-image"><img src="images/exhale-1bed-1e-d.jpg" alt="Suite 1E+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1E+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">610 sq ft</span><span class="fp-price"><s>$732,000</s> <span class="fp-price-promo">$640,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$557,235</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="615" data-closing="2026" onclick="openModal('ex-39')">
+      <div class="fp-image"><img src="images/exhale-1bed-1f-d.jpg" alt="Suite 1F+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1F+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">615 sq ft</span><span class="fp-price"><s>$738,000</s> <span class="fp-price-promo">$645,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$561,802</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="625" data-closing="2026" onclick="openModal('ex-40')">
+      <div class="fp-image"><img src="images/exhale-1bed-1y-d.jpg" alt="Suite 1Y+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1Y+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">625 sq ft</span><span class="fp-price"><s>$750,000</s> <span class="fp-price-promo">$656,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$570,938</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="630" data-closing="2026" onclick="openModal('ex-41')">
+      <div class="fp-image"><img src="images/exhale-1bed-1i.jpg" alt="Suite 1I Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1I &middot; 1 Bedroom</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">630 sq ft</span><span class="fp-price"><s>$756,000</s> <span class="fp-price-promo">$661,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$575,505</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="630" data-closing="2026" onclick="openModal('ex-42')">
+      <div class="fp-image"><img src="images/exhale-1bed-1x-d.jpg" alt="Suite 1X+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1X+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">630 sq ft</span><span class="fp-price"><s>$756,000</s> <span class="fp-price-promo">$661,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$575,505</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="635" data-closing="2026" onclick="openModal('ex-43')">
+      <div class="fp-image"><img src="images/exhale-1bed-1r-d.jpg" alt="Suite 1R+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1R+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">635 sq ft</span><span class="fp-price"><s>$762,000</s> <span class="fp-price-promo">$666,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$580,072</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="640" data-closing="2026" onclick="openModal('ex-44')">
+      <div class="fp-image"><img src="images/exhale-1bed-1q-d.jpg" alt="Suite 1Q+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1Q+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">640 sq ft</span><span class="fp-price"><s>$768,000</s> <span class="fp-price-promo">$672,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$584,640</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="645" data-closing="2026" onclick="openModal('ex-45')">
+      <div class="fp-image"><img src="images/exhale-1bed-1h-d.jpg" alt="Suite 1H+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1H+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">645 sq ft</span><span class="fp-price"><s>$774,000</s> <span class="fp-price-promo">$677,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$589,208</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="651" data-closing="2026" onclick="openModal('ex-46')">
+      <div class="fp-image"><img src="images/exhale-1bed-1v-d.jpg" alt="Suite 1V+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1V+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">651 sq ft</span><span class="fp-price"><s>$781,200</s> <span class="fp-price-promo">$683,550</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$594,688</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="655" data-closing="2026" onclick="openModal('ex-47')">
+      <div class="fp-image"><img src="images/exhale-1bed-1j-d.jpg" alt="Suite 1J+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1J+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">655 sq ft</span><span class="fp-price"><s>$786,000</s> <span class="fp-price-promo">$687,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$598,342</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="655" data-closing="2026" onclick="openModal('ex-48')">
+      <div class="fp-image"><img src="images/exhale-1bed-1u-d.jpg" alt="Suite 1U+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1U+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">655 sq ft</span><span class="fp-price"><s>$786,000</s> <span class="fp-price-promo">$687,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$598,342</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="670" data-closing="2026" onclick="openModal('ex-49')">
+      <div class="fp-image"><img src="images/exhale-1bed-1p-d.jpg" alt="Suite 1P+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1P+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">670 sq ft</span><span class="fp-price"><s>$804,000</s> <span class="fp-price-promo">$703,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$612,045</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="675" data-closing="2026" onclick="openModal('ex-50')">
+      <div class="fp-image"><img src="images/exhale-1bed-1g-d.jpg" alt="Suite 1G+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1G+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">675 sq ft</span><span class="fp-price"><s>$810,000</s> <span class="fp-price-promo">$708,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$616,612</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="675" data-closing="2026" onclick="openModal('ex-51')">
+      <div class="fp-image"><img src="images/exhale-1bed-1m-d.jpg" alt="Suite 1M+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1M+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">675 sq ft</span><span class="fp-price"><s>$810,000</s> <span class="fp-price-promo">$708,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$616,612</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="695" data-closing="2026" onclick="openModal('ex-52')">
+      <div class="fp-image"><img src="images/exhale-1bed-1b-d.jpg" alt="Suite 1B+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1B+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">695 sq ft</span><span class="fp-price"><s>$834,000</s> <span class="fp-price-promo">$729,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$634,882</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="695" data-closing="2026" onclick="openModal('ex-53')">
+      <div class="fp-image"><img src="images/exhale-1bed-1w-d.jpg" alt="Suite 1W+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1W+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">695 sq ft</span><span class="fp-price"><s>$834,000</s> <span class="fp-price-promo">$729,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$634,882</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1005" data-closing="2026" onclick="openModal('ex-54')">
+      <div class="fp-image"><img src="images/exhale-1bed-1a-d.jpg" alt="Suite 1A+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 1A+D &middot; 1 Bedroom + Den</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,005 sq ft</span><span class="fp-price"><s>$1,206,000</s> <span class="fp-price-promo">$1,055,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$918,068</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="655" data-closing="2026" onclick="openModal('ex-55')">
+      <div class="fp-image"><img src="images/exhale-2bed-2g.jpg" alt="Suite 2G Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2G &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">655 sq ft</span><span class="fp-price"><s>$786,000</s> <span class="fp-price-promo">$687,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$598,342</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="670" data-closing="2026" onclick="openModal('ex-56')">
+      <div class="fp-image"><img src="images/exhale-2bed-2z.jpg" alt="Suite 2Z Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2Z &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">670 sq ft</span><span class="fp-price"><s>$804,000</s> <span class="fp-price-promo">$703,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$612,045</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="690" data-closing="2026" onclick="openModal('ex-57')">
+      <div class="fp-image"><img src="images/exhale-2bed-2o.jpg" alt="Suite 2O Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2O &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">690 sq ft</span><span class="fp-price"><s>$828,000</s> <span class="fp-price-promo">$724,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$630,315</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="700" data-closing="2026" onclick="openModal('ex-58')">
+      <div class="fp-image"><img src="images/exhale-2bed-2k.jpg" alt="Suite 2K Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2K &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">700 sq ft</span><span class="fp-price"><s>$840,000</s> <span class="fp-price-promo">$735,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$639,450</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="705" data-closing="2026" onclick="openModal('ex-59')">
+      <div class="fp-image"><img src="images/exhale-2bed-2l.jpg" alt="Suite 2L Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2L &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">705 sq ft</span><span class="fp-price"><s>$846,000</s> <span class="fp-price-promo">$740,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$644,018</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="710" data-closing="2026" onclick="openModal('ex-60')">
+      <div class="fp-image"><img src="images/exhale-2bed-2c.jpg" alt="Suite 2C Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2C &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">710 sq ft</span><span class="fp-price"><s>$852,000</s> <span class="fp-price-promo">$745,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$648,585</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="710" data-closing="2026" onclick="openModal('ex-61')">
+      <div class="fp-image"><img src="images/exhale-2bed-2w.jpg" alt="Suite 2W Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2W &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">710 sq ft</span><span class="fp-price"><s>$852,000</s> <span class="fp-price-promo">$745,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$648,585</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="715" data-closing="2026" onclick="openModal('ex-62')">
+      <div class="fp-image"><img src="images/exhale-2bed-2d.jpg" alt="Suite 2D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2D &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">715 sq ft</span><span class="fp-price"><s>$858,000</s> <span class="fp-price-promo">$750,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$653,152</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="720" data-closing="2026" onclick="openModal('ex-63')">
+      <div class="fp-image"><img src="images/exhale-2bed-2q.jpg" alt="Suite 2Q Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2Q &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">720 sq ft</span><span class="fp-price"><s>$864,000</s> <span class="fp-price-promo">$756,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$657,720</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="720" data-closing="2026" onclick="openModal('ex-64')">
+      <div class="fp-image"><img src="images/exhale-2bed-2y.jpg" alt="Suite 2Y Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2Y &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">720 sq ft</span><span class="fp-price"><s>$864,000</s> <span class="fp-price-promo">$756,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$657,720</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="725" data-closing="2026" onclick="openModal('ex-65')">
+      <div class="fp-image"><img src="images/exhale-2bed-2m.jpg" alt="Suite 2M Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2M &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">725 sq ft</span><span class="fp-price"><s>$870,000</s> <span class="fp-price-promo">$761,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$662,288</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="730" data-closing="2026" onclick="openModal('ex-66')">
+      <div class="fp-image"><img src="images/exhale-2bed-2j.jpg" alt="Suite 2J Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2J &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">730 sq ft</span><span class="fp-price"><s>$876,000</s> <span class="fp-price-promo">$766,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$666,855</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="740" data-closing="2026" onclick="openModal('ex-67')">
+      <div class="fp-image"><img src="images/exhale-2bed-2f.jpg" alt="Suite 2F Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2F &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft</span><span class="fp-price"><s>$888,000</s> <span class="fp-price-promo">$777,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$675,990</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="740" data-closing="2026" onclick="openModal('ex-68')">
+      <div class="fp-image"><img src="images/exhale-2bed-2n.jpg" alt="Suite 2N Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2N &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft</span><span class="fp-price"><s>$888,000</s> <span class="fp-price-promo">$777,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$675,990</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="745" data-closing="2026" onclick="openModal('ex-69')">
+      <div class="fp-image"><img src="images/exhale-2bed-2b-d.jpg" alt="Suite 2B+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2B+D &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">745 sq ft</span><span class="fp-price"><s>$894,000</s> <span class="fp-price-promo">$782,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$680,558</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="750" data-closing="2026" onclick="openModal('ex-70')">
+      <div class="fp-image"><img src="images/exhale-2bed-2r.jpg" alt="Suite 2R Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2R &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">750 sq ft</span><span class="fp-price"><s>$900,000</s> <span class="fp-price-promo">$787,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$685,125</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="755" data-closing="2026" onclick="openModal('ex-71')">
+      <div class="fp-image"><img src="images/exhale-2bed-2h.jpg" alt="Suite 2H Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2H &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">755 sq ft</span><span class="fp-price"><s>$906,000</s> <span class="fp-price-promo">$792,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$689,692</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="760" data-closing="2026" onclick="openModal('ex-72')">
+      <div class="fp-image"><img src="images/exhale-2bed-2p.jpg" alt="Suite 2P Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2P &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft</span><span class="fp-price"><s>$912,000</s> <span class="fp-price-promo">$798,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$694,260</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="765" data-closing="2026" onclick="openModal('ex-73')">
+      <div class="fp-image"><img src="images/exhale-2bed-2x.jpg" alt="Suite 2X Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2X &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">765 sq ft</span><span class="fp-price"><s>$918,000</s> <span class="fp-price-promo">$803,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$698,828</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="780" data-closing="2026" onclick="openModal('ex-74')">
+      <div class="fp-image"><img src="images/exhale-2bed-2s-d.jpg" alt="Suite 2S+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2S+D &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">780 sq ft</span><span class="fp-price"><s>$936,000</s> <span class="fp-price-promo">$819,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$712,530</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="795" data-closing="2026" onclick="openModal('ex-75')">
+      <div class="fp-image"><img src="images/exhale-2bed-2a.jpg" alt="Suite 2A Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2A &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">795 sq ft</span><span class="fp-price"><s>$954,000</s> <span class="fp-price-promo">$834,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$726,232</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="800" data-closing="2026" onclick="openModal('ex-76')">
+      <div class="fp-image"><img src="images/exhale-2bed-2e.jpg" alt="Suite 2E Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2E &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">800 sq ft</span><span class="fp-price"><s>$960,000</s> <span class="fp-price-promo">$840,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$730,800</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="820" data-closing="2026" onclick="openModal('ex-77')">
+      <div class="fp-image"><img src="images/exhale-2bed-2c-d.jpg" alt="Suite 2C+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2C+D &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">820 sq ft</span><span class="fp-price"><s>$984,000</s> <span class="fp-price-promo">$861,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$749,070</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="840" data-closing="2026" onclick="openModal('ex-78')">
+      <div class="fp-image"><img src="images/exhale-2bed-2a-d.jpg" alt="Suite 2A+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2A+D &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">840 sq ft</span><span class="fp-price"><s>$1,008,000</s> <span class="fp-price-promo">$882,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$767,340</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="880" data-closing="2026" onclick="openModal('ex-79')">
+      <div class="fp-image"><img src="images/exhale-2bed-2b.jpg" alt="Suite 2B Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2B &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">880 sq ft</span><span class="fp-price"><s>$1,056,000</s> <span class="fp-price-promo">$924,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$803,880</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="910" data-closing="2026" onclick="openModal('ex-80')">
+      <div class="fp-image"><img src="images/exhale-2bed-2d-d.jpg" alt="Suite 2D+D Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2D+D &middot; 2 Bedroom + Den</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">910 sq ft</span><span class="fp-price"><s>$1,092,000</s> <span class="fp-price-promo">$955,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$831,285</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1102" data-closing="2026" onclick="openModal('ex-81')">
+      <div class="fp-image"><img src="images/exhale-2bed-2u.jpg" alt="Suite 2U Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 2U &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,102 sq ft</span><span class="fp-price"><s>$1,322,400</s> <span class="fp-price-promo">$1,157,100</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,006,677</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="870" data-closing="2026" onclick="openModal('ex-82')">
+      <div class="fp-image"><img src="images/exhale-3bed-3b.jpg" alt="Suite 3B Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 3B &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">870 sq ft</span><span class="fp-price"><s>$1,044,000</s> <span class="fp-price-promo">$913,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$794,745</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="925" data-closing="2026" onclick="openModal('ex-83')">
+      <div class="fp-image"><img src="images/exhale-3bed-3c.jpg" alt="Suite 3C Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 3C &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">925 sq ft</span><span class="fp-price"><s>$1,110,000</s> <span class="fp-price-promo">$971,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$844,988</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="985" data-closing="2026" onclick="openModal('ex-84')">
+      <div class="fp-image"><img src="images/exhale-3bed-3a.jpg" alt="Suite 3A Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite 3A &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">985 sq ft</span><span class="fp-price"><s>$1,182,000</s> <span class="fp-price-promo">$1,034,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$899,798</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1245" data-closing="2026" onclick="openModal('ex-85')">
+      <div class="fp-image"><img src="images/exhale-ph-valencia.jpg" alt="Suite The Valencia Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite The Valencia &middot; Penthouse · 2 Bed + Den</div>
+        <div class="fp-type">Penthouse · 2 Bed + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,245 sq ft</span><span class="fp-price"><s>$1,680,750</s> <span class="fp-price-promo">$1,369,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,191,465</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1250" data-closing="2026" onclick="openModal('ex-86')">
+      <div class="fp-image"><img src="images/exhale-ph-essex.jpg" alt="Suite The Essex Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite The Essex &middot; Penthouse · 2 Bed + Den</div>
+        <div class="fp-type">Penthouse · 2 Bed + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,250 sq ft</span><span class="fp-price"><s>$1,687,500</s> <span class="fp-price-promo">$1,375,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,196,250</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1355" data-closing="2026" onclick="openModal('ex-87')">
+      <div class="fp-image"><img src="images/exhale-ph-indigo.jpg" alt="Suite The Indigo Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite The Indigo &middot; Penthouse · 2 Bed + Den</div>
+        <div class="fp-type">Penthouse · 2 Bed + Den</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,355 sq ft</span><span class="fp-price"><s>$1,829,250</s> <span class="fp-price-promo">$1,490,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,296,735</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1515" data-closing="2026" onclick="openModal('ex-88')">
+      <div class="fp-image"><img src="images/exhale-ph-aveline.jpg" alt="Suite The Aveline Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite The Aveline &middot; Penthouse · 2 Bed</div>
+        <div class="fp-type">Penthouse · 2 Bed</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,515 sq ft</span><span class="fp-price"><s>$2,045,250</s> <span class="fp-price-promo">$1,666,500</span></span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="945" data-closing="2026" onclick="openModal('ex-89')">
+      <div class="fp-image"><img src="images/exhale-townhouse-4.jpg" alt="Suite Townhome 4 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 4 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">945 sq ft</span><span class="fp-price"><s>$945,000</s> <span class="fp-price-promo">$708,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$616,612</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1005" data-closing="2026" onclick="openModal('ex-90')">
+      <div class="fp-image"><img src="images/exhale-townhouse-3.jpg" alt="Suite Townhome 3 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 3 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,005 sq ft</span><span class="fp-price"><s>$1,005,000</s> <span class="fp-price-promo">$753,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$655,762</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1018" data-closing="2026" onclick="openModal('ex-91')">
+      <div class="fp-image"><img src="images/exhale-townhouse-2.jpg" alt="Suite Townhome 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 2 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,018 sq ft</span><span class="fp-price"><s>$1,018,000</s> <span class="fp-price-promo">$763,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$664,245</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1020" data-closing="2026" onclick="openModal('ex-92')">
+      <div class="fp-image"><img src="images/exhale-townhouse-8.jpg" alt="Suite Townhome 8 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 8 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,020 sq ft</span><span class="fp-price"><s>$1,020,000</s> <span class="fp-price-promo">$765,000</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$665,550</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1055" data-closing="2026" onclick="openModal('ex-93')">
+      <div class="fp-image"><img src="images/exhale-townhouse-10.jpg" alt="Suite Townhome 10 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 10 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,055 sq ft</span><span class="fp-price"><s>$1,055,000</s> <span class="fp-price-promo">$791,250</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$688,388</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1065" data-closing="2026" onclick="openModal('ex-94')">
+      <div class="fp-image"><img src="images/exhale-townhouse-11.jpg" alt="Suite Townhome 11 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 11 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,065 sq ft</span><span class="fp-price"><s>$1,065,000</s> <span class="fp-price-promo">$798,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$694,912</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1265" data-closing="2026" onclick="openModal('ex-95')">
+      <div class="fp-image"><img src="images/exhale-townhouse-1.jpg" alt="Suite Townhome 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 1 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,265 sq ft</span><span class="fp-price"><s>$1,265,000</s> <span class="fp-price-promo">$948,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$825,412</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1310" data-closing="2026" onclick="openModal('ex-96')">
+      <div class="fp-image"><img src="images/exhale-townhouse-9.jpg" alt="Suite Townhome 9 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 9 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,310 sq ft</span><span class="fp-price"><s>$1,310,000</s> <span class="fp-price-promo">$982,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$854,775</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1430" data-closing="2026" onclick="openModal('ex-97')">
+      <div class="fp-image"><img src="images/exhale-townhouse-6.jpg" alt="Suite Townhome 6 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 6 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,430 sq ft</span><span class="fp-price"><s>$1,430,000</s> <span class="fp-price-promo">$1,072,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$933,075</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1485" data-closing="2026" onclick="openModal('ex-98')">
+      <div class="fp-image"><img src="images/exhale-townhouse-5.jpg" alt="Suite Townhome 5 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 5 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,485 sq ft</span><span class="fp-price"><s>$1,485,000</s> <span class="fp-price-promo">$1,113,750</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$968,962</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1710" data-closing="2026" onclick="openModal('ex-99')">
+      <div class="fp-image"><img src="images/exhale-townhouse-7.jpg" alt="Suite Townhome 7 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 7 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,710 sq ft</span><span class="fp-price"><s>$1,710,000</s> <span class="fp-price-promo">$1,282,500</span></span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,115,775</span>
+        </div>
+        <a href="../buildings/exhale.html" class="fp-view-building" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Interested in Dixie &amp; Lakeshore?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20Exhale%20Residences." class="btn-gold-outline">Book a Showing</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Developer</span><span class="detail-val" id="m-developer"></span></div>
+        <div class="detail-row"><span class="detail-label">Address</span><span class="detail-val" id="m-address"></span></div>
+        <div class="detail-row"><span class="detail-label">Occupancy</span><span class="detail-val" id="m-closing"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div id="m-building-link"></div>
+          <div class="modal-cta-text">Questions about this floor plan? We can walk you through the layout, views, and availability.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20book%20a%20showing%20at%20Exhale%20Residences." class="btn-full-outline">Book a Showing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var plans = {
+    'ex-1': { building: 'Exhale Residences', suite: 'Suite BA', type: 'Bachelor', size: '390 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$409,500', start: '$468,000', rebate: '$356,265', offers: false, img: 'images/exhale-bachelor-ba5.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-2': { building: 'Exhale Residences', suite: 'Suite BA2', type: 'Bachelor', size: '395 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$414,750', start: '$474,000', rebate: '$360,832', offers: false, img: 'images/exhale-bachelor-ba2.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-3': { building: 'Exhale Residences', suite: 'Suite BB', type: 'Bachelor', size: '400 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$420,000', start: '$480,000', rebate: '$365,400', offers: false, img: 'images/exhale-bachelor-ba3.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-4': { building: 'Exhale Residences', suite: 'Suite BB2', type: 'Bachelor', size: '410 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$430,500', start: '$492,000', rebate: '$374,535', offers: false, img: 'images/exhale-bachelor-ba6.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-5': { building: 'Exhale Residences', suite: 'Suite BC', type: 'Bachelor', size: '475 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$498,750', start: '$570,000', rebate: '$433,912', offers: false, img: 'images/exhale-bachelor-jr1.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-6': { building: 'Exhale Residences', suite: 'Suite 1A', type: '1 Bedroom', size: '450 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$472,500', start: '$540,000', rebate: '$411,075', offers: false, img: 'images/exhale-1bed-1a.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-7': { building: 'Exhale Residences', suite: 'Suite 1D', type: '1 Bedroom', size: '450 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$472,500', start: '$540,000', rebate: '$411,075', offers: false, img: 'images/exhale-1bed-1d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-8': { building: 'Exhale Residences', suite: 'Suite 1C', type: '1 Bedroom', size: '485 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$509,250', start: '$582,000', rebate: '$443,048', offers: false, img: 'images/exhale-1bed-1c.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-9': { building: 'Exhale Residences', suite: 'Suite 1E', type: '1 Bedroom', size: '485 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$509,250', start: '$582,000', rebate: '$443,048', offers: false, img: 'images/exhale-1bed-1e.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-10': { building: 'Exhale Residences', suite: 'Suite 1U', type: '1 Bedroom', size: '500 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$525,000', start: '$600,000', rebate: '$456,750', offers: false, img: 'images/exhale-1bed-1u.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-11': { building: 'Exhale Residences', suite: 'Suite 1M', type: '1 Bedroom', size: '520 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$546,000', start: '$624,000', rebate: '$475,020', offers: false, img: 'images/exhale-1bed-1m.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-12': { building: 'Exhale Residences', suite: 'Suite 1N', type: '1 Bedroom', size: '525 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$551,250', start: '$630,000', rebate: '$479,588', offers: false, img: 'images/exhale-1bed-1n.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-13': { building: 'Exhale Residences', suite: 'Suite 1F & 1BB', type: '1 Bedroom', size: '525 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$551,250', start: '$630,000', rebate: '$479,588', offers: false, img: 'images/exhale-1bed-1f-and-1-bb.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-14': { building: 'Exhale Residences', suite: 'Suite 1B', type: '1 Bedroom', size: '530 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$556,500', start: '$636,000', rebate: '$484,155', offers: false, img: 'images/exhale-1bed-1b.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-15': { building: 'Exhale Residences', suite: 'Suite 1V', type: '1 Bedroom', size: '530 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$556,500', start: '$636,000', rebate: '$484,155', offers: false, img: 'images/exhale-1bed-1v.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-16': { building: 'Exhale Residences', suite: 'Suite 1T', type: '1 Bedroom', size: '535 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$561,750', start: '$642,000', rebate: '$488,722', offers: false, img: 'images/exhale-1bed-1t.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-17': { building: 'Exhale Residences', suite: 'Suite 1C+D', type: '1 Bedroom + Den', size: '535 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$561,750', start: '$642,000', rebate: '$488,722', offers: false, img: 'images/exhale-1bed-1c-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-18': { building: 'Exhale Residences', suite: 'Suite 1Y', type: '1 Bedroom', size: '540 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$567,000', start: '$648,000', rebate: '$493,290', offers: false, img: 'images/exhale-1bed-1y.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-19': { building: 'Exhale Residences', suite: 'Suite 1R', type: '1 Bedroom', size: '545 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$572,250', start: '$654,000', rebate: '$497,858', offers: false, img: 'images/exhale-1bed-1r.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-20': { building: 'Exhale Residences', suite: 'Suite 1K', type: '1 Bedroom', size: '550 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$577,500', start: '$660,000', rebate: '$502,425', offers: false, img: 'images/exhale-1bed-1k.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-21': { building: 'Exhale Residences', suite: 'Suite 1L', type: '1 Bedroom', size: '550 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$577,500', start: '$660,000', rebate: '$502,425', offers: false, img: 'images/exhale-1bed-1l.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-22': { building: 'Exhale Residences', suite: 'Suite 1O+D', type: '1 Bedroom + Den', size: '550 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$577,500', start: '$660,000', rebate: '$502,425', offers: false, img: 'images/exhale-1bed-1o-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-23': { building: 'Exhale Residences', suite: 'Suite 1AA', type: '1 Bedroom', size: '555 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$582,750', start: '$666,000', rebate: '$506,992', offers: false, img: 'images/exhale-1bed-1aa.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-24': { building: 'Exhale Residences', suite: 'Suite 1G', type: '1 Bedroom', size: '560 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$588,000', start: '$672,000', rebate: '$511,560', offers: false, img: 'images/exhale-1bed-1g.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-25': { building: 'Exhale Residences', suite: 'Suite 1S', type: '1 Bedroom', size: '560 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$588,000', start: '$672,000', rebate: '$511,560', offers: false, img: 'images/exhale-1bed-1s.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-26': { building: 'Exhale Residences', suite: 'Suite 1D+D', type: '1 Bedroom + Den', size: '580 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$609,000', start: '$696,000', rebate: '$529,830', offers: false, img: 'images/exhale-1bed-1d-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-27': { building: 'Exhale Residences', suite: 'Suite 1P', type: '1 Bedroom', size: '580 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$609,000', start: '$696,000', rebate: '$529,830', offers: false, img: 'images/exhale-1bed-1p.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-28': { building: 'Exhale Residences', suite: 'Suite 1Z', type: '1 Bedroom', size: '585 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$614,250', start: '$702,000', rebate: '$534,398', offers: false, img: 'images/exhale-1bed-1z.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-29': { building: 'Exhale Residences', suite: 'Suite 1K+D', type: '1 Bedroom + Den', size: '590 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$619,500', start: '$708,000', rebate: '$538,965', offers: false, img: 'images/exhale-1bed-1k-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-30': { building: 'Exhale Residences', suite: 'Suite 1AA+D', type: '1 Bedroom + Den', size: '595 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$624,750', start: '$714,000', rebate: '$543,532', offers: false, img: 'images/exhale-1bed-1aa-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-31': { building: 'Exhale Residences', suite: 'Suite 1S+D', type: '1 Bedroom + Den', size: '595 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$624,750', start: '$714,000', rebate: '$543,532', offers: false, img: 'images/exhale-1bed-1s-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-32': { building: 'Exhale Residences', suite: 'Suite 1T+D', type: '1 Bedroom + Den', size: '595 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$624,750', start: '$714,000', rebate: '$543,532', offers: false, img: 'images/exhale-1bed-1t-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-33': { building: 'Exhale Residences', suite: 'Suite 1BB+D', type: '1 Bedroom + Den', size: '600 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$630,000', start: '$720,000', rebate: '$548,100', offers: false, img: 'images/exhale-1bed-1bb-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-34': { building: 'Exhale Residences', suite: 'Suite 1L+D', type: '1 Bedroom + Den', size: '600 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$630,000', start: '$720,000', rebate: '$548,100', offers: false, img: 'images/exhale-1bed-1l-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-35': { building: 'Exhale Residences', suite: 'Suite 1HA+D', type: '1 Bedroom + Den', size: '601 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$631,050', start: '$721,200', rebate: '$549,014', offers: false, img: 'images/exhale-1bed-1ha-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-36': { building: 'Exhale Residences', suite: 'Suite 1JA+D', type: '1 Bedroom + Den', size: '601 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$631,050', start: '$721,200', rebate: '$549,014', offers: false, img: 'images/exhale-1bed-1ja-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-37': { building: 'Exhale Residences', suite: 'Suite 1CC+D', type: '1 Bedroom + Den', size: '610 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$640,500', start: '$732,000', rebate: '$557,235', offers: false, img: 'images/exhale-1bed-1cc-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-38': { building: 'Exhale Residences', suite: 'Suite 1E+D', type: '1 Bedroom + Den', size: '610 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$640,500', start: '$732,000', rebate: '$557,235', offers: false, img: 'images/exhale-1bed-1e-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-39': { building: 'Exhale Residences', suite: 'Suite 1F+D', type: '1 Bedroom + Den', size: '615 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$645,750', start: '$738,000', rebate: '$561,802', offers: false, img: 'images/exhale-1bed-1f-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-40': { building: 'Exhale Residences', suite: 'Suite 1Y+D', type: '1 Bedroom + Den', size: '625 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$656,250', start: '$750,000', rebate: '$570,938', offers: false, img: 'images/exhale-1bed-1y-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-41': { building: 'Exhale Residences', suite: 'Suite 1I', type: '1 Bedroom', size: '630 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$661,500', start: '$756,000', rebate: '$575,505', offers: false, img: 'images/exhale-1bed-1i.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-42': { building: 'Exhale Residences', suite: 'Suite 1X+D', type: '1 Bedroom + Den', size: '630 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$661,500', start: '$756,000', rebate: '$575,505', offers: false, img: 'images/exhale-1bed-1x-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-43': { building: 'Exhale Residences', suite: 'Suite 1R+D', type: '1 Bedroom + Den', size: '635 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$666,750', start: '$762,000', rebate: '$580,072', offers: false, img: 'images/exhale-1bed-1r-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-44': { building: 'Exhale Residences', suite: 'Suite 1Q+D', type: '1 Bedroom + Den', size: '640 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$672,000', start: '$768,000', rebate: '$584,640', offers: false, img: 'images/exhale-1bed-1q-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-45': { building: 'Exhale Residences', suite: 'Suite 1H+D', type: '1 Bedroom + Den', size: '645 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$677,250', start: '$774,000', rebate: '$589,208', offers: false, img: 'images/exhale-1bed-1h-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-46': { building: 'Exhale Residences', suite: 'Suite 1V+D', type: '1 Bedroom + Den', size: '651 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$683,550', start: '$781,200', rebate: '$594,688', offers: false, img: 'images/exhale-1bed-1v-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-47': { building: 'Exhale Residences', suite: 'Suite 1J+D', type: '1 Bedroom + Den', size: '655 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$687,750', start: '$786,000', rebate: '$598,342', offers: false, img: 'images/exhale-1bed-1j-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-48': { building: 'Exhale Residences', suite: 'Suite 1U+D', type: '1 Bedroom + Den', size: '655 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$687,750', start: '$786,000', rebate: '$598,342', offers: false, img: 'images/exhale-1bed-1u-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-49': { building: 'Exhale Residences', suite: 'Suite 1P+D', type: '1 Bedroom + Den', size: '670 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$703,500', start: '$804,000', rebate: '$612,045', offers: false, img: 'images/exhale-1bed-1p-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-50': { building: 'Exhale Residences', suite: 'Suite 1G+D', type: '1 Bedroom + Den', size: '675 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$708,750', start: '$810,000', rebate: '$616,612', offers: false, img: 'images/exhale-1bed-1g-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-51': { building: 'Exhale Residences', suite: 'Suite 1M+D', type: '1 Bedroom + Den', size: '675 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$708,750', start: '$810,000', rebate: '$616,612', offers: false, img: 'images/exhale-1bed-1m-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-52': { building: 'Exhale Residences', suite: 'Suite 1B+D', type: '1 Bedroom + Den', size: '695 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$729,750', start: '$834,000', rebate: '$634,882', offers: false, img: 'images/exhale-1bed-1b-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-53': { building: 'Exhale Residences', suite: 'Suite 1W+D', type: '1 Bedroom + Den', size: '695 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$729,750', start: '$834,000', rebate: '$634,882', offers: false, img: 'images/exhale-1bed-1w-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-54': { building: 'Exhale Residences', suite: 'Suite 1A+D', type: '1 Bedroom + Den', size: '1,005 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,055,250', start: '$1,206,000', rebate: '$918,068', offers: false, img: 'images/exhale-1bed-1a-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-55': { building: 'Exhale Residences', suite: 'Suite 2G', type: '2 Bedroom', size: '655 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$687,750', start: '$786,000', rebate: '$598,342', offers: false, img: 'images/exhale-2bed-2g.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-56': { building: 'Exhale Residences', suite: 'Suite 2Z', type: '2 Bedroom', size: '670 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$703,500', start: '$804,000', rebate: '$612,045', offers: false, img: 'images/exhale-2bed-2z.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-57': { building: 'Exhale Residences', suite: 'Suite 2O', type: '2 Bedroom', size: '690 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$724,500', start: '$828,000', rebate: '$630,315', offers: false, img: 'images/exhale-2bed-2o.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-58': { building: 'Exhale Residences', suite: 'Suite 2K', type: '2 Bedroom', size: '700 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$735,000', start: '$840,000', rebate: '$639,450', offers: false, img: 'images/exhale-2bed-2k.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-59': { building: 'Exhale Residences', suite: 'Suite 2L', type: '2 Bedroom', size: '705 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$740,250', start: '$846,000', rebate: '$644,018', offers: false, img: 'images/exhale-2bed-2l.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-60': { building: 'Exhale Residences', suite: 'Suite 2C', type: '2 Bedroom', size: '710 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$745,500', start: '$852,000', rebate: '$648,585', offers: false, img: 'images/exhale-2bed-2c.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-61': { building: 'Exhale Residences', suite: 'Suite 2W', type: '2 Bedroom', size: '710 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$745,500', start: '$852,000', rebate: '$648,585', offers: false, img: 'images/exhale-2bed-2w.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-62': { building: 'Exhale Residences', suite: 'Suite 2D', type: '2 Bedroom', size: '715 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$750,750', start: '$858,000', rebate: '$653,152', offers: false, img: 'images/exhale-2bed-2d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-63': { building: 'Exhale Residences', suite: 'Suite 2Q', type: '2 Bedroom', size: '720 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$756,000', start: '$864,000', rebate: '$657,720', offers: false, img: 'images/exhale-2bed-2q.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-64': { building: 'Exhale Residences', suite: 'Suite 2Y', type: '2 Bedroom', size: '720 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$756,000', start: '$864,000', rebate: '$657,720', offers: false, img: 'images/exhale-2bed-2y.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-65': { building: 'Exhale Residences', suite: 'Suite 2M', type: '2 Bedroom', size: '725 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$761,250', start: '$870,000', rebate: '$662,288', offers: false, img: 'images/exhale-2bed-2m.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-66': { building: 'Exhale Residences', suite: 'Suite 2J', type: '2 Bedroom', size: '730 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$766,500', start: '$876,000', rebate: '$666,855', offers: false, img: 'images/exhale-2bed-2j.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-67': { building: 'Exhale Residences', suite: 'Suite 2F', type: '2 Bedroom', size: '740 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$777,000', start: '$888,000', rebate: '$675,990', offers: false, img: 'images/exhale-2bed-2f.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-68': { building: 'Exhale Residences', suite: 'Suite 2N', type: '2 Bedroom', size: '740 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$777,000', start: '$888,000', rebate: '$675,990', offers: false, img: 'images/exhale-2bed-2n.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-69': { building: 'Exhale Residences', suite: 'Suite 2B+D', type: '2 Bedroom + Den', size: '745 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$782,250', start: '$894,000', rebate: '$680,558', offers: false, img: 'images/exhale-2bed-2b-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-70': { building: 'Exhale Residences', suite: 'Suite 2R', type: '2 Bedroom', size: '750 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$787,500', start: '$900,000', rebate: '$685,125', offers: false, img: 'images/exhale-2bed-2r.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-71': { building: 'Exhale Residences', suite: 'Suite 2H', type: '2 Bedroom', size: '755 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$792,750', start: '$906,000', rebate: '$689,692', offers: false, img: 'images/exhale-2bed-2h.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-72': { building: 'Exhale Residences', suite: 'Suite 2P', type: '2 Bedroom', size: '760 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$798,000', start: '$912,000', rebate: '$694,260', offers: false, img: 'images/exhale-2bed-2p.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-73': { building: 'Exhale Residences', suite: 'Suite 2X', type: '2 Bedroom', size: '765 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$803,250', start: '$918,000', rebate: '$698,828', offers: false, img: 'images/exhale-2bed-2x.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-74': { building: 'Exhale Residences', suite: 'Suite 2S+D', type: '2 Bedroom + Den', size: '780 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$819,000', start: '$936,000', rebate: '$712,530', offers: false, img: 'images/exhale-2bed-2s-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-75': { building: 'Exhale Residences', suite: 'Suite 2A', type: '2 Bedroom', size: '795 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$834,750', start: '$954,000', rebate: '$726,232', offers: false, img: 'images/exhale-2bed-2a.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-76': { building: 'Exhale Residences', suite: 'Suite 2E', type: '2 Bedroom', size: '800 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$840,000', start: '$960,000', rebate: '$730,800', offers: false, img: 'images/exhale-2bed-2e.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-77': { building: 'Exhale Residences', suite: 'Suite 2C+D', type: '2 Bedroom + Den', size: '820 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$861,000', start: '$984,000', rebate: '$749,070', offers: false, img: 'images/exhale-2bed-2c-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-78': { building: 'Exhale Residences', suite: 'Suite 2A+D', type: '2 Bedroom + Den', size: '840 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$882,000', start: '$1,008,000', rebate: '$767,340', offers: false, img: 'images/exhale-2bed-2a-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-79': { building: 'Exhale Residences', suite: 'Suite 2B', type: '2 Bedroom', size: '880 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$924,000', start: '$1,056,000', rebate: '$803,880', offers: false, img: 'images/exhale-2bed-2b.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-80': { building: 'Exhale Residences', suite: 'Suite 2D+D', type: '2 Bedroom + Den', size: '910 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$955,500', start: '$1,092,000', rebate: '$831,285', offers: false, img: 'images/exhale-2bed-2d-d.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-81': { building: 'Exhale Residences', suite: 'Suite 2U', type: '2 Bedroom', size: '1,102 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,157,100', start: '$1,322,400', rebate: '$1,006,677', offers: false, img: 'images/exhale-2bed-2u.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-82': { building: 'Exhale Residences', suite: 'Suite 3B', type: '3 Bedroom', size: '870 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$913,500', start: '$1,044,000', rebate: '$794,745', offers: false, img: 'images/exhale-3bed-3b.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-83': { building: 'Exhale Residences', suite: 'Suite 3C', type: '3 Bedroom', size: '925 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$971,250', start: '$1,110,000', rebate: '$844,988', offers: false, img: 'images/exhale-3bed-3c.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-84': { building: 'Exhale Residences', suite: 'Suite 3A', type: '3 Bedroom', size: '985 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,034,250', start: '$1,182,000', rebate: '$899,798', offers: false, img: 'images/exhale-3bed-3a.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-85': { building: 'Exhale Residences', suite: 'Suite The Valencia', type: 'Penthouse · 2 Bed + Den', size: '1,245 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,369,500', start: '$1,680,750', rebate: '$1,191,465', offers: false, img: 'images/exhale-ph-valencia.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-86': { building: 'Exhale Residences', suite: 'Suite The Essex', type: 'Penthouse · 2 Bed + Den', size: '1,250 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,375,000', start: '$1,687,500', rebate: '$1,196,250', offers: false, img: 'images/exhale-ph-essex.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-87': { building: 'Exhale Residences', suite: 'Suite The Indigo', type: 'Penthouse · 2 Bed + Den', size: '1,355 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,490,500', start: '$1,829,250', rebate: '$1,296,735', offers: false, img: 'images/exhale-ph-indigo.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-88': { building: 'Exhale Residences', suite: 'Suite The Aveline', type: 'Penthouse · 2 Bed', size: '1,515 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,666,500', start: '$2,045,250', rebate: '$1,449,855', offers: true, img: 'images/exhale-ph-aveline.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-89': { building: 'Exhale Residences', suite: 'Suite Townhome 4', type: 'Townhome', size: '945 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$708,750', start: '$945,000', rebate: '$616,612', offers: false, img: 'images/exhale-townhouse-4.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-90': { building: 'Exhale Residences', suite: 'Suite Townhome 3', type: 'Townhome', size: '1,005 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$753,750', start: '$1,005,000', rebate: '$655,762', offers: false, img: 'images/exhale-townhouse-3.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-91': { building: 'Exhale Residences', suite: 'Suite Townhome 2', type: 'Townhome', size: '1,018 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$763,500', start: '$1,018,000', rebate: '$664,245', offers: false, img: 'images/exhale-townhouse-2.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-92': { building: 'Exhale Residences', suite: 'Suite Townhome 8', type: 'Townhome', size: '1,020 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$765,000', start: '$1,020,000', rebate: '$665,550', offers: false, img: 'images/exhale-townhouse-8.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-93': { building: 'Exhale Residences', suite: 'Suite Townhome 10', type: 'Townhome', size: '1,055 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$791,250', start: '$1,055,000', rebate: '$688,388', offers: false, img: 'images/exhale-townhouse-10.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-94': { building: 'Exhale Residences', suite: 'Suite Townhome 11', type: 'Townhome', size: '1,065 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$798,750', start: '$1,065,000', rebate: '$694,912', offers: false, img: 'images/exhale-townhouse-11.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-95': { building: 'Exhale Residences', suite: 'Suite Townhome 1', type: 'Townhome', size: '1,265 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$948,750', start: '$1,265,000', rebate: '$825,412', offers: false, img: 'images/exhale-townhouse-1.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-96': { building: 'Exhale Residences', suite: 'Suite Townhome 9', type: 'Townhome', size: '1,310 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$982,500', start: '$1,310,000', rebate: '$854,775', offers: false, img: 'images/exhale-townhouse-9.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-97': { building: 'Exhale Residences', suite: 'Suite Townhome 6', type: 'Townhome', size: '1,430 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,072,500', start: '$1,430,000', rebate: '$933,075', offers: false, img: 'images/exhale-townhouse-6.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-98': { building: 'Exhale Residences', suite: 'Suite Townhome 5', type: 'Townhome', size: '1,485 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,113,750', start: '$1,485,000', rebate: '$968,962', offers: false, img: 'images/exhale-townhouse-5.jpg', buildingLink: '../buildings/exhale.html' },
+    'ex-99': { building: 'Exhale Residences', suite: 'Suite Townhome 7', type: 'Townhome', size: '1,710 sq ft', developer: 'Brixen Developments', address: '1381 Lakeshore Rd E, Mississauga', closing: '2026', price: '$1,282,500', start: '$1,710,000', rebate: '$1,115,775', offers: false, img: 'images/exhale-townhouse-7.jpg', buildingLink: '../buildings/exhale.html' }
+  };
+
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    document.getElementById('modal-eyebrow').textContent = 'Dixie & Lakeshore \u00b7 ' + p.building;
+    document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-building').textContent = p.building;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-developer').textContent = p.developer;
+    document.getElementById('m-address').textContent = p.address;
+    document.getElementById('m-closing').textContent = p.closing;
+    var priceHtml = '<s>' + p.start + '</s> <span class="promo">' + p.price + '</span>';
+    if (p.offers) {
+      priceHtml += '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
+    } else {
+      priceHtml += '<span style="display:block;font-size:0.72rem;color:var(--gold);font-weight:400;margin-top:3px;"><span style="color:var(--text-muted);font-weight:300;">HST Rebate </span>' + p.rebate + '</span>';
+    }
+    document.getElementById('m-price').innerHTML = priceHtml;
+    var linkEl = document.getElementById('m-building-link');
+    if (p.buildingLink) {
+      linkEl.innerHTML = '<a href="' + p.buildingLink + '" style="display:block;text-align:center;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--text);color:var(--white);padding:0.85rem;border-radius:2px;text-decoration:none;margin-bottom:1rem;">View Building Page \u2192</a>';
+    } else { linkEl.innerHTML = ''; }
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+  var activeClosing = 'all';
+  var activeSqft = 'all';
+
+  function applyFilters() {
+    document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+      var sqft = parseInt(card.dataset.sqft);
+      var closing = card.dataset.closing;
+      var showClosing = activeClosing === 'all' || closing === activeClosing;
+      var showSqft = true;
+      if (activeSqft === '0-600') showSqft = sqft < 600;
+      else if (activeSqft === '600-800') showSqft = sqft >= 600 && sqft < 800;
+      else if (activeSqft === '800-1000') showSqft = sqft >= 800 && sqft < 1000;
+      else if (activeSqft === '1000-9999') showSqft = sqft >= 1000;
+      card.style.display = (showClosing && showSqft) ? '' : 'none';
+    });
+  }
+
+  document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeClosing = btn.dataset.closingFilter;
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeSqft = btn.dataset.filter;
+      applyFilters();
+    });
+  });
+</script>
+</body>
+</html>
