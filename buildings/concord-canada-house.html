@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concord Canada House &mdash; Floor Plans &amp; Suites | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero { position: relative; height: 70vh; min-height: 500px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.6) 100%); }
+    .hero-content { position: absolute; bottom: 3rem; left: 3rem; right: 3rem; color: var(--white); }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.75rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .hero-meta-item { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+    .hero-meta-item strong { color: var(--white); font-weight: 400; }
+
+    /* BUILDING INFO */
+    .building-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; }
+    .building-desc { padding: 4rem 3rem; border-right: 1px solid var(--border); }
+    .building-desc h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1.25rem; }
+    .building-desc h2 em { font-style: italic; color: var(--gold); }
+    .building-desc p { font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
+    .building-stats { padding: 4rem 3rem; background: var(--cream); }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); }
+    .stat-item .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .gallery-item { aspect-ratio: 1/1; overflow: hidden; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+
+    /* FLOOR PLAN SECTIONS */
+    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .sqft-section:last-of-type { border-bottom: none; }
+    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .sqft-title em { font-style: italic; color: var(--gold); }
+    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* TOWER DIVIDERS */
+    .tower-divider { display: flex; align-items: center; gap: 1.5rem; margin: 2rem 0 1.5rem; }
+    .tower-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .tower-divider-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; white-space: nowrap; }
+
+    /* FP GRID */
+    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+    .fp-meta { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-meta-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-contact { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; text-align: right; max-width: 60%; }
+    .detail-val .promo { color: var(--gold); }
+    .detail-val .hst-rebate { display: block; font-size: 0.72rem; color: var(--gold); font-weight: 400; margin-top: 3px; }
+    .detail-val .hst-rebate-label { color: var(--text-muted); font-weight: 300; }
+    .detail-val .parking-note { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hst-disclaimer { font-size: 0.68rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; font-style: italic; }
+
+    /* CTA */
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 2rem; }
+      .building-info { grid-template-columns: 1fr; }
+      .building-desc { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
+      .building-stats { padding: 3rem 1.5rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.wide { grid-column: span 2; }
+      .sqft-section { padding: 3rem 1.5rem; }
+      .fp-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .fp-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-item.wide { grid-column: span 1; aspect-ratio: 1/1; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--gold)">.</span>com</a>
+  <a href="../neighbourhoods/cn-tower.html" class="nav-back">&larr; Condos Around CN Tower</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="images/concord-canada-house/CN_Tower_night.jpg" alt="Concord Canada House with CN Tower at night" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Toronto &middot; CityPlace &middot; Concord Adex</div>
+    <h1 class="hero-title">Concord <em>Canada House</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>1 &amp; 3 Concord CityPlace Way</strong></div>
+      <div class="hero-meta-item"><strong>East Tower:</strong> 68 Storeys</div>
+      <div class="hero-meta-item"><strong>West Tower:</strong> 79 Storeys</div>
+      <div class="hero-meta-item"><strong>From</strong> $467,000</div>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDING INFO -->
+<div class="building-info">
+  <div class="building-desc">
+    <h2>Where the CN Tower <em>is your neighbour</em></h2>
+    <p>Concord Canada House is the crown jewel of Concord CityPlace &mdash; Toronto&rsquo;s most ambitious master-planned waterfront community. Two towers rising 68 and 79 storeys at Spadina and Bremner, steps from the CN Tower, Rogers Centre, and Lake Ontario.</p>
+    <p>This is the last two towers at CityPlace, completing a 45-acre community that has reshaped Toronto&rsquo;s waterfront. Every suite offers views that were previously only available from the CN Tower observation deck itself &mdash; sweeping panoramas of Lake Ontario, the islands, and the entire city grid.</p>
+    <p>The building sets a new standard for amenity design, featuring the tallest residential amenity in Canada at the rooftop level &mdash; the Sky Lounge &mdash; along with a Sky Pool, Sky Gym, private dining, wine lounge, and over 25,000 sq ft of retail at grade.</p>
+  </div>
+  <div class="building-stats">
+    <div class="stat-grid">
+      <div class="stat-item"><div class="stat-val">68 &amp; 79</div><div class="stat-lbl">Storeys</div></div>
+      <div class="stat-item"><div class="stat-val">1,394</div><div class="stat-lbl">Total suites</div></div>
+      <div class="stat-item"><div class="stat-val">$467K</div><div class="stat-lbl">Starting from</div></div>
+      <div class="stat-item"><div class="stat-val">2026</div><div class="stat-lbl">Occupancy</div></div>
+      <div class="stat-item"><div class="stat-val">Concord</div><div class="stat-lbl">Developer</div></div>
+      <div class="stat-item"><div class="stat-val">CityPlace</div><div class="stat-lbl">Neighbourhood</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery">
+  <div class="gallery-item wide">
+    <img src="images/concord-canada-house/Maple_Leaf.jpg" alt="Concord Canada House aerial view" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Sky_Pool.jpg" alt="Sky Pool with CN Tower views" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Sky_Lounge.jpg" alt="Sky Lounge" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Sky_Gym.jpg" alt="Sky Gym" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Amenity_Kitchen.jpg" alt="Amenity Kitchen" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Balcony_Lake_View.jpg" alt="Balcony with lake view" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Balcony.jpg" alt="Private balcony" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/Living_Room.jpg" alt="Living room" />
+  </div>
+  <div class="gallery-item">
+    <img src="images/concord-canada-house/_East_View.jpg" alt="East view of CN Tower" />
+  </div>
+</div>
+
+<!-- FLOOR PLANS: UNDER 1,000 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">Under <em>1,000</em> sq ft</div>
+    <div class="sqft-count">9 floor plans</div>
+  </div>
+
+  <div class="tower-divider"><div class="tower-divider-line"></div><div class="tower-divider-label">East Tower &mdash; 1 Concord CityPlace Way</div><div class="tower-divider-line"></div></div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('e-1902')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/1902.jpg" alt="Suite 1902 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 1902 &middot; Plan 02</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">North exposure &middot; Balcony 43 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$467,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$337,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-2712')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/2712.jpg" alt="Suite 2712 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 2712 &middot; Plan 12</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">North exposure &middot; Balcony 43 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$469,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$339,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-506')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/506.jpg" alt="Suite 506 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 506 &middot; Plan 06</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony / Terrace 43&ndash;50 sq ft &middot; Floors 3&ndash;5</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">660 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-contact">Contact for pricing</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-2611')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/2611.jpg" alt="Suite 2611 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 2611 &middot; Plan 06</div>
+        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
+        <div class="fp-exposure">Balcony 145 sq ft &middot; Floors 17&ndash;59</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-contact">Contact for pricing</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-2712b')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/2712b.jpg" alt="Suite 2712 Plan 09 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Plan 09 &middot; Floors 17&ndash;59</div>
+        <div class="fp-type">1 Bedroom + Study</div>
+        <div class="fp-exposure">Balcony 145 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">535 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-contact">Contact for pricing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tower-divider" style="margin-top:2.5rem;"><div class="tower-divider-line"></div><div class="tower-divider-label">West Tower &mdash; 3 Concord CityPlace Way</div><div class="tower-divider-line"></div></div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('w-4012')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/4012.jpg" alt="Suite 4012 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 4012 &middot; Plan 08</div>
+        <div class="fp-type">1 Bedroom + Study</div>
+        <div class="fp-exposure">East exposure &middot; Balcony 128 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">600 sq ft</span><span class="fp-price">$599,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$469,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('w-4315')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/4315.jpg" alt="Suite 4315 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 4315 &middot; Plan 15</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">West exposure &middot; Balcony 108 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">492 sq ft</span><span class="fp-price">$492,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$362,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('w-4012b')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/4012b.jpg" alt="Suite 4012 Plan 12 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 4012 &middot; Plan 12</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">West exposure &middot; Balcony 105 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">505 sq ft</span><span class="fp-price">$490,500</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$360,500</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('w-2706')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/2706.jpg" alt="Suite 2706 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2706 &middot; Plan 06</div>
+        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
+        <div class="fp-exposure">East exposure &middot; Balcony 145 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price">$655,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$525,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOOR PLANS: 1,000 - 2,000 SQ FT -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title"><em>1,000</em> &ndash; <em>2,000</em> sq ft</div>
+    <div class="sqft-count">7 floor plans</div>
+  </div>
+
+  <div class="tower-divider"><div class="tower-divider-line"></div><div class="tower-divider-label">East Tower &mdash; 1 Concord CityPlace Way</div><div class="tower-divider-line"></div></div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('e-4701')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/4701.jpg" alt="Suite 4701 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 4701 &middot; Plan O1</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NE exposure &middot; Balcony 108 sq ft &middot; Floors 47&ndash;48</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft (868 total)</span><span class="fp-price">$919,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$789,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-3010')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/3010.jpg" alt="Suite 3010 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Plan 11 &middot; Floors 17&ndash;46, 49&ndash;56</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 217 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">718 sq ft (935 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-contact">Contact for pricing</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-4808')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/4808.jpg" alt="Suite 4808 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Plan 10 &middot; Floors 17&ndash;46, 49&ndash;56</div>
+        <div class="fp-type">2 Bedroom + Study</div>
+        <div class="fp-exposure">Balcony 208 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft (968 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-contact">Contact for pricing</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-6301')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/6301.jpg" alt="Suite 6301 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Plan O1 &middot; East Tower Floors 61&ndash;68</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Dual balconies &middot; 88 sq ft outdoor</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,038 sq ft (1,126 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tower-divider" style="margin-top:2.5rem;"><div class="tower-divider-line"></div><div class="tower-divider-label">West Tower &mdash; 3 Concord CityPlace Way</div><div class="tower-divider-line"></div></div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('w-2803')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/2803.jpg" alt="Suite 2803 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2803 &middot; Plan 03</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NW exposure &middot; Balcony 150 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft (890 total)</span><span class="fp-price">$799,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$669,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('w-2703')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/2703.jpg" alt="Suite 2703 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2703 &middot; Plan 03</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NW exposure &middot; Balcony 150 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft (890 total)</span><span class="fp-price">$798,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$668,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('w-2805')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/2805.jpg" alt="Suite 2805 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2805 &middot; Plan 05</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NE exposure &middot; Balcony 170 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">692 sq ft (862 total)</span><span class="fp-price">$659,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$529,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOOR PLANS: 2,000+ SQ FT (Sky Lofts + West Tower Upper) -->
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title"><em>2,000+</em> sq ft</div>
+    <div class="sqft-count">6 floor plans</div>
+  </div>
+
+  <div class="tower-divider"><div class="tower-divider-line"></div><div class="tower-divider-label">East Tower Sky Lofts &mdash; Floors 57&ndash;60</div><div class="tower-divider-line"></div></div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('e-loft5701')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/loft-5701.jpg" alt="Loft 5701 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
+        <div class="fp-suite">Sky 5901 / Loft 5701 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Balcony 100 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,033 sq ft (1,133 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-loft5703')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/loft-5703.jpg" alt="Loft 5703 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
+        <div class="fp-suite">Sky 5903 / Loft 5703 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">3 Bedroom + Family (2-Storey)</div>
+        <div class="fp-exposure">Balcony 236 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,500 sq ft (1,736 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-loft5707')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/loft-5707.jpg" alt="Loft 5707 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
+        <div class="fp-suite">Sky 5907 / Loft 5707 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Dual balconies 336 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,032 sq ft (1,368 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-loft5712')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/loft-5712.jpg" alt="Loft 5712 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
+        <div class="fp-suite">Sky 5912 / Loft 5712 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Balcony 90 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,033 sq ft (1,123 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-card" onclick="openModal('e-loft5715')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/east-tower/loft-5715.jpg" alt="Loft 5715 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
+        <div class="fp-suite">Sky 5915 / Loft 5715 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">2 Bedroom (2-Storey)</div>
+        <div class="fp-exposure">Balcony 100 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,033 sq ft (1,133 total)</span><span class="fp-price">Contact for pricing</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tower-divider" style="margin-top:2.5rem;"><div class="tower-divider-line"></div><div class="tower-divider-label">West Tower Upper &mdash; Floors 67&ndash;79</div><div class="tower-divider-line"></div></div>
+  <div class="fp-grid">
+    <div class="fp-card" onclick="openModal('w-7805')">
+      <div class="fp-image"><img src="images/concord-canada-house/floor-plans/west-tower/7805.jpg" alt="Suite 7805 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower &mdash; Upper</div>
+        <div class="fp-suite">Suite 7805 &middot; Plan 05</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East exposure &middot; Balcony 277 sq ft &middot; Floors 67&ndash;79</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,198 sq ft (1,475 total)</span><span class="fp-price">$1,549,900</span></div>
+          <span class="fp-offers">Open to offers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Interested in Canada House?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">CondosAround<span style="color:#c8a96e">.</span>com</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Indoor</span><span class="detail-val" id="m-indoor"></span></div>
+        <div class="detail-row"><span class="detail-label">Outdoor</span><span class="detail-val" id="m-outdoor"></span></div>
+        <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
+        <div class="detail-row"><span class="detail-label">Exposure</span><span class="detail-val" id="m-exposure"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this suite? Nikhil can walk you through availability, views, and assignment options.</div>
+          <a href="tel:6479240848" class="btn-full">Call Nikhil &mdash; 647-924-0848</a>
+          <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
+          <div class="hst-disclaimer">* HST Rebate Price is estimated based on the $130,000 maximum rebate for eligible buyers on units priced at or below $1.5M. Eligibility conditions apply. Not legal or tax advice.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const plans = {
+    'e-1902':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 1902', plan: 'Plan 02', type: '1 Bedroom', indoor: '502 sq ft', outdoor: '43 sq ft', floors: '17\u201346, 49\u201356', exposure: 'North', price: '$467,000', rebate: '$337,000', img: 'images/concord-canada-house/floor-plans/east-tower/1902.jpg' },
+    'e-2712':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 2712', plan: 'Plan 12', type: '1 Bedroom', indoor: '502 sq ft', outdoor: '43 sq ft', floors: '17\u201346, 49\u201356', exposure: 'North', price: '$469,000', rebate: '$339,000', img: 'images/concord-canada-house/floor-plans/east-tower/2712.jpg' },
+    'e-506':     { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 506', plan: 'Plan 06', type: '1 Bedroom', indoor: '660 sq ft', outdoor: '43\u201350 sq ft terrace', floors: '3\u20135', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: 'images/concord-canada-house/floor-plans/east-tower/506.jpg' },
+    'e-2611':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 2611', plan: 'Plan 06', type: '1 Bedroom + Den (2 Bath)', indoor: '650 sq ft', outdoor: '145 sq ft', floors: '17\u201359', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: 'images/concord-canada-house/floor-plans/east-tower/2611.jpg' },
+    'e-2712b':   { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan 09', plan: 'Plan 09', type: '1 Bedroom + Study', indoor: '535 sq ft', outdoor: '145 sq ft', floors: '17\u201359', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: 'images/concord-canada-house/floor-plans/east-tower/2712.jpg' },
+    'e-4701':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 4701', plan: 'Plan O1', type: '2 Bedroom', indoor: '760 sq ft', outdoor: '108 sq ft', floors: '47\u201348', exposure: 'North East', price: '$919,000', rebate: '$789,000', img: 'images/concord-canada-house/floor-plans/east-tower/4701.jpg' },
+    'e-3010':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan 11', plan: 'Plan 11', type: '2 Bedroom', indoor: '718 sq ft', outdoor: '217 sq ft', floors: '17\u201346, 49\u201356', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: 'images/concord-canada-house/floor-plans/east-tower/3010.jpg' },
+    'e-4808':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan 10', plan: 'Plan 10', type: '2 Bedroom + Study', indoor: '760 sq ft', outdoor: '208 sq ft', floors: '17\u201346, 49\u201356', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: 'images/concord-canada-house/floor-plans/east-tower/4808.jpg' },
+    'e-6301':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan O1', plan: 'Plan O1', type: '3 Bedroom', indoor: '1,038 sq ft', outdoor: '88 sq ft', floors: '61\u201368', exposure: 'Dual exposure', price: 'Contact for pricing', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/east-tower/6301.jpg' },
+    'e-loft5701':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5901 / Loft 5701', plan: 'Two-Storey', type: '2 Bedroom', indoor: '510 lower + 523 upper sq ft', outdoor: '100 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/east-tower/loft-5701.jpg' },
+    'e-loft5703':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5903 / Loft 5703', plan: 'Two-Storey', type: '3 Bedroom + Family', indoor: '770 lower + 730 upper sq ft', outdoor: '236 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/east-tower/loft-5703.jpg' },
+    'e-loft5707':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5907 / Loft 5707', plan: 'Two-Storey', type: '2 Bedroom', indoor: '567 lower + 465 upper sq ft', outdoor: '336 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/east-tower/loft-5707.jpg' },
+    'e-loft5712':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5912 / Loft 5712', plan: 'Two-Storey', type: '2 Bedroom', indoor: '510 lower + 523 upper sq ft', outdoor: '90 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/east-tower/loft-5712.jpg' },
+    'e-loft5715':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5915 / Loft 5715', plan: 'Two-Storey', type: '2 Bedroom', indoor: '510 lower + 523 upper sq ft', outdoor: '100 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/east-tower/loft-5715.jpg' },
+    'w-4012':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 4012', plan: 'Plan 08', type: '1 Bedroom + Study', indoor: '600 sq ft', outdoor: '128 sq ft', floors: '17\u201359', exposure: 'East', price: '$599,000', rebate: '$469,000', img: 'images/concord-canada-house/floor-plans/west-tower/4012.jpg' },
+    'w-4315':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 4315', plan: 'Plan 15', type: '1 Bedroom', indoor: '492 sq ft', outdoor: '108 sq ft', floors: '17\u201359', exposure: 'West', price: '$492,000', rebate: '$362,000', img: 'images/concord-canada-house/floor-plans/west-tower/4315.jpg' },
+    'w-4012b':   { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 4012', plan: 'Plan 12', type: '1 Bedroom', indoor: '505 sq ft', outdoor: '105 sq ft', floors: '17\u201359', exposure: 'West', price: '$490,500', rebate: '$360,500', img: 'images/concord-canada-house/floor-plans/west-tower/4012.jpg' },
+    'w-2706':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2706', plan: 'Plan 06', type: '1 Bedroom + Den (2 Bath)', indoor: '650 sq ft', outdoor: '145 sq ft', floors: '17\u201359', exposure: 'East', price: '$655,000', rebate: '$525,000', img: 'images/concord-canada-house/floor-plans/west-tower/2706.jpg' },
+    'w-2803':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2803', plan: 'Plan 03', type: '2 Bedroom', indoor: '740 sq ft', outdoor: '150 sq ft', floors: '17\u201359', exposure: 'North West', price: '$799,000 (incl. 1 parking)', rebate: '$669,000', img: 'images/concord-canada-house/floor-plans/west-tower/2803.jpg' },
+    'w-2703':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2703', plan: 'Plan 03', type: '2 Bedroom', indoor: '740 sq ft', outdoor: '150 sq ft', floors: '17\u201359', exposure: 'North West', price: '$798,000 (incl. 1 parking)', rebate: '$668,000', img: 'images/concord-canada-house/floor-plans/west-tower/2703.jpg' },
+    'w-2805':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2805', plan: 'Plan 05', type: '2 Bedroom', indoor: '692 sq ft', outdoor: '170 sq ft', floors: '17\u201359', exposure: 'North East', price: '$659,000', rebate: '$529,000', img: 'images/concord-canada-house/floor-plans/west-tower/2805.jpg' },
+    'w-7805':    { building: 'West Tower Upper (3 Concord CityPlace Way)', suite: 'Suite 7805', plan: 'Plan 05', type: '3 Bedroom', indoor: '1,198 sq ft', outdoor: '277 sq ft', floors: '67\u201379', exposure: 'East', price: '$1,549,900', rebate: null, openOffers: true, img: 'images/concord-canada-house/floor-plans/west-tower/7805.jpg' },
+  };
+
+  function openModal(id) {
+    const p = plans[id]; if (!p) return;
+    document.getElementById('modal-eyebrow').textContent = 'Concord Canada House \u00b7 ' + p.plan;
+    document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-building').textContent = p.building;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-indoor').textContent = p.indoor;
+    document.getElementById('m-outdoor').textContent = p.outdoor;
+    document.getElementById('m-floors').textContent = p.floors;
+    document.getElementById('m-exposure').textContent = p.exposure;
+    const priceEl = document.getElementById('m-price');
+    if (p.rebate) {
+      priceEl.innerHTML = p.price + '<span class="hst-rebate"><span class="hst-rebate-label">HST Rebate Price </span>' + p.rebate + '</span>';
+    } else if (p.openOffers) {
+      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
+    } else {
+      priceEl.textContent = p.price;
+    }
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
