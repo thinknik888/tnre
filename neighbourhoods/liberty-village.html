@@ -1035,6 +1035,12 @@
       });
     });
   });
+
+  // Sort all cards by sq ft
+  const grid = document.getElementById('fp-grid');
+  const cards = Array.from(grid.querySelectorAll('.fp-card'));
+  cards.sort((a, b) => parseInt(a.dataset.sqft) - parseInt(b.dataset.sqft));
+  cards.forEach(card => grid.appendChild(card));
 </script>
 </body>
 </html>
