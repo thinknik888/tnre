@@ -51,6 +51,7 @@
     .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
     .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
     .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .fp-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
     .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
     .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
     .fp-view-building { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 0.5rem; transition: color 0.2s; }
@@ -535,6 +536,8 @@
       document.querySelectorAll('.fp-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.dataset.filter;
+      const grid = document.getElementById('fp-grid');
+      grid.classList.toggle('cols-2', filter === '1000-1500' || filter === '1500+');
       document.querySelectorAll('#fp-grid .fp-card').forEach(card => {
         const sqft = parseInt(card.dataset.sqft);
         let show = true;
