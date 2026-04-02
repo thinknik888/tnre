@@ -105,6 +105,20 @@
   </div>
 </div>
 
+<!-- BUILDING COMPARISON -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; padding:3rem; background:var(--cream); border-bottom:1px solid var(--border);">
+  <div style="text-align:center; padding:2rem;">
+    <div style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">Concord Canada House</div>
+    <div id="cch-ppsf" style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; color:#b89a56;">—</div>
+    <div style="font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-top:0.3rem;">Avg price per sq ft</div>
+  </div>
+  <div style="text-align:center; padding:2rem; border-left:1px solid var(--border);">
+    <div style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">The Well</div>
+    <div id="well-ppsf" style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; color:#b89a56;">—</div>
+    <div style="font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-top:0.3rem;">Avg price per sq ft</div>
+  </div>
+</div>
+
 <!-- FLOOR PLANS -->
 <div class="sqft-section">
   <div class="sqft-header">
@@ -550,6 +564,25 @@
       });
     });
   });
+
+  // Calculate avg price per sq ft by building
+  function calcAvgPpsf(buildingName) {
+    let total = 0, count = 0;
+    for (const id in plans) {
+      const p = plans[id];
+      if (p.building !== buildingName) continue;
+      const price = parseInt(p.price.replace(/[\$,]/g, ''));
+      const sqft = parseInt(p.size.replace(/,/g, ''));
+      if (isNaN(price) || isNaN(sqft) || sqft === 0) continue;
+      total += price / sqft;
+      count++;
+    }
+    return count ? Math.round(total / count) : null;
+  }
+  const cchAvg = calcAvgPpsf('Concord Canada House');
+  const wellAvg = calcAvgPpsf('The Well');
+  if (cchAvg) document.getElementById('cch-ppsf').textContent = '$' + cchAvg.toLocaleString();
+  if (wellAvg) document.getElementById('well-ppsf').textContent = '$' + wellAvg.toLocaleString();
 </script>
 </body>
 </html>
