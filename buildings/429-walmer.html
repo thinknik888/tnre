@@ -111,6 +111,9 @@
     .modal-nav-prev { left: 0.5rem; }
     .modal-nav-next { right: 0.5rem; }
     .modal-image { position: relative; }
+    .modal-open-tab { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(27,45,79,0.7); color: rgba(240,236,228,0.8); border: none; padding: 0.5rem 0.65rem; border-radius: 2px; cursor: pointer; font-size: 0.9rem; line-height: 1; z-index: 10; transition: background 0.2s; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
+    .modal-open-tab:hover { background: rgba(27,45,79,0.95); color: #f0ece4; }
+    .modal-open-tab span { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -355,6 +358,7 @@
     </div>
     <div class="modal-body">
       <div class="modal-image">
+        <a class="modal-open-tab" id="modal-open-tab" href="" target="_blank" onclick="event.stopPropagation();">&#x1F50D;<span>Full size</span></a>
         <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
         <img id="modal-img" src="" alt="Floor Plan" onclick="this.classList.toggle('zoomed')" />
         <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
@@ -399,7 +403,7 @@
     'w-11': { name: 'Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', price: '$7,000,000 \u2013 $8,750,000', img: '../neighbourhoods/images/walmer-fp-estate-11.jpg' },
     'w-12': { name: 'Estate 3', type: '3 Bed + Family Room', size: '3,910 sq ft', collection: 'Estate Collection', price: '$7,820,000 \u2013 $9,775,000', img: '../neighbourhoods/images/walmer-fp-estate-14.jpg' },
     'w-13': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', price: '$6,126,000 \u2013 $7,657,500', img: '../neighbourhoods/images/walmer-fp-estate-17.jpg' },
-    'w-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft', collection: 'Penthouse Collection', price: '$16,934,000 \u2013 $21,167,500', img: '../neighbourhoods/images/walmer-fp-penthouse-2.jpg' }
+    'w-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft interior \u00b7 5,064 sq ft terrace \u00b7 13,531 sq ft total', collection: 'Penthouse Collection', price: '$16,934,000 \u2013 $21,167,500', img: '../neighbourhoods/images/walmer-fp-penthouse-2.jpg' }
   };
   var planKeys = Object.keys(plans);
   var currentPlanIdx = 0;
@@ -417,6 +421,7 @@
     var img = document.getElementById('modal-img');
     img.src = p.img;
     img.classList.remove('zoomed');
+    document.getElementById('modal-open-tab').href = p.img;
     document.getElementById('m-building').textContent = '429 Walmer';
     document.getElementById('m-collection').textContent = p.collection;
     document.getElementById('m-name').textContent = p.name;
