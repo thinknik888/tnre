@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Price per Sq Ft &mdash; Market Stats | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --cream: #f0ede6; --gold: #b89a56; --dark: #1e1c18; --card: #faf8f4; --border: #d4cec4; --muted: #6b6357; --text-dim: #9a9288; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--dark); -webkit-font-smoothing: antialiased; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(240,237,230,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--dark); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hero { padding: 4rem 3rem 2.5rem; }
+    .eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.1; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero p { font-size: 0.92rem; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 560px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); margin: 0 3rem; }
+    .stat-card { background: var(--card); padding: 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stat-card:nth-child(3n) { border-right: none; }
+    .stat-card:nth-child(n+4) { border-bottom: none; }
+    .stat-hood { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .stat-price { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 400; color: var(--dark); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
+    .stat-range { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .stat-link { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.2s; }
+    .stat-link:hover { color: var(--dark); }
+    .chart-section { padding: 3rem; margin-top: 2rem; }
+    .chart-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 2rem; }
+    .chart-section h2 em { font-style: italic; color: var(--gold); }
+    .chart-row { display: flex; align-items: center; margin-bottom: 1.25rem; }
+    .chart-name { width: 160px; text-align: right; padding-right: 1.5rem; font-size: 0.78rem; color: var(--muted); flex-shrink: 0; }
+    .chart-bar-wrap { flex: 1; position: relative; height: 20px; display: flex; align-items: center; }
+    .chart-bar { height: 2px; background: var(--dark); position: relative; transition: width 0.6s ease-out; }
+    .chart-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); position: absolute; right: -5px; top: -4px; }
+    .chart-val { width: 100px; padding-left: 1.25rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dark); flex-shrink: 0; }
+    .disclaimer { padding: 2rem 3rem 3rem; font-size: 0.72rem; color: var(--text-dim); font-style: italic; line-height: 1.6; max-width: 600px; }
+    footer { background: var(--dark); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.7; }
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .hero, .chart-section, .disclaimer { padding-left: 1.5rem; padding-right: 1.5rem; } .stats-grid { margin: 0 1.5rem; grid-template-columns: repeat(2, 1fr); } .stat-card:nth-child(3n) { border-right: 1px solid var(--border); } .stat-card:nth-child(2n) { border-right: none; } .stat-card:nth-child(n+4) { border-bottom: 1px solid var(--border); } .stat-card:nth-child(n+5) { border-bottom: none; } footer { padding: 1.5rem; } }
+    @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } .stat-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; } .stat-card:last-child { border-bottom: none !important; } .chart-name { width: 110px; font-size: 0.68rem; padding-right: 1rem; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Toronto &amp; GTA &middot; Market Data</div>
+  <h1>Price per <em>sq ft</em></h1>
+  <p>Average pre-construction pricing across neighbourhoods we cover. Based on listed floor plans. Updated April 2026.</p>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-hood">Yorkville</div>
+    <div class="stat-price">$2,640</div>
+    <div class="stat-label">Avg / Sq Ft</div>
+    <div class="stat-range">Range $2,500 &ndash; $2,800</div>
+    <a href="../neighbourhoods/yorkville.html" class="stat-link">View Neighbourhood &rarr;</a>
+  </div>
+  <div class="stat-card">
+    <div class="stat-hood">Forest Hill</div>
+    <div class="stat-price">$2,250</div>
+    <div class="stat-label">Avg / Sq Ft</div>
+    <div class="stat-range">Range $2,000 &ndash; $2,500</div>
+    <a href="../neighbourhoods/forest-hill.html" class="stat-link">View Neighbourhood &rarr;</a>
+  </div>
+  <div class="stat-card">
+    <div class="stat-hood">CN Tower</div>
+    <div class="stat-price">$1,555</div>
+    <div class="stat-label">Avg / Sq Ft</div>
+    <div class="stat-range">Range $1,033 &ndash; $2,400</div>
+    <a href="../neighbourhoods/cn-tower.html" class="stat-link">View Neighbourhood &rarr;</a>
+  </div>
+  <div class="stat-card">
+    <div class="stat-hood">Liberty Village</div>
+    <div class="stat-price">$1,125</div>
+    <div class="stat-label">Avg / Sq Ft</div>
+    <div class="stat-range">Range $948 &ndash; $1,300</div>
+    <a href="../neighbourhoods/liberty-village.html" class="stat-link">View Neighbourhood &rarr;</a>
+  </div>
+  <div class="stat-card">
+    <div class="stat-hood">Pickering GO</div>
+    <div class="stat-price">$1,093</div>
+    <div class="stat-label">Avg / Sq Ft</div>
+    <div class="stat-range">Range $1,006 &ndash; $1,180</div>
+    <a href="../neighbourhoods/pickering-go.html" class="stat-link">View Neighbourhood &rarr;</a>
+  </div>
+  <div class="stat-card">
+    <div class="stat-hood">Dixie &amp; Lakeshore</div>
+    <div class="stat-price">$1,050</div>
+    <div class="stat-label">Avg / Sq Ft</div>
+    <div class="stat-range">Range $750 &ndash; $1,200</div>
+    <a href="../neighbourhoods/dixie-lakeshore.html" class="stat-link">View Neighbourhood &rarr;</a>
+  </div>
+</div>
+
+<div class="chart-section">
+  <h2>Neighbourhood <em>comparison</em></h2>
+  <div class="chart-row"><div class="chart-name">Yorkville</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:100%;"><div class="chart-dot"></div></div></div><div class="chart-val">$2,640</div></div>
+  <div class="chart-row"><div class="chart-name">Forest Hill</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:85.2%;"><div class="chart-dot"></div></div></div><div class="chart-val">$2,250</div></div>
+  <div class="chart-row"><div class="chart-name">CN Tower</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:58.9%;"><div class="chart-dot"></div></div></div><div class="chart-val">$1,555</div></div>
+  <div class="chart-row"><div class="chart-name">Liberty Village</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:42.6%;"><div class="chart-dot"></div></div></div><div class="chart-val">$1,125</div></div>
+  <div class="chart-row"><div class="chart-name">Pickering GO</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:41.4%;"><div class="chart-dot"></div></div></div><div class="chart-val">$1,093</div></div>
+  <div class="chart-row"><div class="chart-name">Dixie &amp; Lakeshore</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:39.8%;"><div class="chart-dot"></div></div></div><div class="chart-val">$1,050</div></div>
+</div>
+
+<div class="disclaimer">Pricing based on listed pre-construction floor plans. All figures are approximate and subject to change without notice.</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+</body>
+</html>
