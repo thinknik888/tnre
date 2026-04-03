@@ -141,6 +141,14 @@
       .gallery { column-count: 1; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
     }
+    .nav-fp-link { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 0.45rem 1.2rem; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+    .nav-fp-link:hover { background: var(--gold); color: var(--white); }
+    .mobile-jump { display: none; }
+    @media (max-width: 768px) {
+      .nav-fp-link { display: none; }
+      .mobile-jump { display: block; position: sticky; top: 49px; z-index: 99; background: var(--text); text-align: center; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .mobile-jump a { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--off-white); text-decoration: none; }
+    }
   </style>
 </head>
 <body>
@@ -148,8 +156,10 @@
 <nav>
   <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--gold)">.</span></a>
   <a href="../neighbourhoods/cn-tower.html" class="nav-back">&larr; CN Tower Floor Plans</a>
+  <a href="#floor-plans" class="nav-fp-link">View Floor Plans &darr;</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
+<div class="mobile-jump"><a href="#floor-plans">View Floor Plans &rarr;</a></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -219,7 +229,7 @@
 </div>
 
 <!-- FLOOR PLANS -->
-<div class="sqft-section">
+<div class="sqft-section" id="floor-plans">
   <div class="sqft-header">
     <div class="sqft-title">Floor <em>Plans</em></div>
     <div class="sqft-count">15 floor plans</div>
