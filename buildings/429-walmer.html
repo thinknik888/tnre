@@ -35,7 +35,9 @@
     .collection-header { padding: 3rem 3rem 1.5rem; border-bottom: 1px solid var(--border); }
     .collection-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--navy); }
     .collection-header h2 em { font-style: italic; color: var(--bronze); }
-    .fp-row { display: grid; grid-template-columns: 55% 1fr; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+    .fp-row { position: relative; display: grid; grid-template-columns: 55% 1fr; cursor: pointer; transition: background 0.2s; margin-bottom: 48px; }
+    .fp-row::after { content: ''; position: absolute; bottom: -24px; left: 3rem; right: 3rem; height: 0; border-bottom: 0.5px solid #c4bdb2; }
+    .fp-row:last-child::after { display: none; }
     .fp-row:hover { background: var(--card); }
     .fp-row-image { min-height: 400px; overflow: hidden; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: #fff; }
     .fp-row-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
@@ -125,7 +127,7 @@
 </div>
 
 <div class="collection-header"><h2>Podium <em>Collection</em></h2></div>
-    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-1')">
+    <div class="fp-row" onclick="openModal('w-1')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -136,7 +138,7 @@
         <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-2')">
+    </div>    <div class="fp-row" onclick="openModal('w-2')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-5.jpg" alt="Residence 2A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -147,7 +149,7 @@
         <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-3')">
+    </div>    <div class="fp-row" onclick="openModal('w-3')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-8.jpg" alt="Residence 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -158,7 +160,7 @@
         <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-4')">
+    </div>    <div class="fp-row" onclick="openModal('w-4')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-11.jpg" alt="Residence 3A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -169,7 +171,7 @@
         <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-5')">
+    </div>    <div class="fp-row" onclick="openModal('w-5')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-14.jpg" alt="Residence 3 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -180,7 +182,7 @@
         <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-6')">
+    </div>    <div class="fp-row" onclick="openModal('w-6')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-17.jpg" alt="Residence 4 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -191,7 +193,7 @@
         <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-7')">
+    </div>    <div class="fp-row" onclick="openModal('w-7')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-20.jpg" alt="Residence 5 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -205,7 +207,7 @@
     </div>
 
 <div class="collection-header"><h2>Estate <em>Collection</em></h2></div>
-    <div class="fp-row" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('w-8')">
+    <div class="fp-row" style="background:#2a3a2a;" onclick="openModal('w-8')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="../neighbourhoods/images/walmer-fp-estate-2.jpg" alt="Terrace Estate 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -216,7 +218,7 @@
         <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('w-9')">
+    </div>    <div class="fp-row" style="background:#2a3a2a;" onclick="openModal('w-9')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="../neighbourhoods/images/walmer-fp-estate-5.jpg" alt="Estate 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -227,7 +229,7 @@
         <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('w-10')">
+    </div>    <div class="fp-row" style="background:#2a3a2a;" onclick="openModal('w-10')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="../neighbourhoods/images/walmer-fp-estate-8.jpg" alt="Terrace Estate 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -238,7 +240,7 @@
         <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('w-11')">
+    </div>    <div class="fp-row" style="background:#2a3a2a;" onclick="openModal('w-11')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="../neighbourhoods/images/walmer-fp-estate-11.jpg" alt="Estate 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -249,7 +251,7 @@
         <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('w-12')">
+    </div>    <div class="fp-row" style="background:#2a3a2a;" onclick="openModal('w-12')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="../neighbourhoods/images/walmer-fp-estate-14.jpg" alt="Estate 3 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -260,7 +262,7 @@
         <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
         <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
       </div>
-    </div>    <div class="fp-row" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('w-13')">
+    </div>    <div class="fp-row" style="background:#2a3a2a;" onclick="openModal('w-13')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="../neighbourhoods/images/walmer-fp-estate-17.jpg" alt="Estate 4 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -274,7 +276,7 @@
     </div>
 
 <div class="collection-header"><h2>Penthouse <em>Collection</em></h2></div>
-    <div class="fp-row" style="background:#1b2d4f; color:#f0ece4;border-bottom:1px solid rgba(196,189,178,0.15);" onclick="openModal('w-14')">
+    <div class="fp-row" style="background:#1b2d4f; color:#f0ece4;" onclick="openModal('w-14')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-penthouse-2.jpg" alt="The Penthouse Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Penthouse Collection</div>

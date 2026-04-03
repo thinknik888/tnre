@@ -30,7 +30,9 @@
     .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--card); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
     .fp-filter-btn:hover { border-color: var(--bronze); color: var(--bronze); }
     .fp-filter-btn.active { background: var(--navy); color: var(--stone); border-color: var(--navy); }
-    .fp-row { display: grid; grid-template-columns: 55% 1fr; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+    .fp-row { position: relative; display: grid; grid-template-columns: 55% 1fr; cursor: pointer; transition: background 0.2s; margin-bottom: 48px; }
+    .fp-row::after { content: ''; position: absolute; bottom: -24px; left: 3rem; right: 3rem; height: 0; border-bottom: 0.5px solid #c4bdb2; }
+    .fp-row:last-child::after { display: none; }
     .fp-row:hover { background: var(--card); }
     .fp-row-image { min-height: 400px; overflow: hidden; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: #fff; }
     .fp-row-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
@@ -103,7 +105,7 @@
   </div>
 </div>
 
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-1')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-1')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-20.jpg" alt="Residence 5 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -115,7 +117,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-2')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-2')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-11.jpg" alt="Residence 3A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -127,7 +129,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-3')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-3')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-5.jpg" alt="Residence 2A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -139,7 +141,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-4')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-4')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-14.jpg" alt="Residence 3 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -151,7 +153,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-5')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-5')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-17.jpg" alt="Residence 4 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -163,7 +165,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-6')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-6')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -175,7 +177,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('fh-7')">
+    <div class="fp-row" data-collection="podium" onclick="openModal('fh-7')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-8.jpg" alt="Residence 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
@@ -187,7 +189,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('fh-8')">
+    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-8')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-17.jpg" alt="Estate 4 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -199,7 +201,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('fh-9')">
+    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-9')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-2.jpg" alt="Terrace Estate 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -211,7 +213,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('fh-10')">
+    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-10')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-5.jpg" alt="Estate 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -223,7 +225,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('fh-11')">
+    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-11')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-8.jpg" alt="Terrace Estate 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -235,7 +237,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('fh-12')">
+    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-12')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-11.jpg" alt="Estate 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -247,7 +249,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a; border-bottom:1px solid #3a4e3a;" onclick="openModal('fh-13')">
+    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-13')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-14.jpg" alt="Estate 3 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
@@ -259,7 +261,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="penthouse" style="background:#1b2d4f; color:#f0ece4;border-bottom:1px solid rgba(196,189,178,0.15);" onclick="openModal('fh-14')">
+    <div class="fp-row" data-collection="penthouse" style="background:#1b2d4f; color:#f0ece4;" onclick="openModal('fh-14')">
       <div class="fp-row-image"><img src="images/walmer-fp-penthouse-2.jpg" alt="The Penthouse Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Penthouse Collection</div>
