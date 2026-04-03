@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>429 Walmer &mdash; Forest Hill | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy: #1b2d4f; --bronze: #8c7355; --stone: #f0ece4; --card: #faf7f2; --border: #c4bdb2; --text: #1b2d4f; --text-mid: #6b6357; --text-muted: #9a9288; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--stone); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(240,236,228,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--navy); text-decoration: none; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--bronze); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: var(--stone); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hero { position: relative; height: 70vh; min-height: 500px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(27,45,79,0.3) 0%, rgba(27,45,79,0.7) 100%); }
+    .hero-content { position: absolute; bottom: 4rem; left: 3rem; right: 3rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; font-style: italic; color: #f0ece4; line-height: 1.1; }
+    .desc-section { padding: 5rem 3rem; border-bottom: 1px solid var(--border); max-width: 780px; }
+    .desc-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--navy); margin-bottom: 1.5rem; }
+    .desc-section h2 em { font-style: italic; color: var(--bronze); }
+    .desc-section p { font-size: 0.92rem; line-height: 1.9; color: var(--text-mid); font-weight: 300; margin-bottom: 1.5rem; }
+    .amenities { font-size: 0.82rem; line-height: 2; color: var(--text-muted); font-style: italic; }
+    .stats-bar { display: flex; gap: 3rem; padding: 2.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--bronze); }
+    .stat-item .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+    .gallery-section { padding: 3rem; border-bottom: 1px solid var(--border); }
+    .gallery-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--navy); margin-bottom: 1.5rem; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .gallery img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+    .collection-header { padding: 3rem 3rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .collection-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--navy); }
+    .collection-header h2 em { font-style: italic; color: var(--bronze); }
+    .fp-row { display: grid; grid-template-columns: 55% 1fr; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+    .fp-row:hover { background: var(--card); }
+    .fp-row-image { min-height: 400px; overflow: hidden; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: #fff; }
+    .fp-row-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .fp-row-details { padding: 2.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .cta-strip { background: var(--navy); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--stone); }
+    .cta-headline em { font-style: italic; color: var(--bronze); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--stone); color: var(--navy); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--bronze); border: 1px solid var(--bronze); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(240,236,228,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(240,236,228,0.5); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(27,45,79,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--card); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bronze); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--navy); }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .modal-image { background: #fff; display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
+    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; color: var(--navy); text-align: right; max-width: 60%; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: var(--stone); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 2rem; }
+      .desc-section, .stats-bar, .gallery-section, .collection-header { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .fp-row { grid-template-columns: 1fr; }
+      .fp-row-image { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
+      .fp-row-details { padding: 1.5rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) { .stats-bar { gap: 1.5rem; flex-wrap: wrap; } .gallery { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--bronze)">.</span>com</a>
+  <a href="../neighbourhoods/forest-hill.html" class="nav-back">&larr; Forest Hill Floor Plans</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<div class="hero">
+  <img src="../neighbourhoods/images/walmer-rendering-4.jpg" alt="429 Walmer" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-title">Timeless. By Design.</div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-val">48</div><div class="stat-lbl">Private Residences</div></div>
+  <div class="stat-item"><div class="stat-val">20</div><div class="stat-lbl">Storeys</div></div>
+  <div class="stat-item"><div class="stat-val">2,058+</div><div class="stat-lbl">Sq Ft</div></div>
+  <div class="stat-item"><div class="stat-val">Stafford</div><div class="stat-lbl">Developer</div></div>
+  <div class="stat-item"><div class="stat-val">Forest Hill</div><div class="stat-lbl">Village</div></div>
+</div>
+
+<div class="desc-section">
+  <h2>429 <em>Walmer</em></h2>
+  <p>Forty-eight private residences shaped by timeless architecture and quiet intent. Set in the heart of Forest Hill Village, 429 Walmer rises with confidence &mdash; each home defined by deliberate design, intimate scale, and over 18,000 sq ft of curated wellness and lifestyle amenities. Bespoke lacquer cabinetry by Downsview Kitchens, stone countertops, Wolf, Sub-Zero and Cove appliances, ceiling heights of 10 to 12 feet, and 44&rdquo; gas fireplaces with custom millwork. Privacy isn&rsquo;t promised &mdash; it&rsquo;s presumed.</p>
+  <div class="amenities">The Walmer Lounge &middot; The Table Private Dining &middot; The Cellar Wine Room &middot; The Conservatory &middot; The Parlour &middot; Chef&rsquo;s Terrace &middot; The Pickleball Club &middot; Fitness Studio &middot; Reformer Studio &middot; Yoga Studio &middot; Scandinavian Sauna &middot; Cold Plunge &middot; Steam Rooms &middot; Red Light Therapy &middot; Endless Current Pool &middot; Vitality Lounge &middot; 24-Hour Concierge &middot; Valet Parking &middot; Avante Security</div>
+</div>
+
+<div class="gallery-section">
+  <h3>Building <em style="font-style:italic; color:var(--bronze);">Gallery</em></h3>
+  <div class="gallery">
+    <img src="../neighbourhoods/images/walmer-rendering-20.jpg" alt="429 Walmer Interior" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-21.jpg" alt="429 Walmer Interior" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-22.jpg" alt="429 Walmer Interior" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-23.jpg" alt="429 Walmer Interior" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-24.jpg" alt="429 Walmer Interior" loading="lazy" />
+  </div>
+</div>
+
+<div class="collection-header"><h2>Podium <em>Collection</em></h2></div>
+    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-1')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 1</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,588 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,176,000 &ndash; $6,470,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-2')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-5.jpg" alt="Residence 2A Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 2A</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,400 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$4,800,000 &ndash; $6,000,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-3')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-8.jpg" alt="Residence 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 2</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,591 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,182,000 &ndash; $6,477,500</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-4')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-11.jpg" alt="Residence 3A Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 3A</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,361 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$4,722,000 &ndash; $5,902,500</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-5')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-14.jpg" alt="Residence 3 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 3</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,534 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,068,000 &ndash; $6,335,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-6')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-17.jpg" alt="Residence 4 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 4</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,568 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,136,000 &ndash; $6,420,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-7')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-20.jpg" alt="Residence 5 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 5</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,058 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$4,116,000 &ndash; $5,145,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+
+<div class="collection-header"><h2>Estate <em>Collection</em></h2></div>
+    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-8')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-estate-2.jpg" alt="Terrace Estate 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Terrace Estate 1</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,477 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$6,954,000 &ndash; $8,692,500</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-9')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-estate-5.jpg" alt="Estate 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Estate 1</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,477 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$6,954,000 &ndash; $8,692,500</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-10')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-estate-8.jpg" alt="Terrace Estate 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Terrace Estate 2</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,500 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$7,000,000 &ndash; $8,750,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-11')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-estate-11.jpg" alt="Estate 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Estate 2</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,500 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$7,000,000 &ndash; $8,750,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-12')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-estate-14.jpg" alt="Estate 3 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Estate 3</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,910 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$7,820,000 &ndash; $9,775,000</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>    <div class="fp-row" style="border-bottom:1px solid #c4bdb2;" onclick="openModal('w-13')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-estate-17.jpg" alt="Estate 4 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Estate 4</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,063 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$6,126,000 &ndash; $7,657,500</div>
+        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+
+<div class="collection-header"><h2>Penthouse <em>Collection</em></h2></div>
+    <div class="fp-row" style="background:#1b2d4f; color:#f0ece4;border-bottom:1px solid rgba(196,189,178,0.15);" onclick="openModal('w-14')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-penthouse-2.jpg" alt="The Penthouse Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Penthouse Collection</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#c4bdb2; margin-bottom:0.3rem;">The Penthouse</div>
+        <div style="font-size:0.85rem; color:#d4cfc8; margin-bottom:0.3rem;">3 Bed + Family Room + Study</div>
+        <div style="font-size:0.78rem; color:#d4cfc8; margin-bottom:1rem;">8,467 sq ft interior &middot; 5,064 sq ft terrace &middot; 4.5 Bath &middot; Floor 18</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#8c7355; margin-bottom:0.5rem;">$16,934,000 &ndash; $21,167,500</div>
+        <div style="font-size:0.72rem; color:#a09080; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Private inquiries<br><em>welcome.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20429%20Walmer." class="btn-outline">Send a Message</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">CondosAround<span style="color:var(--bronze)">.</span>com</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Collection</span><span class="detail-val" id="m-collection"></span></div>
+        <div class="detail-row"><span class="detail-label">Residence</span><span class="detail-val" id="m-name"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Interior</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Price Range</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Private viewings available by appointment. Reach out to discuss availability and pricing.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20429%20Walmer." class="btn-full-outline">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var plans = {
+    'w-1': { name: 'Residence 1', type: '2 Bed + Family Room', size: '2,588 sq ft', collection: 'Podium Collection', price: '$5,176,000 \u2013 $6,470,000', img: '../neighbourhoods/images/walmer-fp-podium-2.jpg' },
+    'w-2': { name: 'Residence 2A', type: '2 Bed', size: '2,400 sq ft', collection: 'Podium Collection', price: '$4,800,000 \u2013 $6,000,000', img: '../neighbourhoods/images/walmer-fp-podium-5.jpg' },
+    'w-3': { name: 'Residence 2', type: '2 Bed + Family Room', size: '2,591 sq ft', collection: 'Podium Collection', price: '$5,182,000 \u2013 $6,477,500', img: '../neighbourhoods/images/walmer-fp-podium-8.jpg' },
+    'w-4': { name: 'Residence 3A', type: '2 Bed', size: '2,361 sq ft', collection: 'Podium Collection', price: '$4,722,000 \u2013 $5,902,500', img: '../neighbourhoods/images/walmer-fp-podium-11.jpg' },
+    'w-5': { name: 'Residence 3', type: '2 Bed + Family Room', size: '2,534 sq ft', collection: 'Podium Collection', price: '$5,068,000 \u2013 $6,335,000', img: '../neighbourhoods/images/walmer-fp-podium-14.jpg' },
+    'w-6': { name: 'Residence 4', type: '2 Bed + Family Room', size: '2,568 sq ft', collection: 'Podium Collection', price: '$5,136,000 \u2013 $6,420,000', img: '../neighbourhoods/images/walmer-fp-podium-17.jpg' },
+    'w-7': { name: 'Residence 5', type: '2 Bed', size: '2,058 sq ft', collection: 'Podium Collection', price: '$4,116,000 \u2013 $5,145,000', img: '../neighbourhoods/images/walmer-fp-podium-20.jpg' },
+    'w-8': { name: 'Terrace Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', price: '$6,954,000 \u2013 $8,692,500', img: '../neighbourhoods/images/walmer-fp-estate-2.jpg' },
+    'w-9': { name: 'Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', price: '$6,954,000 \u2013 $8,692,500', img: '../neighbourhoods/images/walmer-fp-estate-5.jpg' },
+    'w-10': { name: 'Terrace Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', price: '$7,000,000 \u2013 $8,750,000', img: '../neighbourhoods/images/walmer-fp-estate-8.jpg' },
+    'w-11': { name: 'Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', price: '$7,000,000 \u2013 $8,750,000', img: '../neighbourhoods/images/walmer-fp-estate-11.jpg' },
+    'w-12': { name: 'Estate 3', type: '3 Bed + Family Room', size: '3,910 sq ft', collection: 'Estate Collection', price: '$7,820,000 \u2013 $9,775,000', img: '../neighbourhoods/images/walmer-fp-estate-14.jpg' },
+    'w-13': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', price: '$6,126,000 \u2013 $7,657,500', img: '../neighbourhoods/images/walmer-fp-estate-17.jpg' },
+    'w-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft', collection: 'Penthouse Collection', price: '$16,934,000 \u2013 $21,167,500', img: '../neighbourhoods/images/walmer-fp-penthouse-2.jpg' }
+  };
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    document.getElementById('modal-eyebrow').textContent = '429 Walmer \u00b7 ' + p.collection;
+    document.getElementById('modal-title').textContent = p.name;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('m-building').textContent = '429 Walmer';
+    document.getElementById('m-collection').textContent = p.collection;
+    document.getElementById('m-name').textContent = p.name;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-price').textContent = p.price;
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
