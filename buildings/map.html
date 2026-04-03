@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Properties on the Map &mdash; CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <style>
+    :root { --cream: #f0ede6; --gold: #b89a56; --dark: #1e1c18; --card: #faf8f4; --border: #d4cec4; --muted: #6b6357; --text-dim: #9a9288; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--dark); -webkit-font-smoothing: antialiased; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(240,237,230,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--dark); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hero { padding: 4rem 3rem 2.5rem; }
+    .eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.1; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero p { font-size: 0.92rem; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 560px; }
+    #map { width: 100%; height: 500px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .buildings-section { padding: 3rem; }
+    .buildings-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 2rem; }
+    .buildings-section h2 em { font-style: italic; color: var(--gold); }
+    .buildings-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); }
+    .building-card { background: var(--card); padding: 1.5rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.2s; }
+    .building-card:hover { background: #f3efe7; }
+    .building-card:nth-child(3n) { border-right: none; }
+    .building-card:nth-last-child(-n+3):nth-child(3n+1) ~ .building-card, .building-card:nth-last-child(-n+3):nth-child(3n+1) { border-bottom: none; }
+    .card-neighbourhood { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .card-address { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+    .card-link { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.2s; }
+    .card-link:hover { color: var(--dark); }
+    footer { background: var(--dark); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.7; }
+    .leaflet-popup-content-wrapper { background: var(--cream); border-radius: 3px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .leaflet-popup-content { margin: 0; padding: 1rem 1.25rem; font-family: 'Outfit', sans-serif; }
+    .leaflet-popup-tip { background: var(--cream); }
+    .popup-neighbourhood { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .popup-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--dark); margin-bottom: 0.2rem; }
+    .popup-address { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .popup-link { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+    .popup-link:hover { color: var(--dark); }
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .hero, .buildings-section { padding-left: 1.5rem; padding-right: 1.5rem; } .buildings-grid { grid-template-columns: repeat(2, 1fr); } .building-card:nth-child(3n) { border-right: 1px solid var(--border); } .building-card:nth-child(2n) { border-right: none; } footer { padding: 1.5rem; } }
+    @media (max-width: 600px) { .buildings-grid { grid-template-columns: 1fr; } .building-card { border-right: none !important; } #map { height: 400px; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Toronto &amp; GTA</div>
+  <h1>All Properties <em>on the map</em></h1>
+  <p>12 buildings across 6 neighbourhoods. Click any pin to explore floor plans.</p>
+</div>
+
+<div id="map"></div>
+
+<div class="buildings-section">
+  <h2>All <em>Buildings</em></h2>
+  <div class="buildings-grid">
+    <div class="building-card">
+      <div class="card-neighbourhood">Yorkville</div>
+      <div class="card-name">50 Scollard</div>
+      <div class="card-address">50 Scollard St, Toronto</div>
+      <a href="50-scollard.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Yorkville</div>
+      <div class="card-name">11 Yorkville</div>
+      <div class="card-address">11 Yorkville Ave, Toronto</div>
+      <a href="11-yorkville.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Yorkville</div>
+      <div class="card-name">The Bedford</div>
+      <div class="card-address">287 Davenport Rd, Toronto</div>
+      <a href="the-bedford.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Liberty Village</div>
+      <div class="card-name">8 Temple</div>
+      <div class="card-address">8 Temple Ave, Toronto</div>
+      <a href="8-temple.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Liberty Village</div>
+      <div class="card-name">XO2 Condos</div>
+      <div class="card-address">285 Dufferin St, Toronto</div>
+      <a href="xo2.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">CN Tower</div>
+      <div class="card-name">The Well</div>
+      <div class="card-address">438 King St W, Toronto</div>
+      <a href="../neighbourhoods/cn-tower.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">CN Tower</div>
+      <div class="card-name">Concord Canada House</div>
+      <div class="card-address">290 Spadina Ave, Toronto</div>
+      <a href="concord-canada-house.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">CN Tower</div>
+      <div class="card-name">101 Spadina</div>
+      <div class="card-address">101 Spadina Ave, Toronto</div>
+      <a href="101-spadina.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Forest Hill</div>
+      <div class="card-name">429 Walmer</div>
+      <div class="card-address">429 Walmer Rd, Toronto</div>
+      <a href="429-walmer.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Dixie &amp; Lakeshore</div>
+      <div class="card-name">Exhale Residences</div>
+      <div class="card-address">1381 Lakeshore Rd E, Mississauga</div>
+      <a href="exhale.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Pickering GO</div>
+      <div class="card-name">Universal City East</div>
+      <div class="card-address">1496 Bayly St, Pickering</div>
+      <a href="universal-city-east.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+    <div class="building-card">
+      <div class="card-neighbourhood">Pickering GO</div>
+      <div class="card-name">The Grand</div>
+      <div class="card-address">1474 Bayly St, Pickering</div>
+      <a href="the-grand.html" class="card-link">View Floor Plans &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var map = L.map('map', { scrollWheelZoom: false }).setView([43.65, -79.38], 11);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  var pinIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:24px;height:24px;border-radius:50%;background:#1e1c18;border:2px solid #b89a56;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;border-radius:50%;background:#b89a56;"></div></div>',
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -14]
+  });
+
+  var buildings = [
+    { lat: 43.6701, lng: -79.3947, name: '50 Scollard', hood: 'Yorkville', address: '50 Scollard St, Toronto', link: '50-scollard.html' },
+    { lat: 43.6716, lng: -79.3935, name: '11 Yorkville', hood: 'Yorkville', address: '11 Yorkville Ave, Toronto', link: '11-yorkville.html' },
+    { lat: 43.6748, lng: -79.4012, name: 'The Bedford', hood: 'Yorkville', address: '287 Davenport Rd, Toronto', link: 'the-bedford.html' },
+    { lat: 43.6382, lng: -79.4197, name: '8 Temple', hood: 'Liberty Village', address: '8 Temple Ave, Toronto', link: '8-temple.html' },
+    { lat: 43.6389, lng: -79.4228, name: 'XO2 Condos', hood: 'Liberty Village', address: '285 Dufferin St, Toronto', link: 'xo2.html' },
+    { lat: 43.6448, lng: -79.3987, name: 'The Well', hood: 'CN Tower', address: '438 King St W, Toronto', link: '../neighbourhoods/cn-tower.html' },
+    { lat: 43.6461, lng: -79.3970, name: 'Concord Canada House', hood: 'CN Tower', address: '290 Spadina Ave, Toronto', link: 'concord-canada-house.html' },
+    { lat: 43.6472, lng: -79.3969, name: '101 Spadina', hood: 'CN Tower', address: '101 Spadina Ave, Toronto', link: '101-spadina.html' },
+    { lat: 43.6821, lng: -79.4089, name: '429 Walmer', hood: 'Forest Hill', address: '429 Walmer Rd, Toronto', link: '429-walmer.html' },
+    { lat: 43.5771, lng: -79.5396, name: 'Exhale Residences', hood: 'Dixie & Lakeshore', address: '1381 Lakeshore Rd E, Mississauga', link: 'exhale.html' },
+    { lat: 43.8365, lng: -79.0875, name: 'Universal City East', hood: 'Pickering GO', address: '1496 Bayly St, Pickering', link: 'universal-city-east.html' },
+    { lat: 43.8371, lng: -79.0889, name: 'The Grand', hood: 'Pickering GO', address: '1474 Bayly St, Pickering', link: 'the-grand.html' }
+  ];
+
+  buildings.forEach(function(b) {
+    var popup = '<div class="popup-neighbourhood">' + b.hood + '</div>' +
+      '<div class="popup-name">' + b.name + '</div>' +
+      '<div class="popup-address">' + b.address + '</div>' +
+      '<a href="' + b.link + '" class="popup-link">View Floor Plans &rarr;</a>';
+    L.marker([b.lat, b.lng], { icon: pinIcon }).addTo(map).bindPopup(popup);
+  });
+</script>
+</body>
+</html>
