@@ -227,13 +227,17 @@
 
   <div class="fp-filters" id="fp-filters">
     <button class="fp-filter-btn active" data-filter="all">All</button>
+    <button class="fp-filter-btn" data-filter="standard">Standard</button>
+    <button class="fp-filter-btn" data-filter="luxury">Luxury</button>
     <button class="fp-filter-btn" data-filter="under1000">Under 1,000 sq ft</button>
     <button class="fp-filter-btn" data-filter="1000-1500">1,000 &ndash; 1,500 sq ft</button>
     <button class="fp-filter-btn" data-filter="1500+">1,500+ sq ft</button>
   </div>
 
+  <div class="sqft-header" id="standard-header" style="margin-bottom:1.5rem;"><div class="sqft-title">Standard <em>Collection</em></div><div class="sqft-count">5 floor plans</div></div>
+
   <div class="fp-grid" id="fp-grid">
-    <div class="fp-card" data-sqft="592" onclick="openModal('sp-s1')">
+    <div class="fp-card" data-sqft="592" data-collection="standard" onclick="openModal('sp-s1')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d592.jpg" alt="Suite D592 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -243,7 +247,7 @@
         <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$674,250</span>
       </div>
     </div>
-    <div class="fp-card" data-sqft="753" onclick="openModal('sp-s2')">
+    <div class="fp-card" data-sqft="753" data-collection="standard" onclick="openModal('sp-s2')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d753.jpg" alt="Suite D753 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -253,7 +257,7 @@
         <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$865,650</span>
       </div>
     </div>
-    <div class="fp-card" data-sqft="762" onclick="openModal('sp-s3')">
+    <div class="fp-card" data-sqft="762" data-collection="standard" onclick="openModal('sp-s3')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d762.jpg" alt="Suite D762 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -263,7 +267,7 @@
         <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,182,330</span>
       </div>
     </div>
-    <div class="fp-card" data-sqft="816" onclick="openModal('sp-s4')">
+    <div class="fp-card" data-sqft="816" data-collection="standard" onclick="openModal('sp-s4')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d816.jpg" alt="Suite D816 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -273,7 +277,7 @@
         <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$909,150</span>
       </div>
     </div>
-    <div class="fp-card" data-sqft="832" onclick="openModal('sp-s5')">
+    <div class="fp-card" data-sqft="832" data-collection="standard" onclick="openModal('sp-s5')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d830.jpg" alt="Suite D830 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -283,7 +287,10 @@
         <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$983,100</span>
       </div>
     </div>
-    <div class="fp-card" data-sqft="928" onclick="openModal('sp-1')">
+
+    <div class="sqft-header" id="luxury-header" style="grid-column:1/-1; margin-top:1rem; margin-bottom:1rem;"><div class="sqft-title">Luxury <em>Collection</em></div><div class="sqft-count">10 floor plans</div></div>
+
+    <div class="fp-card" data-sqft="928" data-collection="luxury" onclick="openModal('sp-1')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-1.jpg" alt="Suite D928 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -293,7 +300,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="993" onclick="openModal('sp-2')">
+    <div class="fp-card" data-sqft="993" data-collection="luxury" onclick="openModal('sp-2')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-2.jpg" alt="Suite D993 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -303,7 +310,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1396" onclick="openModal('sp-3')">
+    <div class="fp-card" data-sqft="1396" data-collection="luxury" onclick="openModal('sp-3')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-3.jpg" alt="Suite D1396 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -313,7 +320,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="2322" onclick="openModal('sp-4')">
+    <div class="fp-card" data-sqft="2322" data-collection="luxury" onclick="openModal('sp-4')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-4.jpg" alt="Suite D2322 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -323,7 +330,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="2448" onclick="openModal('sp-5')">
+    <div class="fp-card" data-sqft="2448" data-collection="luxury" onclick="openModal('sp-5')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-5.jpg" alt="Suite D2448 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -333,7 +340,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1100" onclick="openModal('sp-6')">
+    <div class="fp-card" data-sqft="1100" data-collection="luxury" onclick="openModal('sp-6')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-6.jpg" alt="Suite E1100 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -343,7 +350,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1169" onclick="openModal('sp-7')">
+    <div class="fp-card" data-sqft="1169" data-collection="luxury" onclick="openModal('sp-7')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-7.jpg" alt="Suite E1169 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -353,7 +360,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1446" onclick="openModal('sp-8')">
+    <div class="fp-card" data-sqft="1446" data-collection="luxury" onclick="openModal('sp-8')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-8.jpg" alt="Suite E1446 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -363,7 +370,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1465" onclick="openModal('sp-9')">
+    <div class="fp-card" data-sqft="1465" data-collection="luxury" onclick="openModal('sp-9')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-9.jpg" alt="Suite E1465 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -373,7 +380,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); font-style:italic; margin-top:0.3rem;">No HST rebate applicable</div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1466" onclick="openModal('sp-10')">
+    <div class="fp-card" data-sqft="1466" data-collection="luxury" onclick="openModal('sp-10')">
       <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-10.jpg" alt="Suite E1466 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -554,20 +561,30 @@
     });
   });
 
-  // Sq ft filter
+  // Floor plan filter
   document.querySelectorAll('#fp-filters .fp-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       document.querySelectorAll('#fp-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       var filter = btn.dataset.filter;
+      var stdHeader = document.getElementById('standard-header');
+      var luxHeader = document.getElementById('luxury-header');
+      stdHeader.style.display = '';
+      luxHeader.style.display = '';
       document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
         var sqft = parseInt(card.dataset.sqft);
+        var col = card.dataset.collection;
         var show = true;
-        if (filter === 'under1000') show = sqft < 1000;
+        if (filter === 'standard') show = col === 'standard';
+        else if (filter === 'luxury') show = col === 'luxury';
+        else if (filter === 'under1000') show = sqft < 1000;
         else if (filter === '1000-1500') show = sqft >= 1000 && sqft < 1500;
         else if (filter === '1500+') show = sqft >= 1500;
         card.style.display = show ? '' : 'none';
       });
+      if (filter === 'standard') luxHeader.style.display = 'none';
+      if (filter === 'luxury') stdHeader.style.display = 'none';
+      if (filter === '1000-1500' || filter === '1500+') stdHeader.style.display = 'none';
     });
   });
 
