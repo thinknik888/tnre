@@ -40,9 +40,9 @@
     .stat-item .stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
 
     /* GALLERY */
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .gallery-item { cursor: pointer; }
-    .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+    .gallery { column-count: 3; column-gap: 4px; }
+    .gallery img { width: 100%; display: block; margin-bottom: 4px; cursor: pointer; transition: opacity 0.2s; }
+    .gallery img:hover { opacity: 0.85; }
 
     /* LIGHTBOX */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 300; align-items: center; justify-content: center; }
@@ -126,7 +126,7 @@
       .building-info { grid-template-columns: 1fr; }
       .building-desc { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
       .building-stats { padding: 3rem 1.5rem; }
-      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery { column-count: 2; }
       .sqft-section { padding: 3rem 1.5rem; }
       .fp-grid { grid-template-columns: repeat(2, 1fr); }
       .modal { width: 100%; height: 100vh; border-radius: 0; }
@@ -138,7 +138,7 @@
     }
     @media (max-width: 600px) {
       .fp-grid { grid-template-columns: 1fr; }
-      .gallery { grid-template-columns: 1fr; }
+      .gallery { column-count: 1; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -189,11 +189,33 @@
 
 <!-- GALLERY -->
 <div class="gallery" id="gallery">
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 0)"><img src="../neighbourhoods/images/spadina-rendering-1.jpg" alt="101 Spadina Rendering 1" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 1)"><img src="../neighbourhoods/images/spadina-rendering-2.jpg" alt="101 Spadina Rendering 2" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 2)"><img src="../neighbourhoods/images/spadina-rendering-3.jpg" alt="101 Spadina Rendering 3" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 3)"><img src="../neighbourhoods/images/spadina-rendering-4.jpg" alt="101 Spadina Rendering 4" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 4)"><img src="../neighbourhoods/images/spadina-rendering-5.jpg" alt="101 Spadina Rendering 5" /></div>
+  <img src="../neighbourhoods/images/spadina-rendering-2.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-3.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-4.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-5.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-6.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-7.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-8.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-9.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-10.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-11.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-12.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-13.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-14.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-15.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-16.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-17.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-18.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-19.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-20.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-21.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-22.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-23.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-24.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-25.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-26.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-27.jpg" alt="101 Spadina" loading="lazy" />
+  <img src="../neighbourhoods/images/spadina-rendering-28.jpg" alt="101 Spadina" loading="lazy" />
 </div>
 
 <!-- FLOOR PLANS -->
@@ -425,13 +447,11 @@
   });
 
   // Lightbox
-  var galleryImages = [
-    '../neighbourhoods/images/spadina-rendering-1.jpg',
-    '../neighbourhoods/images/spadina-rendering-2.jpg',
-    '../neighbourhoods/images/spadina-rendering-3.jpg',
-    '../neighbourhoods/images/spadina-rendering-4.jpg',
-    '../neighbourhoods/images/spadina-rendering-5.jpg'
-  ];
+  var galleryImages = [];
+  document.querySelectorAll('.gallery img').forEach(function(img, i) {
+    galleryImages.push(img.src);
+    img.addEventListener('click', function() { openLightbox(galleryImages, i); });
+  });
 
   var lbImages = [];
   var lbIndex = 0;
