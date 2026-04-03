@@ -54,9 +54,10 @@
     .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
     .modal-image { background: #fff; display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; }
     .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
-    .modal-image { overflow: hidden; }
-    .modal-image img { cursor: zoom-in; transition: transform 0.3s; }
-    .modal-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
+    .modal-image { overflow: hidden; position: relative; }
+    .modal-image img { cursor: zoom-in; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
     .modal-details { padding: 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
@@ -351,7 +352,7 @@
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; document.querySelector('.modal-image').classList.remove('zoomed'); }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
@@ -387,10 +388,63 @@
     }
   })();
 
-  // Modal image zoom toggle
-  document.getElementById('modal-img').addEventListener('click', function() {
-    this.parentElement.classList.toggle('zoomed');
-  });
+  // Modal image zoom + drag-to-pan
+  (function() {
+    var img = document.getElementById('modal-img');
+    var container = img.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+    function updateTransform(animate) {
+      img.style.transition = animate ? 'transform 0.3s' : 'none';
+      img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+
+    img.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx;
+      panY = startPanY + dy;
+      updateTransform(false);
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else {
+        resetZoom();
+      }
+    });
+
+    window.resetModalZoom = resetZoom;
+  })();
 </script>
 </body>
 </html>

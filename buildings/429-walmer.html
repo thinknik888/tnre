@@ -108,8 +108,9 @@
     .modal-nav-prev { left: 0.5rem; }
     .modal-nav-next { right: 0.5rem; }
     .modal-image { position: relative; overflow: hidden; }
-    .modal-image img { cursor: zoom-in; transition: transform 0.3s; }
-    .modal-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
+    .modal-image img { cursor: zoom-in; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
   </style>
 </head>
 <body>
@@ -415,7 +416,7 @@
     document.getElementById('modal-title').textContent = p.name;
     var img = document.getElementById('modal-img');
     img.src = p.img;
-    document.querySelector('.modal-image').classList.remove('zoomed');
+    if (window.resetModalZoom) window.resetModalZoom();
     document.getElementById('m-building').textContent = '429 Walmer';
     document.getElementById('m-collection').textContent = p.collection;
     document.getElementById('m-name').textContent = p.name;
@@ -427,7 +428,7 @@
     currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
     showPlan(plans[planKeys[currentPlanIdx]]);
   }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; document.querySelector('.modal-image').classList.remove('zoomed'); }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
 
   // Gallery lightbox
@@ -472,10 +473,64 @@
     }
   });
 
-  // Modal image zoom toggle
-  document.getElementById('modal-img').addEventListener('click', function() {
-    this.parentElement.classList.toggle('zoomed');
-  });
+  // Modal image zoom + drag-to-pan
+  (function() {
+    var img = document.getElementById('modal-img');
+    var container = img.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+    function updateTransform(animate) {
+      img.style.transition = animate ? 'transform 0.3s' : 'none';
+      img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+
+    img.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx;
+      panY = startPanY + dy;
+      updateTransform(false);
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else {
+        resetZoom();
+      }
+    });
+
+    // Reset on plan change or modal close
+    window.resetModalZoom = resetZoom;
+  })();
 </script>
 </body>
 </html>
