@@ -91,6 +91,26 @@
       footer { padding: 1.5rem; }
     }
     @media (max-width: 600px) { .stats-bar { gap: 1.5rem; flex-wrap: wrap; } .gallery { column-count: 1; } }
+    .gallery img { cursor: pointer; transition: opacity 0.2s; }
+    .gallery img:hover { opacity: 0.85; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(27,45,79,0.92); z-index: 300; align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: rgba(240,236,228,0.7); font-size: 2rem; cursor: pointer; z-index: 301; line-height: 1; padding: 0.5rem; }
+    .lightbox-close:hover { color: #f0ece4; }
+    .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(240,236,228,0.6); font-size: 2.5rem; cursor: pointer; padding: 1rem; z-index: 301; transition: color 0.2s; }
+    .lightbox-arrow:hover { color: #f0ece4; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(240,236,228,0.5); }
+    .modal-image { overflow: auto; }
+    .modal-image img { cursor: zoom-in; }
+    .modal-image img.zoomed { max-width: none; max-height: none; width: 150%; cursor: zoom-out; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(27,45,79,0.6); border: none; color: rgba(240,236,228,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(27,45,79,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
+    .modal-image { position: relative; }
   </style>
 </head>
 <body>
@@ -126,9 +146,7 @@
 <div class="gallery-section">
   <h3>Building <em style="font-style:italic; color:var(--bronze);">Gallery</em></h3>
   <div class="gallery">
-    <img src="../neighbourhoods/images/walmer-rendering-1.jpg" alt="429 Walmer" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-2.jpg" alt="429 Walmer" loading="lazy" />
-    <img src="../neighbourhoods/images/walmer-rendering-3.jpg" alt="429 Walmer" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-4.jpg" alt="429 Walmer Exterior" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-5.jpg" alt="429 Walmer" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-6.jpg" alt="429 Walmer" loading="lazy" />
@@ -336,7 +354,11 @@
       <button class="modal-close" onclick="closeModal()">&#x2715;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" onclick="this.classList.toggle('zoomed')" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
       <div class="modal-details">
         <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
         <div class="detail-row"><span class="detail-label">Collection</span><span class="detail-val" id="m-collection"></span></div>
@@ -352,6 +374,14 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" onclick="lbNav(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <button class="lightbox-arrow lightbox-next" onclick="lbNav(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
 <script>
@@ -371,23 +401,77 @@
     'w-13': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', price: '$6,126,000 \u2013 $7,657,500', img: '../neighbourhoods/images/walmer-fp-estate-17.jpg' },
     'w-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft', collection: 'Penthouse Collection', price: '$16,934,000 \u2013 $21,167,500', img: '../neighbourhoods/images/walmer-fp-penthouse-2.jpg' }
   };
+  var planKeys = Object.keys(plans);
+  var currentPlanIdx = 0;
+
   function openModal(id) {
     var p = plans[id]; if (!p) return;
+    currentPlanIdx = planKeys.indexOf(id);
+    showPlan(p);
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function showPlan(p) {
     document.getElementById('modal-eyebrow').textContent = '429 Walmer \u00b7 ' + p.collection;
     document.getElementById('modal-title').textContent = p.name;
-    document.getElementById('modal-img').src = p.img;
+    var img = document.getElementById('modal-img');
+    img.src = p.img;
+    img.classList.remove('zoomed');
     document.getElementById('m-building').textContent = '429 Walmer';
     document.getElementById('m-collection').textContent = p.collection;
     document.getElementById('m-name').textContent = p.name;
     document.getElementById('m-type').textContent = p.type;
     document.getElementById('m-size').textContent = p.size;
     document.getElementById('m-price').textContent = p.price;
-    document.getElementById('modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+  }
+  function modalNav(dir) {
+    currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
+    showPlan(plans[planKeys[currentPlanIdx]]);
   }
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+  // Gallery lightbox
+  var lbImages = [];
+  var lbIndex = 0;
+  (function() {
+    var imgs = document.querySelectorAll('.gallery img');
+    imgs.forEach(function(img, i) {
+      img.addEventListener('click', function() {
+        lbImages = Array.from(imgs).map(function(el) { return el.src; });
+        lbIndex = i;
+        showLb();
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+  })();
+  function showLb() {
+    document.getElementById('lightbox-img').src = lbImages[lbIndex];
+    document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+  }
+  function lbNav(dir) {
+    lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+    showLb();
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    if (!document.getElementById('modal').classList.contains('active')) document.body.style.overflow = '';
+  }
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-img')) closeLightbox();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeLightbox(); closeModal(); }
+    if (document.getElementById('lightbox').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') lbNav(-1);
+      if (e.key === 'ArrowRight') lbNav(1);
+    } else if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalNav(-1);
+      if (e.key === 'ArrowRight') modalNav(1);
+    }
+  });
 </script>
 </body>
 </html>
