@@ -107,9 +107,9 @@
     .modal-nav:hover { background: rgba(27,45,79,0.9); }
     .modal-nav-prev { left: 0.5rem; }
     .modal-nav-next { right: 0.5rem; }
-    .modal-image { position: relative; }
-    .fp-row-image img { cursor: zoom-in; transition: transform 0.3s; }
-    .fp-row-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
+    .modal-image { position: relative; overflow: hidden; }
+    .modal-image img { cursor: zoom-in; transition: transform 0.3s; }
+    .modal-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
   </style>
 </head>
 <body>
@@ -415,7 +415,7 @@
     document.getElementById('modal-title').textContent = p.name;
     var img = document.getElementById('modal-img');
     img.src = p.img;
-    img.classList.remove('zoomed');
+    document.querySelector('.modal-image').classList.remove('zoomed');
     document.getElementById('m-building').textContent = '429 Walmer';
     document.getElementById('m-collection').textContent = p.collection;
     document.getElementById('m-name').textContent = p.name;
@@ -427,7 +427,7 @@
     currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
     showPlan(plans[planKeys[currentPlanIdx]]);
   }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; document.querySelector('.modal-image').classList.remove('zoomed'); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
 
   // Gallery lightbox
@@ -472,12 +472,9 @@
     }
   });
 
-  // Card image zoom toggle
-  document.querySelectorAll('.fp-row-image img').forEach(function(img) {
-    img.addEventListener('click', function(e) {
-      e.stopPropagation();
-      img.parentElement.classList.toggle('zoomed');
-    });
+  // Modal image zoom toggle
+  document.getElementById('modal-img').addEventListener('click', function() {
+    this.parentElement.classList.toggle('zoomed');
   });
 </script>
 </body>

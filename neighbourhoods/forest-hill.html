@@ -54,8 +54,9 @@
     .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
     .modal-image { background: #fff; display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; }
     .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
-    .fp-row-image img { cursor: zoom-in; transition: transform 0.3s; }
-    .fp-row-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
+    .modal-image { overflow: hidden; }
+    .modal-image img { cursor: zoom-in; transition: transform 0.3s; }
+    .modal-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
     .modal-details { padding: 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
@@ -350,7 +351,7 @@
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; document.querySelector('.modal-image').classList.remove('zoomed'); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
@@ -386,12 +387,9 @@
     }
   })();
 
-  // Card image zoom toggle
-  document.querySelectorAll('.fp-row-image img').forEach(function(img) {
-    img.addEventListener('click', function(e) {
-      e.stopPropagation();
-      img.parentElement.classList.toggle('zoomed');
-    });
+  // Modal image zoom toggle
+  document.getElementById('modal-img').addEventListener('click', function() {
+    this.parentElement.classList.toggle('zoomed');
   });
 </script>
 </body>
