@@ -108,11 +108,8 @@
     .modal-nav-prev { left: 0.5rem; }
     .modal-nav-next { right: 0.5rem; }
     .modal-image { position: relative; }
-    .fp-row-image { position: relative; }
-    .fp-zoom-btn { position: absolute; bottom: 0.75rem; right: 0.75rem; background: rgba(27,45,79,0.7); color: rgba(240,236,228,0.8); border: none; padding: 0.5rem 0.65rem; border-radius: 2px; cursor: pointer; font-size: 0.9rem; line-height: 1; z-index: 10; transition: background 0.2s; }
-    .fp-zoom-btn:hover { background: rgba(27,45,79,0.95); color: #f0ece4; }
-    .fp-row-image.zoomed { overflow: auto; }
-    .fp-row-image.zoomed img { max-width: none; max-height: none; width: 180%; transform-origin: top left; }
+    .fp-row-image img { cursor: zoom-in; transition: transform 0.3s; }
+    .fp-row-image.zoomed img { transform: scale(1.8); cursor: zoom-out; }
   </style>
 </head>
 <body>
@@ -475,17 +472,12 @@
     }
   });
 
-  // Card zoom buttons
-  document.querySelectorAll('.fp-row-image').forEach(function(container) {
-    var btn = document.createElement('button');
-    btn.className = 'fp-zoom-btn';
-    btn.innerHTML = '&#x1F50D;';
-    btn.addEventListener('click', function(e) {
+  // Card image zoom toggle
+  document.querySelectorAll('.fp-row-image img').forEach(function(img) {
+    img.addEventListener('click', function(e) {
       e.stopPropagation();
-      container.classList.toggle('zoomed');
-      btn.innerHTML = container.classList.contains('zoomed') ? '&#x2715;' : '&#x1F50D;';
+      img.parentElement.classList.toggle('zoomed');
     });
-    container.appendChild(btn);
   });
 </script>
 </body>
