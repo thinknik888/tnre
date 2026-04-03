@@ -30,8 +30,14 @@
     .stat-item .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
     .gallery-section { padding: 3rem; border-bottom: 1px solid var(--border); }
     .gallery-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--navy); margin-bottom: 1.5rem; }
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    .gallery img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+    .gallery { column-count: 3; column-gap: 4px; }
+    .gallery img { width: 100%; display: block; margin-bottom: 4px; object-fit: cover; }
+    .gallery .wide { column-span: all; margin-bottom: 4px; }
+    .mobile-jump { display: none; }
+    @media (max-width: 768px) {
+      .mobile-jump { display: block; position: sticky; top: 49px; z-index: 99; background: var(--navy); text-align: center; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .mobile-jump a { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); text-decoration: none; }
+    }
     .collection-header { padding: 3rem 3rem 1.5rem; border-bottom: 1px solid var(--border); }
     .collection-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--navy); }
     .collection-header h2 em { font-style: italic; color: var(--bronze); }
@@ -76,14 +82,14 @@
       .fp-row { grid-template-columns: 1fr; }
       .fp-row-image { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
       .fp-row-details { padding: 1.5rem; }
-      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery { column-count: 2; }
       .modal-body { grid-template-columns: 1fr; }
       .modal-image { border-bottom: 1px solid var(--border); }
       .modal-details { border-left: none; }
       .cta-strip { padding: 3rem 1.5rem; }
       footer { padding: 1.5rem; }
     }
-    @media (max-width: 600px) { .stats-bar { gap: 1.5rem; flex-wrap: wrap; } .gallery { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .stats-bar { gap: 1.5rem; flex-wrap: wrap; } .gallery { column-count: 1; } }
   </style>
 </head>
 <body>
@@ -92,6 +98,7 @@
   <a href="../neighbourhoods/forest-hill.html" class="nav-back">&larr; Forest Hill Floor Plans</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
+<div class="mobile-jump"><a href="#floor-plans">View Floor Plans &rarr;</a></div>
 
 <div class="hero">
   <img src="../neighbourhoods/images/walmer-rendering-4.jpg" alt="429 Walmer" />
@@ -118,15 +125,35 @@
 <div class="gallery-section">
   <h3>Building <em style="font-style:italic; color:var(--bronze);">Gallery</em></h3>
   <div class="gallery">
+    <img src="../neighbourhoods/images/walmer-rendering-1.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-2.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-3.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-4.jpg" alt="429 Walmer Exterior" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-5.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-6.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-7.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-8.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-9.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-10.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-11.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-12.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-13.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-14.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-15.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-16.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-17.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-18.jpg" alt="429 Walmer" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-19.jpg" alt="429 Walmer" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-20.jpg" alt="429 Walmer Interior" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-21.jpg" alt="429 Walmer Interior" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-22.jpg" alt="429 Walmer Interior" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-23.jpg" alt="429 Walmer Interior" loading="lazy" />
     <img src="../neighbourhoods/images/walmer-rendering-24.jpg" alt="429 Walmer Interior" loading="lazy" />
+    <img src="../neighbourhoods/images/walmer-rendering-25.jpg" alt="429 Walmer Interior" loading="lazy" />
   </div>
 </div>
 
-<div class="collection-header"><h2>Podium <em>Collection</em></h2></div>
+<div class="collection-header" id="floor-plans"><h2>Podium <em>Collection</em></h2></div>
     <div class="fp-row" onclick="openModal('w-1')">
       <div class="fp-row-image"><img src="../neighbourhoods/images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
