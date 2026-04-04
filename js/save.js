@@ -145,14 +145,19 @@
     if (!modalEl) {
       modalEl = document.createElement('div');
       modalEl.className = 'save-modal-overlay';
-      modalEl.innerHTML = '<div class="save-modal">\
+      modalEl.innerHTML = '<div class="save-modal" style="position:relative;">\
+        <button id="save-close" style="position:absolute;top:0.75rem;right:0.75rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:#8a8a84;line-height:1;">&times;</button>\
         <h3>Save Floor Plans</h3>\
         <p>Just your name and number to keep your list ready.</p>\
         <input id="save-name" type="text" placeholder="Your name" />\
         <input id="save-phone" type="tel" placeholder="Phone number" />\
-        <button id="save-submit">Save &amp; Continue</button>\
+        <button id="save-submit">Save My Plans</button>\
       </div>';
       document.body.appendChild(modalEl);
+      document.getElementById('save-close').addEventListener('click', function() {
+        modalEl.classList.remove('active');
+        pendingPlanId = null; pendingBtn = null; pendingCard = null;
+      });
     }
     modalEl.classList.add('active');
     document.getElementById('save-name').value = '';
