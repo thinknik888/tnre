@@ -20,11 +20,13 @@
     .hero p { font-size: 0.88rem; color: var(--muted); }
     .saved-grid { padding: 0 3rem 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .saved-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
-    .saved-card img { width: 100%; aspect-ratio: 4/3; object-fit: contain; padding: 1rem; background: #fff; display: block; }
+    .saved-card img { width: 100%; aspect-ratio: 4/3; object-fit: contain; padding: 0.75rem; background: #fff; display: block; }
     .saved-card-info { padding: 1rem 1.25rem; }
-    .saved-card-building { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
-    .saved-card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; margin-bottom: 0.2rem; }
-    .saved-card-meta { font-size: 0.78rem; color: var(--muted); }
+    .saved-card-building { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+    .saved-card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; margin-bottom: 0.15rem; }
+    .saved-card-type { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.15rem; }
+    .saved-card-sqft { font-size: 0.78rem; color: var(--gold); margin-bottom: 0.3rem; }
+    .saved-card-price { font-size: 0.88rem; font-weight: 500; }
     .saved-card-remove { position: absolute; top: 0.5rem; right: 0.5rem; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 1rem; color: var(--muted); display: flex; align-items: center; justify-content: center; }
     .saved-card-remove:hover { color: #c44; }
     .empty { padding: 4rem 3rem; text-align: center; }
@@ -61,42 +63,52 @@
 </footer>
 
 <script>
-  var saved = JSON.parse(localStorage.getItem('ca_saved_plans') || '[]');
+  var savedPlans = JSON.parse(localStorage.getItem('ca_saved_plans') || '{}');
   var user = JSON.parse(localStorage.getItem('ca_user') || 'null');
   var container = document.getElementById('saved-container');
+  var keys = Object.keys(savedPlans);
 
-  if (saved.length === 0) {
+  if (keys.length === 0) {
     container.innerHTML = '<div class="empty"><p>No saved floor plans yet. Browse neighbourhoods and tap the heart icon on any plan to save it.</p><a href="../index.html" style="color:#b89a56;">Browse Floor Plans &rarr;</a></div>';
   } else {
     var html = '<div class="saved-grid" id="saved-grid">';
-    saved.forEach(function(id) {
+    keys.forEach(function(id) {
+      var p = savedPlans[id];
+      var imgSrc = p.img || '';
+      // Fix relative paths
+      if (imgSrc && !imgSrc.startsWith('http') && !imgSrc.startsWith('/') && !imgSrc.startsWith('../')) {
+        imgSrc = '../' + imgSrc;
+      }
+      if (imgSrc.startsWith('images/')) imgSrc = '../neighbourhoods/' + imgSrc;
       html += '<div class="saved-card" id="card-' + id + '">';
       html += '<button class="saved-card-remove" onclick="removePlan(\'' + id + '\')">&times;</button>';
+      if (imgSrc) html += '<img src="' + imgSrc + '" alt="' + (p.suite || id) + '" />';
       html += '<div class="saved-card-info">';
-      html += '<div class="saved-card-building">' + id + '</div>';
-      html += '<div class="saved-card-name">Saved Floor Plan</div>';
-      html += '<div class="saved-card-meta">Tap to view details</div>';
+      html += '<div class="saved-card-building">' + (p.building || '') + '</div>';
+      html += '<div class="saved-card-name">' + (p.suite || id) + '</div>';
+      html += '<div class="saved-card-type">' + (p.type || '') + '</div>';
+      html += '<div class="saved-card-sqft">' + (p.sqft || '') + '</div>';
+      html += '<div class="saved-card-price">' + (p.price || '') + '</div>';
       html += '</div></div>';
     });
     html += '</div>';
     html += '<div class="send-section">';
     if (user) {
-      html += '<p style="font-size:0.82rem;color:#6b6357;margin-bottom:1rem;">Logged in as <strong>' + user.name + '</strong> (' + user.phone + ')</p>';
+      html += '<p style="font-size:0.82rem;color:#6b6357;margin-bottom:1rem;">Saving as <strong>' + user.name + '</strong> (' + user.phone + ')</p>';
     }
-    html += '<button class="send-btn" id="send-btn" onclick="sendToNik()">Send My List to Nik &rarr;</button>';
+    html += '<button class="send-btn" id="send-btn" onclick="sendToNik()">Request Floor Plan Info &rarr;</button>';
     html += '<div class="send-status" id="send-status"></div>';
     html += '</div>';
     container.innerHTML = html;
-    document.getElementById('saved-subtitle').textContent = saved.length + ' floor plan' + (saved.length > 1 ? 's' : '') + ' saved';
+    document.getElementById('saved-subtitle').textContent = keys.length + ' floor plan' + (keys.length > 1 ? 's' : '') + ' saved';
   }
 
   function removePlan(id) {
-    var idx = saved.indexOf(id);
-    if (idx > -1) saved.splice(idx, 1);
-    localStorage.setItem('ca_saved_plans', JSON.stringify(saved));
+    delete savedPlans[id];
+    localStorage.setItem('ca_saved_plans', JSON.stringify(savedPlans));
     var card = document.getElementById('card-' + id);
     if (card) card.remove();
-    if (saved.length === 0) location.reload();
+    if (Object.keys(savedPlans).length === 0) location.reload();
   }
 
   function sendToNik() {
@@ -111,14 +123,19 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
+    var planNames = Object.keys(savedPlans).map(function(id) {
+      var p = savedPlans[id];
+      return (p.building || '') + ' ' + (p.suite || id);
+    });
+
     fetch('/.netlify/functions/save-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: user.name,
         phone: user.phone,
-        plans: saved,
-        planNames: saved
+        plans: Object.keys(savedPlans),
+        planNames: planNames
       })
     })
     .then(function(r) { return r.json(); })
@@ -127,7 +144,7 @@
       btn.textContent = 'Sent!';
     })
     .catch(function() {
-      document.getElementById('send-status').textContent = 'Could not send — call Nik directly at 647-924-0848';
+      document.getElementById('send-status').textContent = 'Could not send \u2014 call Nik directly at 647-924-0848';
       btn.disabled = false;
       btn.textContent = 'Try Again';
     });
