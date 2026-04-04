@@ -19,16 +19,16 @@
     .hero h1 em { font-style: italic; color: var(--gold); }
     .hero p { font-size: 0.88rem; color: var(--muted); }
     .saved-grid { padding: 0 3rem 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .saved-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
-    .saved-card-img { width: 100%; aspect-ratio: 4/3; object-fit: contain; padding: 0.75rem; background: #fff; display: block; }
-    .saved-card-info { padding: 1rem 1.25rem; }
-    .saved-card-building { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
-    .saved-card-suite { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; margin-bottom: 0.15rem; }
+    .saved-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .saved-card img { width: 100%; aspect-ratio: 4/3; object-fit: contain; padding: 0.75rem; background: #fff; display: block; }
+    .saved-card-details { padding: 1rem 1.25rem; }
+    .saved-card-building { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .saved-card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 0.2rem; }
     .saved-card-type { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.15rem; }
     .saved-card-sqft { font-size: 0.78rem; color: var(--gold); margin-bottom: 0.3rem; }
-    .saved-card-price { font-size: 0.88rem; font-weight: 500; }
-    .saved-card-remove { position: absolute; top: 0.5rem; right: 0.5rem; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 1rem; color: var(--muted); display: flex; align-items: center; justify-content: center; }
-    .saved-card-remove:hover { color: #c44; }
+    .saved-card-price { font-size: 0.9rem; font-weight: 500; color: var(--dark); margin-bottom: 0.75rem; }
+    .saved-card-remove { background: none; border: 1px solid var(--border); border-radius: 2px; padding: 0.4rem 0.75rem; font-size: 0.68rem; color: var(--muted); cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
+    .saved-card-remove:hover { border-color: #c44; color: #c44; }
     .empty { padding: 4rem 3rem; text-align: center; }
     .empty p { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.5rem; }
     .send-section { padding: 2rem 3rem; border-top: 1px solid var(--border); }
@@ -63,38 +63,65 @@
 </footer>
 
 <script>
-  var savedPlans = JSON.parse(localStorage.getItem('ca_saved_plans') || '{}');
+  // Debug: log raw localStorage value
+  console.log('Saved plans raw:', localStorage.getItem('ca_saved_plans'));
+
+  var raw = localStorage.getItem('ca_saved_plans');
+  var savedPlans = {};
   var user = JSON.parse(localStorage.getItem('ca_user') || 'null');
   var container = document.getElementById('saved-container');
-  var keys = Object.keys(savedPlans);
+
+  // Parse saved plans — handle both object format and legacy array format
+  if (raw) {
+    try {
+      var parsed = JSON.parse(raw);
+      if (typeof parsed === 'object' && !Array.isArray(parsed)) {
+        savedPlans = parsed;
+      } else if (Array.isArray(parsed)) {
+        // Legacy: array of IDs — convert to object
+        parsed.forEach(function(id) { savedPlans[id] = { id: id }; });
+      }
+    } catch (e) {
+      console.log('Failed to parse saved plans:', e);
+    }
+  }
+
+  console.log('Parsed saved plans:', savedPlans);
 
   function fixImgPath(src) {
     if (!src) return '';
-    // Handle relative paths from neighbourhood/building pages
+    if (src.startsWith('http') || src.startsWith('/')) return src;
     if (src.startsWith('images/')) return '../neighbourhoods/' + src;
-    if (src.startsWith('../neighbourhoods/')) return src;
-    if (src.startsWith('neighbourhoods/')) return '../' + src;
-    if (src.startsWith('/')) return src;
-    if (src.startsWith('http')) return src;
+    if (src.startsWith('../')) return src;
     return '../' + src;
   }
+
+  var keys = Object.keys(savedPlans);
 
   if (keys.length === 0) {
     container.innerHTML = '<div class="empty"><p>No saved floor plans yet. Browse neighbourhoods and tap the heart icon on any plan to save it.</p><a href="../index.html" style="color:#b89a56;">Browse Floor Plans &rarr;</a></div>';
   } else {
     var html = '<div class="saved-grid">';
     keys.forEach(function(id) {
-      var p = savedPlans[id];
+      var p = savedPlans[id] || {};
       var imgSrc = fixImgPath(p.image || p.img || '');
+      var building = p.building || '';
+      var neighbourhood = p.neighbourhood || '';
+      var label = building && neighbourhood ? building + ' &middot; ' + neighbourhood : (building || neighbourhood || id);
+      var suite = p.suite || p.name || id;
+      var type = p.type || '';
+      var sqft = p.sqft || p.size || '';
+      var price = p.price || '';
+
       html += '<div class="saved-card" id="card-' + id + '">';
-      html += '<button class="saved-card-remove" onclick="removePlan(\'' + id + '\')">&times;</button>';
-      if (imgSrc) html += '<img class="saved-card-img" src="' + imgSrc + '" alt="' + (p.suite || p.id || '') + '" />';
-      html += '<div class="saved-card-info">';
-      html += '<div class="saved-card-building">' + (p.building || p.neighbourhood || '') + '</div>';
-      html += '<div class="saved-card-suite">' + (p.suite || p.id || '') + '</div>';
-      html += '<div class="saved-card-type">' + (p.type || '') + '</div>';
-      html += '<div class="saved-card-sqft">' + (p.sqft || '') + '</div>';
-      html += '<div class="saved-card-price">' + (p.price || '') + '</div>';
+      if (imgSrc) html += '<img src="' + imgSrc + '" alt="' + suite + '" />';
+      html += '<div class="saved-card-details">';
+      html += '<div class="saved-card-building">' + label + '</div>';
+      html += '<div class="saved-card-name">' + suite + '</div>';
+      if (type) html += '<div class="saved-card-type">' + type + '</div>';
+      if (sqft) html += '<div class="saved-card-sqft">' + sqft + '</div>';
+      if (price) html += '<div class="saved-card-price">' + price + '</div>';
+      html += '<button class="saved-card-remove" onclick="removePlan(\'' + id + '\')">Remove &times;</button>';
       html += '</div></div>';
     });
     html += '</div>';
@@ -130,8 +157,8 @@
     btn.textContent = 'Sending...';
 
     var planNames = Object.keys(savedPlans).map(function(id) {
-      var p = savedPlans[id];
-      return (p.building || '') + ' ' + (p.suite || id);
+      var p = savedPlans[id] || {};
+      return (p.building || '') + ' ' + (p.suite || p.name || id);
     });
 
     fetch('/.netlify/functions/save-lead', {
