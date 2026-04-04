@@ -116,19 +116,17 @@
     </div>
   </div>
   <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-    <span style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); min-width:100px; padding-top:0.5rem;">Collection</span>
-    <div class="fp-filters" id="collection-filters">
-      <button class="fp-filter-btn active" data-filter="all">All</button>
-      <button class="fp-filter-btn" data-filter="podium">Podium</button>
-      <button class="fp-filter-btn" data-filter="estate">Estate</button>
-      <button class="fp-filter-btn" data-filter="penthouse">Penthouse</button>
-      <button class="fp-filter-btn" data-filter="crown">Crown</button>
-      <button class="fp-filter-btn" data-filter="sfh-penthouse">Crown PH</button>
+    <span style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); min-width:100px; padding-top:0.5rem;">Square Footage</span>
+    <div class="fp-filters" id="sqft-filters">
+      <button class="fp-filter-btn active" data-size="all">All Sizes</button>
+      <button class="fp-filter-btn" data-size="under1500">Under 1,500</button>
+      <button class="fp-filter-btn" data-size="1500-2500">1,500 &ndash; 2,500</button>
+      <button class="fp-filter-btn" data-size="over2500">2,500+</button>
     </div>
   </div>
 </div>
 
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-15')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1079" onclick="openModal('fh-15')">
       <div class="fp-row-image"><img src="images/sfh-crown-2.jpg" alt="Dunvegan 1079 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -139,7 +137,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-16')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1148" onclick="openModal('fh-16')">
       <div class="fp-row-image"><img src="images/sfh-crown-10.jpg" alt="Dunvegan 1148 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -150,7 +148,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-17')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1216" onclick="openModal('fh-17')">
       <div class="fp-row-image"><img src="images/sfh-crown-3.jpg" alt="Frybrook 1216 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -161,7 +159,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-18')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1301" onclick="openModal('fh-18')">
       <div class="fp-row-image"><img src="images/sfh-crown-4.jpg" alt="Frybrook 1301 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -172,7 +170,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-19')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1356" onclick="openModal('fh-19')">
       <div class="fp-row-image"><img src="images/sfh-crown-5.jpg" alt="Frybrook 1356 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -183,7 +181,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-20')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1374" onclick="openModal('fh-20')">
       <div class="fp-row-image"><img src="images/sfh-crown-11.jpg" alt="Frybrook 1374 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -194,7 +192,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-21')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1745" onclick="openModal('fh-21')">
       <div class="fp-row-image"><img src="images/sfh-crown-7.jpg" alt="Warren 1745 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -205,7 +203,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-22')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="1878" onclick="openModal('fh-22')">
       <div class="fp-row-image"><img src="images/sfh-crown-8.jpg" alt="Frybrook 1878 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -216,7 +214,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-1')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2058" onclick="openModal('fh-1')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-20.jpg" alt="Residence 5 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -227,7 +225,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-23')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" data-sqft="2118" onclick="openModal('fh-23')">
       <div class="fp-row-image"><img src="images/sfh-ph-2118.jpg" alt="Frybrook 2118 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
@@ -238,7 +236,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-24')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" data-sqft="2126" onclick="openModal('fh-24')">
       <div class="fp-row-image"><img src="images/sfh-ph-2126.jpg" alt="Frybrook 2126 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
@@ -249,7 +247,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-2')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2361" onclick="openModal('fh-2')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-11.jpg" alt="Residence 3A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -260,7 +258,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-25')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="2391" onclick="openModal('fh-25')">
       <div class="fp-row-image"><img src="images/sfh-crown-6.jpg" alt="Warren 2391 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -271,7 +269,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-3')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2400" onclick="openModal('fh-3')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-5.jpg" alt="Residence 2A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -282,7 +280,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-26')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="2423" onclick="openModal('fh-26')">
       <div class="fp-row-image"><img src="images/sfh-crown-9.jpg" alt="Dunvegan 2423 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -293,7 +291,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-27')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" data-sqft="2423" onclick="openModal('fh-27')">
       <div class="fp-row-image"><img src="images/sfh-ph-2423.jpg" alt="Dunvegan 2423 PH Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
@@ -304,7 +302,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-4')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2534" onclick="openModal('fh-4')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-14.jpg" alt="Residence 3 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -315,7 +313,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-5')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2568" onclick="openModal('fh-5')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-17.jpg" alt="Residence 4 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -326,7 +324,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-6')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2588" onclick="openModal('fh-6')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -337,7 +335,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-7')">
+    <div class="fp-row" data-collection="podium" data-closing="2030" data-sqft="2591" onclick="openModal('fh-7')">
       <div class="fp-row-image"><img src="images/walmer-fp-podium-8.jpg" alt="Residence 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
@@ -348,7 +346,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-28')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" data-sqft="2630" onclick="openModal('fh-28')">
       <div class="fp-row-image"><img src="images/sfh-ph-2630.jpg" alt="Frybrook 2630 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
@@ -359,7 +357,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-29')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" data-sqft="3009" onclick="openModal('fh-29')">
       <div class="fp-row-image"><img src="images/sfh-crown-3009.jpg" alt="Frybrook 3009 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
@@ -370,7 +368,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-8')">
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" data-sqft="3063" onclick="openModal('fh-8')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-17.jpg" alt="Estate 4 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
@@ -381,7 +379,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-30')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" data-sqft="3196" onclick="openModal('fh-30')">
       <div class="fp-row-image"><img src="images/sfh-ph-3196.jpg" alt="Warren 3196 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
@@ -392,7 +390,7 @@
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-9')">
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" data-sqft="3477" onclick="openModal('fh-9')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-2.jpg" alt="Terrace Estate 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
@@ -403,7 +401,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-10')">
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" data-sqft="3477" onclick="openModal('fh-10')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-5.jpg" alt="Estate 1 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
@@ -414,7 +412,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-11')">
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" data-sqft="3500" onclick="openModal('fh-11')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-8.jpg" alt="Terrace Estate 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
@@ -425,7 +423,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-12')">
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" data-sqft="3500" onclick="openModal('fh-12')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-11.jpg" alt="Estate 2 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
@@ -436,7 +434,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-13')">
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" data-sqft="3910" onclick="openModal('fh-13')">
       <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-14.jpg" alt="Estate 3 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
@@ -447,7 +445,7 @@
         <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="penthouse" data-closing="2030" style="background:#1b2d4f; color:#f0ece4;" onclick="openModal('fh-14')">
+    <div class="fp-row" data-collection="penthouse" data-closing="2030" style="background:#1b2d4f; color:#f0ece4;" data-sqft="8467" onclick="openModal('fh-14')">
       <div class="fp-row-image"><img src="images/walmer-fp-penthouse-2.jpg" alt="The Penthouse Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Penthouse &middot; 429 Walmer</div>
@@ -577,31 +575,34 @@
 
   // Filters
   var activeClosing = 'all';
-  var activeCollection = 'all';
+  var activeSqft = 'all';
 
   function applyFilters() {
     document.querySelectorAll('.fp-row').forEach(function(row) {
       var closing = row.dataset.closing;
-      var col = row.dataset.collection;
+      var sqft = parseInt(row.dataset.sqft);
       var showClosing = activeClosing === 'all' || closing === activeClosing;
-      var showCol = activeCollection === 'all' || col === activeCollection;
-      row.style.display = (showClosing && showCol) ? '' : 'none';
+      var showSqft = true;
+      if (activeSqft === 'under1500') showSqft = sqft < 1500;
+      else if (activeSqft === '1500-2500') showSqft = sqft >= 1500 && sqft <= 2500;
+      else if (activeSqft === 'over2500') showSqft = sqft > 2500;
+      row.style.display = (showClosing && showSqft) ? '' : 'none';
     });
   }
 
   function updateUrl() {
     var params = new URLSearchParams();
-    if (activeCollection !== 'all') params.set('collection', activeCollection);
+    if (activeSqft !== 'all') params.set('size', activeSqft);
     if (activeClosing !== 'all') params.set('closing', activeClosing);
     var qs = params.toString();
     history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
   }
 
-  document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(btn) {
+  document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
-      activeCollection = btn.dataset.filter;
+      activeSqft = btn.dataset.size;
       applyFilters(); updateUrl();
     });
   });
@@ -618,17 +619,17 @@
   // URL params on load
   (function() {
     var params = new URLSearchParams(window.location.search);
-    var col = params.get('collection');
+    var size = params.get('size');
     var closing = params.get('closing');
-    if (col) {
-      var btn = document.querySelector('#collection-filters .fp-filter-btn[data-filter="' + col + '"]');
-      if (btn) { document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeCollection = col; }
+    if (size) {
+      var btn = document.querySelector('#sqft-filters .fp-filter-btn[data-size="' + size + '"]');
+      if (btn) { document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeSqft = size; }
     }
     if (closing) {
       var btn = document.querySelector('#closing-filters .fp-filter-btn[data-closing-filter="' + closing + '"]');
       if (btn) { document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeClosing = closing; }
     }
-    if (col || closing) applyFilters();
+    if (size || closing) applyFilters();
   })();
 
   // Zoom + pan
