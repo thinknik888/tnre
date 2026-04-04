@@ -47,6 +47,9 @@ exports.handler = async function(event) {
     });
 
     var data = await response.json();
+    if (data.content && data.content[0] && data.content[0].text) {
+      data.content[0].text = data.content[0].text.replace(/ \u2022 /g, '\n\u2022 ');
+    }
     return {
       statusCode: response.status,
       headers: corsHeaders,
