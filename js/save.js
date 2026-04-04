@@ -11,13 +11,15 @@
     .save-btn.saved svg{fill:#b89a56;stroke:#b89a56;}\
     .save-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:10000;align-items:center;justify-content:center;}\
     .save-modal-overlay.active{display:flex;}\
-    .save-modal{background:#fff;border-radius:8px;padding:2rem;max-width:380px;width:90%;text-align:center;font-family:"Outfit",sans-serif;}\
+    .save-modal{background:#fff;border-radius:8px;padding:2rem;max-width:380px;width:90%;text-align:center;font-family:"Outfit",sans-serif;position:relative;}\
     .save-modal h3{font-family:"Cormorant Garamond",serif;font-size:1.4rem;color:#1a1a18;margin-bottom:0.5rem;}\
     .save-modal p{font-size:0.82rem;color:#6b6357;margin-bottom:1.5rem;line-height:1.5;}\
     .save-modal input{display:block;width:100%;padding:0.75rem 1rem;margin-bottom:0.75rem;border:1px solid #d4cec4;border-radius:4px;font-family:"Outfit",sans-serif;font-size:0.85rem;outline:none;}\
     .save-modal input:focus{border-color:#b89a56;}\
-    .save-modal button{width:100%;padding:0.85rem;background:#b89a56;color:#fff;border:none;border-radius:4px;font-family:"Outfit",sans-serif;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}\
-    .save-modal button:hover{background:#a08545;}\
+    .save-modal-submit{width:100%;padding:0.85rem;background:#b89a56;color:#fff;border:none;border-radius:4px;font-family:"Outfit",sans-serif;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}\
+    .save-modal-submit:hover{background:#a08545;}\
+    .save-modal-close{position:absolute;top:0.75rem;right:0.75rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:#8a8a84;line-height:1;padding:0.25rem;}\
+    .save-modal-close:hover{color:#1a1a18;}\
     .save-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1a1a18;color:#f0ede6;padding:0.65rem 1.5rem;border-radius:4px;font-family:"Outfit",sans-serif;font-size:0.78rem;z-index:10001;opacity:0;transition:opacity 0.3s;pointer-events:none;}\
     .save-toast.show{opacity:1;}\
     .nav-saved{position:relative;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#8a8a84;text-decoration:none;transition:color 0.2s;}\
@@ -30,54 +32,79 @@
 
   function getSavedCount() { return Object.keys(savedPlans).length; }
 
+  // Extract plan data from the card DOM + page's plans JS object
   function extractPlanData(card, planId) {
+    var data = {
+      id: planId,
+      image: '',
+      building: '',
+      suite: '',
+      type: '',
+      sqft: '',
+      price: '',
+      neighbourhood: '',
+      savedAt: Date.now()
+    };
+
+    // Try to get data from the page's plans JS object first (most reliable)
+    if (typeof plans !== 'undefined' && plans[planId]) {
+      var p = plans[planId];
+      data.building = p.building || '';
+      data.suite = p.suite || p.name || '';
+      data.type = p.type || '';
+      data.sqft = p.size || p.indoor || '';
+      data.price = p.price || p.promo || '';
+      data.image = p.img || '';
+    }
+
+    // Get image from DOM if not from JS
     var img = card.querySelector('img');
-    var imgSrc = img ? img.getAttribute('src') : '';
-    var building = '';
-    var suite = '';
-    var type = '';
-    var sqft = '';
-    var price = '';
+    if (img && !data.image) data.image = img.getAttribute('src') || '';
+    if (!data.image && img) data.image = img.src || '';
 
-    // Grid card (fp-card)
-    var buildingTag = card.querySelector('.fp-building-tag');
-    var suiteTag = card.querySelector('.fp-suite');
-    var typeTag = card.querySelector('.fp-type');
-    var sqftTag = card.querySelector('.fp-sqft');
-    var priceTag = card.querySelector('.fp-price');
+    // Fallback: extract from DOM for grid cards
+    if (!data.building) {
+      var bt = card.querySelector('.fp-building-tag');
+      if (bt) data.building = bt.textContent.trim();
+    }
+    if (!data.suite) {
+      var st = card.querySelector('.fp-suite');
+      if (st) data.suite = st.textContent.trim();
+    }
+    if (!data.type) {
+      var tt = card.querySelector('.fp-type');
+      if (tt) data.type = tt.textContent.trim();
+    }
+    if (!data.sqft) {
+      var sq = card.querySelector('.fp-sqft');
+      if (sq) data.sqft = sq.textContent.trim();
+    }
+    if (!data.price) {
+      var pr = card.querySelector('.fp-price');
+      if (pr) data.price = pr.textContent.trim();
+    }
 
-    if (buildingTag) building = buildingTag.textContent.trim();
-    if (suiteTag) suite = suiteTag.textContent.trim();
-    if (typeTag) type = typeTag.textContent.trim();
-    if (sqftTag) sqft = sqftTag.textContent.trim();
-    if (priceTag) price = priceTag.textContent.trim();
-
-    // Row card (fp-row) — extract from styled divs
-    if (!building) {
+    // Fallback: extract from row card details divs
+    if (!data.building) {
       var details = card.querySelector('.fp-row-details');
       if (details) {
         var divs = details.querySelectorAll('div');
-        if (divs.length >= 4) {
-          building = divs[0].textContent.trim();
-          suite = divs[1].textContent.trim();
-          type = divs[2].textContent.trim();
-          sqft = divs[3].textContent.trim();
+        for (var i = 0; i < divs.length; i++) {
+          var txt = divs[i].textContent.trim();
+          if (i === 0 && !data.building) data.building = txt;
+          if (i === 1 && !data.suite) data.suite = txt;
+          if (i === 2 && !data.type) data.type = txt;
+          if (i === 3 && !data.sqft) data.sqft = txt;
+          if (i === 4 && !data.price) data.price = txt;
         }
-        if (divs.length >= 5) price = divs[4].textContent.trim();
       }
     }
 
-    return {
-      id: planId,
-      img: imgSrc,
-      building: building,
-      suite: suite,
-      type: type,
-      sqft: sqft,
-      price: price,
-      page: window.location.pathname,
-      date: new Date().toISOString()
-    };
+    // Get neighbourhood from page title or eyebrow
+    var eyebrow = document.querySelector('.page-eyebrow');
+    if (eyebrow) data.neighbourhood = eyebrow.textContent.trim();
+
+    return data;
   }
 
   function addSaveButtons() {
@@ -145,13 +172,13 @@
     if (!modalEl) {
       modalEl = document.createElement('div');
       modalEl.className = 'save-modal-overlay';
-      modalEl.innerHTML = '<div class="save-modal" style="position:relative;">\
-        <button id="save-close" style="position:absolute;top:0.75rem;right:0.75rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:#8a8a84;line-height:1;">&times;</button>\
+      modalEl.innerHTML = '<div class="save-modal">\
+        <button class="save-modal-close" id="save-close">&times;</button>\
         <h3>Save Floor Plans</h3>\
         <p>Just your name and number to keep your list ready.</p>\
         <input id="save-name" type="text" placeholder="Your name" />\
         <input id="save-phone" type="tel" placeholder="Phone number" />\
-        <button id="save-submit">Save My Plans</button>\
+        <button class="save-modal-submit" id="save-submit">Save My Plans</button>\
       </div>';
       document.body.appendChild(modalEl);
       document.getElementById('save-close').addEventListener('click', function() {
@@ -174,9 +201,7 @@
       if (pendingPlanId && pendingBtn && pendingCard) {
         toggleSave(pendingPlanId, pendingBtn, pendingCard);
       }
-      pendingPlanId = null;
-      pendingBtn = null;
-      pendingCard = null;
+      pendingPlanId = null; pendingBtn = null; pendingCard = null;
     };
   }
 
