@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKRA &mdash; Yonge &amp; Eglinton | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .page-header { padding: 5rem 3rem 3rem; border-bottom: 1px solid var(--border); }
+    .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .page-title em { font-style: italic; color: var(--gold); }
+    .page-desc { font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); max-width: 560px; font-weight: 300; margin-bottom: 2rem; }
+    .stats-bar { display: flex; gap: 3rem; padding: 2.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); }
+    .stat-item .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+    .desc-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); max-width: 780px; }
+    .desc-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--text); margin-bottom: 1.5rem; }
+    .desc-section h2 em { font-style: italic; color: var(--gold); }
+    .desc-section p { font-size: 0.92rem; line-height: 1.9; color: var(--text-mid); font-weight: 300; margin-bottom: 1.5rem; }
+    .amenities { font-size: 0.82rem; line-height: 2; color: var(--text-muted); font-style: italic; }
+    .collection-header { padding: 3rem 3rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .collection-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--text); }
+    .collection-header h2 em { font-style: italic; color: var(--gold); }
+    .filter-bar { padding: 1.5rem 3rem; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .fp-row { position: relative; display: grid; grid-template-columns: 55% 1fr; cursor: pointer; transition: background 0.2s; margin-bottom: 48px; }
+    .fp-row::after { content: ''; position: absolute; bottom: -24px; left: 3rem; right: 3rem; height: 0; border-bottom: 0.5px solid var(--border); }
+    .fp-row:last-child::after { display: none; }
+    .fp-row:hover { background: var(--gold-pale); }
+    .fp-row-image { min-height: 400px; overflow: hidden; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: var(--white); }
+    .fp-row-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .fp-row-details { padding: 2.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .mobile-jump { display: none; }
+    @media (max-width: 768px) {
+      .mobile-jump { display: block; position: sticky; top: 49px; z-index: 99; background: var(--text); text-align: center; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .mobile-jump a { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--off-white); text-decoration: none; }
+    }
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--text); }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; cursor: zoom-in; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,26,24,0.6); border: none; color: rgba(255,255,255,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(26,26,24,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; text-align: right; max-width: 60%; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-header, .desc-section, .stats-bar, .collection-header, .filter-bar { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .fp-row { grid-template-columns: 1fr; }
+      .fp-row-image { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
+      .fp-row-details { padding: 1.5rem; }
+      .modal { width: 100%; height: 100vh; border-radius: 0; }
+      .modal-body { grid-template-columns: 1fr; overflow-y: auto; }
+      .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      .cta-strip { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) { .stats-bar { gap: 1.5rem; flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../neighbourhoods/yonge-eglinton.html" class="nav-back">&larr; Yonge &amp; Eglinton Floor Plans</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+<div class="mobile-jump"><a href="#floor-plans">View Floor Plans &rarr;</a></div>
+
+<div class="page-header">
+  <div class="page-eyebrow">Yonge &amp; Eglinton &middot; Building</div>
+  <h1 class="page-title"><em>AKRA</em></h1>
+  <p class="page-desc">109 Erskine Ave, Toronto &middot; Curated Properties</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-val">211</div><div class="stat-lbl">Suites</div></div>
+  <div class="stat-item"><div class="stat-val">$899K</div><div class="stat-lbl">Starting</div></div>
+  <div class="stat-item"><div class="stat-val">2026</div><div class="stat-lbl">Closing</div></div>
+  <div class="stat-item"><div class="stat-val">22</div><div class="stat-lbl">Storeys</div></div>
+</div>
+
+<div class="desc-section">
+  <h2>About <em>AKRA</em></h2>
+  <p>AKRA is a luxury wellness residence by Curated Properties at Yonge and Eglinton. 22 storeys, 211 suites with zen-inspired design, ritual centre, yoga studio, and rooftop zen garden.</p>
+  <div class="amenities">Ritual Centre &middot; Yoga Studio &middot; Rooftop Zen Garden &middot; Wellness Lounge &middot; Co-Working Space &middot; Fitness Centre &middot; Pet Spa &middot; Party Room</div>
+</div>
+
+<div class="collection-header" id="floor-plans"><h2>Floor <em>Plans</em></h2></div>
+<div class="filter-bar" id="collection-filters">
+  <button class="fp-filter-btn active" data-collection-filter="all">All Plans</button>
+  <button class="fp-filter-btn" data-collection-filter="penthouse">Penthouse</button>
+</div>
+
+    <div class="fp-row" data-collection="penthouse" onclick="openModal('ak-1')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-1.jpg" alt="Suite PH01 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA &middot; Penthouse</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite PH01</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">1 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">528 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$899,900</div>
+        <div style="font-size:0.72rem; color:var(--gold); margin-bottom:1.5rem;"><span style="color:var(--text-muted);">HST Rebate </span>$782,913</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-2')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-2.jpg" alt="Suite 310/611 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 310/611</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">1 Bed + Den</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">619 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$974,900</div>
+        <div style="font-size:0.72rem; color:var(--gold); margin-bottom:1.5rem;"><span style="color:var(--text-muted);">HST Rebate </span>$847,863</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-3')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-3.jpg" alt="Suite 1209 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 1209</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">2 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">690 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,109,900</div>
+        <div style="font-size:0.72rem; color:var(--gold); margin-bottom:1.5rem;"><span style="color:var(--text-muted);">HST Rebate </span>$965,613</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-4')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-4.jpg" alt="Suite 904/1004 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 904/1004</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">2 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">739 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,144,900</div>
+        <div style="font-size:0.72rem; color:var(--gold); margin-bottom:1.5rem;"><span style="color:var(--text-muted);">HST Rebate </span>$996,063</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-5')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-5.jpg" alt="Suite 1809 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 1809</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">2 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">882 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,534,900</div>
+        <div style="font-size:0.72rem; color:var(--text-muted); font-style:italic; margin-bottom:1.5rem;">Open to offers</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-6')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-6.jpg" alt="Suite 801-1701 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 801-1701</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">2 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">926 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,529,900</div>
+        <div style="font-size:0.72rem; color:var(--text-muted); font-style:italic; margin-bottom:1.5rem;">Open to offers</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-7')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-7.jpg" alt="Suite 810 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 810</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">3 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">946 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,419,900</div>
+        <div style="font-size:0.72rem; color:var(--text-muted); font-style:italic; margin-bottom:1.5rem;">Open to offers</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="penthouse" onclick="openModal('ak-8')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-8.jpg" alt="Suite LPH06 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA &middot; Penthouse</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite LPH06</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">2 Bed + Den</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">1,097 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,869,900</div>
+        <div style="font-size:0.72rem; color:var(--text-muted); font-style:italic; margin-bottom:1.5rem;">Open to offers</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="standard" onclick="openModal('ak-9')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-9.jpg" alt="Suite 1508 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite 1508</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">3 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">1,203 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$1,974,900</div>
+        <div style="font-size:0.72rem; color:var(--text-muted); font-style:italic; margin-bottom:1.5rem;">Open to offers</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="penthouse" onclick="openModal('ak-10')">
+      <div class="fp-row-image"><img src="../neighbourhoods/images/akra-fp-10.jpg" alt="Suite LPH02 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">AKRA &middot; Penthouse</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:0.3rem;">Suite LPH02</div>
+        <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">3 Bedroom</div>
+        <div style="font-size:0.85rem; color:var(--gold); margin-bottom:1rem;">1,722 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); margin-bottom:0.3rem;">$2,599,900</div>
+        <div style="font-size:0.72rem; color:var(--text-muted); font-style:italic; margin-bottom:1.5rem;">Open to offers</div>
+        <a href="tel:6479240848" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); text-decoration:none;" onclick="event.stopPropagation()">Inquire &rarr;</a>
+      </div>
+    </div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Private inquiries<br><em>welcome.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20AKRA%20at%20Yonge%20%26%20Eglinton." class="btn-gold-outline">Send a Message</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-name"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Interior</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this suite? We can walk you through the layout, views, and availability.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20AKRA%20at%20Yonge%20%26%20Eglinton." class="btn-full-outline">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var plans = {
+    'ak-1':  { name: 'Suite PH01', type: '1 Bedroom', size: '528 sq ft', collection: 'Penthouse', price: '$899,900', rebate: '$782,913', openOffers: false, img: '../neighbourhoods/images/akra-fp-1.jpg' },
+    'ak-2':  { name: 'Suite 310/611', type: '1 Bed + Den', size: '619 sq ft', collection: 'Standard', price: '$974,900', rebate: '$847,863', openOffers: false, img: '../neighbourhoods/images/akra-fp-2.jpg' },
+    'ak-3':  { name: 'Suite 1209', type: '2 Bedroom', size: '690 sq ft', collection: 'Standard', price: '$1,109,900', rebate: '$965,613', openOffers: false, img: '../neighbourhoods/images/akra-fp-3.jpg' },
+    'ak-4':  { name: 'Suite 904/1004', type: '2 Bedroom', size: '739 sq ft', collection: 'Standard', price: '$1,144,900', rebate: '$996,063', openOffers: false, img: '../neighbourhoods/images/akra-fp-4.jpg' },
+    'ak-5':  { name: 'Suite 1809', type: '2 Bedroom', size: '882 sq ft', collection: 'Standard', price: '$1,534,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/akra-fp-5.jpg' },
+    'ak-6':  { name: 'Suite 801-1701', type: '2 Bedroom', size: '926 sq ft', collection: 'Standard', price: '$1,529,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/akra-fp-6.jpg' },
+    'ak-7':  { name: 'Suite 810', type: '3 Bedroom', size: '946 sq ft', collection: 'Standard', price: '$1,419,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/akra-fp-7.jpg' },
+    'ak-8':  { name: 'Suite LPH06', type: '2 Bed + Den', size: '1,097 sq ft', collection: 'Penthouse', price: '$1,869,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/akra-fp-8.jpg' },
+    'ak-9':  { name: 'Suite 1508', type: '3 Bedroom', size: '1,203 sq ft', collection: 'Standard', price: '$1,974,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/akra-fp-9.jpg' },
+    'ak-10': { name: 'Suite LPH02', type: '3 Bedroom', size: '1,722 sq ft', collection: 'Penthouse', price: '$2,599,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/akra-fp-10.jpg' }
+  };
+  var planKeys = Object.keys(plans);
+  var currentPlanIdx = 0;
+
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    currentPlanIdx = planKeys.indexOf(id);
+    showPlan(p);
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function showPlan(p) {
+    document.getElementById('modal-eyebrow').textContent = 'Yonge & Eglinton \u00b7 AKRA';
+    document.getElementById('modal-title').textContent = p.name;
+    var img = document.getElementById('modal-img');
+    img.src = p.img;
+    if (window.resetModalZoom) window.resetModalZoom();
+    document.getElementById('m-building').textContent = 'AKRA';
+    document.getElementById('m-name').textContent = p.name;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    var priceEl = document.getElementById('m-price');
+    if (p.rebate) {
+      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.72rem;color:var(--gold);font-weight:400;margin-top:3px;"><span style="color:var(--text-muted);font-weight:300;">HST Rebate </span>' + p.rebate + '</span>';
+    } else if (p.openOffers) {
+      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
+    } else {
+      priceEl.textContent = p.price;
+    }
+  }
+  function modalNav(dir) {
+    currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
+    showPlan(plans[planKeys[currentPlanIdx]]);
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalNav(-1);
+      if (e.key === 'ArrowRight') modalNav(1);
+    }
+  });
+
+  // Collection filter
+  document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.collectionFilter;
+      document.querySelectorAll('.fp-row').forEach(function(row) {
+        if (filter === 'all') {
+          row.style.display = '';
+        } else {
+          row.style.display = row.dataset.collection === filter ? '' : 'none';
+        }
+      });
+    });
+  });
+
+  // Modal image zoom + drag-to-pan
+  (function() {
+    var img = document.getElementById('modal-img');
+    var container = img.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+    function updateTransform(animate) {
+      img.style.transition = animate ? 'transform 0.3s' : 'none';
+      img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+
+    img.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx;
+      panY = startPanY + dy;
+      updateTransform(false);
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else {
+        resetZoom();
+      }
+    });
+
+    window.resetModalZoom = resetZoom;
+  })();
+</script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>
