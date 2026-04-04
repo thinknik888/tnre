@@ -62,14 +62,20 @@
     .fp-view-building:hover { color: var(--text); }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); max-width: 1100px; width: 100%; max-height: 80vh; display: flex; flex-direction: column; border-radius: 3px; }
-    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal { background: var(--white); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
     .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
     .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
-    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; flex: 1; min-height: 0; }
-    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 1.5rem; min-height: 0; }
-    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; cursor: zoom-in; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,26,24,0.6); border: none; color: rgba(255,255,255,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(26,26,24,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
     .modal-details { padding: 1.5rem 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
@@ -91,7 +97,7 @@
     .fp-price s { color: var(--text-muted); font-weight: 300; }
     .fp-price-promo { color: var(--gold); font-weight: 500; }
     .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
-    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .page-header, .sqft-section { padding: 3rem 1.5rem; } .fp-grid { grid-template-columns: repeat(2, 1fr); } .modal-body { grid-template-columns: 1fr; } .modal-image { border-bottom: 1px solid var(--border); } .modal-details { border-left: none; } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } }
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .page-header, .sqft-section { padding: 3rem 1.5rem; } .fp-grid { grid-template-columns: repeat(2, 1fr); } .modal { width: 100%; height: 100vh; border-radius: 0; } .modal-body { grid-template-columns: 1fr; overflow-y: auto; } .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); } .modal-details { border-left: none; } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } }
     @media (max-width: 600px) { .fp-grid { grid-template-columns: 1fr; } .page-stats { gap: 1.5rem; flex-wrap: wrap; } }
   </style>
 </head>
@@ -961,7 +967,11 @@
       <button class="modal-close" onclick="closeModal()">&#10005;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
       <div class="modal-details">
         <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
         <div class="detail-row"><span class="detail-label">Series</span><span class="detail-val" id="m-series"></span></div>
@@ -1045,8 +1055,17 @@
     'xo-29': { building: 'XO2 Condos', series: 'Mid-Rise', suite: 'XX TH2', type: 'Townhouse', size: '1,135 sq ft', floors: 'Level 1', view: '\u2014', exposure: '\u2014', baths: '\u2014', maint: '\u2014', tax: '\u2014', price: '$1,362,000', promo: '$1,195,155', rebate: '$1,063,785', openOffers: true, img: 'images/xo2-floorplan-29.jpg', buildingLink: '../buildings/xo2.html' }
   };
 
+  var planKeys = Object.keys(plans);
+  var currentPlanIdx = 0;
+
   function openModal(id) {
-    const p = plans[id]; if (!p) return;
+    var p = plans[id]; if (!p) return;
+    currentPlanIdx = planKeys.indexOf(id);
+    showPlan(p);
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function showPlan(p) {
     document.getElementById('modal-suite').textContent = 'Liberty Village \u00b7 ' + p.building;
     document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
     document.getElementById('modal-img').src = p.img;
@@ -1077,12 +1096,21 @@
     } else {
       linkEl.innerHTML = '';
     }
-    document.getElementById('modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    if (window.resetModalZoom) window.resetModalZoom();
   }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function modalNav(dir) {
+    currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
+    showPlan(plans[planKeys[currentPlanIdx]]);
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalNav(-1);
+      if (e.key === 'ArrowRight') modalNav(1);
+    }
+  });
 
   var activeClosing = 'all';
   var activeSqft = 'all';
@@ -1152,7 +1180,56 @@
   const cards = Array.from(grid.querySelectorAll('.fp-card'));
   cards.sort((a, b) => parseInt(a.dataset.sqft) - parseInt(b.dataset.sqft));
   cards.forEach(card => grid.appendChild(card));
+
+  // Modal image zoom + drag-to-pan
+  (function() {
+    var img = document.getElementById('modal-img');
+    var container = img.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+    function updateTransform(animate) {
+      img.style.transition = animate ? 'transform 0.3s' : 'none';
+      img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+    img.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx; panY = startPanY + dy;
+      updateTransform(false);
+    });
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else { resetZoom(); }
+    });
+    window.resetModalZoom = resetZoom;
+  })();
 </script>
 <script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
 </body>
 </html>

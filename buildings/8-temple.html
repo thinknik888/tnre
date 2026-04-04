@@ -96,14 +96,20 @@
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
-    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal { background: var(--white); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
     .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
     .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
-    .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
-    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
-    .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; cursor: zoom-in; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,26,24,0.6); border: none; color: rgba(255,255,255,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(26,26,24,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
     .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
@@ -138,8 +144,9 @@
       .gallery { grid-template-columns: repeat(2, 1fr); }
       .sqft-section { padding: 3rem 1.5rem; }
       .fp-grid { grid-template-columns: repeat(2, 1fr); }
-      .modal-body { grid-template-columns: 1fr; }
-      .modal-image { border-bottom: 1px solid var(--border); }
+      .modal { width: 100%; height: 100vh; border-radius: 0; }
+      .modal-body { grid-template-columns: 1fr; overflow-y: auto; }
+      .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); }
       .modal-details { border-left: none; }
       .cta-strip { padding: 3rem 1.5rem; }
       footer { padding: 1.5rem; }
@@ -593,7 +600,11 @@
       <button class="modal-close" onclick="closeModal()">&#x2715;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
       <div class="modal-details">
         <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
         <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
@@ -767,5 +778,6 @@
   });
 </script>
 <script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
 </body>
 </html>
