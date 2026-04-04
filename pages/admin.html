@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin &mdash; CondosAround</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Helvetica Neue', sans-serif; background: #f5f5f5; color: #333; padding: 2rem; }
+    h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .login { max-width: 400px; margin: 4rem auto; text-align: center; }
+    .login input { display: block; width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; }
+    .login button { padding: 0.75rem 2rem; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    th { background: #333; color: #fff; padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 0.75rem 1rem; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+    .empty { text-align: center; padding: 3rem; color: #999; }
+    #content { display: none; }
+  </style>
+</head>
+<body>
+  <div class="login" id="login">
+    <h1>Admin Access</h1>
+    <input type="password" id="admin-key" placeholder="Enter admin key" />
+    <button onclick="authenticate()">Access</button>
+    <p id="login-error" style="color:#c44;margin-top:0.75rem;font-size:0.82rem;"></p>
+  </div>
+
+  <div id="content">
+    <h1>Lead Dashboard</h1>
+    <p style="color:#999;font-size:0.82rem;margin-bottom:1.5rem;">Leads are delivered via SMS to 647-924-0848. This page shows locally stored Sofia chat leads.</p>
+    <table>
+      <thead><tr><th>Date</th><th>Name</th><th>Phone</th><th>Page</th><th>Saved Plans</th></tr></thead>
+      <tbody id="leads-table"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function authenticate() {
+      var key = document.getElementById('admin-key').value;
+      fetch('/.netlify/functions/get-leads?key=' + encodeURIComponent(key))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.authenticated) {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            loadLeads();
+          } else {
+            document.getElementById('login-error').textContent = 'Invalid key';
+          }
+        })
+        .catch(function() {
+          document.getElementById('login-error').textContent = 'Connection error';
+        });
+    }
+
+    function loadLeads() {
+      // Load Sofia leads from localStorage
+      var sofiaLeads = JSON.parse(localStorage.getItem('sofia_leads') || '[]');
+      var tbody = document.getElementById('leads-table');
+
+      if (sofiaLeads.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="empty">No leads captured yet.</td></tr>';
+        return;
+      }
+
+      sofiaLeads.reverse().forEach(function(lead) {
+        var row = document.createElement('tr');
+        var date = new Date(lead.timestamp).toLocaleDateString();
+        var savedPlans = JSON.parse(localStorage.getItem('ca_saved_plans') || '[]').join(', ') || 'None';
+        row.innerHTML = '<td>' + date + '</td><td>' + (lead.name || '—') + '</td><td>' + (lead.phone || '—') + '</td><td>' + (lead.page || '—') + '</td><td>' + savedPlans + '</td>';
+        tbody.appendChild(row);
+      });
+    }
+
+    document.getElementById('admin-key').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') authenticate();
+    });
+  </script>
+</body>
+</html>

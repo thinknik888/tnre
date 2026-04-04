@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Saved Plans &mdash; CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --cream: #f0ede6; --gold: #b89a56; --dark: #1e1c18; --card: #faf8f4; --border: #d4cec4; --muted: #6b6357; --text-dim: #9a9288; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--dark); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(240,237,230,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--dark); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .hero { padding: 4rem 3rem 2rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; margin-bottom: 0.5rem; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero p { font-size: 0.88rem; color: var(--muted); }
+    .saved-grid { padding: 0 3rem 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .saved-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
+    .saved-card img { width: 100%; aspect-ratio: 4/3; object-fit: contain; padding: 1rem; background: #fff; display: block; }
+    .saved-card-info { padding: 1rem 1.25rem; }
+    .saved-card-building { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+    .saved-card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; margin-bottom: 0.2rem; }
+    .saved-card-meta { font-size: 0.78rem; color: var(--muted); }
+    .saved-card-remove { position: absolute; top: 0.5rem; right: 0.5rem; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 1rem; color: var(--muted); display: flex; align-items: center; justify-content: center; }
+    .saved-card-remove:hover { color: #c44; }
+    .empty { padding: 4rem 3rem; text-align: center; }
+    .empty p { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .send-section { padding: 2rem 3rem; border-top: 1px solid var(--border); }
+    .send-btn { display: inline-block; padding: 0.85rem 2rem; background: var(--gold); color: #fff; border: none; border-radius: 2px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .send-btn:hover { background: #a08545; }
+    .send-btn:disabled { background: #c4bdb2; cursor: default; }
+    .send-status { font-size: 0.82rem; color: var(--gold); margin-top: 0.75rem; }
+    footer { background: var(--dark); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 3rem; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.7; }
+    @media (max-width: 768px) { nav { padding: 1rem 1.5rem; } .hero, .saved-grid, .send-section { padding-left: 1.5rem; padding-right: 1.5rem; } .saved-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .saved-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<div class="hero">
+  <h1>My Saved <em>Plans</em></h1>
+  <p id="saved-subtitle">Your saved floor plans appear here.</p>
+</div>
+
+<div id="saved-container"></div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<script>
+  var saved = JSON.parse(localStorage.getItem('ca_saved_plans') || '[]');
+  var user = JSON.parse(localStorage.getItem('ca_user') || 'null');
+  var container = document.getElementById('saved-container');
+
+  if (saved.length === 0) {
+    container.innerHTML = '<div class="empty"><p>No saved floor plans yet. Browse neighbourhoods and tap the heart icon on any plan to save it.</p><a href="../index.html" style="color:#b89a56;">Browse Floor Plans &rarr;</a></div>';
+  } else {
+    var html = '<div class="saved-grid" id="saved-grid">';
+    saved.forEach(function(id) {
+      html += '<div class="saved-card" id="card-' + id + '">';
+      html += '<button class="saved-card-remove" onclick="removePlan(\'' + id + '\')">&times;</button>';
+      html += '<div class="saved-card-info">';
+      html += '<div class="saved-card-building">' + id + '</div>';
+      html += '<div class="saved-card-name">Saved Floor Plan</div>';
+      html += '<div class="saved-card-meta">Tap to view details</div>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+    html += '<div class="send-section">';
+    if (user) {
+      html += '<p style="font-size:0.82rem;color:#6b6357;margin-bottom:1rem;">Logged in as <strong>' + user.name + '</strong> (' + user.phone + ')</p>';
+    }
+    html += '<button class="send-btn" id="send-btn" onclick="sendToNik()">Send My List to Nik &rarr;</button>';
+    html += '<div class="send-status" id="send-status"></div>';
+    html += '</div>';
+    container.innerHTML = html;
+    document.getElementById('saved-subtitle').textContent = saved.length + ' floor plan' + (saved.length > 1 ? 's' : '') + ' saved';
+  }
+
+  function removePlan(id) {
+    var idx = saved.indexOf(id);
+    if (idx > -1) saved.splice(idx, 1);
+    localStorage.setItem('ca_saved_plans', JSON.stringify(saved));
+    var card = document.getElementById('card-' + id);
+    if (card) card.remove();
+    if (saved.length === 0) location.reload();
+  }
+
+  function sendToNik() {
+    if (!user) {
+      var name = prompt('Your name:');
+      var phone = prompt('Your phone number:');
+      if (!name || !phone) return;
+      user = { name: name, phone: phone, date: new Date().toISOString() };
+      localStorage.setItem('ca_user', JSON.stringify(user));
+    }
+    var btn = document.getElementById('send-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    fetch('/.netlify/functions/save-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: user.name,
+        phone: user.phone,
+        plans: saved,
+        planNames: saved
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      document.getElementById('send-status').textContent = 'Sent! Nik will be in touch shortly.';
+      btn.textContent = 'Sent!';
+    })
+    .catch(function() {
+      document.getElementById('send-status').textContent = 'Could not send — call Nik directly at 647-924-0848';
+      btn.disabled = false;
+      btn.textContent = 'Try Again';
+    });
+  }
+</script>
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>
