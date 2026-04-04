@@ -93,7 +93,9 @@
     var msg = document.createElement('div');
     msg.className = 'sofia-msg ' + role;
     var escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    msg.innerHTML = escaped.replace(/\n/g, '<br>');
+    var withBreaks = escaped.replace(/\n/g, '<br>');
+    var withLinks = withBreaks.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" style="color:#b89a56;text-decoration:underline;">$1</a>');
+    msg.innerHTML = withLinks;
     container.appendChild(msg);
     container.scrollTop = container.scrollHeight;
     return msg;
@@ -138,7 +140,8 @@
     .then(function(data) {
       var reply = data.content && data.content[0] ? data.content[0].text : "I\u2019m having trouble connecting. Please reach Nik directly at 647-924-0848.";
       var escaped = reply.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      typing.innerHTML = escaped.replace(/\n/g, '<br>');
+      var withBreaks = escaped.replace(/\n/g, '<br>');
+      typing.innerHTML = withBreaks.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" style="color:#b89a56;text-decoration:underline;">$1</a>');
       typing.className = 'sofia-msg assistant';
       conversationHistory.push({ role: 'assistant', content: reply });
     })
