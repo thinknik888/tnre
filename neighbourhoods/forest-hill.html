@@ -58,6 +58,10 @@
     .modal-image img { cursor: zoom-in; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
     .modal-image.zoomed img { cursor: grab; }
     .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(27,45,79,0.6); border: none; color: rgba(240,236,228,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(27,45,79,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
     .modal-details { padding: 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
@@ -474,7 +478,11 @@
       <button class="modal-close" onclick="closeModal()">&#x2715;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
       <div class="modal-details">
         <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
         <div class="detail-row"><span class="detail-label">Collection</span><span class="detail-val" id="m-collection"></span></div>
@@ -495,40 +503,49 @@
 
 <script>
   var plans = {
-    'fh-15': { name: 'Dunvegan 1079', type: '2 Bed + Den', size: '1,079 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $1,799,425', img: 'images/sfh-crown-2.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-16': { name: 'Dunvegan 1148', type: '2 Bed Townhome', size: '1,148 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $1,750,990', img: 'images/sfh-crown-10.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-17': { name: 'Frybrook 1216', type: '2 Bed + Study', size: '1,216 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,094,240', img: 'images/sfh-crown-3.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-18': { name: 'Frybrook 1301', type: '2 Bed + Study', size: '1,301 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,344,225', img: 'images/sfh-crown-4.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-19': { name: 'Frybrook 1356', type: '2 Bed + Study', size: '1,356 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,337,400', img: 'images/sfh-crown-5.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-20': { name: 'Frybrook 1374', type: '2 Bed + Den Townhome', size: '1,374 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,080,990', img: 'images/sfh-crown-11.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-21': { name: 'Warren 1745', type: '3 Bed + Study', size: '1,745 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $3,153,750', img: 'images/sfh-crown-7.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-22': { name: 'Frybrook 1878', type: '2 Bed + Study', size: '1,878 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $3,527,350', img: 'images/sfh-crown-8.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-1': { name: 'Residence 5', type: '2 Bed', size: '2,058 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,116,000 – $5,145,000', img: 'images/walmer-fp-podium-20.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-23': { name: 'Frybrook 2118', type: '2 Bed + Study', size: '2,118 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,065,625', img: 'images/sfh-ph-2118.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-24': { name: 'Frybrook 2126', type: '2 Bed + Study', size: '2,126 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,086,250', img: 'images/sfh-ph-2126.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-2': { name: 'Residence 3A', type: '2 Bed', size: '2,361 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,722,000 – $5,902,500', img: 'images/walmer-fp-podium-11.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-25': { name: 'Warren 2391', type: '3 Bed + Study', size: '2,391 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,432,990', img: 'images/sfh-crown-6.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-3': { name: 'Residence 2A', type: '2 Bed', size: '2,400 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,800,000 – $6,000,000', img: 'images/walmer-fp-podium-5.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-26': { name: 'Dunvegan 2423', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,461,400', img: 'images/sfh-crown-9.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-27': { name: 'Dunvegan 2423 PH', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,946,000', img: 'images/sfh-ph-2423.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-4': { name: 'Residence 3', type: '2 Bed + Family Room', size: '2,534 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,068,000 – $6,335,000', img: 'images/walmer-fp-podium-14.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-5': { name: 'Residence 4', type: '2 Bed + Family Room', size: '2,568 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,136,000 – $6,420,000', img: 'images/walmer-fp-podium-17.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-6': { name: 'Residence 1', type: '2 Bed + Family Room', size: '2,588 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,176,000 – $6,470,000', img: 'images/walmer-fp-podium-2.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-7': { name: 'Residence 2', type: '2 Bed + Family Room', size: '2,591 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,182,000 – $6,477,500', img: 'images/walmer-fp-podium-8.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-28': { name: 'Frybrook 2630', type: '2 Bed + Den', size: '2,630 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,899,750', img: 'images/sfh-ph-2630.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-29': { name: 'Frybrook 3009', type: '2 Bed + Study', size: '3,009 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,899,750', img: 'images/sfh-crown-3009.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-8': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,126,000 – $7,657,500', img: 'images/walmer-fp-estate-17.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-30': { name: 'Warren 3196', type: '3 Bed + Study', size: '3,196 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $6,084,875', img: 'images/sfh-ph-3196.jpg', buildingLink: '../buildings/south-forest-hill.html' }
-    'fh-9': { name: 'Terrace Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,954,000 – $8,692,500', img: 'images/walmer-fp-estate-2.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-10': { name: 'Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,954,000 – $8,692,500', img: 'images/walmer-fp-estate-5.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-11': { name: 'Terrace Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,000,000 – $8,750,000', img: 'images/walmer-fp-estate-8.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-12': { name: 'Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,000,000 – $8,750,000', img: 'images/walmer-fp-estate-11.jpg', buildingLink: '../buildings/429-walmer.html' }
-    'fh-13': { name: 'Estate 3', type: '3 Bed + Family Room', size: '3,910 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,820,000 – $9,775,000', img: 'images/walmer-fp-estate-14.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-15': { name: 'Dunvegan 1079', type: '2 Bed + Den', size: '1,079 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $1,799,425', img: 'images/sfh-crown-2.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-16': { name: 'Dunvegan 1148', type: '2 Bed Townhome', size: '1,148 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $1,750,990', img: 'images/sfh-crown-10.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-17': { name: 'Frybrook 1216', type: '2 Bed + Study', size: '1,216 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,094,240', img: 'images/sfh-crown-3.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-18': { name: 'Frybrook 1301', type: '2 Bed + Study', size: '1,301 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,344,225', img: 'images/sfh-crown-4.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-19': { name: 'Frybrook 1356', type: '2 Bed + Study', size: '1,356 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,337,400', img: 'images/sfh-crown-5.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-20': { name: 'Frybrook 1374', type: '2 Bed + Den Townhome', size: '1,374 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,080,990', img: 'images/sfh-crown-11.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-21': { name: 'Warren 1745', type: '3 Bed + Study', size: '1,745 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $3,153,750', img: 'images/sfh-crown-7.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-22': { name: 'Frybrook 1878', type: '2 Bed + Study', size: '1,878 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $3,527,350', img: 'images/sfh-crown-8.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-1': { name: 'Residence 5', type: '2 Bed', size: '2,058 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,116,000 – $5,145,000', img: 'images/walmer-fp-podium-20.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-23': { name: 'Frybrook 2118', type: '2 Bed + Study', size: '2,118 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,065,625', img: 'images/sfh-ph-2118.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-24': { name: 'Frybrook 2126', type: '2 Bed + Study', size: '2,126 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,086,250', img: 'images/sfh-ph-2126.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-2': { name: 'Residence 3A', type: '2 Bed', size: '2,361 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,722,000 – $5,902,500', img: 'images/walmer-fp-podium-11.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-25': { name: 'Warren 2391', type: '3 Bed + Study', size: '2,391 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,432,990', img: 'images/sfh-crown-6.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-3': { name: 'Residence 2A', type: '2 Bed', size: '2,400 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,800,000 – $6,000,000', img: 'images/walmer-fp-podium-5.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-26': { name: 'Dunvegan 2423', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,461,400', img: 'images/sfh-crown-9.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-27': { name: 'Dunvegan 2423 PH', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,946,000', img: 'images/sfh-ph-2423.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-4': { name: 'Residence 3', type: '2 Bed + Family Room', size: '2,534 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,068,000 – $6,335,000', img: 'images/walmer-fp-podium-14.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-5': { name: 'Residence 4', type: '2 Bed + Family Room', size: '2,568 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,136,000 – $6,420,000', img: 'images/walmer-fp-podium-17.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-6': { name: 'Residence 1', type: '2 Bed + Family Room', size: '2,588 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,176,000 – $6,470,000', img: 'images/walmer-fp-podium-2.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-7': { name: 'Residence 2', type: '2 Bed + Family Room', size: '2,591 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,182,000 – $6,477,500', img: 'images/walmer-fp-podium-8.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-28': { name: 'Frybrook 2630', type: '2 Bed + Den', size: '2,630 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,899,750', img: 'images/sfh-ph-2630.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-29': { name: 'Frybrook 3009', type: '2 Bed + Study', size: '3,009 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,899,750', img: 'images/sfh-crown-3009.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-8': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,126,000 – $7,657,500', img: 'images/walmer-fp-estate-17.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-30': { name: 'Warren 3196', type: '3 Bed + Study', size: '3,196 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $6,084,875', img: 'images/sfh-ph-3196.jpg', buildingLink: '../buildings/south-forest-hill.html' },
+    'fh-9': { name: 'Terrace Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,954,000 – $8,692,500', img: 'images/walmer-fp-estate-2.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-10': { name: 'Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,954,000 – $8,692,500', img: 'images/walmer-fp-estate-5.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-11': { name: 'Terrace Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,000,000 – $8,750,000', img: 'images/walmer-fp-estate-8.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-12': { name: 'Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,000,000 – $8,750,000', img: 'images/walmer-fp-estate-11.jpg', buildingLink: '../buildings/429-walmer.html' },
+    'fh-13': { name: 'Estate 3', type: '3 Bed + Family Room', size: '3,910 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,820,000 – $9,775,000', img: 'images/walmer-fp-estate-14.jpg', buildingLink: '../buildings/429-walmer.html' },
     'fh-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft interior \u00b7 5,064 sq ft terrace \u00b7 13,531 sq ft total', collection: 'Penthouse', building: '429 Walmer', price: '$16,934,000 – $21,167,500', img: 'images/walmer-fp-penthouse-2.jpg', buildingLink: '../buildings/429-walmer.html' }
   };
 
+  var planKeys = Object.keys(plans);
+  var currentPlanIdx = 0;
+
   function openModal(id) {
     var p = plans[id]; if (!p) return;
+    currentPlanIdx = planKeys.indexOf(id);
+    showPlan(p);
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function showPlan(p) {
     document.getElementById('modal-eyebrow').textContent = 'Forest Hill \u00b7 ' + p.building;
     document.getElementById('modal-title').textContent = p.name;
     document.getElementById('modal-img').src = p.img;
@@ -542,13 +559,21 @@
     if (p.buildingLink) {
       linkEl.innerHTML = '<a href="' + p.buildingLink + '" style="display:block;text-align:center;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--navy);color:var(--stone);padding:0.85rem;border-radius:2px;text-decoration:none;margin-bottom:1rem;">View Building Page \u2192</a>';
     } else { linkEl.innerHTML = ''; }
-    document.getElementById('modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
     if (window.resetModalZoom) window.resetModalZoom();
+  }
+  function modalNav(dir) {
+    currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
+    showPlan(plans[planKeys[currentPlanIdx]]);
   }
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalNav(-1);
+      if (e.key === 'ArrowRight') modalNav(1);
+    }
+  });
 
   // Filters
   var activeClosing = 'all';
