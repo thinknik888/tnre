@@ -137,14 +137,15 @@
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var reply = data.content && data.content[0] ? data.content[0].text : "I\u2019m having trouble connecting. Please reach Nik directly at 647-924-0848.";
-      typing.textContent = reply;
+      var escaped = reply.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      typing.innerHTML = escaped.replace(/\n/g, '<br>');
       typing.className = 'sofia-msg assistant';
       conversationHistory.push({ role: 'assistant', content: reply });
     })
     .catch(function() {
-      typing.textContent = "I\u2019m having trouble connecting. You can reach Nik directly at 647-924-0848.";
+      typing.innerHTML = "I\u2019m having trouble connecting. You can reach Nik directly at 647-924-0848.";
       typing.className = 'sofia-msg assistant';
-      conversationHistory.push({ role: 'assistant', content: typing.textContent });
+      conversationHistory.push({ role: 'assistant', content: "I\u2019m having trouble connecting. You can reach Nik directly at 647-924-0848." });
     });
   }
 })();
