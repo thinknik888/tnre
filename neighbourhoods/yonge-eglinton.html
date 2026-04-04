@@ -32,10 +32,10 @@
     .sqft-title em { font-style: italic; color: var(--gold); }
     .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
+    .fp-card { background: #f5f0e8; cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
-    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: #f5f0e8; }
     .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; margin: auto; transition: transform 0.3s; }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
@@ -133,7 +133,8 @@
       <button class="fp-filter-btn active" data-filter="all">All Sizes</button>
       <button class="fp-filter-btn" data-filter="0-800">Under 800</button>
       <button class="fp-filter-btn" data-filter="800-1000">800 &ndash; 1,000</button>
-      <button class="fp-filter-btn" data-filter="1000-9999">1,000+</button>
+      <button class="fp-filter-btn" data-filter="1000-1500">1,000 &ndash; 1,500</button>
+      <button class="fp-filter-btn" data-filter="1500-9999">1,500+</button>
     </div>
   </div>
   <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:2rem; font-style:italic;">HST is included in the purchase price. All suites qualify for the <span style="color:var(--gold);">HST new housing rebate</span>.</div>
@@ -380,7 +381,7 @@
 
   function applyFilters() {
     var grid = document.getElementById('fp-grid');
-    grid.classList.toggle('cols-2', activeSqft === '1000-9999');
+    grid.classList.toggle('cols-2', activeSqft === '1000-1500' || activeSqft === '1500-9999');
     document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
       var sqft = parseInt(card.dataset.sqft);
       var closing = card.dataset.closing;
@@ -388,7 +389,8 @@
       var showSqft = true;
       if (activeSqft === '0-800') showSqft = sqft < 800;
       else if (activeSqft === '800-1000') showSqft = sqft >= 800 && sqft < 1000;
-      else if (activeSqft === '1000-9999') showSqft = sqft >= 1000;
+      else if (activeSqft === '1000-1500') showSqft = sqft >= 1000 && sqft < 1500;
+      else if (activeSqft === '1500-9999') showSqft = sqft >= 1500;
       card.style.display = (showClosing && showSqft) ? '' : 'none';
     });
   }
