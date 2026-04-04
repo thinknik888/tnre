@@ -98,385 +98,360 @@
   <div class="page-stats">
     <div class="stat-item"><div class="stat-val">2</div><div class="stat-lbl">Buildings listed</div></div>
     <div class="stat-item"><div class="stat-val">30</div><div class="stat-lbl">Floor plans</div></div>
-    <div class="stat-item"><div class="stat-val">1,079+</div><div class="stat-lbl">Sq ft</div></div>
+    <div class="stat-item"><div class="stat-val">1,079 &ndash; 13,531</div><div class="stat-lbl">Sq ft range</div></div>
   </div>
 </div>
 
 <div class="filter-section">
-  <div class="fp-filters" id="collection-filters">
-    <button class="fp-filter-btn active" data-filter="all">All</button>
-    <button class="fp-filter-btn" data-filter="podium">Podium</button>
-    <button class="fp-filter-btn" data-filter="estate">Estate</button>
-    <button class="fp-filter-btn" data-filter="penthouse">Penthouse</button>
-    <button class="fp-filter-btn" data-filter="crown">Crown Collection</button>
+  <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
+    <span style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); min-width:100px; padding-top:0.5rem;">Closing</span>
+    <div class="fp-filters" id="closing-filters">
+      <button class="fp-filter-btn active" data-closing-filter="all">All</button>
+      <button class="fp-filter-btn" data-closing-filter="2026">2026</button>
+      <button class="fp-filter-btn" data-closing-filter="2030">2030</button>
+    </div>
+  </div>
+  <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+    <span style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); min-width:100px; padding-top:0.5rem;">Collection</span>
+    <div class="fp-filters" id="collection-filters">
+      <button class="fp-filter-btn active" data-filter="all">All</button>
+      <button class="fp-filter-btn" data-filter="podium">Podium</button>
+      <button class="fp-filter-btn" data-filter="estate">Estate</button>
+      <button class="fp-filter-btn" data-filter="penthouse">Penthouse</button>
+      <button class="fp-filter-btn" data-filter="crown">Crown</button>
+      <button class="fp-filter-btn" data-filter="sfh-penthouse">Crown PH</button>
+    </div>
   </div>
 </div>
 
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-1')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-20.jpg" alt="Residence 5 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 5</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,058 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$4,116,000 &ndash; $5,145,000</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-2')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-11.jpg" alt="Residence 3A Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 3A</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,361 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$4,722,000 &ndash; $5,902,500</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-3')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-5.jpg" alt="Residence 2A Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 2A</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,400 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$4,800,000 &ndash; $6,000,000</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-4')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-14.jpg" alt="Residence 3 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 3</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,534 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,068,000 &ndash; $6,335,000</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-5')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-17.jpg" alt="Residence 4 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 4</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,568 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,136,000 &ndash; $6,420,000</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-6')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 1</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,588 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,176,000 &ndash; $6,470,000</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="podium" onclick="openModal('fh-7')">
-      <div class="fp-row-image"><img src="images/walmer-fp-podium-8.jpg" alt="Residence 2 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 2</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,591 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">$5,182,000 &ndash; $6,477,500</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-8')">
-      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-17.jpg" alt="Estate 4 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 4</div>
-        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,063 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:0.5rem;">$6,126,000 &ndash; $7,657,500</div>
-        <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-9')">
-      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-2.jpg" alt="Terrace Estate 1 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Terrace Estate 1</div>
-        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">3 Bed</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,477 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:0.5rem;">$6,954,000 &ndash; $8,692,500</div>
-        <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-10')">
-      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-5.jpg" alt="Estate 1 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 1</div>
-        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">3 Bed</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,477 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:0.5rem;">$6,954,000 &ndash; $8,692,500</div>
-        <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-11')">
-      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-8.jpg" alt="Terrace Estate 2 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Terrace Estate 2</div>
-        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,500 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:0.5rem;">$7,000,000 &ndash; $8,750,000</div>
-        <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-12')">
-      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-11.jpg" alt="Estate 2 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 2</div>
-        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">2 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,500 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:0.5rem;">$7,000,000 &ndash; $8,750,000</div>
-        <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="estate" style="background:#2a3a2a;" onclick="openModal('fh-13')">
-      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-14.jpg" alt="Estate 3 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 3</div>
-        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">3 Bed + Family Room</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,910 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:0.5rem;">$7,820,000 &ndash; $9,775,000</div>
-        <div style="font-size:0.72rem; color:rgba(240,236,228,0.5); font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="penthouse" style="background:#1b2d4f; color:#f0ece4;" onclick="openModal('fh-14')">
-      <div class="fp-row-image"><img src="images/walmer-fp-penthouse-2.jpg" alt="The Penthouse Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Penthouse Collection</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#c4bdb2; margin-bottom:0.3rem;">The Penthouse</div>
-        <div style="font-size:0.85rem; color:#d4cfc8; margin-bottom:0.3rem;">3 Bed + Family Room + Study</div>
-        <div style="font-size:0.78rem; color:#d4cfc8; margin-bottom:1rem;">8,467 sq ft interior &middot; 5,064 sq ft terrace &middot; 4.5 Bath &middot; Floor 18</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#8c7355; margin-bottom:0.5rem;">$16,934,000 &ndash; $21,167,500</div>
-        <div style="font-size:0.72rem; color:#a09080; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-
-
-<!-- SOUTH FOREST HILL RESIDENCES -->
-<div style="padding:3rem 3rem 1.5rem; border-bottom:1px solid var(--border);">
-  <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:400; color:var(--navy);">South Forest Hill <em style="font-style:italic; color:var(--bronze);">Residences</em></div>
-  <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.5rem;">63 Montclair Ave &middot; Parallax &amp; Westdale &middot; 19 Storeys &middot; 463 Suites &middot; Closing 2026 &middot; 16 floor plans</div>
-</div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-15')">
-      <div class="fp-row-image"><img src="images/sfh-crown-10.jpg" alt="Dunvegan 1148 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Dunvegan 1148</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed Townhome</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,148 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $1,750,990</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-16')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-15')">
       <div class="fp-row-image"><img src="images/sfh-crown-2.jpg" alt="Dunvegan 1079 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Dunvegan 1079</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Den</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,079 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $1,799,425</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $1,799,425</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-17')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-16')">
+      <div class="fp-row-image"><img src="images/sfh-crown-10.jpg" alt="Dunvegan 1148 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Dunvegan 1148</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed Townhome</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,148 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $1,750,990</div>
+        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-17')">
       <div class="fp-row-image"><img src="images/sfh-crown-3.jpg" alt="Frybrook 1216 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 1216</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,216 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $2,094,240</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $2,094,240</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-18')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-18')">
       <div class="fp-row-image"><img src="images/sfh-crown-4.jpg" alt="Frybrook 1301 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 1301</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,301 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $2,344,225</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $2,344,225</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-19')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-19')">
       <div class="fp-row-image"><img src="images/sfh-crown-5.jpg" alt="Frybrook 1356 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 1356</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,356 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $2,337,400</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $2,337,400</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-20')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-20')">
       <div class="fp-row-image"><img src="images/sfh-crown-11.jpg" alt="Frybrook 1374 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 1374</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Den Townhome</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,374 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $2,080,990</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $2,080,990</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-21')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-21')">
       <div class="fp-row-image"><img src="images/sfh-crown-7.jpg" alt="Warren 1745 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Warren 1745</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,745 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $3,153,750</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $3,153,750</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-22')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-22')">
       <div class="fp-row-image"><img src="images/sfh-crown-8.jpg" alt="Frybrook 1878 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 1878</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">1,878 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $3,527,350</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $3,527,350</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-23')">
-      <div class="fp-row-image"><img src="images/sfh-crown-6.jpg" alt="Warren 2391 Floor Plan" loading="lazy" /></div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-1')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-20.jpg" alt="Residence 5 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Warren 2391</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed + Study</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,391 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,432,990</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 5</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,058 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$4,116,000 – $5,145,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-24')">
-      <div class="fp-row-image"><img src="images/sfh-crown-9.jpg" alt="Dunvegan 2423 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Dunvegan 2423</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,423 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,461,400</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="crown" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-25')">
-      <div class="fp-row-image"><img src="images/sfh-crown-3009.jpg" alt="Frybrook 3009 Floor Plan" loading="lazy" /></div>
-      <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 3009</div>
-        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
-        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,009 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,899,750</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
-        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
-      </div>
-    </div>
-    <div class="fp-row" data-collection="penthouse" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-26')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-23')">
       <div class="fp-row-image"><img src="images/sfh-ph-2118.jpg" alt="Frybrook 2118 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 2118</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,118 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,065,625</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,065,625</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="penthouse" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-27')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-24')">
       <div class="fp-row-image"><img src="images/sfh-ph-2126.jpg" alt="Frybrook 2126 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 2126</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,126 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,086,250</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,086,250</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="penthouse" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-28')">
-      <div class="fp-row-image"><img src="images/sfh-ph-2423.jpg" alt="Dunvegan 2423 Floor Plan" loading="lazy" /></div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-2')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-11.jpg" alt="Residence 3A Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
-        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 3A</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,361 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$4,722,000 – $5,902,500</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-25')">
+      <div class="fp-row-image"><img src="images/sfh-crown-6.jpg" alt="Warren 2391 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Warren 2391</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed + Study</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,391 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,432,990</div>
+        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-3')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-5.jpg" alt="Residence 2A Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 2A</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,400 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$4,800,000 – $6,000,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-26')">
+      <div class="fp-row-image"><img src="images/sfh-crown-9.jpg" alt="Dunvegan 2423 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Dunvegan 2423</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,423 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,946,000</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,461,400</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="penthouse" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-29')">
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-27')">
+      <div class="fp-row-image"><img src="images/sfh-ph-2423.jpg" alt="Dunvegan 2423 PH Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Dunvegan 2423 PH</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,423 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,946,000</div>
+        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-4')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-14.jpg" alt="Residence 3 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 3</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,534 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$5,068,000 – $6,335,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-5')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-17.jpg" alt="Residence 4 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 4</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,568 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$5,136,000 – $6,420,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-6')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-2.jpg" alt="Residence 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 1</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,588 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$5,176,000 – $6,470,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="podium" data-closing="2030" onclick="openModal('fh-7')">
+      <div class="fp-row-image"><img src="images/walmer-fp-podium-8.jpg" alt="Residence 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Podium Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Residence 2</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,591 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">$5,182,000 – $6,477,500</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-28')">
       <div class="fp-row-image"><img src="images/sfh-ph-2630.jpg" alt="Frybrook 2630 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 2630</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Den</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">2,630 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $4,899,750</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,899,750</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
-    <div class="fp-row" data-collection="penthouse" style="border-bottom:1px solid var(--border);" onclick="openModal('fh-30')">
+    <div class="fp-row" data-collection="crown" data-closing="2026" onclick="openModal('fh-29')">
+      <div class="fp-row-image"><img src="images/sfh-crown-3009.jpg" alt="Frybrook 3009 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Collection &middot; South Forest Hill</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Frybrook 3009</div>
+        <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">2 Bed + Study</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,009 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $4,899,750</div>
+        <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-8')">
+      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-17.jpg" alt="Estate 4 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 4</div>
+        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,063 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:1.5rem;">$6,126,000 – $7,657,500</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="sfh-penthouse" data-closing="2026" onclick="openModal('fh-30')">
       <div class="fp-row-image"><img src="images/sfh-ph-3196.jpg" alt="Warren 3196 Floor Plan" loading="lazy" /></div>
       <div class="fp-row-details">
         <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Crown Penthouse &middot; South Forest Hill</div>
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#1b2d4f; margin-bottom:0.3rem;">Warren 3196</div>
         <div style="font-size:0.85rem; color:#6b6357; margin-bottom:0.3rem;">3 Bed + Study</div>
         <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,196 sq ft</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:0.5rem;">From $6,084,875</div>
-        <div style="font-size:0.72rem; color:#8c7355; font-style:italic; margin-bottom:1.5rem;">No HST rebate applicable</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#1b2d4f; margin-bottom:1.5rem;">From $6,084,875</div>
         <a href="../buildings/south-forest-hill.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-9')">
+      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-2.jpg" alt="Terrace Estate 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Terrace Estate 1</div>
+        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">3 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,477 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:1.5rem;">$6,954,000 – $8,692,500</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-10')">
+      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-5.jpg" alt="Estate 1 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 1</div>
+        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">3 Bed</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,477 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:1.5rem;">$6,954,000 – $8,692,500</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-11')">
+      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-8.jpg" alt="Terrace Estate 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Terrace Estate 2</div>
+        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,500 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:1.5rem;">$7,000,000 – $8,750,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-12')">
+      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-11.jpg" alt="Estate 2 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 2</div>
+        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">2 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,500 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:1.5rem;">$7,000,000 – $8,750,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="estate" data-closing="2030" style="background:#2a3a2a;" onclick="openModal('fh-13')">
+      <div class="fp-row-image" style="background:#1e2e1e;"><img src="images/walmer-fp-estate-14.jpg" alt="Estate 3 Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Estate Collection &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#f0ece4; margin-bottom:0.3rem;">Estate 3</div>
+        <div style="font-size:0.85rem; color:rgba(240,236,228,0.7); margin-bottom:0.3rem;">3 Bed + Family Room</div>
+        <div style="font-size:0.85rem; color:#8c7355; margin-bottom:1rem;">3,910 sq ft</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#f0ece4; margin-bottom:1.5rem;">$7,820,000 – $9,775,000</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
+      </div>
+    </div>
+    <div class="fp-row" data-collection="penthouse" data-closing="2030" style="background:#1b2d4f; color:#f0ece4;" onclick="openModal('fh-14')">
+      <div class="fp-row-image"><img src="images/walmer-fp-penthouse-2.jpg" alt="The Penthouse Floor Plan" loading="lazy" /></div>
+      <div class="fp-row-details">
+        <div style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:#8c7355; margin-bottom:0.5rem;">Penthouse &middot; 429 Walmer</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#c4bdb2; margin-bottom:0.3rem;">The Penthouse</div>
+        <div style="font-size:0.85rem; color:#d4cfc8; margin-bottom:0.3rem;">3 Bed + Family Room + Study</div>
+        <div style="font-size:0.78rem; color:#d4cfc8; margin-bottom:1rem;">8,467 sq ft interior &middot; 5,064 sq ft terrace &middot; 4.5 Bath &middot; Floor 18</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:#8c7355; margin-bottom:1.5rem;">$16,934,000 – $21,167,500</div>
+        <a href="../buildings/429-walmer.html" style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#8c7355; text-decoration:none;" onclick="event.stopPropagation()">View Building &rarr;</a>
       </div>
     </div>
 
@@ -484,7 +459,7 @@
   <div class="cta-headline">Interested in Forest Hill?<br><em>Private inquiries welcome.</em></div>
   <div class="cta-actions">
     <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
-    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20429%20Walmer." class="btn-outline">Send a Message</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20Forest%20Hill." class="btn-outline">Send a Message</a>
   </div>
 </div>
 <footer>
@@ -506,12 +481,12 @@
         <div class="detail-row"><span class="detail-label">Residence</span><span class="detail-val" id="m-name"></span></div>
         <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
         <div class="detail-row"><span class="detail-label">Interior</span><span class="detail-val" id="m-size"></span></div>
-        <div class="detail-row"><span class="detail-label">Price Range</span><span class="detail-val" id="m-price"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
         <div class="modal-cta">
           <div id="m-building-link"></div>
           <div class="modal-cta-text">Private viewings available by appointment. Reach out to discuss availability and pricing.</div>
           <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
-          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20429%20Walmer." class="btn-full-outline">Send a Message</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20Forest%20Hill." class="btn-full-outline">Send a Message</a>
         </div>
       </div>
     </div>
@@ -520,43 +495,44 @@
 
 <script>
   var plans = {
-    'fh-1': { name: 'Residence 5', type: '2 Bed', size: '2,058 sq ft', collection: 'Podium Collection', price: '$4,116,000 \u2013 $5,145,000', img: 'images/walmer-fp-podium-20.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-2': { name: 'Residence 3A', type: '2 Bed', size: '2,361 sq ft', collection: 'Podium Collection', price: '$4,722,000 \u2013 $5,902,500', img: 'images/walmer-fp-podium-11.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-3': { name: 'Residence 2A', type: '2 Bed', size: '2,400 sq ft', collection: 'Podium Collection', price: '$4,800,000 \u2013 $6,000,000', img: 'images/walmer-fp-podium-5.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-4': { name: 'Residence 3', type: '2 Bed + Family Room', size: '2,534 sq ft', collection: 'Podium Collection', price: '$5,068,000 \u2013 $6,335,000', img: 'images/walmer-fp-podium-14.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-5': { name: 'Residence 4', type: '2 Bed + Family Room', size: '2,568 sq ft', collection: 'Podium Collection', price: '$5,136,000 \u2013 $6,420,000', img: 'images/walmer-fp-podium-17.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-6': { name: 'Residence 1', type: '2 Bed + Family Room', size: '2,588 sq ft', collection: 'Podium Collection', price: '$5,176,000 \u2013 $6,470,000', img: 'images/walmer-fp-podium-2.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-7': { name: 'Residence 2', type: '2 Bed + Family Room', size: '2,591 sq ft', collection: 'Podium Collection', price: '$5,182,000 \u2013 $6,477,500', img: 'images/walmer-fp-podium-8.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-8': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', price: '$6,126,000 \u2013 $7,657,500', img: 'images/walmer-fp-estate-17.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-9': { name: 'Terrace Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', price: '$6,954,000 \u2013 $8,692,500', img: 'images/walmer-fp-estate-2.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-10': { name: 'Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', price: '$6,954,000 \u2013 $8,692,500', img: 'images/walmer-fp-estate-5.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-11': { name: 'Terrace Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', price: '$7,000,000 \u2013 $8,750,000', img: 'images/walmer-fp-estate-8.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-12': { name: 'Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', price: '$7,000,000 \u2013 $8,750,000', img: 'images/walmer-fp-estate-11.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-13': { name: 'Estate 3', type: '3 Bed + Family Room', size: '3,910 sq ft', collection: 'Estate Collection', price: '$7,820,000 \u2013 $9,775,000', img: 'images/walmer-fp-estate-14.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft interior \u00b7 5,064 sq ft terrace \u00b7 13,531 sq ft total', collection: 'Penthouse Collection', price: '$16,934,000 \u2013 $21,167,500', img: 'images/walmer-fp-penthouse-2.jpg', buildingLink: '../buildings/429-walmer.html' },
-    'fh-15': { name: 'Dunvegan 1148', type: '2 Bed Townhome', size: '1,148 sq ft', collection: 'Crown Collection', price: 'From $1,750,990', img: 'images/sfh-crown-10.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-16': { name: 'Dunvegan 1079', type: '2 Bed + Den', size: '1,079 sq ft', collection: 'Crown Collection', price: 'From $1,799,425', img: 'images/sfh-crown-2.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-17': { name: 'Frybrook 1216', type: '2 Bed + Study', size: '1,216 sq ft', collection: 'Crown Collection', price: 'From $2,094,240', img: 'images/sfh-crown-3.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-18': { name: 'Frybrook 1301', type: '2 Bed + Study', size: '1,301 sq ft', collection: 'Crown Collection', price: 'From $2,344,225', img: 'images/sfh-crown-4.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-19': { name: 'Frybrook 1356', type: '2 Bed + Study', size: '1,356 sq ft', collection: 'Crown Collection', price: 'From $2,337,400', img: 'images/sfh-crown-5.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-20': { name: 'Frybrook 1374', type: '2 Bed + Den Townhome', size: '1,374 sq ft', collection: 'Crown Collection', price: 'From $2,080,990', img: 'images/sfh-crown-11.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-21': { name: 'Warren 1745', type: '3 Bed + Study', size: '1,745 sq ft', collection: 'Crown Collection', price: 'From $3,153,750', img: 'images/sfh-crown-7.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-22': { name: 'Frybrook 1878', type: '2 Bed + Study', size: '1,878 sq ft', collection: 'Crown Collection', price: 'From $3,527,350', img: 'images/sfh-crown-8.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-23': { name: 'Warren 2391', type: '3 Bed + Study', size: '2,391 sq ft', collection: 'Crown Collection', price: 'From $4,432,990', img: 'images/sfh-crown-6.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-24': { name: 'Dunvegan 2423', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Collection', price: 'From $4,461,400', img: 'images/sfh-crown-9.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-25': { name: 'Frybrook 3009', type: '2 Bed + Study', size: '3,009 sq ft', collection: 'Crown Collection', price: 'From $4,899,750', img: 'images/sfh-crown-3009.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-26': { name: 'Frybrook 2118', type: '2 Bed + Study', size: '2,118 sq ft', collection: 'Crown Penthouse', price: 'From $4,065,625', img: 'images/sfh-ph-2118.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-27': { name: 'Frybrook 2126', type: '2 Bed + Study', size: '2,126 sq ft', collection: 'Crown Penthouse', price: 'From $4,086,250', img: 'images/sfh-ph-2126.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-28': { name: 'Dunvegan 2423', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Penthouse', price: 'From $4,946,000', img: 'images/sfh-ph-2423.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-29': { name: 'Frybrook 2630', type: '2 Bed + Den', size: '2,630 sq ft', collection: 'Crown Penthouse', price: 'From $4,899,750', img: 'images/sfh-ph-2630.jpg', buildingLink: '../buildings/south-forest-hill.html' },
-    'fh-30': { name: 'Warren 3196', type: '3 Bed + Study', size: '3,196 sq ft', collection: 'Crown Penthouse', price: 'From $6,084,875', img: 'images/sfh-ph-3196.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-15': { name: 'Dunvegan 1079', type: '2 Bed + Den', size: '1,079 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $1,799,425', img: 'images/sfh-crown-2.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-16': { name: 'Dunvegan 1148', type: '2 Bed Townhome', size: '1,148 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $1,750,990', img: 'images/sfh-crown-10.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-17': { name: 'Frybrook 1216', type: '2 Bed + Study', size: '1,216 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,094,240', img: 'images/sfh-crown-3.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-18': { name: 'Frybrook 1301', type: '2 Bed + Study', size: '1,301 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,344,225', img: 'images/sfh-crown-4.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-19': { name: 'Frybrook 1356', type: '2 Bed + Study', size: '1,356 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,337,400', img: 'images/sfh-crown-5.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-20': { name: 'Frybrook 1374', type: '2 Bed + Den Townhome', size: '1,374 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $2,080,990', img: 'images/sfh-crown-11.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-21': { name: 'Warren 1745', type: '3 Bed + Study', size: '1,745 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $3,153,750', img: 'images/sfh-crown-7.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-22': { name: 'Frybrook 1878', type: '2 Bed + Study', size: '1,878 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $3,527,350', img: 'images/sfh-crown-8.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-1': { name: 'Residence 5', type: '2 Bed', size: '2,058 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,116,000 – $5,145,000', img: 'images/walmer-fp-podium-20.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-23': { name: 'Frybrook 2118', type: '2 Bed + Study', size: '2,118 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,065,625', img: 'images/sfh-ph-2118.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-24': { name: 'Frybrook 2126', type: '2 Bed + Study', size: '2,126 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,086,250', img: 'images/sfh-ph-2126.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-2': { name: 'Residence 3A', type: '2 Bed', size: '2,361 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,722,000 – $5,902,500', img: 'images/walmer-fp-podium-11.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-25': { name: 'Warren 2391', type: '3 Bed + Study', size: '2,391 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,432,990', img: 'images/sfh-crown-6.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-3': { name: 'Residence 2A', type: '2 Bed', size: '2,400 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$4,800,000 – $6,000,000', img: 'images/walmer-fp-podium-5.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-26': { name: 'Dunvegan 2423', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,461,400', img: 'images/sfh-crown-9.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-27': { name: 'Dunvegan 2423 PH', type: '2 Bed + Study', size: '2,423 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,946,000', img: 'images/sfh-ph-2423.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-4': { name: 'Residence 3', type: '2 Bed + Family Room', size: '2,534 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,068,000 – $6,335,000', img: 'images/walmer-fp-podium-14.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-5': { name: 'Residence 4', type: '2 Bed + Family Room', size: '2,568 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,136,000 – $6,420,000', img: 'images/walmer-fp-podium-17.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-6': { name: 'Residence 1', type: '2 Bed + Family Room', size: '2,588 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,176,000 – $6,470,000', img: 'images/walmer-fp-podium-2.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-7': { name: 'Residence 2', type: '2 Bed + Family Room', size: '2,591 sq ft', collection: 'Podium Collection', building: '429 Walmer', price: '$5,182,000 – $6,477,500', img: 'images/walmer-fp-podium-8.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-28': { name: 'Frybrook 2630', type: '2 Bed + Den', size: '2,630 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $4,899,750', img: 'images/sfh-ph-2630.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-29': { name: 'Frybrook 3009', type: '2 Bed + Study', size: '3,009 sq ft', collection: 'Crown Collection', building: 'South Forest Hill', price: 'From $4,899,750', img: 'images/sfh-crown-3009.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-8': { name: 'Estate 4', type: '2 Bed + Family Room', size: '3,063 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,126,000 – $7,657,500', img: 'images/walmer-fp-estate-17.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-30': { name: 'Warren 3196', type: '3 Bed + Study', size: '3,196 sq ft', collection: 'Crown Penthouse', building: 'South Forest Hill', price: 'From $6,084,875', img: 'images/sfh-ph-3196.jpg', buildingLink: '../buildings/south-forest-hill.html' }
+    'fh-9': { name: 'Terrace Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,954,000 – $8,692,500', img: 'images/walmer-fp-estate-2.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-10': { name: 'Estate 1', type: '3 Bed', size: '3,477 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$6,954,000 – $8,692,500', img: 'images/walmer-fp-estate-5.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-11': { name: 'Terrace Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,000,000 – $8,750,000', img: 'images/walmer-fp-estate-8.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-12': { name: 'Estate 2', type: '2 Bed + Family Room', size: '3,500 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,000,000 – $8,750,000', img: 'images/walmer-fp-estate-11.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-13': { name: 'Estate 3', type: '3 Bed + Family Room', size: '3,910 sq ft', collection: 'Estate Collection', building: '429 Walmer', price: '$7,820,000 – $9,775,000', img: 'images/walmer-fp-estate-14.jpg', buildingLink: '../buildings/429-walmer.html' }
+    'fh-14': { name: 'The Penthouse', type: '3 Bed + Family Room + Study', size: '8,467 sq ft interior \u00b7 5,064 sq ft terrace \u00b7 13,531 sq ft total', collection: 'Penthouse', building: '429 Walmer', price: '$16,934,000 – $21,167,500', img: 'images/walmer-fp-penthouse-2.jpg', buildingLink: '../buildings/429-walmer.html' }
   };
+
   function openModal(id) {
     var p = plans[id]; if (!p) return;
-    document.getElementById('modal-eyebrow').textContent = 'Forest Hill \u00b7 429 Walmer';
+    document.getElementById('modal-eyebrow').textContent = 'Forest Hill \u00b7 ' + p.building;
     document.getElementById('modal-title').textContent = p.name;
     document.getElementById('modal-img').src = p.img;
-    document.getElementById('m-building').textContent = '429 Walmer';
+    document.getElementById('m-building').textContent = p.building;
     document.getElementById('m-collection').textContent = p.collection;
     document.getElementById('m-name').textContent = p.name;
     document.getElementById('m-type').textContent = p.type;
@@ -568,98 +544,101 @@
     } else { linkEl.innerHTML = ''; }
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
+    if (window.resetModalZoom) window.resetModalZoom();
   }
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-  // Collection filter
+  // Filters
+  var activeClosing = 'all';
+  var activeCollection = 'all';
+
+  function applyFilters() {
+    document.querySelectorAll('.fp-row').forEach(function(row) {
+      var closing = row.dataset.closing;
+      var col = row.dataset.collection;
+      var showClosing = activeClosing === 'all' || closing === activeClosing;
+      var showCol = activeCollection === 'all' || col === activeCollection;
+      row.style.display = (showClosing && showCol) ? '' : 'none';
+    });
+  }
+
+  function updateUrl() {
+    var params = new URLSearchParams();
+    if (activeCollection !== 'all') params.set('collection', activeCollection);
+    if (activeClosing !== 'all') params.set('closing', activeClosing);
+    var qs = params.toString();
+    history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+  }
+
   document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
-      var filter = btn.dataset.filter;
-      document.querySelectorAll('.fp-row').forEach(function(row) {
-        if (filter === 'all' || row.dataset.collection === filter) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
-      var qs = filter !== 'all' ? '?collection=' + filter : '';
-      history.replaceState(null, '', window.location.pathname + qs);
+      activeCollection = btn.dataset.filter;
+      applyFilters(); updateUrl();
     });
   });
 
-  // URL param on load
+  document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeClosing = btn.dataset.closingFilter;
+      applyFilters(); updateUrl();
+    });
+  });
+
+  // URL params on load
   (function() {
     var params = new URLSearchParams(window.location.search);
     var col = params.get('collection');
+    var closing = params.get('closing');
     if (col) {
       var btn = document.querySelector('#collection-filters .fp-filter-btn[data-filter="' + col + '"]');
-      if (btn) { document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active');
-        document.querySelectorAll('.fp-row').forEach(function(row) {
-          row.style.display = (row.dataset.collection === col) ? '' : 'none';
-        });
-      }
+      if (btn) { document.querySelectorAll('#collection-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeCollection = col; }
     }
+    if (closing) {
+      var btn = document.querySelector('#closing-filters .fp-filter-btn[data-closing-filter="' + closing + '"]');
+      if (btn) { document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeClosing = closing; }
+    }
+    if (col || closing) applyFilters();
   })();
 
-  // Modal image zoom + drag-to-pan
+  // Zoom + pan
   (function() {
     var img = document.getElementById('modal-img');
     var container = img.parentElement;
     var scale = 1, panX = 0, panY = 0;
     var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
-
     function updateTransform(animate) {
       img.style.transition = animate ? 'transform 0.3s' : 'none';
       img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
     }
-
     function resetZoom() {
       scale = 1; panX = 0; panY = 0;
       container.classList.remove('zoomed', 'dragging');
       updateTransform(true);
     }
-
     img.addEventListener('mousedown', function(e) {
-      if (scale <= 1) return;
-      e.preventDefault();
+      if (scale <= 1) return; e.preventDefault();
       isDragging = true; didDrag = false;
-      startX = e.clientX; startY = e.clientY;
-      startPanX = panX; startPanY = panY;
+      startX = e.clientX; startY = e.clientY; startPanX = panX; startPanY = panY;
       container.classList.add('dragging');
     });
-
     document.addEventListener('mousemove', function(e) {
       if (!isDragging) return;
-      var dx = (e.clientX - startX) / scale;
-      var dy = (e.clientY - startY) / scale;
+      var dx = (e.clientX - startX) / scale, dy = (e.clientY - startY) / scale;
       if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
-      panX = startPanX + dx;
-      panY = startPanY + dy;
-      updateTransform(false);
+      panX = startPanX + dx; panY = startPanY + dy; updateTransform(false);
     });
-
-    document.addEventListener('mouseup', function() {
-      if (!isDragging) return;
-      isDragging = false;
-      container.classList.remove('dragging');
-    });
-
+    document.addEventListener('mouseup', function() { if (!isDragging) return; isDragging = false; container.classList.remove('dragging'); });
     img.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (didDrag) { didDrag = false; return; }
-      if (scale <= 1) {
-        scale = 1.8; panX = 0; panY = 0;
-        container.classList.add('zoomed');
-        updateTransform(true);
-      } else {
-        resetZoom();
-      }
+      e.stopPropagation(); if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) { scale = 1.8; panX = 0; panY = 0; container.classList.add('zoomed'); updateTransform(true); }
+      else { resetZoom(); }
     });
-
     window.resetModalZoom = resetZoom;
   })();
 </script>
