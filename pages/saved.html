@@ -63,30 +63,16 @@
 </footer>
 
 <script>
-  // Debug: log raw localStorage value
-  console.log('Saved plans raw:', localStorage.getItem('ca_saved_plans'));
+  // Debug
+  console.log('Saved plans raw:', localStorage.getItem('ca-saved-plans'));
 
-  var raw = localStorage.getItem('ca_saved_plans');
-  var savedPlans = {};
+  var saved = JSON.parse(localStorage.getItem('ca-saved-plans') || '[]');
   var user = JSON.parse(localStorage.getItem('ca_user') || 'null');
   var container = document.getElementById('saved-container');
 
-  // Parse saved plans — handle both object format and legacy array format
-  if (raw) {
-    try {
-      var parsed = JSON.parse(raw);
-      if (typeof parsed === 'object' && !Array.isArray(parsed)) {
-        savedPlans = parsed;
-      } else if (Array.isArray(parsed)) {
-        // Legacy: array of IDs — convert to object
-        parsed.forEach(function(id) { savedPlans[id] = { id: id }; });
-      }
-    } catch (e) {
-      console.log('Failed to parse saved plans:', e);
-    }
-  }
+  if (!Array.isArray(saved)) saved = [];
 
-  console.log('Parsed saved plans:', savedPlans);
+  console.log('Parsed saved plans:', saved);
 
   function fixImgPath(src) {
     if (!src) return '';
@@ -96,32 +82,25 @@
     return '../' + src;
   }
 
-  var keys = Object.keys(savedPlans);
-
-  if (keys.length === 0) {
+  if (saved.length === 0) {
     container.innerHTML = '<div class="empty"><p>No saved floor plans yet. Browse neighbourhoods and tap the heart icon on any plan to save it.</p><a href="../index.html" style="color:#b89a56;">Browse Floor Plans &rarr;</a></div>';
   } else {
     var html = '<div class="saved-grid">';
-    keys.forEach(function(id) {
-      var p = savedPlans[id] || {};
-      var imgSrc = fixImgPath(p.image || p.img || '');
+    saved.forEach(function(p, idx) {
+      var imgSrc = fixImgPath(p.image || '');
       var building = p.building || '';
       var neighbourhood = p.neighbourhood || '';
-      var label = building && neighbourhood ? building + ' &middot; ' + neighbourhood : (building || neighbourhood || id);
-      var suite = p.suite || p.name || id;
-      var type = p.type || '';
-      var sqft = p.sqft || p.size || '';
-      var price = p.price || '';
+      var label = building && neighbourhood ? building + ' &middot; ' + neighbourhood : (building || neighbourhood || p.id);
 
-      html += '<div class="saved-card" id="card-' + id + '">';
-      if (imgSrc) html += '<img src="' + imgSrc + '" alt="' + suite + '" />';
+      html += '<div class="saved-card" id="card-' + idx + '">';
+      if (imgSrc) html += '<img src="' + imgSrc + '" alt="' + (p.id || '') + '" />';
       html += '<div class="saved-card-details">';
       html += '<div class="saved-card-building">' + label + '</div>';
-      html += '<div class="saved-card-name">' + suite + '</div>';
-      if (type) html += '<div class="saved-card-type">' + type + '</div>';
-      if (sqft) html += '<div class="saved-card-sqft">' + sqft + '</div>';
-      if (price) html += '<div class="saved-card-price">' + price + '</div>';
-      html += '<button class="saved-card-remove" onclick="removePlan(\'' + id + '\')">Remove &times;</button>';
+      html += '<div class="saved-card-name">' + (p.id || '') + '</div>';
+      if (p.type) html += '<div class="saved-card-type">' + p.type + '</div>';
+      if (p.sqft) html += '<div class="saved-card-sqft">' + p.sqft + '</div>';
+      if (p.price) html += '<div class="saved-card-price">' + p.price + '</div>';
+      html += '<button class="saved-card-remove" onclick="removePlan(' + idx + ')">Remove &times;</button>';
       html += '</div></div>';
     });
     html += '</div>';
@@ -133,15 +112,13 @@
     html += '<div class="send-status" id="send-status"></div>';
     html += '</div>';
     container.innerHTML = html;
-    document.getElementById('saved-subtitle').textContent = keys.length + ' floor plan' + (keys.length > 1 ? 's' : '') + ' saved';
+    document.getElementById('saved-subtitle').textContent = saved.length + ' floor plan' + (saved.length > 1 ? 's' : '') + ' saved';
   }
 
-  function removePlan(id) {
-    delete savedPlans[id];
-    localStorage.setItem('ca_saved_plans', JSON.stringify(savedPlans));
-    var card = document.getElementById('card-' + id);
-    if (card) card.remove();
-    if (Object.keys(savedPlans).length === 0) location.reload();
+  function removePlan(idx) {
+    saved.splice(idx, 1);
+    localStorage.setItem('ca-saved-plans', JSON.stringify(saved));
+    location.reload();
   }
 
   function sendToNik() {
@@ -156,15 +133,14 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    var planNames = Object.keys(savedPlans).map(function(id) {
-      var p = savedPlans[id] || {};
-      return (p.building || '') + ' ' + (p.suite || p.name || id);
+    var planNames = saved.map(function(p) {
+      return (p.building || '') + ' ' + (p.id || '');
     });
 
     fetch('/.netlify/functions/save-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: user.name, phone: user.phone, plans: Object.keys(savedPlans), planNames: planNames })
+      body: JSON.stringify({ name: user.name, phone: user.phone, plans: saved.map(function(p) { return p.id; }), planNames: planNames })
     })
     .then(function(r) { return r.json(); })
     .then(function() {

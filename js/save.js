@@ -1,7 +1,19 @@
 // Floor Plan Save System
 (function() {
-  var savedPlans = JSON.parse(localStorage.getItem('ca_saved_plans') || '{}');
+  // Clean up old keys
+  localStorage.removeItem('savedPlans');
+  localStorage.removeItem('ca-saved');
+  localStorage.removeItem('ca_saved_plans');
+
+  var saved = JSON.parse(localStorage.getItem('ca-saved-plans') || '[]');
   var user = JSON.parse(localStorage.getItem('ca_user') || 'null');
+
+  // Ensure saved is an array
+  if (!Array.isArray(saved)) saved = [];
+
+  function isSaved(planId) {
+    return saved.some(function(p) { return p.id === planId; });
+  }
 
   var style = document.createElement('style');
   style.textContent = '\
@@ -30,81 +42,41 @@
 
   var heartSvg = '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
 
-  function getSavedCount() { return Object.keys(savedPlans).length; }
+  function getPlanData(planId) {
+    var data = { id: planId, image: '', building: '', neighbourhood: '', type: '', sqft: '', price: '', savedAt: Date.now() };
 
-  // Extract plan data from the card DOM + page's plans JS object
-  function extractPlanData(card, planId) {
-    var data = {
-      id: planId,
-      image: '',
-      building: '',
-      suite: '',
-      type: '',
-      sqft: '',
-      price: '',
-      neighbourhood: '',
-      savedAt: Date.now()
-    };
-
-    // Try to get data from the page's plans JS object first (most reliable)
+    // Read from page's plans JS object (primary source)
     if (typeof plans !== 'undefined' && plans[planId]) {
       var p = plans[planId];
+      data.image = p.img || '';
       data.building = p.building || '';
-      data.suite = p.suite || p.name || '';
       data.type = p.type || '';
       data.sqft = p.size || p.indoor || '';
       data.price = p.price || p.promo || '';
-      data.image = p.img || '';
     }
 
-    // Get image from DOM if not from JS
-    var img = card.querySelector('img');
-    if (img && !data.image) data.image = img.getAttribute('src') || '';
-    if (!data.image && img) data.image = img.src || '';
-
-    // Fallback: extract from DOM for grid cards
-    if (!data.building) {
-      var bt = card.querySelector('.fp-building-tag');
-      if (bt) data.building = bt.textContent.trim();
-    }
-    if (!data.suite) {
-      var st = card.querySelector('.fp-suite');
-      if (st) data.suite = st.textContent.trim();
-    }
-    if (!data.type) {
-      var tt = card.querySelector('.fp-type');
-      if (tt) data.type = tt.textContent.trim();
-    }
-    if (!data.sqft) {
-      var sq = card.querySelector('.fp-sqft');
-      if (sq) data.sqft = sq.textContent.trim();
-    }
-    if (!data.price) {
-      var pr = card.querySelector('.fp-price');
-      if (pr) data.price = pr.textContent.trim();
-    }
-
-    // Fallback: extract from row card details divs
-    if (!data.building) {
-      var details = card.querySelector('.fp-row-details');
-      if (details) {
-        var divs = details.querySelectorAll('div');
-        for (var i = 0; i < divs.length; i++) {
-          var txt = divs[i].textContent.trim();
-          if (i === 0 && !data.building) data.building = txt;
-          if (i === 1 && !data.suite) data.suite = txt;
-          if (i === 2 && !data.type) data.type = txt;
-          if (i === 3 && !data.sqft) data.sqft = txt;
-          if (i === 4 && !data.price) data.price = txt;
-        }
-      }
-    }
-
-    // Get neighbourhood from page title or eyebrow
+    // Get neighbourhood from page eyebrow
     var eyebrow = document.querySelector('.page-eyebrow');
     if (eyebrow) data.neighbourhood = eyebrow.textContent.trim();
 
     return data;
+  }
+
+  function savePlan(planId, btn) {
+    var data = getPlanData(planId);
+    saved.push(data);
+    localStorage.setItem('ca-saved-plans', JSON.stringify(saved));
+    btn.classList.add('saved');
+    showToast('Saved to your list');
+    updateBadge();
+  }
+
+  function unsavePlan(planId, btn) {
+    saved = saved.filter(function(p) { return p.id !== planId; });
+    localStorage.setItem('ca-saved-plans', JSON.stringify(saved));
+    btn.classList.remove('saved');
+    showToast('Removed from your list');
+    updateBadge();
   }
 
   function addSaveButtons() {
@@ -116,7 +88,7 @@
       var imgDiv = card.querySelector('.fp-image');
       if (!imgDiv || imgDiv.querySelector('.save-btn')) return;
       imgDiv.style.position = 'relative';
-      addBtn(imgDiv, m[1], card);
+      addBtn(imgDiv, m[1]);
     });
     document.querySelectorAll('.fp-row').forEach(function(row) {
       var onclick = row.getAttribute('onclick');
@@ -126,48 +98,36 @@
       var imgDiv = row.querySelector('.fp-row-image');
       if (!imgDiv || imgDiv.querySelector('.save-btn')) return;
       imgDiv.style.position = 'relative';
-      addBtn(imgDiv, m[1], row);
+      addBtn(imgDiv, m[1]);
     });
   }
 
-  function addBtn(container, planId, card) {
+  function addBtn(container, planId) {
     var btn = document.createElement('button');
-    btn.className = 'save-btn' + (savedPlans[planId] ? ' saved' : '');
+    btn.className = 'save-btn' + (isSaved(planId) ? ' saved' : '');
     btn.innerHTML = heartSvg;
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       if (!user) {
-        showLoginModal(planId, btn, card);
+        showLoginModal(planId, btn);
       } else {
-        toggleSave(planId, btn, card);
+        if (isSaved(planId)) {
+          unsavePlan(planId, btn);
+        } else {
+          savePlan(planId, btn);
+        }
       }
     });
     container.appendChild(btn);
   }
 
-  function toggleSave(planId, btn, card) {
-    if (savedPlans[planId]) {
-      delete savedPlans[planId];
-      btn.classList.remove('saved');
-      showToast('Removed from your list');
-    } else {
-      savedPlans[planId] = extractPlanData(card, planId);
-      btn.classList.add('saved');
-      showToast('Saved to your list');
-    }
-    localStorage.setItem('ca_saved_plans', JSON.stringify(savedPlans));
-    updateBadge();
-  }
-
   var modalEl = null;
   var pendingPlanId = null;
   var pendingBtn = null;
-  var pendingCard = null;
 
-  function showLoginModal(planId, btn, card) {
+  function showLoginModal(planId, btn) {
     pendingPlanId = planId;
     pendingBtn = btn;
-    pendingCard = card;
 
     if (!modalEl) {
       modalEl = document.createElement('div');
@@ -183,7 +143,7 @@
       document.body.appendChild(modalEl);
       document.getElementById('save-close').addEventListener('click', function() {
         modalEl.classList.remove('active');
-        pendingPlanId = null; pendingBtn = null; pendingCard = null;
+        pendingPlanId = null; pendingBtn = null;
       });
     }
     modalEl.classList.add('active');
@@ -198,10 +158,10 @@
       user = { name: name, phone: phone, date: new Date().toISOString() };
       localStorage.setItem('ca_user', JSON.stringify(user));
       modalEl.classList.remove('active');
-      if (pendingPlanId && pendingBtn && pendingCard) {
-        toggleSave(pendingPlanId, pendingBtn, pendingCard);
+      if (pendingPlanId && pendingBtn) {
+        savePlan(pendingPlanId, pendingBtn);
       }
-      pendingPlanId = null; pendingBtn = null; pendingCard = null;
+      pendingPlanId = null; pendingBtn = null;
     };
   }
 
@@ -229,9 +189,8 @@
     var prefix = depth > 1 ? '../' : '';
     link.href = prefix + 'pages/saved.html';
     link.innerHTML = '&#x2661; Saved';
-    var count = getSavedCount();
-    if (count > 0) {
-      link.innerHTML += '<span class="nav-saved-badge">' + count + '</span>';
+    if (saved.length > 0) {
+      link.innerHTML += '<span class="nav-saved-badge">' + saved.length + '</span>';
     }
     cta.parentNode.insertBefore(link, cta);
   }
@@ -240,14 +199,13 @@
     var link = document.getElementById('nav-saved-link');
     if (!link) return;
     var badge = link.querySelector('.nav-saved-badge');
-    var count = getSavedCount();
-    if (count > 0) {
+    if (saved.length > 0) {
       if (!badge) {
         badge = document.createElement('span');
         badge.className = 'nav-saved-badge';
         link.appendChild(badge);
       }
-      badge.textContent = count;
+      badge.textContent = saved.length;
     } else if (badge) {
       badge.remove();
     }
