@@ -49,7 +49,8 @@ exports.handler = async function(event) {
     var data = await response.json();
     if (data.content && data.content[0] && data.content[0].text) {
       var text = data.content[0].text;
-      var formatted = text.replace(/(\d+\.)/g, '\n$1').trim();
+      var lines = text.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l.length > 0; });
+      var formatted = lines.join('\n');
       data.content[0].text = formatted;
     }
     return {

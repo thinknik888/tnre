@@ -92,7 +92,8 @@
     var container = document.getElementById('sofia-messages');
     var msg = document.createElement('div');
     msg.className = 'sofia-msg ' + role;
-    msg.innerHTML = text.replace(/\n/g, '<br>');
+    var escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    msg.innerHTML = escaped.replace(/\n/g, '<br>');
     container.appendChild(msg);
     container.scrollTop = container.scrollHeight;
     return msg;
