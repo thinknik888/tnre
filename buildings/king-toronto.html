@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King Toronto &mdash; King West | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --green: #1e2a18; --sage: #7a9a5a; --cream: #f5f0e8; --card: #faf5ed; --border: #c4bdb2; --text: #1e2a18; --text-mid: #5a6b4a; --text-muted: #8a957a; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--text); }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(245,240,232,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--green); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-back, .nav-link { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover, .nav-link:hover { color: var(--sage); }
+    .nav-cta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--green); color: var(--cream); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; background: url('../neighbourhoods/images/king-info-1.jpg') center/cover no-repeat; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(30,42,24,0.25) 0%, rgba(30,42,24,0.72) 100%); }
+    .hero-content { position: absolute; bottom: 5rem; left: 3rem; right: 3rem; animation: fadeUp 1s ease-out both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; font-variant: small-caps; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 0.75rem; }
+    .hero-sub { font-size: 0.85rem; color: var(--cream); opacity: 0.85; }
+
+    /* URGENCY BAR */
+    .urgency { background: var(--green); padding: 1rem 3rem; text-align: center; }
+    .urgency span { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); }
+
+    /* STATS BAR */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); padding: 2.5rem 3rem; border-bottom: 1px solid var(--border); text-align: center; }
+    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--sage); }
+    .stat-item .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ARCHITECT STRIP */
+    .architect-strip { background: var(--green); padding: 1.4rem 3rem; text-align: center; font-size: 0.78rem; color: var(--cream); letter-spacing: 0.04em; }
+
+    /* RENDERINGS */
+    .renderings-section { padding: 3rem; border-bottom: 1px solid var(--border); }
+    .renderings-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--green); margin-bottom: 1.5rem; }
+    .render-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 0.5rem; -ms-overflow-style: none; scrollbar-width: none; }
+    .render-strip::-webkit-scrollbar { display: none; }
+    .render-strip img { width: 280px; height: 200px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
+
+    /* FLOOR PLANS */
+    .fp-section { padding: 3rem 3rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .fp-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--green); margin-bottom: 1.5rem; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .filter-btn { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.55rem 1.3rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
+    .filter-btn.active { background: var(--green); color: var(--cream); border-color: var(--green); }
+    .filter-btn:hover:not(.active) { border-color: var(--sage); color: var(--sage); }
+    .filter-link { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid var(--sage); color: var(--sage); padding: 0.55rem 1.3rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; transition: all 0.2s; }
+    .filter-link:hover { background: var(--sage); color: #fff; }
+
+    .fp-row { position: relative; display: grid; grid-template-columns: 65% 1fr; cursor: pointer; transition: background 0.2s; margin-bottom: 48px; }
+    .fp-row::after { content: ''; position: absolute; bottom: -24px; left: 3rem; right: 3rem; height: 0; border-bottom: 0.5px solid #c4bdb2; }
+    .fp-row:last-child::after { display: none; }
+    .fp-row:hover { background: var(--card); }
+    .fp-row-image { min-height: 400px; overflow: hidden; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: #fff; }
+    .fp-row-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .fp-row-details { padding: 2.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .fp-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+    .fp-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--green); margin-bottom: 0.3rem; }
+    .fp-plan { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .fp-type { font-size: 0.85rem; color: var(--text-mid); margin-bottom: 0.3rem; }
+    .fp-sqft { font-size: 0.85rem; color: var(--sage); margin-bottom: 1rem; }
+    .fp-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--green); margin-bottom: 0.5rem; }
+
+    /* FEATURES */
+    .features { background: var(--green); padding: 5rem 3rem; }
+    .features h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; font-style: italic; color: #fff; text-align: center; margin-bottom: 3rem; }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 960px; margin: 0 auto; }
+    .feature-group h4 { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .feature-group ul { list-style: none; }
+    .feature-group li { font-size: 0.82rem; color: rgba(245,240,232,0.75); line-height: 2; }
+
+    /* CTA */
+    .cta-band { background: var(--cream); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-top: 1px solid var(--border); }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--green); }
+    .cta-headline em { font-style: italic; color: var(--sage); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-green { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--green); color: var(--cream); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--sage); border: 1px solid var(--sage); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+
+    /* FOOTER */
+    footer { background: var(--green); border-top: 1px solid rgba(245,240,232,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(245,240,232,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(245,240,232,0.5); }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(30,42,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--card); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--green); }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { position: relative; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; color: var(--green); text-align: right; max-width: 60%; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--green); color: var(--cream); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(30,42,24,0.6); border: none; color: rgba(245,240,232,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(30,42,24,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 3rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 2rem 1.5rem; }
+      .renderings-section, .fp-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .fp-row { grid-template-columns: 1fr; }
+      .fp-row-image { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
+      .fp-row-details { padding: 1.5rem; }
+      .features { padding: 3rem 1.5rem; }
+      .features-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .cta-band { padding: 3rem 1.5rem; }
+      .modal { width: 100%; height: 100vh; border-radius: 0; }
+      .modal-body { grid-template-columns: 1fr; overflow-y: auto; }
+      .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .hero-title { font-size: 2.4rem; }
+      .nav-links .nav-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--sage)">.</span>com</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+    <a href="../pages/stats.html" class="nav-link">Stats</a>
+    <a href="../pages/saved.html" class="nav-link">Saved</a>
+  </div>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">489 King St W &middot; CN Tower / King West</div>
+    <div class="hero-title">King Toronto</div>
+    <div class="hero-sub">Westbank &amp; Allied &middot; Architecture by Bjarke Ingels Group</div>
+  </div>
+</div>
+
+<!-- URGENCY BAR -->
+<div class="urgency"><span>94% Sold Out &mdash; Only 30 Homes Remain</span></div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-val">440</div><div class="stat-lbl">Suites</div></div>
+  <div class="stat-item"><div class="stat-val">16</div><div class="stat-lbl">Storeys</div></div>
+  <div class="stat-item"><div class="stat-val">555&ndash;4,264</div><div class="stat-lbl">Sq Ft</div></div>
+  <div class="stat-item"><div class="stat-val">2028</div><div class="stat-lbl">Closing</div></div>
+</div>
+
+<!-- ARCHITECT STRIP -->
+<div class="architect-strip">Architecture &mdash; Bjarke Ingels Group (BIG) &middot; Developer &mdash; Westbank &amp; Allied Properties</div>
+
+<!-- RENDERINGS -->
+<div class="renderings-section">
+  <h3>The Building</h3>
+  <div class="render-strip">
+    <img src="../neighbourhoods/images/king-ph-9.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-10.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-13.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-14.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-11.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-12.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-6.jpg" alt="King Toronto" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-17.jpg" alt="King Toronto" loading="lazy" />
+  </div>
+</div>
+
+<!-- FLOOR PLANS -->
+<div class="fp-section" id="floor-plans">
+  <h2>Floor Plans</h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Plans</button>
+    <button class="filter-btn" data-filter="east">East</button>
+    <button class="filter-btn" data-filter="south">South</button>
+    <button class="filter-btn" data-filter="west">West</button>
+    <a href="king-toronto-penthouse.html" class="filter-link">Penthouse Collection &rarr;</a>
+  </div>
+
+  <!-- EAST -->
+  <div class="fp-row" data-category="east" data-sqft="1366" onclick="openModal('kt-e1')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-east-3.jpg" alt="Home 1205 E" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">East Mountain</div>
+      <div class="fp-name">Home 1205 E</div>
+      <div class="fp-plan">3BD.20</div>
+      <div class="fp-type">3 Bed 2 Bath</div>
+      <div class="fp-sqft">1,366 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="east" data-sqft="1245" onclick="openModal('kt-e2')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-east-1.jpg" alt="Home 803 E" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">East Mountain</div>
+      <div class="fp-name">Home 803 E</div>
+      <div class="fp-plan">3BD.35A</div>
+      <div class="fp-type">3 Bed 2 Bath</div>
+      <div class="fp-sqft">1,245 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="east" data-sqft="1132" onclick="openModal('kt-e3')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-east-2.jpg" alt="Home 1203 E" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">East Mountain</div>
+      <div class="fp-name">Home 1203 E</div>
+      <div class="fp-plan">3BD.19</div>
+      <div class="fp-type">3 Bed 2 Bath</div>
+      <div class="fp-sqft">1,132 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="east" data-sqft="965" onclick="openModal('kt-e4')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-east-4.jpg" alt="Home 1502 E" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">East Mountain</div>
+      <div class="fp-name">Home 1502 E</div>
+      <div class="fp-plan">2BD.04</div>
+      <div class="fp-type">2 Bed 2 Bath</div>
+      <div class="fp-sqft">965 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+
+  <!-- SOUTH -->
+  <div class="fp-row" data-category="south" data-sqft="1348" onclick="openModal('kt-s1')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-south-1.jpg" alt="Home 709 S" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">South Mountain</div>
+      <div class="fp-name">Home 709 S</div>
+      <div class="fp-plan">2BD.74</div>
+      <div class="fp-type">2 Bed 2 Bath</div>
+      <div class="fp-sqft">1,348 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="south" data-sqft="654" onclick="openModal('kt-s2')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-south-2.jpg" alt="Home 908 S" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">South Mountain</div>
+      <div class="fp-name">Home 908 S</div>
+      <div class="fp-plan">1BD.13</div>
+      <div class="fp-type">1 Bed + Study 1 Bath</div>
+      <div class="fp-sqft">654 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+
+  <!-- WEST -->
+  <div class="fp-row" data-category="west" data-sqft="1973" onclick="openModal('kt-w1')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-5.jpg" alt="Home 1005 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 1005 W</div>
+      <div class="fp-plan">3BD.59</div>
+      <div class="fp-type">3 Bed + Atelier 2 Bath</div>
+      <div class="fp-sqft">1,973 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="1796" onclick="openModal('kt-w2')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-6.jpg" alt="Home 1105 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 1105 W</div>
+      <div class="fp-plan">3BD.61</div>
+      <div class="fp-type">3 Bed 2 Bath</div>
+      <div class="fp-sqft">1,796 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="1096" onclick="openModal('kt-w3')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-4.jpg" alt="Home 721 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 721 W</div>
+      <div class="fp-plan">2BD.85</div>
+      <div class="fp-type">2 Bed + Study 2 Bath</div>
+      <div class="fp-sqft">1,096 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="1078" onclick="openModal('kt-w4')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-3.jpg" alt="Home 620 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 620 W</div>
+      <div class="fp-plan">2BD.85</div>
+      <div class="fp-type">2 Bed + Study 2 Bath</div>
+      <div class="fp-sqft">1,078 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="759" onclick="openModal('kt-w5')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-2.jpg" alt="Home 501 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 501 W</div>
+      <div class="fp-plan">1BD.91</div>
+      <div class="fp-type">1 Bed 1 Bath</div>
+      <div class="fp-sqft">759 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="725" onclick="openModal('kt-w6')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-1.jpg" alt="Home 516 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 516 W</div>
+      <div class="fp-plan">1BD.01A</div>
+      <div class="fp-type">1 Bed + Atelier 1 Bath</div>
+      <div class="fp-sqft">725 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="560" onclick="openModal('kt-w7')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-8.jpg" alt="Home 502 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 502 W</div>
+      <div class="fp-plan">1BD.78B</div>
+      <div class="fp-type">1 Bed + Study 1 Bath</div>
+      <div class="fp-sqft">560 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+  <div class="fp-row" data-category="west" data-sqft="555" onclick="openModal('kt-w8')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-7.jpg" alt="Home 806 W" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">West Mountain</div>
+      <div class="fp-name">Home 806 W</div>
+      <div class="fp-plan">1BD.96</div>
+      <div class="fp-type">1 Bed + Study 1 Bath</div>
+      <div class="fp-sqft">555 ft&sup2;</div>
+      <div class="fp-price">Call for Pricing</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES & FINISHES -->
+<div class="features">
+  <h2>Features &amp; Finishes</h2>
+  <div class="features-grid">
+    <div class="feature-group">
+      <h4>Exterior</h4>
+      <ul>
+        <li>Pixelated mountainous facade designed by Bjarke Ingels Group</li>
+        <li>Four distinct &ldquo;mountain&rdquo; peaks across the King Street frontage</li>
+        <li>Cascading terraces with integrated planters on every level</li>
+        <li>Heritage-inspired masonry base along King Street West</li>
+        <li>Curated retail and gallery spaces at grade</li>
+      </ul>
+    </div>
+    <div class="feature-group">
+      <h4>Sustainable Design</h4>
+      <ul>
+        <li>Targeting LEED Gold certification</li>
+        <li>Green roofs and biodiverse landscaping throughout</li>
+        <li>High-performance curtain wall glazing system</li>
+        <li>Energy recovery ventilation in every suite</li>
+      </ul>
+    </div>
+    <div class="feature-group">
+      <h4>Lobbies &amp; Amenities</h4>
+      <ul>
+        <li>Grand double-height lobby with curated art installations</li>
+        <li>Residents&rsquo; lounge and co-working library</li>
+        <li>Private dining room with catering kitchen</li>
+        <li>Children&rsquo;s play area and outdoor courtyard</li>
+      </ul>
+    </div>
+    <div class="feature-group">
+      <h4>Mountain Spa &amp; Pool</h4>
+      <ul>
+        <li>75-foot lap pool with floor-to-ceiling glazing</li>
+        <li>Hot and cold plunge pools</li>
+        <li>Eucalyptus steam room and dry sauna</li>
+        <li>State-of-the-art fitness centre with yoga studio</li>
+      </ul>
+    </div>
+    <div class="feature-group">
+      <h4>Suite Interiors</h4>
+      <ul>
+        <li>Ceiling heights up to 10 feet with floor-to-ceiling windows</li>
+        <li>Wide-plank European oak hardwood flooring</li>
+        <li>Integrated Miele appliance package</li>
+        <li>Natural stone countertops and backsplashes</li>
+        <li>Expansive private terraces with mountain-like planters</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-headline">Interested in <em>King Toronto?</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-green">Call Nik</a>
+    <a href="king-toronto-penthouse.html" class="btn-outline">View Penthouse Collection</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CondosAround<span style="color:var(--sage)">.</span>com</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Mountain</span><span class="detail-val" id="m-mountain"></span></div>
+        <div class="detail-row"><span class="detail-label">Home</span><span class="detail-val" id="m-name"></span></div>
+        <div class="detail-row"><span class="detail-label">Plan</span><span class="detail-val" id="m-plan"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Reach out to discuss availability, pricing, and private viewings for King Toronto.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20King%20Toronto." class="btn-full-outline">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Plans data */
+  var plans = {
+    'kt-e1': { name: 'Home 1205 E', plan: '3BD.20', type: '3 Bed 2 Bath', size: '1,366 ft\u00b2', mountain: 'East Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-east-3.jpg' },
+    'kt-e2': { name: 'Home 803 E', plan: '3BD.35A', type: '3 Bed 2 Bath', size: '1,245 ft\u00b2', mountain: 'East Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-east-1.jpg' },
+    'kt-e3': { name: 'Home 1203 E', plan: '3BD.19', type: '3 Bed 2 Bath', size: '1,132 ft\u00b2', mountain: 'East Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-east-2.jpg' },
+    'kt-e4': { name: 'Home 1502 E', plan: '2BD.04', type: '2 Bed 2 Bath', size: '965 ft\u00b2', mountain: 'East Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-east-4.jpg' },
+    'kt-s1': { name: 'Home 709 S', plan: '2BD.74', type: '2 Bed 2 Bath', size: '1,348 ft\u00b2', mountain: 'South Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-south-1.jpg' },
+    'kt-s2': { name: 'Home 908 S', plan: '1BD.13', type: '1 Bed + Study 1 Bath', size: '654 ft\u00b2', mountain: 'South Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-south-2.jpg' },
+    'kt-w1': { name: 'Home 1005 W', plan: '3BD.59', type: '3 Bed + Atelier 2 Bath', size: '1,973 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-5.jpg' },
+    'kt-w2': { name: 'Home 1105 W', plan: '3BD.61', type: '3 Bed 2 Bath', size: '1,796 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-6.jpg' },
+    'kt-w3': { name: 'Home 721 W', plan: '2BD.85', type: '2 Bed + Study 2 Bath', size: '1,096 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-4.jpg' },
+    'kt-w4': { name: 'Home 620 W', plan: '2BD.85', type: '2 Bed + Study 2 Bath', size: '1,078 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-3.jpg' },
+    'kt-w5': { name: 'Home 501 W', plan: '1BD.91', type: '1 Bed 1 Bath', size: '759 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-2.jpg' },
+    'kt-w6': { name: 'Home 516 W', plan: '1BD.01A', type: '1 Bed + Atelier 1 Bath', size: '725 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-1.jpg' },
+    'kt-w7': { name: 'Home 502 W', plan: '1BD.78B', type: '1 Bed + Study 1 Bath', size: '560 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-8.jpg' },
+    'kt-w8': { name: 'Home 806 W', plan: '1BD.96', type: '1 Bed + Study 1 Bath', size: '555 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-7.jpg' }
+  };
+
+  var planKeys = Object.keys(plans);
+  var currentPlanIdx = 0;
+
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    currentPlanIdx = planKeys.indexOf(id);
+    showPlan(p);
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showPlan(p) {
+    document.getElementById('modal-eyebrow').textContent = 'King Toronto \u00b7 ' + p.mountain;
+    document.getElementById('modal-title').textContent = p.name;
+    var img = document.getElementById('modal-img');
+    img.src = p.img;
+    if (window.resetModalZoom) window.resetModalZoom();
+    document.getElementById('m-building').textContent = 'King Toronto';
+    document.getElementById('m-mountain').textContent = p.mountain;
+    document.getElementById('m-name').textContent = p.name;
+    document.getElementById('m-plan').textContent = p.plan;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-price').textContent = p.price;
+  }
+
+  function modalNav(dir) {
+    currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
+    showPlan(plans[planKeys[currentPlanIdx]]);
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+    if (window.resetModalZoom) window.resetModalZoom();
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  /* Filter logic */
+  (function() {
+    var btns = document.querySelectorAll('.filter-btn');
+    var rows = document.querySelectorAll('.fp-row[data-category]');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter');
+        rows.forEach(function(row) {
+          if (filter === 'all' || row.getAttribute('data-category') === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+
+  /* Keyboard nav */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalNav(-1);
+      if (e.key === 'ArrowRight') modalNav(1);
+    }
+  });
+
+  /* Modal image zoom + drag-to-pan */
+  (function() {
+    var img = document.getElementById('modal-img');
+    var container = img.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+    function updateTransform(animate) {
+      img.style.transition = animate ? 'transform 0.3s' : 'none';
+      img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+
+    img.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx;
+      panY = startPanY + dy;
+      updateTransform(false);
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else {
+        resetZoom();
+      }
+    });
+
+    window.resetModalZoom = resetZoom;
+  })();
+</script>
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>

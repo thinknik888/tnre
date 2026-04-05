@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Penthouse Collection — King Toronto by Bjarke Ingels</title>
+<meta name="description" content="Six custom penthouse residences atop King Toronto by Bjarke Ingels Group. Final release — 94% sold.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0f0c;--accent:#c8956a;--sage:#4a6a38;--cream:#f0ece4;
+  --card:#111a0f;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,15,12,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.2rem,3vw,3rem);height:56px;border-bottom:1px solid rgba(200,149,106,.12)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--cream);letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:1.6rem;font-size:.82rem;letter-spacing:.04em}
+.nav-links a{opacity:.75;transition:opacity .3s}
+.nav-links a:hover{opacity:1}
+.nav-back{display:flex;align-items:center;gap:.35rem}
+.nav-cta{border:1px solid var(--accent);color:var(--accent);padding:.35rem 1rem;border-radius:2px;font-size:.78rem;letter-spacing:.06em;transition:background .3s,color .3s}
+.nav-cta:hover{background:var(--accent);color:var(--bg)}
+
+/* HERO */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('../neighbourhoods/images/king-ph-13.jpg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:rgba(13,15,12,.70)}
+.hero-content{position:relative;z-index:2;padding:0 1.5rem;max-width:800px}
+.hero-title{font-family:var(--serif);font-style:italic;font-size:clamp(42px,6vw,72px);line-height:1.08;margin-bottom:1rem;color:var(--cream)}
+.hero-sub{font-size:.88rem;letter-spacing:.05em;opacity:.85;margin-bottom:.7rem}
+.hero-badge{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-variant:small-caps}
+
+/* NAMED PENTHOUSES */
+.named-strip{background:var(--card);padding:2.2rem clamp(1.2rem,4vw,4rem);display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.4rem;border-top:1px solid rgba(200,149,106,.1);border-bottom:1px solid rgba(200,149,106,.1)}
+.named-item{display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.named-name{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--cream);display:flex;align-items:center;gap:.45rem}
+.named-dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.named-dot.available{background:#5a9a3a}
+.named-dot.sold{background:#777}
+.named-mountain{font-family:var(--sans);font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
+
+/* SLIDESHOW */
+.slideshow{position:relative;height:60vh;overflow:hidden;background:#0a0c09}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-caption{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--cream);background:rgba(13,15,12,.6);padding:.3rem 1.2rem;border-radius:2px;pointer-events:none;white-space:nowrap}
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(13,15,12,.55);border:1px solid rgba(200,149,106,.25);color:var(--cream);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;border-radius:2px;transition:background .3s;z-index:3}
+.slide-arrow:hover{background:rgba(200,149,106,.25)}
+.slide-arrow.left{left:1rem}
+.slide-arrow.right{right:1rem}
+.slide-dots{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:3}
+.slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(240,236,228,.3);cursor:pointer;transition:background .3s}
+.slide-dot.active{background:var(--accent)}
+
+/* QUOTE */
+.quote-section{padding:4rem clamp(1.5rem,6vw,6rem);text-align:center}
+.quote-rule{width:100%;max-width:680px;margin:0 auto;height:0;border:none;border-top:.5px solid var(--accent)}
+.quote-text{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.62rem);max-width:680px;margin:2rem auto;line-height:1.55;color:var(--cream)}
+.quote-attr{font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;color:var(--accent);margin-bottom:2rem}
+
+/* FLOOR PLANS */
+.plans-section{padding:3.5rem clamp(1.2rem,4vw,4rem)}
+.plans-title{font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--cream);text-align:center;margin-bottom:2.5rem}
+.plan-card{display:flex;margin-bottom:2rem;border-radius:3px;overflow:hidden;background:var(--card);border:1px solid rgba(200,149,106,.08);cursor:pointer;transition:border-color .3s}
+.plan-card:hover{border-color:rgba(200,149,106,.3)}
+.plan-card-img{width:65%;position:relative;overflow:hidden}
+.plan-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.plan-card:hover .plan-card-img img{transform:scale(1.02)}
+.plan-card-details{width:35%;padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:center;gap:.6rem}
+.plan-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.plan-name{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--cream)}
+.plan-specs{font-size:.82rem;opacity:.7}
+.plan-price{font-family:var(--serif);font-size:1.5rem;color:var(--accent);margin-top:.5rem}
+
+/* GALLERY GRID */
+.gallery-section{padding:2rem clamp(1.2rem,4vw,4rem) 4rem}
+.gallery-title{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--cream);text-align:center;margin-bottom:1.8rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.gallery-grid img{width:100%;border-radius:2px;cursor:pointer;transition:opacity .3s}
+.gallery-grid img:hover{opacity:.8}
+
+/* CTA */
+.cta-section{padding:4rem 2rem;text-align:center;border-top:1px solid var(--accent)}
+.cta-text{font-family:var(--serif);font-style:italic;font-size:1.4rem;margin-bottom:1.5rem;color:var(--cream)}
+.cta-btn{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:.7rem 2.2rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.08em;border-radius:2px;transition:background .3s,color .3s}
+.cta-btn:hover{background:var(--accent);color:var(--bg)}
+
+/* FOOTER */
+.footer{padding:2rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--cream);opacity:.5;border-top:1px solid rgba(200,149,106,.08)}
+
+/* PLAN MODAL */
+.plan-modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,12,9,.92);align-items:center;justify-content:center}
+.plan-modal-overlay.open{display:flex}
+.plan-modal{width:95vw;height:92vh;display:flex;background:var(--card);border-radius:4px;overflow:hidden;position:relative}
+.plan-modal-img-wrap{width:70%;height:100%;overflow:auto;cursor:grab;position:relative;display:flex;align-items:center;justify-content:center;background:#0a0c09}
+.plan-modal-img-wrap img{max-width:none;width:100%;transition:transform .1s;transform-origin:0 0}
+.plan-modal-details{width:30%;padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;overflow-y:auto}
+.plan-modal-close{position:absolute;top:1rem;right:1rem;background:rgba(13,15,12,.7);border:1px solid rgba(200,149,106,.25);color:var(--cream);width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;border-radius:2px;z-index:5}
+.plan-modal-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(13,15,12,.6);border:1px solid rgba(200,149,106,.25);color:var(--cream);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;border-radius:2px;z-index:5}
+.plan-modal-arrow.left{left:1rem}
+.plan-modal-arrow.right{left:calc(70% - 56px)}
+
+/* LIGHTBOX */
+.lightbox-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(10,12,9,.95);align-items:center;justify-content:center;flex-direction:column}
+.lightbox-overlay.open{display:flex}
+.lightbox-img{max-width:92vw;max-height:85vh;object-fit:contain;border-radius:2px}
+.lightbox-close{position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:var(--cream);font-size:2rem;cursor:pointer;z-index:5;opacity:.7;transition:opacity .3s}
+.lightbox-close:hover{opacity:1}
+.lightbox-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(13,15,12,.5);border:1px solid rgba(200,149,106,.2);color:var(--cream);width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.3rem;border-radius:2px;z-index:5}
+.lightbox-arrow.left{left:1rem}
+.lightbox-arrow.right{right:1rem}
+.lightbox-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:.8rem;color:var(--cream);opacity:.6}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .plan-card{flex-direction:column}
+  .plan-card-img,.plan-card-details{width:100%}
+  .plan-card-details{padding:1.5rem}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .plan-modal{flex-direction:column}
+  .plan-modal-img-wrap{width:100%;height:60%}
+  .plan-modal-details{width:100%;height:40%}
+  .plan-modal-arrow.right{left:auto;right:1rem}
+  .nav-links .nav-saved{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="king-toronto.html" class="nav-logo">CondosAround.</a>
+  <div class="nav-links">
+    <a href="king-toronto.html" class="nav-back">&#8592; King Toronto</a>
+    <a href="../pages/saved.html" class="nav-saved">Saved</a>
+    <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Living on a Mountaintop.</h1>
+    <p class="hero-sub">The Penthouse Collection at King Toronto &middot; Six Custom Residences</p>
+    <p class="hero-badge">Final Release &middot; 94% Sold</p>
+  </div>
+</section>
+
+<!-- NAMED PENTHOUSES -->
+<div class="named-strip">
+  <div class="named-item"><span class="named-name"><span class="named-dot available"></span>The Glass House</span><span class="named-mountain">North Mountain</span></div>
+  <div class="named-item"><span class="named-name"><span class="named-dot available"></span>The Sanctuary</span><span class="named-mountain">North Mountain</span></div>
+  <div class="named-item"><span class="named-name"><span class="named-dot available"></span>The Greenhouse</span><span class="named-mountain">South Mountain</span></div>
+  <div class="named-item"><span class="named-name"><span class="named-dot available"></span>The Teahouse</span><span class="named-mountain">South Mountain</span></div>
+  <div class="named-item"><span class="named-name"><span class="named-dot available"></span>The Treehouse</span><span class="named-mountain">West Mountain</span></div>
+  <div class="named-item"><span class="named-name"><span class="named-dot available"></span>La Biblioth&egrave;que</span><span class="named-mountain">West Mountain</span></div>
+  <div class="named-item"><span class="named-name"><span class="named-dot sold"></span>East Mountain</span><span class="named-mountain">East Mountain &mdash; Sold</span></div>
+</div>
+
+<!-- INTERIOR GALLERY SLIDESHOW -->
+<section class="slideshow" id="slideshow">
+  <div class="slide active"><img src="../neighbourhoods/images/king-ph-9.jpg" alt="The Corridor"><div class="slide-caption">The Corridor</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-10.jpg" alt="The Kitchen"><div class="slide-caption">The Kitchen</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-12.jpg" alt="The Master Bath"><div class="slide-caption">The Master Bath</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-13.jpg" alt="The Terrace"><div class="slide-caption">The Terrace</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-14.jpg" alt="The Spa"><div class="slide-caption">The Spa</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-1.jpg" alt="The Open Kitchen"><div class="slide-caption">The Open Kitchen</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-2.jpg" alt="The Dressing Room"><div class="slide-caption">The Dressing Room</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-3.jpg" alt="The Music Room"><div class="slide-caption">The Music Room</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-6.jpg" alt="The Dark Kitchen"><div class="slide-caption">The Dark Kitchen</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-7.jpg" alt="The Living Room"><div class="slide-caption">The Living Room</div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-17.jpg" alt="The Greenhouse"><div class="slide-caption">The Greenhouse</div></div>
+  <div class="slide-arrow left" onclick="slideGo(-1)">&#8249;</div>
+  <div class="slide-arrow right" onclick="slideGo(1)">&#8250;</div>
+  <div class="slide-dots" id="slideDots"></div>
+</section>
+
+<!-- BJARKE QUOTE -->
+<section class="quote-section">
+  <hr class="quote-rule">
+  <blockquote class="quote-text">&ldquo;One &lsquo;picture element&rsquo; or pixel &mdash; once you combine them together the whole adheres to form an organic picture of the entire thing.&rdquo;</blockquote>
+  <p class="quote-attr">&mdash; Bjarke Ingels</p>
+  <hr class="quote-rule">
+</section>
+
+<!-- FLOOR PLANS -->
+<section class="plans-section">
+  <h2 class="plans-title">The Homes</h2>
+
+  <div class="plan-card" onclick="openPlanModal(0)">
+    <div class="plan-card-img"><img src="../neighbourhoods/images/king-ph-28.jpg" alt="PH.01 The Glass House"></div>
+    <div class="plan-card-details">
+      <span class="plan-label">PH.01 &middot; Home 1201 N</span>
+      <span class="plan-name">The Glass House</span>
+      <span class="plan-specs">3 Bed &middot; 3.5 Bath &middot; 2,919 sq ft</span>
+      <span class="plan-label">North Mountain</span>
+      <span class="plan-price">$10,800,990</span>
+    </div>
+  </div>
+
+  <div class="plan-card" onclick="openPlanModal(1)">
+    <div class="plan-card-img"><img src="../neighbourhoods/images/king-ph-34.jpg" alt="PH.02 The Sanctuary"></div>
+    <div class="plan-card-details">
+      <span class="plan-label">PH.02 &middot; Home 1202 N</span>
+      <span class="plan-name">The Sanctuary</span>
+      <span class="plan-specs">3 Bed &middot; 2.5 Bath &middot; 2,026 sq ft</span>
+      <span class="plan-label">North Mountain</span>
+      <span class="plan-price">$7,799,990</span>
+    </div>
+  </div>
+</section>
+
+<!-- ALL PENTHOUSE PLANS GALLERY -->
+<section class="gallery-section">
+  <h3 class="gallery-title">All Penthouse Plans</h3>
+  <div class="gallery-grid">
+    <img src="../neighbourhoods/images/king-ph-1.jpg" alt="King Toronto Penthouse Plan 1" onclick="openLightbox(0)">
+    <img src="../neighbourhoods/images/king-ph-2.jpg" alt="King Toronto Penthouse Plan 2" onclick="openLightbox(1)">
+    <img src="../neighbourhoods/images/king-ph-3.jpg" alt="King Toronto Penthouse Plan 3" onclick="openLightbox(2)">
+    <img src="../neighbourhoods/images/king-ph-4.jpg" alt="King Toronto Penthouse Plan 4" onclick="openLightbox(3)">
+    <img src="../neighbourhoods/images/king-ph-5.jpg" alt="King Toronto Penthouse Plan 5" onclick="openLightbox(4)">
+    <img src="../neighbourhoods/images/king-ph-6.jpg" alt="King Toronto Penthouse Plan 6" onclick="openLightbox(5)">
+    <img src="../neighbourhoods/images/king-ph-7.jpg" alt="King Toronto Penthouse Plan 7" onclick="openLightbox(6)">
+    <img src="../neighbourhoods/images/king-ph-8.jpg" alt="King Toronto Penthouse Plan 8" onclick="openLightbox(7)">
+    <img src="../neighbourhoods/images/king-ph-9.jpg" alt="King Toronto Penthouse Plan 9" onclick="openLightbox(8)">
+    <img src="../neighbourhoods/images/king-ph-10.jpg" alt="King Toronto Penthouse Plan 10" onclick="openLightbox(9)">
+    <img src="../neighbourhoods/images/king-ph-11.jpg" alt="King Toronto Penthouse Plan 11" onclick="openLightbox(10)">
+    <img src="../neighbourhoods/images/king-ph-12.jpg" alt="King Toronto Penthouse Plan 12" onclick="openLightbox(11)">
+    <img src="../neighbourhoods/images/king-ph-13.jpg" alt="King Toronto Penthouse Plan 13" onclick="openLightbox(12)">
+    <img src="../neighbourhoods/images/king-ph-14.jpg" alt="King Toronto Penthouse Plan 14" onclick="openLightbox(13)">
+    <img src="../neighbourhoods/images/king-ph-15.jpg" alt="King Toronto Penthouse Plan 15" onclick="openLightbox(14)">
+    <img src="../neighbourhoods/images/king-ph-16.jpg" alt="King Toronto Penthouse Plan 16" onclick="openLightbox(15)">
+    <img src="../neighbourhoods/images/king-ph-17.jpg" alt="King Toronto Penthouse Plan 17" onclick="openLightbox(16)">
+    <img src="../neighbourhoods/images/king-ph-18.jpg" alt="King Toronto Penthouse Plan 18" onclick="openLightbox(17)">
+    <img src="../neighbourhoods/images/king-ph-19.jpg" alt="King Toronto Penthouse Plan 19" onclick="openLightbox(18)">
+    <img src="../neighbourhoods/images/king-ph-20.jpg" alt="King Toronto Penthouse Plan 20" onclick="openLightbox(19)">
+    <img src="../neighbourhoods/images/king-ph-21.jpg" alt="King Toronto Penthouse Plan 21" onclick="openLightbox(20)">
+    <img src="../neighbourhoods/images/king-ph-22.jpg" alt="King Toronto Penthouse Plan 22" onclick="openLightbox(21)">
+    <img src="../neighbourhoods/images/king-ph-23.jpg" alt="King Toronto Penthouse Plan 23" onclick="openLightbox(22)">
+    <img src="../neighbourhoods/images/king-ph-24.jpg" alt="King Toronto Penthouse Plan 24" onclick="openLightbox(23)">
+    <img src="../neighbourhoods/images/king-ph-25.jpg" alt="King Toronto Penthouse Plan 25" onclick="openLightbox(24)">
+    <img src="../neighbourhoods/images/king-ph-26.jpg" alt="King Toronto Penthouse Plan 26" onclick="openLightbox(25)">
+    <img src="../neighbourhoods/images/king-ph-27.jpg" alt="King Toronto Penthouse Plan 27" onclick="openLightbox(26)">
+    <img src="../neighbourhoods/images/king-ph-28.jpg" alt="King Toronto Penthouse Plan 28" onclick="openLightbox(27)">
+    <img src="../neighbourhoods/images/king-ph-29.jpg" alt="King Toronto Penthouse Plan 29" onclick="openLightbox(28)">
+    <img src="../neighbourhoods/images/king-ph-30.jpg" alt="King Toronto Penthouse Plan 30" onclick="openLightbox(29)">
+    <img src="../neighbourhoods/images/king-ph-31.jpg" alt="King Toronto Penthouse Plan 31" onclick="openLightbox(30)">
+    <img src="../neighbourhoods/images/king-ph-32.jpg" alt="King Toronto Penthouse Plan 32" onclick="openLightbox(31)">
+    <img src="../neighbourhoods/images/king-ph-33.jpg" alt="King Toronto Penthouse Plan 33" onclick="openLightbox(32)">
+    <img src="../neighbourhoods/images/king-ph-34.jpg" alt="King Toronto Penthouse Plan 34" onclick="openLightbox(33)">
+    <img src="../neighbourhoods/images/king-ph-35.jpg" alt="King Toronto Penthouse Plan 35" onclick="openLightbox(34)">
+    <img src="../neighbourhoods/images/king-ph-36.jpg" alt="King Toronto Penthouse Plan 36" onclick="openLightbox(35)">
+    <img src="../neighbourhoods/images/king-ph-37.jpg" alt="King Toronto Penthouse Plan 37" onclick="openLightbox(36)">
+    <img src="../neighbourhoods/images/king-ph-38.jpg" alt="King Toronto Penthouse Plan 38" onclick="openLightbox(37)">
+    <img src="../neighbourhoods/images/king-ph-39.jpg" alt="King Toronto Penthouse Plan 39" onclick="openLightbox(38)">
+    <img src="../neighbourhoods/images/king-ph-40.jpg" alt="King Toronto Penthouse Plan 40" onclick="openLightbox(39)">
+    <img src="../neighbourhoods/images/king-ph-41.jpg" alt="King Toronto Penthouse Plan 41" onclick="openLightbox(40)">
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="cta-text">A private showing can be arranged.</p>
+  <a href="tel:6479240848" class="cta-btn">Call Nik &mdash; 647-924-0848</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">CondosAround.</footer>
+
+<!-- PLAN MODAL -->
+<div class="plan-modal-overlay" id="planModal">
+  <div class="plan-modal">
+    <div class="plan-modal-close" onclick="closePlanModal()">&times;</div>
+    <div class="plan-modal-arrow left" onclick="navPlanModal(-1)">&#8249;</div>
+    <div class="plan-modal-arrow right" onclick="navPlanModal(1)">&#8250;</div>
+    <div class="plan-modal-img-wrap" id="planModalImgWrap">
+      <img id="planModalImg" src="" alt="">
+    </div>
+    <div class="plan-modal-details" id="planModalDetails"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <div class="lightbox-arrow left" onclick="navLightbox(-1)">&#8249;</div>
+  <div class="lightbox-arrow right" onclick="navLightbox(1)">&#8250;</div>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+<script>
+/* SLIDESHOW */
+(function(){
+  var slides=document.querySelectorAll('.slide');
+  var dotsWrap=document.getElementById('slideDots');
+  var cur=0,timer;
+  for(var i=0;i<slides.length;i++){
+    var d=document.createElement('div');
+    d.className='slide-dot'+(i===0?' active':'');
+    d.setAttribute('data-i',i);
+    d.onclick=function(){goTo(parseInt(this.getAttribute('data-i')))};
+    dotsWrap.appendChild(d);
+  }
+  var dots=dotsWrap.querySelectorAll('.slide-dot');
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    resetTimer();
+  }
+  function resetTimer(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1)},5000)}
+  window.slideGo=function(d){goTo(cur+d)};
+  resetTimer();
+})();
+
+/* PLAN MODAL */
+var plans=[
+  {img:'../neighbourhoods/images/king-ph-28.jpg',label:'PH.01 \u00b7 Home 1201 N',name:'The Glass House',specs:'3 Bed \u00b7 3.5 Bath \u00b7 2,919 sq ft',mountain:'North Mountain',price:'$10,800,990'},
+  {img:'../neighbourhoods/images/king-ph-34.jpg',label:'PH.02 \u00b7 Home 1202 N',name:'The Sanctuary',specs:'3 Bed \u00b7 2.5 Bath \u00b7 2,026 sq ft',mountain:'North Mountain',price:'$7,799,990'}
+];
+var planIdx=0,pmScale=1,pmDrag=false,pmStart={x:0,y:0},pmPos={x:0,y:0};
+var pmOverlay=document.getElementById('planModal');
+var pmImg=document.getElementById('planModalImg');
+var pmWrap=document.getElementById('planModalImgWrap');
+var pmDetails=document.getElementById('planModalDetails');
+
+function openPlanModal(i){planIdx=i;renderPlan();pmOverlay.classList.add('open');document.body.style.overflow='hidden'}
+function closePlanModal(){pmOverlay.classList.remove('open');document.body.style.overflow='';resetZoom()}
+function navPlanModal(d){planIdx=(planIdx+d+plans.length)%plans.length;renderPlan();resetZoom()}
+function renderPlan(){
+  var p=plans[planIdx];
+  pmImg.src=p.img;
+  pmDetails.innerHTML='<span class="plan-label">'+p.label+'</span><span class="plan-name">'+p.name+'</span><span class="plan-specs">'+p.specs+'</span><span class="plan-label">'+p.mountain+'</span><span class="plan-price">'+p.price+'</span>';
+}
+function resetZoom(){pmScale=1;pmPos={x:0,y:0};applyZoom()}
+function applyZoom(){pmImg.style.transform='translate('+pmPos.x+'px,'+pmPos.y+'px) scale('+pmScale+')';pmImg.style.transformOrigin='0 0'}
+pmWrap.addEventListener('wheel',function(e){e.preventDefault();var d=e.deltaY>0?-0.15:0.15;pmScale=Math.max(.5,Math.min(5,pmScale+d));applyZoom()},{passive:false});
+pmWrap.addEventListener('mousedown',function(e){pmDrag=true;pmStart={x:e.clientX-pmPos.x,y:e.clientY-pmPos.y};pmWrap.style.cursor='grabbing'});
+window.addEventListener('mousemove',function(e){if(!pmDrag)return;pmPos={x:e.clientX-pmStart.x,y:e.clientY-pmStart.y};applyZoom()});
+window.addEventListener('mouseup',function(){pmDrag=false;pmWrap.style.cursor='grab'});
+pmOverlay.addEventListener('click',function(e){if(e.target===pmOverlay)closePlanModal()});
+
+/* LIGHTBOX */
+var galleryImgs=[
+  '../neighbourhoods/images/king-ph-1.jpg','../neighbourhoods/images/king-ph-2.jpg','../neighbourhoods/images/king-ph-3.jpg',
+  '../neighbourhoods/images/king-ph-4.jpg','../neighbourhoods/images/king-ph-5.jpg','../neighbourhoods/images/king-ph-6.jpg',
+  '../neighbourhoods/images/king-ph-7.jpg','../neighbourhoods/images/king-ph-8.jpg','../neighbourhoods/images/king-ph-9.jpg',
+  '../neighbourhoods/images/king-ph-10.jpg','../neighbourhoods/images/king-ph-11.jpg','../neighbourhoods/images/king-ph-12.jpg',
+  '../neighbourhoods/images/king-ph-13.jpg','../neighbourhoods/images/king-ph-14.jpg','../neighbourhoods/images/king-ph-15.jpg',
+  '../neighbourhoods/images/king-ph-16.jpg','../neighbourhoods/images/king-ph-17.jpg','../neighbourhoods/images/king-ph-18.jpg',
+  '../neighbourhoods/images/king-ph-19.jpg','../neighbourhoods/images/king-ph-20.jpg','../neighbourhoods/images/king-ph-21.jpg',
+  '../neighbourhoods/images/king-ph-22.jpg','../neighbourhoods/images/king-ph-23.jpg','../neighbourhoods/images/king-ph-24.jpg',
+  '../neighbourhoods/images/king-ph-25.jpg','../neighbourhoods/images/king-ph-26.jpg','../neighbourhoods/images/king-ph-27.jpg',
+  '../neighbourhoods/images/king-ph-28.jpg','../neighbourhoods/images/king-ph-29.jpg','../neighbourhoods/images/king-ph-30.jpg',
+  '../neighbourhoods/images/king-ph-31.jpg','../neighbourhoods/images/king-ph-32.jpg','../neighbourhoods/images/king-ph-33.jpg',
+  '../neighbourhoods/images/king-ph-34.jpg','../neighbourhoods/images/king-ph-35.jpg','../neighbourhoods/images/king-ph-36.jpg',
+  '../neighbourhoods/images/king-ph-37.jpg','../neighbourhoods/images/king-ph-38.jpg','../neighbourhoods/images/king-ph-39.jpg',
+  '../neighbourhoods/images/king-ph-40.jpg','../neighbourhoods/images/king-ph-41.jpg'
+];
+var lbIdx=0;
+var lbOverlay=document.getElementById('lightbox');
+var lbImg=document.getElementById('lightboxImg');
+var lbCounter=document.getElementById('lightboxCounter');
+
+function openLightbox(i){lbIdx=i;renderLb();lbOverlay.classList.add('open');document.body.style.overflow='hidden'}
+function closeLightbox(){lbOverlay.classList.remove('open');document.body.style.overflow=''}
+function navLightbox(d){lbIdx=(lbIdx+d+galleryImgs.length)%galleryImgs.length;renderLb()}
+function renderLb(){lbImg.src=galleryImgs[lbIdx];lbCounter.textContent=(lbIdx+1)+' / '+galleryImgs.length}
+lbOverlay.addEventListener('click',function(e){if(e.target===lbOverlay)closeLightbox()});
+
+document.addEventListener('keydown',function(e){
+  if(lbOverlay.classList.contains('open')){
+    if(e.key==='Escape')closeLightbox();
+    if(e.key==='ArrowLeft')navLightbox(-1);
+    if(e.key==='ArrowRight')navLightbox(1);
+  }
+  if(pmOverlay.classList.contains('open')){
+    if(e.key==='Escape')closePlanModal();
+    if(e.key==='ArrowLeft')navPlanModal(-1);
+    if(e.key==='ArrowRight')navPlanModal(1);
+  }
+});
+</script>
+</body>
+</html>
