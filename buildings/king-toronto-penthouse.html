@@ -169,14 +169,29 @@ img{display:block;max-width:100%}
 
 <!-- INTERIOR GALLERY SLIDESHOW -->
 <section class="slideshow" id="slideshow">
-  <div class="slide active"><img src="../neighbourhoods/images/king-ph-9.jpg" alt="The Corridor"><div class="slide-caption">The Corridor</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-10.jpg" alt="The Kitchen"><div class="slide-caption">The Kitchen</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-12.jpg" alt="The Master Bath"><div class="slide-caption">The Master Bath</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-13.jpg" alt="The Terrace"><div class="slide-caption">The Terrace</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-14.jpg" alt="The Spa"><div class="slide-caption">The Spa</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-1.jpg" alt="The Open Kitchen"><div class="slide-caption">The Open Kitchen</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-2.jpg" alt="The Dressing Room"><div class="slide-caption">The Dressing Room</div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-6.jpg" alt="The Dark Kitchen"><div class="slide-caption">The Dark Kitchen</div></div>
+  <div class="slide active"><img src="../neighbourhoods/images/king-ph-13.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-14.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-15.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-16.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-17.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-18.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-20.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-21.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-22.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-23.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-24.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-25.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-26.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-27.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-29.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-30.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-31.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-32.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-33.jpg" alt="Interior"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-6.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-8.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-10.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
+  <div class="slide"><img src="../neighbourhoods/images/king-ph-12.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
   <div class="slide-arrow left" onclick="slideGo(-1)">&#8249;</div>
   <div class="slide-arrow right" onclick="slideGo(1)">&#8250;</div>
   <div class="slide-dots" id="slideDots"></div>
@@ -334,10 +349,14 @@ pmOverlay.addEventListener('click',function(e){if(e.target===pmOverlay)closePlan
 
 /* LIGHTBOX */
 var galleryImgs=[
-  '../neighbourhoods/images/king-ph-1.jpg','../neighbourhoods/images/king-ph-2.jpg','../neighbourhoods/images/king-ph-6.jpg',
-  '../neighbourhoods/images/king-ph-9.jpg','../neighbourhoods/images/king-ph-10.jpg','../neighbourhoods/images/king-ph-12.jpg',
-  '../neighbourhoods/images/king-ph-13.jpg','../neighbourhoods/images/king-ph-14.jpg','../neighbourhoods/images/king-ph-20.jpg',
-  '../neighbourhoods/images/king-ph-25.jpg','../neighbourhoods/images/king-ph-26.jpg','../neighbourhoods/images/king-ph-28.jpg',
+  '../neighbourhoods/images/king-ph-13.jpg','../neighbourhoods/images/king-ph-14.jpg','../neighbourhoods/images/king-ph-15.jpg',
+  '../neighbourhoods/images/king-ph-16.jpg','../neighbourhoods/images/king-ph-17.jpg','../neighbourhoods/images/king-ph-18.jpg',
+  '../neighbourhoods/images/king-ph-20.jpg','../neighbourhoods/images/king-ph-21.jpg','../neighbourhoods/images/king-ph-22.jpg',
+  '../neighbourhoods/images/king-ph-23.jpg','../neighbourhoods/images/king-ph-24.jpg','../neighbourhoods/images/king-ph-25.jpg',
+  '../neighbourhoods/images/king-ph-26.jpg','../neighbourhoods/images/king-ph-27.jpg','../neighbourhoods/images/king-ph-29.jpg',
+  '../neighbourhoods/images/king-ph-30.jpg','../neighbourhoods/images/king-ph-31.jpg','../neighbourhoods/images/king-ph-32.jpg',
+  '../neighbourhoods/images/king-ph-33.jpg','../neighbourhoods/images/king-ph-6.jpg','../neighbourhoods/images/king-ph-8.jpg',
+  '../neighbourhoods/images/king-ph-10.jpg','../neighbourhoods/images/king-ph-12.jpg','../neighbourhoods/images/king-ph-28.jpg',
   '../neighbourhoods/images/king-ph-34.jpg'
 ];
 var lbIdx=0;
