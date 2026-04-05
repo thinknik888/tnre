@@ -180,6 +180,19 @@
   function addNavLink() {
     var nav = document.querySelector('nav');
     if (!nav) return;
+    // Check if a saved link already exists (e.g. static link on homepage)
+    var existing = nav.querySelector('a[href*="saved.html"]');
+    if (existing) {
+      existing.id = 'nav-saved-link';
+      if (saved.length > 0 && !existing.querySelector('.nav-saved-badge')) {
+        var badge = document.createElement('span');
+        badge.className = 'nav-saved-badge';
+        badge.textContent = saved.length;
+        existing.style.position = 'relative';
+        existing.appendChild(badge);
+      }
+      return;
+    }
     var cta = nav.querySelector('.nav-cta');
     if (!cta) return;
     var link = document.createElement('a');
@@ -196,7 +209,7 @@
   }
 
   function updateBadge() {
-    var link = document.getElementById('nav-saved-link');
+    var link = document.getElementById('nav-saved-link') || document.querySelector('a[href*="saved.html"]');
     if (!link) return;
     var badge = link.querySelector('.nav-saved-badge');
     if (saved.length > 0) {
