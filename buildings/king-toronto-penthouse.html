@@ -143,7 +143,7 @@ img{display:block;max-width:100%}
   <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-16.jpg');"></div>
   <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-17.jpg');"></div>
   <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-18.jpg');"></div>
-  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-20.jpg');"></div>
+
   <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-21.jpg');"></div>
   <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-22.jpg');"></div>
   <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-23.jpg');"></div>
@@ -198,6 +198,31 @@ img{display:block;max-width:100%}
       <span class="plan-label">North Mountain</span>
       <span class="plan-price">$7,799,990</span>
     </div>
+  </div>
+</section>
+
+<!-- RENDERINGS GALLERY -->
+<section class="gallery-section">
+  <h2 class="gallery-title">Renderings</h2>
+  <div class="gallery-grid" id="gallery-grid">
+    <img src="../neighbourhoods/images/king-ph-13.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-14.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-15.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-16.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-17.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-18.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-21.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-22.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-23.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-24.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-25.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-26.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-27.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-29.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-30.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-31.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-32.jpg" alt="King Toronto Penthouse" loading="lazy" />
+    <img src="../neighbourhoods/images/king-ph-33.jpg" alt="King Toronto Penthouse" loading="lazy" />
   </div>
 </section>
 
@@ -278,13 +303,11 @@ pmOverlay.addEventListener('click',function(e){if(e.target===pmOverlay)closePlan
 var galleryImgs=[
   '../neighbourhoods/images/king-ph-13.jpg','../neighbourhoods/images/king-ph-14.jpg','../neighbourhoods/images/king-ph-15.jpg',
   '../neighbourhoods/images/king-ph-16.jpg','../neighbourhoods/images/king-ph-17.jpg','../neighbourhoods/images/king-ph-18.jpg',
-  '../neighbourhoods/images/king-ph-20.jpg','../neighbourhoods/images/king-ph-21.jpg','../neighbourhoods/images/king-ph-22.jpg',
+  '../neighbourhoods/images/king-ph-21.jpg','../neighbourhoods/images/king-ph-22.jpg',
   '../neighbourhoods/images/king-ph-23.jpg','../neighbourhoods/images/king-ph-24.jpg','../neighbourhoods/images/king-ph-25.jpg',
   '../neighbourhoods/images/king-ph-26.jpg','../neighbourhoods/images/king-ph-27.jpg','../neighbourhoods/images/king-ph-29.jpg',
   '../neighbourhoods/images/king-ph-30.jpg','../neighbourhoods/images/king-ph-31.jpg','../neighbourhoods/images/king-ph-32.jpg',
-  '../neighbourhoods/images/king-ph-33.jpg','../neighbourhoods/images/king-ph-6.jpg','../neighbourhoods/images/king-ph-8.jpg',
-  '../neighbourhoods/images/king-ph-10.jpg','../neighbourhoods/images/king-ph-12.jpg','../neighbourhoods/images/king-ph-28.jpg',
-  '../neighbourhoods/images/king-ph-34.jpg'
+  '../neighbourhoods/images/king-ph-33.jpg'
 ];
 var lbIdx=0;
 var lbOverlay=document.getElementById('lightbox');
@@ -296,6 +319,10 @@ function closeLightbox(){lbOverlay.classList.remove('open');document.body.style.
 function navLightbox(d){lbIdx=(lbIdx+d+galleryImgs.length)%galleryImgs.length;renderLb()}
 function renderLb(){lbImg.src=galleryImgs[lbIdx];lbCounter.textContent=(lbIdx+1)+' / '+galleryImgs.length}
 lbOverlay.addEventListener('click',function(e){if(e.target===lbOverlay)closeLightbox()});
+
+document.querySelectorAll('#gallery-grid img').forEach(function(img,i){
+  img.addEventListener('click',function(){openLightbox(i)});
+});
 
 document.addEventListener('keydown',function(e){
   if(lbOverlay.classList.contains('open')){
