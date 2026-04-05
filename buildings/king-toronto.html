@@ -20,9 +20,9 @@
     .nav-cta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--green); color: var(--cream); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* HERO */
-    .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; background: url('../neighbourhoods/images/king-info-1.jpg') center/cover no-repeat; z-index: 1; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(30,42,24,0.25) 0%, rgba(30,42,24,0.72) 100%); }
-    .hero-content { position: absolute; bottom: 5rem; left: 3rem; right: 3rem; animation: fadeUp 1s ease-out both; }
+    .hero { position: relative; height: 100vh; max-height: 100vh; min-height: 500px; overflow: hidden; background: url('../neighbourhoods/images/king-info-1.jpg') center/cover no-repeat; z-index: 1; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(30,42,24,0.25) 0%, rgba(30,42,24,0.72) 100%); z-index: 1; }
+    .hero-content { position: absolute; bottom: 5rem; left: 3rem; right: 3rem; z-index: 2; animation: fadeUp 1s ease-out both; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; font-variant: small-caps; }
     .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 0.75rem; }
@@ -122,7 +122,8 @@
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1rem; }
-      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 3rem; }
+      .hero { height: 70vh; min-height: 400px; }
+      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 2rem; }
       .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 2rem 1.5rem; }
       .renderings-section, .fp-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .fp-row { grid-template-columns: 1fr; }
