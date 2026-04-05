@@ -20,7 +20,7 @@
     .nav-cta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--green); color: var(--cream); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* HERO */
-    .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; background: url('../neighbourhoods/images/king-info-1.jpg') center/cover no-repeat; }
+    .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; background: url('../neighbourhoods/images/king-info-1.jpg') center/cover no-repeat; z-index: 1; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(30,42,24,0.25) 0%, rgba(30,42,24,0.72) 100%); }
     .hero-content { position: absolute; bottom: 5rem; left: 3rem; right: 3rem; animation: fadeUp 1s ease-out both; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -266,14 +266,14 @@
     </div>
   </div>
   <div class="fp-row" data-category="south" data-sqft="654" onclick="openModal('kt-s2')">
-    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-south-2.jpg" alt="Home 908 S" loading="lazy" /></div>
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-south-2.jpg" alt="Home 507 S" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">South Mountain</div>
-      <div class="fp-name">Home 908 S</div>
-      <div class="fp-plan">1BD.13</div>
+      <div class="fp-name">Home 507 S</div>
+      <div class="fp-plan">2BD.67B</div>
       <div class="fp-type">1 Bed + Study 1 Bath</div>
       <div class="fp-sqft">654 ft&sup2;</div>
-      <div class="fp-price">Call for Pricing</div>
+      <div class="fp-price">$2,235,990</div>
     </div>
   </div>
 
@@ -334,25 +334,25 @@
     </div>
   </div>
   <div class="fp-row" data-category="west" data-sqft="725" onclick="openModal('kt-w6')">
-    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-1.jpg" alt="Home 516 W" loading="lazy" /></div>
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-1.jpg" alt="Home 719 W" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">West Mountain</div>
-      <div class="fp-name">Home 516 W</div>
-      <div class="fp-plan">1BD.01A</div>
+      <div class="fp-name">Home 719 W</div>
+      <div class="fp-plan">1BD.04A</div>
       <div class="fp-type">1 Bed + Atelier 1 Bath</div>
       <div class="fp-sqft">725 ft&sup2;</div>
-      <div class="fp-price">Call for Pricing</div>
+      <div class="fp-price">$1,410,990</div>
     </div>
   </div>
   <div class="fp-row" data-category="west" data-sqft="560" onclick="openModal('kt-w7')">
-    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-8.jpg" alt="Home 502 W" loading="lazy" /></div>
+    <div class="fp-row-image"><img src="../neighbourhoods/images/king-fp-west-8.jpg" alt="Home 611 W" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">West Mountain</div>
-      <div class="fp-name">Home 502 W</div>
-      <div class="fp-plan">1BD.78B</div>
+      <div class="fp-name">Home 611 W</div>
+      <div class="fp-plan">1BD.78A</div>
       <div class="fp-type">1 Bed + Study 1 Bath</div>
       <div class="fp-sqft">560 ft&sup2;</div>
-      <div class="fp-price">Call for Pricing</div>
+      <div class="fp-price">$1,016,990</div>
     </div>
   </div>
   <div class="fp-row" data-category="west" data-sqft="555" onclick="openModal('kt-w8')">
@@ -476,14 +476,14 @@
     'kt-e3': { name: 'Home 1203 E', plan: '3BD.19', type: '3 Bed 2 Bath', size: '1,132 ft\u00b2', mountain: 'East Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-east-2.jpg' },
     'kt-e4': { name: 'Home 1502 E', plan: '2BD.04', type: '2 Bed 2 Bath', size: '965 ft\u00b2', mountain: 'East Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-east-4.jpg' },
     'kt-s1': { name: 'Home 709 S', plan: '2BD.74', type: '2 Bed 2 Bath', size: '1,348 ft\u00b2', mountain: 'South Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-south-1.jpg' },
-    'kt-s2': { name: 'Home 908 S', plan: '1BD.13', type: '1 Bed + Study 1 Bath', size: '654 ft\u00b2', mountain: 'South Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-south-2.jpg' },
+    'kt-s2': { name: 'Home 507 S', plan: '2BD.67B', type: '2 Bed 2 Bath', size: '654 ft\u00b2', mountain: 'South Mountain', price: '$2,235,990', img: '../neighbourhoods/images/king-fp-south-2.jpg' },
     'kt-w1': { name: 'Home 1005 W', plan: '3BD.59', type: '3 Bed + Atelier 2 Bath', size: '1,973 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-5.jpg' },
     'kt-w2': { name: 'Home 1105 W', plan: '3BD.61', type: '3 Bed 2 Bath', size: '1,796 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-6.jpg' },
     'kt-w3': { name: 'Home 721 W', plan: '2BD.85', type: '2 Bed + Study 2 Bath', size: '1,096 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-4.jpg' },
     'kt-w4': { name: 'Home 620 W', plan: '2BD.85', type: '2 Bed + Study 2 Bath', size: '1,078 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-3.jpg' },
     'kt-w5': { name: 'Home 501 W', plan: '1BD.91', type: '1 Bed 1 Bath', size: '759 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-2.jpg' },
-    'kt-w6': { name: 'Home 516 W', plan: '1BD.01A', type: '1 Bed + Atelier 1 Bath', size: '725 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-1.jpg' },
-    'kt-w7': { name: 'Home 502 W', plan: '1BD.78B', type: '1 Bed + Study 1 Bath', size: '560 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-8.jpg' },
+    'kt-w6': { name: 'Home 719 W', plan: '1BD.04A', type: '1 Bed + Atelier 1 Bath', size: '725 ft\u00b2', mountain: 'West Mountain', price: '$1,410,990', img: '../neighbourhoods/images/king-fp-west-1.jpg' },
+    'kt-w7': { name: 'Home 611 W', plan: '1BD.78A', type: '1 Bed + Study 1 Bath', size: '560 ft\u00b2', mountain: 'West Mountain', price: '$1,016,990', img: '../neighbourhoods/images/king-fp-west-8.jpg' },
     'kt-w8': { name: 'Home 806 W', plan: '1BD.96', type: '1 Bed + Study 1 Bath', size: '555 ft\u00b2', mountain: 'West Mountain', price: 'Call for Pricing', img: '../neighbourhoods/images/king-fp-west-7.jpg' }
   };
 
