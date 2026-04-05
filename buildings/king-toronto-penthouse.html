@@ -30,8 +30,9 @@ img{display:block;max-width:100%}
 
 /* HERO */
 .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('../neighbourhoods/images/king-ph-13.jpg') center/cover no-repeat}
-.hero-overlay{position:absolute;inset:0;background:rgba(13,15,12,.70)}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 3s ease-in-out;}
+.hero-slide.active{opacity:1;}
+.hero-overlay{position:absolute;inset:0;background:rgba(13,15,12,.65);z-index:1;}
 .hero-content{position:relative;z-index:2;padding:0 1.5rem;max-width:800px}
 .hero-title{font-family:var(--serif);font-style:italic;font-size:clamp(42px,6vw,72px);line-height:1.08;margin-bottom:1rem;color:var(--cream)}
 .hero-sub{font-size:.88rem;letter-spacing:.05em;opacity:.85;margin-bottom:.7rem}
@@ -46,17 +47,6 @@ img{display:block;max-width:100%}
 .named-dot.sold{background:#777}
 .named-mountain{font-family:var(--sans);font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
 
-/* SLIDESHOW */
-.slideshow{position:relative;height:60vh;overflow:hidden;background:#0a0c09}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
-.slide.active{opacity:1}
-.slide img{width:100%;height:100%;object-fit:cover}
-.slide-caption{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--cream);background:rgba(13,15,12,.6);padding:.3rem 1.2rem;border-radius:2px;pointer-events:none;white-space:nowrap}
-.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(13,15,12,.55);border:1px solid rgba(200,149,106,.25);color:var(--cream);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;border-radius:2px;transition:background .3s;z-index:3}
-.slide-arrow:hover{background:rgba(200,149,106,.25)}
-.slide-arrow.left{left:1rem}
-.slide-arrow.right{right:1rem}
-.slide-dots{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:3}
 .slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(240,236,228,.3);cursor:pointer;transition:background .3s}
 .slide-dot.active{background:var(--accent)}
 
@@ -145,9 +135,18 @@ img{display:block;max-width:100%}
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
+<!-- HERO WITH CYCLING BACKGROUNDS -->
+<section class="hero" id="hero">
+  <div class="hero-slide active" style="background-image:url('../neighbourhoods/images/king-ph-13.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-14.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-15.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-16.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-17.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-18.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-20.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-21.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-22.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-23.jpg');"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">Living on a Mountaintop.</h1>
@@ -166,36 +165,6 @@ img{display:block;max-width:100%}
   <div class="named-item"><span class="named-name"><span class="named-dot available"></span>La Biblioth&egrave;que</span><span class="named-mountain">West Mountain</span></div>
   <div class="named-item"><span class="named-name"><span class="named-dot sold"></span>East Mountain</span><span class="named-mountain">East Mountain &mdash; Sold</span></div>
 </div>
-
-<!-- INTERIOR GALLERY SLIDESHOW -->
-<section class="slideshow" id="slideshow">
-  <div class="slide active"><img src="../neighbourhoods/images/king-ph-13.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-14.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-15.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-16.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-17.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-18.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-20.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-21.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-22.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-23.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-24.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-25.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-26.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-27.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-29.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-30.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-31.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-32.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-33.jpg" alt="Interior"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-6.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-8.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-10.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
-  <div class="slide"><img src="../neighbourhoods/images/king-ph-12.jpg" alt="Floor Plan"><div class="slide-caption"></div></div>
-  <div class="slide-arrow left" onclick="slideGo(-1)">&#8249;</div>
-  <div class="slide-arrow right" onclick="slideGo(1)">&#8250;</div>
-  <div class="slide-dots" id="slideDots"></div>
-</section>
 
 <!-- BJARKE QUOTE -->
 <section class="quote-section">
@@ -294,30 +263,15 @@ img{display:block;max-width:100%}
 <script src="../js/sofia.js"></script>
 <script src="../js/protect.js"></script>
 <script>
-/* SLIDESHOW */
+/* HERO CYCLING BACKGROUNDS */
 (function(){
-  var slides=document.querySelectorAll('.slide');
-  var dotsWrap=document.getElementById('slideDots');
-  var cur=0,timer;
-  for(var i=0;i<slides.length;i++){
-    var d=document.createElement('div');
-    d.className='slide-dot'+(i===0?' active':'');
-    d.setAttribute('data-i',i);
-    d.onclick=function(){goTo(parseInt(this.getAttribute('data-i')))};
-    dotsWrap.appendChild(d);
-  }
-  var dots=dotsWrap.querySelectorAll('.slide-dot');
-  function goTo(n){
+  var slides=document.querySelectorAll('.hero-slide');
+  var cur=0;
+  setInterval(function(){
     slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
-    cur=(n+slides.length)%slides.length;
+    cur=(cur+1)%slides.length;
     slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
-    resetTimer();
-  }
-  function resetTimer(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1)},5000)}
-  window.slideGo=function(d){goTo(cur+d)};
-  resetTimer();
+  },6000);
 })();
 
 /* PLAN MODAL */
