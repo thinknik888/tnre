@@ -57,12 +57,19 @@
     localStorage.setItem('ca_user', JSON.stringify({ name: name, phone: phone, date: new Date().toISOString() }));
 
     // POST to Netlify function
-    try {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/.netlify/functions/capture-lead', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ name: name, phone: phone, building: getBuilding() }));
-    } catch (e) { /* silent */ }
+    var payload = { name: name, phone: phone, building: getBuilding() };
+    console.log('[register] sending to capture-lead:', payload);
+    fetch('https://condosaround.com/.netlify/functions/capture-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r) {
+      console.log('[register] capture-lead response:', r.status);
+      return r.json();
+    })
+    .then(function(data) { console.log('[register] capture-lead data:', data); })
+    .catch(function(err) { console.error('[register] capture-lead error:', err); });
 
     // Close modal and complete save
     overlay.classList.remove('active');
