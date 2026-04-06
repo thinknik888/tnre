@@ -109,50 +109,12 @@
   }
 
   function sendToFUB(name, phone) {
-    var apiKey = localStorage.getItem('ca_fub_token');
-    if (!apiKey) return;
-
     var building = getBuilding();
-    var parts = name.split(' ');
-    var firstName = parts[0] || '';
-    var lastName = parts.slice(1).join(' ') || '';
-
-    var payload = {
-      firstName: firstName,
-      lastName: lastName,
-      phones: [{ value: phone }],
-      source: 'condosaround.com',
-      tags: ['condosaround', 'condosaround - ' + building],
-      assignedTo: null
-    };
-
     try {
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://api.followupboss.com/v1/people', true);
-      xhr.setRequestHeader('Authorization', 'Basic ' + btoa(apiKey + ':'));
+      xhr.open('POST', '/.netlify/functions/capture-lead', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.send(JSON.stringify(payload));
-
-      // After person is created, add a note
-      xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          try {
-            var person = JSON.parse(xhr.responseText);
-            var personId = person.id || (person.response && person.response.id);
-            if (personId) {
-              var noteXhr = new XMLHttpRequest();
-              noteXhr.open('POST', 'https://api.followupboss.com/v1/notes', true);
-              noteXhr.setRequestHeader('Authorization', 'Basic ' + btoa(apiKey + ':'));
-              noteXhr.setRequestHeader('Content-Type', 'application/json');
-              noteXhr.send(JSON.stringify({
-                personId: personId,
-                body: 'Saved a floor plan on condosaround.com \u2014 ' + building
-              }));
-            }
-          } catch(e) {}
-        }
-      };
+      xhr.send(JSON.stringify({ name: name, phone: phone, building: building }));
     } catch(e) {}
   }
 
