@@ -49,27 +49,22 @@
     var phone = document.getElementById('reg-phone').value.trim();
     if (!name || !phone) return;
 
-    // Mark registered — both storage types
+    // Mark registered immediately — both storage types
     sessionStorage.setItem('ca_registered', 'true');
     localStorage.setItem('ca_registered', 'true');
 
     // Set ca_user so save.js skips its own modal
     localStorage.setItem('ca_user', JSON.stringify({ name: name, phone: phone, date: new Date().toISOString() }));
 
-    // POST to Netlify function
-    var payload = { name: name, phone: phone, building: getBuilding() };
-    console.log('[register] sending to capture-lead:', payload);
-    fetch('https://condosaround.com/.netlify/functions/capture-lead', {
+    // POST to Netlify Blobs save-lead function
+    var payload = { name: name, phone: phone, building: getBuilding(), date: new Date().toISOString() };
+    fetch('/.netlify/functions/save-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(function(r) {
-      console.log('[register] capture-lead response:', r.status);
-      return r.json();
-    })
-    .then(function(data) { console.log('[register] capture-lead data:', data); })
-    .catch(function(err) { console.error('[register] capture-lead error:', err); });
+    .then(function(r) { console.log('[register] save-lead response:', r.status); })
+    .catch(function(err) { console.error('[register] save-lead error:', err); });
 
     // Close modal and complete save
     overlay.classList.remove('active');

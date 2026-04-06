@@ -152,8 +152,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <div><div class="label">Platform</div><div class="name">Google Ads</div></div>
       </div>
       <div class="status-card">
-        <div class="status-dot disconnected" id="dot-fub"></div>
-        <div><div class="label">CRM</div><div class="name">Follow Up Boss</div></div>
+        <div class="status-dot disconnected" id="dot-leads"></div>
+        <div><div class="label">Leads</div><div class="name">Netlify Blobs</div></div>
       </div>
     </div>
 
@@ -203,10 +203,10 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <h3>Recent Leads</h3>
       <table>
         <thead>
-          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Source</th><th>Stage</th><th>Date</th></tr>
+          <tr><th>Name</th><th>Phone</th><th>Building</th><th>Date</th></tr>
         </thead>
         <tbody id="leads-body">
-          <tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">Connect Follow Up Boss in Settings to see leads</td></tr>
+          <tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">Loading leads...</td></tr>
         </tbody>
       </table>
     </div>
@@ -235,7 +235,6 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="field"><label>Meta Ad Account ID</label><input id="s-meta-account" placeholder="act_123456789"></div>
     <div class="field"><label>Google Ads Token</label><input id="s-google-token" placeholder="Paste Google Ads token"></div>
     <div class="field"><label>Google Ads Account ID</label><input id="s-google-account" placeholder="123-456-7890"></div>
-    <div class="field"><label>Follow Up Boss API Key</label><input id="s-fub-key" placeholder="Paste FUB API key"></div>
     <div class="field"><label>SMS Phone Number</label><input id="s-sms-phone" placeholder="+1 (416) 555-0100"></div>
     <div class="settings-actions">
       <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
@@ -261,7 +260,7 @@ function checkPassword(){
 document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword()});
 
 // ── SETTINGS / LOCALSTORAGE ──
-const KEYS=['meta-token','meta-account','google-token','google-account','fub-key','sms-phone'];
+const KEYS=['meta-token','meta-account','google-token','google-account','sms-phone'];
 function loadKeys(){
   const o={};
   KEYS.forEach(k=>o[k]=localStorage.getItem('tnre_'+k)||'');
@@ -291,14 +290,13 @@ function init(){
   const k=loadKeys();
   updateDots(k);
   if(k['meta-token']&&k['meta-account']) fetchMeta(k);
-  if(k['fub-key']) fetchFUB(k);
+  fetchLeads();
   updateGoogleStatus(k);
 }
 
 function updateDots(k){
   dot('dot-meta',!!(k['meta-token']&&k['meta-account']));
   dot('dot-google',!!(k['google-token']&&k['google-account']));
-  dot('dot-fub',!!k['fub-key']);
 }
 function dot(id,on){
   const el=document.getElementById(id);
@@ -404,20 +402,13 @@ function getWeekStart(){
   return mon.toISOString().split('T')[0];
 }
 
-// ── FOLLOW UP BOSS API ──
-async function fetchFUB(k){
-  const apiKey=k['fub-key'];
+// ── LEADS (Netlify Blobs) ──
+async function fetchLeads(){
   try{
-    const res=await fetch('https://api.followupboss.com/v1/people?limit=25&sort=created&direction=desc&tags=condosaround',{
-      headers:{'Authorization':'Basic '+btoa(apiKey+':'),'Accept':'application/json'}
-    });
-    const data=await res.json();
-
-    // Client-side backup filter: only keep contacts with "condosaround" tag
-    const leads=(data.people||[]).filter(p=>Array.isArray(p.tags)&&p.tags.some(t=>t.toLowerCase()==='condosaround'));
+    const res=await fetch('/.netlify/functions/get-leads');
+    const leads=await res.json();
     const count=leads.length;
 
-    // Update metric cards with condosaround-filtered counts
     document.getElementById('m-leads').textContent=count;
     document.getElementById('m-regs').textContent=count;
     window._fubLeads=count;
@@ -426,31 +417,25 @@ async function fetchFUB(k){
     const tbody=document.getElementById('leads-body');
     tbody.innerHTML='';
     if(count>0){
-      leads.forEach(p=>{
-        const stage=p.stage||'New';
-        const tagClass=stage.toLowerCase()==='new'?'new':stage.toLowerCase()==='contacted'?'contacted':'qualified';
-        const created=p.created?new Date(p.created).toLocaleDateString():'—';
-        const source=p.source||'—';
-        const phone=(p.phones&&p.phones.length)?p.phones[0].value:'—';
-        const email=(p.emails&&p.emails.length)?p.emails[0].value:'—';
+      // Show newest first
+      leads.slice().reverse().forEach(p=>{
+        const date=p.date?new Date(p.date).toLocaleDateString():'—';
         tbody.innerHTML+=`<tr>
-          <td>${(p.firstName||'')+' '+(p.lastName||'')}</td>
-          <td>${email}</td>
-          <td>${phone}</td>
-          <td>${source}</td>
-          <td><span class="tag ${tagClass}">${stage}</span></td>
-          <td>${created}</td>
+          <td>${p.name||'—'}</td>
+          <td>${p.phone||'—'}</td>
+          <td>${p.building||'—'}</td>
+          <td>${date}</td>
         </tr>`;
       });
     } else {
-      tbody.innerHTML='<tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">No CondosAround leads yet — your first registration will appear here.</td></tr>';
+      tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">No leads yet — your first registration will appear here.</td></tr>';
     }
-    dot('dot-fub',true);
-    toast('Leads loaded from Follow Up Boss');
+    dot('dot-leads',true);
+    toast('Leads loaded');
   } catch(err){
-    console.error('FUB API error:',err);
-    dot('dot-fub',false);
-    toast('Follow Up Boss error — check API key');
+    console.error('Leads error:',err);
+    dot('dot-leads',false);
+    toast('Failed to load leads');
   }
 }
 
@@ -459,7 +444,7 @@ function refreshAll(){
   const k=loadKeys();
   updateDots(k);
   if(k['meta-token']&&k['meta-account']) fetchMeta(k);
-  if(k['fub-key']) fetchFUB(k);
+  fetchLeads();
   updateGoogleStatus(k);
 }
 </script>

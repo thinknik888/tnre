@@ -1,3 +1,5 @@
+var { getStore } = require('@netlify/blobs');
+
 var corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
@@ -10,7 +12,7 @@ exports.handler = async function(event) {
     return { statusCode: 200, headers: corsHeaders, body: '' };
   }
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers: corsHeaders, body: 'Method not allowed' };
+    return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
   var body;
@@ -22,44 +24,37 @@ exports.handler = async function(event) {
 
   var name = body.name || '';
   var phone = body.phone || '';
-  var plans = body.plans || [];
-  var planNames = body.planNames || [];
+  var building = body.building || 'Unknown';
+  var date = body.date || new Date().toISOString();
 
   if (!name || !phone) {
     return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Name and phone required' }) };
   }
 
-  // Send SMS via Twilio
-  var sid = process.env.TWILIO_ACCOUNT_SID;
-  var token = process.env.TWILIO_AUTH_TOKEN;
-  var from = process.env.TWILIO_PHONE_NUMBER;
-  var to = '+16479240848';
-
-  if (sid && token && from) {
+  try {
+    var store = getStore('leads');
+    var existing = [];
     try {
-      var msg = 'New lead on CondosAround: ' + name + ' ' + phone + ' saved ' + plans.length + ' floor plans: ' + planNames.join(', ');
-      var twilioUrl = 'https://api.twilio.com/2010-04-01/Accounts/' + sid + '/Messages.json';
-      var params = new URLSearchParams();
-      params.append('To', to);
-      params.append('From', from);
-      params.append('Body', msg);
-
-      await fetch(twilioUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Basic ' + Buffer.from(sid + ':' + token).toString('base64'),
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: params.toString()
-      });
+      var raw = await store.get('leads', { type: 'json' });
+      if (Array.isArray(raw)) existing = raw;
     } catch (e) {
-      console.log('Twilio error:', e.message);
+      // No existing data yet
     }
-  }
 
-  return {
-    statusCode: 200,
-    headers: corsHeaders,
-    body: JSON.stringify({ success: true, message: 'Lead saved and SMS sent' })
-  };
+    existing.push({ name: name, phone: phone, building: building, date: date });
+    await store.setJSON('leads', existing);
+
+    return {
+      statusCode: 200,
+      headers: corsHeaders,
+      body: JSON.stringify({ success: true, count: existing.length })
+    };
+  } catch (err) {
+    console.error('save-lead error:', err);
+    return {
+      statusCode: 500,
+      headers: corsHeaders,
+      body: JSON.stringify({ error: 'Failed to save lead', message: err.message })
+    };
+  }
 };
