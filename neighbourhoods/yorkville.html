@@ -65,11 +65,18 @@
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; }
+    .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 3px; position: relative; }
     .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
     .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
     .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 210; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .modal-nav:hover { background: var(--gold); border-color: var(--gold); }
+    .modal-nav:hover svg { stroke: #fff; }
+    .modal-nav svg { width: 18px; height: 18px; stroke: var(--text-mid); stroke-width: 2; fill: none; }
+    .modal-prev { left: -22px; }
+    .modal-next { right: -22px; }
+    @media (max-width: 900px) { .modal-prev { left: 8px; } .modal-next { right: 8px; } .modal-nav { background: rgba(255,255,255,0.95); } }
     .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
     .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; }
     .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
@@ -396,7 +403,9 @@
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal">
+  <div class="modal" id="modal-card">
+    <button class="modal-nav modal-prev" id="modal-prev" onclick="navModal(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="modal-nav modal-next" id="modal-next" onclick="navModal(1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
     <div class="modal-header">
       <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
       <button class="modal-close" onclick="closeModal()">✕</button>
@@ -446,8 +455,23 @@
     'bedford-2749':  { building: 'The Bedford', suite: 'Suite 2749',  type: '3 Bedroom',        size: '2,749 sq ft', exposure: 'Balcony 214 sq ft',  floors: '5',   price: '$6,799,900',              promo: null, savings: null, img: 'images/the-bedford/suite-2749.png',  buildingUrl: '../buildings/the-bedford.html' },
   };
 
-  function openModal(id) {
+  // Build ordered list of plan keys from visible cards
+  var currentPlanId = null;
+
+  function getVisiblePlanIds() {
+    var ids = [];
+    document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+      if (card.style.display === 'none') return;
+      var onclick = card.getAttribute('onclick');
+      var m = onclick && onclick.match(/openModal\('([^']+)'\)/);
+      if (m && plans[m[1]]) ids.push(m[1]);
+    });
+    return ids;
+  }
+
+  function populateModal(id) {
     const p = plans[id]; if (!p) return;
+    currentPlanId = id;
     document.getElementById('modal-suite').textContent = 'Yorkville · ' + p.building;
     document.getElementById('modal-title').textContent = p.suite + ' — ' + p.type;
     document.getElementById('modal-img').src = p.img;
@@ -461,12 +485,55 @@
     if (p.promo) { priceEl.innerHTML = '<s>' + p.price + '</s> <span class="promo">' + p.promo + '</span>' + (p.savings ? '<span class="savings">' + p.savings + '</span>' : ''); } else { priceEl.textContent = p.price; }
     const linkWrap = document.getElementById('m-building-link-wrap');
     if (p.buildingUrl) { linkWrap.innerHTML = '<a href="' + p.buildingUrl + '" class="btn-full-building">View building page →</a>'; } else { linkWrap.innerHTML = ''; }
+    // Update nav button visibility
+    var ids = getVisiblePlanIds();
+    var idx = ids.indexOf(id);
+    document.getElementById('modal-prev').style.display = idx > 0 ? '' : 'none';
+    document.getElementById('modal-next').style.display = idx < ids.length - 1 ? '' : 'none';
+    // Scroll modal back to top
+    document.getElementById('modal-card').scrollTop = 0;
+  }
+
+  function openModal(id) {
+    populateModal(id);
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+
+  function navModal(dir) {
+    var ids = getVisiblePlanIds();
+    var idx = ids.indexOf(currentPlanId);
+    var next = idx + dir;
+    if (next >= 0 && next < ids.length) populateModal(ids[next]);
+  }
+
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') navModal(-1);
+    if (e.key === 'ArrowRight') navModal(1);
+  });
+
+  // Touch swipe support
+  (function() {
+    var card = document.getElementById('modal-card');
+    var startX = 0, startY = 0, tracking = false;
+    card.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+    card.addEventListener('touchend', function(e) {
+      if (!tracking) return;
+      tracking = false;
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        navModal(dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+  })();
 
   // Add HST rebate to each card
   document.querySelectorAll('.fp-card').forEach(card => {
