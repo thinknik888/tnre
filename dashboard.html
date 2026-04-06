@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Dashboard — TNRE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a1628;--gold:#b89a56;--white:#f0ede6;--card:#121e33;--border:#1e2d47;--red:#e05555;--green:#4ecb71}
+body{font-family:'Outfit',sans-serif;background:var(--navy);color:var(--white);min-height:100vh}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+
+/* PASSWORD GATE */
+#gate{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px}
+#gate h1{font-size:2.4rem;color:var(--gold);letter-spacing:1px}
+#gate p{color:var(--white);opacity:.6;font-size:.9rem}
+#gate input{background:var(--card);border:1px solid var(--border);color:var(--white);padding:14px 20px;border-radius:8px;font-size:1rem;width:300px;text-align:center;font-family:'Outfit',sans-serif}
+#gate input:focus{outline:none;border-color:var(--gold)}
+#gate button{background:var(--gold);color:var(--navy);border:none;padding:12px 40px;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem;font-family:'Outfit',sans-serif}
+#gate button:hover{opacity:.9}
+#gate .error{color:var(--red);font-size:.85rem;min-height:20px}
+
+/* LAYOUT */
+#app{display:none}
+header{padding:24px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+header h1{font-size:1.6rem;color:var(--gold)}
+header .actions{display:flex;gap:12px}
+header button{background:var(--card);border:1px solid var(--border);color:var(--white);padding:8px 18px;border-radius:6px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.85rem}
+header button:hover{border-color:var(--gold);color:var(--gold)}
+header button.active{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.container{max-width:1400px;margin:0 auto;padding:24px 32px}
+
+/* STATUS CARDS */
+.status-row{display:flex;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.status-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;flex:1;min-width:200px;display:flex;align-items:center;gap:14px}
+.status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.status-dot.connected{background:var(--green)}
+.status-dot.disconnected{background:var(--red)}
+.status-card .label{font-size:.8rem;opacity:.5;text-transform:uppercase;letter-spacing:.5px}
+.status-card .name{font-size:1rem;font-weight:500}
+
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:28px}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px 24px}
+.metric-card .label{font-size:.75rem;opacity:.5;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.metric-card .value{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.metric-card .sub{font-size:.8rem;opacity:.5;margin-top:4px}
+
+/* CHARTS */
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.chart-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px}
+.chart-panel h3{font-size:1.1rem;margin-bottom:18px;color:var(--gold)}
+.bar-group{margin-bottom:14px}
+.bar-group .bar-label{font-size:.8rem;opacity:.7;margin-bottom:4px;display:flex;justify-content:space-between}
+.bar-group .bar-track{background:var(--navy);border-radius:4px;height:22px;overflow:hidden}
+.bar-group .bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.bar-fill.meta{background:linear-gradient(90deg,#4267B2,#6d8ed4)}
+.bar-fill.google{background:linear-gradient(90deg,#34a853,#5ec47a)}
+
+/* TABLE */
+.table-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:28px;overflow-x:auto}
+.table-panel h3{font-size:1.1rem;margin-bottom:16px;color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);opacity:.5;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;font-weight:500}
+td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04)}
+tr:hover td{background:rgba(255,255,255,.02)}
+.tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.75rem;font-weight:500}
+.tag.new{background:rgba(78,203,113,.15);color:var(--green)}
+.tag.contacted{background:rgba(184,154,86,.15);color:var(--gold)}
+.tag.qualified{background:rgba(66,103,178,.15);color:#6d8ed4}
+
+/* WEEKLY SPEND */
+.spend-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:28px}
+.spend-panel h3{font-size:1.1rem;margin-bottom:16px;color:var(--gold)}
+.spend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.spend-day{background:var(--navy);border-radius:8px;padding:14px 16px;text-align:center}
+.spend-day .day{font-size:.75rem;opacity:.5;text-transform:uppercase;margin-bottom:4px}
+.spend-day .amount{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--white)}
+
+/* SETTINGS PANEL */
+#settings{display:none;position:fixed;inset:0;background:rgba(10,22,40,.92);z-index:1000;overflow-y:auto}
+.settings-inner{max-width:600px;margin:60px auto;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:14px}
+.settings-inner h2{font-size:1.6rem;color:var(--gold);margin-bottom:24px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.8rem;opacity:.5;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.field input{width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:12px 16px;border-radius:8px;font-size:.9rem;font-family:'Outfit',sans-serif}
+.field input:focus{outline:none;border-color:var(--gold)}
+.settings-actions{display:flex;gap:12px;margin-top:24px}
+.settings-actions button{flex:1;padding:12px;border-radius:8px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;border:none;font-size:.9rem}
+.btn-save{background:var(--gold);color:var(--navy)}
+.btn-cancel{background:var(--navy);color:var(--white);border:1px solid var(--border)!important}
+.btn-save:hover,.btn-cancel:hover{opacity:.85}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:var(--navy);padding:12px 24px;border-radius:8px;font-weight:500;font-size:.9rem;opacity:0;transition:opacity .3s;z-index:2000;pointer-events:none}
+.toast.show{opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  header{flex-direction:column;gap:12px;text-align:center;padding:18px 16px}
+  .container{padding:16px}
+  .charts-row{grid-template-columns:1fr}
+  .status-card{min-width:100%}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .spend-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .metrics-grid{grid-template-columns:1fr}
+  .spend-grid{grid-template-columns:1fr}
+  #gate input{width:240px}
+}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <h1>TNRE Dashboard</h1>
+  <p>Enter password to continue</p>
+  <input type="password" id="gatePw" placeholder="Password" autofocus>
+  <button onclick="checkPassword()">Enter</button>
+  <div class="error" id="gateErr"></div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <header>
+    <h1>Marketing Dashboard</h1>
+    <div class="actions">
+      <button onclick="refreshAll()">Refresh Data</button>
+      <button onclick="openSettings()">Settings</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- API STATUS -->
+    <div class="status-row">
+      <div class="status-card">
+        <div class="status-dot disconnected" id="dot-meta"></div>
+        <div><div class="label">Platform</div><div class="name">Meta Ads</div></div>
+      </div>
+      <div class="status-card">
+        <div class="status-dot disconnected" id="dot-google"></div>
+        <div><div class="label">Platform</div><div class="name">Google Ads</div></div>
+      </div>
+      <div class="status-card">
+        <div class="status-dot disconnected" id="dot-fub"></div>
+        <div><div class="label">CRM</div><div class="name">Follow Up Boss</div></div>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="label">Total Spend</div>
+        <div class="value" id="m-spend">—</div>
+        <div class="sub">Last 30 days</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Total Leads</div>
+        <div class="value" id="m-leads">—</div>
+        <div class="sub">Last 30 days</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Cost Per Lead</div>
+        <div class="value" id="m-cpl">—</div>
+        <div class="sub">Avg across platforms</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Site Registrations</div>
+        <div class="value" id="m-regs">—</div>
+        <div class="sub">Last 30 days</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Best Platform</div>
+        <div class="value" id="m-best">—</div>
+        <div class="sub">Lowest CPL</div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN BAR CHARTS -->
+    <div class="charts-row">
+      <div class="chart-panel">
+        <h3>Meta Campaign Performance</h3>
+        <div id="meta-bars"><p style="opacity:.4;font-size:.85rem">Connect Meta Ads in Settings to see data</p></div>
+      </div>
+      <div class="chart-panel">
+        <h3>Google Campaign Performance</h3>
+        <div id="google-bars"><p style="opacity:.4;font-size:.85rem">Connect Google Ads in Settings to see data</p></div>
+      </div>
+    </div>
+
+    <!-- RECENT LEADS -->
+    <div class="table-panel">
+      <h3>Recent Leads</h3>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Source</th><th>Stage</th><th>Date</th></tr>
+        </thead>
+        <tbody id="leads-body">
+          <tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">Connect Follow Up Boss in Settings to see leads</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WEEKLY SPEND -->
+    <div class="spend-panel">
+      <h3>Weekly Spend Breakdown</h3>
+      <div class="spend-grid" id="spend-grid">
+        <div class="spend-day"><div class="day">Mon</div><div class="amount">—</div></div>
+        <div class="spend-day"><div class="day">Tue</div><div class="amount">—</div></div>
+        <div class="spend-day"><div class="day">Wed</div><div class="amount">—</div></div>
+        <div class="spend-day"><div class="day">Thu</div><div class="amount">—</div></div>
+        <div class="spend-day"><div class="day">Fri</div><div class="amount">—</div></div>
+        <div class="spend-day"><div class="day">Sat</div><div class="amount">—</div></div>
+        <div class="spend-day"><div class="day">Sun</div><div class="amount">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS PANEL -->
+<div id="settings">
+  <div class="settings-inner">
+    <h2>API Settings</h2>
+    <div class="field"><label>Meta Ads Token</label><input id="s-meta-token" placeholder="Paste Meta access token"></div>
+    <div class="field"><label>Meta Ad Account ID</label><input id="s-meta-account" placeholder="act_123456789"></div>
+    <div class="field"><label>Google Ads Token</label><input id="s-google-token" placeholder="Paste Google Ads token"></div>
+    <div class="field"><label>Google Ads Account ID</label><input id="s-google-account" placeholder="123-456-7890"></div>
+    <div class="field"><label>Follow Up Boss API Key</label><input id="s-fub-key" placeholder="Paste FUB API key"></div>
+    <div class="field"><label>SMS Phone Number</label><input id="s-sms-phone" placeholder="+1 (416) 555-0100"></div>
+    <div class="settings-actions">
+      <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
+      <button class="btn-save" onclick="saveSettings()">Save &amp; Connect</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── PASSWORD GATE ──
+function checkPassword(){
+  if(document.getElementById('gatePw').value==='condos2026'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('app').style.display='block';
+    init();
+  } else {
+    document.getElementById('gateErr').textContent='Incorrect password';
+  }
+}
+document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword()});
+
+// ── SETTINGS / LOCALSTORAGE ──
+const KEYS=['meta-token','meta-account','google-token','google-account','fub-key','sms-phone'];
+function loadKeys(){
+  const o={};
+  KEYS.forEach(k=>o[k]=localStorage.getItem('tnre_'+k)||'');
+  return o;
+}
+function openSettings(){
+  const k=loadKeys();
+  KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);
+  document.getElementById('settings').style.display='block';
+}
+function closeSettings(){document.getElementById('settings').style.display='none'}
+function saveSettings(){
+  KEYS.forEach(key=>localStorage.setItem('tnre_'+key,document.getElementById('s-'+key).value.trim()));
+  closeSettings();
+  toast('Settings saved');
+  refreshAll();
+}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ── INIT ──
+function init(){
+  const k=loadKeys();
+  updateDots(k);
+  if(k['meta-token']&&k['meta-account']) fetchMeta(k);
+  if(k['fub-key']) fetchFUB(k);
+  updateGoogleStatus(k);
+}
+
+function updateDots(k){
+  dot('dot-meta',!!(k['meta-token']&&k['meta-account']));
+  dot('dot-google',!!(k['google-token']&&k['google-account']));
+  dot('dot-fub',!!k['fub-key']);
+}
+function dot(id,on){
+  const el=document.getElementById(id);
+  el.classList.toggle('connected',on);
+  el.classList.toggle('disconnected',!on);
+}
+function updateGoogleStatus(k){
+  if(k['google-token']&&k['google-account']){
+    dot('dot-google',true);
+  }
+}
+
+// ── META GRAPH API ──
+async function fetchMeta(k){
+  const token=k['meta-token'],acct=k['meta-account'];
+  const today=new Date();
+  const since=new Date(today);since.setDate(since.getDate()-30);
+  const sinceStr=since.toISOString().split('T')[0];
+  const untilStr=today.toISOString().split('T')[0];
+
+  try{
+    // Account-level insights
+    const insightsUrl=`https://graph.facebook.com/v19.0/${acct}/insights?fields=spend,actions,impressions,clicks&time_range={"since":"${sinceStr}","until":"${untilStr}"}&access_token=${token}`;
+    const insightsRes=await fetch(insightsUrl);
+    const insightsData=await insightsRes.json();
+
+    if(insightsData.data&&insightsData.data.length){
+      const d=insightsData.data[0];
+      const spend=parseFloat(d.spend)||0;
+      const leads=(d.actions||[]).filter(a=>a.action_type==='lead'||a.action_type==='offsite_conversion.fb_pixel_lead').reduce((s,a)=>s+parseInt(a.value),0);
+      const regs=(d.actions||[]).filter(a=>a.action_type==='complete_registration'||a.action_type==='offsite_conversion.fb_pixel_complete_registration').reduce((s,a)=>s+parseInt(a.value),0);
+
+      document.getElementById('m-spend').textContent='$'+spend.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+      document.getElementById('m-leads').textContent=leads||'—';
+      if(leads>0){
+        document.getElementById('m-cpl').textContent='$'+(spend/leads).toFixed(2);
+      }
+      document.getElementById('m-regs').textContent=regs||'—';
+      document.getElementById('m-best').textContent='Meta';
+    }
+
+    // Campaign-level for bar charts
+    const campUrl=`https://graph.facebook.com/v19.0/${acct}/campaigns?fields=name,insights.time_range({"since":"${sinceStr}","until":"${untilStr}"}){spend,actions}&limit=10&access_token=${token}`;
+    const campRes=await fetch(campUrl);
+    const campData=await campRes.json();
+
+    if(campData.data&&campData.data.length){
+      const bars=document.getElementById('meta-bars');
+      bars.innerHTML='';
+      const maxSpend=Math.max(...campData.data.map(c=>{
+        if(!c.insights||!c.insights.data||!c.insights.data.length) return 0;
+        return parseFloat(c.insights.data[0].spend)||0;
+      }),1);
+
+      campData.data.forEach(c=>{
+        if(!c.insights||!c.insights.data||!c.insights.data.length) return;
+        const s=parseFloat(c.insights.data[0].spend)||0;
+        const pct=Math.round((s/maxSpend)*100);
+        bars.innerHTML+=`<div class="bar-group"><div class="bar-label"><span>${c.name.substring(0,40)}</span><span>$${s.toLocaleString()}</span></div><div class="bar-track"><div class="bar-fill meta" style="width:${pct}%"></div></div></div>`;
+      });
+    }
+
+    // Daily spend for weekly breakdown
+    const dailyUrl=`https://graph.facebook.com/v19.0/${acct}/insights?fields=spend&time_increment=1&time_range={"since":"${getWeekStart()}","until":"${untilStr}"}&access_token=${token}`;
+    const dailyRes=await fetch(dailyUrl);
+    const dailyData=await dailyRes.json();
+
+    if(dailyData.data&&dailyData.data.length){
+      const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      const grid=document.getElementById('spend-grid');
+      grid.innerHTML='';
+      for(let i=0;i<7;i++){
+        const amt=dailyData.data[i]?'$'+parseFloat(dailyData.data[i].spend).toFixed(0):'—';
+        grid.innerHTML+=`<div class="spend-day"><div class="day">${days[i]}</div><div class="amount">${amt}</div></div>`;
+      }
+    }
+
+    dot('dot-meta',true);
+    toast('Meta data loaded');
+  } catch(err){
+    console.error('Meta API error:',err);
+    dot('dot-meta',false);
+    toast('Meta API error — check token');
+  }
+}
+
+function getWeekStart(){
+  const d=new Date();
+  const day=d.getDay();
+  const diff=d.getDate()-day+(day===0?-6:1);
+  const mon=new Date(d.setDate(diff));
+  return mon.toISOString().split('T')[0];
+}
+
+// ── FOLLOW UP BOSS API ──
+async function fetchFUB(k){
+  const apiKey=k['fub-key'];
+  try{
+    const res=await fetch('https://api.followupboss.com/v1/people?sort=created&limit=20',{
+      headers:{'Authorization':'Basic '+btoa(apiKey+':'),'Accept':'application/json'}
+    });
+    const data=await res.json();
+
+    if(data.people&&data.people.length){
+      const tbody=document.getElementById('leads-body');
+      tbody.innerHTML='';
+      data.people.forEach(p=>{
+        const stage=p.stage||'New';
+        const tagClass=stage.toLowerCase()==='new'?'new':stage.toLowerCase()==='contacted'?'contacted':'qualified';
+        const created=p.created?new Date(p.created).toLocaleDateString():'—';
+        const source=p.source||'—';
+        const phone=(p.phones&&p.phones.length)?p.phones[0].value:'—';
+        const email=(p.emails&&p.emails.length)?p.emails[0].value:'—';
+        tbody.innerHTML+=`<tr>
+          <td>${(p.firstName||'')+' '+(p.lastName||'')}</td>
+          <td>${email}</td>
+          <td>${phone}</td>
+          <td>${source}</td>
+          <td><span class="tag ${tagClass}">${stage}</span></td>
+          <td>${created}</td>
+        </tr>`;
+      });
+    }
+    dot('dot-fub',true);
+    toast('Leads loaded from Follow Up Boss');
+  } catch(err){
+    console.error('FUB API error:',err);
+    dot('dot-fub',false);
+    toast('Follow Up Boss error — check API key');
+  }
+}
+
+// ── REFRESH ──
+function refreshAll(){
+  const k=loadKeys();
+  updateDots(k);
+  if(k['meta-token']&&k['meta-account']) fetchMeta(k);
+  if(k['fub-key']) fetchFUB(k);
+  updateGoogleStatus(k);
+}
+</script>
+</body>
+</html>
