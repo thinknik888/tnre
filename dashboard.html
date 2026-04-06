@@ -395,14 +395,14 @@ function getWeekStart(){
 async function fetchFUB(k){
   const apiKey=k['fub-key'];
   try{
-    const res=await fetch('https://api.followupboss.com/v1/people?sort=created&limit=20',{
+    const res=await fetch('https://api.followupboss.com/v1/people?limit=25&sort=created&direction=desc&tag=condosaround',{
       headers:{'Authorization':'Basic '+btoa(apiKey+':'),'Accept':'application/json'}
     });
     const data=await res.json();
 
+    const tbody=document.getElementById('leads-body');
+    tbody.innerHTML='';
     if(data.people&&data.people.length){
-      const tbody=document.getElementById('leads-body');
-      tbody.innerHTML='';
       data.people.forEach(p=>{
         const stage=p.stage||'New';
         const tagClass=stage.toLowerCase()==='new'?'new':stage.toLowerCase()==='contacted'?'contacted':'qualified';
@@ -419,6 +419,8 @@ async function fetchFUB(k){
           <td>${created}</td>
         </tr>`;
       });
+    } else {
+      tbody.innerHTML='<tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">No condosaround leads yet. Once your first registration comes in it will appear here.</td></tr>';
     }
     dot('dot-fub',true);
     toast('Leads loaded from Follow Up Boss');
