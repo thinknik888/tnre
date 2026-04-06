@@ -136,6 +136,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="actions">
       <button onclick="refreshAll()">Refresh Data</button>
       <button onclick="openSettings()">Settings</button>
+      <button onclick="logout()">Log out</button>
     </div>
   </header>
 
@@ -272,6 +273,7 @@ function openSettings(){
   document.getElementById('settings').style.display='block';
 }
 function closeSettings(){document.getElementById('settings').style.display='none'}
+function logout(){document.getElementById('app').style.display='none';document.getElementById('gate').style.display='flex';document.getElementById('gatePw').value='';document.getElementById('gateErr').textContent='';}
 function saveSettings(){
   KEYS.forEach(key=>localStorage.setItem('tnre_'+key,document.getElementById('s-'+key).value.trim()));
   closeSettings();
