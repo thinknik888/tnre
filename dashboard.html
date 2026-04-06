@@ -406,12 +406,13 @@ function getWeekStart(){
 async function fetchFUB(k){
   const apiKey=k['fub-key'];
   try{
-    const res=await fetch('https://api.followupboss.com/v1/people?limit=25&sort=created&direction=desc&tag=condosaround',{
+    const res=await fetch('https://api.followupboss.com/v1/people?limit=25&sort=created&direction=desc&tags=condosaround',{
       headers:{'Authorization':'Basic '+btoa(apiKey+':'),'Accept':'application/json'}
     });
     const data=await res.json();
 
-    const leads=data.people||[];
+    // Client-side backup filter: only keep contacts with "condosaround" tag
+    const leads=(data.people||[]).filter(p=>Array.isArray(p.tags)&&p.tags.some(t=>t.toLowerCase()==='condosaround'));
     const count=leads.length;
 
     // Update metric cards with condosaround-filtered counts
