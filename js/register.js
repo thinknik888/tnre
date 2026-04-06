@@ -43,7 +43,7 @@
         <input id="reg-name" type="text" placeholder="Full Name" />\
         <input id="reg-phone" type="tel" placeholder="Phone Number" />\
         <button class="reg-btn" id="reg-submit">Save &amp; Continue &rarr;</button>\
-        <p class="reg-fine">No spam. Nik will reach out personally.</p>\
+        <p class="reg-fine">No email = No spam.</p>\
       </div>\
       <div id="reg-confirm-view" style="display:none;text-align:center;">\
         <div class="reg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>\
