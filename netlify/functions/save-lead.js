@@ -32,17 +32,26 @@ exports.handler = async function(event) {
   }
 
   try {
-    var store = getStore('leads');
+    var siteID = process.env.SITE_ID || process.env.NETLIFY_SITE_ID || '';
+    var token = process.env.NETLIFY_API_TOKEN || process.env.NETLIFY_AUTH_TOKEN || '';
+
+    var store;
+    if (siteID && token) {
+      store = getStore({ name: 'leads', siteID: siteID, token: token });
+    } else {
+      store = getStore('leads');
+    }
+
     var existing = [];
-    try {
-      var raw = await store.get('leads', { type: 'json' });
-      if (Array.isArray(raw)) existing = raw;
-    } catch (e) {
-      // No existing data yet
+    var raw = await store.get('leads', { type: 'json' });
+    if (Array.isArray(raw)) {
+      existing = raw;
     }
 
     existing.push({ name: name, phone: phone, building: building, date: date });
     await store.setJSON('leads', existing);
+
+    console.log('save-lead: saved lead #' + existing.length, { name: name, building: building });
 
     return {
       statusCode: 200,
@@ -50,11 +59,11 @@ exports.handler = async function(event) {
       body: JSON.stringify({ success: true, count: existing.length })
     };
   } catch (err) {
-    console.error('save-lead error:', err);
+    console.error('save-lead error:', err.name, err.message, err.stack);
     return {
       statusCode: 500,
       headers: corsHeaders,
-      body: JSON.stringify({ error: 'Failed to save lead', message: err.message })
+      body: JSON.stringify({ error: 'Failed to save lead', message: err.message, type: err.name })
     };
   }
 };

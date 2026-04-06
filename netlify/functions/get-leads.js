@@ -16,13 +16,20 @@ exports.handler = async function(event) {
   }
 
   try {
-    var store = getStore('leads');
+    var siteID = process.env.SITE_ID || process.env.NETLIFY_SITE_ID || '';
+    var token = process.env.NETLIFY_API_TOKEN || process.env.NETLIFY_AUTH_TOKEN || '';
+
+    var store;
+    if (siteID && token) {
+      store = getStore({ name: 'leads', siteID: siteID, token: token });
+    } else {
+      store = getStore('leads');
+    }
+
     var leads = [];
-    try {
-      var raw = await store.get('leads', { type: 'json' });
-      if (Array.isArray(raw)) leads = raw;
-    } catch (e) {
-      // No data yet
+    var raw = await store.get('leads', { type: 'json' });
+    if (Array.isArray(raw)) {
+      leads = raw;
     }
 
     return {
@@ -31,11 +38,11 @@ exports.handler = async function(event) {
       body: JSON.stringify(leads)
     };
   } catch (err) {
-    console.error('get-leads error:', err);
+    console.error('get-leads error:', err.name, err.message, err.stack);
     return {
       statusCode: 500,
       headers: corsHeaders,
-      body: JSON.stringify({ error: 'Failed to read leads', message: err.message })
+      body: JSON.stringify({ error: 'Failed to read leads', message: err.message, type: err.name })
     };
   }
 };
