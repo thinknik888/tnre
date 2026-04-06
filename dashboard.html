@@ -309,6 +309,19 @@ function updateGoogleStatus(k){
   }
 }
 
+// ── SHARED METRICS ──
+window._metaSpend=0;
+window._fubLeads=0;
+function updateCPL(){
+  const spend=window._metaSpend||0;
+  const leads=window._fubLeads||0;
+  if(leads>0&&spend>0){
+    document.getElementById('m-cpl').textContent='$'+(spend/leads).toFixed(2);
+  } else {
+    document.getElementById('m-cpl').textContent=leads>0?'$0.00':'—';
+  }
+}
+
 // ── META GRAPH API ──
 async function fetchMeta(k){
   const token=k['meta-token'],acct=k['meta-account'];
@@ -330,11 +343,9 @@ async function fetchMeta(k){
       const regs=(d.actions||[]).filter(a=>a.action_type==='complete_registration'||a.action_type==='offsite_conversion.fb_pixel_complete_registration').reduce((s,a)=>s+parseInt(a.value),0);
 
       document.getElementById('m-spend').textContent='$'+spend.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-      document.getElementById('m-leads').textContent=leads||'—';
-      if(leads>0){
-        document.getElementById('m-cpl').textContent='$'+(spend/leads).toFixed(2);
-      }
-      document.getElementById('m-regs').textContent=regs||'—';
+      window._metaSpend=spend;
+      window._metaBest='Meta';
+      updateCPL();
       document.getElementById('m-best').textContent='Meta';
     }
 
@@ -400,10 +411,19 @@ async function fetchFUB(k){
     });
     const data=await res.json();
 
+    const leads=data.people||[];
+    const count=leads.length;
+
+    // Update metric cards with condosaround-filtered counts
+    document.getElementById('m-leads').textContent=count;
+    document.getElementById('m-regs').textContent=count;
+    window._fubLeads=count;
+    updateCPL();
+
     const tbody=document.getElementById('leads-body');
     tbody.innerHTML='';
-    if(data.people&&data.people.length){
-      data.people.forEach(p=>{
+    if(count>0){
+      leads.forEach(p=>{
         const stage=p.stage||'New';
         const tagClass=stage.toLowerCase()==='new'?'new':stage.toLowerCase()==='contacted'?'contacted':'qualified';
         const created=p.created?new Date(p.created).toLocaleDateString():'—';
@@ -420,7 +440,7 @@ async function fetchFUB(k){
         </tr>`;
       });
     } else {
-      tbody.innerHTML='<tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">No condosaround leads yet. Once your first registration comes in it will appear here.</td></tr>';
+      tbody.innerHTML='<tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">No CondosAround leads yet — your first registration will appear here.</td></tr>';
     }
     dot('dot-fub',true);
     toast('Leads loaded from Follow Up Boss');
