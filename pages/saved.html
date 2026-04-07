@@ -52,9 +52,12 @@
 <body>
 <nav>
   <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
-  <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+    <span style="color:#ccc;">|</span>
+    <button onclick="logoutUser()" style="font-size:0.68rem;color:#999;background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;padding:0;">log out</button>
+  </div>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
-  <button onclick="logoutUser()" style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;background:none;border:1px solid var(--gold);color:var(--gold);padding:0.5rem 1rem;border-radius:2px;cursor:pointer;font-family:'Outfit',sans-serif;">Log Out</button>
 </nav>
 
 <div class="hero">
@@ -125,6 +128,7 @@
   function logoutUser() {
     localStorage.removeItem('ca_registered');
     localStorage.removeItem('ca_user');
+    localStorage.removeItem('ca-saved-plans');
     sessionStorage.removeItem('ca_registered');
     location.reload();
   }
