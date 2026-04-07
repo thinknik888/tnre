@@ -311,9 +311,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
       <div class="metrics-grid">
         <div class="metric-card"><div class="label">Total Spend</div><div class="value" id="m-spend">$41.90</div><div class="sub">YTD 2026</div></div>
-        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="m-leads">11</div><div class="sub">From FUB</div></div>
+        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="m-leads">—</div><div class="sub">From site registrations</div></div>
         <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value" id="m-cpl">$3.81</div><div class="sub">Avg across campaigns</div></div>
-        <div class="metric-card"><div class="label">Site Registrations</div><div class="value" id="m-regs">11</div><div class="sub">From FUB</div></div>
       </div>
 
       <!-- CAMPAIGN PERFORMANCE -->
@@ -349,21 +348,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- SALES DIALS -->
-      <div class="dials-panel">
-        <h3>Sales Dials</h3>
-        <div class="dials-date-bar">
-          <div class="heading" id="salesDialHeading">Today</div>
-          <div class="dials-date-nav">
-            <button onclick="changePipeDay('sales',-1)">&#8249;</button>
-            <span class="lbl" id="salesDialLabel">Today</span>
-            <button onclick="changePipeDay('sales',1)">&#8250;</button>
-            <span class="save-dot" id="salesSaveDot"></span>
-          </div>
-        </div>
-        <div class="mc-grid" id="salesMetrics"></div>
-        <div class="rates-grid" id="salesRates"></div>
-      </div>
     </div>
   </div>
 
@@ -649,18 +633,16 @@ function switchTab(tab,btn){
   document.getElementById('panel-'+tab).classList.add('active');
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
-  if(tab==='sales'){renderPipelineToday('sales');fetchSalesDeals();fetchSalesLeads();}
+  if(tab==='sales'){fetchSalesDeals();}
   if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
 }
 
 function initAll(){
   initSalesDashboard();
-  initPipeline('sales');
   initPipeline('rentals');
   fetchRentalYTD();
   fetchSalesDeals();
-  fetchSalesLeads();
   loadD1Data();
 }
 
@@ -720,38 +702,22 @@ function getWeekStart(){const d=new Date(),day=d.getDay(),diff=d.getDate()-day+(
 async function fetchLeads(){
   try{
     const res=await fetch('/.netlify/functions/get-leads');const leads=await res.json();const count=leads.length;
-    document.getElementById('m-leads').textContent=count;document.getElementById('m-regs').textContent=count;window._fubLeads=count;updateCPL();
+    document.getElementById('m-leads').textContent=count;
     const tbody=document.getElementById('leads-body');tbody.innerHTML='';
     if(count>0){leads.slice().reverse().forEach(p=>{const date=p.date?new Date(p.date).toLocaleDateString():'—';tbody.innerHTML+=`<tr><td>${p.name||'—'}</td><td>${p.phone||'—'}</td><td>${p.building||'—'}</td><td>${date}</td></tr>`;});}
     else{tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">No leads yet — your first registration will appear here.</td></tr>';}
     dot('dot-leads',true);toast('Leads loaded');
   }catch(err){console.error('Leads error:',err);dot('dot-leads',false);toast('Failed to load leads');}
 }
-function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);fetchSalesLeads();}
+function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);}
 
 let salesSpend=41.90;
-async function fetchSalesLeads(){
-  try{
-    const res=await fetch('/.netlify/functions/get-sales-leads');
-    const leads=await res.json();
-    const count=leads.length;
-    const el=id=>document.getElementById(id);
-    if(el('m-leads'))el('m-leads').textContent=count;
-    if(el('m-regs'))el('m-regs').textContent=count;
-    if(el('sc-leads'))el('sc-leads').textContent=count;
-    const cpl=count>0?(salesSpend/count).toFixed(2):'0.00';
-    if(el('m-cpl'))el('m-cpl').textContent='$'+cpl;
-    if(el('sc-cpl'))el('sc-cpl').textContent='$'+cpl;
-  }catch(err){console.error('Sales leads error:',err);}
-}
-
 function editSalesCampaign(){
   const spend=prompt('Total Spend ($):',salesSpend.toFixed(2));if(spend===null)return;
   salesSpend=parseFloat(spend)||0;
   const el=id=>document.getElementById(id);
   if(el('m-spend'))el('m-spend').textContent='$'+salesSpend.toFixed(2);
   if(el('sc-spend'))el('sc-spend').textContent='$'+salesSpend.toFixed(2);
-  fetchSalesLeads();
   toast('Sales stats updated');
 }
 
