@@ -887,7 +887,8 @@ async function fetchPipeDay(campaign,dateKey){
   const st=pipeState[campaign];
   const ck=dateKey;
   if(st.cache[ck])return st.cache[ck];
-  const{data}=await sb.from('pipeline_activity').select('*').eq('user_id',currentUserId).eq('date',dateKey).eq('campaign',campaign).single();
+  if(!currentUserId){const empty={};P_METRICS.forEach(m=>empty[m.key]=0);st.cache[ck]=empty;return empty;}
+  const{data}=await sb.from('pipeline_activity').select('*').eq('user_id',currentUserId).eq('date',dateKey).eq('campaign',campaign).maybeSingle();
   const empty={};P_METRICS.forEach(m=>empty[m.key]=0);
   const day=data?{...empty,...data}:empty;
   st.cache[ck]=day;return day;
