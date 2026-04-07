@@ -311,7 +311,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
       <div class="metrics-grid">
         <div class="metric-card"><div class="label">Total Spend</div><div class="value" id="m-spend">$41.90</div><div class="sub">YTD 2026</div></div>
-        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="m-leads">—</div><div class="sub">From site registrations</div></div>
+        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="m-leads">—</div><div class="sub">Site + FUB combined</div></div>
         <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value" id="m-cpl">$3.81</div><div class="sub">Avg across campaigns</div></div>
       </div>
 
@@ -634,14 +634,12 @@ function switchTab(tab,btn){
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
   if(tab==='sales'){fetchSalesDeals();}
-  if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
+  if(tab==='rentals'){if(!pipeState.rentals.date)initPipeline('rentals');else renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
 }
 
 function initAll(){
   initSalesDashboard();
-  initPipeline('rentals');
-  fetchRentalYTD();
   fetchSalesDeals();
   loadD1Data();
 }
@@ -664,6 +662,7 @@ function initSalesDashboard(){
   updateDots(k);
   if(k['meta-token']&&k['meta-account'])fetchMeta(k);
   fetchLeads();
+  fetchSalesLeadCount();
   updateGoogleStatus(k);
 }
 function updateDots(k){dot('dot-meta',!!(k['meta-token']&&k['meta-account']));dot('dot-google',!!(k['google-token']&&k['google-account']));}
@@ -699,15 +698,29 @@ async function fetchMeta(k){
 }
 function getWeekStart(){const d=new Date(),day=d.getDay(),diff=d.getDate()-day+(day===0?-6:1);return new Date(d.setDate(diff)).toISOString().split('T')[0];}
 
+let _netlifyLeadCount=0,_fubSalesLeadCount=0;
+function updateSalesTotalLeads(){
+  const total=_netlifyLeadCount+_fubSalesLeadCount;
+  const el=document.getElementById('m-leads');
+  if(el)el.textContent=total;
+}
 async function fetchLeads(){
   try{
-    const res=await fetch('/.netlify/functions/get-leads');const leads=await res.json();const count=leads.length;
-    document.getElementById('m-leads').textContent=count;
+    const res=await fetch('/.netlify/functions/get-leads');const leads=await res.json();
+    _netlifyLeadCount=leads.length;
+    updateSalesTotalLeads();
     const tbody=document.getElementById('leads-body');tbody.innerHTML='';
-    if(count>0){leads.slice().reverse().forEach(p=>{const date=p.date?new Date(p.date).toLocaleDateString():'—';tbody.innerHTML+=`<tr><td>${p.name||'—'}</td><td>${p.phone||'—'}</td><td>${p.building||'—'}</td><td>${date}</td></tr>`;});}
+    if(leads.length>0){leads.slice().reverse().forEach(p=>{const date=p.date?new Date(p.date).toLocaleDateString():'—';tbody.innerHTML+=`<tr><td>${p.name||'—'}</td><td>${p.phone||'—'}</td><td>${p.building||'—'}</td><td>${date}</td></tr>`;});}
     else{tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">No leads yet — your first registration will appear here.</td></tr>';}
     dot('dot-leads',true);toast('Leads loaded');
   }catch(err){console.error('Leads error:',err);dot('dot-leads',false);toast('Failed to load leads');}
+}
+async function fetchSalesLeadCount(){
+  try{
+    const res=await fetch('/.netlify/functions/get-sales-leads');const leads=await res.json();
+    _fubSalesLeadCount=leads.length;
+    updateSalesTotalLeads();
+  }catch(err){console.error('Sales leads count error:',err);}
 }
 function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);}
 
