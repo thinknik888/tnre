@@ -41,23 +41,48 @@ exports.handler = async function(event) {
       offset += limit;
     }
 
-    // Fetch person details for each deal (batch with concurrency limit)
+    const EXCLUDE = ['nik oberoi', 'nikhil oberoi'];
+
+    // Fetch lead contact for each deal from its people array
     const deals = await Promise.all(allDeals.map(async function(deal) {
       let personName = '—';
       let personPhone = '—';
 
-      if (deal.personId) {
+      // Collect person IDs from deal — FUB uses people array, personId, or contactId
+      const personIds = [];
+      if (Array.isArray(deal.people)) {
+        deal.people.forEach(function(p) {
+          if (p.id) personIds.push(p.id);
+          else if (typeof p === 'number') personIds.push(p);
+        });
+      }
+      if (deal.personId && !personIds.includes(deal.personId)) personIds.push(deal.personId);
+      if (deal.contactId && !personIds.includes(deal.contactId)) personIds.push(deal.contactId);
+
+      // Fetch each person and find the first non-agent lead
+      for (const pid of personIds) {
         try {
-          const pRes = await fetch('https://api.followupboss.com/v1/people/' + deal.personId, {
+          const pRes = await fetch('https://api.followupboss.com/v1/people/' + pid, {
             headers: { 'Authorization': auth, 'Accept': 'application/json' }
           });
-          if (pRes.ok) {
-            const person = await pRes.json();
-            personName = ((person.firstName || '') + ' ' + (person.lastName || '')).trim() || '—';
-            personPhone = person.phones && person.phones.length > 0 ? person.phones[0].value : '—';
-          }
+          if (!pRes.ok) continue;
+          const person = await pRes.json();
+          const fullName = ((person.firstName || '') + ' ' + (person.lastName || '')).trim();
+          if (!fullName || EXCLUDE.includes(fullName.toLowerCase())) continue;
+          personName = fullName;
+          personPhone = person.phones && person.phones.length > 0 ? person.phones[0].value : '—';
+          break;
         } catch (e) {
-          console.error('get-rental-deals: person fetch error', deal.personId, e.message);
+          console.error('get-rental-deals: person fetch error', pid, e.message);
+        }
+      }
+
+      // If no people array worked, try inline fields from the deal itself
+      if (personName === '—') {
+        const inlineName = ((deal.contactFirstName || deal.firstName || '') + ' ' + (deal.contactLastName || deal.lastName || '')).trim();
+        if (inlineName && !EXCLUDE.includes(inlineName.toLowerCase())) {
+          personName = inlineName;
+          personPhone = deal.contactPhone || deal.phone || '—';
         }
       }
 
