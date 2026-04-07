@@ -63,7 +63,7 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(function(r) { console.log('[register] save-lead response:', r.status); })
+    .then(function(r) { console.log('[register] save-lead response:', r.status); fbq('track', 'Lead'); })
     .catch(function(err) { console.error('[register] save-lead error:', err); });
 
     // Close modal and complete save
