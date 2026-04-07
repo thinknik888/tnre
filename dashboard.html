@@ -341,6 +341,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="metric-card"><div class="label">Best Platform</div><div class="value">—</div><div class="sub">Lowest CPL</div></div>
       </div>
 
+      <!-- RECENT RENTAL LEADS -->
+      <div class="table-panel"><h3>Recent Rental Leads</h3><table><thead><tr><th>Name</th><th>Phone</th><th>Tag</th><th>Date</th></tr></thead><tbody id="rental-leads-body"><tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">Loading rental leads...</td></tr></tbody></table></div>
+
       <!-- RENTALS DIALS -->
       <div class="dials-panel">
         <h3>Rental Dials</h3>
@@ -491,7 +494,7 @@ function switchTab(tab,btn){
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
   if(tab==='sales')renderPipelineToday('sales');
-  if(tab==='rentals')renderPipelineToday('rentals');
+  if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();}
   if(tab==='habits')renderD1Tracker();
 }
 
@@ -566,6 +569,26 @@ async function fetchLeads(){
   }catch(err){console.error('Leads error:',err);dot('dot-leads',false);toast('Failed to load leads');}
 }
 function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);}
+
+async function fetchRentalLeads(){
+  const tbody=document.getElementById('rental-leads-body');
+  try{
+    const res=await fetch('/.netlify/functions/get-rental-leads');
+    const leads=await res.json();
+    tbody.innerHTML='';
+    if(leads.length>0){
+      leads.forEach(function(p){
+        const date=p.date?new Date(p.date).toLocaleDateString():'—';
+        tbody.innerHTML+='<tr><td>'+(p.name||'—')+'</td><td>'+(p.phone||'—')+'</td><td>'+(p.tag||'—')+'</td><td>'+date+'</td></tr>';
+      });
+    } else {
+      tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">No rental leads yet.</td></tr>';
+    }
+  }catch(err){
+    console.error('Rental leads error:',err);
+    tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">Failed to load rental leads.</td></tr>';
+  }
+}
 
 // ═══════════════════════════════════════════════════════════
 // PIPELINE / DIALS (shared for sales & rentals)
