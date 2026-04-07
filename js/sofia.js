@@ -133,7 +133,7 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         messages: conversationHistory,
-        systemPrompt: SOFIA_SYSTEM
+        systemPrompt: SOFIA_SYSTEM + '\n\nCURRENT PAGE CONTEXT: The user is currently viewing: ' + document.title + ' (URL: ' + window.location.pathname + '). Reference this building/neighbourhood naturally if relevant to their question.'
       })
     })
     .then(function(r) { return r.json(); })
