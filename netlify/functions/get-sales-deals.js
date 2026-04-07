@@ -41,14 +41,23 @@ exports.handler = async function(event) {
       offset += limit;
     }
 
-    const EXCLUDE = ['nik oberoi', 'nikhil oberoi'];
+    const EXCLUDE_NAMES = ['nik oberoi', 'nikhil oberoi'];
+    const RENTAL_TAGS = ['RENTAL INQUIRY - ELM-LINKED', 'RENTAL INQUIRY - SLOANE-LINKED'];
 
-    // Fetch lead contact for each deal from its people array
-    const deals = await Promise.all(allDeals.map(async function(deal) {
+    // Fetch lead contact for each deal, skip rental-tagged deals
+    const deals = [];
+    for (const deal of allDeals) {
       let personName = '—';
       let personPhone = '—';
+      let isRental = false;
 
-      // Collect person IDs from deal — FUB uses people array, personId, or contactId
+      // Check deal name for rental indicators
+      const dealNameLower = (deal.name || '').toLowerCase();
+      if (dealNameLower.indexOf('sloane') !== -1 || dealNameLower.indexOf('elm') !== -1 || dealNameLower.indexOf('ledbury') !== -1) {
+        isRental = true;
+      }
+
+      // Collect person IDs from deal
       const personIds = [];
       if (Array.isArray(deal.people)) {
         deal.people.forEach(function(p) {
@@ -59,7 +68,7 @@ exports.handler = async function(event) {
       if (deal.personId && !personIds.includes(deal.personId)) personIds.push(deal.personId);
       if (deal.contactId && !personIds.includes(deal.contactId)) personIds.push(deal.contactId);
 
-      // Fetch each person and find the first non-agent lead
+      // Fetch each person — check for rental tags and find lead contact
       for (const pid of personIds) {
         try {
           const pRes = await fetch('https://api.followupboss.com/v1/people/' + pid, {
@@ -67,26 +76,38 @@ exports.handler = async function(event) {
           });
           if (!pRes.ok) continue;
           const person = await pRes.json();
+
+          // Check if this person has rental tags
+          if (Array.isArray(person.tags)) {
+            for (const t of person.tags) {
+              if (RENTAL_TAGS.includes(t)) { isRental = true; break; }
+            }
+          }
+
           const fullName = ((person.firstName || '') + ' ' + (person.lastName || '')).trim();
-          if (!fullName || EXCLUDE.includes(fullName.toLowerCase())) continue;
-          personName = fullName;
-          personPhone = person.phones && person.phones.length > 0 ? person.phones[0].value : '—';
-          break;
+          if (!fullName || EXCLUDE_NAMES.includes(fullName.toLowerCase())) continue;
+          if (personName === '—') {
+            personName = fullName;
+            personPhone = person.phones && person.phones.length > 0 ? person.phones[0].value : '—';
+          }
         } catch (e) {
           console.error('get-sales-deals: person fetch error', pid, e.message);
         }
       }
 
-      // If no people array worked, try inline fields from the deal itself
+      // Skip rental deals
+      if (isRental) continue;
+
+      // Fallback to inline fields
       if (personName === '—') {
         const inlineName = ((deal.contactFirstName || deal.firstName || '') + ' ' + (deal.contactLastName || deal.lastName || '')).trim();
-        if (inlineName && !EXCLUDE.includes(inlineName.toLowerCase())) {
+        if (inlineName && !EXCLUDE_NAMES.includes(inlineName.toLowerCase())) {
           personName = inlineName;
           personPhone = deal.contactPhone || deal.phone || '—';
         }
       }
 
-      return {
+      deals.push({
         name: personName,
         phone: personPhone,
         dealName: deal.name || '—',
@@ -94,8 +115,8 @@ exports.handler = async function(event) {
         stage: deal.stageName || deal.stage || '—',
         notes: deal.description || deal.notes || '',
         created: deal.created || ''
-      };
-    }));
+      });
+    }
 
     return { statusCode: 200, headers, body: JSON.stringify(deals) };
   } catch (err) {
