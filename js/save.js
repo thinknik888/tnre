@@ -168,6 +168,73 @@
     }
   }
 
+  // Heart button inside the floor plan lightbox/modal
+  function addModalHeart() {
+    var modalImg = document.querySelector('#modal .modal-image');
+    if (!modalImg || modalImg.querySelector('.save-btn-modal')) return;
+
+    var btn = document.createElement('button');
+    btn.className = 'save-btn save-btn-modal';
+    btn.innerHTML = heartSvg;
+    btn.style.cssText = 'position:absolute;top:0.75rem;right:0.75rem;z-index:10;';
+    modalImg.style.position = 'relative';
+    modalImg.appendChild(btn);
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      user = JSON.parse(localStorage.getItem('ca_user') || 'null');
+      if (!user) return;
+      var planId = getCurrentModalPlanId();
+      if (!planId) return;
+      if (isSaved(planId)) {
+        unsavePlan(planId, btn);
+        syncCardHeart(planId, false);
+      } else {
+        savePlan(planId, btn);
+        syncCardHeart(planId, true);
+      }
+    });
+
+    // Sync heart state whenever the modal shows a plan
+    if (typeof window.showPlan === 'function') {
+      var origShowPlan = window.showPlan;
+      window.showPlan = function(p) {
+        origShowPlan.apply(this, arguments);
+        syncModalHeart();
+      };
+    }
+  }
+
+  function getCurrentModalPlanId() {
+    if (typeof window.planKeys !== 'undefined' && typeof window.currentPlanIdx !== 'undefined') {
+      return window.planKeys[window.currentPlanIdx] || null;
+    }
+    return null;
+  }
+
+  function syncModalHeart() {
+    var btn = document.querySelector('.save-btn-modal');
+    if (!btn) return;
+    var planId = getCurrentModalPlanId();
+    if (!planId) return;
+    if (isSaved(planId)) {
+      btn.classList.add('saved');
+    } else {
+      btn.classList.remove('saved');
+    }
+  }
+
+  function syncCardHeart(planId, isSavedNow) {
+    document.querySelectorAll('.fp-card, .fp-row').forEach(function(el) {
+      var onclick = el.getAttribute('onclick') || '';
+      if (onclick.indexOf("'" + planId + "'") === -1) return;
+      var cardBtn = el.querySelector('.save-btn');
+      if (!cardBtn) return;
+      if (isSavedNow) { cardBtn.classList.add('saved'); } else { cardBtn.classList.remove('saved'); }
+    });
+  }
+
   addNavLink();
   addSaveButtons();
+  addModalHeart();
 })();
