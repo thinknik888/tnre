@@ -332,7 +332,73 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
           </div>
         </div>
       </div>
-      <div class="spend-panel"><h3>Weekly Spend Breakdown</h3><div class="spend-grid" id="spend-grid"><div class="spend-day"><div class="day">Mon</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Tue</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Wed</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Thu</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Fri</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Sat</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Sun</div><div class="amount">—</div></div></div></div>
+      <!-- SPEND BREAKDOWN -->
+      <div class="chart-panel" style="margin-bottom:28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <h3 style="margin-bottom:0">Spend Breakdown</h3>
+          <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <button class="sb-tab active" onclick="switchSbTab('month',this)" style="background:var(--gold);color:var(--navy);border:none;padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Month</button>
+            <button class="sb-tab" onclick="switchSbTab('quarter',this)" style="background:none;color:rgba(240,237,230,.4);border:none;border-left:1px solid var(--border);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Quarter</button>
+            <button class="sb-tab" onclick="switchSbTab('year',this)" style="background:none;color:rgba(240,237,230,.4);border:none;border-left:1px solid var(--border);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Year</button>
+          </div>
+        </div>
+        <div id="sb-panel-month"><p style="opacity:.4;font-size:.85rem;text-align:center;padding:20px 0">No monthly spend data yet. Use Update to add data.</p></div>
+        <div id="sb-panel-quarter" style="display:none"><p style="opacity:.4;font-size:.85rem;text-align:center;padding:20px 0">No quarterly spend data yet.</p></div>
+        <div id="sb-panel-year" style="display:none"><p style="opacity:.4;font-size:.85rem;text-align:center;padding:20px 0">No yearly spend data yet.</p></div>
+      </div>
+
+      <!-- YTD METRICS TABS -->
+      <div class="chart-panel" style="margin-bottom:28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+          <h3 style="margin-bottom:0">YTD Metrics — 2026</h3>
+          <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <button class="sy-tab active" onclick="switchSyTab('activity',this)" style="background:var(--gold);color:var(--navy);border:none;padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Activity</button>
+            <button class="sy-tab" onclick="switchSyTab('cost',this)" style="background:none;color:rgba(240,237,230,.4);border:none;border-left:1px solid var(--border);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Cost Analysis</button>
+            <button class="sy-tab" onclick="switchSyTab('conversion',this)" style="background:none;color:rgba(240,237,230,.4);border:none;border-left:1px solid var(--border);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Conversion</button>
+          </div>
+        </div>
+        <!-- Activity -->
+        <div id="sy-panel-activity" class="metrics-grid" style="margin-bottom:0">
+          <div class="metric-card"><div class="label">Dials</div><div class="value" id="sy-dials">0</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Contacts</div><div class="value" id="sy-contacts">0</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Engaged Convos</div><div class="value" id="sy-engaged">0</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Appts Booked</div><div class="value" id="sy-appt_booked">0</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Appts Completed</div><div class="value" id="sy-appt_completed">0</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Offers Sent</div><div class="value" id="sy-offers_sent">0</div><div class="sub">YTD 2026</div></div>
+        </div>
+        <!-- Cost Analysis -->
+        <div id="sy-panel-cost" class="metrics-grid" style="margin-bottom:0;display:none">
+          <div class="metric-card"><div class="label">Cost / Contact</div><div class="value" id="sy-cost-contact">—</div><div class="sub">Spend ÷ Contacts</div></div>
+          <div class="metric-card"><div class="label">Cost / Engaged</div><div class="value" id="sy-cost-engaged">—</div><div class="sub">Spend ÷ Engaged</div></div>
+          <div class="metric-card"><div class="label">Cost / Appt Booked</div><div class="value" id="sy-cost-appt">—</div><div class="sub">Spend ÷ Appts Booked</div></div>
+          <div class="metric-card"><div class="label">Cost / Appt Completed</div><div class="value" id="sy-cost-completed">—</div><div class="sub">Spend ÷ Appts Completed</div></div>
+          <div class="metric-card"><div class="label">Cost / Lead</div><div class="value" id="sy-cost-lead">—</div><div class="sub">Spend ÷ Leads</div></div>
+        </div>
+        <!-- Conversion -->
+        <div id="sy-panel-conversion" class="metrics-grid" style="margin-bottom:0;display:none">
+          <div class="metric-card"><div class="label">Dial → Contact</div><div class="value" id="sy-rate-dc">—</div><div class="sub">Contacts ÷ Dials</div></div>
+          <div class="metric-card"><div class="label">Contact → Engaged</div><div class="value" id="sy-rate-ce">—</div><div class="sub">Engaged ÷ Contacts</div></div>
+          <div class="metric-card"><div class="label">Engaged → Appt</div><div class="value" id="sy-rate-ea">—</div><div class="sub">Appts ÷ Engaged</div></div>
+          <div class="metric-card"><div class="label">Lead → Appt</div><div class="value" id="sy-rate-la">—</div><div class="sub">Appts ÷ Leads</div></div>
+          <div class="metric-card"><div class="label">Appt → Completed</div><div class="value" id="sy-rate-ac">—</div><div class="sub">Completed ÷ Booked</div></div>
+        </div>
+      </div>
+
+      <!-- SALES DIALS -->
+      <div class="dials-panel">
+        <h3>Sales Dials</h3>
+        <div class="dials-date-bar">
+          <div class="heading" id="salesDialHeading">Today</div>
+          <div class="dials-date-nav">
+            <button onclick="changePipeDay('condosaround-sales',-1)">&#8249;</button>
+            <span class="lbl" id="salesDialLabel">Today</span>
+            <button onclick="changePipeDay('condosaround-sales',1)">&#8250;</button>
+            <span class="save-dot" id="condosaround-salesSaveDot"></span>
+          </div>
+        </div>
+        <div class="mc-grid" id="condosaround-salesMetrics"></div>
+        <div class="rates-grid" id="condosaround-salesRates"></div>
+      </div>
 
       <!-- SALES ACTIVE DEALS -->
       <div class="table-panel" id="sales-deals-panel">
@@ -632,7 +698,7 @@ function switchTab(tab,btn){
   document.getElementById('panel-'+tab).classList.add('active');
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
-  if(tab==='sales'){fetchSalesDeals();}
+  if(tab==='sales'){if(!pipeState['condosaround-sales'].date)initPipeline('condosaround-sales');else renderPipelineToday('condosaround-sales');fetchSalesDeals();fetchSalesYTD();}
   if(tab==='rentals'){if(!pipeState.rentals.date)initPipeline('rentals');else renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
 }
@@ -730,7 +796,59 @@ function editSalesCampaign(){
   const el=id=>document.getElementById(id);
   if(el('m-spend'))el('m-spend').textContent='$'+salesSpend.toFixed(2);
   if(el('sc-spend'))el('sc-spend').textContent='$'+salesSpend.toFixed(2);
+  updateSalesYTD();
   toast('Sales stats updated');
+}
+
+// ── SALES YTD STATE ──
+let salesSupaTotals={dials:0,contacts:0,engaged:0,appt_booked:0,appt_completed:0,offers_sent:0,offers_firmed:0};
+
+function switchSbTab(tab,btn){
+  ['month','quarter','year'].forEach(t=>{const p=document.getElementById('sb-panel-'+t);if(p)p.style.display=t===tab?'':'none';});
+  document.querySelectorAll('.sb-tab').forEach(b=>{b.style.background='none';b.style.color='rgba(240,237,230,.4)';});
+  if(btn){btn.style.background='var(--gold)';btn.style.color='var(--navy)';}
+}
+
+function switchSyTab(tab,btn){
+  ['activity','cost','conversion'].forEach(t=>{const p=document.getElementById('sy-panel-'+t);if(p)p.style.display=t===tab?'':'none';});
+  document.querySelectorAll('.sy-tab').forEach(b=>{b.style.background='none';b.style.color='rgba(240,237,230,.4)';});
+  if(btn){btn.style.background='var(--gold)';btn.style.color='var(--navy)';}
+}
+
+async function fetchSalesYTD(){
+  if(!currentUserId)return;
+  const year=new Date().getFullYear();
+  const{data}=await sb.from('pipeline_activity').select('*').eq('user_id',currentUserId).eq('campaign','condosaround-sales').gte('date',year+'-01-01').lte('date',year+'-12-31');
+  const totals={dials:0,contacts:0,engaged:0,appt_booked:0,appt_completed:0,offers_sent:0,offers_firmed:0};
+  if(data){data.forEach(row=>{Object.keys(totals).forEach(k=>{totals[k]+=(row[k]||0);});});}
+  salesSupaTotals=totals;
+  updateSalesYTD();
+}
+
+function updateSalesYTD(){
+  const el=id=>document.getElementById(id);
+  const ytd=salesSupaTotals;
+  // Activity
+  if(el('sy-dials'))el('sy-dials').textContent=ytd.dials;
+  if(el('sy-contacts'))el('sy-contacts').textContent=ytd.contacts;
+  if(el('sy-engaged'))el('sy-engaged').textContent=ytd.engaged;
+  if(el('sy-appt_booked'))el('sy-appt_booked').textContent=ytd.appt_booked;
+  if(el('sy-appt_completed'))el('sy-appt_completed').textContent=ytd.appt_completed;
+  if(el('sy-offers_sent'))el('sy-offers_sent').textContent=ytd.offers_sent;
+  // Cost Analysis
+  const s=salesSpend;
+  if(el('sy-cost-contact'))el('sy-cost-contact').textContent=ytd.contacts>0?'$'+(s/ytd.contacts).toFixed(2):'—';
+  if(el('sy-cost-engaged'))el('sy-cost-engaged').textContent=ytd.engaged>0?'$'+(s/ytd.engaged).toFixed(2):'—';
+  if(el('sy-cost-appt'))el('sy-cost-appt').textContent=ytd.appt_booked>0?'$'+(s/ytd.appt_booked).toFixed(2):'—';
+  if(el('sy-cost-completed'))el('sy-cost-completed').textContent=ytd.appt_completed>0?'$'+(s/ytd.appt_completed).toFixed(2):'—';
+  const totalLeads=_netlifyLeadCount+_fubSalesLeadCount;
+  if(el('sy-cost-lead'))el('sy-cost-lead').textContent=totalLeads>0?'$'+(s/totalLeads).toFixed(2):'—';
+  // Conversion
+  if(el('sy-rate-dc'))el('sy-rate-dc').textContent=ytd.dials>0?Math.round(ytd.contacts/ytd.dials*100)+'%':'—';
+  if(el('sy-rate-ce'))el('sy-rate-ce').textContent=ytd.contacts>0?Math.round(ytd.engaged/ytd.contacts*100)+'%':'—';
+  if(el('sy-rate-ea'))el('sy-rate-ea').textContent=ytd.engaged>0?Math.round(ytd.appt_booked/ytd.engaged*100)+'%':'—';
+  if(el('sy-rate-la'))el('sy-rate-la').textContent=totalLeads>0?(ytd.appt_booked/totalLeads*100).toFixed(1)+'%':'—';
+  if(el('sy-rate-ac'))el('sy-rate-ac').textContent=ytd.appt_booked>0?Math.round(ytd.appt_completed/ytd.appt_booked*100)+'%':'—';
 }
 
 // ── RENTAL YTD STATE ──
@@ -885,7 +1003,7 @@ async function fetchSalesDeals(){
 const P_METRICS=[{key:'dials',label:'Dials'},{key:'contacts',label:'Contacts'},{key:'engaged',label:'Engaged convos'},{key:'appt_booked',label:'Appts booked'},{key:'appt_completed',label:'Appts completed'},{key:'offers_sent',label:'Offers sent'},{key:'offers_firmed',label:'Offers firmed'}];
 const P_RATES=[{label:'Dial to contact',a:'dials',b:'contacts'},{label:'Contact to engaged',a:'contacts',b:'engaged'},{label:'Engaged to appt booked',a:'engaged',b:'appt_booked'},{label:'Booked to completed',a:'appt_booked',b:'appt_completed'},{label:'Completed to offer sent',a:'appt_completed',b:'offers_sent'},{label:'Offer sent to firmed',a:'offers_sent',b:'offers_firmed'}];
 
-const pipeState={sales:{date:null,cache:{},saveTimer:null},rentals:{date:null,cache:{},saveTimer:null}};
+const pipeState={sales:{date:null,cache:{},saveTimer:null},rentals:{date:null,cache:{},saveTimer:null},'condosaround-sales':{date:null,cache:{},saveTimer:null}};
 function lDk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function pPct(a,b){if(!a||!b)return null;return Math.round((b/a)*100);}
 
@@ -912,8 +1030,9 @@ async function renderPipelineToday(campaign){
   const today=new Date();today.setHours(0,0,0,0);
   const diff=Math.round((st.date-today)/86400000);
   const key=lDk(st.date);
-  const hEl=document.getElementById(campaign+'DialHeading');
-  const lEl=document.getElementById(campaign+'DialLabel');
+  const prefix=campaign==='condosaround-sales'?'sales':campaign;
+  const hEl=document.getElementById(prefix+'DialHeading');
+  const lEl=document.getElementById(prefix+'DialLabel');
   if(diff===0){hEl.textContent='Today';lEl.textContent='Today';}
   else if(diff===-1){hEl.textContent='Yesterday';lEl.textContent='Yesterday';}
   else{hEl.textContent=st.date.toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'});lEl.textContent=st.date.toLocaleDateString('en-CA',{month:'short',day:'numeric'});}
@@ -954,6 +1073,7 @@ async function savePipeDay(campaign,dateKey,data){
   await sb.from('pipeline_activity').upsert(payload,{onConflict:'user_id,date,campaign'});
   const dot=document.getElementById(campaign+'SaveDot');if(dot){dot.classList.add('show');setTimeout(()=>dot.classList.remove('show'),1200);}
   if(campaign==='rentals')fetchRentalYTD();
+  if(campaign==='condosaround-sales')fetchSalesYTD();
 }
 
 function changePipeDay(campaign,delta){
