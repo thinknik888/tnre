@@ -53,6 +53,32 @@ exports.handler = async function(event) {
 
     console.log('save-lead: saved lead #' + existing.length, { name: name, building: building });
 
+    // Also send to Follow Up Boss (secondary — don't fail if this errors)
+    var fubKey = process.env.FUB_API_KEY;
+    if (fubKey) {
+      try {
+        var parts = name.split(' ');
+        var firstName = parts[0] || '';
+        var lastName = parts.slice(1).join(' ') || '';
+        var fubAuth = 'Basic ' + Buffer.from(fubKey + ':').toString('base64');
+        var fubPayload = {
+          firstName: firstName,
+          lastName: lastName,
+          phones: [{ value: phone }],
+          source: 'condosaround.com',
+          tags: ['condosaround', 'condosaround - ' + building]
+        };
+        var fubRes = await fetch('https://api.followupboss.com/v1/people', {
+          method: 'POST',
+          headers: { 'Authorization': fubAuth, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(fubPayload)
+        });
+        console.log('save-lead: FUB response', fubRes.status);
+      } catch (fubErr) {
+        console.error('save-lead: FUB error (non-fatal)', fubErr.message);
+      }
+    }
+
     return {
       statusCode: 200,
       headers: corsHeaders,
