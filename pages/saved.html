@@ -54,6 +54,7 @@
   <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
   <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+  <button onclick="logoutUser()" style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;background:none;border:1px solid var(--gold);color:var(--gold);padding:0.5rem 1rem;border-radius:2px;cursor:pointer;font-family:'Outfit',sans-serif;">Log Out</button>
 </nav>
 
 <div class="hero">
@@ -119,6 +120,13 @@
     html += '</div>';
     container.innerHTML = html;
     document.getElementById('saved-subtitle').textContent = saved.length + ' floor plan' + (saved.length > 1 ? 's' : '') + ' saved';
+  }
+
+  function logoutUser() {
+    localStorage.removeItem('ca_registered');
+    localStorage.removeItem('ca_user');
+    sessionStorage.removeItem('ca_registered');
+    location.reload();
   }
 
   function removePlan(idx) {
