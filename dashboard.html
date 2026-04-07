@@ -17,7 +17,7 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
 #gate{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px}
 #gate h1{font-size:2.4rem;color:var(--gold);letter-spacing:1px}
 #gate p{color:var(--white);opacity:.6;font-size:.9rem}
-#gate input{background:var(--card);border:1px solid var(--border);color:var(--white);padding:14px 20px;border-radius:8px;font-size:1rem;width:300px;text-align:center;font-family:'Outfit',sans-serif}
+#gate input{background:var(--card);border:1px solid var(--border);color:var(--white);padding:14px 20px;border-radius:8px;font-size:1rem;text-align:center;font-family:'Outfit',sans-serif}
 #gate input:focus{outline:none;border-color:var(--gold)}
 #gate button{background:var(--gold);color:var(--navy);border:none;padding:12px 40px;border-radius:8px;font-weight:600;cursor:pointer;font-size:1rem;font-family:'Outfit',sans-serif}
 #gate button:hover{opacity:.9}
@@ -230,7 +230,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
 @media(max-width:480px){
   .metrics-grid{grid-template-columns:1fr}
   .spend-grid{grid-template-columns:1fr}
-  #gate input{width:240px}
+  #gate>div{width:240px}
   .one-btn{width:28px;height:28px}
   .habit-name-d1{font-size:.7rem}
   .streak-row{grid-template-columns:repeat(3,1fr)}
@@ -260,7 +260,12 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <div id="gate">
   <h1>TNRE Dashboard</h1>
   <p>Enter password to continue</p>
-  <input type="password" id="gatePw" placeholder="Password" autofocus>
+  <div style="position:relative;width:300px;">
+    <input type="password" id="gatePw" placeholder="Password" autofocus style="width:100%;padding-right:44px;">
+    <button id="togglePw" type="button" onclick="togglePassword()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(240,237,230,.4);font-size:1.1rem;padding:4px;line-height:1;transition:color .2s;" title="Show password">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    </button>
+  </div>
   <button onclick="checkPassword()">Enter</button>
   <div class="error" id="gateErr"></div>
 </div>
@@ -480,6 +485,16 @@ function checkPassword(){
   }
 }
 document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword()});
+function togglePassword(){
+  const inp=document.getElementById('gatePw'),btn=document.getElementById('togglePw');
+  const show=inp.type==='password';
+  inp.type=show?'text':'password';
+  btn.innerHTML=show
+    ?'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+    :'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+  btn.title=show?'Hide password':'Show password';
+  btn.style.color=show?'var(--gold)':'rgba(240,237,230,.4)';
+}
 function logout(){sessionStorage.clear();location.reload();}
 
 // ═══════════════════════════════════════════════════════════
