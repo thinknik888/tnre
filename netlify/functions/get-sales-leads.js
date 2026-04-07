@@ -44,7 +44,12 @@ exports.handler = async function(event) {
       offset += limit;
     }
 
-    const leads = people.map(function(p) {
+    // Strictly filter to only people who have the exact tag
+    const filtered = people.filter(function(p) {
+      return Array.isArray(p.tags) && p.tags.indexOf('WELL FOR SALE FORM') !== -1;
+    });
+
+    const leads = filtered.map(function(p) {
       const phone = p.phones && p.phones.length > 0 ? p.phones[0].value : '';
       return {
         name: ((p.firstName || '') + ' ' + (p.lastName || '')).trim() || '—',
