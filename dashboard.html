@@ -310,15 +310,28 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="status-card"><div class="status-dot disconnected" id="dot-leads"></div><div><div class="label">Leads</div><div class="name">Netlify Blobs</div></div></div>
       </div>
       <div class="metrics-grid">
-        <div class="metric-card"><div class="label">Total Spend</div><div class="value" id="m-spend">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="m-leads">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value" id="m-cpl">—</div><div class="sub">Avg across platforms</div></div>
-        <div class="metric-card"><div class="label">Site Registrations</div><div class="value" id="m-regs">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Best Platform</div><div class="value" id="m-best">—</div><div class="sub">Lowest CPL</div></div>
+        <div class="metric-card"><div class="label">Total Spend</div><div class="value" id="m-spend">$41.90</div><div class="sub">YTD 2026</div></div>
+        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="m-leads">11</div><div class="sub">From FUB</div></div>
+        <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value" id="m-cpl">$3.81</div><div class="sub">Avg across campaigns</div></div>
+        <div class="metric-card"><div class="label">Site Registrations</div><div class="value" id="m-regs">11</div><div class="sub">From FUB</div></div>
       </div>
-      <div class="charts-row">
-        <div class="chart-panel"><h3>Meta Campaign Performance</h3><div id="meta-bars"><p style="opacity:.4;font-size:.85rem">Connect Meta Ads in Settings to see data</p></div></div>
-        <div class="chart-panel"><h3>Google Campaign Performance</h3><div id="google-bars"><p style="opacity:.4;font-size:.85rem">Connect Google Ads in Settings to see data</p></div></div>
+
+      <!-- CAMPAIGN PERFORMANCE -->
+      <div class="chart-panel" style="margin-bottom:28px" id="sales-campaign-panel">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <h3 style="margin-bottom:0">Campaign Performance</h3>
+          <button onclick="editSalesCampaign()" style="background:none;border:1px solid var(--border);color:rgba(240,237,230,.4);padding:4px 12px;border-radius:4px;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='rgba(240,237,230,.4)'">Update</button>
+        </div>
+        <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:16px 20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <div><div style="font-size:.9rem;font-weight:600;color:var(--white)">The Well — Sale Ads 2026</div><div style="font-size:.68rem;color:rgba(240,237,230,.4);margin-top:2px">Meta Ads — WELL FOR SALE FORM</div></div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap">
+              <div style="text-align:right"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Spend</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600" id="sc-spend">$41.90</div></div>
+              <div style="text-align:right"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Leads</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600" id="sc-leads">11</div></div>
+              <div style="text-align:right"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">CPL</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600" id="sc-cpl">$3.81</div></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="table-panel"><h3>Recent Leads</h3><table><thead><tr><th>Name</th><th>Phone</th><th>Building</th><th>Date</th></tr></thead><tbody id="leads-body"><tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">Loading leads...</td></tr></tbody></table></div>
       <div class="spend-panel"><h3>Weekly Spend Breakdown</h3><div class="spend-grid" id="spend-grid"><div class="spend-day"><div class="day">Mon</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Tue</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Wed</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Thu</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Fri</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Sat</div><div class="amount">—</div></div><div class="spend-day"><div class="day">Sun</div><div class="amount">—</div></div></div></div>
@@ -636,7 +649,7 @@ function switchTab(tab,btn){
   document.getElementById('panel-'+tab).classList.add('active');
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
-  if(tab==='sales'){renderPipelineToday('sales');fetchSalesDeals();}
+  if(tab==='sales'){renderPipelineToday('sales');fetchSalesDeals();fetchSalesLeads();}
   if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
 }
@@ -647,6 +660,7 @@ function initAll(){
   initPipeline('rentals');
   fetchRentalYTD();
   fetchSalesDeals();
+  fetchSalesLeads();
   loadD1Data();
 }
 
@@ -713,7 +727,33 @@ async function fetchLeads(){
     dot('dot-leads',true);toast('Leads loaded');
   }catch(err){console.error('Leads error:',err);dot('dot-leads',false);toast('Failed to load leads');}
 }
-function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);}
+function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);fetchSalesLeads();}
+
+let salesSpend=41.90;
+async function fetchSalesLeads(){
+  try{
+    const res=await fetch('/.netlify/functions/get-sales-leads');
+    const leads=await res.json();
+    const count=leads.length;
+    const el=id=>document.getElementById(id);
+    if(el('m-leads'))el('m-leads').textContent=count;
+    if(el('m-regs'))el('m-regs').textContent=count;
+    if(el('sc-leads'))el('sc-leads').textContent=count;
+    const cpl=count>0?(salesSpend/count).toFixed(2):'0.00';
+    if(el('m-cpl'))el('m-cpl').textContent='$'+cpl;
+    if(el('sc-cpl'))el('sc-cpl').textContent='$'+cpl;
+  }catch(err){console.error('Sales leads error:',err);}
+}
+
+function editSalesCampaign(){
+  const spend=prompt('Total Spend ($):',salesSpend.toFixed(2));if(spend===null)return;
+  salesSpend=parseFloat(spend)||0;
+  const el=id=>document.getElementById(id);
+  if(el('m-spend'))el('m-spend').textContent='$'+salesSpend.toFixed(2);
+  if(el('sc-spend'))el('sc-spend').textContent='$'+salesSpend.toFixed(2);
+  fetchSalesLeads();
+  toast('Sales stats updated');
+}
 
 // ── RENTAL YTD STATE ──
 const RENTAL_BASE={dials:65,contacts:23,engaged:15,appt_booked:10,appt_completed:2,offers_sent:0,offers_firmed:0};
