@@ -384,13 +384,20 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <!-- YTD ACTIVITY -->
       <div class="chart-panel" style="margin-bottom:28px">
         <h3>YTD Activity — 2026</h3>
+        <div class="metrics-grid" style="margin-bottom:16px">
+          <div class="metric-card"><div class="label">Dials</div><div class="value" id="ry-dials">65</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Contacts</div><div class="value" id="ry-contacts">23</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Engaged Convos</div><div class="value" id="ry-engaged">15</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Appts Booked</div><div class="value" id="ry-appt_booked">10</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Appts Completed</div><div class="value" id="ry-appt_completed">2</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Offers Sent</div><div class="value" id="ry-offers_sent">0</div><div class="sub">YTD 2026</div></div>
+        </div>
         <div class="metrics-grid" style="margin-bottom:0">
-          <div class="metric-card"><div class="label">Dials</div><div class="value">65</div><div class="sub">YTD 2026</div></div>
-          <div class="metric-card"><div class="label">Contacts</div><div class="value">23</div><div class="sub">YTD 2026</div></div>
-          <div class="metric-card"><div class="label">Engaged Convos</div><div class="value">15</div><div class="sub">YTD 2026</div></div>
-          <div class="metric-card"><div class="label">Appts Booked</div><div class="value">10</div><div class="sub">YTD 2026</div></div>
-          <div class="metric-card"><div class="label">Appts Completed</div><div class="value">2</div><div class="sub">YTD 2026</div></div>
-          <div class="metric-card"><div class="label">Offers Sent</div><div class="value">0</div><div class="sub">YTD 2026</div></div>
+          <div class="metric-card"><div class="label">Cost / Appt Booked</div><div class="value" id="ry-cost-appt">$12.57</div><div class="sub">Spend ÷ Appts</div></div>
+          <div class="metric-card"><div class="label">Cost / Engaged Convo</div><div class="value" id="ry-cost-engaged">$8.38</div><div class="sub">Spend ÷ Engaged</div></div>
+          <div class="metric-card"><div class="label">Dial → Contact</div><div class="value" id="ry-rate-dc">35%</div><div class="sub">Contacts ÷ Dials</div></div>
+          <div class="metric-card"><div class="label">Contact → Appt</div><div class="value" id="ry-rate-ca">43%</div><div class="sub">Appts ÷ Contacts</div></div>
+          <div class="metric-card"><div class="label">Lead → Appt</div><div class="value" id="ry-rate-la">7.8%</div><div class="sub">Appts ÷ Leads</div></div>
         </div>
       </div>
 
@@ -576,7 +583,7 @@ function switchTab(tab,btn){
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
   if(tab==='sales')renderPipelineToday('sales');
-  if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();}
+  if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();}
   if(tab==='habits')renderD1Tracker();
 }
 
@@ -584,6 +591,7 @@ function initAll(){
   initSalesDashboard();
   initPipeline('sales');
   initPipeline('rentals');
+  fetchRentalYTD();
   loadD1Data();
 }
 
@@ -652,6 +660,11 @@ async function fetchLeads(){
 }
 function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);}
 
+// ── RENTAL YTD STATE ──
+const RENTAL_BASE={dials:65,contacts:23,engaged:15,appt_booked:10,appt_completed:2,offers_sent:0,offers_firmed:0};
+let rentalSpend=125.73,rentalAdLeads=129;
+let rentalSupaTotals={dials:0,contacts:0,engaged:0,appt_booked:0,appt_completed:0,offers_sent:0,offers_firmed:0};
+
 async function fetchRentalLeads(){
   try{
     const res=await fetch('/.netlify/functions/get-rental-leads');
@@ -661,15 +674,46 @@ async function fetchRentalLeads(){
   }catch(err){console.error('Rental leads error:',err);}
 }
 
-function editRentalCampaign(){
-  const spend=prompt('Total Spend ($):','125.73');if(spend===null)return;
-  const leads=prompt('Total Leads:','129');if(leads===null)return;
-  const s=parseFloat(spend)||0,l=parseInt(leads)||0;
-  const cpl=l>0?(s/l).toFixed(2):'0.00';
+async function fetchRentalYTD(){
+  if(!currentUserId)return;
+  const year=new Date().getFullYear();
+  const{data}=await sb.from('pipeline_activity').select('*').eq('user_id',currentUserId).eq('campaign','rentals').gte('date',year+'-01-01').lte('date',year+'-12-31');
+  const totals={dials:0,contacts:0,engaged:0,appt_booked:0,appt_completed:0,offers_sent:0,offers_firmed:0};
+  if(data){data.forEach(row=>{Object.keys(totals).forEach(k=>{totals[k]+=(row[k]||0);});});}
+  rentalSupaTotals=totals;
+  updateRentalYTD();
+}
+
+function updateRentalYTD(){
   const el=id=>document.getElementById(id);
-  if(el('mr-spend'))el('mr-spend').textContent='$'+s.toFixed(2);
-  if(el('mr-leads'))el('mr-leads').textContent=l;
-  if(el('mr-cpl'))el('mr-cpl').textContent='$'+cpl;
+  const keys=['dials','contacts','engaged','appt_booked','appt_completed','offers_sent'];
+  const ytd={};
+  keys.forEach(k=>{ytd[k]=(RENTAL_BASE[k]||0)+(rentalSupaTotals[k]||0);});
+  if(el('ry-dials'))el('ry-dials').textContent=ytd.dials;
+  if(el('ry-contacts'))el('ry-contacts').textContent=ytd.contacts;
+  if(el('ry-engaged'))el('ry-engaged').textContent=ytd.engaged;
+  if(el('ry-appt_booked'))el('ry-appt_booked').textContent=ytd.appt_booked;
+  if(el('ry-appt_completed'))el('ry-appt_completed').textContent=ytd.appt_completed;
+  if(el('ry-offers_sent'))el('ry-offers_sent').textContent=ytd.offers_sent;
+  // Cost metrics
+  if(el('ry-cost-appt'))el('ry-cost-appt').textContent=ytd.appt_booked>0?'$'+(rentalSpend/ytd.appt_booked).toFixed(2):'—';
+  if(el('ry-cost-engaged'))el('ry-cost-engaged').textContent=ytd.engaged>0?'$'+(rentalSpend/ytd.engaged).toFixed(2):'—';
+  // Rate metrics
+  if(el('ry-rate-dc'))el('ry-rate-dc').textContent=ytd.dials>0?Math.round(ytd.contacts/ytd.dials*100)+'%':'—';
+  if(el('ry-rate-ca'))el('ry-rate-ca').textContent=ytd.contacts>0?Math.round(ytd.appt_booked/ytd.contacts*100)+'%':'—';
+  if(el('ry-rate-la'))el('ry-rate-la').textContent=rentalAdLeads>0?(ytd.appt_booked/rentalAdLeads*100).toFixed(1)+'%':'—';
+  // Top stat cards
+  if(el('mr-spend'))el('mr-spend').textContent='$'+rentalSpend.toFixed(2);
+  if(el('mr-leads'))el('mr-leads').textContent=rentalAdLeads;
+  if(el('mr-cpl'))el('mr-cpl').textContent=rentalAdLeads>0?'$'+(rentalSpend/rentalAdLeads).toFixed(2):'—';
+}
+
+function editRentalCampaign(){
+  const spend=prompt('Total Spend ($):',rentalSpend.toFixed(2));if(spend===null)return;
+  const leads=prompt('Total Leads:',String(rentalAdLeads));if(leads===null)return;
+  rentalSpend=parseFloat(spend)||0;
+  rentalAdLeads=parseInt(leads)||0;
+  updateRentalYTD();
   toast('Rental stats updated');
 }
 
@@ -746,6 +790,7 @@ async function savePipeDay(campaign,dateKey,data){
   P_METRICS.forEach(m=>payload[m.key]=data[m.key]||0);
   await sb.from('pipeline_activity').upsert(payload,{onConflict:'user_id,date,campaign'});
   const dot=document.getElementById(campaign+'SaveDot');if(dot){dot.classList.add('show');setTimeout(()=>dot.classList.remove('show'),1200);}
+  if(campaign==='rentals')fetchRentalYTD();
 }
 
 function changePipeDay(campaign,delta){
