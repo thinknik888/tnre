@@ -117,6 +117,17 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .rate-val.none{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:400;color:rgba(240,237,230,.3)}
 .save-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0;transition:opacity .4s;margin-left:4px;flex-shrink:0}
 .save-dot.show{opacity:1}
+.deal-stage{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.7rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.deal-stage.s-requested{background:rgba(184,154,86,.15);color:var(--gold)}
+.deal-stage.s-confirmed{background:rgba(78,203,113,.15);color:var(--green)}
+.deal-stage.s-completed{background:rgba(55,138,221,.15);color:#6d8ed4}
+.deal-stage.s-application{background:rgba(150,100,220,.15);color:#b088e0}
+.deal-stage.s-approved,.deal-stage.s-closed{background:rgba(240,237,230,.1);color:var(--white)}
+.deal-stage.s-default{background:rgba(255,255,255,.06);color:rgba(240,237,230,.5)}
+.deal-notes-btn{background:none;border:none;color:var(--gold);font-size:.75rem;cursor:pointer;font-family:'Outfit',sans-serif;text-decoration:underline;text-underline-offset:2px}
+.deal-notes-btn:hover{opacity:.7}
+.deal-notes-text{font-size:.75rem;color:rgba(240,237,230,.5);line-height:1.5;margin-top:6px;display:none;max-width:280px}
+.deal-notes-text.open{display:block}
 
 /* DAILY HABITS */
 .habits-page{max-width:960px;margin:0 auto;padding:24px 32px}
@@ -418,6 +429,19 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <!-- ACTIVE DEALS -->
+      <div class="table-panel" id="rental-deals-panel">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <h3 style="margin-bottom:0">Active Deals</h3>
+          <button onclick="fetchRentalDeals()" style="background:none;border:1px solid var(--border);color:rgba(240,237,230,.4);padding:4px 12px;border-radius:4px;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='rgba(240,237,230,.4)'">Refresh</button>
+        </div>
+        <table><thead><tr><th>Name</th><th>Phone</th><th>Property</th><th>Value</th><th>Stage</th><th>Notes</th></tr></thead><tbody id="rental-deals-body"><tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">Loading deals...</td></tr></tbody></table>
+        <div id="rental-deals-total" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.4)">Total Pipeline Value</span>
+          <span id="rental-deals-total-val" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--gold)">$0</span>
+        </div>
+      </div>
+
       <!-- RENTALS DIALS -->
       <div class="dials-panel">
         <h3>Rental Dials</h3>
@@ -600,7 +624,7 @@ function switchTab(tab,btn){
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
   if(tab==='sales')renderPipelineToday('sales');
-  if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();}
+  if(tab==='rentals'){renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
 }
 
@@ -748,6 +772,49 @@ function editRentalCampaign(){
   updateRentalYTD();
   toast('Rental stats updated');
 }
+
+function dealStageClass(stage){
+  const s=(stage||'').toLowerCase();
+  if(s.indexOf('request')!==-1)return's-requested';
+  if(s.indexOf('confirm')!==-1)return's-confirmed';
+  if(s.indexOf('complete')!==-1)return's-completed';
+  if(s.indexOf('application')!==-1)return's-application';
+  if(s.indexOf('approved')!==-1||s.indexOf('closed')!==-1||s.indexOf('won')!==-1)return's-approved';
+  return's-default';
+}
+
+async function fetchRentalDeals(){
+  const tbody=document.getElementById('rental-deals-body');
+  const totalEl=document.getElementById('rental-deals-total');
+  const totalVal=document.getElementById('rental-deals-total-val');
+  try{
+    const res=await fetch('/.netlify/functions/get-rental-deals');
+    const deals=await res.json();
+    tbody.innerHTML='';
+    if(!deals.length){
+      tbody.innerHTML='<tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">No active deals.</td></tr>';
+      if(totalEl)totalEl.style.display='none';
+      return;
+    }
+    let pipelineTotal=0;
+    deals.forEach(function(d,i){
+      const val=parseFloat(d.value)||0;
+      pipelineTotal+=val;
+      const valFmt=val>0?'$'+val.toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0}):'—';
+      const cls=dealStageClass(d.stage);
+      const hasNotes=d.notes&&d.notes.trim();
+      const notesId='deal-note-'+i;
+      tbody.innerHTML+='<tr><td>'+escH(d.name)+'</td><td>'+escH(d.phone)+'</td><td>'+escH(d.dealName)+'</td><td style="font-weight:600">'+valFmt+'</td><td><span class="deal-stage '+cls+'">'+escH(d.stage)+'</span></td><td>'+(hasNotes?'<button class="deal-notes-btn" onclick="toggleDealNote(\''+notesId+'\')">View Notes</button><div class="deal-notes-text" id="'+notesId+'">'+escH(d.notes)+'</div>':'—')+'</td></tr>';
+    });
+    if(totalEl){totalEl.style.display='flex';}
+    if(totalVal){totalVal.textContent='$'+pipelineTotal.toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0});}
+  }catch(err){
+    console.error('Rental deals error:',err);
+    tbody.innerHTML='<tr><td colspan="6" style="opacity:.4;text-align:center;padding:30px">Failed to load deals.</td></tr>';
+  }
+}
+function toggleDealNote(id){var el=document.getElementById(id);if(el)el.classList.toggle('open');}
+function escH(s){if(!s)return'—';var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 // ═══════════════════════════════════════════════════════════
 // PIPELINE / DIALS (shared for sales & rentals)
