@@ -340,9 +340,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
       <div class="metrics-grid">
         <div class="metric-card"><div class="label">Total Spend</div><div class="value">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Total Leads</div><div class="value">—</div><div class="sub">Last 30 days</div></div>
+        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="mr-leads">—</div><div class="sub">Last 30 days</div></div>
         <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value">—</div><div class="sub">Avg across platforms</div></div>
-        <div class="metric-card"><div class="label">Rental Registrations</div><div class="value">—</div><div class="sub">Last 30 days</div></div>
+        <div class="metric-card"><div class="label">Rental Registrations</div><div class="value" id="mr-regs">—</div><div class="sub">Last 30 days</div></div>
         <div class="metric-card"><div class="label">Best Platform</div><div class="value">—</div><div class="sub">Lowest CPL</div></div>
       </div>
 
@@ -470,7 +470,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 const SUPA_URL='https://aondcignkaztqpnkhetr.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvbmRjaWdua2F6dHFwbmtoZXRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODU3OTksImV4cCI6MjA4OTc2MTc5OX0.Knm6uXfHjQdi57Y1AEeD8RPuhyogMRAhIvBn6BFJSxk';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
-const DASH_EMAIL='dashboard@condosaround.com';
+const DASH_EMAIL='nikhiloberoi80@gmail.com';
 const DASH_PASS='condos2026';
 let currentUserId=null;
 
@@ -612,8 +612,13 @@ async function fetchRentalLeads(){
   try{
     const res=await fetch('/.netlify/functions/get-rental-leads');
     const leads=await res.json();
+    const count=leads.length;
+    const elLeads=document.getElementById('mr-leads');
+    const elRegs=document.getElementById('mr-regs');
+    if(elLeads)elLeads.textContent=count;
+    if(elRegs)elRegs.textContent=count;
     tbody.innerHTML='';
-    if(leads.length>0){
+    if(count>0){
       leads.forEach(function(p){
         const date=p.date?new Date(p.date).toLocaleDateString():'—';
         tbody.innerHTML+='<tr><td>'+(p.name||'—')+'</td><td>'+(p.phone||'—')+'</td><td>'+(p.tag||'—')+'</td><td>'+date+'</td></tr>';
