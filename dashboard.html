@@ -381,10 +381,18 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- YTD ACTIVITY -->
+      <!-- YTD METRICS TABS -->
       <div class="chart-panel" style="margin-bottom:28px">
-        <h3>YTD Activity — 2026</h3>
-        <div class="metrics-grid" style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+          <h3 style="margin-bottom:0">YTD Metrics — 2026</h3>
+          <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <button class="ry-tab active" onclick="switchRyTab('activity',this)" style="background:var(--gold);color:var(--navy);border:none;padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Activity</button>
+            <button class="ry-tab" onclick="switchRyTab('cost',this)" style="background:none;color:rgba(240,237,230,.4);border:none;border-left:1px solid var(--border);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Cost Analysis</button>
+            <button class="ry-tab" onclick="switchRyTab('conversion',this)" style="background:none;color:rgba(240,237,230,.4);border:none;border-left:1px solid var(--border);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">Conversion</button>
+          </div>
+        </div>
+        <!-- Activity -->
+        <div id="ry-panel-activity" class="metrics-grid" style="margin-bottom:0">
           <div class="metric-card"><div class="label">Dials</div><div class="value" id="ry-dials">65</div><div class="sub">YTD 2026</div></div>
           <div class="metric-card"><div class="label">Contacts</div><div class="value" id="ry-contacts">23</div><div class="sub">YTD 2026</div></div>
           <div class="metric-card"><div class="label">Engaged Convos</div><div class="value" id="ry-engaged">15</div><div class="sub">YTD 2026</div></div>
@@ -392,12 +400,21 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
           <div class="metric-card"><div class="label">Appts Completed</div><div class="value" id="ry-appt_completed">2</div><div class="sub">YTD 2026</div></div>
           <div class="metric-card"><div class="label">Offers Sent</div><div class="value" id="ry-offers_sent">0</div><div class="sub">YTD 2026</div></div>
         </div>
-        <div class="metrics-grid" style="margin-bottom:0">
-          <div class="metric-card"><div class="label">Cost / Appt Booked</div><div class="value" id="ry-cost-appt">$12.57</div><div class="sub">Spend ÷ Appts</div></div>
-          <div class="metric-card"><div class="label">Cost / Engaged Convo</div><div class="value" id="ry-cost-engaged">$8.38</div><div class="sub">Spend ÷ Engaged</div></div>
-          <div class="metric-card"><div class="label">Dial → Contact</div><div class="value" id="ry-rate-dc">35%</div><div class="sub">Contacts ÷ Dials</div></div>
-          <div class="metric-card"><div class="label">Contact → Appt</div><div class="value" id="ry-rate-ca">43%</div><div class="sub">Appts ÷ Contacts</div></div>
-          <div class="metric-card"><div class="label">Lead → Appt</div><div class="value" id="ry-rate-la">7.8%</div><div class="sub">Appts ÷ Leads</div></div>
+        <!-- Cost Analysis -->
+        <div id="ry-panel-cost" class="metrics-grid" style="margin-bottom:0;display:none">
+          <div class="metric-card"><div class="label">Cost / Contact</div><div class="value" id="ry-cost-contact">—</div><div class="sub">Spend ÷ Contacts</div></div>
+          <div class="metric-card"><div class="label">Cost / Engaged</div><div class="value" id="ry-cost-engaged">—</div><div class="sub">Spend ÷ Engaged</div></div>
+          <div class="metric-card"><div class="label">Cost / Appt Booked</div><div class="value" id="ry-cost-appt">—</div><div class="sub">Spend ÷ Appts Booked</div></div>
+          <div class="metric-card"><div class="label">Cost / Appt Completed</div><div class="value" id="ry-cost-completed">—</div><div class="sub">Spend ÷ Appts Completed</div></div>
+          <div class="metric-card"><div class="label">Cost / Lead</div><div class="value" id="ry-cost-lead">—</div><div class="sub">Spend ÷ Leads</div></div>
+        </div>
+        <!-- Conversion -->
+        <div id="ry-panel-conversion" class="metrics-grid" style="margin-bottom:0;display:none">
+          <div class="metric-card"><div class="label">Dial → Contact</div><div class="value" id="ry-rate-dc">—</div><div class="sub">Contacts ÷ Dials</div></div>
+          <div class="metric-card"><div class="label">Contact → Engaged</div><div class="value" id="ry-rate-ce">—</div><div class="sub">Engaged ÷ Contacts</div></div>
+          <div class="metric-card"><div class="label">Engaged → Appt</div><div class="value" id="ry-rate-ea">—</div><div class="sub">Appts ÷ Engaged</div></div>
+          <div class="metric-card"><div class="label">Lead → Appt</div><div class="value" id="ry-rate-la">—</div><div class="sub">Appts ÷ Leads</div></div>
+          <div class="metric-card"><div class="label">Appt → Completed</div><div class="value" id="ry-rate-ac">—</div><div class="sub">Completed ÷ Booked</div></div>
         </div>
       </div>
 
@@ -684,28 +701,43 @@ async function fetchRentalYTD(){
   updateRentalYTD();
 }
 
+function switchRyTab(tab,btn){
+  ['activity','cost','conversion'].forEach(t=>{
+    const p=document.getElementById('ry-panel-'+t);if(p)p.style.display=t===tab?'':'none';
+  });
+  document.querySelectorAll('.ry-tab').forEach(b=>{b.style.background='none';b.style.color='rgba(240,237,230,.4)';});
+  if(btn){btn.style.background='var(--gold)';btn.style.color='var(--navy)';}
+}
+
 function updateRentalYTD(){
   const el=id=>document.getElementById(id);
   const keys=['dials','contacts','engaged','appt_booked','appt_completed','offers_sent'];
   const ytd={};
   keys.forEach(k=>{ytd[k]=(RENTAL_BASE[k]||0)+(rentalSupaTotals[k]||0);});
+  // Activity
   if(el('ry-dials'))el('ry-dials').textContent=ytd.dials;
   if(el('ry-contacts'))el('ry-contacts').textContent=ytd.contacts;
   if(el('ry-engaged'))el('ry-engaged').textContent=ytd.engaged;
   if(el('ry-appt_booked'))el('ry-appt_booked').textContent=ytd.appt_booked;
   if(el('ry-appt_completed'))el('ry-appt_completed').textContent=ytd.appt_completed;
   if(el('ry-offers_sent'))el('ry-offers_sent').textContent=ytd.offers_sent;
-  // Cost metrics
-  if(el('ry-cost-appt'))el('ry-cost-appt').textContent=ytd.appt_booked>0?'$'+(rentalSpend/ytd.appt_booked).toFixed(2):'—';
-  if(el('ry-cost-engaged'))el('ry-cost-engaged').textContent=ytd.engaged>0?'$'+(rentalSpend/ytd.engaged).toFixed(2):'—';
-  // Rate metrics
+  // Cost Analysis
+  const s=rentalSpend;
+  if(el('ry-cost-contact'))el('ry-cost-contact').textContent=ytd.contacts>0?'$'+(s/ytd.contacts).toFixed(2):'—';
+  if(el('ry-cost-engaged'))el('ry-cost-engaged').textContent=ytd.engaged>0?'$'+(s/ytd.engaged).toFixed(2):'—';
+  if(el('ry-cost-appt'))el('ry-cost-appt').textContent=ytd.appt_booked>0?'$'+(s/ytd.appt_booked).toFixed(2):'—';
+  if(el('ry-cost-completed'))el('ry-cost-completed').textContent=ytd.appt_completed>0?'$'+(s/ytd.appt_completed).toFixed(2):'—';
+  if(el('ry-cost-lead'))el('ry-cost-lead').textContent=rentalAdLeads>0?'$'+(s/rentalAdLeads).toFixed(2):'—';
+  // Conversion
   if(el('ry-rate-dc'))el('ry-rate-dc').textContent=ytd.dials>0?Math.round(ytd.contacts/ytd.dials*100)+'%':'—';
-  if(el('ry-rate-ca'))el('ry-rate-ca').textContent=ytd.contacts>0?Math.round(ytd.appt_booked/ytd.contacts*100)+'%':'—';
+  if(el('ry-rate-ce'))el('ry-rate-ce').textContent=ytd.contacts>0?Math.round(ytd.engaged/ytd.contacts*100)+'%':'—';
+  if(el('ry-rate-ea'))el('ry-rate-ea').textContent=ytd.engaged>0?Math.round(ytd.appt_booked/ytd.engaged*100)+'%':'—';
   if(el('ry-rate-la'))el('ry-rate-la').textContent=rentalAdLeads>0?(ytd.appt_booked/rentalAdLeads*100).toFixed(1)+'%':'—';
+  if(el('ry-rate-ac'))el('ry-rate-ac').textContent=ytd.appt_booked>0?Math.round(ytd.appt_completed/ytd.appt_booked*100)+'%':'—';
   // Top stat cards
-  if(el('mr-spend'))el('mr-spend').textContent='$'+rentalSpend.toFixed(2);
+  if(el('mr-spend'))el('mr-spend').textContent='$'+s.toFixed(2);
   if(el('mr-leads'))el('mr-leads').textContent=rentalAdLeads;
-  if(el('mr-cpl'))el('mr-cpl').textContent=rentalAdLeads>0?'$'+(rentalSpend/rentalAdLeads).toFixed(2):'—';
+  if(el('mr-cpl'))el('mr-cpl').textContent=rentalAdLeads>0?'$'+(s/rentalAdLeads).toFixed(2):'—';
 }
 
 function editRentalCampaign(){
