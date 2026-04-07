@@ -334,20 +334,52 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="tab-panel" id="panel-rentals">
     <div class="container">
       <div class="status-row">
-        <div class="status-card"><div class="status-dot disconnected"></div><div><div class="label">Platform</div><div class="name">Meta Ads</div></div></div>
+        <div class="status-card"><div class="status-dot connected"></div><div><div class="label">Platform</div><div class="name">Meta Ads</div></div></div>
         <div class="status-card"><div class="status-dot disconnected"></div><div><div class="label">Platform</div><div class="name">Google Ads</div></div></div>
-        <div class="status-card"><div class="status-dot disconnected"></div><div><div class="label">Leads</div><div class="name">Rental Leads</div></div></div>
+        <div class="status-card"><div class="status-dot connected"></div><div><div class="label">Leads</div><div class="name">Follow Up Boss</div></div></div>
       </div>
       <div class="metrics-grid">
-        <div class="metric-card"><div class="label">Total Spend</div><div class="value">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="mr-leads">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value">—</div><div class="sub">Avg across platforms</div></div>
-        <div class="metric-card"><div class="label">Rental Registrations</div><div class="value" id="mr-regs">—</div><div class="sub">Last 30 days</div></div>
-        <div class="metric-card"><div class="label">Best Platform</div><div class="value">—</div><div class="sub">Lowest CPL</div></div>
+        <div class="metric-card"><div class="label">Total Spend</div><div class="value" id="mr-spend">$125.73</div><div class="sub">YTD 2026</div></div>
+        <div class="metric-card"><div class="label">Total Leads</div><div class="value" id="mr-leads">129</div><div class="sub">YTD 2026</div></div>
+        <div class="metric-card"><div class="label">Cost Per Lead</div><div class="value" id="mr-cpl">$0.97</div><div class="sub">Avg across campaigns</div></div>
+        <div class="metric-card"><div class="label">Rental Registrations</div><div class="value" id="mr-regs">140</div><div class="sub">From FUB</div></div>
       </div>
 
-      <!-- RECENT RENTAL LEADS -->
-      <div class="table-panel"><h3>Recent Rental Leads</h3><table><thead><tr><th>Name</th><th>Phone</th><th>Tag</th><th>Date</th></tr></thead><tbody id="rental-leads-body"><tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">Loading rental leads...</td></tr></tbody></table></div>
+      <!-- CAMPAIGN PERFORMANCE -->
+      <div class="chart-panel" style="margin-bottom:28px" id="rental-campaign-panel">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <h3 style="margin-bottom:0">Campaign Performance</h3>
+          <button onclick="editRentalCampaign()" style="background:none;border:1px solid var(--border);color:rgba(240,237,230,.4);padding:4px 12px;border-radius:4px;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='rgba(240,237,230,.4)'">Update</button>
+        </div>
+        <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <div><div style="font-size:.9rem;font-weight:600;color:var(--white)">Fitzrovia Rental Ads Q2 2026</div><div style="font-size:.68rem;color:rgba(240,237,230,.4);margin-top:2px">Combined — All ad sets</div></div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap">
+              <div style="text-align:right"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Spend</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600">$125.73</div></div>
+              <div style="text-align:right"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Leads</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600">129</div></div>
+              <div style="text-align:right"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">CPL</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600">$0.97</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:14px 18px">
+            <div style="font-size:.78rem;font-weight:600;color:var(--white);margin-bottom:8px">SLOANE</div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+              <div><div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Spend</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white)">$63.33</div></div>
+              <div><div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Leads</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white)">58</div></div>
+              <div><div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">CPL</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white)">$1.09</div></div>
+            </div>
+          </div>
+          <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:14px 18px">
+            <div style="font-size:.78rem;font-weight:600;color:var(--white);margin-bottom:8px">ELM-LEDBURY</div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+              <div><div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Spend</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white)">$62.40</div></div>
+              <div><div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">Leads</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white)">71</div></div>
+              <div><div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(240,237,230,.35)">CPL</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white)">$0.88</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- RENTALS DIALS -->
       <div class="dials-panel">
@@ -608,28 +640,24 @@ async function fetchLeads(){
 function refreshAll(){const k=loadKeys();updateDots(k);if(k['meta-token']&&k['meta-account'])fetchMeta(k);fetchLeads();updateGoogleStatus(k);}
 
 async function fetchRentalLeads(){
-  const tbody=document.getElementById('rental-leads-body');
   try{
     const res=await fetch('/.netlify/functions/get-rental-leads');
     const leads=await res.json();
-    const count=leads.length;
-    const elLeads=document.getElementById('mr-leads');
     const elRegs=document.getElementById('mr-regs');
-    if(elLeads)elLeads.textContent=count;
-    if(elRegs)elRegs.textContent=count;
-    tbody.innerHTML='';
-    if(count>0){
-      leads.forEach(function(p){
-        const date=p.date?new Date(p.date).toLocaleDateString():'—';
-        tbody.innerHTML+='<tr><td>'+(p.name||'—')+'</td><td>'+(p.phone||'—')+'</td><td>'+(p.tag||'—')+'</td><td>'+date+'</td></tr>';
-      });
-    } else {
-      tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">No rental leads yet.</td></tr>';
-    }
-  }catch(err){
-    console.error('Rental leads error:',err);
-    tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">Failed to load rental leads.</td></tr>';
-  }
+    if(elRegs)elRegs.textContent=leads.length;
+  }catch(err){console.error('Rental leads error:',err);}
+}
+
+function editRentalCampaign(){
+  const spend=prompt('Total Spend ($):','125.73');if(spend===null)return;
+  const leads=prompt('Total Leads:','129');if(leads===null)return;
+  const s=parseFloat(spend)||0,l=parseInt(leads)||0;
+  const cpl=l>0?(s/l).toFixed(2):'0.00';
+  const el=id=>document.getElementById(id);
+  if(el('mr-spend'))el('mr-spend').textContent='$'+s.toFixed(2);
+  if(el('mr-leads'))el('mr-leads').textContent=l;
+  if(el('mr-cpl'))el('mr-cpl').textContent='$'+cpl;
+  toast('Rental stats updated');
 }
 
 // ═══════════════════════════════════════════════════════════
