@@ -17,13 +17,13 @@ exports.handler = async function(event) {
   const auth = 'Basic ' + Buffer.from(apiKey + ':').toString('base64');
 
   try {
-    // Fetch all deals with pagination
+    // Fetch deals from "Condos Around - Sales" pipeline (ID 2)
     const allDeals = [];
     let offset = 0;
     const limit = 100;
 
     while (true) {
-      const url = 'https://api.followupboss.com/v1/deals?limit=' + limit + '&offset=' + offset;
+      const url = 'https://api.followupboss.com/v1/deals?pipelineId=2&limit=' + limit + '&offset=' + offset;
       const res = await fetch(url, {
         headers: { 'Authorization': auth, 'Accept': 'application/json' }
       });
@@ -42,20 +42,12 @@ exports.handler = async function(event) {
     }
 
     const EXCLUDE_NAMES = ['nik oberoi', 'nikhil oberoi'];
-    const RENTAL_TAGS = ['RENTAL INQUIRY - ELM-LINKED', 'RENTAL INQUIRY - SLOANE-LINKED'];
 
-    // Fetch lead contact for each deal, skip rental-tagged deals
+    // Fetch lead contact for each deal in this pipeline
     const deals = [];
     for (const deal of allDeals) {
       let personName = '—';
       let personPhone = '—';
-      let isRental = false;
-
-      // Check deal name for rental indicators
-      const dealNameLower = (deal.name || '').toLowerCase();
-      if (dealNameLower.indexOf('sloane') !== -1 || dealNameLower.indexOf('elm') !== -1 || dealNameLower.indexOf('ledbury') !== -1) {
-        isRental = true;
-      }
 
       // Collect person IDs from deal
       const personIds = [];
@@ -68,7 +60,7 @@ exports.handler = async function(event) {
       if (deal.personId && !personIds.includes(deal.personId)) personIds.push(deal.personId);
       if (deal.contactId && !personIds.includes(deal.contactId)) personIds.push(deal.contactId);
 
-      // Fetch each person — check for rental tags and find lead contact
+      // Fetch each person and find the first non-agent lead
       for (const pid of personIds) {
         try {
           const pRes = await fetch('https://api.followupboss.com/v1/people/' + pid, {
@@ -76,27 +68,15 @@ exports.handler = async function(event) {
           });
           if (!pRes.ok) continue;
           const person = await pRes.json();
-
-          // Check if this person has rental tags
-          if (Array.isArray(person.tags)) {
-            for (const t of person.tags) {
-              if (RENTAL_TAGS.includes(t)) { isRental = true; break; }
-            }
-          }
-
           const fullName = ((person.firstName || '') + ' ' + (person.lastName || '')).trim();
           if (!fullName || EXCLUDE_NAMES.includes(fullName.toLowerCase())) continue;
-          if (personName === '—') {
-            personName = fullName;
-            personPhone = person.phones && person.phones.length > 0 ? person.phones[0].value : '—';
-          }
+          personName = fullName;
+          personPhone = person.phones && person.phones.length > 0 ? person.phones[0].value : '—';
+          break;
         } catch (e) {
           console.error('get-sales-deals: person fetch error', pid, e.message);
         }
       }
-
-      // Skip rental deals
-      if (isRental) continue;
 
       // Fallback to inline fields
       if (personName === '—') {
