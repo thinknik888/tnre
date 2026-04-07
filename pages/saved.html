@@ -43,7 +43,7 @@
     @media (max-width: 500px) { .saved-grid { grid-template-columns: 1fr; } }
     .saved-card { cursor: pointer; transition: box-shadow 0.2s; }
     .saved-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-    .lb-ov { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.9); z-index: 500; align-items: center; justify-content: center; padding: 2rem; }
+    .lb-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 500; align-items: center; justify-content: center; padding: 2rem; }
     .lb-ov.active { display: flex; }
     .lb-ov img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 4px; background: #fff; padding: 1rem; }
     .lb-close { position: fixed; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; z-index: 501; line-height: 1; }
@@ -168,13 +168,13 @@
   function openLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow = 'hidden'; }
   function closeLb() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
-  document.querySelectorAll('.saved-card').forEach(function(card) {
+  // Use event delegation on the container so dynamically-rendered cards are clickable
+  document.getElementById('saved-container').addEventListener('click', function(e) {
+    var card = e.target.closest('.saved-card');
+    if (!card) return;
+    if (e.target.closest('.saved-card-remove')) return;
     var img = card.querySelector('img');
-    if (!img) return;
-    card.addEventListener('click', function(e) {
-      if (e.target.closest('.saved-card-remove')) return;
-      openLb(img.src);
-    });
+    if (img) openLb(img.src);
   });
 </script>
 <script src="../js/save.js"></script>
