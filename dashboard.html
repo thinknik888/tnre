@@ -470,20 +470,42 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 const SUPA_URL='https://aondcignkaztqpnkhetr.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvbmRjaWdua2F6dHFwbmtoZXRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODU3OTksImV4cCI6MjA4OTc2MTc5OX0.Knm6uXfHjQdi57Y1AEeD8RPuhyogMRAhIvBn6BFJSxk';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
-const DASH_USER_ID='dashboard-condos2026';
+const DASH_EMAIL='dashboard@condosaround.com';
+const DASH_PASS='condos2026';
+let currentUserId=null;
 
 // ═══════════════════════════════════════════════════════════
-// PASSWORD GATE
+// PASSWORD GATE + SUPABASE AUTH
 // ═══════════════════════════════════════════════════════════
-function checkPassword(){
-  if(document.getElementById('gatePw').value==='condos2026'){
+async function checkPassword(){
+  if(document.getElementById('gatePw').value!=='condos2026'){
+    document.getElementById('gateErr').textContent='Incorrect password';
+    return;
+  }
+  document.getElementById('gateErr').textContent='Signing in…';
+  const{data,error}=await sb.auth.signInWithPassword({email:DASH_EMAIL,password:DASH_PASS});
+  if(error){
+    document.getElementById('gateErr').textContent='Auth error: '+error.message;
+    return;
+  }
+  currentUserId=data.user.id;
+  localStorage.setItem('tnre_dash_auth','true');
+  document.getElementById('gate').style.display='none';
+  document.getElementById('app').style.display='block';
+  initAll();
+}
+
+// Check for existing Supabase session on page load
+(async function(){
+  const{data:{session}}=await sb.auth.getSession();
+  if(session&&session.user){
+    currentUserId=session.user.id;
     document.getElementById('gate').style.display='none';
     document.getElementById('app').style.display='block';
     initAll();
-  } else {
-    document.getElementById('gateErr').textContent='Incorrect password';
   }
-}
+})();
+
 document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword()});
 function togglePassword(){
   const inp=document.getElementById('gatePw'),btn=document.getElementById('togglePw');
@@ -495,7 +517,7 @@ function togglePassword(){
   btn.title=show?'Hide password':'Show password';
   btn.style.color=show?'var(--gold)':'rgba(240,237,230,.4)';
 }
-function logout(){sessionStorage.clear();location.reload();}
+async function logout(){await sb.auth.signOut();localStorage.removeItem('tnre_dash_auth');location.reload();}
 
 // ═══════════════════════════════════════════════════════════
 // TAB NAV
@@ -625,7 +647,7 @@ async function fetchPipeDay(campaign,dateKey){
   const st=pipeState[campaign];
   const ck=dateKey;
   if(st.cache[ck])return st.cache[ck];
-  const{data}=await sb.from('pipeline_activity').select('*').eq('user_id',DASH_USER_ID).eq('date',dateKey).eq('campaign',campaign).single();
+  const{data}=await sb.from('pipeline_activity').select('*').eq('user_id',currentUserId).eq('date',dateKey).eq('campaign',campaign).single();
   const empty={};P_METRICS.forEach(m=>empty[m.key]=0);
   const day=data?{...empty,...data}:empty;
   st.cache[ck]=day;return day;
@@ -674,7 +696,7 @@ function renderPipeRates(campaign,day){
 }
 
 async function savePipeDay(campaign,dateKey,data){
-  const payload={user_id:DASH_USER_ID,date:dateKey,campaign:campaign};
+  const payload={user_id:currentUserId,date:dateKey,campaign:campaign};
   P_METRICS.forEach(m=>payload[m.key]=data[m.key]||0);
   await sb.from('pipeline_activity').upsert(payload,{onConflict:'user_id,date,campaign'});
   const dot=document.getElementById(campaign+'SaveDot');if(dot){dot.classList.add('show');setTimeout(()=>dot.classList.remove('show'),1200);}
@@ -707,7 +729,7 @@ function saveD1Sections(){localStorage.setItem('d1_sections',JSON.stringify(d1Se
 
 async function loadD1Data(){
   d1Cache={};
-  const{data}=await sb.from('habit_logs').select('*').eq('user_id',DASH_USER_ID);
+  const{data}=await sb.from('habit_logs').select('*').eq('user_id',currentUserId);
   if(data){data.forEach(row=>{try{d1Cache[row.date]=JSON.parse(row.data||'{}');}catch(e){}});}
   renderD1Tracker();
 }
@@ -718,7 +740,7 @@ async function d1ToggleVal(h,ds){
   if(!d1Cache[ds])d1Cache[ds]={};
   d1Cache[ds][h]=!d1Cache[ds][h];
   if(!d1Cache[ds][h])delete d1Cache[ds][h];
-  await sb.from('habit_logs').upsert({user_id:DASH_USER_ID,date:ds,data:JSON.stringify(d1Cache[ds]||{})},{onConflict:'user_id,date'});
+  await sb.from('habit_logs').upsert({user_id:currentUserId,date:ds,data:JSON.stringify(d1Cache[ds]||{})},{onConflict:'user_id,date'});
 }
 function d1GetDayMax(){return d1Sections.reduce((a,s)=>a+s.habits.length,0);}
 function d1GetGroupMax(group){return d1Sections.filter(s=>s.group===group).reduce((a,s)=>a+s.habits.length,0);}
