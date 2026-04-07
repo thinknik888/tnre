@@ -272,7 +272,7 @@ function openSettings(){
   document.getElementById('settings').style.display='block';
 }
 function closeSettings(){document.getElementById('settings').style.display='none'}
-function logout(){sessionStorage.clear();document.getElementById('app').style.display='none';document.getElementById('gate').style.display='flex';document.getElementById('gatePw').value='';document.getElementById('gateErr').textContent='';}
+function logout(){sessionStorage.clear();location.reload();}
 function saveSettings(){
   KEYS.forEach(key=>localStorage.setItem('tnre_'+key,document.getElementById('s-'+key).value.trim()));
   closeSettings();
