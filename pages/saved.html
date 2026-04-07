@@ -45,7 +45,7 @@
     .saved-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
     .lb-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 500; align-items: center; justify-content: center; padding: 2rem; }
     .lb-ov.active { display: flex; }
-    .lb-ov img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; background: #fff; padding: 1rem; }
+    .lb-ov img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; background: #fff; padding: 1rem; touch-action: none; transform-origin: 0 0; }
     .lb-close { position: fixed; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; z-index: 501; line-height: 1; }
   </style>
 </head>
@@ -168,15 +168,49 @@
     });
   }
 </script>
-<div class="lb-ov" id="lightbox" onclick="closeLb()">
+<div class="lb-ov" id="lightbox">
   <button class="lb-close" onclick="closeLb()">&times;</button>
   <img id="lb-img" src="" alt="Floor Plan" />
 </div>
 <script>
-  function openLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow = 'hidden'; }
-  function closeLb() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+(function() {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var scale = 1, posX = 0, posY = 0;
+  var startDist = 0, startScale = 1;
+  var panStartX = 0, panStartY = 0, panPosX = 0, panPosY = 0;
+  var isPanning = false;
+
+  function applyTransform() {
+    lbImg.style.transform = 'translate(' + posX + 'px,' + posY + 'px) scale(' + scale + ')';
+  }
+
+  function resetZoom() {
+    scale = 1; posX = 0; posY = 0;
+    lbImg.style.transform = '';
+  }
+
+  window.openLb = function(src) {
+    lbImg.src = src;
+    resetZoom();
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLb = function() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+    resetZoom();
+  };
+
+  // Click overlay (not image or close btn) to close
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) closeLb();
+  });
+
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
-  // Use event delegation on the container so dynamically-rendered cards are clickable
+
+  // Card click delegation
   document.getElementById('saved-container').addEventListener('click', function(e) {
     var card = e.target.closest('.saved-card');
     if (!card) return;
@@ -184,6 +218,60 @@
     var img = card.querySelector('img');
     if (img) openLb(img.src);
   });
+
+  // --- Pinch-to-zoom and pan on touch ---
+  function getTouchDist(t) {
+    var dx = t[0].clientX - t[1].clientX;
+    var dy = t[0].clientY - t[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  lbImg.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      startDist = getTouchDist(e.touches);
+      startScale = scale;
+    } else if (e.touches.length === 1 && scale > 1) {
+      isPanning = true;
+      panStartX = e.touches[0].clientX;
+      panStartY = e.touches[0].clientY;
+      panPosX = posX;
+      panPosY = posY;
+    }
+  }, { passive: false });
+
+  lbImg.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      var dist = getTouchDist(e.touches);
+      scale = Math.min(Math.max(startScale * (dist / startDist), 1), 5);
+      if (scale === 1) { posX = 0; posY = 0; }
+      applyTransform();
+    } else if (e.touches.length === 1 && isPanning && scale > 1) {
+      e.preventDefault();
+      posX = panPosX + (e.touches[0].clientX - panStartX);
+      posY = panPosY + (e.touches[0].clientY - panStartY);
+      applyTransform();
+    }
+  }, { passive: false });
+
+  lbImg.addEventListener('touchend', function(e) {
+    if (e.touches.length < 2) { startDist = 0; }
+    if (e.touches.length === 0) { isPanning = false; }
+    if (scale <= 1) resetZoom();
+  });
+
+  // Double-tap to toggle zoom
+  var lastTap = 0;
+  lbImg.addEventListener('touchend', function(e) {
+    if (e.touches.length !== 0) return;
+    var now = Date.now();
+    if (now - lastTap < 300) {
+      if (scale > 1) { resetZoom(); } else { scale = 2.5; applyTransform(); }
+    }
+    lastTap = now;
+  });
+})();
 </script>
 <script src="../js/save.js"></script>
 <script src="../js/sofia.js"></script>
