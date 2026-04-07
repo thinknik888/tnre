@@ -17,23 +17,33 @@ exports.handler = async function(event) {
   const auth = 'Basic ' + Buffer.from(apiKey + ':').toString('base64');
 
   try {
-    // Fetch people from FUB with tag containing "RENTAL INQUIRY"
-    const url = 'https://api.followupboss.com/v1/people?sort=created&limit=50&tag[]=RENTAL INQUIRY';
-    const res = await fetch(url, {
-      headers: {
-        'Authorization': auth,
-        'Accept': 'application/json'
+    // Fetch all pages of people from FUB with tag "RENTAL INQUIRY"
+    const people = [];
+    let offset = 0;
+    const limit = 100;
+
+    while (true) {
+      const url = 'https://api.followupboss.com/v1/people?sort=created&limit=' + limit + '&offset=' + offset + '&tag[]=RENTAL INQUIRY';
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': auth,
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error('get-rental-leads: FUB error', res.status, text);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: 'FUB API error', status: res.status }) };
       }
-    });
 
-    if (!res.ok) {
-      const text = await res.text();
-      console.error('get-rental-leads: FUB error', res.status, text);
-      return { statusCode: 500, headers, body: JSON.stringify({ error: 'FUB API error', status: res.status }) };
+      const data = await res.json();
+      const batch = data.people || [];
+      people.push(...batch);
+
+      if (batch.length < limit) break;
+      offset += limit;
     }
-
-    const data = await res.json();
-    const people = data.people || [];
 
     const leads = people.map(function(p) {
       const tags = (p.tags || []).filter(function(t) {
