@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aqualuna by Tridel &mdash; Waterfront East | CondosAround.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --dark: #1a2636; --accent: #c8956a; --cream: #f0ede6; --card: #faf5ed; --border: #c4bdb2; --text: #1a2636; --text-mid: #4a5a6a; --text-muted: #8a9aa4; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--text); }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(240,237,230,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-back, .nav-link { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover, .nav-link:hover { color: var(--accent); }
+    .nav-cta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--dark); color: var(--cream); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero { position: relative; height: 100vh; overflow: hidden; min-height: 500px; }
+    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
+    .hero-bg.active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,38,54,0.25) 0%, rgba(26,38,54,0.72) 100%); z-index: 1; }
+    .hero-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 0 3rem 5rem; z-index: 2; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-variant: small-caps; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 0.75rem; }
+    .hero-sub { font-size: 0.85rem; color: var(--cream); opacity: 0.85; }
+
+    /* GALLERY */
+    .renderings-section { padding: 3rem; border-bottom: 1px solid var(--border); }
+    .renderings-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--dark); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .render-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 0.5rem; -ms-overflow-style: none; scrollbar-width: none; }
+    .render-strip::-webkit-scrollbar { display: none; }
+    .render-strip img { width: 280px; height: 200px; object-fit: cover; border-radius: 3px; flex-shrink: 0; cursor: pointer; }
+    .view-gallery-btn { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid var(--accent); color: var(--accent); padding: 0.55rem 1.3rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
+    .view-gallery-btn:hover { background: var(--accent); color: #fff; }
+
+    /* FLOOR PLANS */
+    .fp-section { padding: 3rem 3rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .fp-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--dark); margin-bottom: 1.5rem; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .filter-btn { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.55rem 1.3rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
+    .filter-btn.active { background: var(--dark); color: var(--cream); border-color: var(--dark); }
+    .filter-btn:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+    .fp-row { position: relative; display: grid; grid-template-columns: 65% 1fr; cursor: pointer; transition: background 0.2s; margin-bottom: 48px; }
+    .fp-row::after { content: ''; position: absolute; bottom: -24px; left: 3rem; right: 3rem; height: 0; border-bottom: 0.5px solid #c4bdb2; }
+    .fp-row:last-child::after { display: none; }
+    .fp-row:hover { background: var(--card); }
+    .fp-row-image { min-height: 400px; overflow: hidden; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: #fff; }
+    .fp-row-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .fp-row-image .fp-placeholder { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
+    .fp-row-details { padding: 2.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .fp-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .fp-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--dark); margin-bottom: 0.3rem; }
+    .fp-type { font-size: 0.85rem; color: var(--text-mid); margin-bottom: 0.3rem; }
+    .fp-sqft { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.3rem; }
+    .fp-floor { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .fp-view { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .fp-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 0.5rem; }
+
+    /* CTA */
+    .cta-band { background: var(--cream); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-top: 1px solid var(--border); }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--dark); }
+    .cta-headline em { font-style: italic; color: var(--accent); }
+    .cta-actions { display: flex; gap: 1rem; }
+    .btn-dark { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--dark); color: var(--cream); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--accent); border: 1px solid var(--accent); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+
+    /* FOOTER */
+    footer { background: var(--dark); border-top: 1px solid rgba(240,237,230,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(240,237,230,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(240,237,230,0.5); }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,38,54,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--card); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--dark); }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { position: relative; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 0; overflow: hidden; flex-direction: column; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-keyplate { margin-top: 0.5rem; cursor: pointer; border: 1px solid var(--border); border-radius: 2px; }
+    .modal-details { padding: 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; color: var(--dark); text-align: right; max-width: 60%; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--dark); color: var(--cream); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,38,54,0.6); border: none; color: rgba(240,237,230,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(26,38,54,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero { height: 70vh; }
+      .hero-content { padding: 0 1.5rem 3rem; }
+      .renderings-section, .fp-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .fp-row { grid-template-columns: 1fr; }
+      .fp-row-image { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border); }
+      .fp-row-details { padding: 1.5rem; }
+      .cta-band { padding: 3rem 1.5rem; }
+      .modal { width: 100%; height: 100vh; border-radius: 0; }
+      .modal-body { grid-template-columns: 1fr; overflow-y: auto; }
+      .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); }
+      .modal-details { border-left: none; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2.4rem; }
+      .nav-links .nav-link { display: none; }
+    }
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">CondosAround<span style="color:var(--accent)">.</span>com</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-back">&larr; All Neighbourhoods</a>
+    <a href="../pages/stats.html" class="nav-link">Stats</a>
+    <a href="../pages/saved.html" class="nav-link">Saved</a>
+  </div>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-bg active" style="background-image:url('../neighbourhoods/images/aqualuna_ext_building_exterior.jpg');"></div>
+  <div class="hero-bg" style="background-image:url('../neighbourhoods/images/aqualuna_ext_building_exterior2.jpg');"></div>
+  <div class="hero-bg" style="background-image:url('../neighbourhoods/images/aqualuna_ext_balcony_detail.jpg');"></div>
+  <div class="hero-bg" style="background-image:url('../neighbourhoods/images/aqualuna_ext_pool.jpg');"></div>
+  <div class="hero-bg" style="background-image:url('../neighbourhoods/images/aqualuna_ext_aerial.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Toronto Waterfront East &middot; Tridel</div>
+    <div class="hero-title">Aqualuna</div>
+    <div class="hero-sub">By Tridel &middot; Architecture Inspired by Water</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="renderings-section">
+  <h3>View Gallery <button class="view-gallery-btn" id="view-gallery-btn">View Gallery</button></h3>
+  <div class="render-strip" id="render-strip">
+    <img src="../neighbourhoods/images/aqualuna_amenity_livingroom.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_amenity_billiards.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_amenity_lounge.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_amenity_lobby.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_ext_pool.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_amenity_sauna.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_306_living.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_306_kitchen.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_306_bath.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_lph03_balcony.jpg" alt="Aqualuna" loading="lazy" />
+    <img src="../neighbourhoods/images/aqualuna_lph03_bath.jpg" alt="Aqualuna" loading="lazy" />
+  </div>
+</div>
+
+<!-- FLOOR PLANS -->
+<div class="fp-section" id="floor-plans">
+  <h2>Available Suites</h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="under2000">Under 2,000 sq ft</button>
+    <button class="filter-btn" data-filter="2000to2500">2,000 &ndash; 2,500 sq ft</button>
+  </div>
+
+  <div class="fp-row" data-sqft="1741" onclick="openModal('aq-306')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_306_floorplan.jpg" alt="Suite 306" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">Aqualuna</div>
+      <div class="fp-name">Suite 306</div>
+      <div class="fp-type">2 Bed 2.5 Bath</div>
+      <div class="fp-sqft">1,741 sq ft</div>
+      <div class="fp-floor">3rd Floor</div>
+      <div class="fp-view">East Exposure</div>
+      <div class="fp-price">$2,495,000</div>
+    </div>
+  </div>
+
+  <div class="fp-row" data-sqft="2313" onclick="openModal('aq-815')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_815_floorplan.jpg" alt="Suite 815" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">Aqualuna</div>
+      <div class="fp-name">Suite 815</div>
+      <div class="fp-type">2 Bed 2.5 Bath</div>
+      <div class="fp-sqft">2,313 sq ft</div>
+      <div class="fp-floor">8th Floor</div>
+      <div class="fp-view">NW Exposure</div>
+      <div class="fp-price">$3,599,000</div>
+    </div>
+  </div>
+
+  <div class="fp-row" data-sqft="2404" onclick="openModal('aq-822')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_822_floorplan.jpg" alt="Suite 822" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">Aqualuna</div>
+      <div class="fp-name">Suite 822</div>
+      <div class="fp-type">2 Bed 2.5 Bath</div>
+      <div class="fp-sqft">2,404 sq ft</div>
+      <div class="fp-floor">8th Floor</div>
+      <div class="fp-view">SW Exposure</div>
+      <div class="fp-price">$4,150,000</div>
+    </div>
+  </div>
+
+  <div class="fp-row" data-sqft="2206" onclick="openModal('aq-1107')">
+    <div class="fp-row-image"><span class="fp-placeholder">Floor plan coming soon</span></div>
+    <div class="fp-row-details">
+      <div class="fp-label">Aqualuna</div>
+      <div class="fp-name">Suite 1107</div>
+      <div class="fp-type">3 Bed 3 Bath</div>
+      <div class="fp-sqft">2,206 sq ft</div>
+      <div class="fp-floor">11th Floor</div>
+      <div class="fp-view">NE Exposure</div>
+      <div class="fp-price">$3,450,000</div>
+    </div>
+  </div>
+
+  <div class="fp-row" data-sqft="2258" onclick="openModal('aq-lph03')">
+    <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_lph03_floorplan.jpg" alt="Suite LPH03" loading="lazy" /></div>
+    <div class="fp-row-details">
+      <div class="fp-label">Aqualuna</div>
+      <div class="fp-name">Suite LPH03</div>
+      <div class="fp-type">2 Bed 2.5 Bath</div>
+      <div class="fp-sqft">2,258 sq ft</div>
+      <div class="fp-floor">Lower Penthouse</div>
+      <div class="fp-view">SE Exposure</div>
+      <div class="fp-price">$4,250,000</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-headline">Interested in <em>Aqualuna?</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-dark">Call Nik</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20Aqualuna." class="btn-outline">Send a Text</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CondosAround<span style="color:var(--accent)">.</span>com</div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <img id="modal-keyplate" class="modal-keyplate" src="" alt="Keyplate" style="display:none; width:100px;" onclick="swapKeyplate(event);" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Floor</span><span class="detail-val" id="m-floor"></span></div>
+        <div class="detail-row"><span class="detail-label">View</span><span class="detail-val" id="m-view"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Reach out to discuss availability, pricing, and private viewings for Aqualuna.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20to%20inquire%20about%20Aqualuna." class="btn-full-outline">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Plans data */
+  var plans = {
+    'aq-306': { building:'Aqualuna', suite:'Suite 306', type:'2 Bed 2.5 Bath', size:'1,741 sq ft', floor:'3rd Floor', view:'East', price:'$2,495,000', img:'../neighbourhoods/images/aqualuna_306_floorplan.jpg', keyplate:'../neighbourhoods/images/aqualuna_306_keyplate.jpg' },
+    'aq-815': { building:'Aqualuna', suite:'Suite 815', type:'2 Bed 2.5 Bath', size:'2,313 sq ft', floor:'8th Floor', view:'NW', price:'$3,599,000', img:'../neighbourhoods/images/aqualuna_815_floorplan.jpg', keyplate:'../neighbourhoods/images/aqualuna_815_keyplate.jpg' },
+    'aq-822': { building:'Aqualuna', suite:'Suite 822', type:'2 Bed 2.5 Bath', size:'2,404 sq ft', floor:'8th Floor', view:'SW', price:'$4,150,000', img:'../neighbourhoods/images/aqualuna_822_floorplan.jpg' },
+    'aq-1107': { building:'Aqualuna', suite:'Suite 1107', type:'3 Bed 3 Bath', size:'2,206 sq ft', floor:'11th Floor', view:'NE', price:'$3,450,000' },
+    'aq-lph03': { building:'Aqualuna', suite:'Suite LPH03', type:'2 Bed 2.5 Bath', size:'2,258 sq ft', floor:'Lower Penthouse', view:'SE', price:'$4,250,000', img:'../neighbourhoods/images/aqualuna_lph03_floorplan.jpg', keyplate:'../neighbourhoods/images/aqualuna_lph03_keyplate.jpg' }
+  };
+
+  var planKeys = Object.keys(plans);
+  var currentPlanIdx = 0;
+
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    currentPlanIdx = planKeys.indexOf(id);
+    showPlan(p);
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showPlan(p) {
+    document.getElementById('modal-eyebrow').textContent = 'Aqualuna \u00b7 ' + p.floor;
+    document.getElementById('modal-title').textContent = p.suite;
+    var img = document.getElementById('modal-img');
+    var keyplateEl = document.getElementById('modal-keyplate');
+    if (p.img) {
+      img.src = p.img;
+      img.style.display = '';
+    } else {
+      img.src = '';
+      img.style.display = 'none';
+    }
+    if (p.keyplate) {
+      keyplateEl.src = p.keyplate;
+      keyplateEl.style.display = '';
+      keyplateEl.setAttribute('data-main', p.img || '');
+    } else {
+      keyplateEl.src = '';
+      keyplateEl.style.display = 'none';
+    }
+    if (window.resetModalZoom) window.resetModalZoom();
+    document.getElementById('m-building').textContent = p.building;
+    document.getElementById('m-suite').textContent = p.suite;
+    document.getElementById('m-type').textContent = p.type;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-floor').textContent = p.floor;
+    document.getElementById('m-view').textContent = p.view;
+    document.getElementById('m-price').textContent = p.price;
+  }
+
+  function swapKeyplate(e) {
+    e.stopPropagation();
+    var keyplateEl = document.getElementById('modal-keyplate');
+    var mainImg = document.getElementById('modal-img');
+    var mainSrc = mainImg.src;
+    var keyplateSrc = keyplateEl.src;
+    mainImg.src = keyplateSrc;
+    keyplateEl.src = mainSrc;
+    if (window.resetModalZoom) window.resetModalZoom();
+  }
+
+  function modalNav(dir) {
+    currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
+    showPlan(plans[planKeys[currentPlanIdx]]);
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+    if (window.resetModalZoom) window.resetModalZoom();
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  /* Filter logic */
+  (function() {
+    var btns = document.querySelectorAll('.filter-btn');
+    var rows = document.querySelectorAll('.fp-row[data-sqft]');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter');
+        rows.forEach(function(row) {
+          var sqft = parseInt(row.getAttribute('data-sqft'), 10);
+          if (filter === 'all') {
+            row.style.display = '';
+          } else if (filter === 'under2000') {
+            row.style.display = sqft < 2000 ? '' : 'none';
+          } else if (filter === '2000to2500') {
+            row.style.display = (sqft >= 2000 && sqft <= 2500) ? '' : 'none';
+          } else {
+            row.style.display = '';
+          }
+        });
+      });
+    });
+  })();
+
+  /* Keyboard nav */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+    if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalNav(-1);
+      if (e.key === 'ArrowRight') modalNav(1);
+    }
+  });
+
+  /* Modal image zoom + drag-to-pan */
+  (function() {
+    var img = document.getElementById('modal-img');
+    var container = img.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+    function updateTransform(animate) {
+      img.style.transition = animate ? 'transform 0.3s' : 'none';
+      img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+
+    img.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx;
+      panY = startPanY + dy;
+      updateTransform(false);
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else {
+        resetZoom();
+      }
+    });
+
+    window.resetModalZoom = resetZoom;
+  })();
+
+  /* Gallery lightbox */
+  (function() {
+    var imgs = document.querySelectorAll('#render-strip img');
+    var srcs = Array.from(imgs).map(function(i) { return i.src; });
+    var lbEl = document.createElement('div');
+    lbEl.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(26,38,54,0.92);z-index:300;align-items:center;justify-content:center;flex-direction:column;';
+    lbEl.innerHTML = '<button style="position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:rgba(240,237,230,0.7);font-size:2rem;cursor:pointer;z-index:5;" onclick="this.parentElement.style.display=\'none\';document.body.style.overflow=\'\';">&times;</button><button id="lb-prev" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);background:rgba(26,38,54,0.5);border:1px solid rgba(200,149,106,0.3);color:#f0ede6;width:48px;height:48px;cursor:pointer;font-size:1.3rem;border-radius:2px;z-index:5;">&#8249;</button><img id="lb-img" style="max-width:92vw;max-height:85vh;object-fit:contain;" /><button id="lb-next" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(26,38,54,0.5);border:1px solid rgba(200,149,106,0.3);color:#f0ede6;width:48px;height:48px;cursor:pointer;font-size:1.3rem;border-radius:2px;z-index:5;">&#8250;</button><div id="lb-counter" style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:0.8rem;color:rgba(240,237,230,0.5);"></div>';
+    document.body.appendChild(lbEl);
+    var lbIdx = 0;
+    function showLb() { document.getElementById('lb-img').src = srcs[lbIdx]; document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + srcs.length; }
+    function openLb(i) { lbIdx = i; showLb(); lbEl.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+    imgs.forEach(function(img, i) {
+      img.addEventListener('click', function() { openLb(i); });
+    });
+    document.getElementById('view-gallery-btn').addEventListener('click', function() { openLb(0); });
+    document.getElementById('lb-prev').addEventListener('click', function() { lbIdx = (lbIdx - 1 + srcs.length) % srcs.length; showLb(); });
+    document.getElementById('lb-next').addEventListener('click', function() { lbIdx = (lbIdx + 1) % srcs.length; showLb(); });
+    lbEl.addEventListener('click', function(e) { if (e.target === lbEl) { lbEl.style.display = 'none'; document.body.style.overflow = ''; } });
+    document.addEventListener('keydown', function(e) {
+      if (lbEl.style.display === 'flex') {
+        if (e.key === 'Escape') { lbEl.style.display = 'none'; document.body.style.overflow = ''; }
+        if (e.key === 'ArrowLeft') { lbIdx = (lbIdx - 1 + srcs.length) % srcs.length; showLb(); }
+        if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % srcs.length; showLb(); }
+      }
+    });
+  })();
+
+  /* Hero image cycling */
+  (function() {
+    var bgs = document.querySelectorAll('.hero-bg');
+    var current = 0;
+    setInterval(function() {
+      bgs[current].classList.remove('active');
+      current = (current + 1) % bgs.length;
+      bgs[current].classList.add('active');
+    }, 6000);
+  })();
+</script>
+<script src="../js/modal-touch.js"></script>
+<script src="../js/deeplink.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/register.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>
