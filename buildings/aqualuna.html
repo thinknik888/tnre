@@ -9,7 +9,7 @@
     :root { --dark: #1a2636; --accent: #c8956a; --cream: #f0ede6; --card: #faf5ed; --border: #c4bdb2; --text: #1a2636; --text-mid: #4a5a6a; --text-muted: #8a9aa4; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--text); }
+    body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; max-width: 100vw; }
 
     /* NAV */
     nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(240,237,230,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
@@ -122,6 +122,7 @@
     }
     @media (max-width: 768px) {
       .hero-bg { background-position: top center; }
+      .nav-logo { display: none; }
     }
     @media (max-width: 600px) {
       .hero-title { font-size: 2.4rem; }
