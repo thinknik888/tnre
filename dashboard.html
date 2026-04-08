@@ -860,8 +860,10 @@ async function fetchRentalLeads(){
   try{
     const res=await fetch('/.netlify/functions/get-rental-leads');
     const leads=await res.json();
-    const elRegs=document.getElementById('mr-regs');
-    if(elRegs)elRegs.textContent=leads.length;
+    rentalAdLeads=leads.length;
+    const el=document.getElementById('mr-leads');
+    if(el)el.textContent=rentalAdLeads;
+    updateRentalYTD();
   }catch(err){console.error('Rental leads error:',err);}
 }
 
