@@ -96,7 +96,8 @@
 
     @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .page-header, .sqft-section { padding: 3rem 1.5rem; } .promo-banner { padding: 1.25rem 1.5rem; } .fp-grid { grid-template-columns: 1fr; } .modal-body { grid-template-columns: 1fr; } .modal-image { border-bottom: 1px solid var(--border); } .modal-details { border-left: none; } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } }
     @media (max-width: 600px) { .page-stats { gap: 1.5rem; flex-wrap: wrap; } }
-  </style>
+      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

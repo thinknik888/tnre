@@ -130,7 +130,8 @@
       .hero { height: 80vh; min-height: 450px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
-  </style>
+      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

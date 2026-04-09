@@ -149,7 +149,8 @@
       .gallery { grid-template-columns: 1fr; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
     }
-  </style>
+      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

@@ -43,7 +43,8 @@
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo span { color: var(--gold); }
     @media (max-width: 768px) { nav, .hero, .coming-soon, .cta-strip, footer { padding-left: 1.5rem; padding-right: 1.5rem; } .stats { gap: 1.5rem; flex-wrap: wrap; } }
-  </style>
+      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

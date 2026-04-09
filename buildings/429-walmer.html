@@ -111,7 +111,8 @@
     .modal-image img { cursor: zoom-in; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
     .modal-image.zoomed img { cursor: grab; }
     .modal-image.zoomed.dragging img { cursor: grabbing; }
-  </style>
+      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

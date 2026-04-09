@@ -48,7 +48,8 @@
     .popup-link:hover { color: var(--dark); }
     @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .hero, .buildings-section { padding-left: 1.5rem; padding-right: 1.5rem; } .buildings-grid { grid-template-columns: repeat(2, 1fr); } .building-card:nth-child(3n) { border-right: 1px solid var(--border); } .building-card:nth-child(2n) { border-right: none; } footer { padding: 1.5rem; } }
     @media (max-width: 600px) { .buildings-grid { grid-template-columns: 1fr; } .building-card { border-right: none !important; } #map { height: 400px; } }
-  </style>
+      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
