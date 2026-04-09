@@ -212,11 +212,23 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <button class="fp-filter-btn" data-building-filter="101-spadina">101 Spadina</button>
     </div>
   </div>
+  <div class="filter-row">
+    <span class="filter-label">Price</span>
+    <div class="fp-filters" id="price-filters">
+      <button class="fp-filter-btn active" data-price-filter="all">All</button>
+      <button class="fp-filter-btn" data-price-filter="0-500000">Under $500K</button>
+      <button class="fp-filter-btn" data-price-filter="500000-750000">$500K &ndash; $750K</button>
+      <button class="fp-filter-btn" data-price-filter="750000-1000000">$750K &ndash; $1M</button>
+      <button class="fp-filter-btn" data-price-filter="1000000-2000000">$1M &ndash; $2M</button>
+      <button class="fp-filter-btn" data-price-filter="2000000-4000000">$2M &ndash; $4M</button>
+      <button class="fp-filter-btn" data-price-filter="4000000-999999999">$4M+</button>
+    </div>
+  </div>
   <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:2rem; font-style:italic;">HST rebate eligibility varies by building. <span style="color:var(--gold);">Ask us about your suite.</span></div>
 
   <div class="fp-grid" id="fp-grid">
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto-penthouse" data-sqft="2919" onclick="openModal('kt-ph1')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto-penthouse" data-sqft="2919" data-price="10800990" onclick="openModal('kt-ph1')">
       <div class="fp-image"><img src="images/king-ph-28.jpg" alt="The Glass House PH.01" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto Penthouse</div>
@@ -227,7 +239,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="2448" onclick="openModal('sp-5')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="2448" data-price="4896000" onclick="openModal('sp-5')">
       <div class="fp-image"><img src="images/spadina-fp-5.jpg" alt="Suite D2448 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -239,7 +251,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="2322" onclick="openModal('sp-4')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="2322" data-price="4644000" onclick="openModal('sp-4')">
       <div class="fp-image"><img src="images/spadina-fp-4.jpg" alt="Suite D2322 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -251,7 +263,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto-penthouse" data-sqft="2026" onclick="openModal('kt-ph2')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto-penthouse" data-sqft="2026" data-price="7799990" onclick="openModal('kt-ph2')">
       <div class="fp-image"><img src="images/king-ph-34.jpg" alt="The Sanctuary PH.02" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto Penthouse</div>
@@ -262,7 +274,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1973" onclick="openModal('kt-w1')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1973" data-price="4183990" onclick="openModal('kt-w1')">
       <div class="fp-image"><img src="images/king-fp-west-7.jpg" alt="Home 1005 W" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -273,7 +285,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1679" onclick="openModal('well-1205')">
+    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1679" data-price="2395000" onclick="openModal('well-1205')">
       <div class="fp-image"><img src="images/SIGNATURE 12TH.webp" alt="The Well Suite 1205" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -285,7 +297,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1515" onclick="openModal('well-610')">
+    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1515" data-price="2175000" onclick="openModal('well-610')">
       <div class="fp-image"><img src="images/signature 6th .webp" alt="The Well Suite 610" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -298,7 +310,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
 
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1500" onclick="openModal('cch-loft5703')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1500" data-price="0" onclick="openModal('cch-loft5703')">
       <div class="fp-image"><img src="images/Loft 5703.jpg" alt="Loft 5703 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -310,7 +322,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1466" onclick="openModal('sp-10')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1466" data-price="2932000" onclick="openModal('sp-10')">
       <div class="fp-image"><img src="images/spadina-fp-10.jpg" alt="Suite E1466 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -322,7 +334,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1465" onclick="openModal('sp-9')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1465" data-price="2930000" onclick="openModal('sp-9')">
       <div class="fp-image"><img src="images/spadina-fp-9.jpg" alt="Suite E1465 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -334,7 +346,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1446" onclick="openModal('sp-8')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1446" data-price="2892000" onclick="openModal('sp-8')">
       <div class="fp-image"><img src="images/spadina-fp-8.jpg" alt="Suite E1446 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -346,7 +358,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1396" onclick="openModal('sp-3')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1396" data-price="2792000" onclick="openModal('sp-3')">
       <div class="fp-image"><img src="images/spadina-fp-3.jpg" alt="Suite D1396 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -359,7 +371,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
 
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1796" onclick="openModal('kt-w2')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1796" data-price="3436990" onclick="openModal('kt-w2')">
       <div class="fp-image"><img src="images/king-fp-west-8.jpg" alt="Home 1105 W" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -370,7 +382,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1313" onclick="openModal('well-gph9')">
+    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1313" data-price="1650000" onclick="openModal('well-gph9')">
       <div class="fp-image"><img src="images/the well gph9.webp" alt="The Well Suite GPH9" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -383,7 +395,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
 
 
-    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1260" onclick="openModal('well-2305')">
+    <div class="fp-card" data-closing="2026" data-building="the-well" data-sqft="1260" data-price="1695000" onclick="openModal('well-2305')">
       <div class="fp-image"><img src="images/suite-2305.webp" alt="The Well Suite 2305" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Well</div>
@@ -395,7 +407,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1198" onclick="openModal('cch-7805')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1198" data-price="1549900" onclick="openModal('cch-7805')">
       <div class="fp-image"><img src="images/7805.jpg" alt="Suite 7805 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -407,7 +419,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1169" onclick="openModal('sp-7')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1169" data-price="2338000" onclick="openModal('sp-7')">
       <div class="fp-image"><img src="images/spadina-fp-7.jpg" alt="Suite E1169 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -419,7 +431,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1348" onclick="openModal('kt-s1')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1348" data-price="2476990" onclick="openModal('kt-s1')">
       <div class="fp-image"><img src="images/king-fp-south-1.jpg" alt="Home 709 S" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -430,7 +442,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1100" onclick="openModal('sp-6')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="1100" data-price="2200000" onclick="openModal('sp-6')">
       <div class="fp-image"><img src="images/spadina-fp-6.jpg" alt="Suite E1100 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -442,7 +454,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1038" onclick="openModal('cch-6301')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1038" data-price="0" onclick="openModal('cch-6301')">
       <div class="fp-image"><img src="images/6301.jpg" alt="Suite 6301 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -454,7 +466,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1033" onclick="openModal('cch-loft5701')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1033" data-price="0" onclick="openModal('cch-loft5701')">
       <div class="fp-image"><img src="images/Loft 5701.jpg" alt="Loft 5701 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -466,7 +478,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1033" onclick="openModal('cch-loft5712')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1033" data-price="0" onclick="openModal('cch-loft5712')">
       <div class="fp-image"><img src="images/Loft 5712.jpg" alt="Loft 5712 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -478,7 +490,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1033" onclick="openModal('cch-loft5715')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1033" data-price="0" onclick="openModal('cch-loft5715')">
       <div class="fp-image"><img src="images/Loft 5715.jpg" alt="Loft 5715 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -490,7 +502,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1032" onclick="openModal('cch-loft5707')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="1032" data-price="0" onclick="openModal('cch-loft5707')">
       <div class="fp-image"><img src="images/Loft 5707.jpg" alt="Loft 5707 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -502,7 +514,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1096" onclick="openModal('kt-w3')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="1096" data-price="2356990" onclick="openModal('kt-w3')">
       <div class="fp-image"><img src="images/king-fp-west-6.jpg" alt="Home 721 W" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -513,7 +525,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="993" onclick="openModal('sp-2')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="993" data-price="1986000" onclick="openModal('sp-2')">
       <div class="fp-image"><img src="images/spadina-fp-2.jpg" alt="Suite D993 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -525,7 +537,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="928" onclick="openModal('sp-1')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="928" data-price="1856000" onclick="openModal('sp-1')">
       <div class="fp-image"><img src="images/spadina-fp-1.jpg" alt="Suite D928 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -537,7 +549,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="965" onclick="openModal('kt-e1')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="965" data-price="2079990" onclick="openModal('kt-e1')">
       <div class="fp-image"><img src="images/king-fp-east-4.jpg" alt="Home 1602 E" loading="lazy" style="object-fit:cover; object-position:left;" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -548,7 +560,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="832" onclick="openModal('sp-s5')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="832" data-price="1130000" onclick="openModal('sp-s5')">
       <div class="fp-image"><img src="images/spadina-std-d830.jpg" alt="Suite D830 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -560,7 +572,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="816" onclick="openModal('sp-s4')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="816" data-price="1045000" onclick="openModal('sp-s4')">
       <div class="fp-image"><img src="images/spadina-std-d816.jpg" alt="Suite D816 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -572,7 +584,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="762" onclick="openModal('sp-s3')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="762" data-price="1359000" onclick="openModal('sp-s3')">
       <div class="fp-image"><img src="images/spadina-std-d762.jpg" alt="Suite D762 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -584,7 +596,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="760" onclick="openModal('cch-4701')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="760" data-price="919000" onclick="openModal('cch-4701')">
       <div class="fp-image"><img src="images/4701.jpg" alt="Suite 4701 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -597,7 +609,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="760" onclick="openModal('cch-4808')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="760" data-price="0" onclick="openModal('cch-4808')">
       <div class="fp-image"><img src="images/4808.jpg" alt="Suite 4808 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -609,7 +621,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="753" onclick="openModal('sp-s2')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="753" data-price="995000" onclick="openModal('sp-s2')">
       <div class="fp-image"><img src="images/spadina-std-d753.jpg" alt="Suite D753 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -621,7 +633,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="740" onclick="openModal('cch-2803')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="740" data-price="799000" onclick="openModal('cch-2803')">
       <div class="fp-image"><img src="images/2803.jpg" alt="Suite 2803 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -634,7 +646,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="740" onclick="openModal('cch-2703')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="740" data-price="798000" onclick="openModal('cch-2703')">
       <div class="fp-image"><img src="images/2803.jpg" alt="Suite 2703 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -647,7 +659,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="718" onclick="openModal('cch-3010')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="718" data-price="0" onclick="openModal('cch-3010')">
       <div class="fp-image"><img src="images/3010.jpg" alt="Suite 3010 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -659,7 +671,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="692" onclick="openModal('cch-2805')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="692" data-price="659000" onclick="openModal('cch-2805')">
       <div class="fp-image"><img src="images/2805.jpg" alt="Suite 2805 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -672,7 +684,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="660" onclick="openModal('cch-506')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="660" data-price="0" onclick="openModal('cch-506')">
       <div class="fp-image"><img src="images/506.jpg" alt="Suite 506 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -684,7 +696,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="654" onclick="openModal('kt-s2')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="654" data-price="1454990" onclick="openModal('kt-s2')">
       <div class="fp-image"><img src="images/king-fp-south-2.jpg" alt="Home 908 S" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -695,7 +707,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="725" onclick="openModal('kt-w5')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="725" data-price="1473990" onclick="openModal('kt-w5')">
       <div class="fp-image"><img src="images/king-fp-west-3.jpg" alt="Home 516 W" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -706,7 +718,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="650" onclick="openModal('cch-2611')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="650" data-price="0" onclick="openModal('cch-2611')">
       <div class="fp-image"><img src="images/2611.jpg" alt="Suite 2611 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -718,7 +730,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="650" onclick="openModal('cch-2706')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="650" data-price="655000" onclick="openModal('cch-2706')">
       <div class="fp-image"><img src="images/2206.jpg" alt="Suite 2706 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -731,7 +743,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="600" onclick="openModal('cch-4012')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="600" data-price="599000" onclick="openModal('cch-4012')">
       <div class="fp-image"><img src="images/4012.jpg" alt="Suite 4012 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -744,7 +756,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="592" onclick="openModal('sp-s1')">
+    <div class="fp-card" data-closing="2029" data-building="101-spadina" data-sqft="592" data-price="775000" onclick="openModal('sp-s1')">
       <div class="fp-image"><img src="images/spadina-std-d592.jpg" alt="Suite D592 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
@@ -757,7 +769,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
 
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="560" onclick="openModal('kt-w7')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="560" data-price="1243990" onclick="openModal('kt-w7')">
       <div class="fp-image"><img src="images/king-fp-west-2.jpg" alt="Home 502 W" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -768,7 +780,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="555" onclick="openModal('kt-w8')">
+    <div class="fp-card" data-closing="2026" data-building="king-toronto" data-sqft="555" data-price="1276990" onclick="openModal('kt-w8')">
       <div class="fp-image"><img src="images/king-fp-west-5.jpg" alt="Home 806 W" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">King Toronto</div>
@@ -779,7 +791,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="535" onclick="openModal('cch-2712b')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="535" data-price="0" onclick="openModal('cch-2712b')">
       <div class="fp-image"><img src="images/2712.jpg" alt="Plan 09 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -791,7 +803,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="505" onclick="openModal('cch-4012b')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="505" data-price="490500" onclick="openModal('cch-4012b')">
       <div class="fp-image"><img src="images/4012.jpg" alt="Suite 4012 Plan 12 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -804,7 +816,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="502" onclick="openModal('cch-1902')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="502" data-price="467000" onclick="openModal('cch-1902')">
       <div class="fp-image"><img src="images/1902.jpg" alt="Suite 1902 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -817,7 +829,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="502" onclick="openModal('cch-2712')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="502" data-price="521130" onclick="openModal('cch-2712')">
       <div class="fp-image"><img src="images/2712.jpg" alt="Suite 2712 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -830,7 +842,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="492" onclick="openModal('cch-4315')">
+    <div class="fp-card" data-closing="2026" data-building="canada-house" data-sqft="492" data-price="492000" onclick="openModal('cch-4315')">
       <div class="fp-image"><img src="images/4315.jpg" alt="Suite 4315 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Concord Canada House</div>
@@ -1011,6 +1023,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   var activeClosing = 'all';
   var activeSqft = 'all';
   var activeBuilding = 'all';
+  var activePrice = 'all';
 
   function applyFilters() {
     var grid = document.getElementById('fp-grid');
@@ -1027,7 +1040,13 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       else if (activeSqft === '900-1200') showSqft = sqft >= 900 && sqft < 1200;
       else if (activeSqft === '1200-1600') showSqft = sqft >= 1200 && sqft < 1600;
       else if (activeSqft === '1600-3000') showSqft = sqft >= 1600 && sqft <= 3000;
-      card.style.display = (showClosing && showSqft && showBuilding) ? '' : 'none';
+      var price = parseInt(card.dataset.price) || 0;
+      var showPrice = true;
+      if (activePrice !== 'all' && price > 0) {
+        var range = activePrice.split('-');
+        showPrice = price >= parseInt(range[0]) && price < parseInt(range[1]);
+      }
+      card.style.display = (showClosing && showSqft && showBuilding && showPrice) ? '' : 'none';
     });
   }
 
@@ -1036,6 +1055,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     if (activeSqft !== 'all') params.set('size', activeSqft);
     if (activeClosing !== 'all') params.set('closing', activeClosing);
     if (activeBuilding !== 'all') params.set('building', activeBuilding);
+    if (activePrice !== 'all') params.set('price', activePrice);
     var qs = params.toString();
     history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
   }
@@ -1070,6 +1090,16 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     });
   });
 
+  document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activePrice = btn.dataset.priceFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+
   (function() {
     var params = new URLSearchParams(window.location.search);
     var size = params.get('size');
@@ -1087,7 +1117,12 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       var btn = document.querySelector('#building-filters .fp-filter-btn[data-building-filter="' + building + '"]');
       if (btn) { document.querySelectorAll('#building-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeBuilding = building; }
     }
-    if (size || closing || building) applyFilters();
+    var price = params.get('price');
+    if (price) {
+      var btn = document.querySelector('#price-filters .fp-filter-btn[data-price-filter="' + price + '"]');
+      if (btn) { document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activePrice = price; }
+    }
+    if (size || closing || building || price) applyFilters();
   })();
 
   // Calculate avg price per sq ft by building

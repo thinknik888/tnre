@@ -38,6 +38,7 @@
   convertFilterRow('closing-filters', 'data-closing-filter');
   convertFilterRow('sqft-filters', 'data-filter');
   convertFilterRow('building-filters', 'data-building-filter');
+  convertFilterRow('price-filters', 'data-price-filter');
   // Forest Hill collection filters
   convertFilterRow('collection-filters', 'data-collection');
 })();

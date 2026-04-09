@@ -151,9 +151,20 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 
+  <div class="filter-row">
+    <span class="filter-label">Price</span>
+    <div class="fp-filters" id="price-filters">
+      <button class="fp-filter-btn active" data-price-filter="all">All</button>
+      <button class="fp-filter-btn" data-price-filter="0-2000000">Under $2M</button>
+      <button class="fp-filter-btn" data-price-filter="2000000-3000000">$2M &ndash; $3M</button>
+      <button class="fp-filter-btn" data-price-filter="3000000-4000000">$3M &ndash; $4M</button>
+      <button class="fp-filter-btn" data-price-filter="4000000-999999999">$4M+</button>
+    </div>
+  </div>
+
   <div class="fp-grid" id="fp-grid">
 
-    <div class="fp-card" data-sqft="1741" data-building="aqualuna" onclick="openModal('aq-306')">
+    <div class="fp-card" data-sqft="1741" data-price="2495000" data-building="aqualuna" onclick="openModal('aq-306')">
       <div class="fp-image"><img src="images/aqualuna_306_floorplan.jpg" alt="Aqualuna Suite 306 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Aqualuna</div>
@@ -164,7 +175,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="2313" data-building="aqualuna" onclick="openModal('aq-815')">
+    <div class="fp-card" data-sqft="2313" data-price="3599000" data-building="aqualuna" onclick="openModal('aq-815')">
       <div class="fp-image"><img src="images/aqualuna_815_floorplan.jpg" alt="Aqualuna Suite 815 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Aqualuna</div>
@@ -175,7 +186,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="2404" data-building="aqualuna" onclick="openModal('aq-822')">
+    <div class="fp-card" data-sqft="2404" data-price="4150000" data-building="aqualuna" onclick="openModal('aq-822')">
       <div class="fp-image"><img src="images/aqualuna_822_floorplan.jpg" alt="Aqualuna Suite 822 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Aqualuna</div>
@@ -186,7 +197,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="2206" data-building="aqualuna" onclick="openModal('aq-1107')">
+    <div class="fp-card" data-sqft="2206" data-price="3450000" data-building="aqualuna" onclick="openModal('aq-1107')">
       <div class="fp-image"><img src="images/aqualuna_1107_floorplan.jpg" alt="Aqualuna Suite 1107 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Aqualuna</div>
@@ -197,7 +208,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="2258" data-building="aqualuna" onclick="openModal('aq-lph03')">
+    <div class="fp-card" data-sqft="2258" data-price="4250000" data-building="aqualuna" onclick="openModal('aq-lph03')">
       <div class="fp-image"><img src="images/aqualuna_lph03_floorplan.jpg" alt="Aqualuna Suite LPH03 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">Aqualuna</div>
@@ -293,8 +304,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     }
   });
 
-  /* SQFT FILTER */
+  /* SQFT + PRICE FILTER */
   var activeSqft = 'all';
+  var activePrice = 'all';
 
   function applyFilters() {
     var grid = document.getElementById('fp-grid');
@@ -304,13 +316,22 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       var showSqft = true;
       if (activeSqft === '1500-2000') showSqft = sqft >= 1500 && sqft < 2000;
       else if (activeSqft === '2000-2500') showSqft = sqft >= 2000 && sqft < 2500;
-      card.style.display = showSqft ? '' : 'none';
+
+      var price = parseInt(card.dataset.price) || 0;
+      var showPrice = true;
+      if (activePrice !== 'all' && price > 0) {
+        var range = activePrice.split('-');
+        showPrice = price >= parseInt(range[0]) && price < parseInt(range[1]);
+      }
+
+      card.style.display = (showSqft && showPrice) ? '' : 'none';
     });
   }
 
   function updateUrl() {
     var params = new URLSearchParams();
     if (activeSqft !== 'all') params.set('size', activeSqft);
+    if (activePrice !== 'all') params.set('price', activePrice);
     var qs = params.toString();
     history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
   }
@@ -325,6 +346,16 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     });
   });
 
+  document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activePrice = btn.dataset.priceFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+
   (function() {
     var params = new URLSearchParams(window.location.search);
     var size = params.get('size');
@@ -332,7 +363,12 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       var btn = document.querySelector('#sqft-filters .fp-filter-btn[data-filter="' + size + '"]');
       if (btn) { document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeSqft = size; }
     }
-    if (size) applyFilters();
+    var price = params.get('price');
+    if (price) {
+      var btn = document.querySelector('#price-filters .fp-filter-btn[data-price-filter="' + price + '"]');
+      if (btn) { document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activePrice = price; }
+    }
+    if (size || price) applyFilters();
   })();
 
   /* HERO CYCLING BACKGROUNDS */

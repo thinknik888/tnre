@@ -178,10 +178,20 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <button class="fp-filter-btn" data-filter="2000-99999">2,000+ sq ft</button>
     </div>
   </div>
+  <div class="filter-row">
+    <span class="filter-label">Price</span>
+    <div class="fp-filters" id="price-filters">
+      <button class="fp-filter-btn active" data-price-filter="all">All</button>
+      <button class="fp-filter-btn" data-price-filter="0-2000000">Under $2M</button>
+      <button class="fp-filter-btn" data-price-filter="2000000-3000000">$2M &ndash; $3M</button>
+      <button class="fp-filter-btn" data-price-filter="3000000-4000000">$3M &ndash; $4M</button>
+      <button class="fp-filter-btn" data-price-filter="4000000-999999999">$4M+</button>
+    </div>
+  </div>
 
   <div class="fp-grid" id="fp-grid">
 
-    <div class="fp-card" data-sqft="5190" data-closing="2026" onclick="openModal('23-25an-b')">
+    <div class="fp-card" data-sqft="5190" data-closing="2026" data-price="0" onclick="openModal('23-25an-b')">
       <div class="fp-image"><img src="images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -192,7 +202,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="2749" data-closing="2028" id="bedford-2749" onclick="openModal('bedford-2749')">
+    <div class="fp-card" data-sqft="2749" data-closing="2028" data-price="6799900" id="bedford-2749" onclick="openModal('bedford-2749')">
       <div class="fp-image"><img src="images/the-bedford/suite-2749.png" alt="Suite 2749 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
@@ -203,7 +213,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="2166" data-closing="2026" onclick="openModal('23-25an')">
+    <div class="fp-card" data-sqft="2166" data-closing="2026" data-price="5620900" onclick="openModal('23-25an')">
       <div class="fp-image"><img src="images/50-scollard/suite-23-25an.jpg" alt="Suite 23-25 AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -214,7 +224,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1793" data-closing="2026" onclick="openModal('5an')">
+    <div class="fp-card" data-sqft="1793" data-closing="2026" data-price="4549900" onclick="openModal('5an')">
       <div class="fp-image"><img src="images/50-scollard/suite-5an.jpg" alt="Suite 5AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -225,7 +235,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1607" data-closing="2028" id="bedford-1607" onclick="openModal('bedford-1607')">
+    <div class="fp-card" data-sqft="1607" data-closing="2028" data-price="3449900" id="bedford-1607" onclick="openModal('bedford-1607')">
       <div class="fp-image"><img src="images/the-bedford/suite-1607.png" alt="Suite 1607 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
@@ -236,7 +246,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1605" data-closing="2028" id="bedford-1605" onclick="openModal('bedford-1605')">
+    <div class="fp-card" data-sqft="1605" data-closing="2028" data-price="3059900" id="bedford-1605" onclick="openModal('bedford-1605')">
       <div class="fp-image"><img src="images/the-bedford/suite-1605.png" alt="Suite 1605 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
@@ -247,7 +257,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1535" data-closing="2028" id="bedford-1535" onclick="openModal('bedford-1535')">
+    <div class="fp-card" data-sqft="1535" data-closing="2028" data-price="2869900" id="bedford-1535" onclick="openModal('bedford-1535')">
       <div class="fp-image"><img src="images/the-bedford/suite-1535.png" alt="Suite 1535 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
@@ -258,7 +268,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1517" data-closing="2026" onclick="openModal('yvph07')">
+    <div class="fp-card" data-sqft="1517" data-closing="2026" data-price="3640800" onclick="openModal('yvph07')">
       <div class="fp-image"><img src="images/ph-07.png" alt="PH 07" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
@@ -269,7 +279,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1453" data-closing="2026" onclick="openModal('40an')">
+    <div class="fp-card" data-sqft="1453" data-closing="2026" data-price="4796900" onclick="openModal('40an')">
       <div class="fp-image"><img src="images/50-scollard/suite-40an.jpg" alt="Suite 40AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -280,7 +290,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1425" data-closing="2026" onclick="openModal('6-8in')">
+    <div class="fp-card" data-sqft="1425" data-closing="2026" data-price="3763900" onclick="openModal('6-8in')">
       <div class="fp-image"><img src="images/50-scollard/suite-6-8in.jpg" alt="Suite 6-8 IN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -291,7 +301,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1393" data-closing="2026" onclick="openModal('6hn')">
+    <div class="fp-card" data-sqft="1393" data-closing="2026" data-price="3659900" onclick="openModal('6hn')">
       <div class="fp-image"><img src="images/50-scollard/suite-6hn.jpg" alt="Suite 6HN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -302,7 +312,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1393" data-closing="2026" onclick="openModal('7hn')">
+    <div class="fp-card" data-sqft="1393" data-closing="2026" data-price="3709900" onclick="openModal('7hn')">
       <div class="fp-image"><img src="images/50-scollard/suite-7hn.jpg" alt="Suite 7HN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -313,7 +323,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1333" data-closing="2028" id="bedford-1333" onclick="openModal('bedford-1333')">
+    <div class="fp-card" data-sqft="1333" data-closing="2028" data-price="2499900" id="bedford-1333" onclick="openModal('bedford-1333')">
       <div class="fp-image"><img src="images/the-bedford/suite-1333.png" alt="Suite 1333 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
@@ -324,7 +334,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1306" data-closing="2026" onclick="openModal('13-17fn')">
+    <div class="fp-card" data-sqft="1306" data-closing="2026" data-price="3501900" onclick="openModal('13-17fn')">
       <div class="fp-image"><img src="images/50-scollard/suite-13-17fn.jpg" alt="Suite 13-17 FN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -335,7 +345,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1295" data-closing="2028" id="bedford-1295t" onclick="openModal('bedford-1295t')">
+    <div class="fp-card" data-sqft="1295" data-closing="2028" data-price="2849900" id="bedford-1295t" onclick="openModal('bedford-1295t')">
       <div class="fp-image"><img src="images/the-bedford/suite-1295t.png" alt="Suite 1295T Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">The Bedford</div>
@@ -346,7 +356,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1293" data-closing="2026" onclick="openModal('20-22bn')">
+    <div class="fp-card" data-sqft="1293" data-closing="2026" data-price="3675900" onclick="openModal('20-22bn')">
       <div class="fp-image"><img src="images/50-scollard/suite-20-22bn.jpg" alt="Suite 20-22 BN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -357,7 +367,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="1209" data-closing="2026" onclick="openModal('6-7jn')">
+    <div class="fp-card" data-sqft="1209" data-closing="2026" data-price="3341900" onclick="openModal('6-7jn')">
       <div class="fp-image"><img src="images/50-scollard/suite-6-7jn.jpg" alt="Suite 6-7 JN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
@@ -368,7 +378,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="987" data-closing="2026" onclick="openModal('yv42b')">
+    <div class="fp-card" data-sqft="987" data-closing="2026" data-price="1174530" onclick="openModal('yv42b')">
       <div class="fp-image"><img src="images/yorkville-42b.png" alt="Yorkville 42B" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
@@ -380,7 +390,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="792" data-closing="2026" onclick="openModal('yv35')">
+    <div class="fp-card" data-sqft="792" data-closing="2026" data-price="942480" onclick="openModal('yv35')">
       <div class="fp-image"><img src="images/yorkville-35.png" alt="Yorkville 35" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
@@ -392,7 +402,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <div class="fp-card" data-sqft="782" data-closing="2026" onclick="openModal('yv32')">
+    <div class="fp-card" data-sqft="782" data-closing="2026" data-price="930580" onclick="openModal('yv32')">
       <div class="fp-image"><img src="images/yorkville-32.png" alt="Yorkville 32" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">11 Yorkville</div>
@@ -576,6 +586,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   var activeClosing = 'all';
   var activeSqft = 'all';
+  var activePrice = 'all';
 
   function applyFilters() {
     document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
@@ -586,7 +597,13 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       if (activeSqft === '0-1000') showSqft = sqft < 1000;
       else if (activeSqft === '1000-2000') showSqft = sqft >= 1000 && sqft < 2000;
       else if (activeSqft === '2000-99999') showSqft = sqft >= 2000;
-      card.style.display = (showClosing && showSqft) ? '' : 'none';
+      var price = parseInt(card.dataset.price) || 0;
+      var showPrice = true;
+      if (activePrice !== 'all' && price > 0) {
+        var range = activePrice.split('-');
+        showPrice = price >= parseInt(range[0]) && price < parseInt(range[1]);
+      }
+      card.style.display = (showClosing && showSqft && showPrice) ? '' : 'none';
     });
   }
 
@@ -594,9 +611,20 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     var params = new URLSearchParams();
     if (activeSqft !== 'all') params.set('size', activeSqft);
     if (activeClosing !== 'all') params.set('closing', activeClosing);
+    if (activePrice !== 'all') params.set('price', activePrice);
     var qs = params.toString();
     history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
   }
+
+  document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activePrice = btn.dataset.priceFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
 
   document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -630,7 +658,12 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       var btn = document.querySelector('#closing-filters .fp-filter-btn[data-closing-filter="' + closing + '"]');
       if (btn) { document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeClosing = closing; }
     }
-    if (size || closing) applyFilters();
+    var price = params.get('price');
+    if (price) {
+      var btn = document.querySelector('#price-filters .fp-filter-btn[data-price-filter="' + price + '"]');
+      if (btn) { document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activePrice = price; }
+    }
+    if (size || closing || price) applyFilters();
   })();
 </script>
 <script src="../js/mobile-filters.js"></script>

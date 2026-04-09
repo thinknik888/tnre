@@ -199,13 +199,20 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <!-- FLOOR PLANS -->
 <div class="fp-section" id="floor-plans">
   <h2>Available Suites</h2>
-  <div class="filter-bar">
+  <div class="filter-bar" id="sqft-filters">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="under2000">Under 2,000 sq ft</button>
     <button class="filter-btn" data-filter="2000to2500">2,000 &ndash; 2,500 sq ft</button>
   </div>
+  <div class="filter-bar" id="price-filters">
+    <button class="filter-btn active" data-price-filter="all">All</button>
+    <button class="filter-btn" data-price-filter="0-2000000">Under $2M</button>
+    <button class="filter-btn" data-price-filter="2000000-3000000">$2M &ndash; $3M</button>
+    <button class="filter-btn" data-price-filter="3000000-4000000">$3M &ndash; $4M</button>
+    <button class="filter-btn" data-price-filter="4000000-999999999">$4M+</button>
+  </div>
 
-  <div class="fp-row" data-sqft="1741" onclick="openModal('aq-306')">
+  <div class="fp-row" data-sqft="1741" data-price="2495000" onclick="openModal('aq-306')">
     <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_306_floorplan.jpg" alt="Suite 306" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">Aqualuna</div>
@@ -218,7 +225,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="fp-row" data-sqft="2313" onclick="openModal('aq-815')">
+  <div class="fp-row" data-sqft="2313" data-price="3599000" onclick="openModal('aq-815')">
     <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_815_floorplan.jpg" alt="Suite 815" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">Aqualuna</div>
@@ -231,7 +238,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="fp-row" data-sqft="2404" onclick="openModal('aq-822')">
+  <div class="fp-row" data-sqft="2404" data-price="4150000" onclick="openModal('aq-822')">
     <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_822_floorplan.jpg" alt="Suite 822" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">Aqualuna</div>
@@ -244,7 +251,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="fp-row" data-sqft="2206" onclick="openModal('aq-1107')">
+  <div class="fp-row" data-sqft="2206" data-price="3450000" onclick="openModal('aq-1107')">
     <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_1107_floorplan.jpg" alt="Suite 1107 Floor Plan" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">Aqualuna</div>
@@ -257,7 +264,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="fp-row" data-sqft="2258" onclick="openModal('aq-lph03')">
+  <div class="fp-row" data-sqft="2258" data-price="4250000" onclick="openModal('aq-lph03')">
     <div class="fp-row-image"><img src="../neighbourhoods/images/aqualuna_lph03_floorplan.jpg" alt="Suite LPH03" loading="lazy" /></div>
     <div class="fp-row-details">
       <div class="fp-label">Aqualuna</div>
@@ -397,27 +404,71 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   /* Filter logic */
   (function() {
-    var btns = document.querySelectorAll('.filter-btn');
+    var activeSqft = 'all';
+    var activePrice = 'all';
     var rows = document.querySelectorAll('.fp-row[data-sqft]');
-    btns.forEach(function(btn) {
+
+    function applyFilters() {
+      rows.forEach(function(row) {
+        var sqft = parseInt(row.getAttribute('data-sqft'), 10);
+        var showSqft = true;
+        if (activeSqft === 'under2000') showSqft = sqft < 2000;
+        else if (activeSqft === '2000to2500') showSqft = (sqft >= 2000 && sqft <= 2500);
+
+        var price = parseInt(row.getAttribute('data-price'), 10) || 0;
+        var showPrice = true;
+        if (activePrice !== 'all' && price > 0) {
+          var range = activePrice.split('-');
+          showPrice = price >= parseInt(range[0]) && price < parseInt(range[1]);
+        }
+
+        row.style.display = (showSqft && showPrice) ? '' : 'none';
+      });
+    }
+
+    function updateUrl() {
+      var params = new URLSearchParams();
+      if (activeSqft !== 'all') params.set('size', activeSqft);
+      if (activePrice !== 'all') params.set('price', activePrice);
+      var qs = params.toString();
+      history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+    }
+
+    var sqftBtns = document.querySelectorAll('#sqft-filters .filter-btn');
+    sqftBtns.forEach(function(btn) {
       btn.addEventListener('click', function() {
-        btns.forEach(function(b) { b.classList.remove('active'); });
+        sqftBtns.forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        var filter = btn.getAttribute('data-filter');
-        rows.forEach(function(row) {
-          var sqft = parseInt(row.getAttribute('data-sqft'), 10);
-          if (filter === 'all') {
-            row.style.display = '';
-          } else if (filter === 'under2000') {
-            row.style.display = sqft < 2000 ? '' : 'none';
-          } else if (filter === '2000to2500') {
-            row.style.display = (sqft >= 2000 && sqft <= 2500) ? '' : 'none';
-          } else {
-            row.style.display = '';
-          }
-        });
+        activeSqft = btn.getAttribute('data-filter');
+        applyFilters();
+        updateUrl();
       });
     });
+
+    var priceBtns = document.querySelectorAll('#price-filters .filter-btn');
+    priceBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        priceBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        activePrice = btn.getAttribute('data-price-filter');
+        applyFilters();
+        updateUrl();
+      });
+    });
+
+    /* URL restore */
+    var params = new URLSearchParams(window.location.search);
+    var size = params.get('size');
+    if (size) {
+      var btn = document.querySelector('#sqft-filters .filter-btn[data-filter="' + size + '"]');
+      if (btn) { sqftBtns.forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeSqft = size; }
+    }
+    var price = params.get('price');
+    if (price) {
+      var btn = document.querySelector('#price-filters .filter-btn[data-price-filter="' + price + '"]');
+      if (btn) { priceBtns.forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activePrice = price; }
+    }
+    if (size || price) applyFilters();
   })();
 
   /* Keyboard nav */
