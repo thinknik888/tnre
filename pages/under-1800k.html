@@ -110,15 +110,15 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
 
   <div class="filter-row">
-    <span class="filter-label">Building</span>
+    <span class="filter-label">Neighbourhood</span>
     <div class="fp-filters" id="building-filters">
       <button class="fp-filter-btn active" data-building-filter="all">All</button>
-      <button class="fp-filter-btn" data-building-filter="XO2">XO2</button>
-      <button class="fp-filter-btn" data-building-filter="Universal City East">Universal City East</button>
-      <button class="fp-filter-btn" data-building-filter="Exhale Residences">Exhale Residences</button>
-      <button class="fp-filter-btn" data-building-filter="AKRA">AKRA</button>
-      <button class="fp-filter-btn" data-building-filter="South Forest Hill">South Forest Hill</button>
-      <button class="fp-filter-btn" data-building-filter="101 Spadina">101 Spadina</button>
+      <button class="fp-filter-btn" data-building-filter="Liberty Village">Liberty Village</button>
+      <button class="fp-filter-btn" data-building-filter="Pickering GO">Pickering GO</button>
+      <button class="fp-filter-btn" data-building-filter="Dixie & Lakeshore">Dixie &amp; Lakeshore</button>
+      <button class="fp-filter-btn" data-building-filter="Yorkville">Yorkville</button>
+      <button class="fp-filter-btn" data-building-filter="Forest Hill">Forest Hill</button>
+      <button class="fp-filter-btn" data-building-filter="CN Tower">CN Tower</button>
     </div>
   </div>
   <div class="filter-row">
@@ -1746,8 +1746,12 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
       var show = true;
 
-      // Building filter
-      if (activeBuilding !== 'all' && card.dataset.building !== activeBuilding) show = false;
+      // Neighbourhood filter (maps neighbourhood names to data-building values)
+      if (activeBuilding !== 'all') {
+        var nbMap = { 'Liberty Village': 'XO2', 'Pickering GO': 'Universal City East', 'Dixie & Lakeshore': 'Exhale Residences', 'Yorkville': 'AKRA', 'Forest Hill': 'South Forest Hill', 'CN Tower': '101 Spadina' };
+        var matchBuilding = nbMap[activeBuilding] || activeBuilding;
+        if (card.dataset.building !== matchBuilding) show = false;
+      }
 
       // Closing filter
       if (activeClosing !== 'all') {
