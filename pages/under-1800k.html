@@ -33,9 +33,11 @@
     .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
     .filter-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .filter-row:last-child { margin-bottom: 2rem; }
-    .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 80px; }
-    .filter-select { font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; padding: 0.5rem 2.2rem 0.5rem 1rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a8a84' fill='none' stroke-width='1.2'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; transition: border-color 0.2s; }
-    .filter-select:hover, .filter-select:focus { border-color: var(--gold); outline: none; }
+    .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 110px; }
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .fp-card { background: var(--white); transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
     .fp-card:hover { background: var(--gold-pale); }
@@ -109,46 +111,45 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   <div class="filter-row">
     <span class="filter-label">Building</span>
-    <select class="filter-select" id="filter-building">
-      <option value="all">All Buildings</option>
-      <option value="XO2">XO2 (Liberty Village)</option>
-      <option value="Universal City East">Universal City East (Pickering)</option>
-      <option value="Exhale Residences">Exhale Residences (Dixie &amp; Lakeshore)</option>
-      <option value="50 Scollard">50 Scollard (Yorkville)</option>
-      <option value="AKRA">AKRA (Yorkville)</option>
-      <option value="South Forest Hill">South Forest Hill (Forest Hill)</option>
-      <option value="101 Spadina">101 Spadina (CN Tower)</option>
-    </select>
+    <div class="fp-filters" id="building-filters">
+      <button class="fp-filter-btn active" data-building-filter="all">All</button>
+      <button class="fp-filter-btn" data-building-filter="XO2">XO2</button>
+      <button class="fp-filter-btn" data-building-filter="Universal City East">Universal City East</button>
+      <button class="fp-filter-btn" data-building-filter="Exhale Residences">Exhale Residences</button>
+      <button class="fp-filter-btn" data-building-filter="AKRA">AKRA</button>
+      <button class="fp-filter-btn" data-building-filter="South Forest Hill">South Forest Hill</button>
+      <button class="fp-filter-btn" data-building-filter="101 Spadina">101 Spadina</button>
+    </div>
   </div>
   <div class="filter-row">
-    <span class="filter-label">Closing</span>
-    <select class="filter-select" id="filter-closing">
-      <option value="all">All</option>
-      <option value="2026">2026</option>
-      <option value="2027">2027</option>
-      <option value="2028">2028</option>
-      <option value="2029+">2029+</option>
-    </select>
+    <span class="filter-label">Closing Date</span>
+    <div class="fp-filters" id="closing-filters">
+      <button class="fp-filter-btn active" data-closing-filter="all">Show All</button>
+      <button class="fp-filter-btn" data-closing-filter="2026">2026</button>
+      <button class="fp-filter-btn" data-closing-filter="2027">2027</button>
+      <button class="fp-filter-btn" data-closing-filter="2028">2028</button>
+      <button class="fp-filter-btn" data-closing-filter="2029+">2029+</button>
+    </div>
   </div>
   <div class="filter-row">
-    <span class="filter-label">Size</span>
-    <select class="filter-select" id="filter-size">
-      <option value="all">All Sizes</option>
-      <option value="0-500">Under 500 sq ft</option>
-      <option value="500-700">500 – 700 sq ft</option>
-      <option value="700-900">700 – 900 sq ft</option>
-      <option value="900-99999">900+ sq ft</option>
-    </select>
+    <span class="filter-label">Square Footage</span>
+    <div class="fp-filters" id="sqft-filters">
+      <button class="fp-filter-btn active" data-filter="all">All</button>
+      <button class="fp-filter-btn" data-filter="0-500">Under 500 sq ft</button>
+      <button class="fp-filter-btn" data-filter="500-700">500 &ndash; 700 sq ft</button>
+      <button class="fp-filter-btn" data-filter="700-900">700 &ndash; 900 sq ft</button>
+      <button class="fp-filter-btn" data-filter="900-99999">900+ sq ft</button>
+    </div>
   </div>
   <div class="filter-row">
     <span class="filter-label">Price</span>
-    <select class="filter-select" id="filter-price">
-      <option value="all">All Prices</option>
-      <option value="0-600000">Under $600K</option>
-      <option value="600000-900000">$600K – $900K</option>
-      <option value="900000-1200000">$900K – $1.2M</option>
-      <option value="1200000-1800000">$1.2M – $1.8M</option>
-    </select>
+    <div class="fp-filters" id="price-filters">
+      <button class="fp-filter-btn active" data-price-filter="all">All</button>
+      <button class="fp-filter-btn" data-price-filter="0-600000">Under $600K</button>
+      <button class="fp-filter-btn" data-price-filter="600000-900000">$600K &ndash; $900K</button>
+      <button class="fp-filter-btn" data-price-filter="900000-1200000">$900K &ndash; $1.2M</button>
+      <button class="fp-filter-btn" data-price-filter="1200000-1800000">$1.2M &ndash; $1.8M</button>
+    </div>
   </div>
   <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:2rem; font-style:italic;">All suites qualify for the <span style="color:var(--gold);">HST new housing rebate</span>. Rebate price = listed price × 0.87.</div>
 
@@ -1733,47 +1734,41 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
 <script>
 (function() {
-  var cards = document.querySelectorAll('#fp-grid .fp-card');
+  var activeBuilding = 'all';
+  var activeClosing = 'all';
+  var activeSqft = 'all';
+  var activePrice = 'all';
   var noResults = document.getElementById('no-results');
   var countEl = document.getElementById('visible-count');
-  var fBuilding = document.getElementById('filter-building');
-  var fClosing = document.getElementById('filter-closing');
-  var fSize = document.getElementById('filter-size');
-  var fPrice = document.getElementById('filter-price');
 
   function applyFilters() {
-    var building = fBuilding.value;
-    var closing = fClosing.value;
-    var size = fSize.value;
-    var price = fPrice.value;
     var visible = 0;
-
-    cards.forEach(function(card) {
+    document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
       var show = true;
 
       // Building filter
-      if (building !== 'all' && card.dataset.building !== building) show = false;
+      if (activeBuilding !== 'all' && card.dataset.building !== activeBuilding) show = false;
 
       // Closing filter
-      if (closing !== 'all') {
+      if (activeClosing !== 'all') {
         var c = parseInt(card.dataset.closing);
-        if (closing === '2029+') {
+        if (activeClosing === '2029+') {
           if (c < 2029) show = false;
         } else {
-          if (c !== parseInt(closing)) show = false;
+          if (c !== parseInt(activeClosing)) show = false;
         }
       }
 
       // Size filter
-      if (size !== 'all') {
-        var parts = size.split('-');
+      if (activeSqft !== 'all') {
+        var parts = activeSqft.split('-');
         var sqft = parseInt(card.dataset.sqft);
         if (sqft < parseInt(parts[0]) || sqft >= parseInt(parts[1])) show = false;
       }
 
       // Price filter
-      if (price !== 'all') {
-        var parts = price.split('-');
+      if (activePrice !== 'all') {
+        var parts = activePrice.split('-');
         var p = parseInt(card.dataset.price);
         if (p < parseInt(parts[0]) || p >= parseInt(parts[1])) show = false;
       }
@@ -1786,12 +1781,84 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     countEl.textContent = visible + ' floor plan' + (visible !== 1 ? 's' : '');
   }
 
-  fBuilding.addEventListener('change', applyFilters);
-  fClosing.addEventListener('change', applyFilters);
-  fSize.addEventListener('change', applyFilters);
-  fPrice.addEventListener('change', applyFilters);
+  function updateUrl() {
+    var params = new URLSearchParams();
+    if (activeBuilding !== 'all') params.set('building', activeBuilding);
+    if (activeClosing !== 'all') params.set('closing', activeClosing);
+    if (activeSqft !== 'all') params.set('size', activeSqft);
+    if (activePrice !== 'all') params.set('price', activePrice);
+    var qs = params.toString();
+    history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+  }
+
+  document.querySelectorAll('#building-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#building-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeBuilding = btn.dataset.buildingFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+
+  document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeClosing = btn.dataset.closingFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+
+  document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeSqft = btn.dataset.filter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+
+  document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activePrice = btn.dataset.priceFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+
+  // Read URL params on load
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var building = params.get('building');
+    if (building) {
+      var btn = document.querySelector('#building-filters .fp-filter-btn[data-building-filter="' + building + '"]');
+      if (btn) { document.querySelectorAll('#building-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeBuilding = building; }
+    }
+    var closing = params.get('closing');
+    if (closing) {
+      var btn = document.querySelector('#closing-filters .fp-filter-btn[data-closing-filter="' + closing + '"]');
+      if (btn) { document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeClosing = closing; }
+    }
+    var size = params.get('size');
+    if (size) {
+      var btn = document.querySelector('#sqft-filters .fp-filter-btn[data-filter="' + size + '"]');
+      if (btn) { document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeSqft = size; }
+    }
+    var price = params.get('price');
+    if (price) {
+      var btn = document.querySelector('#price-filters .fp-filter-btn[data-price-filter="' + price + '"]');
+      if (btn) { document.querySelectorAll('#price-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activePrice = price; }
+    }
+    if (building || closing || size || price) applyFilters();
+  })();
 })();
 </script>
+<script src="../js/mobile-filters.js"></script>
 <script src="../js/save.js"></script>
 <script src="../js/register.js"></script>
 <script src="../js/sofia.js"></script>
