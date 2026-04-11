@@ -11,9 +11,11 @@
   // Inject styles
   var style = document.createElement('style');
   style.textContent = '\
-    .sofia-bubble{position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:#1b2d4f;cursor:pointer;z-index:9999;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform 0.2s;}\
+    .sofia-bubble{position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:#1b2d4f;cursor:pointer;z-index:9999;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform 0.2s;overflow:hidden;}\
     .sofia-bubble:hover{transform:scale(1.05);}\
-    .sofia-bubble svg{width:26px;height:26px;fill:none;stroke:#f0ece4;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}\
+    .sofia-bubble img{width:100%;height:100%;object-fit:cover;}\
+    .sofia-promo{position:fixed;bottom:92px;right:24px;background:#fff;color:#1b2d4f;font-family:"Outfit",sans-serif;font-size:0.82rem;padding:0.6rem 1rem;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12);z-index:9999;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;pointer-events:none;max-width:240px;}\
+    .sofia-promo.visible{opacity:1;transform:translateY(0);pointer-events:auto;}\
     .sofia-panel{position:fixed;bottom:96px;right:24px;width:360px;height:500px;background:#fff;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.18);z-index:9998;display:none;flex-direction:column;overflow:hidden;opacity:0;transition:opacity 0.2s;}\
     .sofia-panel.open{display:flex;opacity:1;}\
     .sofia-header{background:#1b2d4f;padding:1rem 1.25rem;flex-shrink:0;}\
@@ -34,6 +36,7 @@
     @media(max-width:768px){\
       .sofia-panel{bottom:0;right:0;left:0;width:100%;height:60vh;border-radius:12px 12px 0 0;}\
       .sofia-bubble{bottom:16px;right:16px;}\
+      .sofia-promo{bottom:84px;right:16px;}\
     }\
   ';
   document.head.appendChild(style);
@@ -41,9 +44,29 @@
   // Create bubble
   var bubble = document.createElement('div');
   bubble.className = 'sofia-bubble';
-  bubble.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
-  bubble.addEventListener('click', toggleChat);
+  bubble.innerHTML = '<img src="/images/sofia-avatar.jpg" alt="Sofia" />';
+  bubble.addEventListener('click', function() { dismissPromo(); toggleChat(); });
   document.body.appendChild(bubble);
+
+  // Proactive message bubble
+  var promo = document.createElement('div');
+  promo.className = 'sofia-promo';
+  promo.textContent = '\ud83d\udc4b Looking to rent or buy? I can help.';
+  promo.addEventListener('click', function() { dismissPromo(); toggleChat(); });
+  document.body.appendChild(promo);
+
+  var promoTimer, promoDismissTimer;
+  function dismissPromo() {
+    clearTimeout(promoTimer);
+    clearTimeout(promoDismissTimer);
+    promo.classList.remove('visible');
+  }
+  promoTimer = setTimeout(function() {
+    if (!isOpen) {
+      promo.classList.add('visible');
+      promoDismissTimer = setTimeout(dismissPromo, 8000);
+    }
+  }, 4000);
 
   function toggleChat() {
     if (!chatCreated) createPanel();
