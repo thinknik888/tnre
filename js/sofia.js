@@ -13,7 +13,7 @@
   style.textContent = '\
     .sofia-bubble{position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:#1b2d4f;cursor:pointer;z-index:9999;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform 0.2s;overflow:hidden;}\
     .sofia-bubble:hover{transform:scale(1.05);}\
-    .sofia-bubble img{width:100%;height:100%;object-fit:cover;}\
+    .sofia-bubble img{width:100%;height:100%;object-fit:cover;object-position:center top;}\
     .sofia-promo{position:fixed;bottom:92px;right:24px;background:#fff;color:#1b2d4f;font-family:"Outfit",sans-serif;font-size:0.82rem;padding:0.6rem 1rem;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12);z-index:9999;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;pointer-events:none;max-width:240px;}\
     .sofia-promo.visible{opacity:1;transform:translateY(0);pointer-events:auto;}\
     .sofia-panel{position:fixed;bottom:96px;right:24px;width:360px;height:500px;background:#fff;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.18);z-index:9998;display:none;flex-direction:column;overflow:hidden;opacity:0;transition:opacity 0.2s;}\
