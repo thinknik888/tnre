@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sloane — Yorkdale | RentalsAround</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f2eb;
+      --cream-dark: #ede9df;
+      --gold: #b89a5a;
+      --gold-light: #d4b97a;
+      --gold-pale: #f0e4c4;
+      --ink: #1c1a17;
+      --ink-muted: #6b6557;
+      --border: #ddd8cc;
+      --charcoal: #1c1a17;
+    }
+
+    html, body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,242,235,0.97);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 400;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nav-logo span { color: var(--gold); font-style: italic; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links .nav-cta {
+      background: var(--gold);
+      color: #fff;
+      padding: 9px 20px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+    }
+
+    .nav-links .nav-cta:hover { background: var(--gold-light); color: #fff; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav { padding: 0 24px; }
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 92vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/sloane/3450-Dufferin-Club-House.jpeg') center center / cover no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,12,8,0.85) 0%, rgba(15,12,8,0.3) 55%, rgba(15,12,8,0.05) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 80px 72px;
+      max-width: 860px;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+
+    .hero-headline em { font-style: italic; color: var(--gold-light); }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 34px;
+      transition: background 0.25s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 34px;
+      border: 1px solid rgba(255,255,255,0.4);
+      transition: border-color 0.25s;
+    }
+
+    .btn-secondary:hover { border-color: var(--gold-light); }
+
+    /* ─── PROMO BAR ─── */
+    .promo-bar {
+      background: var(--charcoal);
+      overflow: hidden;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(184,154,90,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-track {
+      display: flex;
+      animation: scrollPromo 32s linear infinite;
+      white-space: nowrap;
+    }
+
+    .promo-track:hover { animation-play-state: paused; }
+
+    @keyframes scrollPromo {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .promo-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 36px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .promo-dot { display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .promo-highlight { color: var(--gold-light); font-weight: 500; }
+
+    /* ─── STATS ─── */
+    .stats-bar {
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 48px 24px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ─── SECTION COMMON ─── */
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .section-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    /* ─── PERKS ─── */
+    .perks-section {
+      padding: 88px 80px;
+      background: var(--cream);
+      position: relative;
+      z-index: 1;
+    }
+
+    .perks-header { margin-bottom: 48px; }
+
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .perk-card {
+      background: var(--cream);
+      padding: 32px 28px;
+      transition: background 0.3s;
+    }
+
+    .perk-card:hover { background: var(--cream-dark); }
+
+    .perk-card.featured {
+      background: var(--charcoal);
+      grid-column: span 3;
+      padding: 44px 48px;
+    }
+
+    .perk-card.featured:hover { background: #252320; }
+
+    .perk-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+
+    .perk-card.featured .perk-number { opacity: 1; }
+
+    .perk-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 3px 8px;
+      margin-bottom: 12px;
+    }
+
+    .perk-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .perk-card.featured .perk-title { color: #f5f2eb; font-size: 22px; }
+
+    .perk-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-muted);
+    }
+
+    .perk-card.featured .perk-body { color: #9a9186; }
+
+    /* ─── PHOTO GRID ─── */
+    .photo-grid-section {
+      padding: 88px 80px;
+      background: var(--cream);
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo-grid-header { margin-bottom: 48px; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: auto;
+      gap: 10px;
+    }
+
+    .photo-grid-item { position: relative; overflow: hidden; }
+    .photo-grid-item:nth-child(1) { grid-column: 1 / 3; }
+    .photo-grid-item:nth-child(6) { grid-column: 3 / 5; }
+
+    .photo-grid-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .photo-grid-item:nth-child(1) img,
+    .photo-grid-item:nth-child(6) img { height: 360px; }
+
+    .photo-grid-item:hover img { transform: scale(1.04); }
+
+    .photo-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(15,12,8,0.72) 0%, transparent 100%);
+      padding: 28px 16px 14px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ─── SUITE INTERIORS ─── */
+    .interiors-section {
+      background: var(--cream-dark);
+      position: relative;
+      z-index: 1;
+      padding: 88px 80px;
+    }
+
+    .interiors-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .features-list {
+      margin-top: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 24px;
+      list-style: none;
+    }
+
+    .features-list li {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    .features-list li::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 1px;
+      background: var(--gold);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .features-note { font-size: 10px; color: var(--ink-muted); margin-top: 16px; opacity: 0.6; }
+
+    .interiors-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
+
+    .interiors-gallery img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      cursor: zoom-in;
+    }
+
+    .interiors-gallery img:hover { transform: scale(1.02); }
+    .interiors-gallery img:nth-child(1) { grid-column: 1 / 3; height: 340px; }
+    .interiors-gallery img:nth-child(2) { grid-column: 3; height: 340px; }
+    .interiors-gallery img:nth-child(3) { grid-column: 4; height: 340px; }
+    .interiors-gallery img:nth-child(4) { grid-column: 1; }
+    .interiors-gallery img:nth-child(5) { grid-column: 2; }
+    .interiors-gallery img:nth-child(6) { grid-column: 3 / 5; }
+
+    /* ─── AMENITIES GRID ─── */
+    .amenities-section {
+      padding: 88px 80px;
+      background: var(--cream-dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    .amenities-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .amenity-tile { position: relative; overflow: hidden; }
+    .amenity-tile:nth-child(odd) { grid-column: span 2; }
+
+    .amenity-tile img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .amenity-tile:nth-child(odd) img { height: 290px; }
+    .amenity-tile:hover img { transform: scale(1.05); }
+
+    .amenity-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(15,12,8,0.8) 0%, transparent 100%);
+      padding: 36px 18px 16px;
+    }
+
+    .amenity-name { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; display: block; margin-bottom: 3px; }
+    .amenity-sub { font-size: 10px; font-weight: 300; color: var(--gold-light); letter-spacing: 0.06em; }
+
+    /* ─── PRICING ─── */
+    .pricing-section {
+      padding: 88px 80px;
+      background: var(--cream);
+      position: relative;
+      z-index: 1;
+    }
+
+    .pricing-header { margin-bottom: 12px; }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .pricing-note strong { color: var(--gold); font-weight: 500; }
+    .pricing-note a { color: var(--gold); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .pricing-card {
+      background: var(--cream);
+      padding: 36px 32px;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .pricing-card:hover { background: var(--cream-dark); }
+    .pricing-card.featured { background: var(--charcoal); }
+    .pricing-card.featured:hover { background: #252320; }
+
+    .featured-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 3px 8px;
+      margin-bottom: 14px;
+    }
+
+    .unit-type { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
+    .pricing-card.featured .unit-type { color: #fff; }
+
+    .unit-size { font-size: 10px; letter-spacing: 0.1em; color: var(--ink-muted); margin-bottom: 24px; }
+    .pricing-card.featured .unit-size { color: rgba(255,255,255,0.4); }
+
+    .price-row { display: flex; align-items: flex-end; gap: 14px; margin-bottom: 6px; }
+
+    .price-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2px; }
+    .pricing-card.featured .price-label { color: rgba(255,255,255,0.5); }
+    .pricing-card.featured .price-listed { color: rgba(255,255,255,0.8); }
+
+    .price-listed { font-size: 14px; color: var(--ink); font-weight: 400; }
+
+    .price-effective { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 400; color: var(--gold); line-height: 1; }
+    .pricing-card.featured .price-effective { color: var(--gold-light); }
+
+    .free-months-tag {
+      display: inline-block;
+      background: var(--gold-pale);
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin: 10px 0 18px;
+    }
+
+    .pricing-card.featured .free-months-tag { background: rgba(184,154,90,0.15); }
+
+    .unit-features { list-style: none; margin-bottom: 24px; }
+
+    .unit-feature {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+    }
+
+    .pricing-card.featured .unit-feature { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.07); }
+    .unit-feature::before { content: '–'; color: var(--gold); flex-shrink: 0; }
+
+    .inquire-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: transparent;
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px;
+      border: 1px solid var(--border);
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .inquire-btn:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+    .pricing-card.featured .inquire-btn { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.15); }
+    .pricing-card.featured .inquire-btn:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+    .aeroplan-line { font-size: 10px; color: var(--gold); letter-spacing: 0.06em; margin-bottom: 14px; font-weight: 400; }
+    .pricing-card.featured .aeroplan-line { color: var(--gold-light); }
+    .pricing-disclaimer { font-size: 10px; color: var(--ink-muted); margin-top: 16px; }
+
+    /* ─── CTA STRIP ─── */
+    .cta-strip {
+      background: var(--gold);
+      padding: 24px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    .cta-strip-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      font-style: italic;
+    }
+
+    .cta-strip-btn {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 28px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .cta-strip-btn:hover { background: rgba(255,255,255,0.25); }
+
+    /* ─── BOOKING ─── */
+    .booking-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--charcoal);
+      position: relative;
+      z-index: 1;
+    }
+
+    .booking-left {
+      padding: 88px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .booking-left .section-eyebrow { color: var(--gold-light); }
+    .booking-left .section-eyebrow::before { background: var(--gold-light); }
+    .booking-left .section-title { color: #fff; }
+    .booking-left .section-sub { color: rgba(255,255,255,0.5); }
+
+    .booking-tel {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      text-decoration: none;
+      margin-top: 36px;
+      transition: color 0.2s;
+    }
+
+    .booking-tel:hover { color: var(--gold); }
+    .booking-tel-note { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 6px; }
+
+    .booking-address { margin-top: 28px; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.8; }
+
+    .booking-right {
+      padding: 88px 72px;
+      border-left: 1px solid rgba(221,216,204,0.1);
+    }
+
+    .form-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: #fff; margin-bottom: 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 14px; }
+
+    .form-group label {
+      display: block;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 13px 15px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: #fff;
+      outline: none;
+      appearance: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input::placeholder { color: rgba(255,255,255,0.2); }
+    .form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+    .form-group select option { background: #2a2520; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px;
+      border: none;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.25s;
+    }
+
+    .form-submit:hover { background: var(--gold-light); }
+
+    .form-disclaimer { font-size: 10px; color: rgba(255,255,255,0.18); margin-top: 12px; line-height: 1.6; text-align: center; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #111;
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(184,154,90,0.12);
+      flex-wrap: wrap;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-logo span { color: var(--gold); font-style: italic; }
+    .footer-note { font-size: 10px; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
+      cursor: pointer;
+      font-weight: 300;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: #fff; }
+    .photo-grid-item img, .amenity-tile img, .interiors-gallery img { cursor: zoom-in; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-content { padding: 0 40px 56px; }
+      .photo-grid-section, .amenities-section, .pricing-section, .perks-section { padding: 72px 40px; }
+      .interiors-section { padding: 64px 40px; }
+      .interiors-top { grid-template-columns: 1fr; gap: 32px; }
+      .interiors-gallery { grid-template-columns: repeat(2, 1fr); }
+      .interiors-gallery img:nth-child(1) { grid-column: 1 / 3; }
+      .interiors-gallery img:nth-child(2), .interiors-gallery img:nth-child(3) { grid-column: span 1; height: 220px; }
+      .booking-section { grid-template-columns: 1fr; }
+      .booking-left { padding: 64px 40px 40px; }
+      .booking-right { padding: 40px 40px 64px; border-left: none; border-top: 1px solid rgba(221,216,204,0.1); }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      .amenity-tile:nth-child(odd) { grid-column: span 1; }
+      .perks-grid { grid-template-columns: 1fr 1fr; }
+      .perk-card.featured { grid-column: span 2; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 24px 48px; }
+      .hero-actions { flex-direction: column; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .photo-grid-section, .amenities-section, .pricing-section, .perks-section { padding: 56px 24px; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid-item:nth-child(n) { grid-column: 1; }
+      .amenities-grid { grid-template-columns: 1fr; }
+      .amenity-tile:nth-child(n) { grid-column: 1; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .booking-left { padding: 48px 24px 32px; }
+      .booking-right { padding: 32px 24px 56px; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-strip { padding: 24px; }
+      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+      .perks-grid { grid-template-columns: 1fr; }
+      .perk-card.featured { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">rentals<span>around</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Neighbourhoods</a></li>
+      <li><a href="elm-ledbury.html">Elm &amp; Ledbury</a></li>
+      <li><a href="#booking" class="nav-cta">Book a Showing</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Sloane &nbsp;&middot;&nbsp; Yorkdale, Toronto</p>
+      <h1 class="hero-headline">Resort Living.<br><em>At Yorkdale.</em></h1>
+      <p class="hero-sub">Three towers. Infinite amenities. Steps from Yorkdale Shopping Centre.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Book a Showing</a>
+        <a href="#pricing" class="btn-secondary">View Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROMO BAR ─── -->
+  <div class="promo-bar">
+    <div class="promo-track">
+      <span class="promo-item"><span class="promo-dot"></span><span class="promo-highlight">Up to 2 Months Free</span> on select suites</span>
+      <span class="promo-item"><span class="promo-dot"></span><span class="promo-highlight">Up to 150,000 Aeroplan Points</span> on move-in</span>
+      <span class="promo-item"><span class="promo-dot"></span>Rogers Wi-Fi Included &mdash; 10 Years Free</span>
+      <span class="promo-item"><span class="promo-dot"></span>Cleveland Clinic Virtual Healthcare</span>
+      <span class="promo-item"><span class="promo-dot"></span>5-min walk to Yorkdale Shopping Centre</span>
+      <span class="promo-item"><span class="promo-dot"></span>Pet Spa &amp; Private Dog Run</span>
+      <span class="promo-item"><span class="promo-dot"></span>On-Site Montessori Daycare</span>
+      <span class="promo-item"><span class="promo-dot"></span>24-Hour Concierge</span>
+      <span class="promo-item"><span class="promo-dot"></span><span class="promo-highlight">Up to 2 Months Free</span> on select suites</span>
+      <span class="promo-item"><span class="promo-dot"></span><span class="promo-highlight">Up to 150,000 Aeroplan Points</span> on move-in</span>
+      <span class="promo-item"><span class="promo-dot"></span>Rogers Wi-Fi Included &mdash; 10 Years Free</span>
+      <span class="promo-item"><span class="promo-dot"></span>Cleveland Clinic Virtual Healthcare</span>
+      <span class="promo-item"><span class="promo-dot"></span>5-min walk to Yorkdale Shopping Centre</span>
+      <span class="promo-item"><span class="promo-dot"></span>Pet Spa &amp; Private Dog Run</span>
+      <span class="promo-item"><span class="promo-dot"></span>On-Site Montessori Daycare</span>
+      <span class="promo-item"><span class="promo-dot"></span>24-Hour Concierge</span>
+    </div>
+  </div>
+
+  <!-- ─── STATS ─── -->
+  <div class="stats-bar reveal">
+    <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Towers</div></div>
+    <div class="stat-item"><div class="stat-number">30</div><div class="stat-label">Storeys (Tallest)</div></div>
+    <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Amenities</div></div>
+    <div class="stat-item"><div class="stat-number">$2,100</div><div class="stat-label">Starting From / mo</div></div>
+  </div>
+
+  <!-- ─── PERKS ─── -->
+  <section class="perks-section">
+    <div class="perks-header reveal">
+      <p class="section-eyebrow">Why Sloane</p>
+      <h2 class="section-title">Perks That Come<br>With <em>Every Lease</em></h2>
+    </div>
+    <div class="perks-grid reveal">
+
+      <div class="perk-card featured">
+        <div class="perk-number">01</div>
+        <div class="perk-tag">Limited Time</div>
+        <p class="perk-title">2 Months Free Rent</p>
+        <p class="perk-body">Move in and get two months completely free &mdash; that&rsquo;s thousands of dollars back in your pocket before you&rsquo;ve even unpacked. Available on select suites, for a limited time.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">02</div>
+        <p class="perk-title">Earn Aeroplan Points on Rent</p>
+        <p class="perk-body">Use your credit card to pay rent and earn 1 Aeroplan point per $1 spent. Your biggest monthly expense finally works for you.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">03</div>
+        <p class="perk-title">Up to 150,000 Aeroplan Points</p>
+        <p class="perk-body">On top of monthly earning, get up to 150,000 Aeroplan points just for moving in. That&rsquo;s enough for multiple flights.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">04</div>
+        <p class="perk-title">Rogers Wi-Fi &mdash; 10 Years Free</p>
+        <p class="perk-body">High-speed Rogers internet included for a decade. No setup fees, no monthly bills, no provider headaches. Just move in and connect.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">05</div>
+        <p class="perk-title">Cleveland Clinic Virtual Healthcare</p>
+        <p class="perk-body">Access to complimentary virtual healthcare powered by Cleveland Clinic &mdash; whether you have OHIP or not. A benefit you won&rsquo;t find anywhere else.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">06</div>
+        <p class="perk-title">Resort-Level Amenities</p>
+        <p class="perk-body">Infinity pool, bowling alley, NBA basketball court, spa with cold plunge, golf simulator, karaoke lounge &mdash; all included, no extra fees.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">07</div>
+        <p class="perk-title">On-Site Montessori Daycare</p>
+        <p class="perk-body">A dedicated Montessori daycare plus a kids&rsquo; adventure zone &mdash; right in the building. Designed for families who want convenience without compromise.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">08</div>
+        <p class="perk-title">Pet Spa &amp; Private Dog Run</p>
+        <p class="perk-body">Full pet grooming spa and a private, fenced outdoor dog run. Your pets live as well as you do.</p>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-number">09</div>
+        <p class="perk-title">24-Hour Concierge. Always Staffed.</p>
+        <p class="perk-body">Concierge, janitors, and property management on-site every day. No waiting weeks for a landlord. Issues get resolved &mdash; fast.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CTA STRIP ─── -->
+  <div class="cta-strip">
+    <span class="cta-strip-text">Ready to see it in person?</span>
+    <a href="tel:6479240848" class="cta-strip-btn">Call or Text &nbsp;&middot;&nbsp; 647-924-0848</a>
+  </div>
+
+  <!-- ─── SUITE INTERIORS ─── -->
+  <section class="interiors-section">
+    <div class="interiors-top">
+      <div class="interiors-left reveal">
+        <p class="section-eyebrow">Suite Finishes</p>
+        <h2 class="section-title">Designed for<br><em>Living Well</em></h2>
+        <p class="section-sub">Premium finishes throughout &mdash; quartz countertops, KitchenAid appliances, and designer fixtures in every suite.</p>
+      </div>
+      <ul class="features-list reveal">
+        <li>KitchenAid&reg; Appliance Package</li>
+        <li>Quartz Countertops &amp; Backsplash</li>
+        <li>Kitchen Island*</li>
+        <li>Full-Size Panelled Dishwasher</li>
+        <li>In-Suite Full-Size Washer / Dryer</li>
+        <li>9 ft Ceilings</li>
+        <li>Wi-Fi Enabled Smart Thermostat</li>
+        <li>Walk-In Closets*</li>
+        <li>Upgraded Closet Organizers</li>
+        <li>Designer Plumbing Fixtures</li>
+        <li>Soaker Tubs*</li>
+        <li>Keyless Smart Lock Entry</li>
+        <li>Custom Window Coverings</li>
+        <li>LED Undercabinet Lighting</li>
+        <li>Solid Core Doors</li>
+        <li>Rogers Wi-Fi Included</li>
+      </ul>
+    </div>
+    <p class="features-note" style="margin-bottom:24px;">*In select suites</p>
+    <div class="interiors-gallery reveal">
+      <img src="images/sloane/241103_BLDG-C_SUITE.jpg" alt="Suite Living Area" loading="lazy" />
+      <img src="images/sloane/25008-34.jpg" alt="Kitchen" loading="lazy" />
+      <img src="images/sloane/25008-87.jpg" alt="Bathroom" loading="lazy" />
+      <img src="images/sloane/25008-21.jpg" alt="Living Room" loading="lazy" />
+      <img src="images/sloane/25008-27.jpg" alt="Bedroom" loading="lazy" />
+      <img src="images/sloane/25008-53.jpg" alt="Kitchen Detail" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- ─── PHOTO GRID ─── -->
+  <section class="photo-grid-section" id="amenities">
+    <div class="photo-grid-header reveal">
+      <p class="section-eyebrow">The Experience</p>
+      <h2 class="section-title">More than a building.<br>It&rsquo;s a <em>resort.</em></h2>
+      <p class="section-sub">An extraordinary collection of amenity spaces &mdash; all just an elevator ride away.</p>
+    </div>
+    <div class="photo-grid reveal">
+      <div class="photo-grid-item"><img src="images/sloane/3450-Dufferin-Spa.jpg" alt="Spa & Cold Plunge" loading="lazy" /><div class="photo-label">Spa &amp; Cold Plunge</div></div>
+      <div class="photo-grid-item"><img src="images/sloane/241103-BLDG-C_LOBBY.jpg" alt="Grand Lobby" loading="lazy" /><div class="photo-label">Grand Lobby</div></div>
+      <div class="photo-grid-item"><img src="images/sloane/3450-Dufferin-Gym-01.jpg" alt="Fitness Centre" loading="lazy" /><div class="photo-label">Fitness Centre</div></div>
+      <div class="photo-grid-item"><img src="images/sloane/3450-Dufferin-Basketball-01.jpg" alt="NBA Basketball Court" loading="lazy" /><div class="photo-label">NBA Basketball Court</div></div>
+      <div class="photo-grid-item"><img src="images/sloane/3450-Dufferin-Bowling-.jpg" alt="Bowling Alley" loading="lazy" /><div class="photo-label">Bowling Alley</div></div>
+      <div class="photo-grid-item"><img src="images/sloane/3450-Dufferin-Yoga-2.jpg" alt="Yoga Studio" loading="lazy" /><div class="photo-label">Yoga &amp; Wellness Studio</div></div>
+    </div>
+  </section>
+
+  <!-- ─── AMENITIES GRID ─── -->
+  <section class="amenities-section">
+    <div class="amenities-header reveal">
+      <div>
+        <p class="section-eyebrow">50+ Amenities</p>
+        <h2 class="section-title">A Lifestyle Beyond<br><em>Your Suite</em></h2>
+      </div>
+      <p class="section-sub" style="max-width:320px;">No maintenance fees. No extra charges. Just exclusive access.</p>
+    </div>
+    <div class="amenities-grid reveal">
+      <div class="amenity-tile"><img src="images/sloane/3450-Dufferin-Club-House.jpeg" alt="Clubhouse" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Clubhouse</span><span class="amenity-sub">Private event space</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/3450-Dufferin-Keraoke.jpeg" alt="Karaoke Lounge" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Karaoke Lounge</span><span class="amenity-sub">Private rooms</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/3450-Dufferin-Gym-02.jpg" alt="Gym — Cardio" loading="lazy" /><div class="amenity-label"><span class="amenity-name">The Gym</span><span class="amenity-sub">State-of-the-art cardio</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/241103_BLDG-C_YOGA-Edit.jpg" alt="Yoga Studio South" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Yoga Studio</span><span class="amenity-sub">South tower</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/241103-BLDG-C_KIDS-ROOM.jpg" alt="Kids Adventure Zone" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Kids Adventure Zone</span><span class="amenity-sub">Daycare &amp; activities</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/241103_BLDG-C_PARTY-ROOM_V1.jpg" alt="Party Room" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Party Room</span><span class="amenity-sub">South tower lounge</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/3450-Dufferin-Corridor_Tower-A.jpg" alt="Tower A Corridor" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Tower A</span><span class="amenity-sub">Designer hallways</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/3450-Dufferin-Corridor_Tower-B.jpg" alt="Tower B Corridor" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Tower B</span><span class="amenity-sub">Designer hallways</span></div></div>
+      <div class="amenity-tile"><img src="images/sloane/25008-74.jpg" alt="Suite Views" loading="lazy" /><div class="amenity-label"><span class="amenity-name">Suite Views</span><span class="amenity-sub">North York skyline</span></div></div>
+    </div>
+  </section>
+
+  <!-- ─── CTA STRIP ─── -->
+  <div class="cta-strip">
+    <span class="cta-strip-text">Ready to see it in person?</span>
+    <a href="tel:6479240848" class="cta-strip-btn">Call or Text &nbsp;&middot;&nbsp; 647-924-0848</a>
+  </div>
+
+  <!-- ─── PRICING ─── -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-header reveal">
+      <p class="section-eyebrow">Transparent Net Pricing</p>
+      <h2 class="section-title">No Surprises.<br>Just the <em>Real Number.</em></h2>
+    </div>
+    <p class="pricing-note reveal">Effective prices reflect <strong>2 months free</strong> on a 12-month lease. <a href="#booking">Inquire for verified current rates.</a></p>
+    <div class="pricing-grid reveal">
+
+      <div class="pricing-card">
+        <div class="unit-type">Studio</div><div class="unit-size">Studios available</div>
+        <div class="price-row"><div><div class="price-label">Listed</div><div class="price-listed">From $2,100/mo</div></div><div><div class="price-label">Effective</div><div class="price-effective">$1,750</div></div></div>
+        <span class="free-months-tag">2 Months Free</span>
+        <ul class="unit-features"><li class="unit-feature">Open-concept layout</li><li class="unit-feature">Full KitchenAid appliance package</li><li class="unit-feature">In-suite washer / dryer</li><li class="unit-feature">Rogers Wi-Fi included &mdash; 10 years</li></ul>
+        <p class="aeroplan-line">&#9992; Earn 1 Aeroplan point per $1 spent on rent</p><a href="tel:6479240848" class="inquire-btn">Inquire Now</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="unit-type">1 Bedroom</div><div class="unit-size">1 Bed suites available</div>
+        <div class="price-row"><div><div class="price-label">Listed</div><div class="price-listed">From $2,600/mo</div></div><div><div class="price-label">Effective</div><div class="price-effective">$2,167</div></div></div>
+        <span class="free-months-tag">2 Months Free</span>
+        <ul class="unit-features"><li class="unit-feature">Separate bedroom with upgraded closet</li><li class="unit-feature">Quartz countertops &amp; backsplash</li><li class="unit-feature">Smart thermostat</li><li class="unit-feature">Rogers Wi-Fi included &mdash; 10 years</li></ul>
+        <p class="aeroplan-line">&#9992; Earn 1 Aeroplan point per $1 spent on rent</p><a href="tel:6479240848" class="inquire-btn">Inquire Now</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="unit-type">1 Bed + Den</div><div class="unit-size">1 Bed + Den suites</div>
+        <div class="price-row"><div><div class="price-label">Listed</div><div class="price-listed">From $2,900/mo</div></div><div><div class="price-label">Effective</div><div class="price-effective">$2,417</div></div></div>
+        <span class="free-months-tag">2 Months Free</span>
+        <ul class="unit-features"><li class="unit-feature">Flexible den &mdash; home office or guest</li><li class="unit-feature">Walk-in closet in select units</li><li class="unit-feature">Keyless smart lock entry</li><li class="unit-feature">Rogers Wi-Fi included &mdash; 10 years</li></ul>
+        <p class="aeroplan-line">&#9992; Earn 1 Aeroplan point per $1 spent on rent</p><a href="tel:6479240848" class="inquire-btn">Inquire Now</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="unit-type">2 Bedroom</div><div class="unit-size">2 Bed suites available</div>
+        <div class="price-row"><div><div class="price-label">Listed</div><div class="price-listed">From $3,300/mo</div></div><div><div class="price-label">Effective</div><div class="price-effective">$2,750</div></div></div>
+        <span class="free-months-tag">2 Months Free</span>
+        <ul class="unit-features"><li class="unit-feature">Two full bedrooms with closets</li><li class="unit-feature">Kitchen island in select units</li><li class="unit-feature">In-suite washer / dryer</li><li class="unit-feature">Rogers Wi-Fi included &mdash; 10 years</li></ul>
+        <p class="aeroplan-line">&#9992; Earn 1 Aeroplan point per $1 spent on rent</p><a href="tel:6479240848" class="inquire-btn">Inquire Now</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="unit-type">2 Bed + Den</div><div class="unit-size">2 Bed + Den suites</div>
+        <div class="price-row"><div><div class="price-label">Listed</div><div class="price-listed">From $3,800/mo</div></div><div><div class="price-label">Effective</div><div class="price-effective">$3,167</div></div></div>
+        <span class="free-months-tag">2 Months Free</span>
+        <ul class="unit-features"><li class="unit-feature">Dedicated den / third sleeping space</li><li class="unit-feature">Walk-in closets</li><li class="unit-feature">Soaker tub in select units</li><li class="unit-feature">Rogers Wi-Fi included &mdash; 10 years</li></ul>
+        <p class="aeroplan-line">&#9992; Earn 1 Aeroplan point per $1 spent on rent</p><a href="tel:6479240848" class="inquire-btn">Inquire Now</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="unit-type">3 Bedroom</div><div class="unit-size">3 Bed suites available</div>
+        <div class="price-row"><div><div class="price-label">Listed</div><div class="price-listed">From $4,500/mo</div></div><div><div class="price-label">Effective</div><div class="price-effective">$3,750</div></div></div>
+        <span class="free-months-tag">2 Months Free</span>
+        <ul class="unit-features"><li class="unit-feature">Three full bedrooms</li><li class="unit-feature">Multiple bathrooms with soaker tub</li><li class="unit-feature">Full luxury finish package</li><li class="unit-feature">Rogers Wi-Fi included &mdash; 10 years</li></ul>
+        <p class="aeroplan-line">&#9992; Earn 1 Aeroplan point per $1 spent on rent</p><a href="tel:6479240848" class="inquire-btn">Inquire Now</a>
+      </div>
+
+    </div>
+    <p class="pricing-disclaimer">E.&amp;O.E. Pricing subject to change. Contact us for verified current rates.</p>
+  </section>
+
+  <!-- ─── BOOK A SHOWING ─── -->
+  <section class="booking-section" id="booking">
+    <div class="booking-left reveal">
+      <p class="section-eyebrow">Ready to See It?</p>
+      <h2 class="section-title">Book a Private<br><em>Showing Today</em></h2>
+      <p class="section-sub">We&rsquo;ll walk you through available suites, floor plans, and current incentives.</p>
+      <a href="tel:6479240848" class="booking-tel">647-924-0848</a>
+      <p class="booking-tel-note">Call or text anytime</p>
+      <p class="booking-address">3450 Dufferin Street<br>Toronto, ON<br>5-min walk to Yorkdale Shopping Centre &amp; TTC Subway</p>
+    </div>
+    <div class="booking-right reveal">
+      <p class="form-title">Request a Showing</p>
+      <form name="sloane-showing" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="sloane-showing" />
+        <p style="display:none;"><label>Don't fill: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="first-name">First Name</label><input type="text" id="first-name" name="first_name" placeholder="Jane" required /></div>
+          <div class="form-group"><label for="last-name">Last Name</label><input type="text" id="last-name" name="last_name" placeholder="Smith" required /></div>
+        </div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="jane@example.com" required /></div>
+        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="416-555-0100" /></div>
+        <div class="form-group">
+          <label for="unit-type">Preferred Unit Type</label>
+          <select id="unit-type" name="unit_type" required>
+            <option value="" disabled selected>Select a unit type</option>
+            <option value="studio">Studio</option>
+            <option value="1bed">1 Bedroom</option>
+            <option value="1bed-den">1 Bedroom + Den</option>
+            <option value="2bed">2 Bedroom</option>
+            <option value="2bed-den">2 Bedroom + Den</option>
+            <option value="3bed">3 Bedroom</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Request My Showing</button>
+        <p class="form-disclaimer">By submitting you agree to be contacted. Your info is never shared or sold.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <a href="index.html" class="footer-logo">rentals<span>around</span></a>
+    <p class="footer-note">Sloane &middot; 3450 Dufferin Street, Toronto &middot; E.&amp;O.E.</p>
+    <p class="footer-note">&copy; 2025 RentalsAround &middot; Not affiliated with Fitzrovia Real Estate</p>
+  </footer>
+
+  <!-- ─── LIGHTBOX ─── -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.photo-grid-item img, .amenity-tile img, .interiors-gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
+    lightboxClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
