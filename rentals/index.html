@@ -33,41 +33,9 @@
       opacity: 0.5;
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
-      height: 64px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      z-index: 10;
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-logo em { font-style: italic; color: var(--gold); }
-
-    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-
-    .nav-links a {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
+    nav { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 10; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--ink); letter-spacing: 0.02em; text-decoration: none; }
+    .logo em { font-style: italic; color: var(--gold); }
 
     .page {
       position: relative;
@@ -337,7 +305,7 @@
 
     @media (max-width: 900px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
+      nav > div { display: none; }
       .perks-list { grid-template-columns: 1fr; }
       .perk--featured { grid-column: span 1; }
     }
@@ -345,7 +313,7 @@
     @media (max-width: 520px) {
       .grid { grid-template-columns: 1fr; }
       .page { padding: 40px 20px 80px; }
-      .nav { padding: 0 20px; }
+      nav { padding: 24px 20px; }
       .perk { padding: 28px 24px; }
       .perk--featured { padding: 32px 24px; }
       footer { padding: 32px 24px; flex-direction: column; text-align: center; }
@@ -354,13 +322,13 @@
 </head>
 <body>
 
-  <nav class="nav">
-    <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Buy a Condo</a></li>
-      <li><a href="elm-ledbury.html">Elm &amp; Ledbury</a></li>
-      <li><a href="tel:6479240848">647-924-0848</a></li>
-    </ul>
+  <nav>
+    <a href="../index.html" class="logo">Condos<em>Around</em></a>
+    <div style="display:flex; gap:1.5rem;">
+      <a href="../buildings/map.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">Map</a>
+      <a href="../pages/stats.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">Stats</a>
+      <a href="../pages/saved.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; transition:color 0.2s; position:relative;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">&hearts; Saved</a>
+    </div>
   </nav>
 
   <main class="page">

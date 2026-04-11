@@ -39,58 +39,13 @@
     }
 
     /* ─── NAV ─── */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
-      height: 64px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(245,242,235,0.97);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-logo em { font-style: italic; color: var(--gold); }
-
-    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-
-    .nav-links a {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-links .nav-cta {
-      background: var(--gold);
-      color: #fff;
-      padding: 9px 20px;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-    }
-
-    .nav-links .nav-cta:hover { background: var(--gold-light); color: #fff; }
+    nav { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; background: rgba(245,242,235,0.97); backdrop-filter: blur(12px); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--ink); letter-spacing: 0.02em; text-decoration: none; }
+    .logo em { font-style: italic; color: var(--gold); }
 
     @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .nav { padding: 0 24px; }
+      nav > div { display: none; }
+      nav { padding: 24px 24px; }
     }
 
     /* ─── HERO ─── */
@@ -897,13 +852,13 @@
 <body>
 
   <!-- ─── NAV ─── -->
-  <nav class="nav">
-    <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Neighbourhoods</a></li>
-      <li><a href="elm-ledbury.html">Elm &amp; Ledbury</a></li>
-      <li><a href="#booking" class="nav-cta">Book a Showing</a></li>
-    </ul>
+  <nav>
+    <a href="../index.html" class="logo">Condos<em>Around</em></a>
+    <div style="display:flex; gap:1.5rem;">
+      <a href="../buildings/map.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">Map</a>
+      <a href="../pages/stats.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">Stats</a>
+      <a href="../pages/saved.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; transition:color 0.2s; position:relative;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">&hearts; Saved</a>
+    </div>
   </nav>
 
   <!-- ─── HERO ─── -->
