@@ -544,7 +544,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     showPlan(p);
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
-    history.replaceState(null, '', '#' + id);
   }
   function showPlan(p) {
     document.getElementById('modal-suite').textContent = 'Yorkville · ' + p.building;
@@ -562,9 +561,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   function modalNav(dir) {
     currentPlanIdx = (currentPlanIdx + dir + planKeys.length) % planKeys.length;
     showPlan(plans[planKeys[currentPlanIdx]]);
-    history.replaceState(null, '', '#' + planKeys[currentPlanIdx]);
   }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); history.replaceState(null, '', window.location.pathname + window.location.search); }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { closeModal(); closeGalleryLb(); }
@@ -577,14 +575,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       if (e.key === 'ArrowRight') navGalleryLb(1);
     }
   });
-
-  // Deep-link: open modal from URL hash on page load
-  (function() {
-    var hash = window.location.hash.replace('#', '');
-    if (hash && plans[hash]) {
-      setTimeout(function() { openModal(hash); }, 300);
-    }
-  })();
 
   // Gallery scroll arrows
   (function() {
@@ -615,7 +605,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   })();
 </script>
 
+<script src="../js/modal-touch.js"></script>
+<script src="../js/deeplink.js"></script>
 <script src="../js/save.js"></script>
+<script src="../js/register.js"></script>
 <script src="../js/sofia.js"></script>
 <script src="../js/protect.js"></script>
 </body>
