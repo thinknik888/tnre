@@ -82,8 +82,16 @@
     }
   });
 
-  // Add touch-action CSS and larger mobile image
+  // Prevent page scroll when modal is open
+  document.addEventListener('touchmove', function(e) {
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay && overlay.contains(e.target)) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Add touch-action CSS, larger mobile image, and card image sizing
   var style = document.createElement('style');
-  style.textContent = '.modal-image img{touch-action:none;transform-origin:0 0;}@media(max-width:768px){.modal-image{min-height:60vh!important;max-height:70vh;}.modal-image img{max-height:65vh;}}';
+  style.textContent = '.modal-overlay.active{touch-action:none;overflow:hidden;}.modal-image img{touch-action:none;transform-origin:0 0;}@media(max-width:768px){.fp-image{min-height:60vw!important;padding:0.5rem!important;}.fp-image img{width:100%!important;height:auto!important;object-fit:contain;}.fp-row-image{padding:0.5rem!important;}.fp-row-image img{width:100%!important;height:auto!important;}.modal-image{min-height:60vh!important;max-height:70vh;}.modal-image img{max-height:65vh;}}';
   document.head.appendChild(style);
 })();
