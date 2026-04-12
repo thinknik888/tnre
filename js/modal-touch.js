@@ -30,6 +30,14 @@
     return Math.sqrt(dx * dx + dy * dy);
   }
 
+  // Prevent page scroll/zoom when modal overlay is active
+  document.addEventListener('touchmove', function(e) {
+    var overlay = e.target.closest('.modal-overlay');
+    if (overlay && overlay.classList.contains('active')) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
   document.addEventListener('touchstart', function(e) {
     var el = getImg();
     if (!el || !el.closest('.modal-image')) return;
@@ -82,16 +90,8 @@
     }
   });
 
-  // Prevent page scroll when modal is open
-  document.addEventListener('touchmove', function(e) {
-    var overlay = document.querySelector('.modal-overlay.active');
-    if (overlay && overlay.contains(e.target)) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  // Add touch-action CSS, larger mobile image, and card image sizing
+  // Add touch-action CSS, mobile card image sizing, and modal touch isolation
   var style = document.createElement('style');
-  style.textContent = '.modal-overlay.active{touch-action:none;overflow:hidden;}.modal-image img{touch-action:none;transform-origin:0 0;}@media(max-width:768px){.fp-image{min-height:60vw!important;padding:0.5rem!important;}.fp-image img{width:100%!important;height:auto!important;object-fit:contain;}.fp-row-image{padding:0.5rem!important;}.fp-row-image img{width:100%!important;height:auto!important;}.modal-image{min-height:60vh!important;max-height:70vh;}.modal-image img{max-height:65vh;}}';
+  style.textContent = '.modal-overlay.active{touch-action:none;overflow:hidden;}.modal-image{touch-action:none;}.modal-image img{touch-action:none;transform-origin:center center;}@media(max-width:768px){.fp-image{min-height:auto!important;padding:0.5rem!important;}.fp-image img{width:100%!important;height:auto!important;min-height:60vw;object-fit:contain;}.fp-row-image{padding:0.5rem!important;}.fp-row-image img{width:100%!important;height:auto!important;}.modal-image{min-height:60vh!important;max-height:70vh;}.modal-image img{max-height:65vh;}}';
   document.head.appendChild(style);
 })();
