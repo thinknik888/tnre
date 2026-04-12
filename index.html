@@ -29,20 +29,21 @@
     .hero-supertitle { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
     .hero-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6vw, 72px); font-weight: 400; color: var(--charcoal); line-height: 1.05; margin-bottom: 48px; }
     .hero-heading em { font-style: italic; color: var(--gold); }
-    .neighbourhood-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 0.5px solid var(--border); }
-    .nb-card { border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 24px 22px 28px; background: var(--cream); display: flex; flex-direction: column; justify-content: space-between; min-height: 190px; text-decoration: none; transition: background 0.2s; }
-    .nb-card:hover { background: #e8e3da; }
+    .neighbourhood-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 0.5px solid #e0ddd6; }
+    .nb-card { border-right: 0.5px solid #e0ddd6; border-bottom: 0.5px solid #e0ddd6; padding: 24px 22px 28px; background: #ffffff; display: flex; flex-direction: column; justify-content: space-between; min-height: 190px; text-decoration: none; transition: background 0.2s, border-left 0.2s; border-left: 3px solid transparent; }
+    .nb-card:hover { background: #f7f5f1; border-left-color: #1b2d4f; }
     .nb-card:nth-child(3n) { border-right: none; }
     .nb-card:nth-last-child(-n+3):nth-child(3n+1) ~ .nb-card, .nb-card:nth-last-child(-n+3):nth-child(3n+1) { border-bottom: none; }
     .nb-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
     .nb-icon { opacity: 0.38; }
     .nb-arrow { font-size: 16px; color: var(--muted); opacity: 0.7; line-height: 1; }
     .nb-soon-tag { font-size: 10px; color: var(--text-dim); font-style: italic; font-family: 'Cormorant Garamond', serif; }
-    .nb-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--charcoal); margin-bottom: 5px; line-height: 1.2; }
+    .nb-name { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 500; color: var(--charcoal); margin-bottom: 5px; line-height: 1.2; }
     .nb-area { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
-    .nb-sqft { font-size: 13px; color: var(--gold); }
+    .nb-count { font-size: 11px; font-weight: 600; color: #1b2d4f; letter-spacing: 0.02em; }
+    .nb-sqft { font-size: 13px; color: #1b2d4f; }
     .nb-coming { font-size: 11px; color: var(--text-dim); font-style: italic; font-family: 'Cormorant Garamond', serif; }
-    .dark-hero { background: var(--dark); padding: 80px 60px 0; }
+    .dark-hero { background: #1b2d4f; padding: 80px 60px 0; }
     .dark-hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
     .dark-hero-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 400; color: #f0ede6; line-height: 1.1; margin-bottom: 20px; max-width: 720px; }
     .dark-hero-heading em { font-style: italic; color: var(--gold); }
@@ -52,8 +53,8 @@
     .btn-gold:hover { background: #a08545; }
     .btn-outline-light { display: inline-block; background: transparent; color: var(--text-light); font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s, color 0.2s; }
     .btn-outline-light:hover { border-color: var(--gold); color: var(--gold); }
-    .dark-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 0.5px solid var(--dark-border); }
-    .dark-hero-stat { text-align: center; padding: 32px 20px; border-right: 0.5px solid var(--dark-border); }
+    .dark-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.15); }
+    .dark-hero-stat { text-align: center; padding: 32px 20px; border-right: 1px solid rgba(255,255,255,0.15); }
     .dark-hero-stat:last-child { border-right: none; }
     .dark-hero-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); margin-bottom: 4px; }
     .dark-hero-stat-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
@@ -64,7 +65,7 @@
     .rental-bar-link:hover { color: #d4b97a; }
     .rental-bar-close { background: none; border: none; color: var(--text-dim); font-size: 1.2rem; cursor: pointer; padding: 4px 8px; line-height: 1; transition: color 0.2s; }
     .rental-bar-close:hover { color: #f0ede6; }
-    .dark-section { background: var(--dark); padding: 56px 60px 0; margin-top: 64px; }
+    .dark-section { background: #1b2d4f; padding: 56px 60px 0; margin-top: 64px; }
     .hst-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
     .hst-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; color: #f0ede6; line-height: 1.15; margin-bottom: 10px; }
     .hst-heading em { font-style: italic; color: var(--gold); }
@@ -97,7 +98,7 @@
       nav, .hero, .dark-section { padding-left: 24px; padding-right: 24px; }
       footer { padding-left: 24px; padding-right: 24px; flex-direction: column; gap: 12px; text-align: center; }
       .neighbourhood-grid { grid-template-columns: 1fr 1fr; }
-      .nb-card:nth-child(3n) { border-right: 0.5px solid var(--border); }
+      .nb-card:nth-child(3n) { border-right: 0.5px solid #e0ddd6; }
       .nb-card:nth-child(2n) { border-right: none; }
       .videos-grid { grid-template-columns: 1fr; }
     }
@@ -151,7 +152,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="hero-supertitle">Toronto & GTA</div>
     <h1 class="hero-heading">Condos <em>around...</em></h1>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr);">
-      <a class="nb-card" href="pages/under-1800k.html" style="border: 0.5px solid var(--border);">
+      <a class="nb-card" href="pages/under-1800k.html" style="border: 0.5px solid #e0ddd6;">
         <div class="nb-card-top">
           <svg class="nb-icon" width="34" height="30" viewBox="0 0 34 30" fill="none"><rect x="1" y="1" width="32" height="28" stroke="#6b6357" stroke-width="1"/><line x1="9" y1="10" x2="25" y2="10" stroke="#6b6357" stroke-width="1"/><line x1="9" y1="16" x2="25" y2="16" stroke="#6b6357" stroke-width="1"/><line x1="9" y1="22" x2="25" y2="22" stroke="#6b6357" stroke-width="1"/></svg>
           <span class="nb-count">163 plans</span>
@@ -162,7 +163,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         </div>
       </a>
     </div>
-    <div style="border-bottom: 0.5px solid var(--border); margin-bottom: 24px;"></div>
+    <div style="border-bottom: 0.5px solid #e0ddd6; margin-bottom: 24px;"></div>
     <div class="neighbourhood-grid" id="neighbourhoods">
       <a class="nb-card" href="/neighbourhoods/cn-tower">
         <div class="nb-card-top">
