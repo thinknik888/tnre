@@ -137,7 +137,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <span style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); min-width:100px; padding-top:0.5rem;">Square Footage</span>
     <div class="fp-filters" id="sqft-filters">
       <button class="fp-filter-btn active" data-size="all">All Sizes</button>
-      <button class="fp-filter-btn" data-size="1000-2000">1,000 &ndash; 1,999 sq ft</button>
+      <button class="fp-filter-btn" data-size="1000-1500">1,000 &ndash; 1,500 sq ft</button>
+      <button class="fp-filter-btn" data-size="1500-2000">1,500 &ndash; 2,000 sq ft</button>
       <button class="fp-filter-btn" data-size="over2000">2,000+ sq ft</button>
     </div>
   </div>
@@ -599,7 +600,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       var sqft = parseInt(row.dataset.sqft);
       var showClosing = activeClosing === 'all' || closing === activeClosing;
       var showSqft = true;
-      if (activeSqft === '1000-2000') showSqft = sqft >= 1000 && sqft < 2000;
+      if (activeSqft === '1000-1500') showSqft = sqft >= 1000 && sqft < 1500;
+      else if (activeSqft === '1500-2000') showSqft = sqft >= 1500 && sqft < 2000;
       else if (activeSqft === 'over2000') showSqft = sqft >= 2000;
       var price = parseInt(row.dataset.price) || 0;
       var showPrice = true;
