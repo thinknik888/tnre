@@ -81,6 +81,8 @@
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
     .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
     .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
 
     /* MODAL */
@@ -139,7 +141,13 @@
     .gallery-lb-prev { left: 1rem; }
     .gallery-lb-next { right: 1rem; }
     .gallery-lb-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: rgba(255,255,255,0.5); }
-    @media (max-width: 768px) { .gallery-strip img { height: 280px; } }
+    .gallery-wrap { position: relative; }
+    .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: #002244; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; z-index: 5; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: opacity 0.2s; }
+    .gallery-arrow:hover { opacity: 0.85; }
+    .gallery-arrow.hidden { opacity: 0; pointer-events: none; }
+    .gallery-arrow-left { left: 12px; }
+    .gallery-arrow-right { right: 12px; }
+    @media (max-width: 768px) { .gallery-strip img { height: 280px; } .gallery-arrow { width: 36px; height: 36px; font-size: 1rem; } }
     @media (max-width: 900px) {
       nav, section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .hero { grid-template-columns: 1fr; }
@@ -225,18 +233,22 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <section>
   <div class="section-eyebrow">Inside 50 Scollard</div>
   <h2 class="section-title">Building <em>gallery</em></h2>
-  <div class="gallery-strip" id="gallery-strip">
-    <img src="building-exterior.jpg" alt="50 Scollard Exterior" loading="lazy" />
-    <img src="lobby.jpg" alt="Lobby" loading="lazy" />
-    <img src="porte-cochere.jpg" alt="Porte Cochere" loading="lazy" />
-    <img src="dining-room.jpg" alt="Dining Room" loading="lazy" />
-    <img src="gourmet-kitchen.jpg" alt="Gourmet Kitchen" loading="lazy" />
-    <img src="indoor-outdoor.jpg" alt="Indoor Outdoor Space" loading="lazy" />
-    <img src="master-ensuite.jpg" alt="Master Ensuite" loading="lazy" />
-    <img src="master-ensuite-2.jpg" alt="Master Ensuite Closet" loading="lazy" />
-    <img src="pool.jpg" alt="Indoor Outdoor Pool" loading="lazy" />
-    <img src="amenities-floor-plan.jpg" alt="4th Floor Amenities" loading="lazy" />
-    <img src="neighbourhood-map.jpg" alt="Neighbourhood Map" loading="lazy" />
+  <div class="gallery-wrap">
+    <button class="gallery-arrow gallery-arrow-left hidden" id="gallery-left" onclick="scrollGallery(-400)">&#8249;</button>
+    <div class="gallery-strip" id="gallery-strip">
+      <img src="building-exterior.jpg" alt="50 Scollard Exterior" loading="lazy" />
+      <img src="lobby.jpg" alt="Lobby" loading="lazy" />
+      <img src="porte-cochere.jpg" alt="Porte Cochere" loading="lazy" />
+      <img src="dining-room.jpg" alt="Dining Room" loading="lazy" />
+      <img src="gourmet-kitchen.jpg" alt="Gourmet Kitchen" loading="lazy" />
+      <img src="indoor-outdoor.jpg" alt="Indoor Outdoor Space" loading="lazy" />
+      <img src="master-ensuite.jpg" alt="Master Ensuite" loading="lazy" />
+      <img src="master-ensuite-2.jpg" alt="Master Ensuite Closet" loading="lazy" />
+      <img src="pool.jpg" alt="Indoor Outdoor Pool" loading="lazy" />
+      <img src="amenities-floor-plan.jpg" alt="4th Floor Amenities" loading="lazy" />
+      <img src="neighbourhood-map.jpg" alt="Neighbourhood Map" loading="lazy" />
+    </div>
+    <button class="gallery-arrow gallery-arrow-right" id="gallery-right" onclick="scrollGallery(400)">&#8250;</button>
   </div>
 </section>
 <div class="gallery-lb" id="gallery-lb">
@@ -252,116 +264,144 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="section-eyebrow">Floor Plans</div>
   <h2 class="section-title">Available <em>suites</em></h2>
   <div class="fp-grid" id="fp-grid">
-    <div class="fp-card" data-sqft="5190" onclick="openModal('28n')">
-      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-14.jpg" alt="Suite 28N" loading="lazy" /></div>
+    <div class="fp-card" data-sqft="5190" data-closing="2026" data-price="18318900" onclick="openModal('23-25an-b')">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 28N &middot; 3 Bed Penthouse</div>
+        <div class="fp-suite">Suite 28N &middot; Floor 28 &middot; Penthouse</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">5,190 sq ft</span><span class="fp-price">$18,318,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="3810" onclick="openModal('35n')">
+    <div class="fp-card" data-sqft="3810" data-closing="2026" data-price="12295900" onclick="openModal('35n')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-13.jpg" alt="Suite 35N" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 35N &middot; 3 Bedroom</div>
+        <div class="fp-suite">Suite 35N &middot; Floor 35</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">3,810 sq ft</span><span class="fp-price">$12,295,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="2649" onclick="openModal('21bn-as')">
+    <div class="fp-card" data-sqft="2649" data-closing="2026" data-price="7089900" onclick="openModal('21bn-as')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-11.jpg" alt="Suite 21BN+AS" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 21BN+AS &middot; 3 Bedroom</div>
+        <div class="fp-suite">Suite 21BN+AS &middot; Floors 21-22</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">2,649 sq ft</span><span class="fp-price">$7,089,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="2414" onclick="openModal('36ds')">
+    <div class="fp-card" data-sqft="2414" data-closing="2026" data-price="7951900" onclick="openModal('36ds')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-7.jpg" alt="Suite 36DS" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 36DS &middot; 2 Bed + Den</div>
+        <div class="fp-suite">Suite 36 DS &middot; Floor 36</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">2,414 sq ft</span><span class="fp-price">$7,951,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="2166" onclick="openModal('23-25an')">
+    <div class="fp-card" data-sqft="2166" data-closing="2026" data-price="5620900" onclick="openModal('23-25an')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-10.jpg" alt="Suite 23-25AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 23-25AN &middot; 3 Bedroom</div>
+        <div class="fp-suite">Suite 23-25 AN &middot; Floors 23-25</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">2,166 sq ft</span><span class="fp-price">$5,620,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1793" onclick="openModal('5an')">
+    <div class="fp-card" data-sqft="1793" data-closing="2026" data-price="4549900" onclick="openModal('5an')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-5.jpg" alt="Suite 5AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 5AN &middot; 2 Bedroom</div>
+        <div class="fp-suite">Suite 5AN &middot; Floor 5</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">1,793 sq ft</span><span class="fp-price">$4,549,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1453" onclick="openModal('40an')">
+    <div class="fp-card" data-sqft="1453" data-closing="2026" data-price="4796900" onclick="openModal('40an')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-8.jpg" alt="Suite 40AN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 40AN &middot; 3 Bed Duplex</div>
+        <div class="fp-suite">Suite 40AN &middot; Floor 40 &middot; Duplex</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">1,453 sq ft</span><span class="fp-price">$4,796,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1425" onclick="openModal('6-8in')">
+    <div class="fp-card" data-sqft="1425" data-closing="2026" data-price="3763900" onclick="openModal('6-8in')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-9.jpg" alt="Suite 6-8 IN" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 6-8 IN &middot; 2 Bed + Den</div>
+        <div class="fp-suite">Suite 6-8 IN &middot; Floors 6-8</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">1,425 sq ft</span><span class="fp-price">$3,763,900</span></div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1393" onclick="openModal('7hn')">
-      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-6.jpg" alt="Suite 7HN" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 7HN &middot; 2 Bedroom</div>
-        <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,709,900</span></div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1393" onclick="openModal('6hn')">
-      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-3.jpg" alt="Suite 6HN" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 6HN-BF &middot; 1 Bed + Den</div>
-        <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,659,900</span></div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1306" onclick="openModal('13-17fn')">
-      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-4.jpg" alt="Suite 13-17 FN" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 13-14 &amp; 17 FN &middot; 2 Bedroom</div>
-        <div class="fp-meta"><span class="fp-sqft">1,306 sq ft</span><span class="fp-price">$3,501,900</span></div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1293" onclick="openModal('20-22bn')">
-      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-2.jpg" alt="Suite 20-22 BN" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 20-22 BN &middot; 1 Bed + Den</div>
-        <div class="fp-meta"><span class="fp-sqft">1,293 sq ft</span><span class="fp-price">$3,675,900</span></div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1209" onclick="openModal('6-7jn')">
-      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-1.jpg" alt="Suite 6-7 JN" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 6-7 JN &middot; 1 Bed + Den / 2 Bed</div>
-        <div class="fp-meta"><span class="fp-sqft">1,209 sq ft</span><span class="fp-price">$3,341,900</span></div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1393" onclick="openModal('14bf')">
+    <div class="fp-card" data-sqft="1393" data-closing="2026" data-price="6995900" onclick="openModal('14bf')">
       <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-12.jpg" alt="Suite 14BF" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">50 Scollard</div>
-        <div class="fp-suite">Suite 14BF &middot; 2 Bedroom</div>
+        <div class="fp-suite">Suite 14BF &middot; Floor 14</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
         <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$6,995,900</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1393" data-closing="2026" data-price="3709900" onclick="openModal('7hn')">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-6.jpg" alt="Suite 7HN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 7HN &middot; Floor 7</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,709,900</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1393" data-closing="2026" data-price="3659900" onclick="openModal('6hn')">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-3.jpg" alt="Suite 6HN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 6HN &middot; Floor 6</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">1,393 sq ft</span><span class="fp-price">$3,659,900</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1306" data-closing="2026" data-price="3501900" onclick="openModal('13-17fn')">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-4.jpg" alt="Suite 13-17 FN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 13-14 &amp; 17 FN &middot; Floors 13-14, 17</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">1,306 sq ft</span><span class="fp-price">$3,501,900</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1293" data-closing="2026" data-price="3675900" onclick="openModal('20-22bn')">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-2.jpg" alt="Suite 20-22 BN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 20-22 BN &middot; Floors 20-22</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">1,293 sq ft</span><span class="fp-price">$3,675,900</span></div>
+      </div>
+    </div>
+    <div class="fp-card" data-sqft="1209" data-closing="2026" data-price="3341900" onclick="openModal('6-7jn')">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-1.jpg" alt="Suite 6-7 JN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 6-7 JN &middot; Floors 6-7</div>
+        <div class="fp-type">1 Bed + Den / 2 Bedroom</div>
+        <div class="fp-exposure">West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">1,209 sq ft</span><span class="fp-price">$3,341,900</span></div>
       </div>
     </div>
   </div>
@@ -535,6 +575,20 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       if (e.key === 'ArrowRight') navGalleryLb(1);
     }
   });
+
+  // Gallery scroll arrows
+  (function() {
+    var strip = document.getElementById('gallery-strip');
+    var left = document.getElementById('gallery-left');
+    var right = document.getElementById('gallery-right');
+    function updateArrows() {
+      left.classList.toggle('hidden', strip.scrollLeft <= 10);
+      right.classList.toggle('hidden', strip.scrollLeft >= strip.scrollWidth - strip.clientWidth - 10);
+    }
+    window.scrollGallery = function(px) { strip.scrollBy({ left: px, behavior: 'smooth' }); };
+    strip.addEventListener('scroll', updateArrows);
+    updateArrows();
+  })();
 
   // Gallery lightbox
   (function() {
