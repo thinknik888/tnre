@@ -54,6 +54,32 @@
     .fp-rebate {color: #c9a84c; text-align: right; margin-top: 0.3rem; display: block; }
     .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
     .fp-closing-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.4rem; }
+    .fp-card { cursor: pointer; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #002244; margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; cursor: zoom-in; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,26,24,0.6); border: none; color: rgba(255,255,255,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(26,26,24,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
+    .modal-details { padding: 1.5rem 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: #002244; color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
     .no-results { grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; font-size: 0.95rem; color: var(--text-muted); font-style: italic; display: none; }
     .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
@@ -63,7 +89,7 @@
     footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
     .footer-logo em { font-style: italic; color: #002244; }
-    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .page-header, .sqft-section { padding: 3rem 1.5rem; } .fp-grid { grid-template-columns: repeat(2, 1fr); } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } .filter-row { flex-wrap: wrap; } }
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .page-header, .sqft-section { padding: 3rem 1.5rem; } .fp-grid { grid-template-columns: repeat(2, 1fr); } .modal { width: 100%; height: 100vh; border-radius: 0; } .modal-body { grid-template-columns: 1fr; overflow-y: auto; } .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); } .modal-details { border-left: none; } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } .filter-row { flex-wrap: wrap; } }
     @media (max-width: 600px) { .fp-grid { grid-template-columns: 1fr; } .page-stats { gap: 1.5rem; flex-wrap: wrap; } }
     @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
   </style>
@@ -2153,6 +2179,157 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div>CondosAround.com · © 2025</div>
 </footer>
 
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="detail-row"><span class="detail-label">HST Rebate</span><span class="detail-val" id="m-rebate" style="color:#c9a84c;"></span></div>
+        <div class="detail-row"><span class="detail-label">Closing</span><span class="detail-val" id="m-closing"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this floor plan? We can walk you through the layout, views, and availability.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20info%20on%20HST%20rebate%20units." class="btn-full-outline">Text Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal logic for under-1800k
+var visibleCards = [];
+var currentIdx = 0;
+
+function getVisibleCards() {
+  return Array.from(document.querySelectorAll('#fp-grid .fp-card')).filter(function(c) { return c.style.display !== 'none'; });
+}
+
+function openModal(card) {
+  visibleCards = getVisibleCards();
+  currentIdx = visibleCards.indexOf(card);
+  if (currentIdx === -1) currentIdx = 0;
+  showCard(visibleCards[currentIdx]);
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function showCard(card) {
+  var img = card.querySelector('.fp-image img');
+  var building = card.querySelector('.fp-building-tag');
+  var suite = card.querySelector('.fp-suite');
+  var type = card.querySelector('.fp-type');
+  var sqft = card.querySelector('.fp-sqft');
+  var price = card.querySelector('.fp-price');
+  var rebate = card.querySelector('.fp-rebate');
+  var closing = card.querySelector('.fp-closing-tag');
+
+  document.getElementById('modal-img').src = img ? img.src : '';
+  document.getElementById('modal-suite').textContent = building ? building.textContent : '';
+  document.getElementById('modal-title').textContent = (suite ? suite.textContent : '') + ' — ' + (type ? type.textContent : '');
+  document.getElementById('m-building').textContent = building ? building.textContent : '';
+  document.getElementById('m-suite').textContent = suite ? suite.textContent : '';
+  document.getElementById('m-type').textContent = type ? type.textContent : '';
+  document.getElementById('m-size').textContent = sqft ? sqft.textContent : '';
+  document.getElementById('m-price').textContent = price ? price.textContent : '';
+  document.getElementById('m-rebate').textContent = rebate ? rebate.textContent.replace('HST Rebate ', '') : '';
+  document.getElementById('m-closing').textContent = closing ? closing.textContent : '';
+  if (window.resetModalZoom) window.resetModalZoom();
+}
+
+function modalNav(dir) {
+  visibleCards = getVisibleCards();
+  currentIdx = (currentIdx + dir + visibleCards.length) % visibleCards.length;
+  showCard(visibleCards[currentIdx]);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+  if (window.resetModalZoom) window.resetModalZoom();
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+  if (document.getElementById('modal').classList.contains('active')) {
+    if (e.key === 'ArrowLeft') modalNav(-1);
+    if (e.key === 'ArrowRight') modalNav(1);
+  }
+});
+
+// Make cards clickable
+document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+  card.addEventListener('click', function() { openModal(card); });
+});
+</script>
+
+<script>
+// Mouse zoom + drag-to-pan
+(function() {
+  var img = document.getElementById('modal-img');
+  var container = img.parentElement;
+  var scale = 1, panX = 0, panY = 0;
+  var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+  function updateTransform(animate) {
+    img.style.transition = animate ? 'transform 0.3s' : 'none';
+    img.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+  }
+  function resetZoom() {
+    scale = 1; panX = 0; panY = 0;
+    container.classList.remove('zoomed', 'dragging');
+    updateTransform(true);
+  }
+  img.addEventListener('mousedown', function(e) {
+    if (scale <= 1) return;
+    e.preventDefault();
+    isDragging = true; didDrag = false;
+    startX = e.clientX; startY = e.clientY;
+    startPanX = panX; startPanY = panY;
+    container.classList.add('dragging');
+  });
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    var dx = (e.clientX - startX) / scale;
+    var dy = (e.clientY - startY) / scale;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+    panX = startPanX + dx; panY = startPanY + dy;
+    updateTransform(false);
+  });
+  document.addEventListener('mouseup', function() {
+    if (!isDragging) return;
+    isDragging = false;
+    container.classList.remove('dragging');
+  });
+  img.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (didDrag) { didDrag = false; return; }
+    if (scale <= 1) {
+      scale = 1.8; panX = 0; panY = 0;
+      container.classList.add('zoomed');
+      updateTransform(true);
+    } else { resetZoom(); }
+  });
+  window.resetModalZoom = resetZoom;
+})();
+</script>
+
 <script>
 (function() {
   var activeBuilding = 'all';
@@ -2284,6 +2461,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 })();
 </script>
 <script src="../js/mobile-filters.js"></script>
+<script src="../js/modal-touch.js"></script>
 <script src="../js/save.js"></script>
 <script src="../js/register.js"></script>
 <script src="../js/sofia.js"></script>
