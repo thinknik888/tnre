@@ -61,12 +61,14 @@
     clearTimeout(promoDismissTimer);
     promo.classList.remove('visible');
   }
-  promoTimer = setTimeout(function() {
-    if (!isOpen) {
-      promo.classList.add('visible');
-      promoDismissTimer = setTimeout(dismissPromo, 8000);
-    }
-  }, 4000);
+  if (window.location.pathname.indexOf('/rentals/') !== -1) {
+    promoTimer = setTimeout(function() {
+      if (!isOpen) {
+        promo.classList.add('visible');
+        promoDismissTimer = setTimeout(dismissPromo, 8000);
+      }
+    }, 4000);
+  }
 
   function toggleChat() {
     if (!chatCreated) createPanel();
