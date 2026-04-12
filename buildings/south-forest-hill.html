@@ -91,6 +91,19 @@
       footer { padding: 1.5rem; }
     }
     @media (max-width: 600px) { .stats-bar { gap: 1.5rem; } }
+    .gallery-strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 0.5rem; margin-top: 1.5rem; -ms-overflow-style: none; scrollbar-width: none; }
+    .gallery-strip::-webkit-scrollbar { display: none; }
+    .gallery-strip img { height: 400px; width: auto; object-fit: cover; border-radius: 3px; flex-shrink: 0; cursor: pointer; transition: opacity 0.2s; }
+    .gallery-strip img:hover { opacity: 0.85; }
+    .gallery-lb { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.92); z-index: 300; align-items: center; justify-content: center; flex-direction: column; }
+    .gallery-lb.open { display: flex; }
+    .gallery-lb img { max-width: 92vw; max-height: 85vh; object-fit: contain; }
+    .gallery-lb-close { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 2rem; cursor: pointer; z-index: 5; }
+    .gallery-lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 48px; height: 48px; cursor: pointer; font-size: 1.3rem; border-radius: 2px; z-index: 5; display: flex; align-items: center; justify-content: center; }
+    .gallery-lb-prev { left: 1rem; }
+    .gallery-lb-next { right: 1rem; }
+    .gallery-lb-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+    @media (max-width: 768px) { .gallery-strip img { height: 280px; } }
       @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
 </style>
 <!-- Meta Pixel Code -->
@@ -314,6 +327,32 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
 
+<!-- GALLERY -->
+<div style="padding:4rem 3rem; border-bottom:1px solid var(--border);">
+  <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem;">Inside the residences</div>
+  <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,2.5vw,2.5rem); font-weight:300; margin-bottom:1.5rem;">Building <em style="font-style:italic; color:var(--gold);">gallery</em></div>
+  <div class="gallery-strip" id="gallery-strip">
+    <img src="../neighbourhoods/images/sfh-crown-1.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-2.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-3.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-4.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-5.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-6.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-7.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-8.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-9.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-10.jpg" alt="South Forest Hill" loading="lazy" />
+    <img src="../neighbourhoods/images/sfh-crown-11.jpg" alt="South Forest Hill" loading="lazy" />
+  </div>
+</div>
+<div class="gallery-lb" id="gallery-lb">
+  <button class="gallery-lb-close" onclick="closeGalleryLb()">&times;</button>
+  <button class="gallery-lb-nav gallery-lb-prev" onclick="navGalleryLb(-1)">&#8249;</button>
+  <img id="gallery-lb-img" src="" alt="" />
+  <button class="gallery-lb-nav gallery-lb-next" onclick="navGalleryLb(1)">&#8250;</button>
+  <div class="gallery-lb-counter" id="gallery-lb-counter"></div>
+</div>
+
 <div class="cta-strip">
   <div class="cta-headline">Private inquiries<br><em>welcome.</em></div>
   <div class="cta-actions">
@@ -481,6 +520,26 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     });
 
     window.resetModalZoom = resetZoom;
+  })();
+
+  // Gallery lightbox
+  (function() {
+    var imgs = document.querySelectorAll('#gallery-strip img');
+    var srcs = Array.from(imgs).map(function(i) { return i.src; });
+    var idx = 0;
+    function show() { document.getElementById('gallery-lb-img').src = srcs[idx]; document.getElementById('gallery-lb-counter').textContent = (idx+1) + ' / ' + srcs.length; }
+    imgs.forEach(function(img, i) {
+      img.addEventListener('click', function() { idx = i; show(); document.getElementById('gallery-lb').classList.add('open'); document.body.style.overflow = 'hidden'; });
+    });
+    window.navGalleryLb = function(dir) { idx = (idx + dir + srcs.length) % srcs.length; show(); };
+    window.closeGalleryLb = function() { document.getElementById('gallery-lb').classList.remove('open'); document.body.style.overflow = ''; };
+    document.getElementById('gallery-lb').addEventListener('click', function(e) { if (e.target === this) closeGalleryLb(); });
+    document.addEventListener('keydown', function(e) {
+      if (!document.getElementById('gallery-lb').classList.contains('open')) return;
+      if (e.key === 'Escape') closeGalleryLb();
+      if (e.key === 'ArrowLeft') navGalleryLb(-1);
+      if (e.key === 'ArrowRight') navGalleryLb(1);
+    });
   })();
 </script>
 <script src="../js/save.js"></script>

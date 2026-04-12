@@ -127,11 +127,19 @@
     .footer-logo span { color: var(--gold); }
 
 
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
-    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.3s; cursor: pointer; }
-    .gallery-grid img:hover { transform: scale(1.02); }
-    .gallery-wide { grid-column: span 2; }
-    .gallery-wide img { aspect-ratio: 16/9; }
+    .gallery-strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 0.5rem; margin-top: 1.5rem; -ms-overflow-style: none; scrollbar-width: none; }
+    .gallery-strip::-webkit-scrollbar { display: none; }
+    .gallery-strip img { height: 400px; width: auto; object-fit: cover; border-radius: 3px; flex-shrink: 0; cursor: pointer; transition: opacity 0.2s; }
+    .gallery-strip img:hover { opacity: 0.85; }
+    .gallery-lb { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.92); z-index: 300; align-items: center; justify-content: center; flex-direction: column; }
+    .gallery-lb.open { display: flex; }
+    .gallery-lb img { max-width: 92vw; max-height: 85vh; object-fit: contain; }
+    .gallery-lb-close { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 2rem; cursor: pointer; z-index: 5; }
+    .gallery-lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 48px; height: 48px; cursor: pointer; font-size: 1.3rem; border-radius: 2px; z-index: 5; display: flex; align-items: center; justify-content: center; }
+    .gallery-lb-prev { left: 1rem; }
+    .gallery-lb-next { right: 1rem; }
+    .gallery-lb-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+    @media (max-width: 768px) { .gallery-strip img { height: 280px; } }
     @media (max-width: 900px) {
       nav, section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .hero { grid-template-columns: 1fr; }
@@ -217,42 +225,27 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <section>
   <div class="section-eyebrow">Inside 50 Scollard</div>
   <h2 class="section-title">Building <em>gallery</em></h2>
-  <div class="gallery-grid">
-    <div class="gallery-wide">
-      <img src="building-exterior.jpg" alt="50 Scollard Exterior" />
-    </div>
-    <div>
-      <img src="lobby.jpg" alt="Lobby" />
-    </div>
-    <div>
-      <img src="porte-cochere.jpg" alt="Porte Cochere" />
-    </div>
-    <div>
-      <img src="dining-room.jpg" alt="Dining Room" />
-    </div>
-    <div>
-      <img src="gourmet-kitchen.jpg" alt="Gourmet Kitchen" />
-    </div>
-    <div>
-      <img src="indoor-outdoor.jpg" alt="Indoor Outdoor Space" />
-    </div>
-    <div>
-      <img src="master-ensuite.jpg" alt="Master Ensuite" />
-    </div>
-    <div>
-      <img src="master-ensuite-2.jpg" alt="Master Ensuite Closet" />
-    </div>
-    <div>
-      <img src="pool.jpg" alt="Indoor Outdoor Pool" />
-    </div>
-    <div>
-      <img src="amenities-floor-plan.jpg" alt="4th Floor Amenities" />
-    </div>
-    <div>
-      <img src="neighbourhood-map.jpg" alt="Neighbourhood Map" />
-    </div>
+  <div class="gallery-strip" id="gallery-strip">
+    <img src="building-exterior.jpg" alt="50 Scollard Exterior" loading="lazy" />
+    <img src="lobby.jpg" alt="Lobby" loading="lazy" />
+    <img src="porte-cochere.jpg" alt="Porte Cochere" loading="lazy" />
+    <img src="dining-room.jpg" alt="Dining Room" loading="lazy" />
+    <img src="gourmet-kitchen.jpg" alt="Gourmet Kitchen" loading="lazy" />
+    <img src="indoor-outdoor.jpg" alt="Indoor Outdoor Space" loading="lazy" />
+    <img src="master-ensuite.jpg" alt="Master Ensuite" loading="lazy" />
+    <img src="master-ensuite-2.jpg" alt="Master Ensuite Closet" loading="lazy" />
+    <img src="pool.jpg" alt="Indoor Outdoor Pool" loading="lazy" />
+    <img src="amenities-floor-plan.jpg" alt="4th Floor Amenities" loading="lazy" />
+    <img src="neighbourhood-map.jpg" alt="Neighbourhood Map" loading="lazy" />
   </div>
 </section>
+<div class="gallery-lb" id="gallery-lb">
+  <button class="gallery-lb-close" onclick="closeGalleryLb()">&times;</button>
+  <button class="gallery-lb-nav gallery-lb-prev" onclick="navGalleryLb(-1)">&#8249;</button>
+  <img id="gallery-lb-img" src="" alt="" />
+  <button class="gallery-lb-nav gallery-lb-next" onclick="navGalleryLb(1)">&#8250;</button>
+  <div class="gallery-lb-counter" id="gallery-lb-counter"></div>
+</div>
 
 <!-- FLOOR PLANS -->
 <section>
@@ -532,12 +525,30 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; if (window.resetModalZoom) window.resetModalZoom(); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); closeGalleryLb(); }
     if (document.getElementById('modal').classList.contains('active')) {
       if (e.key === 'ArrowLeft') modalNav(-1);
       if (e.key === 'ArrowRight') modalNav(1);
     }
+    if (document.getElementById('gallery-lb').classList.contains('open')) {
+      if (e.key === 'ArrowLeft') navGalleryLb(-1);
+      if (e.key === 'ArrowRight') navGalleryLb(1);
+    }
   });
+
+  // Gallery lightbox
+  (function() {
+    var imgs = document.querySelectorAll('#gallery-strip img');
+    var srcs = Array.from(imgs).map(function(i) { return i.src; });
+    var idx = 0;
+    function show() { document.getElementById('gallery-lb-img').src = srcs[idx]; document.getElementById('gallery-lb-counter').textContent = (idx+1) + ' / ' + srcs.length; }
+    imgs.forEach(function(img, i) {
+      img.addEventListener('click', function() { idx = i; show(); document.getElementById('gallery-lb').classList.add('open'); document.body.style.overflow = 'hidden'; });
+    });
+    window.navGalleryLb = function(dir) { idx = (idx + dir + srcs.length) % srcs.length; show(); };
+    window.closeGalleryLb = function() { document.getElementById('gallery-lb').classList.remove('open'); document.body.style.overflow = ''; };
+    document.getElementById('gallery-lb').addEventListener('click', function(e) { if (e.target === this) closeGalleryLb(); });
+  })();
 </script>
 
 <script src="../js/save.js"></script>
