@@ -15,7 +15,7 @@
     .nav-logo em { font-style: italic; color: var(--gold); }
     .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--gold); }
-    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .nav-cta {background: #002244; color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
 
     /* HERO */
     .hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: flex-end; overflow: hidden; }
@@ -35,7 +35,7 @@
     .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
     .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
     .sqft-title em { font-style: italic; color: var(--gold); }
-    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .sqft-count {color: #002244; font-weight: 600; }
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; background: var(--border); border: 1px solid var(--border); }
     .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; }
     .fp-card:hover { background: var(--gold-pale); }
@@ -44,11 +44,11 @@
     .fp-image img { width: 100%; display: block; padding: 1rem; transition: transform 0.3s; }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-type { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500; color: #1e1c18; margin-bottom: 0.2rem; }
     .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
     .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
-    .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
-    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .fp-price { font-size: ; font-weight: 600; color: #002244; }
+    .fp-building-tag {color: #002244; font-weight: 600; margin-bottom: 0.2rem; }
     .fp-view-building { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 0.5rem; transition: color 0.2s; }
     .fp-view-building:hover { color: var(--text); }
     .fp-no-image { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
@@ -56,9 +56,9 @@
     .filter-row:last-child { margin-bottom: 2rem; }
     .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 110px; }
     .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
-    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .fp-filter-btn {border: 1px solid #ddd8cc;background: #ffffff;color: #1e1c18; cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: #002244; color: #002244; }
+    .fp-filter-btn.active { background: #002244; color: #ffffff; border-color: #002244; }
     .fp-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,38,54,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
     .modal-overlay.active { display: flex; }

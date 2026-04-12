@@ -15,7 +15,7 @@
     .nav-logo span { color: var(--gold); }
     .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--gold); }
-    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .nav-cta {background: #002244; color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
     .page-header { padding: 5rem 3rem 3rem; border-bottom: 1px solid var(--border); }
     .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
     .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
@@ -31,7 +31,7 @@
     .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
     .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
     .sqft-title em { font-style: italic; color: var(--gold); }
-    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .sqft-count {color: #002244; font-weight: 600; }
 
     /* FLOOR PLAN GRID */
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
@@ -42,21 +42,21 @@
     .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .fp-type { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500; color: #1e1c18; margin-bottom: 0.2rem; }
     .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
     .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
-    .fp-price { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .fp-price { font-size: ; font-weight: 600; color: #002244; }
     .fp-price s { color: var(--text-muted); font-weight: 300; }
     .fp-price-promo { color: var(--gold); font-weight: 500; }
     .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
     .fp-save { font-size: 0.62rem; color: #5a7a5a; background: #f0f7f0; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block; }
-    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
-    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-building-tag {color: #002244; font-weight: 600; margin-bottom: 0.2rem; }
+    .fp-rebate {color: #c9a84c; text-align: right; margin-top: 0.3rem; display: block; }
     .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
     .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
-    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
-    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .fp-filter-btn {border: 1px solid #ddd8cc;background: #ffffff;color: #1e1c18; cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { border-color: #002244; color: #002244; }
+    .fp-filter-btn.active { background: #002244; color: #ffffff; border-color: #002244; }
     .filter-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .filter-row:last-child { margin-bottom: 2rem; }
     .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 110px; }
