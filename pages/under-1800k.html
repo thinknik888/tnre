@@ -2274,10 +2274,52 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Make cards clickable
-document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+// Assign indices and make cards clickable
+var allCards = document.querySelectorAll('#fp-grid .fp-card');
+allCards.forEach(function(card, i) {
+  card.dataset.planIdx = i;
   card.addEventListener('click', function() { openModal(card); });
 });
+
+// Deep link support for under-1800k
+var _origOpenModal = openModal;
+openModal = function(card) {
+  _origOpenModal(card);
+  var idx = card.dataset.planIdx;
+  if (idx !== undefined) {
+    var url = new URL(window.location);
+    url.searchParams.set('plan', idx);
+    history.pushState({ plan: idx }, '', url.pathname + '?' + url.searchParams.toString());
+  }
+};
+
+var _origCloseModal = closeModal;
+closeModal = function() {
+  _origCloseModal();
+  var url = new URL(window.location);
+  url.searchParams.delete('plan');
+  var qs = url.searchParams.toString();
+  history.pushState(null, '', url.pathname + (qs ? '?' + qs : ''));
+};
+
+window.addEventListener('popstate', function() {
+  var params = new URLSearchParams(window.location.search);
+  var plan = params.get('plan');
+  if (plan !== null && allCards[parseInt(plan)]) {
+    _origOpenModal(allCards[parseInt(plan)]);
+  } else {
+    _origCloseModal();
+  }
+});
+
+// On load, open if ?plan= present
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var plan = params.get('plan');
+  if (plan !== null && allCards[parseInt(plan)]) {
+    setTimeout(function() { _origOpenModal(allCards[parseInt(plan)]); }, 800);
+  }
+})();
 </script>
 
 <script>
