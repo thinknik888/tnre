@@ -248,7 +248,7 @@ tr:hover td{background:rgba(0,34,68,.03)}
 }
 
 /* ═══ CLIENTS TAB — cream/Sotheby's aesthetic, scoped ═══ */
-#panel-clients{--cl-cream:#f0ede6;--cl-navy:#002244;--cl-gold:#b89a56;--cl-card:#ffffff;--cl-border:rgba(0,34,68,0.12);--cl-border-strong:rgba(0,34,68,0.22);--cl-mid:rgba(0,34,68,0.55);--cl-muted:rgba(0,34,68,0.38);--cl-red:#b84545;--cl-blue:#2e6fb8;--cl-green:#4a8f5e;--cl-amber:#c28a2e;background:var(--cl-cream);color:var(--cl-navy);min-height:calc(100vh - 140px)}
+.cl-panel{--cl-cream:#f0ede6;--cl-navy:#002244;--cl-gold:#b89a56;--cl-card:#ffffff;--cl-border:rgba(0,34,68,0.12);--cl-border-strong:rgba(0,34,68,0.22);--cl-mid:rgba(0,34,68,0.55);--cl-muted:rgba(0,34,68,0.38);--cl-red:#b84545;--cl-blue:#2e6fb8;--cl-green:#4a8f5e;--cl-amber:#c28a2e;background:var(--cl-cream);color:var(--cl-navy);min-height:calc(100vh - 140px)}
 .cl-container{max-width:1200px;margin:0 auto;padding:32px 28px 80px}
 .cl-page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
 .cl-page-head h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--cl-navy);line-height:1.05;letter-spacing:-.01em}
@@ -385,6 +385,39 @@ tr:hover td{background:rgba(0,34,68,.03)}
 .cl-sell-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--cl-border);border:0.5px solid var(--cl-border);border-radius:3px;overflow:hidden}
 .cl-sell-stats .cl-stat{background:var(--cl-card)}
 
+/* Past clients compact list */
+.cl-past-list{display:flex;flex-direction:column;gap:5px}
+.cl-past-row{background:var(--cl-card);border:0.5px solid var(--cl-border);border-radius:3px;position:relative;transition:border-color .15s}
+.cl-past-row:hover{border-color:var(--cl-border-strong)}
+.cl-past-row-head{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1.4fr) auto;gap:16px;align-items:center;padding:10px 14px;cursor:pointer;user-select:none}
+.cl-past-left{display:flex;align-items:center;gap:10px;min-width:0}
+.cl-past-arr{font-size:1rem;color:var(--cl-mid);transition:transform .2s;flex-shrink:0;line-height:1;width:10px}
+.cl-past-row.open .cl-past-arr{transform:rotate(90deg)}
+.cl-past-avatar{width:32px;height:32px;border-radius:50%;background:var(--cl-navy);color:var(--cl-cream);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.82rem;font-weight:600;flex-shrink:0;letter-spacing:.02em}
+.cl-past-ident{min-width:0;flex:1}
+.cl-past-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--cl-navy);line-height:1.15;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-past-sub{font-size:.74rem;color:var(--cl-mid);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-past-stats{display:flex;gap:20px;align-items:center}
+.cl-past-stat-label{font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cl-muted);font-weight:600}
+.cl-past-stat-val{font-family:'Cormorant Garamond',serif;font-size:1.02rem;font-weight:600;color:var(--cl-navy);line-height:1.2;white-space:nowrap;margin-top:1px}
+.cl-past-actions{display:flex;gap:1px;align-items:center;flex-shrink:0}
+.cl-past-actions a,.cl-past-actions>button{background:transparent;border:none;width:32px;height:32px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--cl-mid);padding:0;text-decoration:none}
+.cl-past-actions a:hover,.cl-past-actions>button:hover{background:var(--cl-navy);color:var(--cl-cream)}
+.cl-past-actions svg{width:13px;height:13px}
+.cl-past-expand{display:none;padding:0 14px 14px}
+.cl-past-row.open .cl-past-expand{display:block;border-top:1px dashed var(--cl-border);padding-top:12px}
+.cl-past-expand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:8px}
+.cl-past-meta-label{font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cl-muted);font-weight:600;margin-bottom:3px}
+.cl-past-meta-val{font-size:.85rem;color:var(--cl-navy)}
+.cl-past-expand-actions{display:flex;gap:6px;align-items:center;margin:10px 0 4px}
+/* Compact delete confirmation inside past rows */
+.cl-past-row .cl-del-overlay{padding:6px 10px;border-radius:3px}
+.cl-past-row .cl-del-inner{display:flex;align-items:center;gap:10px;text-align:left;max-width:none;width:100%}
+.cl-past-row .cl-del-inner h4{font-size:.85rem;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-past-row .cl-del-inner p{display:none}
+.cl-past-row .cl-del-actions{flex-shrink:0}
+.cl-past-row .cl-del-actions button{padding:5px 12px;font-size:.65rem}
+
 /* Selling toggle in form */
 .cl-toggle-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(184,154,86,0.06);border:0.5px solid rgba(184,154,86,0.25);border-radius:3px;margin-bottom:14px;cursor:pointer;font-size:.85rem;color:var(--cl-navy);font-weight:500}
 .cl-toggle-row input{width:auto;margin:0}
@@ -393,18 +426,21 @@ tr:hover td{background:rgba(0,34,68,.03)}
 
 /* Responsive */
 @media(max-width:900px){
-  #panel-clients .cl-kpi-grid{grid-template-columns:repeat(2,1fr)}
-  #panel-clients .cl-grid{grid-template-columns:1fr}
-  #panel-clients .cl-stats{grid-template-columns:repeat(3,1fr)}
-  #panel-clients .cl-stats .cl-stat:nth-child(4),#panel-clients .cl-stats .cl-stat:nth-child(5){border-top:0.5px solid var(--cl-border)}
+  .cl-panel .cl-kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .cl-panel .cl-grid{grid-template-columns:1fr}
+  .cl-panel .cl-stats{grid-template-columns:repeat(3,1fr)}
+  .cl-panel .cl-stats .cl-stat:nth-child(4),.cl-panel .cl-stats .cl-stat:nth-child(5){border-top:0.5px solid var(--cl-border)}
+  .cl-panel .cl-past-row-head{grid-template-columns:1fr;row-gap:10px}
+  .cl-panel .cl-past-stats{flex-wrap:wrap;gap:14px}
+  .cl-panel .cl-past-actions{justify-content:flex-start}
 }
 @media(max-width:520px){
-  #panel-clients .cl-container{padding:20px 16px 60px}
-  #panel-clients .cl-page-head h1{font-size:1.9rem}
-  #panel-clients .cl-kpi-grid{grid-template-columns:1fr 1fr}
-  #panel-clients .cl-stats{grid-template-columns:repeat(2,1fr)}
-  #panel-clients .cl-field-row{grid-template-columns:1fr}
-  #panel-clients .cl-modal-body{padding:24px 20px}
+  .cl-panel .cl-container{padding:20px 16px 60px}
+  .cl-panel .cl-page-head h1{font-size:1.9rem}
+  .cl-panel .cl-kpi-grid{grid-template-columns:1fr 1fr}
+  .cl-panel .cl-stats{grid-template-columns:repeat(2,1fr)}
+  .cl-panel .cl-field-row{grid-template-columns:1fr}
+  .cl-panel .cl-modal-body{padding:24px 20px}
 }
 </style>
 <!-- Meta Pixel Code -->
@@ -456,7 +492,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   <!-- TAB NAV -->
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('clients',this)">Clients</button>
+    <button class="tab-btn active" onclick="switchTab('active',this)">Active Deals</button>
+    <button class="tab-btn" onclick="switchTab('past',this)">Past Clients</button>
     <button class="tab-btn" onclick="switchTab('sales',this)">Sales Dashboard</button>
     <button class="tab-btn" onclick="switchTab('rentals',this)">Rentals Dashboard</button>
     <button class="tab-btn" onclick="switchTab('habits',this)">Daily Habits</button>
@@ -772,19 +809,19 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <!-- ═══ CLIENTS TAB ═══ -->
-  <div class="tab-panel active" id="panel-clients">
+  <!-- ═══ ACTIVE DEALS TAB ═══ -->
+  <div class="tab-panel cl-panel active" id="panel-active">
     <div class="cl-container">
       <div class="cl-page-head">
         <div>
-          <h1>Clients</h1>
-          <div class="cl-sub">Your active deals and past clients</div>
+          <h1>Active deals</h1>
+          <div class="cl-sub">Buyers, sellers, and deals in progress</div>
         </div>
         <div class="cl-page-actions">
           <button class="cl-icon-btn" onclick="clOpenSettings()" title="Settings" aria-label="Settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           </button>
-          <button class="cl-btn-primary" onclick="clOpenAdd()">+ Add person</button>
+          <button class="cl-btn-primary" onclick="clOpenAdd('active')">+ Add person</button>
         </div>
       </div>
 
@@ -804,14 +841,37 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         </div>
         <div id="cl-active-wrap"></div>
       </div>
+    </div>
+  </div>
 
-      <!-- Past clients -->
+  <!-- ═══ PAST CLIENTS TAB ═══ -->
+  <div class="tab-panel cl-panel" id="panel-past">
+    <div class="cl-container">
+      <div class="cl-page-head">
+        <div>
+          <h1>Past clients</h1>
+          <div class="cl-sub">Closed deals and relationships to maintain</div>
+        </div>
+        <div class="cl-page-actions">
+          <button class="cl-btn-primary" onclick="clOpenAdd('past')">+ Add person</button>
+        </div>
+      </div>
+
+      <!-- KPI strip -->
+      <div class="cl-kpi-grid">
+        <div class="cl-kpi"><div class="cl-kpi-label">Past clients</div><div class="cl-kpi-value" id="cl-kp-count">0</div><div class="cl-kpi-sub">total closed</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Closed volume</div><div class="cl-kpi-value" id="cl-kp-volume">$0</div><div class="cl-kpi-sub">purchase + sale</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Commission earned</div><div class="cl-kpi-value" id="cl-kp-gross">$0</div><div class="cl-kpi-sub">gross, both sides</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Take-home earned</div><div class="cl-kpi-value" id="cl-kp-take">$0</div><div class="cl-kpi-sub">after brokerage split</div></div>
+      </div>
+
+      <!-- Past clients list -->
       <div class="cl-section">
         <div class="cl-section-head">
-          <div class="cl-section-title">Past clients</div>
-          <div class="cl-section-count" id="cl-past-count">0</div>
+          <div class="cl-section-title">All past clients</div>
+          <div class="cl-section-count" id="cl-past-list-count">0</div>
         </div>
-        <div id="cl-past-wrap"></div>
+        <div id="cl-past-list-wrap"></div>
       </div>
     </div>
   </div>
@@ -985,7 +1045,7 @@ async function logout(){await sb.auth.signOut();localStorage.removeItem('tnre_da
 // ═══════════════════════════════════════════════════════════
 // TAB NAV
 // ═══════════════════════════════════════════════════════════
-let currentTab='clients';
+let currentTab='active';
 function switchTab(tab,btn){
   currentTab=tab;
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
@@ -996,7 +1056,7 @@ function switchTab(tab,btn){
   if(tab==='sales'){if(!pipeState['condosaround-sales'].date)initPipeline('condosaround-sales');else renderPipelineToday('condosaround-sales');fetchSalesDeals();fetchSalesYTD();}
   if(tab==='rentals'){if(!pipeState.rentals.date)initPipeline('rentals');else renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
-  if(tab==='clients')clEnsureLoaded();
+  if(tab==='active'||tab==='past')clEnsureLoaded();
 }
 
 function initAll(){
@@ -1729,7 +1789,7 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     catch(err){ console.error(err); }
   }
 
-  function computeKpis(){
+  function computeActiveKpis(){
     var active = state.clients.filter(function(c){return c.type==='active' && !c.archived;});
     var pipeline = active.reduce(function(s,c){return s + (Number(c.budget)||0) + (Number(c.listing_price)||0);}, 0);
     var take = active.reduce(function(s,c){return s + takeOf(c) + sellTakeOf(c);}, 0);
@@ -1745,8 +1805,16 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     return {count:active.length, pipeline:pipeline, take:take, callsMonth:callsMonth, monthName: now.toLocaleString('en-US',{month:'long'})};
   }
 
-  function renderKpis(){
-    var k = computeKpis();
+  function computePastKpis(){
+    var past = state.clients.filter(function(c){return c.type==='past' && !c.archived;});
+    var volume = past.reduce(function(s,c){return s + (Number(c.purchase_price)||0) + (Number(c.sale_price)||0);}, 0);
+    var gross = past.reduce(function(s,c){return s + grossOf(c) + sellGrossOf(c);}, 0);
+    var take = past.reduce(function(s,c){return s + takeOf(c) + sellTakeOf(c);}, 0);
+    return {count:past.length, volume:volume, gross:gross, take:take};
+  }
+
+  function renderActiveKpis(){
+    var k = computeActiveKpis();
     document.getElementById('cl-k-count').textContent = k.count;
     document.getElementById('cl-k-pipeline').textContent = money(k.pipeline);
     document.getElementById('cl-k-takehome').textContent = money(k.take);
@@ -1754,18 +1822,29 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     document.getElementById('cl-k-calls-sub').textContent = k.monthName;
   }
 
+  function renderPastKpis(){
+    var k = computePastKpis();
+    document.getElementById('cl-kp-count').textContent = k.count;
+    document.getElementById('cl-kp-volume').textContent = money(k.volume);
+    document.getElementById('cl-kp-gross').textContent = money(k.gross);
+    document.getElementById('cl-kp-take').textContent = money(k.take);
+  }
+
+  function renderKpis(){ renderActiveKpis(); renderPastKpis(); }
+
   function render(){
-    renderKpis();
+    renderActiveKpis();
+    renderPastKpis();
     var active = state.clients.filter(function(c){return c.type==='active' && !c.archived;});
     var past = state.clients.filter(function(c){return c.type==='past' && !c.archived;});
     document.getElementById('cl-active-count').textContent = active.length;
-    document.getElementById('cl-past-count').textContent = past.length;
+    document.getElementById('cl-past-list-count').textContent = past.length;
     document.getElementById('cl-active-wrap').innerHTML = active.length
       ? '<div class="cl-grid">'+active.map(cardHtml).join('')+'</div>'
       : '<div class="cl-empty">No active deals yet.<div class="cl-empty-hint">Click <strong>+ Add person</strong> at the top to create your first.</div></div>';
-    document.getElementById('cl-past-wrap').innerHTML = past.length
-      ? '<div class="cl-grid">'+past.map(cardHtml).join('')+'</div>'
-      : '<div class="cl-empty">No past clients yet.</div>';
+    document.getElementById('cl-past-list-wrap').innerHTML = past.length
+      ? '<div class="cl-past-list">'+past.map(pastRowHtml).join('')+'</div>'
+      : '<div class="cl-empty">No past clients yet.<div class="cl-empty-hint">Click <strong>+ Add person</strong> to record a closed deal.</div></div>';
   }
 
   var copyIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
@@ -1895,16 +1974,96 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
       '</div>';
   }
 
+  function pastRowHtml(c){
+    var id = esc(c.id);
+    var phoneHref = phoneTo(c.phone);
+    var subBuilding = c.building || '—';
+    if(c.unit) subBuilding += ' · Unit '+c.unit;
+    var amt = amount(c);
+    var gross = grossOf(c);
+    var take = takeOf(c);
+    var commVal = effComm(c);
+    var splitVal = effSplit(c);
+
+    var phoneActions = '';
+    if(phoneHref){
+      phoneActions =
+        '<a href="tel:'+esc(phoneHref)+'" title="Call" aria-label="Call">'+callIcon+'</a>'+
+        '<a href="sms:'+esc(phoneHref)+'" title="Text" aria-label="Text">'+smsIcon+'</a>';
+    }
+    var emailAction = c.email ? '<a href="mailto:'+esc(c.email)+'" title="Email" aria-label="Email">'+mailIcon+'</a>' : '';
+    var copyTarget = c.email ? 'email' : 'phone';
+    var copyAction = '<button onclick="clCopyField(\''+id+'\',\''+copyTarget+'\')" title="Copy" aria-label="Copy">'+copyIcon+'</button>';
+
+    return ''+
+      '<div class="cl-past-row" id="cl-past-row-'+id+'">'+
+        '<div class="cl-past-row-head" onclick="clTogglePast(\''+id+'\')">'+
+          '<div class="cl-past-left">'+
+            '<span class="cl-past-arr">›</span>'+
+            '<div class="cl-past-avatar">'+esc(initials(c.name))+'</div>'+
+            '<div class="cl-past-ident">'+
+              '<div class="cl-past-name">'+esc(c.name)+'</div>'+
+              '<div class="cl-past-sub">'+esc(subBuilding)+'</div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="cl-past-stats">'+
+            '<div><div class="cl-past-stat-label">Purchase</div><div class="cl-past-stat-val">'+money(amt)+'</div></div>'+
+            '<div><div class="cl-past-stat-label">Comm</div><div class="cl-past-stat-val">'+commVal.toFixed(1)+'%</div></div>'+
+            '<div><div class="cl-past-stat-label">Take-home</div><div class="cl-past-stat-val">'+money(take)+'</div></div>'+
+          '</div>'+
+          '<div class="cl-past-actions" onclick="event.stopPropagation()">'+
+            phoneActions+emailAction+copyAction+
+            '<div class="cl-menu-wrap">'+
+              '<button class="cl-menu-btn" onclick="clToggleMenu(\''+id+'\',event)" aria-label="Menu">⋯</button>'+
+              '<div class="cl-menu" id="cl-menu-'+id+'">'+
+                '<button onclick="clOpenEdit(\''+id+'\')">Edit</button>'+
+                '<button onclick="clArchive(\''+id+'\')">Archive</button>'+
+                '<button class="cl-danger" onclick="clAskDelete(\''+id+'\')">Delete</button>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="cl-past-expand">'+
+          '<div class="cl-past-expand-grid">'+
+            '<div><div class="cl-past-meta-label">Closed</div><div class="cl-past-meta-val">'+esc(monthYearStr(c.closing_date))+anniversaryBadge(c.closing_date)+'</div></div>'+
+            '<div><div class="cl-past-meta-label">Gross commission</div><div class="cl-past-meta-val">'+money(gross)+'</div></div>'+
+            '<div><div class="cl-past-meta-label">Brokerage split</div><div class="cl-past-meta-val">'+Math.round(splitVal)+'%</div></div>'+
+            '<div><div class="cl-past-meta-label">Activity</div><div class="cl-past-meta-val">'+(c.calls||[]).length+' calls · '+(c.appointments||[]).length+' appts</div></div>'+
+          '</div>'+
+          sellingSectionHtml(c)+
+          '<div class="cl-past-expand-actions">'+
+            '<button class="cl-log-btn" onclick="clLog(\''+id+'\',\'call\')">+ Call</button>'+
+            '<button class="cl-log-btn" onclick="clLog(\''+id+'\',\'appt\')">+ Appt</button>'+
+            '<span class="cl-log-flash" id="cl-flash-'+id+'"></span>'+
+          '</div>'+
+          '<button class="cl-notes-toggle" onclick="clToggleNotes(\''+id+'\')" id="cl-notes-btn-'+id+'"><span class="cl-arr">›</span> Notes'+(c.notes?' ·':'')+'</button>'+
+          '<div class="cl-notes-body" id="cl-notes-'+id+'"><textarea placeholder="Free-form notes…" oninput="clNotesEdit(\''+id+'\',this.value)">'+esc(c.notes||'')+'</textarea></div>'+
+        '</div>'+
+        '<div class="cl-del-overlay" id="cl-del-'+id+'">'+
+          '<div class="cl-del-inner">'+
+            '<h4>Delete '+esc(c.name)+'?</h4>'+
+            '<p>This removes their card and all notes. Cannot be undone.</p>'+
+            '<div class="cl-del-actions"><button onclick="clCancelDelete(\''+id+'\')">Cancel</button><button class="cl-del-go" onclick="clConfirmDelete(\''+id+'\')">Delete</button></div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+  }
+
+  window.clTogglePast = function(id){
+    var row = document.getElementById('cl-past-row-'+id);
+    if(row) row.classList.toggle('open');
+  };
+
   window.clToggleMenu = function(id, ev){
     if(ev) ev.stopPropagation();
     var m = document.getElementById('cl-menu-'+id);
     if(!m) return;
-    document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){ if(el!==m) el.classList.remove('open'); });
+    document.querySelectorAll('.cl-panel .cl-menu.open').forEach(function(el){ if(el!==m) el.classList.remove('open'); });
     m.classList.toggle('open');
   };
   document.addEventListener('click', function(e){
     if(!e.target.closest('.cl-menu-wrap')){
-      document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
+      document.querySelectorAll('.cl-panel .cl-menu.open').forEach(function(el){el.classList.remove('open');});
     }
   });
 
@@ -1987,7 +2146,7 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
   };
 
   window.clAskDelete = function(id){
-    document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
+    document.querySelectorAll('.cl-panel .cl-menu.open').forEach(function(el){el.classList.remove('open');});
     var o = document.getElementById('cl-del-'+id);
     if(o) o.classList.add('open');
   };
@@ -2064,12 +2223,15 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     window.clTypeChange();
   }
 
-  window.clOpenAdd = function(){
+  window.clOpenAdd = function(type){
     state.editingId = null;
     document.getElementById('cl-modal-title').textContent = 'Add person';
     document.getElementById('cl-modal-sub').textContent = 'Commission and split default to your saved settings — override per client as needed.';
     document.getElementById('cl-save-btn').textContent = 'Save';
     clearForm();
+    var t = (type === 'past') ? 'past' : 'active';
+    document.querySelector('input[name="cl-type"][value="'+t+'"]').checked = true;
+    window.clTypeChange();
     document.getElementById('cl-modal').classList.add('open');
     setTimeout(function(){document.getElementById('cl-f-name').focus();}, 50);
   };
@@ -2105,7 +2267,7 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
       document.getElementById('cl-f-sell-split').value = Math.round(sellEffSplit(c));
     }
     window.clTypeChange();
-    document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
+    document.querySelectorAll('.cl-panel .cl-menu.open').forEach(function(el){el.classList.remove('open');});
     document.getElementById('cl-modal').classList.add('open');
   };
 
