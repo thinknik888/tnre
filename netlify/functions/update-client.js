@@ -9,8 +9,8 @@ var corsHeaders = {
   'Content-Type': 'application/json'
 };
 
-var PATCHABLE = ['name','phone','email','type','building','unit','budget','purchase_price','closing_date','commission_percent','brokerage_split_percent','notes','archived'];
-var NUMERIC = { budget:1, purchase_price:1, commission_percent:1, brokerage_split_percent:1 };
+var PATCHABLE = ['name','phone','email','type','building','unit','budget','purchase_price','closing_date','commission_percent','brokerage_split_percent','selling_address','listing_price','sale_price','selling_commission_percent','selling_brokerage_split_percent','notes','archived'];
+var NUMERIC = { budget:1, purchase_price:1, commission_percent:1, brokerage_split_percent:1, listing_price:1, sale_price:1, selling_commission_percent:1, selling_brokerage_split_percent:1 };
 
 function openStore() {
   var siteID = process.env.SITE_ID || process.env.NETLIFY_SITE_ID || '';

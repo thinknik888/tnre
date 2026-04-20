@@ -352,9 +352,9 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .cl-del-actions .cl-del-go{background:var(--cl-red);color:#fff;border-color:var(--cl-red)}
 
 /* Modal (add/edit + settings) */
-.cl-modal{position:fixed;inset:0;background:rgba(0,34,68,0.55);z-index:1200;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 20px}
+.cl-modal{position:fixed;inset:0;background:#f0ede6;z-index:1200;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 20px}
 .cl-modal.open{display:flex}
-.cl-modal-body{background:var(--cl-cream);border-radius:4px;padding:32px;width:100%;max-width:560px;color:var(--cl-navy);position:relative}
+.cl-modal-body{background:#ffffff;border:0.5px solid rgba(0,34,68,0.12);border-radius:4px;padding:32px;width:100%;max-width:560px;color:#002244;position:relative;box-shadow:0 8px 32px rgba(0,34,68,0.08)}
 .cl-modal-body h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;margin-bottom:6px;color:var(--cl-navy)}
 .cl-modal-body .cl-modal-sub{font-size:.8rem;color:var(--cl-mid);margin-bottom:24px}
 .cl-modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;width:32px;height:32px;font-size:1.5rem;cursor:pointer;color:var(--cl-mid);line-height:1}
@@ -376,6 +376,20 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .cl-modal-actions .cl-save{background:var(--cl-navy);color:var(--cl-cream)}
 .cl-modal-actions .cl-cancel{background:transparent;color:var(--cl-navy);border:1px solid var(--cl-border-strong)}
 .cl-modal-err{color:var(--cl-red);font-size:.78rem;margin-top:8px;min-height:1.1em}
+
+/* Selling section on cards */
+.cl-sell-section{margin-top:14px;padding-top:14px;border-top:1px dashed var(--cl-border-strong)}
+.cl-sell-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.cl-sell-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cl-gold);font-weight:700}
+.cl-sell-addr{font-size:.82rem;color:var(--cl-navy);font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-sell-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--cl-border);border:0.5px solid var(--cl-border);border-radius:3px;overflow:hidden}
+.cl-sell-stats .cl-stat{background:var(--cl-card)}
+
+/* Selling toggle in form */
+.cl-toggle-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(184,154,86,0.06);border:0.5px solid rgba(184,154,86,0.25);border-radius:3px;margin-bottom:14px;cursor:pointer;font-size:.85rem;color:var(--cl-navy);font-weight:500}
+.cl-toggle-row input{width:auto;margin:0}
+.cl-sell-block{padding:14px;background:rgba(0,34,68,0.025);border:0.5px dashed var(--cl-border-strong);border-radius:3px;margin-bottom:14px}
+.cl-sell-block-title{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cl-gold);font-weight:700;margin-bottom:10px}
 
 /* Responsive */
 @media(max-width:900px){
@@ -777,8 +791,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <!-- KPI strip -->
       <div class="cl-kpi-grid">
         <div class="cl-kpi"><div class="cl-kpi-label">Active deals</div><div class="cl-kpi-value" id="cl-k-count">0</div><div class="cl-kpi-sub">in pipeline</div></div>
-        <div class="cl-kpi"><div class="cl-kpi-label">Pipeline value</div><div class="cl-kpi-value" id="cl-k-pipeline">$0</div><div class="cl-kpi-sub">sum of active budgets</div></div>
-        <div class="cl-kpi"><div class="cl-kpi-label">Projected take-home</div><div class="cl-kpi-value" id="cl-k-takehome">$0</div><div class="cl-kpi-sub">after brokerage split</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Total volume</div><div class="cl-kpi-value" id="cl-k-pipeline">$0</div><div class="cl-kpi-sub">active buy + sell</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Projected take-home</div><div class="cl-kpi-value" id="cl-k-takehome">$0</div><div class="cl-kpi-sub">both sides, after split</div></div>
         <div class="cl-kpi"><div class="cl-kpi-label">Calls this month</div><div class="cl-kpi-value" id="cl-k-calls">0</div><div class="cl-kpi-sub" id="cl-k-calls-sub"></div></div>
       </div>
 
@@ -826,7 +840,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <!-- Active fields -->
       <div id="cl-f-active">
         <div class="cl-field"><label>Building(s) interested in</label><input id="cl-f-building-active" type="text" placeholder="e.g. 50 Scollard, 11 Yorkville"></div>
-        <div class="cl-field"><label>Budget ($)</label><input id="cl-f-budget" type="number" step="1000" min="0"></div>
+        <div class="cl-field"><label>Budget ($)</label><input id="cl-f-budget" type="number" step="1000" min="0" oninput="clFormPreview()"></div>
       </div>
 
       <!-- Past fields -->
@@ -836,7 +850,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
           <div class="cl-field"><label>Unit #</label><input id="cl-f-unit" type="text"></div>
         </div>
         <div class="cl-field-row">
-          <div class="cl-field"><label>Purchase price ($)</label><input id="cl-f-price" type="number" step="1000" min="0"></div>
+          <div class="cl-field"><label>Purchase price ($)</label><input id="cl-f-price" type="number" step="1000" min="0" oninput="clFormPreview()"></div>
           <div class="cl-field"><label>Closing date</label><input id="cl-f-closing" type="date"></div>
         </div>
       </div>
@@ -847,6 +861,22 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
 
       <div class="cl-preview" id="cl-f-preview">Gross: <strong>$0</strong> · Take-home: <strong>$0</strong></div>
+
+      <!-- Also selling a property? -->
+      <label class="cl-toggle-row">
+        <input type="checkbox" id="cl-f-selling" onchange="clSellingToggle()">
+        <span id="cl-f-selling-label">Also selling a property?</span>
+      </label>
+      <div class="cl-sell-block" id="cl-f-sell-block" style="display:none">
+        <div class="cl-sell-block-title" id="cl-f-sell-block-title">Sell side</div>
+        <div class="cl-field"><label>Selling address</label><input id="cl-f-sell-addr" type="text" placeholder="e.g. 12 Oriole Rd, Toronto"></div>
+        <div class="cl-field-row">
+          <div class="cl-field"><label id="cl-f-sell-price-label">Listing price ($)</label><input id="cl-f-sell-price" type="number" step="1000" min="0" oninput="clFormPreview()"></div>
+          <div class="cl-field"><label>Selling commission %</label><input id="cl-f-sell-comm" type="number" step="0.1" min="0" max="100" oninput="clFormPreview()"></div>
+        </div>
+        <div class="cl-field"><label>Selling brokerage split %</label><input id="cl-f-sell-split" type="number" step="1" min="0" max="100" oninput="clFormPreview()"></div>
+        <div class="cl-preview" id="cl-f-sell-preview">Selling gross: <strong>$0</strong> · Selling take-home: <strong>$0</strong></div>
+      </div>
 
       <div class="cl-field"><label>Notes</label><textarea id="cl-f-notes"></textarea></div>
 
@@ -1600,6 +1630,12 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
   function amount(c){ return Number(c.type==='past'?(c.purchase_price||0):(c.budget||0)); }
   function grossOf(c){ return amount(c) * effComm(c) / 100; }
   function takeOf(c){ return grossOf(c) * (1 - effSplit(c)/100); }
+  function hasSelling(c){ return !!(c.selling_address || c.listing_price || c.sale_price); }
+  function sellAmount(c){ return Number(c.type==='past' ? (c.sale_price||0) : (c.listing_price||0)); }
+  function sellEffComm(c){ return (c.selling_commission_percent!=null && isFinite(c.selling_commission_percent)) ? Number(c.selling_commission_percent) : Number(state.settings.default_commission_percent); }
+  function sellEffSplit(c){ return (c.selling_brokerage_split_percent!=null && isFinite(c.selling_brokerage_split_percent)) ? Number(c.selling_brokerage_split_percent) : Number(state.settings.default_brokerage_split_percent); }
+  function sellGrossOf(c){ return sellAmount(c) * sellEffComm(c) / 100; }
+  function sellTakeOf(c){ return sellGrossOf(c) * (1 - sellEffSplit(c)/100); }
   function lastContactMs(c){
     var times = [];
     if(c.created_at) times.push(new Date(c.created_at).getTime());
@@ -1665,8 +1701,8 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
 
   function computeKpis(){
     var active = state.clients.filter(function(c){return c.type==='active' && !c.archived;});
-    var pipeline = active.reduce(function(s,c){return s + (Number(c.budget)||0);}, 0);
-    var take = active.reduce(function(s,c){return s + takeOf(c);}, 0);
+    var pipeline = active.reduce(function(s,c){return s + (Number(c.budget)||0) + (Number(c.listing_price)||0);}, 0);
+    var take = active.reduce(function(s,c){return s + takeOf(c) + sellTakeOf(c);}, 0);
     var now = new Date();
     var ym = now.getFullYear()+'-'+(now.getMonth()+1);
     var callsMonth = 0;
@@ -1706,6 +1742,29 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
   var callIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
   var smsIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
   var mailIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>';
+
+  function sellingSectionHtml(c){
+    if(!hasSelling(c)) return '';
+    var isPast = c.type==='past';
+    var priceLabel = isPast ? 'Sale price' : 'Listing';
+    var takeLabel = isPast ? 'Take-home' : 'Take-home';
+    var sAmt = sellAmount(c);
+    var sGross = sellGrossOf(c);
+    var sTake = sellTakeOf(c);
+    var addr = c.selling_address || '';
+    return ''+
+      '<div class="cl-sell-section">'+
+        '<div class="cl-sell-head">'+
+          '<div class="cl-sell-label">'+(isPast?'Also sold':'Also selling')+'</div>'+
+          '<div class="cl-sell-addr">'+esc(addr||'—')+'</div>'+
+        '</div>'+
+        '<div class="cl-sell-stats">'+
+          '<div class="cl-stat"><div class="cl-stat-label">'+priceLabel+'</div><div class="cl-stat-val">'+money(sAmt)+'</div></div>'+
+          '<div class="cl-stat"><div class="cl-stat-label">Gross</div><div class="cl-stat-val cl-auto">'+money(sGross)+'</div></div>'+
+          '<div class="cl-stat"><div class="cl-stat-label">'+takeLabel+'</div><div class="cl-stat-val cl-auto">'+money(sTake)+'</div></div>'+
+        '</div>'+
+      '</div>';
+  }
 
   function cardHtml(c){
     var isPast = c.type==='past';
@@ -1781,6 +1840,8 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
           '<div class="cl-stat"><div class="cl-stat-label">Split %</div><div class="cl-stat-val"><input type="number" step="1" min="0" max="100" value="'+Math.round(splitVal)+'" oninput="clInlineEdit(\''+id+'\',\'brokerage_split_percent\',this.value)" /></div></div>'+
           '<div class="cl-stat"><div class="cl-stat-label">'+takeLabel+'</div><div class="cl-stat-val cl-auto" data-take="'+id+'">'+money(take)+'</div></div>'+
         '</div>'+
+
+        sellingSectionHtml(c)+
 
         '<div class="cl-activity">'+
           activityFooter+
@@ -1921,10 +1982,20 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     var t = getSelectedType();
     document.getElementById('cl-f-active').style.display = t==='active'?'block':'none';
     document.getElementById('cl-f-past').style.display = t==='past'?'block':'none';
-    clFormPreview();
+    var past = t==='past';
+    document.getElementById('cl-f-selling-label').textContent = past ? 'Also sold a property?' : 'Also selling a property?';
+    document.getElementById('cl-f-sell-block-title').textContent = past ? 'Sell side (sold)' : 'Sell side';
+    document.getElementById('cl-f-sell-price-label').textContent = past ? 'Sale price ($)' : 'Listing price ($)';
+    window.clFormPreview();
+  };
+  window.clSellingToggle = function(){
+    var on = document.getElementById('cl-f-selling').checked;
+    document.getElementById('cl-f-sell-block').style.display = on ? 'block' : 'none';
+    window.clFormPreview();
   };
   window.clFormPreview = function(){
     var t = getSelectedType();
+    var past = t==='past';
     var amtEl = t==='active' ? document.getElementById('cl-f-budget') : document.getElementById('cl-f-price');
     var amt = Number(amtEl.value) || 0;
     var comm = Number(document.getElementById('cl-f-comm').value);
@@ -1933,8 +2004,18 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     if(!isFinite(split)) split = Number(state.settings.default_brokerage_split_percent);
     var gross = amt * comm / 100;
     var take = gross * (1 - split/100);
-    var past = t==='past';
     document.getElementById('cl-f-preview').innerHTML = (past?'Gross earned: ':'Gross: ')+'<strong>'+money(gross)+'</strong> · '+(past?'Take-home earned: ':'Take-home: ')+'<strong>'+money(take)+'</strong>';
+
+    if(document.getElementById('cl-f-selling').checked){
+      var sAmt = Number(document.getElementById('cl-f-sell-price').value) || 0;
+      var sComm = Number(document.getElementById('cl-f-sell-comm').value);
+      var sSplit = Number(document.getElementById('cl-f-sell-split').value);
+      if(!isFinite(sComm)) sComm = Number(state.settings.default_commission_percent);
+      if(!isFinite(sSplit)) sSplit = Number(state.settings.default_brokerage_split_percent);
+      var sGross = sAmt * sComm / 100;
+      var sTake = sGross * (1 - sSplit/100);
+      document.getElementById('cl-f-sell-preview').innerHTML = (past?'Selling gross earned: ':'Selling gross: ')+'<strong>'+money(sGross)+'</strong> · '+(past?'Selling take-home earned: ':'Selling take-home: ')+'<strong>'+money(sTake)+'</strong>';
+    }
   };
 
   function fillFormDefaults(){
@@ -1942,10 +2023,12 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     document.getElementById('cl-f-split').value = Math.round(Number(state.settings.default_brokerage_split_percent));
   }
   function clearForm(){
-    ['cl-f-name','cl-f-phone','cl-f-email','cl-f-building-active','cl-f-building-past','cl-f-unit','cl-f-budget','cl-f-price','cl-f-closing','cl-f-notes'].forEach(function(id){
+    ['cl-f-name','cl-f-phone','cl-f-email','cl-f-building-active','cl-f-building-past','cl-f-unit','cl-f-budget','cl-f-price','cl-f-closing','cl-f-notes','cl-f-sell-addr','cl-f-sell-price','cl-f-sell-comm','cl-f-sell-split'].forEach(function(id){
       var el=document.getElementById(id); if(el) el.value='';
     });
     document.querySelector('input[name="cl-type"][value="active"]').checked = true;
+    document.getElementById('cl-f-selling').checked = false;
+    document.getElementById('cl-f-sell-block').style.display = 'none';
     document.getElementById('cl-form-err').textContent = '';
     fillFormDefaults();
     window.clTypeChange();
@@ -1982,6 +2065,15 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     document.getElementById('cl-f-comm').value = effComm(c).toFixed(1);
     document.getElementById('cl-f-split').value = Math.round(effSplit(c));
     document.getElementById('cl-f-notes').value = c.notes||'';
+    if(hasSelling(c)){
+      document.getElementById('cl-f-selling').checked = true;
+      document.getElementById('cl-f-sell-block').style.display = 'block';
+      document.getElementById('cl-f-sell-addr').value = c.selling_address||'';
+      var sp = c.type==='past' ? c.sale_price : c.listing_price;
+      if(sp!=null) document.getElementById('cl-f-sell-price').value = sp;
+      document.getElementById('cl-f-sell-comm').value = sellEffComm(c).toFixed(1);
+      document.getElementById('cl-f-sell-split').value = Math.round(sellEffSplit(c));
+    }
     window.clTypeChange();
     document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
     document.getElementById('cl-modal').classList.add('open');
@@ -1993,6 +2085,8 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     var err = document.getElementById('cl-form-err');
     err.textContent = '';
     var t = getSelectedType();
+    var selling = document.getElementById('cl-f-selling').checked;
+    var sellPrice = selling ? document.getElementById('cl-f-sell-price').value : '';
     var payload = {
       name: document.getElementById('cl-f-name').value.trim(),
       phone: document.getElementById('cl-f-phone').value.trim(),
@@ -2005,6 +2099,11 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
       closing_date: t==='past' ? document.getElementById('cl-f-closing').value : '',
       commission_percent: document.getElementById('cl-f-comm').value,
       brokerage_split_percent: document.getElementById('cl-f-split').value,
+      selling_address: selling ? document.getElementById('cl-f-sell-addr').value.trim() : '',
+      listing_price: (selling && t==='active') ? sellPrice : '',
+      sale_price: (selling && t==='past') ? sellPrice : '',
+      selling_commission_percent: selling ? document.getElementById('cl-f-sell-comm').value : '',
+      selling_brokerage_split_percent: selling ? document.getElementById('cl-f-sell-split').value : '',
       notes: document.getElementById('cl-f-notes').value
     };
     if(!payload.name || !payload.phone){ err.textContent = 'Name and phone are required.'; return; }
