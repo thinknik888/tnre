@@ -840,7 +840,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <!-- Active fields -->
       <div id="cl-f-active">
         <div class="cl-field"><label>Building(s) interested in</label><input id="cl-f-building-active" type="text" placeholder="e.g. 50 Scollard, 11 Yorkville"></div>
-        <div class="cl-field"><label>Budget ($)</label><input id="cl-f-budget" type="number" step="1000" min="0" oninput="clFormPreview()"></div>
+        <div class="cl-field"><label>Budget ($)</label><input id="cl-f-budget" type="text" inputmode="numeric" autocomplete="off" oninput="clFmtDollar(this);clFormPreview()"></div>
       </div>
 
       <!-- Past fields -->
@@ -850,7 +850,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
           <div class="cl-field"><label>Unit #</label><input id="cl-f-unit" type="text"></div>
         </div>
         <div class="cl-field-row">
-          <div class="cl-field"><label>Purchase price ($)</label><input id="cl-f-price" type="number" step="1000" min="0" oninput="clFormPreview()"></div>
+          <div class="cl-field"><label>Purchase price ($)</label><input id="cl-f-price" type="text" inputmode="numeric" autocomplete="off" oninput="clFmtDollar(this);clFormPreview()"></div>
           <div class="cl-field"><label>Closing date</label><input id="cl-f-closing" type="date"></div>
         </div>
       </div>
@@ -871,7 +871,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="cl-sell-block-title" id="cl-f-sell-block-title">Sell side</div>
         <div class="cl-field"><label>Selling address</label><input id="cl-f-sell-addr" type="text" placeholder="e.g. 12 Oriole Rd, Toronto"></div>
         <div class="cl-field-row">
-          <div class="cl-field"><label id="cl-f-sell-price-label">Listing price ($)</label><input id="cl-f-sell-price" type="number" step="1000" min="0" oninput="clFormPreview()"></div>
+          <div class="cl-field"><label id="cl-f-sell-price-label">Listing price ($)</label><input id="cl-f-sell-price" type="text" inputmode="numeric" autocomplete="off" oninput="clFmtDollar(this);clFormPreview()"></div>
           <div class="cl-field"><label>Selling commission %</label><input id="cl-f-sell-comm" type="number" step="0.1" min="0" max="100" oninput="clFormPreview()"></div>
         </div>
         <div class="cl-field"><label>Selling brokerage split %</label><input id="cl-f-sell-split" type="number" step="1" min="0" max="100" oninput="clFormPreview()"></div>
@@ -1619,6 +1619,35 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
 
   function money(n){ if(!isFinite(n)||n==null)return '$0'; return '$'+Math.round(Number(n)).toLocaleString('en-US'); }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
+  function clParseDollar(v){
+    if(v==null) return 0;
+    var digits = String(v).replace(/[^0-9]/g,'');
+    if(!digits) return 0;
+    var n = Number(digits);
+    return isFinite(n) ? n : 0;
+  }
+  window.clFmtDollar = function(el){
+    if(!el) return;
+    var raw = el.value || '';
+    var selStart = 0;
+    try { selStart = el.selectionStart || 0; } catch(e){}
+    var digitsBefore = raw.substring(0, selStart).replace(/[^0-9]/g,'').length;
+    var digits = raw.replace(/[^0-9]/g,'');
+    if(!digits){ el.value = ''; return; }
+    var formatted = Number(digits).toLocaleString('en-US');
+    el.value = formatted;
+    var newPos = 0, count = 0;
+    while(newPos < formatted.length && count < digitsBefore){
+      if(/[0-9]/.test(formatted.charAt(newPos))) count++;
+      newPos++;
+    }
+    try { el.setSelectionRange(newPos, newPos); } catch(e){}
+  };
+  function clSetDollar(el, num){
+    if(!el) return;
+    if(num==null || !isFinite(num)){ el.value = ''; return; }
+    el.value = Number(num).toLocaleString('en-US');
+  }
   function phoneTo(p){ return String(p||'').replace(/[^0-9+]/g,''); }
   function initials(name){
     var parts = String(name||'').trim().split(/\s+/).filter(Boolean);
@@ -1997,7 +2026,7 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     var t = getSelectedType();
     var past = t==='past';
     var amtEl = t==='active' ? document.getElementById('cl-f-budget') : document.getElementById('cl-f-price');
-    var amt = Number(amtEl.value) || 0;
+    var amt = clParseDollar(amtEl.value);
     var comm = Number(document.getElementById('cl-f-comm').value);
     var split = Number(document.getElementById('cl-f-split').value);
     if(!isFinite(comm)) comm = Number(state.settings.default_commission_percent);
@@ -2007,7 +2036,7 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     document.getElementById('cl-f-preview').innerHTML = (past?'Gross earned: ':'Gross: ')+'<strong>'+money(gross)+'</strong> · '+(past?'Take-home earned: ':'Take-home: ')+'<strong>'+money(take)+'</strong>';
 
     if(document.getElementById('cl-f-selling').checked){
-      var sAmt = Number(document.getElementById('cl-f-sell-price').value) || 0;
+      var sAmt = clParseDollar(document.getElementById('cl-f-sell-price').value);
       var sComm = Number(document.getElementById('cl-f-sell-comm').value);
       var sSplit = Number(document.getElementById('cl-f-sell-split').value);
       if(!isFinite(sComm)) sComm = Number(state.settings.default_commission_percent);
@@ -2059,8 +2088,8 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     document.getElementById('cl-f-building-active').value = c.building||'';
     document.getElementById('cl-f-building-past').value = c.building||'';
     document.getElementById('cl-f-unit').value = c.unit||'';
-    if(c.budget!=null) document.getElementById('cl-f-budget').value = c.budget;
-    if(c.purchase_price!=null) document.getElementById('cl-f-price').value = c.purchase_price;
+    clSetDollar(document.getElementById('cl-f-budget'), c.budget);
+    clSetDollar(document.getElementById('cl-f-price'), c.purchase_price);
     document.getElementById('cl-f-closing').value = c.closing_date||'';
     document.getElementById('cl-f-comm').value = effComm(c).toFixed(1);
     document.getElementById('cl-f-split').value = Math.round(effSplit(c));
@@ -2070,7 +2099,7 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
       document.getElementById('cl-f-sell-block').style.display = 'block';
       document.getElementById('cl-f-sell-addr').value = c.selling_address||'';
       var sp = c.type==='past' ? c.sale_price : c.listing_price;
-      if(sp!=null) document.getElementById('cl-f-sell-price').value = sp;
+      clSetDollar(document.getElementById('cl-f-sell-price'), sp);
       document.getElementById('cl-f-sell-comm').value = sellEffComm(c).toFixed(1);
       document.getElementById('cl-f-sell-split').value = Math.round(sellEffSplit(c));
     }
@@ -2086,7 +2115,8 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
     err.textContent = '';
     var t = getSelectedType();
     var selling = document.getElementById('cl-f-selling').checked;
-    var sellPrice = selling ? document.getElementById('cl-f-sell-price').value : '';
+    function stripDollar(v){ return String(v==null?'':v).replace(/[^0-9]/g,''); }
+    var sellPriceRaw = selling ? stripDollar(document.getElementById('cl-f-sell-price').value) : '';
     var payload = {
       name: document.getElementById('cl-f-name').value.trim(),
       phone: document.getElementById('cl-f-phone').value.trim(),
@@ -2094,14 +2124,14 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
       type: t,
       building: (t==='active' ? document.getElementById('cl-f-building-active') : document.getElementById('cl-f-building-past')).value.trim(),
       unit: document.getElementById('cl-f-unit').value.trim(),
-      budget: t==='active' ? document.getElementById('cl-f-budget').value : '',
-      purchase_price: t==='past' ? document.getElementById('cl-f-price').value : '',
+      budget: t==='active' ? stripDollar(document.getElementById('cl-f-budget').value) : '',
+      purchase_price: t==='past' ? stripDollar(document.getElementById('cl-f-price').value) : '',
       closing_date: t==='past' ? document.getElementById('cl-f-closing').value : '',
       commission_percent: document.getElementById('cl-f-comm').value,
       brokerage_split_percent: document.getElementById('cl-f-split').value,
       selling_address: selling ? document.getElementById('cl-f-sell-addr').value.trim() : '',
-      listing_price: (selling && t==='active') ? sellPrice : '',
-      sale_price: (selling && t==='past') ? sellPrice : '',
+      listing_price: (selling && t==='active') ? sellPriceRaw : '',
+      sale_price: (selling && t==='past') ? sellPriceRaw : '',
       selling_commission_percent: selling ? document.getElementById('cl-f-sell-comm').value : '',
       selling_brokerage_split_percent: selling ? document.getElementById('cl-f-sell-split').value : '',
       notes: document.getElementById('cl-f-notes').value
