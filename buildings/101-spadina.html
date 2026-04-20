@@ -73,7 +73,7 @@
     .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
-    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; background: var(--white); padding: 1.5rem; }
+    .fp-image { position: relative; overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; background: var(--white); padding: 1.5rem; }
     .fp-image img { width: 100%; display: block; margin: auto; }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
@@ -266,7 +266,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   <div class="fp-grid" id="fp-grid">
     <div class="fp-card" data-sqft="592" data-collection="standard" onclick="openModal('sp-s1')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d592.jpg" alt="Suite D592 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d592.jpg" alt="Suite D592 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D592 &middot; 2 Bedroom</div>
@@ -276,7 +276,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="753" data-collection="standard" onclick="openModal('sp-s2')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d753.jpg" alt="Suite D753 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d753.jpg" alt="Suite D753 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D753 &middot; 2 Bedroom</div>
@@ -286,7 +286,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="762" data-collection="standard" onclick="openModal('sp-s3')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d762.jpg" alt="Suite D762 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d762.jpg" alt="Suite D762 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D762 &middot; 2 Bedroom</div>
@@ -296,7 +296,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="816" data-collection="standard" onclick="openModal('sp-s4')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d816.jpg" alt="Suite D816 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d816.jpg" alt="Suite D816 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D816 &middot; 2 Bedroom</div>
@@ -306,7 +306,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="832" data-collection="standard" onclick="openModal('sp-s5')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d830.jpg" alt="Suite D830 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-std-d830.jpg" alt="Suite D830 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D830 &middot; 2 Bedroom</div>
@@ -319,7 +319,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="sqft-header" id="luxury-header" style="grid-column:1/-1; margin-top:1rem; margin-bottom:1rem;"><div class="sqft-title">Luxury <em>Collection</em></div><div class="sqft-count">10 floor plans</div></div>
 
     <div class="fp-card" data-sqft="928" data-collection="luxury" onclick="openModal('sp-1')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-1.jpg" alt="Suite D928 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-1.jpg" alt="Suite D928 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D928 &middot; 2 Bedroom</div>
@@ -329,7 +329,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="993" data-collection="luxury" onclick="openModal('sp-2')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-2.jpg" alt="Suite D993 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-2.jpg" alt="Suite D993 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D993 &middot; 2 Bedroom</div>
@@ -339,7 +339,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1396" data-collection="luxury" onclick="openModal('sp-3')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-3.jpg" alt="Suite D1396 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-3.jpg" alt="Suite D1396 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D1396 &middot; 2 Bedroom</div>
@@ -349,7 +349,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="2322" data-collection="luxury" onclick="openModal('sp-4')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-4.jpg" alt="Suite D2322 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-4.jpg" alt="Suite D2322 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D2322 &middot; 2 Bedroom</div>
@@ -359,7 +359,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="2448" data-collection="luxury" onclick="openModal('sp-5')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-5.jpg" alt="Suite D2448 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-5.jpg" alt="Suite D2448 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite D2448 &middot; 2 Bedroom</div>
@@ -369,7 +369,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1100" data-collection="luxury" onclick="openModal('sp-6')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-6.jpg" alt="Suite E1100 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-6.jpg" alt="Suite E1100 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite E1100 &middot; 3 Bedroom</div>
@@ -379,7 +379,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1169" data-collection="luxury" onclick="openModal('sp-7')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-7.jpg" alt="Suite E1169 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-7.jpg" alt="Suite E1169 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite E1169 &middot; 3 Bedroom</div>
@@ -389,7 +389,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1446" data-collection="luxury" onclick="openModal('sp-8')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-8.jpg" alt="Suite E1446 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-8.jpg" alt="Suite E1446 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite E1446 &middot; 3 Bedroom</div>
@@ -399,7 +399,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1465" data-collection="luxury" onclick="openModal('sp-9')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-9.jpg" alt="Suite E1465 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-9.jpg" alt="Suite E1465 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite E1465 &middot; 3 Bedroom</div>
@@ -409,7 +409,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1466" data-collection="luxury" onclick="openModal('sp-10')">
-      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-10.jpg" alt="Suite E1466 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-10.jpg" alt="Suite E1466 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">101 Spadina</div>
         <div class="fp-suite">Suite E1466 &middot; 3 Bedroom</div>

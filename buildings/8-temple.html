@@ -75,7 +75,7 @@
     .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
-    .fp-image { overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; background: var(--white); padding: 1rem; }
+    .fp-image { position: relative; overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; background: var(--white); padding: 1rem; }
     .fp-image img { width: 100%; height: 100%; object-fit: cover; object-position: 70% center; display: block; margin: auto; }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
@@ -252,7 +252,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   <div class="fp-grid" id="fp-grid">
     <div class="fp-card" data-sqft="477" onclick="openModal('t-1')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1.jpg" alt="477 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1.jpg" alt="477 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">477 sq ft &middot; 1 Bedroom + Den</div>
@@ -265,7 +265,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="489" onclick="openModal('t-2')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2.jpg" alt="489 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2.jpg" alt="489 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">489 sq ft &middot; 1 Bedroom + Den</div>
@@ -278,7 +278,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="506" onclick="openModal('t-3')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3.jpg" alt="506 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3.jpg" alt="506 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">506 sq ft &middot; 1 Bedroom</div>
@@ -291,7 +291,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="527" onclick="openModal('t-4')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4.jpg" alt="527 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4.jpg" alt="527 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">527 sq ft &middot; 1 Bedroom</div>
@@ -304,7 +304,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="563" onclick="openModal('t-5')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5.jpg" alt="563 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5.jpg" alt="563 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">563 sq ft &middot; 1 Bedroom + Den</div>
@@ -317,7 +317,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="638" onclick="openModal('t-6')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6.jpg" alt="638 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6.jpg" alt="638 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">638 sq ft &middot; 1 Bedroom + Den</div>
@@ -330,7 +330,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="647" onclick="openModal('t-7')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7.jpg" alt="647 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7.jpg" alt="647 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">647 sq ft &middot; 1 Bedroom + Den</div>
@@ -343,7 +343,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="650" onclick="openModal('t-8')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8.jpg" alt="650 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8.jpg" alt="650 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">650 sq ft &middot; 1 Bedroom + Den</div>
@@ -356,7 +356,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="677" onclick="openModal('t-9')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9.jpg" alt="677 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9.jpg" alt="677 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">677 sq ft &middot; 2 Bedroom</div>
@@ -369,7 +369,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="707" onclick="openModal('t-10')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10.jpg" alt="707 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10.jpg" alt="707 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">707 sq ft &middot; 2 Bedroom</div>
@@ -382,7 +382,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="726" onclick="openModal('t-11')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11.jpg" alt="726 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11.jpg" alt="726 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">726 sq ft &middot; 2 Bedroom</div>
@@ -395,7 +395,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="797" onclick="openModal('t-12')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12.jpg" alt="797 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12.jpg" alt="797 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">797 sq ft &middot; 2 Bedroom + Den</div>
@@ -408,7 +408,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="820" onclick="openModal('t-13')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13.jpg" alt="820 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13.jpg" alt="820 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">820 sq ft &middot; 2 Bedroom</div>
@@ -421,7 +421,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="821" onclick="openModal('t-14')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14.jpg" alt="821 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14.jpg" alt="821 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">821 sq ft &middot; 2 Bedroom + Den</div>
@@ -434,7 +434,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="842" onclick="openModal('t-15')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15.jpg" alt="842 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15.jpg" alt="842 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">842 sq ft &middot; 2 Bedroom + Den</div>
@@ -447,7 +447,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="845" onclick="openModal('t-16')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16.jpg" alt="845 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16.jpg" alt="845 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">845 sq ft &middot; 2 Bedroom + Den</div>
@@ -460,7 +460,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="858" onclick="openModal('t-17')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17.jpg" alt="858 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17.jpg" alt="858 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">858 sq ft &middot; 2 Bedroom</div>
@@ -473,7 +473,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="883" onclick="openModal('t-18')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18.jpg" alt="883 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18.jpg" alt="883 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">883 sq ft &middot; 2 Bedroom + Den</div>
@@ -486,7 +486,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="890" onclick="openModal('t-19')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19.jpg" alt="890 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19.jpg" alt="890 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">890 sq ft &middot; 2 Bedroom + Den</div>
@@ -499,7 +499,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="894" onclick="openModal('t-20')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20.jpg" alt="894 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20.jpg" alt="894 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">894 sq ft &middot; 2 Bedroom + Den</div>
@@ -512,7 +512,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="912" onclick="openModal('t-21')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21.jpg" alt="912 sq ft Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21.jpg" alt="912 sq ft Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple</div>
         <div class="fp-suite">912 sq ft &middot; 2 Bedroom + Den</div>
@@ -525,7 +525,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1358" onclick="openModal('t-combo1')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8temple-901-919-a.jpg" alt="Unit 901+919 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-901-919-a.jpg" alt="Unit 901+919 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple &middot; Combo</div>
         <div class="fp-suite">Unit 901+919 &middot; 2 Bedroom + Den</div>
@@ -538,7 +538,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1358" onclick="openModal('t-combo1b')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8temple-901-919-b.jpg" alt="Unit 901+919 Layout B Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-901-919-b.jpg" alt="Unit 901+919 Layout B Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple &middot; Combo</div>
         <div class="fp-suite">Unit 901+919 &middot; Layout B</div>
@@ -551,7 +551,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1397" onclick="openModal('t-combo2')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8temple-916-917.jpg" alt="Unit 916+917 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-916-917.jpg" alt="Unit 916+917 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple &middot; Combo</div>
         <div class="fp-suite">Unit 916+917 &middot; 3 Bedroom</div>
@@ -564,7 +564,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="1940" onclick="openModal('t-combo5')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8temple-1117-1118.jpg" alt="Unit 1117+1118 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-1117-1118.jpg" alt="Unit 1117+1118 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple &middot; Combo</div>
         <div class="fp-suite">Unit 1117+1118 &middot; 3 Bedroom + Den</div>
@@ -577,7 +577,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" data-sqft="2156" onclick="openModal('t-combo6')">
-      <div class="fp-image"><img src="../neighbourhoods/images/8temple-1016-1017.jpg" alt="Unit 1016+1017 Floor Plan" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-1016-1017.jpg" alt="Unit 1016+1017 Floor Plan" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-building-tag">8 Temple &middot; Combo</div>
         <div class="fp-suite">Unit 1016+1017 &middot; 3 Bedroom</div>

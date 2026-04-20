@@ -63,7 +63,7 @@
     .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
-    .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); }
+    .fp-image { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--cream); border-bottom: 1px solid var(--border); }
     .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); }
     .fp-info { padding: 1.25rem 1.5rem; }
     .fp-suite { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
@@ -216,7 +216,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
   <div class="fp-grid">
     <div class="fp-card" onclick="openModal('well-2305')">
-      <div class="fp-image"><img src="../neighbourhoods/images/suite-2305.webp" alt="Suite 2305" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/suite-2305.webp" alt="Suite 2305" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 2305 · Floor 23 · NW</div>
         <div class="fp-type">3 Bedroom</div>
@@ -225,7 +225,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" onclick="openModal('well-gph9')">
-      <div class="fp-image"><img src="../neighbourhoods/images/the well gph9.webp" alt="Suite GPH9" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/the well gph9.webp" alt="Suite GPH9" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-suite">Suite GPH9 · GPH Floor</div>
         <div class="fp-type">3 Bedroom</div>
@@ -245,7 +245,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
   <div class="fp-grid">
     <div class="fp-card" onclick="openModal('well-610')">
-      <div class="fp-image"><img src="../neighbourhoods/images/signature 6th .webp" alt="Suite 610" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/signature 6th .webp" alt="Suite 610" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 610 · Floor 6 · NW</div>
         <div class="fp-type">2 Bedroom</div>
@@ -254,7 +254,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="fp-card" onclick="openModal('well-1205')">
-      <div class="fp-image"><img src="../neighbourhoods/images/SIGNATURE 12TH.webp" alt="Suite 1205" loading="lazy" /></div>
+      <div class="fp-image"><img src="../neighbourhoods/images/SIGNATURE 12TH.webp" alt="Suite 1205" loading="lazy" /><button onclick="event.stopPropagation();window.open(this.parentElement.querySelector('img').src,'_blank')" class="fp-full-btn" style="position:absolute;bottom:10px;right:10px;background:rgba(0,34,68,0.85);color:#fff;font-size:11px;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-family:inherit;z-index:2;letter-spacing:.02em;">Full plan ↗</button></div>
       <div class="fp-info">
         <div class="fp-suite">Suite 1205 · Floor 12 · SE</div>
         <div class="fp-type">2 Bedroom</div>
