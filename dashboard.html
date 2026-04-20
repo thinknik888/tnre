@@ -246,6 +246,152 @@ tr:hover td{background:rgba(255,255,255,.02)}
   .habit-name-d1{font-size:.7rem}
   .streak-row{grid-template-columns:repeat(3,1fr)}
 }
+
+/* ═══ CLIENTS TAB — cream/Sotheby's aesthetic, scoped ═══ */
+#panel-clients{--cl-cream:#f0ede6;--cl-navy:#002244;--cl-gold:#b89a56;--cl-card:#ffffff;--cl-border:rgba(0,34,68,0.12);--cl-border-strong:rgba(0,34,68,0.22);--cl-mid:rgba(0,34,68,0.55);--cl-muted:rgba(0,34,68,0.38);--cl-red:#b84545;--cl-blue:#2e6fb8;--cl-green:#4a8f5e;--cl-amber:#c28a2e;background:var(--cl-cream);color:var(--cl-navy);min-height:calc(100vh - 140px)}
+.cl-container{max-width:1200px;margin:0 auto;padding:32px 28px 80px}
+.cl-page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.cl-page-head h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--cl-navy);line-height:1.05;letter-spacing:-.01em}
+.cl-page-head .cl-sub{font-size:.82rem;color:var(--cl-mid);margin-top:4px;font-weight:400}
+.cl-page-actions{display:flex;gap:10px;align-items:center}
+.cl-btn-primary{background:var(--cl-navy);color:var(--cl-cream);border:none;padding:10px 18px;border-radius:3px;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:opacity .15s}
+.cl-btn-primary:hover{opacity:.85}
+.cl-btn-ghost{background:transparent;color:var(--cl-navy);border:1px solid var(--cl-border-strong);padding:9px 16px;border-radius:3px;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.cl-btn-ghost:hover{background:var(--cl-navy);color:var(--cl-cream);border-color:var(--cl-navy)}
+.cl-icon-btn{background:transparent;border:1px solid var(--cl-border-strong);width:38px;height:38px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--cl-navy);transition:all .15s;padding:0}
+.cl-icon-btn:hover{background:var(--cl-navy);color:var(--cl-cream);border-color:var(--cl-navy)}
+.cl-icon-btn svg{width:16px;height:16px}
+
+/* KPI strip */
+.cl-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
+.cl-kpi{background:var(--cl-card);border:0.5px solid var(--cl-border);border-radius:4px;padding:18px 20px}
+.cl-kpi-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cl-mid);margin-bottom:8px}
+.cl-kpi-value{font-family:'Cormorant Garamond',serif;font-size:1.95rem;font-weight:600;color:var(--cl-navy);line-height:1;letter-spacing:-.01em}
+.cl-kpi-sub{font-size:.7rem;color:var(--cl-muted);margin-top:5px}
+
+/* Sections */
+.cl-section{margin-bottom:44px}
+.cl-section-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:12px;margin-bottom:16px;border-bottom:1px solid var(--cl-border)}
+.cl-section-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--cl-navy);font-style:italic}
+.cl-section-count{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cl-mid);font-weight:600}
+.cl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.cl-empty{background:var(--cl-card);border:0.5px dashed var(--cl-border-strong);border-radius:4px;padding:36px 28px;text-align:center;color:var(--cl-mid);font-size:.88rem}
+.cl-empty-hint{margin-top:8px;font-size:.78rem;color:var(--cl-muted)}
+
+/* Card */
+.cl-card{background:var(--cl-card);border:0.5px solid var(--cl-border);border-radius:4px;padding:22px;position:relative;transition:border-color .2s}
+.cl-card:hover{border-color:var(--cl-border-strong)}
+.cl-card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.cl-avatar{width:42px;height:42px;border-radius:50%;background:var(--cl-navy);color:var(--cl-cream);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;flex-shrink:0;letter-spacing:.02em}
+.cl-card-ident{flex:1;min-width:0}
+.cl-card-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--cl-navy);line-height:1.15;letter-spacing:-.01em}
+.cl-card-sub{font-size:.78rem;color:var(--cl-mid);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-badge{display:inline-block;padding:3px 9px;border-radius:3px;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;flex-shrink:0}
+.cl-badge.hot{background:rgba(46,111,184,0.12);color:var(--cl-blue)}
+.cl-badge.warm{background:rgba(74,143,94,0.12);color:var(--cl-green)}
+.cl-badge.cold{background:rgba(194,138,46,0.14);color:var(--cl-amber)}
+.cl-menu-wrap{position:relative;flex-shrink:0}
+.cl-menu-btn{background:transparent;border:none;color:var(--cl-mid);width:28px;height:28px;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;padding:0}
+.cl-menu-btn:hover{background:rgba(0,34,68,0.06);color:var(--cl-navy)}
+.cl-menu{position:absolute;right:0;top:32px;background:var(--cl-card);border:0.5px solid var(--cl-border-strong);border-radius:4px;min-width:140px;box-shadow:0 4px 16px rgba(0,34,68,0.08);z-index:10;overflow:hidden;display:none}
+.cl-menu.open{display:block}
+.cl-menu button{display:block;width:100%;text-align:left;background:transparent;border:none;padding:10px 14px;font-family:'Outfit',sans-serif;font-size:.82rem;color:var(--cl-navy);cursor:pointer}
+.cl-menu button:hover{background:rgba(0,34,68,0.05)}
+.cl-menu button.cl-danger{color:var(--cl-red)}
+
+/* Contact block */
+.cl-contact{background:rgba(0,34,68,0.02);border:0.5px solid var(--cl-border);border-radius:3px;padding:10px 14px;margin-bottom:14px}
+.cl-contact-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.85rem}
+.cl-contact-row + .cl-contact-row{border-top:0.5px solid var(--cl-border)}
+.cl-contact-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cl-muted);font-weight:600;width:42px;flex-shrink:0}
+.cl-contact-val{flex:1;color:var(--cl-navy);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+.cl-contact-val:hover{color:var(--cl-gold)}
+.cl-contact-actions{display:flex;gap:4px;flex-shrink:0}
+.cl-contact-actions a,.cl-contact-actions button{background:transparent;border:none;width:28px;height:28px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--cl-mid);padding:0;text-decoration:none}
+.cl-contact-actions a:hover,.cl-contact-actions button:hover{background:var(--cl-navy);color:var(--cl-cream)}
+.cl-contact-actions svg{width:13px;height:13px}
+
+/* Stats row */
+.cl-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--cl-border);border:0.5px solid var(--cl-border);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.cl-stat{background:var(--cl-card);padding:10px 10px;text-align:left}
+.cl-stat-label{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cl-muted);font-weight:600;margin-bottom:3px}
+.cl-stat-val{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--cl-navy);line-height:1.1;letter-spacing:-.01em}
+.cl-stat-val.cl-auto{color:var(--cl-gold)}
+.cl-stat input{width:100%;background:transparent;border:none;color:var(--cl-navy);font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;padding:0;margin:0;border-bottom:1px dashed transparent;outline:none}
+.cl-stat input:hover{border-bottom-color:var(--cl-border-strong)}
+.cl-stat input:focus{border-bottom-color:var(--cl-gold)}
+
+/* Activity footer */
+.cl-activity{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;border-top:0.5px solid var(--cl-border);flex-wrap:wrap}
+.cl-activity-stats{font-size:.74rem;color:var(--cl-mid);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cl-activity-stats .cl-stale{color:var(--cl-red);font-weight:600}
+.cl-activity-actions{display:flex;gap:6px;align-items:center}
+.cl-log-btn{background:transparent;border:1px solid var(--cl-border-strong);color:var(--cl-navy);padding:5px 10px;border-radius:3px;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.cl-log-btn:hover{background:var(--cl-navy);color:var(--cl-cream);border-color:var(--cl-navy)}
+.cl-log-flash{font-size:.68rem;color:var(--cl-green);font-weight:600;letter-spacing:.04em;opacity:0;transition:opacity .2s}
+.cl-log-flash.show{opacity:1}
+
+/* Notes */
+.cl-notes-toggle{background:transparent;border:none;color:var(--cl-navy);font-family:'Outfit',sans-serif;font-size:.74rem;cursor:pointer;padding:12px 0 0;margin:0;display:inline-flex;align-items:center;gap:5px;font-weight:500}
+.cl-notes-toggle:hover{color:var(--cl-gold)}
+.cl-notes-toggle .cl-arr{transition:transform .2s;display:inline-block}
+.cl-notes-toggle.open .cl-arr{transform:rotate(90deg)}
+.cl-notes-body{display:none;margin-top:10px;padding:12px 14px;background:rgba(0,34,68,0.03);border:0.5px solid var(--cl-border);border-radius:3px}
+.cl-notes-body.open{display:block}
+.cl-notes-body textarea{width:100%;min-height:80px;background:transparent;border:none;color:var(--cl-navy);font-family:'Outfit',sans-serif;font-size:.85rem;line-height:1.5;resize:vertical;outline:none}
+.cl-notes-body textarea::placeholder{color:var(--cl-muted)}
+
+/* Delete confirmation overlay (inside card) */
+.cl-del-overlay{position:absolute;inset:0;background:rgba(255,255,255,0.96);border-radius:4px;display:none;align-items:center;justify-content:center;padding:24px;z-index:5}
+.cl-del-overlay.open{display:flex}
+.cl-del-inner{text-align:center;max-width:320px}
+.cl-del-inner h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--cl-navy);margin-bottom:6px}
+.cl-del-inner p{font-size:.8rem;color:var(--cl-mid);line-height:1.45;margin-bottom:18px}
+.cl-del-actions{display:flex;gap:8px;justify-content:center}
+.cl-del-actions button{padding:8px 18px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;cursor:pointer;font-family:'Outfit',sans-serif;border:1px solid var(--cl-border-strong);background:transparent;color:var(--cl-navy)}
+.cl-del-actions .cl-del-go{background:var(--cl-red);color:#fff;border-color:var(--cl-red)}
+
+/* Modal (add/edit + settings) */
+.cl-modal{position:fixed;inset:0;background:rgba(0,34,68,0.55);z-index:1200;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 20px}
+.cl-modal.open{display:flex}
+.cl-modal-body{background:var(--cl-cream);border-radius:4px;padding:32px;width:100%;max-width:560px;color:var(--cl-navy);position:relative}
+.cl-modal-body h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;margin-bottom:6px;color:var(--cl-navy)}
+.cl-modal-body .cl-modal-sub{font-size:.8rem;color:var(--cl-mid);margin-bottom:24px}
+.cl-modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;width:32px;height:32px;font-size:1.5rem;cursor:pointer;color:var(--cl-mid);line-height:1}
+.cl-modal-close:hover{color:var(--cl-navy)}
+.cl-field{margin-bottom:14px}
+.cl-field label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cl-mid);margin-bottom:6px}
+.cl-field input,.cl-field textarea,.cl-field select{width:100%;background:var(--cl-card);border:0.5px solid var(--cl-border-strong);color:var(--cl-navy);padding:10px 12px;border-radius:3px;font-family:'Outfit',sans-serif;font-size:.9rem}
+.cl-field input:focus,.cl-field textarea:focus{outline:none;border-color:var(--cl-gold)}
+.cl-field textarea{min-height:80px;resize:vertical;font-family:'Outfit',sans-serif}
+.cl-radio-row{display:flex;gap:8px}
+.cl-radio-row label{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;border:0.5px solid var(--cl-border-strong);border-radius:3px;cursor:pointer;font-size:.85rem;font-weight:500;text-transform:none;letter-spacing:0;color:var(--cl-navy);margin:0;background:var(--cl-card);transition:all .15s}
+.cl-radio-row label:has(input:checked){background:var(--cl-navy);color:var(--cl-cream);border-color:var(--cl-navy)}
+.cl-radio-row input{width:auto;margin:0}
+.cl-field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cl-preview{background:rgba(184,154,86,0.08);border:0.5px solid rgba(184,154,86,0.3);border-radius:3px;padding:12px 14px;font-size:.82rem;color:var(--cl-navy);margin-bottom:14px;font-family:'Cormorant Garamond',serif;font-size:1rem}
+.cl-preview strong{font-weight:600;color:var(--cl-gold)}
+.cl-modal-actions{display:flex;gap:10px;margin-top:22px}
+.cl-modal-actions button{flex:1;padding:11px;border-radius:3px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;border:none}
+.cl-modal-actions .cl-save{background:var(--cl-navy);color:var(--cl-cream)}
+.cl-modal-actions .cl-cancel{background:transparent;color:var(--cl-navy);border:1px solid var(--cl-border-strong)}
+.cl-modal-err{color:var(--cl-red);font-size:.78rem;margin-top:8px;min-height:1.1em}
+
+/* Responsive */
+@media(max-width:900px){
+  #panel-clients .cl-kpi-grid{grid-template-columns:repeat(2,1fr)}
+  #panel-clients .cl-grid{grid-template-columns:1fr}
+  #panel-clients .cl-stats{grid-template-columns:repeat(3,1fr)}
+  #panel-clients .cl-stats .cl-stat:nth-child(4),#panel-clients .cl-stats .cl-stat:nth-child(5){border-top:0.5px solid var(--cl-border)}
+}
+@media(max-width:520px){
+  #panel-clients .cl-container{padding:20px 16px 60px}
+  #panel-clients .cl-page-head h1{font-size:1.9rem}
+  #panel-clients .cl-kpi-grid{grid-template-columns:1fr 1fr}
+  #panel-clients .cl-stats{grid-template-columns:repeat(2,1fr)}
+  #panel-clients .cl-field-row{grid-template-columns:1fr}
+  #panel-clients .cl-modal-body{padding:24px 20px}
+}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -299,6 +445,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <button class="tab-btn active" onclick="switchTab('sales',this)">Sales Dashboard</button>
     <button class="tab-btn" onclick="switchTab('rentals',this)">Rentals Dashboard</button>
     <button class="tab-btn" onclick="switchTab('habits',this)">Daily Habits</button>
+    <button class="tab-btn" onclick="switchTab('clients',this)">Clients</button>
   </div>
 
   <!-- ═══ SALES DASHBOARD ═══ -->
@@ -610,6 +757,124 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </div>
   </div>
+
+  <!-- ═══ CLIENTS TAB ═══ -->
+  <div class="tab-panel" id="panel-clients">
+    <div class="cl-container">
+      <div class="cl-page-head">
+        <div>
+          <h1>Clients</h1>
+          <div class="cl-sub">Your active deals and past clients</div>
+        </div>
+        <div class="cl-page-actions">
+          <button class="cl-icon-btn" onclick="clOpenSettings()" title="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+          <button class="cl-btn-primary" onclick="clOpenAdd()">+ Add person</button>
+        </div>
+      </div>
+
+      <!-- KPI strip -->
+      <div class="cl-kpi-grid">
+        <div class="cl-kpi"><div class="cl-kpi-label">Active deals</div><div class="cl-kpi-value" id="cl-k-count">0</div><div class="cl-kpi-sub">in pipeline</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Pipeline value</div><div class="cl-kpi-value" id="cl-k-pipeline">$0</div><div class="cl-kpi-sub">sum of active budgets</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Projected take-home</div><div class="cl-kpi-value" id="cl-k-takehome">$0</div><div class="cl-kpi-sub">after brokerage split</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Calls this month</div><div class="cl-kpi-value" id="cl-k-calls">0</div><div class="cl-kpi-sub" id="cl-k-calls-sub"></div></div>
+      </div>
+
+      <!-- Active deals -->
+      <div class="cl-section">
+        <div class="cl-section-head">
+          <div class="cl-section-title">Active deals</div>
+          <div class="cl-section-count" id="cl-active-count">0</div>
+        </div>
+        <div id="cl-active-wrap"></div>
+      </div>
+
+      <!-- Past clients -->
+      <div class="cl-section">
+        <div class="cl-section-head">
+          <div class="cl-section-title">Past clients</div>
+          <div class="cl-section-count" id="cl-past-count">0</div>
+        </div>
+        <div id="cl-past-wrap"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT MODAL (add/edit) -->
+<div class="cl-modal" id="cl-modal">
+  <div class="cl-modal-body">
+    <button class="cl-modal-close" onclick="clCloseModal()" aria-label="Close">&times;</button>
+    <h2 id="cl-modal-title">Add person</h2>
+    <div class="cl-modal-sub" id="cl-modal-sub">Commission and split default to your saved settings — override per client as needed.</div>
+    <form id="cl-form" onsubmit="event.preventDefault();clSubmit()">
+      <div class="cl-field">
+        <label>Type</label>
+        <div class="cl-radio-row">
+          <label><input type="radio" name="cl-type" value="active" checked onchange="clTypeChange()"> Active deal</label>
+          <label><input type="radio" name="cl-type" value="past" onchange="clTypeChange()"> Past client</label>
+        </div>
+      </div>
+      <div class="cl-field-row">
+        <div class="cl-field"><label>Name *</label><input id="cl-f-name" type="text" required></div>
+        <div class="cl-field"><label>Phone *</label><input id="cl-f-phone" type="tel" required></div>
+      </div>
+      <div class="cl-field"><label>Email</label><input id="cl-f-email" type="email"></div>
+
+      <!-- Active fields -->
+      <div id="cl-f-active">
+        <div class="cl-field"><label>Building(s) interested in</label><input id="cl-f-building-active" type="text" placeholder="e.g. 50 Scollard, 11 Yorkville"></div>
+        <div class="cl-field"><label>Budget ($)</label><input id="cl-f-budget" type="number" step="1000" min="0"></div>
+      </div>
+
+      <!-- Past fields -->
+      <div id="cl-f-past" style="display:none">
+        <div class="cl-field-row">
+          <div class="cl-field"><label>Building</label><input id="cl-f-building-past" type="text"></div>
+          <div class="cl-field"><label>Unit #</label><input id="cl-f-unit" type="text"></div>
+        </div>
+        <div class="cl-field-row">
+          <div class="cl-field"><label>Purchase price ($)</label><input id="cl-f-price" type="number" step="1000" min="0"></div>
+          <div class="cl-field"><label>Closing date</label><input id="cl-f-closing" type="date"></div>
+        </div>
+      </div>
+
+      <div class="cl-field-row">
+        <div class="cl-field"><label>Commission %</label><input id="cl-f-comm" type="number" step="0.1" min="0" max="100" oninput="clFormPreview()"></div>
+        <div class="cl-field"><label>Brokerage split %</label><input id="cl-f-split" type="number" step="1" min="0" max="100" oninput="clFormPreview()"></div>
+      </div>
+
+      <div class="cl-preview" id="cl-f-preview">Gross: <strong>$0</strong> · Take-home: <strong>$0</strong></div>
+
+      <div class="cl-field"><label>Notes</label><textarea id="cl-f-notes"></textarea></div>
+
+      <div class="cl-modal-err" id="cl-form-err"></div>
+      <div class="cl-modal-actions">
+        <button type="button" class="cl-cancel" onclick="clCloseModal()">Cancel</button>
+        <button type="submit" class="cl-save" id="cl-save-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CLIENT SETTINGS MODAL -->
+<div class="cl-modal" id="cl-settings-modal">
+  <div class="cl-modal-body">
+    <button class="cl-modal-close" onclick="clCloseSettings()" aria-label="Close">&times;</button>
+    <h2>Defaults</h2>
+    <div class="cl-modal-sub">These auto-fill new client forms but can be overridden per client.</div>
+    <div class="cl-field-row">
+      <div class="cl-field"><label>Default commission %</label><input id="cl-s-comm" type="number" step="0.1" min="0" max="100"></div>
+      <div class="cl-field"><label>Default brokerage split %</label><input id="cl-s-split" type="number" step="1" min="0" max="100"></div>
+    </div>
+    <div class="cl-modal-err" id="cl-settings-err"></div>
+    <div class="cl-modal-actions">
+      <button class="cl-cancel" onclick="clCloseSettings()">Cancel</button>
+      <button class="cl-save" onclick="clSaveSettings()">Save</button>
+    </div>
+  </div>
 </div>
 
 <!-- SETTINGS PANEL -->
@@ -701,6 +966,7 @@ function switchTab(tab,btn){
   if(tab==='sales'){if(!pipeState['condosaround-sales'].date)initPipeline('condosaround-sales');else renderPipelineToday('condosaround-sales');fetchSalesDeals();fetchSalesYTD();}
   if(tab==='rentals'){if(!pipeState.rentals.date)initPipeline('rentals');else renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
+  if(tab==='clients')clEnsureLoaded();
 }
 
 function initAll(){
@@ -1307,6 +1573,481 @@ function buildInsightsChart(){
 
 function shiftYear(dir){d1SelectedYear+=dir;renderD1Reports();}
 window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker')renderD1Tracker();});
+
+// ═══════════════════════════════════════════════════════════
+// CLIENTS TAB
+// ═══════════════════════════════════════════════════════════
+(function(){
+  var DASH_SECRET='condos2026';
+  var state = {
+    clients: [],
+    settings: {default_commission_percent:2.5, default_brokerage_split_percent:20},
+    loaded: false,
+    editingId: null,
+    saveTimers: {}
+  };
+
+  function money(n){ if(!isFinite(n)||n==null)return '$0'; return '$'+Math.round(Number(n)).toLocaleString('en-US'); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
+  function phoneTo(p){ return String(p||'').replace(/[^0-9+]/g,''); }
+  function initials(name){
+    var parts = String(name||'').trim().split(/\s+/).filter(Boolean);
+    if(!parts.length) return '—';
+    return (parts[0][0] + (parts[1]?parts[1][0]:'')).toUpperCase();
+  }
+  function effComm(c){ return (c.commission_percent!=null && isFinite(c.commission_percent)) ? Number(c.commission_percent) : Number(state.settings.default_commission_percent); }
+  function effSplit(c){ return (c.brokerage_split_percent!=null && isFinite(c.brokerage_split_percent)) ? Number(c.brokerage_split_percent) : Number(state.settings.default_brokerage_split_percent); }
+  function amount(c){ return Number(c.type==='past'?(c.purchase_price||0):(c.budget||0)); }
+  function grossOf(c){ return amount(c) * effComm(c) / 100; }
+  function takeOf(c){ return grossOf(c) * (1 - effSplit(c)/100); }
+  function lastContactMs(c){
+    var times = [];
+    if(c.created_at) times.push(new Date(c.created_at).getTime());
+    (c.calls||[]).forEach(function(t){times.push(new Date(t).getTime());});
+    (c.appointments||[]).forEach(function(t){times.push(new Date(t).getTime());});
+    return times.length?Math.max.apply(null, times):Date.now();
+  }
+  function daysSince(ms){ return Math.max(0, Math.floor((Date.now() - ms) / 86400000)); }
+  function badgeFor(c){
+    var d = daysSince(lastContactMs(c));
+    if(d <= 7) return {cls:'hot', label:'Hot'};
+    if(d <= 21) return {cls:'warm', label:'Warm'};
+    return {cls:'cold', label:'Cold'};
+  }
+  function monthYearStr(iso){
+    if(!iso) return '—';
+    var d = new Date(iso);
+    if(isNaN(d)) return '—';
+    return d.toLocaleString('en-US',{month:'long', year:'numeric'});
+  }
+  function anniversaryBadge(closingIso){
+    if(!closingIso) return '';
+    var closed = new Date(closingIso);
+    if(isNaN(closed)) return '';
+    var now = new Date();
+    var next = new Date(closed);
+    next.setFullYear(now.getFullYear());
+    if(next < now) next.setFullYear(now.getFullYear()+1);
+    var days = Math.ceil((next - now)/86400000);
+    if(days > 30 || days < 0) return '';
+    return '<span class="cl-badge warm" style="margin-left:8px">Anniv in '+days+'d</span>';
+  }
+
+  async function api(fn, opts){
+    opts = opts || {};
+    opts.headers = Object.assign({'Content-Type':'application/json','x-dash-secret':DASH_SECRET}, opts.headers||{});
+    var res = await fetch('/.netlify/functions/'+fn, opts);
+    if(!res.ok){
+      var text = await res.text().catch(function(){return '';});
+      throw new Error(fn+' '+res.status+' '+text);
+    }
+    return res.json();
+  }
+
+  async function ensureLoaded(){
+    if(state.loaded){ render(); return; }
+    try {
+      var results = await Promise.all([api('get-settings'), api('get-clients')]);
+      state.settings = results[0] || state.settings;
+      state.clients = results[1] || [];
+      state.loaded = true;
+      render();
+    } catch(err){
+      console.error('clients load error', err);
+      if(typeof toast==='function') toast('Failed to load clients');
+    }
+  }
+
+  async function reload(){
+    try { state.clients = (await api('get-clients')) || []; render(); }
+    catch(err){ console.error(err); }
+  }
+
+  function computeKpis(){
+    var active = state.clients.filter(function(c){return c.type==='active' && !c.archived;});
+    var pipeline = active.reduce(function(s,c){return s + (Number(c.budget)||0);}, 0);
+    var take = active.reduce(function(s,c){return s + takeOf(c);}, 0);
+    var now = new Date();
+    var ym = now.getFullYear()+'-'+(now.getMonth()+1);
+    var callsMonth = 0;
+    state.clients.forEach(function(c){
+      (c.calls||[]).forEach(function(t){
+        var d = new Date(t);
+        if(d.getFullYear()+'-'+(d.getMonth()+1) === ym) callsMonth++;
+      });
+    });
+    return {count:active.length, pipeline:pipeline, take:take, callsMonth:callsMonth, monthName: now.toLocaleString('en-US',{month:'long'})};
+  }
+
+  function renderKpis(){
+    var k = computeKpis();
+    document.getElementById('cl-k-count').textContent = k.count;
+    document.getElementById('cl-k-pipeline').textContent = money(k.pipeline);
+    document.getElementById('cl-k-takehome').textContent = money(k.take);
+    document.getElementById('cl-k-calls').textContent = k.callsMonth;
+    document.getElementById('cl-k-calls-sub').textContent = k.monthName;
+  }
+
+  function render(){
+    renderKpis();
+    var active = state.clients.filter(function(c){return c.type==='active' && !c.archived;});
+    var past = state.clients.filter(function(c){return c.type==='past' && !c.archived;});
+    document.getElementById('cl-active-count').textContent = active.length;
+    document.getElementById('cl-past-count').textContent = past.length;
+    document.getElementById('cl-active-wrap').innerHTML = active.length
+      ? '<div class="cl-grid">'+active.map(cardHtml).join('')+'</div>'
+      : '<div class="cl-empty">No active deals yet.<div class="cl-empty-hint">Click <strong>+ Add person</strong> at the top to create your first.</div></div>';
+    document.getElementById('cl-past-wrap').innerHTML = past.length
+      ? '<div class="cl-grid">'+past.map(cardHtml).join('')+'</div>'
+      : '<div class="cl-empty">No past clients yet.</div>';
+  }
+
+  var copyIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var callIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+  var smsIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var mailIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>';
+
+  function cardHtml(c){
+    var isPast = c.type==='past';
+    var bg = badgeFor(c);
+    var last = daysSince(lastContactMs(c));
+    var subtitle = isPast
+      ? (c.building||'—') + (c.unit ? ' · Unit '+c.unit : '')
+      : (c.building ? 'Interested: '+c.building : '—');
+    var amt = amount(c), gross = grossOf(c), take = takeOf(c);
+    var commVal = effComm(c), splitVal = effSplit(c);
+    var amtLabel = isPast ? 'Purchase' : 'Budget';
+    var grossLabel = isPast ? 'Gross earned' : 'Gross';
+    var takeLabel = isPast ? 'Take-home' : 'Take-home';
+    var phoneHref = phoneTo(c.phone);
+    var id = esc(c.id);
+
+    var activityFooter = isPast
+      ? '<div class="cl-activity-stats">Closed: '+esc(monthYearStr(c.closing_date))+anniversaryBadge(c.closing_date)+'</div>'
+      : '<div class="cl-activity-stats">'+(c.calls||[]).length+' calls · '+(c.appointments||[]).length+' appts · Last: <span'+(last>=30?' class="cl-stale"':'')+'>'+last+'d ago</span></div>';
+
+    var phoneActions = '';
+    if(phoneHref){
+      phoneActions =
+        '<a href="tel:'+esc(phoneHref)+'" title="Call" aria-label="Call">'+callIcon+'</a>'+
+        '<a href="sms:'+esc(phoneHref)+'" title="Text" aria-label="Text">'+smsIcon+'</a>';
+    }
+    phoneActions += '<button onclick="clCopyField(\''+id+'\',\'phone\')" title="Copy phone" aria-label="Copy phone">'+copyIcon+'</button>';
+
+    var emailRow = '';
+    if(c.email){
+      emailRow = '<div class="cl-contact-row">'+
+        '<span class="cl-contact-label">Email</span>'+
+        '<a class="cl-contact-val" href="mailto:'+esc(c.email)+'">'+esc(c.email)+'</a>'+
+        '<span class="cl-contact-actions">'+
+          '<a href="mailto:'+esc(c.email)+'" title="Email" aria-label="Email">'+mailIcon+'</a>'+
+          '<button onclick="clCopyField(\''+id+'\',\'email\')" title="Copy email" aria-label="Copy email">'+copyIcon+'</button>'+
+        '</span>'+
+      '</div>';
+    }
+
+    return ''+
+      '<div class="cl-card" data-id="'+id+'">'+
+        '<div class="cl-card-top">'+
+          '<div class="cl-avatar">'+esc(initials(c.name))+'</div>'+
+          '<div class="cl-card-ident">'+
+            '<div class="cl-card-name">'+esc(c.name)+'</div>'+
+            '<div class="cl-card-sub">'+esc(subtitle)+'</div>'+
+          '</div>'+
+          (isPast ? '' : '<span class="cl-badge '+bg.cls+'">'+bg.label+'</span>')+
+          '<div class="cl-menu-wrap">'+
+            '<button class="cl-menu-btn" onclick="clToggleMenu(\''+id+'\',event)" aria-label="Menu">⋯</button>'+
+            '<div class="cl-menu" id="cl-menu-'+id+'">'+
+              '<button onclick="clOpenEdit(\''+id+'\')">Edit</button>'+
+              '<button onclick="clArchive(\''+id+'\')">Archive</button>'+
+              '<button class="cl-danger" onclick="clAskDelete(\''+id+'\')">Delete</button>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="cl-contact">'+
+          '<div class="cl-contact-row">'+
+            '<span class="cl-contact-label">Tel</span>'+
+            '<a class="cl-contact-val" href="tel:'+esc(phoneHref)+'">'+esc(c.phone||'—')+'</a>'+
+            '<span class="cl-contact-actions">'+phoneActions+'</span>'+
+          '</div>'+
+          emailRow+
+        '</div>'+
+
+        '<div class="cl-stats">'+
+          '<div class="cl-stat"><div class="cl-stat-label">'+amtLabel+'</div><div class="cl-stat-val">'+money(amt)+'</div></div>'+
+          '<div class="cl-stat"><div class="cl-stat-label">Comm %</div><div class="cl-stat-val"><input type="number" step="0.1" min="0" max="100" value="'+commVal.toFixed(1)+'" oninput="clInlineEdit(\''+id+'\',\'commission_percent\',this.value)" /></div></div>'+
+          '<div class="cl-stat"><div class="cl-stat-label">'+grossLabel+'</div><div class="cl-stat-val cl-auto" data-gross="'+id+'">'+money(gross)+'</div></div>'+
+          '<div class="cl-stat"><div class="cl-stat-label">Split %</div><div class="cl-stat-val"><input type="number" step="1" min="0" max="100" value="'+Math.round(splitVal)+'" oninput="clInlineEdit(\''+id+'\',\'brokerage_split_percent\',this.value)" /></div></div>'+
+          '<div class="cl-stat"><div class="cl-stat-label">'+takeLabel+'</div><div class="cl-stat-val cl-auto" data-take="'+id+'">'+money(take)+'</div></div>'+
+        '</div>'+
+
+        '<div class="cl-activity">'+
+          activityFooter+
+          '<div class="cl-activity-actions">'+
+            '<span class="cl-log-flash" id="cl-flash-'+id+'"></span>'+
+            '<button class="cl-log-btn" onclick="clLog(\''+id+'\',\'call\')">+ Call</button>'+
+            '<button class="cl-log-btn" onclick="clLog(\''+id+'\',\'appt\')">+ Appt</button>'+
+          '</div>'+
+        '</div>'+
+
+        '<button class="cl-notes-toggle" onclick="clToggleNotes(\''+id+'\')" id="cl-notes-btn-'+id+'"><span class="cl-arr">›</span> Notes'+(c.notes?' ·':'')+'</button>'+
+        '<div class="cl-notes-body" id="cl-notes-'+id+'"><textarea placeholder="Free-form notes…" oninput="clNotesEdit(\''+id+'\',this.value)">'+esc(c.notes||'')+'</textarea></div>'+
+
+        '<div class="cl-del-overlay" id="cl-del-'+id+'">'+
+          '<div class="cl-del-inner">'+
+            '<h4>Delete '+esc(c.name)+'?</h4>'+
+            '<p>This removes their card and all notes. Cannot be undone.</p>'+
+            '<div class="cl-del-actions"><button onclick="clCancelDelete(\''+id+'\')">Cancel</button><button class="cl-del-go" onclick="clConfirmDelete(\''+id+'\')">Delete</button></div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+  }
+
+  window.clToggleMenu = function(id, ev){
+    if(ev) ev.stopPropagation();
+    var m = document.getElementById('cl-menu-'+id);
+    if(!m) return;
+    document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){ if(el!==m) el.classList.remove('open'); });
+    m.classList.toggle('open');
+  };
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.cl-menu-wrap')){
+      document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
+    }
+  });
+
+  window.clCopyField = async function(id, field){
+    var c = state.clients.find(function(x){return x.id===id;});
+    if(!c) return;
+    var text = field==='phone' ? (c.phone||'') : (c.email||'');
+    if(!text) return;
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(text);
+      else { var ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+      if(typeof toast==='function') toast('Copied');
+    } catch(e){ console.error(e); if(typeof toast==='function') toast('Copy failed'); }
+  };
+
+  window.clInlineEdit = function(id, field, value){
+    var c = state.clients.find(function(x){return x.id===id;});
+    if(!c) return;
+    var n = value === '' ? null : Number(value);
+    if(n !== null && !isFinite(n)) return;
+    c[field] = n;
+    var gEl = document.querySelector('[data-gross="'+id+'"]');
+    var tEl = document.querySelector('[data-take="'+id+'"]');
+    if(gEl) gEl.textContent = money(grossOf(c));
+    if(tEl) tEl.textContent = money(takeOf(c));
+    renderKpis();
+    var key = id+':'+field;
+    if(state.saveTimers[key]) clearTimeout(state.saveTimers[key]);
+    state.saveTimers[key] = setTimeout(async function(){
+      try {
+        var patch = {}; patch[field] = n;
+        await api('update-client', { method:'POST', body: JSON.stringify({id:id, patch:patch}) });
+      } catch(err){ console.error(err); if(typeof toast==='function') toast('Save failed'); }
+    }, 500);
+  };
+
+  window.clToggleNotes = function(id){
+    var body = document.getElementById('cl-notes-'+id);
+    var btn = document.getElementById('cl-notes-btn-'+id);
+    if(!body) return;
+    body.classList.toggle('open');
+    if(btn) btn.classList.toggle('open');
+  };
+  window.clNotesEdit = function(id, value){
+    var c = state.clients.find(function(x){return x.id===id;});
+    if(!c) return;
+    c.notes = value;
+    var key = id+':notes';
+    if(state.saveTimers[key]) clearTimeout(state.saveTimers[key]);
+    state.saveTimers[key] = setTimeout(async function(){
+      try { await api('update-client', { method:'POST', body: JSON.stringify({id:id, patch:{notes:value}}) }); }
+      catch(err){ console.error(err); }
+    }, 700);
+  };
+
+  window.clLog = async function(id, kind){
+    var flash = document.getElementById('cl-flash-'+id);
+    try {
+      var res = await api('update-client', { method:'POST', body: JSON.stringify({id:id, action: kind==='call'?'log_call':'log_appointment'}) });
+      if(res && res.client){
+        var idx = state.clients.findIndex(function(x){return x.id===id;});
+        if(idx>=0) state.clients[idx] = res.client;
+      }
+      if(flash){
+        flash.textContent = '+1 '+(kind==='call'?'call':'appt')+' logged';
+        flash.classList.add('show');
+        setTimeout(function(){flash.classList.remove('show');}, 1500);
+      }
+      render();
+    } catch(err){ console.error(err); if(typeof toast==='function') toast('Log failed'); }
+  };
+
+  window.clArchive = async function(id){
+    try {
+      await api('update-client', { method:'POST', body: JSON.stringify({id:id, patch:{archived:true}}) });
+      state.clients = state.clients.filter(function(c){return c.id!==id;});
+      render();
+      if(typeof toast==='function') toast('Archived');
+    } catch(err){ console.error(err); if(typeof toast==='function') toast('Archive failed'); }
+  };
+
+  window.clAskDelete = function(id){
+    document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
+    var o = document.getElementById('cl-del-'+id);
+    if(o) o.classList.add('open');
+  };
+  window.clCancelDelete = function(id){
+    var o = document.getElementById('cl-del-'+id);
+    if(o) o.classList.remove('open');
+  };
+  window.clConfirmDelete = async function(id){
+    try {
+      await api('delete-client', { method:'POST', body: JSON.stringify({id:id}) });
+      state.clients = state.clients.filter(function(c){return c.id!==id;});
+      render();
+      if(typeof toast==='function') toast('Deleted');
+    } catch(err){ console.error(err); if(typeof toast==='function') toast('Delete failed'); }
+  };
+
+  function getSelectedType(){
+    var r = document.querySelector('input[name="cl-type"]:checked');
+    return r ? r.value : 'active';
+  }
+  window.clTypeChange = function(){
+    var t = getSelectedType();
+    document.getElementById('cl-f-active').style.display = t==='active'?'block':'none';
+    document.getElementById('cl-f-past').style.display = t==='past'?'block':'none';
+    clFormPreview();
+  };
+  window.clFormPreview = function(){
+    var t = getSelectedType();
+    var amtEl = t==='active' ? document.getElementById('cl-f-budget') : document.getElementById('cl-f-price');
+    var amt = Number(amtEl.value) || 0;
+    var comm = Number(document.getElementById('cl-f-comm').value);
+    var split = Number(document.getElementById('cl-f-split').value);
+    if(!isFinite(comm)) comm = Number(state.settings.default_commission_percent);
+    if(!isFinite(split)) split = Number(state.settings.default_brokerage_split_percent);
+    var gross = amt * comm / 100;
+    var take = gross * (1 - split/100);
+    var past = t==='past';
+    document.getElementById('cl-f-preview').innerHTML = (past?'Gross earned: ':'Gross: ')+'<strong>'+money(gross)+'</strong> · '+(past?'Take-home earned: ':'Take-home: ')+'<strong>'+money(take)+'</strong>';
+  };
+
+  function fillFormDefaults(){
+    document.getElementById('cl-f-comm').value = Number(state.settings.default_commission_percent).toFixed(1);
+    document.getElementById('cl-f-split').value = Math.round(Number(state.settings.default_brokerage_split_percent));
+  }
+  function clearForm(){
+    ['cl-f-name','cl-f-phone','cl-f-email','cl-f-building-active','cl-f-building-past','cl-f-unit','cl-f-budget','cl-f-price','cl-f-closing','cl-f-notes'].forEach(function(id){
+      var el=document.getElementById(id); if(el) el.value='';
+    });
+    document.querySelector('input[name="cl-type"][value="active"]').checked = true;
+    document.getElementById('cl-form-err').textContent = '';
+    fillFormDefaults();
+    window.clTypeChange();
+  }
+
+  window.clOpenAdd = function(){
+    state.editingId = null;
+    document.getElementById('cl-modal-title').textContent = 'Add person';
+    document.getElementById('cl-modal-sub').textContent = 'Commission and split default to your saved settings — override per client as needed.';
+    document.getElementById('cl-save-btn').textContent = 'Save';
+    clearForm();
+    document.getElementById('cl-modal').classList.add('open');
+    setTimeout(function(){document.getElementById('cl-f-name').focus();}, 50);
+  };
+
+  window.clOpenEdit = function(id){
+    var c = state.clients.find(function(x){return x.id===id;});
+    if(!c) return;
+    state.editingId = id;
+    document.getElementById('cl-modal-title').textContent = 'Edit person';
+    document.getElementById('cl-modal-sub').textContent = 'Changes save when you click Save changes.';
+    document.getElementById('cl-save-btn').textContent = 'Save changes';
+    clearForm();
+    document.querySelector('input[name="cl-type"][value="'+(c.type==='past'?'past':'active')+'"]').checked = true;
+    document.getElementById('cl-f-name').value = c.name||'';
+    document.getElementById('cl-f-phone').value = c.phone||'';
+    document.getElementById('cl-f-email').value = c.email||'';
+    document.getElementById('cl-f-building-active').value = c.building||'';
+    document.getElementById('cl-f-building-past').value = c.building||'';
+    document.getElementById('cl-f-unit').value = c.unit||'';
+    if(c.budget!=null) document.getElementById('cl-f-budget').value = c.budget;
+    if(c.purchase_price!=null) document.getElementById('cl-f-price').value = c.purchase_price;
+    document.getElementById('cl-f-closing').value = c.closing_date||'';
+    document.getElementById('cl-f-comm').value = effComm(c).toFixed(1);
+    document.getElementById('cl-f-split').value = Math.round(effSplit(c));
+    document.getElementById('cl-f-notes').value = c.notes||'';
+    window.clTypeChange();
+    document.querySelectorAll('#panel-clients .cl-menu.open').forEach(function(el){el.classList.remove('open');});
+    document.getElementById('cl-modal').classList.add('open');
+  };
+
+  window.clCloseModal = function(){ document.getElementById('cl-modal').classList.remove('open'); };
+
+  window.clSubmit = async function(){
+    var err = document.getElementById('cl-form-err');
+    err.textContent = '';
+    var t = getSelectedType();
+    var payload = {
+      name: document.getElementById('cl-f-name').value.trim(),
+      phone: document.getElementById('cl-f-phone').value.trim(),
+      email: document.getElementById('cl-f-email').value.trim(),
+      type: t,
+      building: (t==='active' ? document.getElementById('cl-f-building-active') : document.getElementById('cl-f-building-past')).value.trim(),
+      unit: document.getElementById('cl-f-unit').value.trim(),
+      budget: t==='active' ? document.getElementById('cl-f-budget').value : '',
+      purchase_price: t==='past' ? document.getElementById('cl-f-price').value : '',
+      closing_date: t==='past' ? document.getElementById('cl-f-closing').value : '',
+      commission_percent: document.getElementById('cl-f-comm').value,
+      brokerage_split_percent: document.getElementById('cl-f-split').value,
+      notes: document.getElementById('cl-f-notes').value
+    };
+    if(!payload.name || !payload.phone){ err.textContent = 'Name and phone are required.'; return; }
+    try {
+      if(state.editingId){
+        await api('update-client', { method:'POST', body: JSON.stringify({id: state.editingId, patch: payload}) });
+      } else {
+        await api('save-client', { method:'POST', body: JSON.stringify(payload) });
+      }
+      await reload();
+      window.clCloseModal();
+      if(typeof toast==='function') toast(state.editingId ? 'Saved' : 'Added');
+    } catch(e){ console.error(e); err.textContent = 'Save failed. Try again.'; }
+  };
+
+  window.clOpenSettings = function(){
+    document.getElementById('cl-s-comm').value = Number(state.settings.default_commission_percent).toFixed(1);
+    document.getElementById('cl-s-split').value = Math.round(Number(state.settings.default_brokerage_split_percent));
+    document.getElementById('cl-settings-err').textContent = '';
+    document.getElementById('cl-settings-modal').classList.add('open');
+  };
+  window.clCloseSettings = function(){ document.getElementById('cl-settings-modal').classList.remove('open'); };
+  window.clSaveSettings = async function(){
+    var err = document.getElementById('cl-settings-err');
+    err.textContent = '';
+    var c = Number(document.getElementById('cl-s-comm').value);
+    var s = Number(document.getElementById('cl-s-split').value);
+    if(!isFinite(c) || c<0 || c>100){ err.textContent='Commission must be 0–100.'; return; }
+    if(!isFinite(s) || s<0 || s>100){ err.textContent='Split must be 0–100.'; return; }
+    try {
+      var res = await api('save-settings', { method:'POST', body: JSON.stringify({default_commission_percent:c, default_brokerage_split_percent:s}) });
+      if(res && res.settings) state.settings = res.settings;
+      render();
+      window.clCloseSettings();
+      if(typeof toast==='function') toast('Settings saved');
+    } catch(e){ console.error(e); err.textContent = 'Save failed.'; }
+  };
+
+  document.getElementById('cl-modal').addEventListener('click', function(e){ if(e.target===this) window.clCloseModal(); });
+  document.getElementById('cl-settings-modal').addEventListener('click', function(e){ if(e.target===this) window.clCloseSettings(); });
+
+  window.clEnsureLoaded = ensureLoaded;
+})();
 </script>
 </body>
 </html>
