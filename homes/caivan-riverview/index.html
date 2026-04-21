@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caivan Riverview — New Homes in Oakville — CondosAround</title>
+  <meta name="description" content="Caivan Riverview in South Oakville — new single detached homes and townhomes from Caivan at Bronte Rd. & Upper Middle Rd. W. First occupancy Spring 2027." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy: #002244; --navy-hover: #003366; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(0,34,68,0.14); --border-soft: rgba(0,34,68,0.08); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--navy); font-style: italic; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* HERO */
+    .hero { position: relative; height: 72vh; min-height: 460px; overflow: hidden; }
+    .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,34,68,0.35) 0%, rgba(0,34,68,0.55) 100%); z-index: 2; }
+    .hero-content { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.72); margin-bottom: 1.25rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.75rem; }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-style: italic; color: rgba(255,255,255,0.85); }
+
+    /* INTRO BAND */
+    .intro { padding: 4.5rem 3rem 2.5rem; max-width: 1280px; margin: 0 auto; }
+    .intro-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.75rem; }
+    .intro-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.4vw, 2.8rem); font-weight: 300; margin-bottom: 1.25rem; line-height: 1.1; }
+    .intro-title em { font-style: italic; color: var(--navy); }
+    .intro-body { font-size: 0.98rem; line-height: 1.85; color: var(--text-mid); max-width: 760px; margin-bottom: 2.5rem; }
+    .quick-specs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .qs-item { padding: 1.5rem 1.25rem; border-right: 1px solid var(--border); }
+    .qs-item:last-child { border-right: none; }
+    .qs-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .qs-val { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--navy); font-weight: 400; }
+
+    /* FILTERS + GRID */
+    .plans-section { padding: 4rem 3rem; max-width: 1280px; margin: 0 auto; }
+    .plans-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .plans-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .plans-title em { color: var(--navy); font-style: italic; }
+    .plans-count { color: var(--navy); font-weight: 600; font-size: 0.82rem; }
+    .filter-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 110px; }
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text); cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { color: var(--navy); border-color: var(--navy); }
+    .fp-filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .fp-card { background: var(--white); cursor: pointer; color: inherit; display: block; transition: background 0.2s; text-decoration: none; }
+    .fp-card:hover { background: var(--cream); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { overflow: hidden; aspect-ratio: 4/3; background: var(--white); border-bottom: 1px solid var(--border-soft); }
+    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 0.5rem; transition: transform 0.3s; }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-collection { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.4rem; font-weight: 600; }
+    .fp-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+    .fp-beds { font-size: 0.75rem; letter-spacing: 0.04em; color: var(--text-mid); margin-top: 0.2rem; }
+    .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px solid var(--border-soft); }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-size: 0.9rem; font-weight: 600; color: var(--navy); }
+    .fp-rebate { font-size: 0.72rem; color: #c9a84c; text-align: right; margin-top: 0.3rem; display: block; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-view-btn { display: inline-block; margin-top: 0.9rem; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); border: 1px solid var(--navy); padding: 0.5rem 0.9rem; text-decoration: none; transition: all 0.2s; }
+    .fp-card:hover .fp-view-btn { background: var(--navy); color: var(--white); }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); max-width: 900px; width: 100%; max-height: 92vh; overflow-y: auto; border-radius: 3px; position: relative; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.75rem 2rem; border-bottom: 1px solid var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 1.3fr 1fr; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    .modal-image img { max-width: 100%; max-height: 560px; object-fit: contain; }
+    .modal-details { padding: 1.75rem 2rem; border-left: 1px solid var(--border-soft); }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border-soft); font-size: 0.84rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; text-align: right; }
+    .detail-val .rebate { color: #c9a84c; font-weight: 500; }
+    .modal-cta { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: var(--white); border: none; padding: 0.9rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.5rem; }
+    .btn-full:hover { background: var(--navy-hover); }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.9rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* SUPPORTING INFO ACCORDIONS */
+    .info-section { max-width: 1280px; margin: 0 auto; padding: 2rem 3rem 8rem; }
+    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .info-title em { color: var(--navy); font-style: italic; }
+    .accordion { border-bottom: 1px solid var(--border); }
+    .accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; cursor: pointer; background: none; border: none; width: 100%; text-align: left; font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 500; color: var(--text); }
+    .accordion-header:hover { color: var(--navy); }
+    .accordion-icon { font-size: 1.3rem; color: var(--navy); transition: transform 0.2s; }
+    .accordion.open .accordion-icon { transform: rotate(45deg); }
+    .accordion-body { display: none; padding: 0 0 1.5rem; font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); }
+    .accordion.open .accordion-body { display: block; }
+    .accordion-body ul { list-style: none; padding: 0; }
+    .accordion-body li { padding: 0.35rem 0 0.35rem 1.25rem; position: relative; }
+    .accordion-body li::before { content: '•'; color: var(--navy); position: absolute; left: 0; }
+    .accordion-body img { display: block; max-width: 100%; margin-top: 0.75rem; border: 1px solid var(--border-soft); }
+    .deposit-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.88rem; }
+    .deposit-table th, .deposit-table td { padding: 0.6rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border-soft); }
+    .deposit-table th { color: var(--text-muted); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .deposit-table td:last-child { font-weight: 500; color: var(--navy); }
+
+    /* STICKY CTA */
+    .sticky-cta { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 120; }
+    .sticky-cta a { display: inline-block; background: var(--navy); color: var(--white); font-family: 'Outfit', sans-serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.95rem 1.75rem; border-radius: 999px; text-decoration: none; box-shadow: 0 8px 28px rgba(0,34,68,0.25); transition: background 0.2s, transform 0.2s; }
+    .sticky-cta a:hover { background: var(--navy-hover); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.55); }
+    .footer-logo span { color: var(--navy); font-style: italic; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { height: 60vh; }
+      .intro, .plans-section, .info-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .quick-specs { grid-template-columns: 1fr; }
+      .qs-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .qs-item:last-child { border-bottom: none; }
+      .fp-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-details { border-left: none; border-top: 1px solid var(--border-soft); }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .fp-grid { grid-template-columns: 1fr; }
+      .plans-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .filter-row .filter-label { min-width: 0; }
+      .sticky-cta a { padding: 0.85rem 1.25rem; font-size: 0.72rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-logo { display: none; }
+    }
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">CondosAround<span>.</span>com</a>
+  <a href="/" class="nav-back">← Back to condos</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slide active" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-aerial.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-streetscape.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-courtyard.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-courtyard-dining.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-courtyard-living.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-balcony.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-kitchen.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-living.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../../neighbourhoods/images/caivan-riverview-hero-ensuite.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Caivan · South Oakville</div>
+    <h1 class="hero-title">Caivan Riverview</h1>
+    <div class="hero-subtitle">New Homes in Oakville</div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-eyebrow">About the Community</div>
+  <h2 class="intro-title">An exclusive collection of <em>towns & singles</em> at the edge of Bronte Provincial Park.</h2>
+  <p class="intro-body">Caivan Riverview is a new freehold community in South Oakville at Bronte Rd. &amp; Upper Middle Rd. W — five minutes to Bronte GO, five minutes to the lake, one minute to the QEW. Connected to Bronte Creek Provincial Park and 1,690 acres of lush greenery, it's built by Caivan, an industry-leading builder with a 16-year track record of over 4,200 homes delivered and zero cancelled projects. An exclusive collection of Riverview Towns (back-to-back), Advantage Townhomes, and 45', 46' and 50' single detached homes.</p>
+  <div class="quick-specs">
+    <div class="qs-item">
+      <div class="qs-label">First Occupancy</div>
+      <div class="qs-val">Spring 2027</div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-label">Deposit — From</div>
+      <div class="qs-val">$80,000</div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-label">Starting From</div>
+      <div class="qs-val">$764,593</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOOR PLANS -->
+<section class="plans-section">
+  <div class="plans-header">
+    <div class="plans-title">Floor <em>Plans</em></div>
+    <div class="plans-count" id="plans-count">25 floor plans</div>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-label">Home Type</span>
+    <div class="fp-filters" id="tier-filters">
+      <button class="fp-filter-btn active" data-tier="all">All Homes</button>
+      <button class="fp-filter-btn" data-tier="single">Single Detached</button>
+      <button class="fp-filter-btn" data-tier="town">Advantage Townhomes</button>
+    </div>
+  </div>
+
+  <div class="fp-grid" id="fp-grid">
+
+    <!-- SINGLE DETACHED (sorted largest to smallest sq ft) -->
+
+    <div class="fp-card" data-tier="single" data-sqft="3660" data-price="1549990" onclick="openModal('whiteoak-loft-suite')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-whiteoak-loft-suite.jpg" alt="The Whiteoak Loft with Secondary Suite" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">50' Collection · Single Detached</div>
+        <div class="fp-name">The Whiteoak Loft (w/ Secondary Suite)</div>
+        <div class="fp-beds">6 Bed · 4.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,660 sq ft</span><span class="fp-price">$1,549,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3528" data-price="1519990" onclick="openModal('linden-loft')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-linden-loft.jpg" alt="The Linden Loft" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">50' Collection · Single Detached</div>
+        <div class="fp-name">The Linden Loft</div>
+        <div class="fp-beds">5 Bed · 3.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,528 sq ft</span><span class="fp-price">$1,519,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3318" data-price="1439990" onclick="openModal('sycamore')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-sycamore.jpg" alt="The Sycamore" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">50' Collection · Single Detached</div>
+        <div class="fp-name">The Sycamore</div>
+        <div class="fp-beds">4 Bed · 3.5 Bath · 1.5-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,318 sq ft</span><span class="fp-price">$1,439,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3318" data-price="1439990" onclick="openModal('sycamore-suite')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-sycamore-suite.jpg" alt="The Sycamore with Secondary Suite" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">50' Collection · Single Detached</div>
+        <div class="fp-name">The Sycamore (w/ Secondary Suite)</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 1.5-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,318 sq ft</span><span class="fp-price">$1,439,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3090" data-price="1409990" onclick="openModal('silverwood-loft')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-silverwood-loft.jpg" alt="The Silverwood Loft" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">45' Collection · Single Detached</div>
+        <div class="fp-name">The Silverwood Loft</div>
+        <div class="fp-beds">5 Bed · 3.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,090 sq ft</span><span class="fp-price">$1,409,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3090" data-price="1409990" onclick="openModal('silverwood-loft-suite')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-silverwood-loft-suite.jpg" alt="The Silverwood Loft with Secondary Suite" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">45' Collection · Single Detached</div>
+        <div class="fp-name">The Silverwood Loft (w/ Secondary Suite)</div>
+        <div class="fp-beds">6 Bed · 4.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,090 sq ft</span><span class="fp-price">$1,409,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3075" data-price="1369990" onclick="openModal('rockelm-loft')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-rockelm-loft.jpg" alt="The Rockelm Loft" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">45' Collection · Single Detached</div>
+        <div class="fp-name">The Rockelm Loft</div>
+        <div class="fp-beds">5 Bed · 3.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,075 sq ft</span><span class="fp-price">$1,369,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="3075" data-price="1369990" onclick="openModal('rockelm-loft-suite')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-rockelm-loft-suite.jpg" alt="The Rockelm Loft with Secondary Suite" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">45' Collection · Single Detached</div>
+        <div class="fp-name">The Rockelm Loft (w/ Secondary Suite)</div>
+        <div class="fp-beds">6 Bed · 4.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">3,075 sq ft</span><span class="fp-price">$1,369,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="2999" data-price="1439990" onclick="openModal('linden')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-linden.jpg" alt="The Linden" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">50' Collection · Single Detached</div>
+        <div class="fp-name">The Linden</div>
+        <div class="fp-beds">4 Bed · 3.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,999 sq ft</span><span class="fp-price">$1,439,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="2999" data-price="1439990" onclick="openModal('linden-suite')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-linden-suite.jpg" alt="The Linden with Secondary Suite" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">50' Collection · Single Detached</div>
+        <div class="fp-name">The Linden (w/ Secondary Suite)</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,999 sq ft</span><span class="fp-price">$1,439,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="2626" data-price="1339990" onclick="openModal('silverwood')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-silverwood.jpg" alt="The Silverwood" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">45' Collection · Single Detached</div>
+        <div class="fp-name">The Silverwood</div>
+        <div class="fp-beds">4 Bed · 3.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,626 sq ft</span><span class="fp-price">$1,339,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="2626" data-price="1339990" onclick="openModal('silverwood-suite')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-silverwood-suite.jpg" alt="The Silverwood with Secondary Suite" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">45' Collection · Single Detached</div>
+        <div class="fp-name">The Silverwood (w/ Secondary Suite)</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,626 sq ft</span><span class="fp-price">$1,339,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="single" data-sqft="2535" data-price="1239990" onclick="openModal('ironwood')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-ironwood.jpg" alt="The Ironwood" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">46' Collection · Single Detached</div>
+        <div class="fp-name">The Ironwood</div>
+        <div class="fp-beds">4 Bed · 2.5 Bath · 2-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,535 sq ft</span><span class="fp-price">$1,239,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <!-- ADVANTAGE TOWNHOMES (sorted largest to smallest sq ft) -->
+
+    <div class="fp-card" data-tier="town" data-sqft="2727" data-price="1179990" onclick="openModal('mapleford-end')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-mapleford-end.jpg" alt="The Mapleford End" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Mapleford End</div>
+        <div class="fp-beds">3 Bed · 2.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,727 sq ft</span><span class="fp-price">$1,179,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="2705" data-price="1129990" onclick="openModal('mapleford')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-mapleford.jpg" alt="The Mapleford" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Mapleford</div>
+        <div class="fp-beds">3 Bed · 2.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,705 sq ft</span><span class="fp-price">$1,129,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="2655" data-price="1139990" onclick="openModal('highgrove-end')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-highgrove-end.jpg" alt="The Highgrove End" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Highgrove End</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,655 sq ft</span><span class="fp-price">$1,139,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="2645" data-price="1089990" onclick="openModal('glencrest-end')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-glencrest-end.jpg" alt="The Glencrest End" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Glencrest End</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,645 sq ft</span><span class="fp-price">$1,089,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="2618" data-price="1079990" onclick="openModal('highgrove')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-highgrove.jpg" alt="The Highgrove" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Highgrove</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,618 sq ft</span><span class="fp-price">$1,079,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="2592" data-price="1189990" onclick="openModal('meadowvale-corner')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-meadowvale-corner.jpg" alt="The Meadowvale Corner" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Meadowvale Corner</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,592 sq ft</span><span class="fp-price">$1,189,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="2576" data-price="1079990" onclick="openModal('glencrest')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-glencrest.jpg" alt="The Glencrest" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Advantage Townhomes</div>
+        <div class="fp-name">The Glencrest</div>
+        <div class="fp-beds">5 Bed · 4.5 Bath · 1-Car Garage</div>
+        <div class="fp-meta"><span class="fp-sqft">2,576 sq ft</span><span class="fp-price">$1,079,990</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <!-- RIVERVIEW TOWNS — BACK-TO-BACK (sorted largest to smallest sq ft) -->
+
+    <div class="fp-card" data-tier="town" data-sqft="1532" data-price="857513" onclick="openModal('peregrine-corner')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-peregrine-corner.jpg" alt="The Peregrine Corner" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Riverview Towns · Back-to-Back</div>
+        <div class="fp-name">The Peregrine Corner</div>
+        <div class="fp-beds">3 Bed (Opt 4) · 2.5 Bath</div>
+        <div class="fp-meta"><span class="fp-sqft">1,532 sq ft</span><span class="fp-price">$857,513</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="1460" data-price="822115" onclick="openModal('kinglet-end')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-kinglet-end.jpg" alt="The Kinglet End" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Riverview Towns · Back-to-Back</div>
+        <div class="fp-name">The Kinglet End</div>
+        <div class="fp-beds">3 Bed (Opt 4) · 2.5 Bath</div>
+        <div class="fp-meta"><span class="fp-sqft">1,460 sq ft</span><span class="fp-price">$822,115</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="1433" data-price="777867" onclick="openModal('kinglet')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-kinglet.jpg" alt="The Kinglet" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Riverview Towns · Back-to-Back</div>
+        <div class="fp-name">The Kinglet</div>
+        <div class="fp-beds">3 Bed (Opt 4) · 2.5 Bath</div>
+        <div class="fp-meta"><span class="fp-sqft">1,433 sq ft</span><span class="fp-price">$777,867</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="1415" data-price="813265" onclick="openModal('harrier-end')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-harrier-end.jpg" alt="The Harrier End" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Riverview Towns · Back-to-Back</div>
+        <div class="fp-name">The Harrier End</div>
+        <div class="fp-beds">3 Bed (Opt 4) · 2.5 Bath</div>
+        <div class="fp-meta"><span class="fp-sqft">1,415 sq ft</span><span class="fp-price">$813,265</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+    <div class="fp-card" data-tier="town" data-sqft="1388" data-price="764593" onclick="openModal('redtail')">
+      <div class="fp-image"><img src="../../neighbourhoods/images/caivan-riverview-redtail.jpg" alt="The Redtail" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-collection">Riverview Towns · Back-to-Back</div>
+        <div class="fp-name">The Redtail</div>
+        <div class="fp-beds">3 Bed (Opt 4) · 2.5 Bath (Opt 3)</div>
+        <div class="fp-meta"><span class="fp-sqft">1,388 sq ft</span><span class="fp-price">$764,593</span></div>
+        <span class="fp-view-btn">View Plan →</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUPPORTING INFO ACCORDIONS -->
+<section class="info-section">
+  <h2 class="info-title">Community <em>details</em></h2>
+
+  <div class="accordion">
+    <button class="accordion-header" onclick="toggleAccordion(this)"><span>Site Plan</span><span class="accordion-icon">+</span></button>
+    <div class="accordion-body">
+      <p>Caivan Riverview site plan — lot layout across Blocks 1–11 at Bronte Rd. &amp; Upper Middle Rd. W, South Oakville.</p>
+      <img src="../../neighbourhoods/images/caivan-riverview-siteplan.jpg" alt="Caivan Riverview site plan" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="accordion-header" onclick="toggleAccordion(this)"><span>Amenity Map</span><span class="accordion-icon">+</span></button>
+    <div class="accordion-body">
+      <p>Surrounded by Bronte Creek Provincial Park (1,690 acres of greenery). Five minutes to Bronte GO Station, five minutes to Lake Ontario Waterfront, one minute to the QEW / Hwy 403 / 407, ten minutes to Downtown Oakville.</p>
+      <img src="../../neighbourhoods/images/caivan-riverview-amenity-map.jpg" alt="Caivan Riverview amenity map" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="accordion-header" onclick="toggleAccordion(this)"><span>Deposit Structure</span><span class="accordion-icon">+</span></button>
+    <div class="accordion-body">
+      <p>Deposits are staggered over roughly the first year. Initial deposit must be paid by credit card or bank draft. Post-dated cheques are provided for remaining deposits. Business name: Caivan (Bronte River) Inc.</p>
+      <table class="deposit-table">
+        <thead><tr><th>Stage</th><th>Riverview Towns</th><th>Advantage</th><th>45' / 46'</th><th>50'</th></tr></thead>
+        <tbody>
+          <tr><td>Signing</td><td>$10,000</td><td>$10,000</td><td>$15,000</td><td>$20,000</td></tr>
+          <tr><td>30 days</td><td>$15,000</td><td>$20,000</td><td>$20,000</td><td>$25,000</td></tr>
+          <tr><td>90 days</td><td>$15,000</td><td>$20,000</td><td>$20,000</td><td>$25,000</td></tr>
+          <tr><td>150 days</td><td>$15,000</td><td>$15,000</td><td>$20,000</td><td>$20,000</td></tr>
+          <tr><td>210 days</td><td>$15,000</td><td>$15,000</td><td>$20,000</td><td>$20,000</td></tr>
+          <tr><td>270 days</td><td>$10,000</td><td>$15,000</td><td>$20,000</td><td>$20,000</td></tr>
+          <tr><td>330 days</td><td>—</td><td>$15,000</td><td>$15,000</td><td>$20,000</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>$80,000</strong></td><td><strong>$110,000</strong></td><td><strong>$130,000</strong></td><td><strong>$150,000</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 0.75rem; font-size: 0.82rem; color: var(--text-muted);">*Additional deposit of $25,000 applies to lots 1–16 and 50–60 (payable at 365 days).</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="accordion-header" onclick="toggleAccordion(this)"><span>Included Features</span><span class="accordion-icon">+</span></button>
+    <div class="accordion-body">
+      <p><strong>Premium features included across the collection:</strong></p>
+      <ul>
+        <li>Taller upper kitchen cabinets</li>
+        <li>9' smooth ceilings on Ground and 2nd Floor (8' on 3rd where applicable)</li>
+        <li>Kitchen backsplash (purchaser's choice from vendor samples)</li>
+        <li>Quartz countertops throughout kitchen and bathrooms</li>
+        <li>3½" wide engineered oak hardwood flooring in all living areas and bedrooms</li>
+        <li>Oak stairs with contemporary railing and square wood pickets</li>
+        <li>13"x13" ceramic tile in wet areas (kitchens, bathrooms, laundry, foyer, mudroom)</li>
+        <li>Touchscreen smart lock with deadbolt in satin nickel</li>
+        <li>Energy Star® rated windows (low-e argon), insulated front entry door</li>
+        <li>Central air conditioning with humidifier and ERV</li>
+        <li>Smart thermostat</li>
+        <li>Undermount stainless steel double kitchen sink with pull-down spray faucet</li>
+        <li>Finished basement recreation room (included in square footage)</li>
+        <li>Architectural laminated shingles with limited lifetime manufacturer's warranty</li>
+        <li>Fully sodded lot (except paved / small side-yard areas)</li>
+        <li>Caivan warranty backed by Tarion</li>
+      </ul>
+      <p style="margin-top: 0.75rem; font-size: 0.82rem; color: var(--text-muted);">Advantage Townhomes additionally include 200 Amp electrical service and a legal secondary suite ("Two-In-One"). Exact features vary by model — full spec sheet available from the sales centre.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="accordion-header" onclick="toggleAccordion(this)"><span>FAQ</span><span class="accordion-icon">+</span></button>
+    <div class="accordion-body">
+      <p><strong>What home types are at Riverview?</strong><br>Back-to-back Riverview Towns, Advantage Townhomes (dual-front with legal secondary suite), and 45', 46' and 50' single detached homes.</p>
+      <p style="margin-top: 0.75rem;"><strong>When is first tentative occupancy?</strong><br>Spring 2027.</p>
+      <p style="margin-top: 0.75rem;"><strong>Does Riverview qualify for the HST rebate?</strong><br>Yes. Eligible homebuyers get up to $130,000 off — the current pricelist pricing already factors the rebate in and is applicable to all homebuyers (investors too).</p>
+      <p style="margin-top: 0.75rem;"><strong>Can non-residents purchase?</strong><br>Yes, as long as you have a 183-day work permit.</p>
+      <p style="margin-top: 0.75rem;"><strong>Can I purchase under a corporation?</strong><br>Yes. Purchaser must be on the Agreement and can direct title on closing.</p>
+      <p style="margin-top: 0.75rem;"><strong>Is there a conditional period?</strong><br>Yes — 10 days.</p>
+      <p style="margin-top: 0.75rem;"><strong>Is mortgage pre-approval required?</strong><br>Yes — purchasers need to provide a satisfactory mortgage pre-approval.</p>
+      <p style="margin-top: 0.75rem;"><strong>What is the maintenance fee?</strong><br>Townhomes: $149.99/mo · Singles: $159.99/mo. Covers landscape maintenance of parkette, street lighting, main roads snow clearing, and maintenance of common areas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <a href="tel:6479240848">Book a Call with Nikhil</a>
+</div>
+
+<footer>
+  <div class="footer-logo">CondosAround<span>.</span>com</div>
+  <div>CondosAround.com · Caivan Riverview · © 2026</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal-card">
+    <div class="modal-header">
+      <div><div class="modal-eyebrow" id="m-eyebrow"></div><div class="modal-title" id="m-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Collection</span><span class="detail-val" id="m-collection"></span></div>
+        <div class="detail-row"><span class="detail-label">Model</span><span class="detail-val" id="m-model"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Beds / Baths</span><span class="detail-val" id="m-beds"></span></div>
+        <div class="detail-row"><span class="detail-label">Parking</span><span class="detail-val" id="m-parking"></span></div>
+        <div class="detail-row"><span class="detail-label">Occupancy</span><span class="detail-val">From Spring 2027</span></div>
+        <div class="detail-row"><span class="detail-label">List Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="detail-row"><span class="detail-label">HST Rebate Price</span><span class="detail-val" id="m-rebate"></span></div>
+        <div class="detail-row"><span class="detail-label">Deposit</span><span class="detail-val" id="m-deposit"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Want to walk through this plan? Nikhil can cover layout, lot options, and pricing — zero-pressure, no paperwork.</div>
+          <a href="tel:6479240848" class="btn-full">Book a Call with Nikhil</a>
+          <a href="mailto:nik@thinknik.ca?subject=Caivan%20Riverview%20Inquiry" class="btn-full-outline">Email Nikhil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var plans = {
+    // Single Detached
+    'whiteoak-loft-suite': { collection: "50' Collection · Single Detached", model: 'The Whiteoak Loft (w/ Secondary Suite)', size: '3,660 sq ft', beds: '6 Bed · 4.5 Bath', parking: '2-Car Garage · 2-Car Driveway', price: 1549990, deposit: '$150,000', img: '../../neighbourhoods/images/caivan-riverview-whiteoak-loft-suite.jpg' },
+    'linden-loft':       { collection: "50' Collection · Single Detached", model: 'The Linden Loft',           size: '3,528 sq ft', beds: '5 Bed · 3.5 Bath', parking: '2-Car Garage · 2-Car Driveway', price: 1519990, deposit: '$150,000', img: '../../neighbourhoods/images/caivan-riverview-linden-loft.jpg' },
+    'sycamore':          { collection: "50' Collection · Single Detached", model: 'The Sycamore',              size: '3,318 sq ft', beds: '4 Bed · 3.5 Bath (Opt up to 7 / 5)', parking: '1.5-Car Garage · 2-Car Driveway', price: 1439990, deposit: '$150,000', img: '../../neighbourhoods/images/caivan-riverview-sycamore.jpg' },
+    'sycamore-suite':    { collection: "50' Collection · Single Detached", model: 'The Sycamore (w/ Secondary Suite)', size: '3,318 sq ft', beds: '5 Bed · 4.5 Bath', parking: '1.5-Car Garage · 2-Car Driveway', price: 1439990, deposit: '$150,000', img: '../../neighbourhoods/images/caivan-riverview-sycamore-suite.jpg' },
+    'silverwood-loft':   { collection: "45' Collection · Single Detached", model: 'The Silverwood Loft',       size: '3,090 sq ft', beds: '5 Bed · 3.5 Bath (Opt up to 6 / 5.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1409990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-silverwood-loft.jpg' },
+    'silverwood-loft-suite': { collection: "45' Collection · Single Detached", model: 'The Silverwood Loft (w/ Secondary Suite)', size: '3,090 sq ft', beds: '6 Bed · 4.5 Bath (Opt up to 5.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1409990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-silverwood-loft-suite.jpg' },
+    'rockelm-loft':      { collection: "45' Collection · Single Detached", model: 'The Rockelm Loft',          size: '3,075 sq ft', beds: '5 Bed · 3.5 Bath (Opt up to 6 / 5.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1369990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-rockelm-loft.jpg' },
+    'rockelm-loft-suite':{ collection: "45' Collection · Single Detached", model: 'The Rockelm Loft (w/ Secondary Suite)', size: '3,075 sq ft', beds: '6 Bed · 4.5 Bath (Opt up to 5.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1369990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-rockelm-loft-suite.jpg' },
+    'linden':            { collection: "50' Collection · Single Detached", model: 'The Linden',                size: '2,999 sq ft', beds: '4 Bed · 3.5 Bath (Opt up to 5 / 4.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1439990, deposit: '$150,000', img: '../../neighbourhoods/images/caivan-riverview-linden.jpg' },
+    'linden-suite':      { collection: "50' Collection · Single Detached", model: 'The Linden (w/ Secondary Suite)', size: '2,999 sq ft', beds: '5 Bed · 4.5 Bath', parking: '2-Car Garage · 2-Car Driveway', price: 1439990, deposit: '$150,000', img: '../../neighbourhoods/images/caivan-riverview-linden-suite.jpg' },
+    'silverwood':        { collection: "45' Collection · Single Detached", model: 'The Silverwood',            size: '2,626 sq ft', beds: '4 Bed · 3.5 Bath (Opt up to 5 / 4.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1339990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-silverwood.jpg' },
+    'silverwood-suite':  { collection: "45' Collection · Single Detached", model: 'The Silverwood (w/ Secondary Suite)', size: '2,626 sq ft', beds: '5 Bed · 4.5 Bath', parking: '2-Car Garage · 2-Car Driveway', price: 1339990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-silverwood-suite.jpg' },
+    'ironwood':          { collection: "46' Collection · Single Detached", model: 'The Ironwood',              size: '2,535 sq ft', beds: '4 Bed · 2.5 Bath (Opt up to 5 / 4.5)', parking: '2-Car Garage · 2-Car Driveway', price: 1239990, deposit: '$130,000', img: '../../neighbourhoods/images/caivan-riverview-ironwood.jpg' },
+    // Advantage Townhomes
+    'mapleford-end':     { collection: 'Advantage Townhomes', model: 'The Mapleford End',      size: '2,727 sq ft', beds: '3 Bed · 2.5 Bath (Opt up to 5 / 4.5)', parking: '1-Car Garage · 1-Car Driveway', price: 1179990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-mapleford-end.jpg' },
+    'mapleford':         { collection: 'Advantage Townhomes', model: 'The Mapleford',          size: '2,705 sq ft', beds: '3 Bed · 2.5 Bath (Opt up to 5 / 4.5)', parking: '1-Car Garage · 1-Car Driveway', price: 1129990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-mapleford.jpg' },
+    'highgrove-end':     { collection: 'Advantage Townhomes', model: 'The Highgrove End',      size: '2,655 sq ft', beds: '5 Bed · 4.5 Bath · Legal Secondary Suite', parking: '1-Car Garage · 1-Car Driveway', price: 1139990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-highgrove-end.jpg' },
+    'glencrest-end':     { collection: 'Advantage Townhomes', model: 'The Glencrest End',      size: '2,645 sq ft', beds: '5 Bed · 4.5 Bath · Legal Secondary Suite', parking: '1-Car Garage · 1-Car Driveway', price: 1089990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-glencrest-end.jpg' },
+    'highgrove':         { collection: 'Advantage Townhomes', model: 'The Highgrove',          size: '2,618 sq ft', beds: '5 Bed · 4.5 Bath · Legal Secondary Suite', parking: '1-Car Garage · 1-Car Driveway', price: 1079990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-highgrove.jpg' },
+    'meadowvale-corner': { collection: 'Advantage Townhomes', model: 'The Meadowvale Corner',  size: '2,592 sq ft', beds: '5 Bed · 4.5 Bath · Legal Secondary Suite', parking: '1-Car Garage · 1-Car Driveway', price: 1189990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-meadowvale-corner.jpg' },
+    'glencrest':         { collection: 'Advantage Townhomes', model: 'The Glencrest',          size: '2,576 sq ft', beds: '5 Bed · 4.5 Bath · Legal Secondary Suite', parking: '1-Car Garage · 1-Car Driveway', price: 1079990, deposit: '$110,000', img: '../../neighbourhoods/images/caivan-riverview-glencrest.jpg' },
+    // Riverview Towns (back-to-back)
+    'peregrine-corner':  { collection: 'Riverview Towns · Back-to-Back', model: 'The Peregrine Corner', size: '1,532 sq ft', beds: '3 Bed (Opt 4) · 2.5 Bath', parking: '1-Car Garage · 1-Car Driveway', price: 857513, deposit: '$80,000', img: '../../neighbourhoods/images/caivan-riverview-peregrine-corner.jpg' },
+    'kinglet-end':       { collection: 'Riverview Towns · Back-to-Back', model: 'The Kinglet End',     size: '1,460 sq ft', beds: '3 Bed (Opt 4) · 2.5 Bath', parking: '1-Car Garage · 1-Car Driveway', price: 822115, deposit: '$80,000', img: '../../neighbourhoods/images/caivan-riverview-kinglet-end.jpg' },
+    'kinglet':           { collection: 'Riverview Towns · Back-to-Back', model: 'The Kinglet',         size: '1,433 sq ft', beds: '3 Bed (Opt 4) · 2.5 Bath', parking: '1-Car Garage · 1-Car Driveway', price: 777867, deposit: '$80,000', img: '../../neighbourhoods/images/caivan-riverview-kinglet.jpg' },
+    'harrier-end':       { collection: 'Riverview Towns · Back-to-Back', model: 'The Harrier End',     size: '1,415 sq ft', beds: '3 Bed (Opt 4) · 2.5 Bath', parking: '1-Car Garage · 1-Car Driveway', price: 813265, deposit: '$80,000', img: '../../neighbourhoods/images/caivan-riverview-harrier-end.jpg' },
+    'redtail':           { collection: 'Riverview Towns · Back-to-Back', model: 'The Redtail',         size: '1,388 sq ft', beds: '3 Bed (Opt 4) · 2.5 Bath (Opt 3)', parking: '1-Car Garage · 1-Car Driveway', price: 764593, deposit: '$80,000', img: '../../neighbourhoods/images/caivan-riverview-redtail.jpg' }
+  };
+
+  function fmt(n) { return '$' + n.toLocaleString(); }
+
+  function openModal(id) {
+    var p = plans[id]; if (!p) return;
+    document.getElementById('m-eyebrow').textContent = 'Caivan Riverview · South Oakville';
+    document.getElementById('m-title').textContent = p.model;
+    document.getElementById('m-collection').textContent = p.collection;
+    document.getElementById('m-model').textContent = p.model;
+    document.getElementById('m-size').textContent = p.size;
+    document.getElementById('m-beds').textContent = p.beds;
+    document.getElementById('m-parking').textContent = p.parking;
+    document.getElementById('m-price').textContent = fmt(p.price);
+    var rebateEl = document.getElementById('m-rebate');
+    if (p.price > 1500000) {
+      rebateEl.innerHTML = '<span class="rebate">Contact for HST calculation</span>';
+    } else {
+      rebateEl.innerHTML = '<span class="rebate">' + fmt(Math.round(p.price * 0.87)) + '</span>';
+    }
+    document.getElementById('m-deposit').textContent = p.deposit;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('modal-card').scrollTop = 0;
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+  // HST rebate tag on each card
+  document.querySelectorAll('.fp-card').forEach(function(card) {
+    var price = parseInt(card.dataset.price) || 0;
+    if (!price) return;
+    var span = document.createElement('span');
+    span.className = 'fp-rebate';
+    if (price > 1500000) {
+      span.innerHTML = '<span class="fp-rebate-label">Contact for HST calculation</span>';
+    } else {
+      var rebate = Math.round(price * 0.87);
+      span.innerHTML = '<span class="fp-rebate-label">HST Rebate </span>$' + rebate.toLocaleString();
+    }
+    card.querySelector('.fp-meta').insertAdjacentElement('afterend', span);
+  });
+
+  // Tier filter
+  var activeTier = 'all';
+  function applyFilter() {
+    var visible = 0;
+    document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+      var tier = card.dataset.tier;
+      var show = activeTier === 'all' || tier === activeTier;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('plans-count').textContent = visible + ' floor plan' + (visible === 1 ? '' : 's');
+  }
+  document.querySelectorAll('#tier-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#tier-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeTier = btn.dataset.tier;
+      applyFilter();
+    });
+  });
+
+  // Accordion
+  function toggleAccordion(btn) {
+    btn.parentElement.classList.toggle('open');
+  }
+
+  // Hero crossfade
+  (function() {
+    var slides = document.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+    var idx = 0;
+    setInterval(function() {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 6000);
+  })();
+</script>
+
+<script src="../../js/save.js"></script>
+<script src="../../js/register.js"></script>
+<script src="../../js/sofia.js"></script>
+<script src="../../js/protect.js"></script>
+</body>
+</html>
