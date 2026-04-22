@@ -604,6 +604,55 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     window.closeGalleryLb = function() { document.getElementById('gallery-lb').classList.remove('open'); document.body.style.overflow = ''; };
     document.getElementById('gallery-lb').addEventListener('click', function(e) { if (e.target === this) closeGalleryLb(); });
   })();
+
+  // Modal floor-plan zoom + drag-to-pan (desktop click-to-zoom; mobile pinch handled by modal-touch.js)
+  (function() {
+    var modalImg = document.getElementById('modal-img');
+    if (!modalImg) return;
+    var container = modalImg.parentElement;
+    var scale = 1, panX = 0, panY = 0;
+    var isDragging = false, didDrag = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+    function updateTransform(animate) {
+      modalImg.style.transition = animate ? 'transform 0.3s' : 'none';
+      modalImg.style.transform = 'scale(' + scale + ') translate(' + panX + 'px, ' + panY + 'px)';
+    }
+    function resetZoom() {
+      scale = 1; panX = 0; panY = 0;
+      container.classList.remove('zoomed', 'dragging');
+      updateTransform(true);
+    }
+    modalImg.addEventListener('mousedown', function(e) {
+      if (scale <= 1) return;
+      e.preventDefault();
+      isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      startPanX = panX; startPanY = panY;
+      container.classList.add('dragging');
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - startX) / scale;
+      var dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+      panX = startPanX + dx; panY = startPanY + dy;
+      updateTransform(false);
+    });
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+    modalImg.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (didDrag) { didDrag = false; return; }
+      if (scale <= 1) {
+        scale = 1.8; panX = 0; panY = 0;
+        container.classList.add('zoomed');
+        updateTransform(true);
+      } else { resetZoom(); }
+    });
+    window.resetModalZoom = resetZoom;
+  })();
 </script>
 
 <script src="../js/modal-touch.js"></script>

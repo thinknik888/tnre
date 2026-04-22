@@ -70,6 +70,28 @@
     function sync() { btn.href = viewerUrl(img.getAttribute('src')); }
     sync();
     new MutationObserver(sync).observe(img, { attributes: true, attributeFilter: ['src'] });
+
+    // Hide the "HST Rebate" detail row when unit price > $1,850,000.
+    // Only affects pages that render a dedicated #m-rebate row; Price rows stay untouched.
+    var rebateEl = document.getElementById('m-rebate');
+    var priceEl = document.getElementById('m-price');
+    if (rebateEl && priceEl) {
+      var rebateRow = rebateEl.closest('.detail-row');
+      function parsePrice(text) {
+        if (!text) return null;
+        var m = String(text).match(/\$?\s*([\d,]+)/);
+        if (!m) return null;
+        var n = parseInt(m[1].replace(/,/g, ''), 10);
+        return isNaN(n) ? null : n;
+      }
+      function applyRebateVisibility() {
+        if (!rebateRow) return;
+        var price = parsePrice(priceEl.textContent);
+        rebateRow.style.display = (price !== null && price > 1850000) ? 'none' : '';
+      }
+      applyRebateVisibility();
+      new MutationObserver(applyRebateVisibility).observe(priceEl, { childList: true, characterData: true, subtree: true });
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
