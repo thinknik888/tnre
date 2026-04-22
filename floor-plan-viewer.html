@@ -1,16 +1,28 @@
 <!DOCTYPE html>
+<!--
+  This viewer layers every browser-available protection (right-click, drag, copy,
+  save, print, devtools shortcuts, focus-blur, iOS long-press) on top of a
+  permanently-watermarked image. None of this defeats a determined user with
+  devtools — the watermark is the real insurance. This just raises the bar.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="robots" content="noindex, nofollow, noimageindex" />
   <title>Floor Plan · CondosAround</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy: #002244; --navy-hover: #003366; --backdrop: #0a0f1a; --muted: rgba(255,255,255,0.55); --line: rgba(255,255,255,0.08); }
-    html, body { height: 100%; }
-    body { font-family: 'Outfit', sans-serif; background: var(--backdrop); color: #f0ede6; overflow: hidden; -webkit-user-select: none; user-select: none; }
+    :root { --navy: #002244; --backdrop: #0a0f1a; --muted: rgba(255,255,255,0.55); --line: rgba(255,255,255,0.08); }
+    html, body {
+      height: 100%;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    body { font-family: 'Outfit', sans-serif; background: var(--backdrop); color: #f0ede6; overflow: hidden; }
 
     header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: var(--navy); border-bottom: 1px solid var(--line); position: fixed; inset: 0 0 auto 0; z-index: 10; }
     .brand { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; text-decoration: none; letter-spacing: 0.02em; }
@@ -20,25 +32,56 @@
     .back-link:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
 
     main { position: fixed; inset: 64px 0 56px 0; display: flex; align-items: center; justify-content: center; padding: 16px; }
-    .stage { position: relative; max-width: 95vw; max-height: 100%; display: flex; align-items: center; justify-content: center; }
-    .stage img { display: block; max-width: 95vw; max-height: 100%; object-fit: contain; -webkit-user-drag: none; user-select: none; pointer-events: none; }
-    .stage .shield { position: absolute; inset: 0; background: transparent; pointer-events: auto; cursor: default; }
+    .stage { position: relative; width: 95vw; height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+
+    /* Image rendered as a CSS background on a div — not an <img> — so there is no draggable
+       element and no browser "Save Image As…" context entry. */
+    .plan {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-user-drag: none;
+      touch-action: manipulation;
+      transition: filter 0.05s linear;
+    }
+    .plan.obscured { filter: blur(40px) brightness(0.3); }
+
+    /* Transparent overlay — ignored by pointer events, purely defensive stacking. */
+    .shield { position: absolute; inset: 0; background: transparent; pointer-events: none; }
 
     footer { position: fixed; inset: auto 0 0 0; background: rgba(10,15,26,0.96); border-top: 1px solid var(--line); padding: 0.75rem 1.5rem; font-size: 0.82rem; color: var(--muted); text-align: center; letter-spacing: 0.02em; z-index: 10; font-family: 'Cormorant Garamond', serif; font-style: italic; }
     #caption { display: inline-block; max-width: 90vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    .error { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; gap: 1rem; }
+    .error { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; gap: 1rem; background: var(--backdrop); }
     .error h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #f0ede6; }
     .error p { color: var(--muted); max-width: 480px; line-height: 1.6; }
     .error a { color: #c9a84c; text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.5); padding-bottom: 1px; }
     .error a:hover { color: #fff; }
 
     @media (max-width: 600px) {
-      header { flex-direction: column; gap: 0.5rem; padding: 0.75rem 1rem; }
-      .contact { order: 3; font-size: 0.75rem; }
+      header { flex-wrap: wrap; gap: 0.5rem; padding: 0.75rem 1rem; }
+      .contact { order: 3; flex-basis: 100%; font-size: 0.75rem; }
       .back-link { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
       main { inset: 96px 0 52px 0; padding: 8px; }
-      .stage img { max-width: 98vw; }
+    }
+
+    /* Print protection — even if keyboard block is bypassed, the page prints a message. */
+    @media print {
+      body > * { visibility: hidden !important; }
+      body::after {
+        content: "Floor plans from condosaround.com are not available for print. Contact Nik at 647-924-0848.";
+        visibility: visible;
+        display: block;
+        padding: 40px;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 14px;
+        color: #000;
+      }
     }
   </style>
 </head>
@@ -56,7 +99,6 @@
 
 <script>
 (function () {
-  // Validate and render.
   var params = new URLSearchParams(window.location.search);
   var rawImg = params.get('img') || '';
   var title = params.get('title') || 'Floor plan';
@@ -65,7 +107,7 @@
   var back = document.getElementById('back-link');
   var brand = document.getElementById('brand-link');
 
-  // Same-origin referrer → back goes there, otherwise condosaround.com.
+  // If the user came from a same-origin page, Back goes there; otherwise the public site.
   try {
     var ref = document.referrer;
     if (ref) {
@@ -77,16 +119,18 @@
     }
   } catch (e) { /* keep defaults */ }
 
-  // Whitelist: must be a path under /neighbourhoods/images/ (relative or same-origin absolute).
+  // Strict whitelist: path under /neighbourhoods/images/ AND ending in -wm.jpg.
+  // Rejects protocol, protocol-relative, parent-traversal, and non-watermarked originals.
   function isAllowed(path) {
     if (!path) return false;
-    // Reject protocol, protocol-relative, or parent-traversal.
     if (/^[a-z]+:/i.test(path)) return false;
-    if (path.startsWith('//')) return false;
+    if (path.indexOf('//') === 0) return false;
     if (path.indexOf('..') !== -1) return false;
-    // Normalize: trim leading slash.
-    var p = path.replace(/^\/+/, '');
-    return p.startsWith('neighbourhoods/images/');
+    if (!path.startsWith('/neighbourhoods/images/')) return false;
+    // Strip an optional query string before checking suffix.
+    var bare = path.split('?')[0];
+    if (!bare.toLowerCase().endsWith('-wm.jpg')) return false;
+    return true;
   }
 
   function renderError(msg) {
@@ -99,39 +143,63 @@
   }
 
   if (!isAllowed(rawImg)) {
-    renderError('This viewer only displays floor plans from CondosAround. If you arrived here by accident, head back to the main site.');
+    renderError('This viewer only displays watermarked floor plans from CondosAround. If you arrived here by accident, head back to the main site.');
     return;
   }
 
-  // Render image.
+  // Build the scene. Image is a CSS background, never an <img>.
   var stage = document.createElement('div');
   stage.className = 'stage';
-  var img = document.createElement('img');
-  img.draggable = false;
-  img.alt = title;
-  img.src = rawImg.startsWith('/') ? rawImg : '/' + rawImg.replace(/^\/+/, '');
-  img.addEventListener('dragstart', function (e) { e.preventDefault(); });
-  img.addEventListener('error', function () {
-    renderError('This floor plan image couldn’t be loaded. It may have been moved or removed.');
-  });
+  var plan = document.createElement('div');
+  plan.className = 'plan';
+  plan.setAttribute('role', 'img');
+  plan.setAttribute('aria-label', title);
+  plan.style.backgroundImage = "url('" + rawImg.replace(/'/g, "%27") + "')";
   var shield = document.createElement('div');
   shield.className = 'shield';
-  shield.addEventListener('contextmenu', function (e) { e.preventDefault(); });
-  stage.appendChild(img);
+  stage.appendChild(plan);
   stage.appendChild(shield);
   main.appendChild(stage);
+
+  // Probe existence — if the image is missing, swap to the error state.
+  var probe = new Image();
+  probe.onerror = function () {
+    renderError('This floor plan image couldn’t be loaded. It may have been moved or removed.');
+  };
+  probe.src = rawImg;
 
   caption.textContent = title;
   document.title = title + ' — CondosAround';
 
-  // Global protections: right-click and save shortcuts.
-  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
-  document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  // Global input blocking.
+  function blockEvent(e) { e.preventDefault(); }
+  document.addEventListener('contextmenu', blockEvent);
+  document.addEventListener('dragstart', blockEvent);
+  document.addEventListener('selectstart', blockEvent);
+  document.addEventListener('copy', blockEvent);
+
   document.addEventListener('keydown', function (e) {
-    var k = (e.key || '').toLowerCase();
-    if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p' || k === 'u')) {
+    var mod = e.ctrlKey || e.metaKey;
+    var key = (e.key || '').toLowerCase();
+    var blocked =
+      (mod && (key === 's' || key === 'p' || key === 'c' || key === 'u')) ||
+      (mod && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) ||
+      key === 'f12';
+    if (blocked) {
       e.preventDefault();
+      e.stopPropagation();
     }
+  }, true);
+
+  // Focus-loss blur. Catches some screenshot flows that briefly take focus
+  // (Cmd+Shift+5, third-party apps, alt-tab) but not instant Cmd+Shift+3/4.
+  // It's a layer, not a guarantee.
+  function obscure() { plan.classList.add('obscured'); }
+  function reveal() { plan.classList.remove('obscured'); }
+  window.addEventListener('blur', obscure);
+  window.addEventListener('focus', reveal);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) obscure(); else reveal();
   });
 })();
 </script>

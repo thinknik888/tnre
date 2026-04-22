@@ -46,8 +46,9 @@
 
     function toWm(src) {
       if (!src) return '';
-      // Only .jpg/.jpeg originals have a -wm sibling; leave other formats untouched.
-      return src.replace(/\.(jpe?g)(\?.*)?$/i, '-wm.$1$2');
+      // Only .jpg/.jpeg originals have a -wm sibling. Always output lowercase -wm.jpg
+      // (the viewer strictly validates that suffix).
+      return src.replace(/\.(jpe?g)(\?.*)?$/i, '-wm.jpg$2');
     }
     function getTitle() {
       var t = document.getElementById('modal-title');
