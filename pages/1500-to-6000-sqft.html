@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Condos Around 1,500 to 6,000 — CondosAround</title>
+  <meta name="description" content="Larger floor plans across the city, 1,500 sq ft to 6,000 sq ft." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); --navy: #002244; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--navy); }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    /* CINEMATIC HERO */
+    .hero { position: relative; height: 72vh; min-height: 480px; overflow: hidden; margin: 0; }
+    .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,34,68,0.35) 0%, rgba(0,34,68,0.6) 100%); z-index: 2; }
+    .hero-content { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; color: #fff; }
+    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 1.25rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 5.5vw, 5rem); font-weight: 300; line-height: 1.05; margin-bottom: 0.9rem; max-width: 1000px; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: clamp(0.95rem, 1.4vw, 1.1rem); color: rgba(255,255,255,0.85); max-width: 640px; line-height: 1.6; font-weight: 300; }
+
+    .hst-note { background: #f7f0e4; border-bottom: 1px solid rgba(184,154,86,0.25); padding: 1rem 3rem; font-size: 0.82rem; color: #6b6357; line-height: 1.6; }
+
+    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
+    .sqft-title em { color: var(--navy); }
+    .sqft-count { color: var(--navy); font-weight: 600; }
+
+    .filter-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .filter-row:last-child { margin-bottom: 2rem; }
+    .filter-label { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; min-width: 110px; }
+    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid #ddd8cc; border-radius: 2px; background: #ffffff; color: #1e1c18; cursor: pointer; transition: all 0.2s; }
+    .fp-filter-btn:hover { background: #ffffff; color: var(--navy); border-color: var(--navy); }
+    .fp-filter-btn.active { background: var(--navy); color: #ffffff; border-color: var(--navy); }
+
+    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .fp-card { border: 1px solid #e8e4dc; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+    .fp-card:hover { background: var(--gold-pale); }
+    .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-image { position: relative; overflow: hidden; min-height: 300px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+    .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; margin: auto; transition: transform 0.3s; }
+    .fp-info { padding: 1.25rem 1.5rem; }
+    .fp-building-tag { color: var(--navy); font-weight: 600; margin-bottom: 0.2rem; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .fp-suite { color: var(--navy); margin-bottom: 0.3rem; font-size: 0.75rem; letter-spacing: 0.04em; }
+    .fp-type { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500; color: #1e1c18; margin-bottom: 0.2rem; }
+    .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+    .fp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
+    .fp-price { font-weight: 600; color: var(--navy); font-size: 0.85rem; }
+    .fp-rebate { color: #c9a84c; text-align: right; margin-top: 0.3rem; display: block; font-size: 0.72rem; }
+    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
+    .fp-closing-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.4rem; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal-suite { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.3rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
+    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden; }
+    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; cursor: zoom-in; }
+    .modal-image.zoomed img { cursor: grab; }
+    .modal-image.zoomed.dragging img { cursor: grabbing; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,26,24,0.6); border: none; color: rgba(255,255,255,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
+    .modal-nav:hover { background: rgba(26,26,24,0.9); }
+    .modal-nav-prev { left: 0.5rem; }
+    .modal-nav-next { right: 0.5rem; }
+    .modal-details { padding: 1.5rem 2rem; border-left: 1px solid var(--border); overflow-y: auto; }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+    .detail-row:last-of-type { border-bottom: none; }
+    .detail-label { color: var(--text-muted); }
+    .detail-val { font-weight: 500; }
+    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
+    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+
+    .no-results { grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; font-size: 0.95rem; color: var(--text-muted); font-style: italic; display: none; }
+
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--navy); }
+
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .sqft-section, .hst-note { padding-left: 1.5rem; padding-right: 1.5rem; } .fp-grid { grid-template-columns: repeat(2, 1fr); } .modal { width: 100%; height: 100vh; border-radius: 0; } .modal-body { grid-template-columns: 1fr; overflow-y: auto; } .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); } .modal-details { border-left: none; } .cta-strip { padding: 3rem 1.5rem; } footer { padding: 1.5rem; } .filter-row { flex-wrap: wrap; } .hero { height: 60vh; } }
+    @media (max-width: 600px) { .fp-grid { grid-template-columns: 1fr; } }
+    @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}}
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../index.html" class="nav-back">&larr; All neighbourhoods</a>
+  <a href="../pages/stats.html" style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); text-decoration:none;" onmouseover="this.style.color='var(--navy)'" onmouseout="this.style.color='var(--text-muted)'">Stats</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-slide active" style="background-image:url('../neighbourhoods/images/sfh-dusk-hero.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/king-ph-2.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/sfh-superman.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/sfh-cedarvale.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('../neighbourhoods/images/sfh-village.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Toronto &middot; Pre-Construction</div>
+    <h1 class="hero-title">Condos Around <em>1,500 to 6,000</em></h1>
+    <p class="hero-sub">Larger floor plans across the city, 1,500 sq ft to 6,000 sq ft.</p>
+  </div>
+</section>
+
+<div class="hst-note">&#127968; 2026 HST Rebate &mdash; Ontario has temporarily removed HST on new homes. Buyers may save up to $130,000 on homes up to $1.5M. Valid April 1, 2026 &ndash; March 31, 2027.</div>
+
+<div class="sqft-section">
+  <div class="sqft-header">
+    <div class="sqft-title">Floor <em>Plans</em></div>
+    <div class="sqft-count" id="visible-count">30 floor plans</div>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-label">Closing Date</span>
+    <div class="fp-filters" id="closing-filters">
+      <button class="fp-filter-btn active" data-closing-filter="all">Show All</button>
+      <button class="fp-filter-btn" data-closing-filter="2026">2026</button>
+      <button class="fp-filter-btn" data-closing-filter="2028">2028</button>
+      <button class="fp-filter-btn" data-closing-filter="2029+">2029+</button>
+    </div>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Square Footage</span>
+    <div class="fp-filters" id="sqft-filters">
+      <button class="fp-filter-btn active" data-filter="all">All</button>
+      <button class="fp-filter-btn" data-filter="1500-2000">1,500 &ndash; 2,000</button>
+      <button class="fp-filter-btn" data-filter="2000-2500">2,000 &ndash; 2,500</button>
+      <button class="fp-filter-btn" data-filter="2500-3000">2,500 &ndash; 3,000</button>
+      <button class="fp-filter-btn" data-filter="3000-6001">3,000+</button>
+    </div>
+  </div>
+
+  <div class="fp-grid" id="fp-grid">
+    <div class="fp-card" data-building="50 Scollard" data-closing="2026" data-sqft="5190" data-price="18318900">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard/suite-23-25an-b.jpg" alt="Suite 28N" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 28N &middot; Floor 28 &middot; Penthouse</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">5,190 sq ft</span><span class="fp-price">$18,318,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="50 Scollard" data-closing="2026" data-sqft="3810" data-price="12295900">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-13.jpg" alt="Suite 35N" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 35N &middot; Floor 35</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">3,810 sq ft</span><span class="fp-price">$12,295,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="King Toronto Penthouse" data-closing="2026" data-sqft="2919" data-price="10800990">
+      <div class="fp-image"><img src="../neighbourhoods/images/king-ph-28.jpg" alt="The Glass House PH.01" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">King Toronto Penthouse</div>
+        <div class="fp-suite">PH.01 &middot; Home 1201 N &middot; North Mountain</div>
+        <div class="fp-type">3 Bed 3.5 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,919 sq ft</span><span class="fp-price">$10,800,990</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="The Bedford" data-closing="2028" data-sqft="2749" data-price="6799900">
+      <div class="fp-image"><img src="../neighbourhoods/images/the-bedford/suite-2749.png" alt="Suite 2749 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">The Bedford</div>
+        <div class="fp-suite">Suite 2749 · Floor 5</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">SW exposure · Balcony 214 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">2,749 sq ft</span><span class="fp-price">$6,799,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2028</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="50 Scollard" data-closing="2026" data-sqft="2649" data-price="7089900">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-11.jpg" alt="Suite 21BN+AS" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 21BN+AS &middot; Floors 21-22</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">2,649 sq ft</span><span class="fp-price">$7,089,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="101 Spadina" data-closing="2029" data-sqft="2448" data-price="4896000">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-5.jpg" alt="Suite D2448 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D2448 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,448 sq ft</span><span class="fp-price">$4,896,000 &ndash; $6,120,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2029</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="50 Scollard" data-closing="2026" data-sqft="2414" data-price="7951900">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-7.jpg" alt="Suite 36DS" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 36 DS &middot; Floor 36</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">East / West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">2,414 sq ft</span><span class="fp-price">$7,951,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Aqualuna" data-closing="" data-sqft="2404" data-price="4150000">
+      <div class="fp-image"><img src="../neighbourhoods/images/aqualuna_822_floorplan.jpg" alt="Aqualuna Suite 822 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Aqualuna</div>
+        <div class="fp-suite">Suite 822</div>
+        <div class="fp-type">2 Bed 2.5 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,404 sq ft</span><span class="fp-price">$4,150,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="101 Spadina" data-closing="2029" data-sqft="2322" data-price="4644000">
+      <div class="fp-image"><img src="../neighbourhoods/images/spadina-fp-4.jpg" alt="Suite D2322 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">101 Spadina</div>
+        <div class="fp-suite">Suite D2322 &middot; 2 Bedroom</div>
+        <div class="fp-type">2 Bedroom</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,322 sq ft</span><span class="fp-price">$4,644,000 &ndash; $5,805,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2029</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Aqualuna" data-closing="" data-sqft="2313" data-price="3599000">
+      <div class="fp-image"><img src="../neighbourhoods/images/aqualuna_815_floorplan.jpg" alt="Aqualuna Suite 815 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Aqualuna</div>
+        <div class="fp-suite">Suite 815</div>
+        <div class="fp-type">2 Bed 2.5 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,313 sq ft</span><span class="fp-price">$3,599,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Aqualuna" data-closing="" data-sqft="2258" data-price="4250000">
+      <div class="fp-image"><img src="../neighbourhoods/images/aqualuna_lph03_floorplan.jpg" alt="Aqualuna Suite LPH03 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Aqualuna</div>
+        <div class="fp-suite">Suite LPH03</div>
+        <div class="fp-type">2 Bed 2.5 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,258 sq ft</span><span class="fp-price">$4,250,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Aqualuna" data-closing="" data-sqft="2206" data-price="3450000">
+      <div class="fp-image"><img src="../neighbourhoods/images/aqualuna_1107_floorplan.jpg" alt="Aqualuna Suite 1107 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Aqualuna</div>
+        <div class="fp-suite">Suite 1107</div>
+        <div class="fp-type">3 Bed 3 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,206 sq ft</span><span class="fp-price">$3,450,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="50 Scollard" data-closing="2026" data-sqft="2166" data-price="5620900">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-10.jpg" alt="Suite 23-25AN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 23-25 AN &middot; Floors 23-25</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">2,166 sq ft</span><span class="fp-price">$5,620,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="8 Temple &middot; Combo" data-closing="" data-sqft="2156" data-price="">
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-1016-1017.jpg" alt="Unit 1016+1017 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">8 Temple &middot; Combo</div>
+        <div class="fp-suite">Unit 1016+1017 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">North / East / South &middot; Outdoor 518 sq ft &middot; Floor 10</div>
+        <div class="fp-meta"><span class="fp-sqft">2,156 sq ft</span><span class="fp-price">$3,139,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="King Toronto Penthouse" data-closing="2026" data-sqft="2026" data-price="7799990">
+      <div class="fp-image"><img src="../neighbourhoods/images/king-ph-34.jpg" alt="The Sanctuary PH.02" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">King Toronto Penthouse</div>
+        <div class="fp-suite">PH.02 &middot; Home 1202 N &middot; North Mountain</div>
+        <div class="fp-type">3 Bed 2.5 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">2,026 sq ft</span><span class="fp-price">$7,799,990</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="King Toronto" data-closing="2026" data-sqft="1973" data-price="4183990">
+      <div class="fp-image"><img src="../neighbourhoods/images/king-fp-west-7.jpg" alt="Home 1005 W" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">King Toronto</div>
+        <div class="fp-suite">Home 1005 W &middot; West Mountain</div>
+        <div class="fp-type">3 Bed + Atelier 2 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">1,973 sq ft</span><span class="fp-price">$4,183,990</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="8 Temple &middot; Combo" data-closing="" data-sqft="1940" data-price="">
+      <div class="fp-image"><img src="../neighbourhoods/images/8temple-1117-1118.jpg" alt="Unit 1117+1118 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">8 Temple &middot; Combo</div>
+        <div class="fp-suite">Unit 1117+1118 &middot; 3 Bedroom + Den</div>
+        <div class="fp-type">3 Bedroom + Den</div>
+        <div class="fp-exposure">South &middot; Outdoor 387 sq ft &middot; Floor 11</div>
+        <div class="fp-meta"><span class="fp-sqft">1,940 sq ft</span><span class="fp-price">$2,829,800</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="King Toronto" data-closing="2026" data-sqft="1796" data-price="3436990">
+      <div class="fp-image"><img src="../neighbourhoods/images/king-fp-west-8.jpg" alt="Home 1105 W" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">King Toronto</div>
+        <div class="fp-suite">Home 1105 W &middot; West Mountain</div>
+        <div class="fp-type">3 Bed 2 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">1,796 sq ft</span><span class="fp-price">$3,436,990</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="50 Scollard" data-closing="2026" data-sqft="1793" data-price="4549900">
+      <div class="fp-image"><img src="../neighbourhoods/images/50-scollard-fp-5.jpg" alt="Suite 5AN" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">50 Scollard</div>
+        <div class="fp-suite">Suite 5AN &middot; Floor 5</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">East / West exposure</div>
+        <div class="fp-meta"><span class="fp-sqft">1,793 sq ft</span><span class="fp-price">$4,549,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Aqualuna" data-closing="" data-sqft="1741" data-price="2495000">
+      <div class="fp-image"><img src="../neighbourhoods/images/aqualuna_306_floorplan.jpg" alt="Aqualuna Suite 306 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Aqualuna</div>
+        <div class="fp-suite">Suite 306</div>
+        <div class="fp-type">2 Bed 2.5 Bath</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">1,741 sq ft</span><span class="fp-price">$2,495,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="AKRA" data-closing="2026" data-sqft="1722" data-price="">
+      <div class="fp-image"><img src="../neighbourhoods/images/akra-fp-10.jpg" alt="Suite LPH02 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">AKRA</div>
+        <div class="fp-suite">Suite LPH02 &middot; 3 Bedroom</div>
+        <div class="fp-type">3 Bedroom</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">1,722 sq ft</span><span class="fp-price">$2,599,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Exhale Residences" data-closing="2026" data-sqft="1710" data-price="1282500">
+      <div class="fp-image"><img src="../neighbourhoods/images/exhale-townhouse-7.jpg" alt="Suite Townhome 7 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite Townhome 7 &middot; Townhome</div>
+        <div class="fp-type">Townhome</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">1,710 sq ft</span><span class="fp-price">$1,710,000 $1,282,500</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate </span>$1,115,775</span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="The Well" data-closing="2026" data-sqft="1679" data-price="2395000">
+      <div class="fp-image"><img src="../neighbourhoods/images/SIGNATURE 12TH.webp" alt="The Well Suite 1205" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">The Well</div>
+        <div class="fp-suite">Suite 1205 &middot; Floor 12 &middot; SE</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 106 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,679 sq ft</span><span class="fp-price">$2,395,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="The Bedford" data-closing="2028" data-sqft="1607" data-price="3449900">
+      <div class="fp-image"><img src="../neighbourhoods/images/the-bedford/suite-1607.png" alt="Suite 1607 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">The Bedford</div>
+        <div class="fp-suite">Suite 1607 · Floor 9</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">NE exposure · Balcony 70 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,607 sq ft</span><span class="fp-price">$3,449,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2028</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="The Bedford" data-closing="2028" data-sqft="1605" data-price="3059900">
+      <div class="fp-image"><img src="../neighbourhoods/images/the-bedford/suite-1605.png" alt="Suite 1605 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">The Bedford</div>
+        <div class="fp-suite">Suite 1605 · Floor 5</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">NE exposure · Balcony 146 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,605 sq ft</span><span class="fp-price">$3,059,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2028</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="The Bedford" data-closing="2028" data-sqft="1535" data-price="2869900">
+      <div class="fp-image"><img src="../neighbourhoods/images/the-bedford/suite-1535.png" alt="Suite 1535 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">The Bedford</div>
+        <div class="fp-suite">Suite 1535 · Floor 5</div>
+        <div class="fp-type">2 Bedroom + Den</div>
+        <div class="fp-exposure">North exposure · Balcony 64 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,535 sq ft</span><span class="fp-price">$2,869,900</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2028</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="11 Yorkville" data-closing="2026" data-sqft="1517" data-price="3640800">
+      <div class="fp-image"><img src="../neighbourhoods/images/ph-07.png" alt="PH 07" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">11 Yorkville</div>
+        <div class="fp-suite">PH 07 · Floors 61–62</div>
+        <div class="fp-type">3 Bed + Flex + 3 Bath</div>
+        <div class="fp-exposure">Balcony 68 sq ft · W.I.C.</div>
+        <div class="fp-meta"><span class="fp-sqft">1,517 sq ft</span><span class="fp-price">$3,640,800</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="The Well" data-closing="2026" data-sqft="1515" data-price="2175000">
+      <div class="fp-image"><img src="../neighbourhoods/images/signature 6th .webp" alt="The Well Suite 610" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">The Well</div>
+        <div class="fp-suite">Suite 610 &middot; Floor 6 &middot; NW</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 60 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,515 sq ft</span><span class="fp-price">$2,175,000</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Exhale Residences" data-closing="2026" data-sqft="1515" data-price="1666500">
+      <div class="fp-image"><img src="../neighbourhoods/images/exhale-ph-aveline.jpg" alt="Suite The Aveline Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Exhale Residences</div>
+        <div class="fp-suite">Suite The Aveline &middot; Penthouse · 2 Bed</div>
+        <div class="fp-type">Penthouse · 2 Bed</div>
+        
+        <div class="fp-meta"><span class="fp-sqft">1,515 sq ft</span><span class="fp-price">$2,045,250 $1,666,500</span></div>
+        <span class="fp-rebate"><span class="fp-rebate-label">Contact for HST calculation</span></span>
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-building="Concord Canada House" data-closing="2026" data-sqft="1500" data-price="0">
+      <div class="fp-image"><img src="../neighbourhoods/images/Loft 5703.jpg" alt="Loft 5703 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">Concord Canada House</div>
+        <div class="fp-suite">Sky 5903 / Loft 5703 &middot; Floors 57&ndash;60</div>
+        <div class="fp-type">3 Bedroom + Family (2-Storey)</div>
+        <div class="fp-exposure">Balcony 236 sq ft</div>
+        <div class="fp-meta"><span class="fp-sqft">1,500 sq ft</span><span class="fp-price">Contact for pricing</span></div>
+        
+        <div class="fp-closing-tag">2026</div>
+      </div>
+    </div>
+    <div class="no-results" id="no-results">No floor plans match the selected filters.</div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-headline">Looking for a <em>larger</em> unit?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div style="display:flex; gap:1rem;">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20info%20on%20larger%20floor%20plans%20%281%2C500%E2%80%936%2C000%20sq%20ft%29." class="btn-gold-outline">Text Us</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-suite" id="modal-suite"></div><div class="modal-title" id="modal-title"></div></div>
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
+      </div>
+      <div class="modal-details">
+        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
+        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
+        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
+        <div class="detail-row"><span class="detail-label">Size</span><span class="detail-val" id="m-size"></span></div>
+        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
+        <div class="detail-row"><span class="detail-label">HST Rebate</span><span class="detail-val" id="m-rebate" style="color:#c9a84c;"></span></div>
+        <div class="detail-row"><span class="detail-label">Closing</span><span class="detail-val" id="m-closing"></span></div>
+        <div class="modal-cta">
+          <div class="modal-cta-text">Questions about this floor plan? We can walk you through the layout, views, and availability.</div>
+          <a href="tel:6479240848" class="btn-full">Call 647-924-0848</a>
+          <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20info%20on%20larger%20floor%20plans%20%281%2C500%E2%80%936%2C000%20sq%20ft%29." class="btn-full-outline">Text Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Card click → modal (same pattern as under-1800k)
+var visibleCards = [];
+var currentIdx = 0;
+function getVisibleCards() {
+  return Array.from(document.querySelectorAll('#fp-grid .fp-card')).filter(function(c) { return c.style.display !== 'none'; });
+}
+function openModal(card) {
+  visibleCards = getVisibleCards();
+  currentIdx = visibleCards.indexOf(card);
+  if (currentIdx === -1) currentIdx = 0;
+  showCard(visibleCards[currentIdx]);
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function showCard(card) {
+  var img = card.querySelector('.fp-image img');
+  var building = card.querySelector('.fp-building-tag');
+  var suite = card.querySelector('.fp-suite');
+  var type = card.querySelector('.fp-type');
+  var sqft = card.querySelector('.fp-sqft');
+  var price = card.querySelector('.fp-price');
+  var rebate = card.querySelector('.fp-rebate');
+  var closing = card.querySelector('.fp-closing-tag');
+  document.getElementById('modal-img').src = img ? img.src : '';
+  document.getElementById('modal-suite').textContent = building ? building.textContent : '';
+  document.getElementById('modal-title').textContent = (suite ? suite.textContent : '') + ' — ' + (type ? type.textContent : '');
+  document.getElementById('m-building').textContent = building ? building.textContent : '';
+  document.getElementById('m-suite').textContent = suite ? suite.textContent : '';
+  document.getElementById('m-type').textContent = type ? type.textContent : '';
+  document.getElementById('m-size').textContent = sqft ? sqft.textContent : '';
+  document.getElementById('m-price').textContent = price ? price.textContent : '';
+  document.getElementById('m-rebate').textContent = rebate ? rebate.textContent.replace('HST Rebate ', '') : '';
+  document.getElementById('m-closing').textContent = closing ? closing.textContent : '';
+  if (window.resetModalZoom) window.resetModalZoom();
+}
+function modalNav(dir) {
+  visibleCards = getVisibleCards();
+  currentIdx = (currentIdx + dir + visibleCards.length) % visibleCards.length;
+  showCard(visibleCards[currentIdx]);
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+  if (window.resetModalZoom) window.resetModalZoom();
+}
+function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+  if (document.getElementById('modal').classList.contains('active')) {
+    if (e.key === 'ArrowLeft') modalNav(-1);
+    if (e.key === 'ArrowRight') modalNav(1);
+  }
+});
+document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+  card.addEventListener('click', function() { openModal(card); });
+});
+
+// Hero crossfade
+(function() {
+  var slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  var i = 0;
+  setInterval(function() {
+    slides[i].classList.remove('active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('active');
+  }, 6000);
+})();
+
+// Filters
+(function() {
+  var activeClosing = 'all';
+  var activeSqft = 'all';
+  var noResults = document.getElementById('no-results');
+  var countEl = document.getElementById('visible-count');
+  function applyFilters() {
+    var visible = 0;
+    document.querySelectorAll('#fp-grid .fp-card').forEach(function(card) {
+      var show = true;
+      if (activeClosing !== 'all') {
+        var c = parseInt(card.dataset.closing);
+        if (activeClosing === '2029+') { if (!c || c < 2029) show = false; }
+        else if (isNaN(c)) { show = false; }
+        else if (c !== parseInt(activeClosing)) { show = false; }
+      }
+      if (activeSqft !== 'all') {
+        var parts = activeSqft.split('-');
+        var sqft = parseInt(card.dataset.sqft);
+        if (sqft < parseInt(parts[0]) || sqft >= parseInt(parts[1])) show = false;
+      }
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+    countEl.textContent = visible + ' floor plan' + (visible !== 1 ? 's' : '');
+  }
+  function updateUrl() {
+    var params = new URLSearchParams();
+    if (activeClosing !== 'all') params.set('closing', activeClosing);
+    if (activeSqft !== 'all') params.set('size', activeSqft);
+    var qs = params.toString();
+    history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+  }
+  document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeClosing = btn.dataset.closingFilter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+  document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeSqft = btn.dataset.filter;
+      applyFilters();
+      updateUrl();
+    });
+  });
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var closing = params.get('closing');
+    if (closing) {
+      var btn = document.querySelector('#closing-filters .fp-filter-btn[data-closing-filter="' + closing + '"]');
+      if (btn) { document.querySelectorAll('#closing-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeClosing = closing; }
+    }
+    var size = params.get('size');
+    if (size) {
+      var btn = document.querySelector('#sqft-filters .fp-filter-btn[data-filter="' + size + '"]');
+      if (btn) { document.querySelectorAll('#sqft-filters .fp-filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); activeSqft = size; }
+    }
+    if (closing || size) applyFilters();
+  })();
+})();
+</script>
+
+<script src="../js/mobile-filters.js"></script>
+<script src="../js/modal-touch.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/register.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+<script src="../js/modal-full-plan.js"></script>
+</body>
+</html>
