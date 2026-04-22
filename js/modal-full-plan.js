@@ -44,7 +44,12 @@
       normalizeSlotChild();
     }
 
-    function sync() { btn.href = img.getAttribute('src') || '#'; }
+    function toWm(src) {
+      if (!src) return '#';
+      // Only .jpg/.jpeg originals have a -wm sibling; leave other formats untouched.
+      return src.replace(/\.(jpe?g)(\?.*)?$/i, '-wm.$1$2');
+    }
+    function sync() { btn.href = toWm(img.getAttribute('src')); }
     sync();
     new MutationObserver(sync).observe(img, { attributes: true, attributeFilter: ['src'] });
   }
