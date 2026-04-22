@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Floor Plan · CondosAround</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #002244; --navy-hover: #003366; --backdrop: #0a0f1a; --muted: rgba(255,255,255,0.55); --line: rgba(255,255,255,0.08); }
+    html, body { height: 100%; }
+    body { font-family: 'Outfit', sans-serif; background: var(--backdrop); color: #f0ede6; overflow: hidden; -webkit-user-select: none; user-select: none; }
+
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: var(--navy); border-bottom: 1px solid var(--line); position: fixed; inset: 0 0 auto 0; z-index: 10; }
+    .brand { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; text-decoration: none; letter-spacing: 0.02em; }
+    .brand span { font-style: italic; color: #c9a84c; }
+    .contact { font-size: 0.85rem; color: rgba(255,255,255,0.82); letter-spacing: 0.04em; text-align: center; flex: 1; }
+    .back-link { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.72); text-decoration: none; padding: 0.5rem 0.9rem; border: 1px solid rgba(255,255,255,0.22); border-radius: 999px; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+    .back-link:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+    main { position: fixed; inset: 64px 0 56px 0; display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .stage { position: relative; max-width: 95vw; max-height: 100%; display: flex; align-items: center; justify-content: center; }
+    .stage img { display: block; max-width: 95vw; max-height: 100%; object-fit: contain; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+    .stage .shield { position: absolute; inset: 0; background: transparent; pointer-events: auto; cursor: default; }
+
+    footer { position: fixed; inset: auto 0 0 0; background: rgba(10,15,26,0.96); border-top: 1px solid var(--line); padding: 0.75rem 1.5rem; font-size: 0.82rem; color: var(--muted); text-align: center; letter-spacing: 0.02em; z-index: 10; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    #caption { display: inline-block; max-width: 90vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .error { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; gap: 1rem; }
+    .error h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #f0ede6; }
+    .error p { color: var(--muted); max-width: 480px; line-height: 1.6; }
+    .error a { color: #c9a84c; text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.5); padding-bottom: 1px; }
+    .error a:hover { color: #fff; }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 0.5rem; padding: 0.75rem 1rem; }
+      .contact { order: 3; font-size: 0.75rem; }
+      .back-link { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
+      main { inset: 96px 0 52px 0; padding: 8px; }
+      .stage img { max-width: 98vw; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header">
+  <a href="https://condosaround.com" class="brand" id="brand-link">Condos<span>Around</span></a>
+  <div class="contact">Nik &nbsp;·&nbsp; 647-924-0848</div>
+  <a href="https://condosaround.com" class="back-link" id="back-link">Back to site ↗</a>
+</header>
+
+<main id="main"></main>
+
+<footer><span id="caption">Floor plan</span></footer>
+
+<script>
+(function () {
+  // Validate and render.
+  var params = new URLSearchParams(window.location.search);
+  var rawImg = params.get('img') || '';
+  var title = params.get('title') || 'Floor plan';
+  var main = document.getElementById('main');
+  var caption = document.getElementById('caption');
+  var back = document.getElementById('back-link');
+  var brand = document.getElementById('brand-link');
+
+  // Same-origin referrer → back goes there, otherwise condosaround.com.
+  try {
+    var ref = document.referrer;
+    if (ref) {
+      var refUrl = new URL(ref);
+      if (refUrl.origin === window.location.origin) {
+        back.href = ref;
+        brand.href = ref;
+      }
+    }
+  } catch (e) { /* keep defaults */ }
+
+  // Whitelist: must be a path under /neighbourhoods/images/ (relative or same-origin absolute).
+  function isAllowed(path) {
+    if (!path) return false;
+    // Reject protocol, protocol-relative, or parent-traversal.
+    if (/^[a-z]+:/i.test(path)) return false;
+    if (path.startsWith('//')) return false;
+    if (path.indexOf('..') !== -1) return false;
+    // Normalize: trim leading slash.
+    var p = path.replace(/^\/+/, '');
+    return p.startsWith('neighbourhoods/images/');
+  }
+
+  function renderError(msg) {
+    main.innerHTML = '';
+    var box = document.createElement('div');
+    box.className = 'error';
+    box.innerHTML = '<h1>Floor plan unavailable</h1><p>' + msg + '</p><a href="https://condosaround.com">Return to condosaround.com</a>';
+    main.appendChild(box);
+    caption.textContent = '';
+  }
+
+  if (!isAllowed(rawImg)) {
+    renderError('This viewer only displays floor plans from CondosAround. If you arrived here by accident, head back to the main site.');
+    return;
+  }
+
+  // Render image.
+  var stage = document.createElement('div');
+  stage.className = 'stage';
+  var img = document.createElement('img');
+  img.draggable = false;
+  img.alt = title;
+  img.src = rawImg.startsWith('/') ? rawImg : '/' + rawImg.replace(/^\/+/, '');
+  img.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  img.addEventListener('error', function () {
+    renderError('This floor plan image couldn’t be loaded. It may have been moved or removed.');
+  });
+  var shield = document.createElement('div');
+  shield.className = 'shield';
+  shield.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  stage.appendChild(img);
+  stage.appendChild(shield);
+  main.appendChild(stage);
+
+  caption.textContent = title;
+  document.title = title + ' — CondosAround';
+
+  // Global protections: right-click and save shortcuts.
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p' || k === 'u')) {
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
