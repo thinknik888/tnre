@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Nikhil Oberoi — CondosAround</title>
+  <meta name="description" content="Nikhil Oberoi — Toronto broker specializing in pre-construction condos for end users. 14 years of experience, Top 1% pre-construction." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0f1a; color: #f5f1ea; -webkit-font-smoothing: antialiased; }
+
+    /* Corner frame brackets in all 4 viewport corners */
+    .frame { position: fixed; width: 40px; height: 40px; border-color: rgba(232,198,135,0.4); border-style: solid; border-width: 0; z-index: 20; pointer-events: none; }
+    .frame-tl { top: 24px; left: 24px; border-top-width: 1px; border-left-width: 1px; }
+    .frame-tr { top: 24px; right: 24px; border-top-width: 1px; border-right-width: 1px; }
+    .frame-bl { bottom: 24px; left: 24px; border-bottom-width: 1px; border-left-width: 1px; }
+    .frame-br { bottom: 24px; right: 24px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* Split-screen */
+    .page { display: grid; grid-template-columns: 1.15fr 1fr; min-height: 100vh; }
+
+    /* Photo side */
+    .media { position: relative; overflow: hidden; background: #0a0f1a; }
+    .media img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: contrast(1.04) saturate(0.92); display: block; }
+    .media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 55%, rgba(10,15,26,0.35) 100%); pointer-events: none; }
+    .media-tag { position: absolute; bottom: 36px; left: 36px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,241,234,0.75); mix-blend-mode: difference; z-index: 3; }
+    .media-tag .sep { color: #e8c687; margin: 0 0.6em; }
+
+    /* Text panel */
+    .text { position: relative; padding: 90px 80px 180px 90px; background: #0a0f1a; display: flex; flex-direction: column; justify-content: flex-start; }
+    .text::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(232,198,135,0.4), rgba(232,198,135,0.4), transparent); }
+
+    /* Section marker */
+    .marker { display: flex; align-items: center; gap: 16px; margin-bottom: 50px; }
+    .marker-pill { padding: 6px 12px; border: 1.5px solid #e8c687; border-radius: 2px; font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 600; color: #e8c687; letter-spacing: 0.04em; }
+    .marker-label { font-family: 'Geist Mono', monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff; }
+
+    /* Headline */
+    h1 { font-family: 'Fraunces', serif; font-weight: 500; font-variation-settings: "opsz" 144; font-size: clamp(56px, 7vw, 104px); line-height: 0.95; letter-spacing: -0.028em; color: #f5f1ea; margin-bottom: 56px; }
+    h1 .accent { color: #e8c687; font-style: normal; }
+
+    /* Body copy */
+    .body { font-family: 'Geist', sans-serif; font-weight: 400; font-size: clamp(19px, 1.35vw, 22px); line-height: 1.55; letter-spacing: -0.005em; color: rgba(245,241,234,0.95); max-width: 560px; }
+    .body .lede { display: block; font-weight: 500; color: #f5f1ea; font-size: 1.08em; margin-bottom: 14px; }
+    .body .em { color: #e8c687; font-weight: 500; }
+
+    /* Stats row */
+    .stats-row { position: absolute; bottom: 60px; left: 90px; right: 80px; display: flex; align-items: flex-start; }
+    .stat { flex: 1; position: relative; cursor: default; transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); }
+    .stat::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 0; height: 1px; background: #e8c687; transition: width 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+    .stat:hover { transform: translateY(-3px); }
+    .stat:hover::after { width: 40px; }
+    .stat:hover .stat-label { color: #ffffff; }
+    .stat-number { font-family: 'Fraunces', serif; font-weight: 500; font-variation-settings: "opsz" 144; font-size: clamp(38px, 3.5vw, 54px); line-height: 1; color: #e8c687; letter-spacing: -0.02em; margin-bottom: 14px; font-variant-numeric: tabular-nums; }
+    .stat-label { font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,241,234,0.55); transition: color 0.3s; }
+    .stat-divider { width: 1px; height: 64px; margin: 0 32px; background: linear-gradient(to bottom, transparent, rgba(232,198,135,0.3), transparent); flex-shrink: 0; align-self: center; }
+
+    /* Nav link (top-right, subtle) */
+    .back-home { position: fixed; top: 36px; right: 80px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,241,234,0.6); text-decoration: none; z-index: 30; transition: color 0.2s; }
+    .back-home:hover { color: #e8c687; }
+
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; min-height: auto; }
+      .media { height: 70vh; }
+      .text { padding: 60px 28px 100px; }
+      .text::before { display: none; }
+      .stats-row { left: 28px; right: 28px; bottom: 40px; }
+      .stat-divider { height: 40px; margin: 0 14px; }
+      .stat-number { font-size: 32px !important; margin-bottom: 10px; }
+      .frame { width: 28px; height: 28px; }
+      .frame-tl, .frame-tr { top: 16px; }
+      .frame-bl, .frame-br { bottom: 16px; }
+      .frame-tl, .frame-bl { left: 16px; }
+      .frame-tr, .frame-br { right: 16px; }
+      .back-home { top: 20px; right: 56px; }
+      h1 { margin-bottom: 40px; }
+      .marker { margin-bottom: 36px; }
+    }
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="frame frame-tl"></div>
+<div class="frame frame-tr"></div>
+<div class="frame frame-bl"></div>
+<div class="frame frame-br"></div>
+
+<a href="/" class="back-home">CondosAround ↗</a>
+
+<div class="page">
+  <div class="media">
+    <img src="/nikhil.jpg" alt="Nikhil Oberoi" />
+    <div class="media-tag">Nikhil Oberoi<span class="sep">·</span>Toronto<span class="sep">·</span>2026</div>
+  </div>
+
+  <div class="text">
+    <div class="marker">
+      <span class="marker-pill">01</span>
+      <span class="marker-label">Who I work with</span>
+    </div>
+
+    <h1>Mostly <span class="accent">end users.</span></h1>
+
+    <div class="body">
+      <span class="lede">People buying a home they actually want to live in.</span>Investors are welcome. I just don't chase flips or quick assignments. I work with people who want something that <span class="em">still makes sense in ten years.</span>
+    </div>
+
+    <div class="stats-row" id="stats-row">
+      <div class="stat">
+        <div class="stat-number" data-target="14" data-suffix="">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-number" data-target="40" data-prefix="$" data-suffix="M">$0M</div>
+        <div class="stat-label">Sales Since 2023</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-number" data-target="1" data-from="100" data-prefix="Top " data-suffix="%">Top 100%</div>
+        <div class="stat-label">Pre-Construction</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var duration = 1800;
+  var stagger = 180;
+  var delay = 300;
+  var easeOutCubic = function (t) { return 1 - Math.pow(1 - t, 3); };
+
+  function animateStat(el, index) {
+    var target = parseFloat(el.getAttribute('data-target'));
+    var from = parseFloat(el.getAttribute('data-from') || '0');
+    var prefix = el.getAttribute('data-prefix') || '';
+    var suffix = el.getAttribute('data-suffix') || '';
+    var start = null;
+    function frame(ts) {
+      if (!start) start = ts;
+      var elapsed = ts - start;
+      var t = Math.min(1, elapsed / duration);
+      var eased = easeOutCubic(t);
+      var current = Math.round(from + (target - from) * eased);
+      el.textContent = prefix + current + suffix;
+      if (t < 1) requestAnimationFrame(frame);
+      else el.textContent = prefix + target + suffix;
+    }
+    setTimeout(function () { requestAnimationFrame(frame); }, delay + index * stagger);
+  }
+
+  var row = document.getElementById('stats-row');
+  if (!row) return;
+  var nums = row.querySelectorAll('.stat-number');
+  var fired = false;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !fired) {
+        fired = true;
+        nums.forEach(function (n, i) { animateStat(n, i); });
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(row);
+})();
+</script>
+
+</body>
+</html>
