@@ -1,7 +1,10 @@
-// Deep link floor plan modals via ?plan= query parameter
-// Supports: openModal(id), openPlanModal(index), and back/forward navigation
+// Deep link floor plan modals via ?plan= and filter persistence via ?filter=
+// - ?plan=<id>: opens the floor plan modal on load
+// - ?filter=<slug>: applies the matching filter on load
+// - Combined ?filter=X&plan=Y: applies filter, then opens plan
+// Uses history.replaceState so URL stays shareable without polluting history.
 (function() {
-  var origOpen, origClose, origPlanOpen, origPlanClose;
+  var origOpen, origClose, origPlanOpen, origPlanClose, origFilterPlans;
   var isDeeplinkAction = false;
 
   function getCleanUrl() {
@@ -17,13 +20,25 @@
     return url.pathname + '?' + url.searchParams.toString();
   }
 
+  function updateFilterUrl(slug) {
+    var url = new URL(window.location);
+    if (slug && slug !== 'all') url.searchParams.set('filter', slug);
+    else url.searchParams.delete('filter');
+    var qs = url.searchParams.toString();
+    history.replaceState(history.state, '', url.pathname + (qs ? '?' + qs : ''));
+  }
+
+  function btnSlug(btn) {
+    return btn.dataset.filter || btn.dataset.collectionFilter || null;
+  }
+
   // --- Standard openModal(id) pattern ---
   if (typeof window.openModal === 'function') {
     origOpen = window.openModal;
     window.openModal = function(id) {
       origOpen(id);
       if (!isDeeplinkAction) {
-        history.pushState({ plan: id }, '', setPlanUrl(typeof id === 'string' ? id : ''));
+        history.replaceState({ plan: id }, '', setPlanUrl(typeof id === 'string' ? id : ''));
       }
     };
   }
@@ -33,7 +48,7 @@
     window.closeModal = function() {
       origClose();
       if (!isDeeplinkAction) {
-        history.pushState(null, '', getCleanUrl());
+        history.replaceState(null, '', getCleanUrl());
       }
     };
   }
@@ -44,7 +59,7 @@
     window.openPlanModal = function(i) {
       origPlanOpen(i);
       if (!isDeeplinkAction) {
-        history.pushState({ plan: String(i) }, '', setPlanUrl(i));
+        history.replaceState({ plan: String(i) }, '', setPlanUrl(i));
       }
     };
   }
@@ -54,15 +69,64 @@
     window.closePlanModal = function() {
       origPlanClose();
       if (!isDeeplinkAction) {
-        history.pushState(null, '', getCleanUrl());
+        history.replaceState(null, '', getCleanUrl());
       }
     };
   }
 
+  // --- Filter persistence: data-filter, data-collection-filter ---
+  // Skip pages that already manage their own multi-param URL scheme (e.g. ?size=&price=).
+  var hasOwnFilterUrl = !!document.querySelector('[data-price-filter], [data-closing-filter], [data-building-filter]');
+  var filterSel = '.fp-filter-btn[data-filter], .fp-filter-btn[data-collection-filter], ' +
+                  '.filter-btn[data-filter], .filter-btn[data-collection-filter]';
+  if (!hasOwnFilterUrl) {
+    document.querySelectorAll(filterSel).forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (isDeeplinkAction) return;
+        var slug = btnSlug(btn);
+        if (slug) updateFilterUrl(slug);
+      });
+    });
+  }
+
+  // Wrap south-forest-hill's filterPlans(col) inline pattern
+  if (typeof window.filterPlans === 'function') {
+    origFilterPlans = window.filterPlans;
+    window.filterPlans = function(col) {
+      origFilterPlans.apply(this, arguments);
+      if (!isDeeplinkAction) updateFilterUrl(col);
+    };
+  }
+
+  // --- On load, apply ?filter= ---
+  var params = new URLSearchParams(window.location.search);
+  var filterParam = params.get('filter');
+  var planParam = params.get('plan');
+
+  if (filterParam && !hasOwnFilterUrl) {
+    isDeeplinkAction = true;
+    var btn = document.querySelector(
+      '.fp-filter-btn[data-filter="' + filterParam + '"], ' +
+      '.fp-filter-btn[data-collection-filter="' + filterParam + '"], ' +
+      '.filter-btn[data-filter="' + filterParam + '"], ' +
+      '.filter-btn[data-collection-filter="' + filterParam + '"]'
+    );
+    if (btn) {
+      btn.click();
+    } else if (typeof origFilterPlans === 'function') {
+      // SFH-style: find inline-onclick button matching the slug
+      document.querySelectorAll('.filter-btn').forEach(function(b) {
+        var oc = b.getAttribute('onclick') || '';
+        if (oc.indexOf("filterPlans('" + filterParam + "')") >= 0) b.click();
+      });
+    }
+    isDeeplinkAction = false;
+  }
+
   // --- Handle browser back/forward ---
   window.addEventListener('popstate', function() {
-    var params = new URLSearchParams(window.location.search);
-    var plan = params.get('plan');
+    var p = new URLSearchParams(window.location.search);
+    var plan = p.get('plan');
     isDeeplinkAction = true;
     if (plan) {
       if (origPlanOpen && !origOpen) {
@@ -77,19 +141,16 @@
     isDeeplinkAction = false;
   });
 
-  // --- On page load, open if ?plan= present ---
-  var params = new URLSearchParams(window.location.search);
-  var plan = params.get('plan');
-  if (plan) {
+  // --- On load, open ?plan= (deferred so the page settles first) ---
+  if (planParam) {
     setTimeout(function() {
       isDeeplinkAction = true;
       if (typeof window.openPlanModal === 'function' && !origOpen) {
-        (origPlanOpen || window.openPlanModal)(parseInt(plan));
+        (origPlanOpen || window.openPlanModal)(parseInt(planParam));
       } else if (typeof window.openModal === 'function') {
-        (origOpen || window.openModal)(plan);
+        (origOpen || window.openModal)(planParam);
       }
-      // Replace current history entry so the initial load doesn't double-stack
-      history.replaceState({ plan: plan }, '', window.location.href);
+      history.replaceState({ plan: planParam }, '', window.location.href);
       isDeeplinkAction = false;
     }, 800);
   }
@@ -99,10 +160,8 @@
     var origNav = window.modalNav;
     window.modalNav = function(dir) {
       origNav(dir);
-      // After nav, find the current plan ID from the modal
       var modal = document.getElementById('modal');
       if (modal && modal.classList.contains('active')) {
-        // Try to get current plan key from planKeys array if it exists
         if (typeof window.planKeys !== 'undefined' && typeof window.currentPlanIdx !== 'undefined') {
           var id = window.planKeys[window.currentPlanIdx];
           if (id) history.replaceState({ plan: id }, '', setPlanUrl(id));

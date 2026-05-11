@@ -248,7 +248,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <button class="fp-filter-btn" data-filter="500-700">500 &ndash; 700 sq ft</button>
     <button class="fp-filter-btn" data-filter="700-900">700 &ndash; 900 sq ft</button>
     <button class="fp-filter-btn" data-filter="900-1300">900 &ndash; 1,300 sq ft</button>
-    <button class="fp-filter-btn" data-filter="1300+">1,300 &ndash; 2,200 sq ft (Combos)</button>
+    <button class="fp-filter-btn" data-filter="1300-2200-combos">1,300 &ndash; 2,200 sq ft (Combos)</button>
   </div>
 
   <div class="fp-grid" id="fp-grid">
@@ -738,7 +738,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         if (filter === '500-700') show = sqft >= 500 && sqft < 700;
         else if (filter === '700-900') show = sqft >= 700 && sqft < 900;
         else if (filter === '900-1300') show = sqft >= 900 && sqft < 1300;
-        else if (filter === '1300+') show = sqft >= 1300;
+        else if (filter === '1300-2200-combos') show = sqft >= 1300;
         card.style.display = show ? '' : 'none';
       });
     });
