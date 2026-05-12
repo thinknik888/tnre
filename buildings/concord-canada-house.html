@@ -71,11 +71,20 @@
     .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
     .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
 
+    /* TOWER HEADINGS */
+    .tower-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--text); margin: 2.5rem 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 1rem; }
+    .tower-heading em { font-style: italic; color: var(--gold); }
+    .tower-heading .tower-addr { font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); font-weight: 400; }
+    .tower-heading:first-of-type { margin-top: 0; }
+    .parking-note { font-size: 0.72rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; font-style: italic; padding-left: 0.25rem; }
+
     /* FP GRID */
     .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; }
+    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: block; position: relative; }
     .fp-card:hover { background: var(--gold-pale); }
     .fp-card:hover .fp-image img { transform: scale(1.02); }
+    .fp-photo-badge { position: absolute; top: 0.75rem; right: 0.75rem; z-index: 2; background: rgba(26,26,24,0.78); color: var(--gold-light); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.65rem; border-radius: 2px; pointer-events: none; }
+    .fp-placeholder { width: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; padding: 2rem; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--text-muted); background: linear-gradient(135deg, var(--cream) 0%, var(--gold-pale) 100%); }
     .fp-image { position: relative; overflow: hidden; min-height: 400px; background: var(--cream); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
     .fp-image img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s; background: var(--white); cursor: zoom-in; }
     .fp-info { padding: 1.25rem 1.5rem; }
@@ -101,8 +110,19 @@
     .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
     .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
     .modal-body { display: grid; grid-template-columns: 1.4fr 1fr; }
-    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; }
+    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 2rem; min-height: 400px; position: relative; }
     .modal-image img { max-width: 100%; max-height: 500px; object-fit: contain; }
+    .modal-img-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(26,26,24,0.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(200,169,110,0.3); color: var(--gold-light); font-size: 1.2rem; cursor: pointer; z-index: 5; display: none; align-items: center; justify-content: center; transition: background 0.2s; }
+    .modal-img-nav:hover { background: rgba(26,26,24,0.85); }
+    .modal-img-nav.show { display: flex; }
+    .modal-img-prev { left: 0.75rem; }
+    .modal-img-next { right: 0.75rem; }
+    .modal-img-dots { position: absolute; bottom: 0.85rem; left: 50%; transform: translateX(-50%); display: none; gap: 0.4rem; z-index: 5; }
+    .modal-img-dots.show { display: flex; }
+    .modal-img-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(26,26,24,0.25); cursor: pointer; transition: background 0.2s; }
+    .modal-img-dot.active { background: var(--gold); }
+    .modal-img-label { position: absolute; top: 0.75rem; left: 0.75rem; background: rgba(26,26,24,0.78); color: var(--gold-light); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.6rem; border-radius: 2px; display: none; z-index: 5; }
+    .modal-img-label.show { display: block; }
     .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
     .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .detail-row:last-of-type { border-bottom: none; }
@@ -188,7 +208,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="hero-meta-item"><strong>1 &amp; 3 Concord CityPlace Way</strong></div>
       <div class="hero-meta-item"><strong>East Tower:</strong> 68 Storeys</div>
       <div class="hero-meta-item"><strong>West Tower:</strong> 79 Storeys</div>
-      <div class="hero-meta-item"><strong>From</strong> $467,000</div>
+      <div class="hero-meta-item"><strong>From</strong> $482,000</div>
     </div>
   </div>
 </div>
@@ -205,7 +225,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="stat-grid">
       <div class="stat-item"><div class="stat-val">68 &amp; 79</div><div class="stat-lbl">Storeys</div></div>
       <div class="stat-item"><div class="stat-val">1,394</div><div class="stat-lbl">Total suites</div></div>
-      <div class="stat-item"><div class="stat-val">$467K</div><div class="stat-lbl">Starting from</div></div>
+      <div class="stat-item"><div class="stat-val">$482K</div><div class="stat-lbl">Starting from</div></div>
       <div class="stat-item"><div class="stat-val">2026</div><div class="stat-lbl">Occupancy</div></div>
       <div class="stat-item"><div class="stat-val">Concord</div><div class="stat-lbl">Developer</div></div>
       <div class="stat-item"><div class="stat-val">CityPlace</div><div class="stat-lbl">Neighbourhood</div></div>
@@ -217,7 +237,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <div class="sqft-section">
   <div class="sqft-header">
     <div class="sqft-title">Floor <em>Plans</em></div>
-    <div class="sqft-count">22 floor plans</div>
+    <div class="sqft-count">30 floor plans &middot; both towers</div>
     <a href="#gallery" class="btn-gold-outline" style="margin-left:auto; padding:0.5rem 1.2rem; font-size:0.72rem;">Images &darr;</a>
   </div>
 
@@ -229,324 +249,484 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <button class="fp-filter-btn" data-filter="1000+">1,000+ sq ft</button>
   </div>
 
-  <div class="fp-grid" id="fp-grid">
-    <div class="fp-card" data-sqft="492" onclick="openModal('w-4315')">
-      <div class="fp-image"><img src="../neighbourhoods/images/4315.jpg" alt="Suite 4315 Floor Plan" loading="lazy" /></div>
+  <h3 class="tower-heading" data-tower="east">East Tower <em>1 Concord CityPlace Way</em> <span class="tower-addr" data-east-count>16 suites</span></h3>
+  <div class="fp-grid" id="fp-grid-east">
+
+    <div class="fp-card" data-sqft="485" data-tower="east" onclick="openModal('e-3801')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-3801.jpg" alt="Suite 3801 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 4315 &middot; Plan 15</div>
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 3801</div>
         <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">West exposure &middot; Balcony 108 sq ft</div>
+        <div class="fp-exposure">Balcony 45 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">492 sq ft</span><span class="fp-price">$492,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$428,040</span>
+          <div class="fp-meta-row"><span class="fp-sqft">485 sq ft</span><span class="fp-price">$489,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$426,213</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="502" onclick="openModal('e-1902')">
-      <div class="fp-image"><img src="../neighbourhoods/images/1902.jpg" alt="Suite 1902 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="502" data-tower="east" onclick="openModal('e-4512')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-4512.jpg" alt="Suite 4512 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Suite 1902 &middot; Plan 02</div>
+        <div class="fp-suite">Suite 4512</div>
         <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">North exposure &middot; Balcony 43 sq ft</div>
+        <div class="fp-exposure">Balcony 43 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$467,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$406,290</span>
+          <div class="fp-meta-row"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$509,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$443,613</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="502" onclick="openModal('e-2712')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2712.jpg" alt="Suite 2712 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="502" data-tower="east" onclick="openModal('e-4912')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-4912.jpg" alt="Suite 4912 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Suite 2712 &middot; Plan 12</div>
+        <div class="fp-suite">Suite 4912</div>
         <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">North exposure &middot; Balcony 43 sq ft</div>
+        <div class="fp-exposure">Balcony 43 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$521,130</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$453,383</span>
+          <div class="fp-meta-row"><span class="fp-sqft">502 sq ft</span><span class="fp-price">$499,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$434,130</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="505" onclick="openModal('w-4012b')">
-      <div class="fp-image"><img src="../neighbourhoods/images/4012.jpg" alt="Suite 4012 Plan 12 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="578" data-tower="east" onclick="openModal('e-2807')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-2807.jpg" alt="Suite 2807 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 4012 &middot; Plan 12</div>
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 2807</div>
         <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">West exposure &middot; Balcony 105 sq ft</div>
+        <div class="fp-exposure">Balcony 157 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">505 sq ft</span><span class="fp-price">$490,500</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$426,735</span>
+          <div class="fp-meta-row"><span class="fp-sqft">578 sq ft</span><span class="fp-price">$599,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$521,130</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="535" onclick="openModal('e-2712b')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2712.jpg" alt="Suite 2712 Plan 09 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="650" data-tower="east" onclick="openModal('e-4807')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-4807.jpg" alt="Suite 4807 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Plan 09 &middot; Floors 17&ndash;59</div>
-        <div class="fp-type">1 Bedroom + Study</div>
-        <div class="fp-exposure">Balcony 145 sq ft</div>
+        <div class="fp-suite">Suite 4807</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 120 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">535 sq ft</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-contact">Contact for pricing</span>
+          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price">$699,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$608,130</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="600" onclick="openModal('w-4012')">
-      <div class="fp-image"><img src="../neighbourhoods/images/4012.jpg" alt="Suite 4012 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="578" data-tower="east" onclick="openModal('e-5606')">
+      <div class="fp-photo-badge">6 photos</div>
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-5606.jpg" alt="Suite 5606 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 4012 &middot; Plan 08</div>
-        <div class="fp-type">1 Bedroom + Study</div>
-        <div class="fp-exposure">East exposure &middot; Balcony 128 sq ft</div>
+        <div class="fp-building-tag">East Tower &middot; Model Suite</div>
+        <div class="fp-suite">Suite 5606</div>
+        <div class="fp-type">1 Bedroom + Den</div>
+        <div class="fp-exposure">Balcony 120 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">600 sq ft</span><span class="fp-price">$599,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$521,130</span>
+          <div class="fp-meta-row"><span class="fp-sqft">578 sq ft</span><span class="fp-price">$619,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$539,313</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="650" onclick="openModal('e-2611')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2611.jpg" alt="Suite 2611 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="718" data-tower="east" onclick="openModal('e-4311')">
+      <div class="fp-photo-badge">6 photos</div>
+      <div class="fp-image"><div class="fp-placeholder">Floor plan available on request</div></div>
       <div class="fp-info">
-        <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Suite 2611 &middot; Plan 06</div>
-        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
-        <div class="fp-exposure">Balcony 145 sq ft &middot; Floors 17&ndash;59</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-contact">Contact for pricing</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="650" onclick="openModal('w-2706')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2206.jpg" alt="Suite 2706 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 2706 &middot; Plan 06</div>
-        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
-        <div class="fp-exposure">East exposure &middot; Balcony 145 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price">$655,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$569,850</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="660" onclick="openModal('e-506')">
-      <div class="fp-image"><img src="../neighbourhoods/images/506.jpg" alt="Suite 506 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Suite 506 &middot; Plan 06</div>
-        <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">Balcony / Terrace 43&ndash;50 sq ft &middot; Floors 3&ndash;5</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">660 sq ft</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-contact">Contact for pricing</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="692" onclick="openModal('w-2805')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2805.jpg" alt="Suite 2805 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 2805 &middot; Plan 05</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">NE exposure &middot; Balcony 170 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">692 sq ft (862 total)</span><span class="fp-price">$659,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$573,330</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="718" onclick="openModal('e-3010')">
-      <div class="fp-image"><img src="../neighbourhoods/images/3010.jpg" alt="Suite 3010 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Plan 11 &middot; Floors 17&ndash;46, 49&ndash;56</div>
+        <div class="fp-building-tag">East Tower &middot; Model Suite</div>
+        <div class="fp-suite">Suite 4311</div>
         <div class="fp-type">2 Bedroom</div>
         <div class="fp-exposure">Balcony 217 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">718 sq ft (935 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-contact">Contact for pricing</span>
+          <div class="fp-meta-row"><span class="fp-sqft">718 sq ft</span><span class="fp-price">$699,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$608,913</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="740" onclick="openModal('w-2803')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2803.jpg" alt="Suite 2803 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="760" data-tower="east" onclick="openModal('e-3010')">
+      <div class="fp-photo-badge">6 photos</div>
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-3010.jpg" alt="Suite 3010 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 2803 &middot; Plan 03</div>
+        <div class="fp-building-tag">East Tower &middot; Model Suite</div>
+        <div class="fp-suite">Suite 3010</div>
         <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">NW exposure &middot; Balcony 150 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft (890 total)</span><span class="fp-price">$799,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$695,130</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="740" onclick="openModal('w-2703')">
-      <div class="fp-image"><img src="../neighbourhoods/images/2803.jpg" alt="Suite 2703 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">West Tower</div>
-        <div class="fp-suite">Suite 2703 &middot; Plan 03</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">NW exposure &middot; Balcony 150 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft (890 total)</span><span class="fp-price">$798,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$694,260</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="760" onclick="openModal('e-4701')">
-      <div class="fp-image"><img src="../neighbourhoods/images/4701.jpg" alt="Suite 4701 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Suite 4701 &middot; Plan O1</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">NE exposure &middot; Balcony 108 sq ft &middot; Floors 47&ndash;48</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft (868 total)</span><span class="fp-price">$919,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">HST Rebate Price </span>$799,530</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="760" onclick="openModal('e-4808')">
-      <div class="fp-image"><img src="../neighbourhoods/images/4808.jpg" alt="Suite 4808 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Plan 10 &middot; Floors 17&ndash;46, 49&ndash;56</div>
-        <div class="fp-type">2 Bedroom + Study</div>
         <div class="fp-exposure">Balcony 208 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft (968 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-contact">Contact for pricing</span>
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft</span><span class="fp-price">$799,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$695,913</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1032" onclick="openModal('e-loft5707')">
-      <div class="fp-image"><img src="../neighbourhoods/images/Loft 5707.jpg" alt="Loft 5707 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
-        <div class="fp-suite">Sky 5907 / Loft 5707 &middot; Floors 57&ndash;60</div>
-        <div class="fp-type">2 Bedroom (2-Storey)</div>
-        <div class="fp-exposure">Dual balconies 336 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,032 sq ft (1,368 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1033" onclick="openModal('e-loft5701')">
-      <div class="fp-image"><img src="../neighbourhoods/images/Loft 5701.jpg" alt="Loft 5701 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
-        <div class="fp-suite">Sky 5901 / Loft 5701 &middot; Floors 57&ndash;60</div>
-        <div class="fp-type">2 Bedroom (2-Storey)</div>
-        <div class="fp-exposure">Balcony 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,033 sq ft (1,133 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1033" onclick="openModal('e-loft5712')">
-      <div class="fp-image"><img src="../neighbourhoods/images/Loft 5712.jpg" alt="Loft 5712 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
-        <div class="fp-suite">Sky 5912 / Loft 5712 &middot; Floors 57&ndash;60</div>
-        <div class="fp-type">2 Bedroom (2-Storey)</div>
-        <div class="fp-exposure">Balcony 90 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,033 sq ft (1,123 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1033" onclick="openModal('e-loft5715')">
-      <div class="fp-image"><img src="../neighbourhoods/images/Loft 5715.jpg" alt="Loft 5715 Floor Plan" loading="lazy" /></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
-        <div class="fp-suite">Sky 5915 / Loft 5715 &middot; Floors 57&ndash;60</div>
-        <div class="fp-type">2 Bedroom (2-Storey)</div>
-        <div class="fp-exposure">Balcony 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,033 sq ft (1,133 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1038" onclick="openModal('e-6301')">
-      <div class="fp-image"><img src="../neighbourhoods/images/6301.jpg" alt="Suite 6301 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="760" data-tower="east" onclick="openModal('e-2903')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-2903.jpg" alt="Suite 2903 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
         <div class="fp-building-tag">East Tower</div>
-        <div class="fp-suite">Plan O1 &middot; East Tower Floors 61&ndash;68</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">Dual balconies &middot; 88 sq ft outdoor</div>
+        <div class="fp-suite">Suite 2903</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 108 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,038 sq ft (1,126 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-offers">Open to offers</span>
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft</span><span class="fp-price">$749,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$651,630</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1198" onclick="openModal('w-7805')">
-      <div class="fp-image"><img src="../neighbourhoods/images/7805.jpg" alt="Suite 7805 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="760" data-tower="east" onclick="openModal('e-3903')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-3903.jpg" alt="Suite 3903 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
-        <div class="fp-building-tag">West Tower &mdash; Upper</div>
-        <div class="fp-suite">Suite 7805 &middot; Plan 05</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">East exposure &middot; Balcony 277 sq ft &middot; Floors 67&ndash;79</div>
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 3903</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 108 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,198 sq ft (1,475 total)</span><span class="fp-price">$1,549,900</span></div>
-          <span class="fp-offers">Open to offers</span>
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft</span><span class="fp-price">$777,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$675,990</span>
         </div>
       </div>
     </div>
-    <div class="fp-card" data-sqft="1500" onclick="openModal('e-loft5703')">
-      <div class="fp-image"><img src="../neighbourhoods/images/Loft 5703.jpg" alt="Loft 5703 Floor Plan" loading="lazy" /></div>
+
+    <div class="fp-card" data-sqft="760" data-tower="east" onclick="openModal('e-4203')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-4203.jpg" alt="Suite 4203 Floor Plan" loading="lazy" /></div>
       <div class="fp-info">
-        <div class="fp-building-tag">East Tower &mdash; Sky Loft</div>
-        <div class="fp-suite">Sky 5903 / Loft 5703 &middot; Floors 57&ndash;60</div>
-        <div class="fp-type">3 Bedroom + Family (2-Storey)</div>
-        <div class="fp-exposure">Balcony 236 sq ft</div>
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 4203</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 108 sq ft</div>
         <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,500 sq ft (1,736 total)</span><span class="fp-price">Contact for pricing</span></div>
-          <span class="fp-offers">Open to offers</span>
+          <div class="fp-meta-row"><span class="fp-sqft">760 sq ft</span><span class="fp-price">$829,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$721,230</span>
         </div>
       </div>
     </div>
+
+    <div class="fp-card" data-sqft="908" data-tower="east" onclick="openModal('e-1805')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-1805.jpg" alt="Suite 1805 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 1805</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 125 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">908 sq ft</span><span class="fp-price">$849,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$738,630</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="923" data-tower="east" onclick="openModal('e-4808')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-4808.jpg" alt="Suite 4808 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 4808</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 295 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">923 sq ft</span><span class="fp-price">$939,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$817,713</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="1038" data-tower="east" onclick="openModal('e-6509')">
+      <div class="fp-image"><div class="fp-placeholder">Floor plan available on request</div></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 6509</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 88 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,038 sq ft</span><span class="fp-price">$1,089,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$948,213</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="1155" data-tower="east" onclick="openModal('e-6305')">
+      <div class="fp-image"><div class="fp-placeholder">Floor plan available on request</div></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower</div>
+        <div class="fp-suite">Suite 6305</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 280 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,155 sq ft</span><span class="fp-price">$1,449,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$1,260,630</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="1050" data-tower="east" onclick="openModal('e-loft-6512')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-east-loft-6512.jpg" alt="Sky Loft 6512 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">East Tower &middot; Sky Loft</div>
+        <div class="fp-suite">Suite 6512</div>
+        <div class="fp-type">Sky Loft &middot; 2 Bedroom</div>
+        <div class="fp-exposure">Balcony 212 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,050 sq ft</span><span class="fp-price">$999,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$869,913</span>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <p class="parking-note">&dagger; 3 Bedroom suites in the East Tower require parking purchase (separate fee).</p>
+
+  <h3 class="tower-heading" data-tower="west">West Tower <em>3 Concord CityPlace Way</em> <span class="tower-addr">14 suites</span></h3>
+  <div class="fp-grid" id="fp-grid-west">
+
+    <div class="fp-card" data-sqft="492" data-tower="west" onclick="openModal('w-2115')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-2115.jpg" alt="Suite 2115 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2115</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 108 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">492 sq ft</span><span class="fp-price">$482,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$419,340</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="505" data-tower="west" onclick="openModal('w-3302')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-3302.jpg" alt="Suite 3302 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 3302</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 105 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">505 sq ft</span><span class="fp-price">$499,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$434,913</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="492" data-tower="west" onclick="openModal('w-5701')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-5701.jpg" alt="Suite 5701 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 5701</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 108 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">492 sq ft</span><span class="fp-price">$510,500</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$444,135</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="545" data-tower="west" onclick="openModal('w-3107')">
+      <div class="fp-image"><div class="fp-placeholder">Floor plan available on request</div></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 3107</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 130 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">545 sq ft</span><span class="fp-price">$568,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$494,943</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="545" data-tower="west" onclick="openModal('w-3207')">
+      <div class="fp-image"><div class="fp-placeholder">Floor plan available on request</div></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 3207</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 130 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">545 sq ft</span><span class="fp-price">$569,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$495,813</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="600" data-tower="west" onclick="openModal('w-2908')">
+      <div class="fp-image"><div class="fp-placeholder">Floor plan available on request</div></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2908</div>
+        <div class="fp-type">1 Bedroom</div>
+        <div class="fp-exposure">Balcony 128 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">600 sq ft</span><span class="fp-price">$577,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$501,990</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="650" data-tower="west" onclick="openModal('w-2706')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-2706.jpg" alt="Suite 2706 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 2706</div>
+        <div class="fp-type">1 Bedroom + Den (2 Bath)</div>
+        <div class="fp-exposure">Balcony 145 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price">$665,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$578,550</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="692" data-tower="west" onclick="openModal('w-5105')">
+      <div class="fp-photo-badge">6 photos</div>
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-5105.jpg" alt="Suite 5105 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower &middot; Model Suite</div>
+        <div class="fp-suite">Suite 5105</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 170 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">692 sq ft</span><span class="fp-price">$699,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$608,130</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="740" data-tower="west" onclick="openModal('w-5203')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-5203.jpg" alt="Suite 5203 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 5203</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 150 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">740 sq ft</span><span class="fp-price">$799,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$695,130</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="770" data-tower="west" onclick="openModal('w-1911')">
+      <div class="fp-photo-badge">6 photos</div>
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-1911.jpg" alt="Suite 1911 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower &middot; Model Suite</div>
+        <div class="fp-suite">Suite 1911</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 110 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">770 sq ft</span><span class="fp-price">$789,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$686,430</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="770" data-tower="west" onclick="openModal('w-4311')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-4311.jpg" alt="Suite 4311 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 4311</div>
+        <div class="fp-type">2 Bedroom</div>
+        <div class="fp-exposure">Balcony 110 sq ft</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">770 sq ft</span><span class="fp-price">$844,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$734,280</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="920" data-tower="west" onclick="openModal('w-1910')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-1910.jpg" alt="Suite 1910 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 1910</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 132 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">920 sq ft</span><span class="fp-price">$889,000</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$773,430</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="920" data-tower="west" onclick="openModal('w-4310')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-4310.jpg" alt="Suite 4310 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower</div>
+        <div class="fp-suite">Suite 4310</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 132 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">920 sq ft</span><span class="fp-price">$999,900</span></div>
+          <span class="fp-rebate"><span class="fp-rebate-label">After HST Rebate </span>$869,913</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-card" data-sqft="1198" data-tower="west" onclick="openModal('w-7905')">
+      <div class="fp-image"><img src="../neighbourhoods/images/ch-west-7905.jpg" alt="Suite 7905 Floor Plan" loading="lazy" /></div>
+      <div class="fp-info">
+        <div class="fp-building-tag">West Tower &middot; Upper</div>
+        <div class="fp-suite">Suite 7905</div>
+        <div class="fp-type">3 Bedroom</div>
+        <div class="fp-exposure">Balcony 277 sq ft &middot; Parking purchase required</div>
+        <div class="fp-meta">
+          <div class="fp-meta-row"><span class="fp-sqft">1,198 sq ft</span><span class="fp-price">$1,554,900</span></div>
+          <span class="fp-contact">HST rebate not applicable (price &gt; $1.5M)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="parking-note">&dagger; 3 Bedroom suites in the West Tower require parking purchase (separate fee).</p>
+
 </div>
 
 <!-- GALLERY -->
 <div class="gallery" id="gallery">
   <div class="gallery-item" onclick="openLightbox(galleryImages, 0)">
-    <img src="../neighbourhoods/images/Maple Leaf.jpg" alt="Concord Canada House aerial view" />
+    <img src="../neighbourhoods/images/ch-maple-leaf.jpg" alt="Concord Canada House aerial view" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 1)">
-    <img src="../neighbourhoods/images/Sky Pool.jpg" alt="Sky Pool with CN Tower views" />
+    <img src="../neighbourhoods/images/ch-sky-pool.jpg" alt="Sky Pool with CN Tower views" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 2)">
-    <img src="../neighbourhoods/images/Sky Lounge.jpg" alt="Sky Lounge" />
+    <img src="../neighbourhoods/images/ch-sky-lounge.jpg" alt="Sky Lounge" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 3)">
-    <img src="../neighbourhoods/images/Sky Gym.jpg" alt="Sky Gym" />
+    <img src="../neighbourhoods/images/ch-sky-gym.jpg" alt="Sky Gym" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 4)">
-    <img src="../neighbourhoods/images/Amenity Kitchen.jpg" alt="Amenity Kitchen" />
+    <img src="../neighbourhoods/images/ch-amenity-kitchen.jpg" alt="Amenity Kitchen" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 5)">
-    <img src="../neighbourhoods/images/Balcony Lake View.jpg" alt="Balcony with lake view" />
+    <img src="../neighbourhoods/images/ch-balcony-lake-view.jpg" alt="Balcony with lake view" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 6)">
-    <img src="../neighbourhoods/images/Balcony.jpg" alt="Private balcony" />
+    <img src="../neighbourhoods/images/ch-balcony.jpg" alt="Private balcony" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 7)">
-    <img src="../neighbourhoods/images/Living Room.jpg" alt="Living room" />
+    <img src="../neighbourhoods/images/ch-living-room.jpg" alt="Living room" loading="lazy" />
   </div>
   <div class="gallery-item" onclick="openLightbox(galleryImages, 8)">
-    <img src="../neighbourhoods/images/ East View.jpg" alt="East view of CN Tower" />
+    <img src="../neighbourhoods/images/ch-east-view.jpg" alt="East view of CN Tower" loading="lazy" />
+  </div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 9)">
+    <img src="../neighbourhoods/images/ch-cn-tower-night.jpg" alt="CN Tower night view" loading="lazy" />
+  </div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 10)">
+    <img src="../neighbourhoods/images/ch-social-01.jpg" alt="Concord Canada House rendering" loading="lazy" />
+  </div>
+  <div class="gallery-item" onclick="openLightbox(galleryImages, 11)">
+    <img src="../neighbourhoods/images/ch-social-02.jpg" alt="Concord Canada House rendering" loading="lazy" />
   </div>
 </div>
 
@@ -570,15 +750,19 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <button class="modal-close" onclick="closeModal()">&#x2715;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-image"><img id="modal-img" src="" alt="Floor Plan" /></div>
+      <div class="modal-image">
+        <span class="modal-img-label" id="modal-img-label">Floor Plan</span>
+        <button class="modal-img-nav modal-img-prev" id="modal-img-prev" onclick="modalImgNav(-1); event.stopPropagation();">&#8249;</button>
+        <img id="modal-img" src="" alt="Floor Plan" />
+        <button class="modal-img-nav modal-img-next" id="modal-img-next" onclick="modalImgNav(1); event.stopPropagation();">&#8250;</button>
+        <div class="modal-img-dots" id="modal-img-dots"></div>
+      </div>
       <div class="modal-details">
         <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
         <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
         <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
         <div class="detail-row"><span class="detail-label">Indoor</span><span class="detail-val" id="m-indoor"></span></div>
         <div class="detail-row"><span class="detail-label">Outdoor</span><span class="detail-val" id="m-outdoor"></span></div>
-        <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
-        <div class="detail-row"><span class="detail-label">Exposure</span><span class="detail-val" id="m-exposure"></span></div>
         <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
         <div class="modal-cta">
           <div class="modal-cta-text">Questions about this suite? Nikhil can walk you through availability, views, and assignment options.</div>
@@ -601,51 +785,132 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 </div>
 
 <script>
-  const plans = {
-    'e-1902':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 1902', plan: 'Plan 02', type: '1 Bedroom', indoor: '502 sq ft', outdoor: '43 sq ft', floors: '17\u201346, 49\u201356', exposure: 'North', price: '$467,000', rebate: '$406,290', img: '../neighbourhoods/images/1902.jpg' },
-    'e-2712':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 2712', plan: 'Plan 12', type: '1 Bedroom', indoor: '502 sq ft', outdoor: '43 sq ft', floors: '17\u201346, 49\u201356', exposure: 'North', price: '$521,130', rebate: '$453,383', img: '../neighbourhoods/images/2712.jpg' },
-    'e-506':     { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 506', plan: 'Plan 06', type: '1 Bedroom', indoor: '660 sq ft', outdoor: '43\u201350 sq ft terrace', floors: '3\u20135', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: '../neighbourhoods/images/506.jpg' },
-    'e-2611':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 2611', plan: 'Plan 06', type: '1 Bedroom + Den (2 Bath)', indoor: '650 sq ft', outdoor: '145 sq ft', floors: '17\u201359', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: '../neighbourhoods/images/2611.jpg' },
-    'e-2712b':   { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan 09', plan: 'Plan 09', type: '1 Bedroom + Study', indoor: '535 sq ft', outdoor: '145 sq ft', floors: '17\u201359', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: '../neighbourhoods/images/2712.jpg' },
-    'e-4701':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Suite 4701', plan: 'Plan O1', type: '2 Bedroom', indoor: '760 sq ft', outdoor: '108 sq ft', floors: '47\u201348', exposure: 'North East', price: '$919,000', rebate: '$799,530', img: '../neighbourhoods/images/4701.jpg' },
-    'e-3010':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan 11', plan: 'Plan 11', type: '2 Bedroom', indoor: '718 sq ft', outdoor: '217 sq ft', floors: '17\u201346, 49\u201356', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: '../neighbourhoods/images/3010.jpg' },
-    'e-4808':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan 10', plan: 'Plan 10', type: '2 Bedroom + Study', indoor: '760 sq ft', outdoor: '208 sq ft', floors: '17\u201346, 49\u201356', exposure: '\u2014', price: 'Contact for pricing', rebate: null, img: '../neighbourhoods/images/4808.jpg' },
-    'e-6301':    { building: 'East Tower (1 Concord CityPlace Way)', suite: 'Plan O1', plan: 'Plan O1', type: '3 Bedroom', indoor: '1,038 sq ft', outdoor: '88 sq ft', floors: '61\u201368', exposure: 'Dual exposure', price: 'Contact for pricing', rebate: null, openOffers: true, img: '../neighbourhoods/images/6301.jpg' },
-    'e-loft5701':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5901 / Loft 5701', plan: 'Two-Storey', type: '2 Bedroom', indoor: '510 lower + 523 upper sq ft', outdoor: '100 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: '../neighbourhoods/images/Loft 5701.jpg' },
-    'e-loft5703':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5903 / Loft 5703', plan: 'Two-Storey', type: '3 Bedroom + Family', indoor: '770 lower + 730 upper sq ft', outdoor: '236 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: '../neighbourhoods/images/Loft 5703.jpg' },
-    'e-loft5707':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5907 / Loft 5707', plan: 'Two-Storey', type: '2 Bedroom', indoor: '567 lower + 465 upper sq ft', outdoor: '336 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: '../neighbourhoods/images/Loft 5707.jpg' },
-    'e-loft5712':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5912 / Loft 5712', plan: 'Two-Storey', type: '2 Bedroom', indoor: '510 lower + 523 upper sq ft', outdoor: '90 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: '../neighbourhoods/images/Loft 5712.jpg' },
-    'e-loft5715':{ building: 'East Tower \u2014 Sky Loft', suite: 'Sky 5915 / Loft 5715', plan: 'Two-Storey', type: '2 Bedroom', indoor: '510 lower + 523 upper sq ft', outdoor: '100 sq ft', floors: '57\u201360', exposure: '\u2014', price: 'Contact for pricing', rebate: null, openOffers: true, img: '../neighbourhoods/images/Loft 5715.jpg' },
-    'w-4012':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 4012', plan: 'Plan 08', type: '1 Bedroom + Study', indoor: '600 sq ft', outdoor: '128 sq ft', floors: '17\u201359', exposure: 'East', price: '$599,000', rebate: '$521,130', img: '../neighbourhoods/images/4012.jpg' },
-    'w-4315':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 4315', plan: 'Plan 15', type: '1 Bedroom', indoor: '492 sq ft', outdoor: '108 sq ft', floors: '17\u201359', exposure: 'West', price: '$492,000', rebate: '$428,040', img: '../neighbourhoods/images/4315.jpg' },
-    'w-4012b':   { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 4012', plan: 'Plan 12', type: '1 Bedroom', indoor: '505 sq ft', outdoor: '105 sq ft', floors: '17\u201359', exposure: 'West', price: '$490,500', rebate: '$426,735', img: '../neighbourhoods/images/4012.jpg' },
-    'w-2706':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2706', plan: 'Plan 06', type: '1 Bedroom + Den (2 Bath)', indoor: '650 sq ft', outdoor: '145 sq ft', floors: '17\u201359', exposure: 'East', price: '$655,000', rebate: '$569,850', img: '../neighbourhoods/images/2206.jpg' },
-    'w-2803':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2803', plan: 'Plan 03', type: '2 Bedroom', indoor: '740 sq ft', outdoor: '150 sq ft', floors: '17\u201359', exposure: 'North West', price: '$799,000 (incl. 1 parking)', rebate: '$695,130', img: '../neighbourhoods/images/2803.jpg' },
-    'w-2703':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2703', plan: 'Plan 03', type: '2 Bedroom', indoor: '740 sq ft', outdoor: '150 sq ft', floors: '17\u201359', exposure: 'North West', price: '$798,000 (incl. 1 parking)', rebate: '$694,260', img: '../neighbourhoods/images/2803.jpg' },
-    'w-2805':    { building: 'West Tower (3 Concord CityPlace Way)', suite: 'Suite 2805', plan: 'Plan 05', type: '2 Bedroom', indoor: '692 sq ft', outdoor: '170 sq ft', floors: '17\u201359', exposure: 'North East', price: '$659,000', rebate: '$573,330', img: '../neighbourhoods/images/2805.jpg' },
-    'w-7805':    { building: 'West Tower Upper (3 Concord CityPlace Way)', suite: 'Suite 7805', plan: 'Plan 05', type: '3 Bedroom', indoor: '1,198 sq ft', outdoor: '277 sq ft', floors: '67\u201379', exposure: 'East', price: '$1,549,900', rebate: null, openOffers: true, img: '../neighbourhoods/images/7805.jpg' },
+  const EAST = 'East Tower (1 Concord CityPlace Way)';
+  const WEST = 'West Tower (3 Concord CityPlace Way)';
+  const photos = function(unit) {
+    var arr = [];
+    for (var i = 1; i <= 6; i++) arr.push('../neighbourhoods/images/ch-photo-' + unit + '-' + i + '.jpg');
+    return arr;
   };
+
+  const plans = {
+    // EAST TOWER (16)
+    'e-3801':     { building: EAST, suite: 'Suite 3801', type: '1 Bedroom', indoor: '485 sq ft', outdoor: 'Balcony 45 sq ft', price: '$489,900', rebate: '$426,213', img: '../neighbourhoods/images/ch-east-3801.jpg' },
+    'e-4512':     { building: EAST, suite: 'Suite 4512', type: '1 Bedroom', indoor: '502 sq ft', outdoor: 'Balcony 43 sq ft', price: '$509,900', rebate: '$443,613', img: '../neighbourhoods/images/ch-east-4512.jpg' },
+    'e-4912':     { building: EAST, suite: 'Suite 4912', type: '1 Bedroom', indoor: '502 sq ft', outdoor: 'Balcony 43 sq ft', price: '$499,000', rebate: '$434,130', img: '../neighbourhoods/images/ch-east-4912.jpg' },
+    'e-2807':     { building: EAST, suite: 'Suite 2807', type: '1 Bedroom', indoor: '578 sq ft', outdoor: 'Balcony 157 sq ft', price: '$599,000', rebate: '$521,130', img: '../neighbourhoods/images/ch-east-2807.jpg' },
+    'e-4807':     { building: EAST, suite: 'Suite 4807', type: '1 Bedroom + Den', indoor: '650 sq ft', outdoor: 'Balcony 120 sq ft', price: '$699,000', rebate: '$608,130', img: '../neighbourhoods/images/ch-east-4807.jpg' },
+    'e-5606':     { building: EAST + ' \u00b7 Model Suite', suite: 'Suite 5606', type: '1 Bedroom + Den', indoor: '578 sq ft', outdoor: 'Balcony 120 sq ft', price: '$619,900', rebate: '$539,313', img: '../neighbourhoods/images/ch-east-5606.jpg', images: ['../neighbourhoods/images/ch-east-5606.jpg'].concat(photos('east-5606')) },
+    'e-4311':     { building: EAST + ' \u00b7 Model Suite', suite: 'Suite 4311', type: '2 Bedroom', indoor: '718 sq ft', outdoor: 'Balcony 217 sq ft', price: '$699,900', rebate: '$608,913', img: null, placeholder: true, images: photos('east-4311') },
+    'e-3010':     { building: EAST + ' \u00b7 Model Suite', suite: 'Suite 3010', type: '2 Bedroom', indoor: '760 sq ft', outdoor: 'Balcony 208 sq ft', price: '$799,900', rebate: '$695,913', img: '../neighbourhoods/images/ch-east-3010.jpg', images: ['../neighbourhoods/images/ch-east-3010.jpg'].concat(photos('east-3010')) },
+    'e-2903':     { building: EAST, suite: 'Suite 2903', type: '2 Bedroom', indoor: '760 sq ft', outdoor: 'Balcony 108 sq ft', price: '$749,000', rebate: '$651,630', img: '../neighbourhoods/images/ch-east-2903.jpg' },
+    'e-3903':     { building: EAST, suite: 'Suite 3903', type: '2 Bedroom', indoor: '760 sq ft', outdoor: 'Balcony 108 sq ft', price: '$777,000', rebate: '$675,990', img: '../neighbourhoods/images/ch-east-3903.jpg' },
+    'e-4203':     { building: EAST, suite: 'Suite 4203', type: '2 Bedroom', indoor: '760 sq ft', outdoor: 'Balcony 108 sq ft', price: '$829,000', rebate: '$721,230', img: '../neighbourhoods/images/ch-east-4203.jpg' },
+    'e-1805':     { building: EAST, suite: 'Suite 1805', type: '3 Bedroom', indoor: '908 sq ft', outdoor: 'Balcony 125 sq ft', price: '$849,000', rebate: '$738,630', parking: true, img: '../neighbourhoods/images/ch-east-1805.jpg' },
+    'e-4808':     { building: EAST, suite: 'Suite 4808', type: '3 Bedroom', indoor: '923 sq ft', outdoor: 'Balcony 295 sq ft', price: '$939,900', rebate: '$817,713', parking: true, img: '../neighbourhoods/images/ch-east-4808.jpg' },
+    'e-6509':     { building: EAST, suite: 'Suite 6509', type: '3 Bedroom', indoor: '1,038 sq ft', outdoor: 'Balcony 88 sq ft', price: '$1,089,900', rebate: '$948,213', parking: true, img: null, placeholder: true },
+    'e-6305':     { building: EAST, suite: 'Suite 6305', type: '3 Bedroom', indoor: '1,155 sq ft', outdoor: 'Balcony 280 sq ft', price: '$1,449,000', rebate: '$1,260,630', parking: true, img: null, placeholder: true },
+    'e-loft-6512':{ building: EAST + ' \u00b7 Sky Loft', suite: 'Suite 6512', type: 'Sky Loft \u00b7 2 Bedroom', indoor: '1,050 sq ft', outdoor: 'Balcony 212 sq ft', price: '$999,900', rebate: '$869,913', img: '../neighbourhoods/images/ch-east-loft-6512.jpg' },
+
+    // WEST TOWER (14)
+    'w-2115':     { building: WEST, suite: 'Suite 2115', type: '1 Bedroom', indoor: '492 sq ft', outdoor: 'Balcony 108 sq ft', price: '$482,000', rebate: '$419,340', img: '../neighbourhoods/images/ch-west-2115.jpg' },
+    'w-3302':     { building: WEST, suite: 'Suite 3302', type: '1 Bedroom', indoor: '505 sq ft', outdoor: 'Balcony 105 sq ft', price: '$499,900', rebate: '$434,913', img: '../neighbourhoods/images/ch-west-3302.jpg' },
+    'w-5701':     { building: WEST, suite: 'Suite 5701', type: '1 Bedroom', indoor: '492 sq ft', outdoor: 'Balcony 108 sq ft', price: '$510,500', rebate: '$444,135', img: '../neighbourhoods/images/ch-west-5701.jpg' },
+    'w-3107':     { building: WEST, suite: 'Suite 3107', type: '1 Bedroom', indoor: '545 sq ft', outdoor: 'Balcony 130 sq ft', price: '$568,900', rebate: '$494,943', img: null, placeholder: true },
+    'w-3207':     { building: WEST, suite: 'Suite 3207', type: '1 Bedroom', indoor: '545 sq ft', outdoor: 'Balcony 130 sq ft', price: '$569,900', rebate: '$495,813', img: null, placeholder: true },
+    'w-2908':     { building: WEST, suite: 'Suite 2908', type: '1 Bedroom', indoor: '600 sq ft', outdoor: 'Balcony 128 sq ft', price: '$577,000', rebate: '$501,990', img: null, placeholder: true },
+    'w-2706':     { building: WEST, suite: 'Suite 2706', type: '1 Bedroom + Den (2 Bath)', indoor: '650 sq ft', outdoor: 'Balcony 145 sq ft', price: '$665,000', rebate: '$578,550', img: '../neighbourhoods/images/ch-west-2706.jpg' },
+    'w-5105':     { building: WEST + ' \u00b7 Model Suite', suite: 'Suite 5105', type: '2 Bedroom', indoor: '692 sq ft', outdoor: 'Balcony 170 sq ft', price: '$699,000', rebate: '$608,130', img: '../neighbourhoods/images/ch-west-5105.jpg', images: ['../neighbourhoods/images/ch-west-5105.jpg'].concat(photos('west-5105')) },
+    'w-5203':     { building: WEST, suite: 'Suite 5203', type: '2 Bedroom', indoor: '740 sq ft', outdoor: 'Balcony 150 sq ft', price: '$799,000', rebate: '$695,130', img: '../neighbourhoods/images/ch-west-5203.jpg' },
+    'w-1911':     { building: WEST + ' \u00b7 Model Suite', suite: 'Suite 1911', type: '2 Bedroom', indoor: '770 sq ft', outdoor: 'Balcony 110 sq ft', price: '$789,000', rebate: '$686,430', img: '../neighbourhoods/images/ch-west-1911.jpg', images: ['../neighbourhoods/images/ch-west-1911.jpg'].concat(photos('west-1911')) },
+    'w-4311':     { building: WEST, suite: 'Suite 4311', type: '2 Bedroom', indoor: '770 sq ft', outdoor: 'Balcony 110 sq ft', price: '$844,000', rebate: '$734,280', img: '../neighbourhoods/images/ch-west-4311.jpg' },
+    'w-1910':     { building: WEST, suite: 'Suite 1910', type: '3 Bedroom', indoor: '920 sq ft', outdoor: 'Balcony 132 sq ft', price: '$889,000', rebate: '$773,430', parking: true, img: '../neighbourhoods/images/ch-west-1910.jpg' },
+    'w-4310':     { building: WEST, suite: 'Suite 4310', type: '3 Bedroom', indoor: '920 sq ft', outdoor: 'Balcony 132 sq ft', price: '$999,900', rebate: '$869,913', parking: true, img: '../neighbourhoods/images/ch-west-4310.jpg' },
+    'w-7905':     { building: WEST + ' \u00b7 Upper', suite: 'Suite 7905', type: '3 Bedroom', indoor: '1,198 sq ft', outdoor: 'Balcony 277 sq ft', price: '$1,554,900', rebate: null, rebateNote: 'HST rebate not applicable (price > $1.5M)', parking: true, img: '../neighbourhoods/images/ch-west-7905.jpg' }
+  };
+
+  let modalImages = [];
+  let modalImgIdx = 0;
+  let modalPlanId = null;
+
+  function renderModalImg() {
+    const imgEl = document.getElementById('modal-img');
+    const labelEl = document.getElementById('modal-img-label');
+    const dotsEl = document.getElementById('modal-img-dots');
+    const prevEl = document.getElementById('modal-img-prev');
+    const nextEl = document.getElementById('modal-img-next');
+    if (modalImages.length === 0) {
+      imgEl.style.display = 'none';
+      labelEl.classList.remove('show');
+      dotsEl.classList.remove('show');
+      prevEl.classList.remove('show');
+      nextEl.classList.remove('show');
+      return;
+    }
+    imgEl.style.display = '';
+    imgEl.src = modalImages[modalImgIdx];
+    if (modalImages.length > 1) {
+      labelEl.textContent = modalImgIdx === 0 ? 'Floor Plan' : ('Photo ' + modalImgIdx + ' of ' + (modalImages.length - 1));
+      labelEl.classList.add('show');
+      prevEl.classList.add('show');
+      nextEl.classList.add('show');
+      dotsEl.innerHTML = modalImages.map((_, i) => '<span class="modal-img-dot' + (i === modalImgIdx ? ' active' : '') + '" data-i="' + i + '"></span>').join('');
+      dotsEl.classList.add('show');
+    } else {
+      labelEl.classList.remove('show');
+      dotsEl.classList.remove('show');
+      prevEl.classList.remove('show');
+      nextEl.classList.remove('show');
+    }
+  }
+
+  function modalImgNav(dir) {
+    if (modalImages.length <= 1) return;
+    modalImgIdx = (modalImgIdx + dir + modalImages.length) % modalImages.length;
+    renderModalImg();
+  }
+
+  document.getElementById('modal-img-dots').addEventListener('click', (e) => {
+    const target = e.target.closest('.modal-img-dot');
+    if (!target) return;
+    e.stopPropagation();
+    modalImgIdx = parseInt(target.dataset.i);
+    renderModalImg();
+  });
 
   function openModal(id) {
     const p = plans[id]; if (!p) return;
-    document.getElementById('modal-eyebrow').textContent = 'Concord Canada House \u00b7 ' + p.plan;
+    modalPlanId = id;
+    document.getElementById('modal-eyebrow').textContent = 'Concord Canada House';
     document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
-    document.getElementById('modal-img').src = p.img;
     document.getElementById('m-building').textContent = p.building;
     document.getElementById('m-suite').textContent = p.suite;
     document.getElementById('m-type').textContent = p.type;
     document.getElementById('m-indoor').textContent = p.indoor;
     document.getElementById('m-outdoor').textContent = p.outdoor;
-    document.getElementById('m-floors').textContent = p.floors;
-    document.getElementById('m-exposure').textContent = p.exposure;
     const priceEl = document.getElementById('m-price');
+    let priceHtml = p.price;
     if (p.rebate) {
-      priceEl.innerHTML = p.price + '<span class="hst-rebate"><span class="hst-rebate-label">HST Rebate Price </span>' + p.rebate + '</span>';
-    } else if (p.openOffers) {
-      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
-    } else {
-      priceEl.textContent = p.price;
+      priceHtml += '<span class="hst-rebate"><span class="hst-rebate-label">After HST Rebate </span>' + p.rebate + '</span>';
+    } else if (p.rebateNote) {
+      priceHtml += '<span class="hst-rebate" style="font-style:italic;">' + p.rebateNote + '</span>';
     }
+    if (p.parking) {
+      priceHtml += '<span class="parking-note" style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">3BR requires parking purchase</span>';
+    }
+    priceEl.innerHTML = priceHtml;
+
+    // Build images array (floor plan + carousel photos if present)
+    if (p.images && p.images.length) {
+      modalImages = p.images.slice();
+    } else if (p.img) {
+      modalImages = [p.img];
+    } else {
+      modalImages = [];
+    }
+    modalImgIdx = 0;
+    renderModalImg();
+
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -653,8 +918,13 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeLightbox(); closeModal(); }
-    if (e.key === 'ArrowLeft') lightboxNav(-1);
-    if (e.key === 'ArrowRight') lightboxNav(1);
+    if (document.getElementById('modal').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') modalImgNav(-1);
+      if (e.key === 'ArrowRight') modalImgNav(1);
+    } else if (document.getElementById('lightbox').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+      if (e.key === 'ArrowRight') lightboxNav(1);
+    }
   });
 
   document.querySelectorAll('.fp-filter-btn').forEach(btn => {
@@ -662,7 +932,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       document.querySelectorAll('.fp-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.dataset.filter;
-      document.querySelectorAll('#fp-grid .fp-card').forEach(card => {
+      document.querySelectorAll('#fp-grid-east .fp-card, #fp-grid-west .fp-card').forEach(card => {
         const sqft = parseInt(card.dataset.sqft);
         let show = true;
         if (filter === '0-500') show = sqft < 500;
@@ -676,15 +946,18 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   // Lightbox
   const galleryImages = [
-    '../neighbourhoods/images/Maple Leaf.jpg',
-    '../neighbourhoods/images/Sky Pool.jpg',
-    '../neighbourhoods/images/Sky Lounge.jpg',
-    '../neighbourhoods/images/Sky Gym.jpg',
-    '../neighbourhoods/images/Amenity Kitchen.jpg',
-    '../neighbourhoods/images/Balcony Lake View.jpg',
-    '../neighbourhoods/images/Balcony.jpg',
-    '../neighbourhoods/images/Living Room.jpg',
-    '../neighbourhoods/images/ East View.jpg'
+    '../neighbourhoods/images/ch-maple-leaf.jpg',
+    '../neighbourhoods/images/ch-sky-pool.jpg',
+    '../neighbourhoods/images/ch-sky-lounge.jpg',
+    '../neighbourhoods/images/ch-sky-gym.jpg',
+    '../neighbourhoods/images/ch-amenity-kitchen.jpg',
+    '../neighbourhoods/images/ch-balcony-lake-view.jpg',
+    '../neighbourhoods/images/ch-balcony.jpg',
+    '../neighbourhoods/images/ch-living-room.jpg',
+    '../neighbourhoods/images/ch-east-view.jpg',
+    '../neighbourhoods/images/ch-cn-tower-night.jpg',
+    '../neighbourhoods/images/ch-social-01.jpg',
+    '../neighbourhoods/images/ch-social-02.jpg'
   ];
 
   let lbImages = [];
@@ -722,12 +995,18 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
   }
 
-  // Floor plan image click → lightbox with all floor plan images
+  // Floor plan image click → lightbox with all floor plan images.
+  // Skip carousel cards — their image click should open the modal carousel instead.
   const fpImgs = document.querySelectorAll('.fp-image img');
   fpImgs.forEach(img => {
+    const card = img.closest('.fp-card');
+    if (card && card.querySelector('.fp-photo-badge')) return;
     img.addEventListener('click', e => {
       e.stopPropagation();
-      const allSrcs = Array.from(fpImgs).filter(i => i.closest('.fp-card').style.display !== 'none').map(i => i.src);
+      const allSrcs = Array.from(fpImgs).filter(i => {
+        const c = i.closest('.fp-card');
+        return c.style.display !== 'none' && !c.querySelector('.fp-photo-badge');
+      }).map(i => i.src);
       const idx = allSrcs.indexOf(img.src);
       openLightbox(allSrcs, idx >= 0 ? idx : 0);
     });
