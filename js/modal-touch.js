@@ -30,12 +30,16 @@
     return Math.sqrt(dx * dx + dy * dy);
   }
 
-  // Prevent page scroll/zoom when modal overlay is active
+  // Prevent the BACKGROUND page from scrolling while a modal is open, but never
+  // block the modal's own scrollable regions. Touching anywhere inside .modal
+  // (image, body, details) must scroll natively; only drags on the inert
+  // backdrop outside .modal are suppressed. The image's pinch/pan gestures are
+  // handled (and preventDefault'd) by the dedicated listeners below.
   document.addEventListener('touchmove', function(e) {
     var overlay = e.target.closest('.modal-overlay');
-    if (overlay && overlay.classList.contains('active')) {
-      e.preventDefault();
-    }
+    if (!overlay || !overlay.classList.contains('active')) return;
+    if (e.target.closest('.modal')) return; // inside the modal → allow native scroll
+    e.preventDefault();
   }, { passive: false });
 
   document.addEventListener('touchstart', function(e) {
@@ -92,6 +96,25 @@
 
   // Add touch-action CSS, mobile card image sizing, and modal touch isolation
   var style = document.createElement('style');
-  style.textContent = '.modal-overlay.active{touch-action:none;overflow:hidden;}.modal-image{touch-action:none;}.modal-image img{touch-action:none;transform-origin:center center;}@media(max-width:768px){.fp-image{min-height:auto!important;padding:0.5rem!important;}.fp-image img{width:100%!important;height:auto!important;min-height:60vw;object-fit:contain;}.fp-row-image{padding:0.5rem!important;}.fp-row-image img{width:100%!important;height:auto!important;}.modal-image{min-height:60vh!important;max-height:70vh;}.modal-image img{max-height:65vh;}}';
+  style.textContent = ''
+    // Keep the backdrop fixed, but DON'T disable touch-action on the whole overlay —
+    // that was killing scroll inside the modal on every page. Only the image area
+    // opts out of native gestures (custom pinch/pan); the scroll containers pan-y.
+    + '.modal-overlay.active{overflow:hidden;}'
+    + '.modal,.modal-body,.modal-details{touch-action:pan-y;}'
+    + '.modal-image{touch-action:none;}'
+    + '.modal-image img{touch-action:none;transform-origin:center center;}'
+    // Architecture A (fixed-height modal, overflow:hidden): the details column must
+    // be a real scroll container — needs min-height:0 so it can shrink and scroll.
+    // Architecture B (modal itself scrolls): these are harmless (no bounded height).
+    + '.modal-body{min-height:0;}'
+    + '.modal-details{overflow-y:auto;min-height:0;-webkit-overflow-scrolling:touch;}'
+    // Visible scroll affordance — navy (#002244) from the existing palette, no new colors.
+    + '.modal,.modal-details{scrollbar-width:thin;scrollbar-color:rgba(0,34,68,0.35) transparent;}'
+    + '.modal::-webkit-scrollbar,.modal-details::-webkit-scrollbar{width:9px;height:9px;}'
+    + '.modal::-webkit-scrollbar-track,.modal-details::-webkit-scrollbar-track{background:transparent;}'
+    + '.modal::-webkit-scrollbar-thumb,.modal-details::-webkit-scrollbar-thumb{background:rgba(0,34,68,0.35);border-radius:5px;}'
+    + '.modal::-webkit-scrollbar-thumb:hover,.modal-details::-webkit-scrollbar-thumb:hover{background:rgba(0,34,68,0.6);}'
+    + '@media(max-width:768px){.fp-image{min-height:auto!important;padding:0.5rem!important;}.fp-image img{width:100%!important;height:auto!important;min-height:60vw;object-fit:contain;}.fp-row-image{padding:0.5rem!important;}.fp-row-image img{width:100%!important;height:auto!important;}.modal-image{min-height:60vh!important;max-height:70vh;}.modal-image img{max-height:65vh;}}';
   document.head.appendChild(style);
 })();
