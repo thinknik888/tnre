@@ -1,8 +1,15 @@
 {
   "name": "tnre",
   "private": true,
+  "scripts": {
+    "test": "node tests/floorplan-scroll.mjs",
+    "test:floorplan-scroll": "node tests/floorplan-scroll.mjs"
+  },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",
     "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }
