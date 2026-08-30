@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pier House Towns &mdash; Branthaven &middot; Dixie &amp; Lakeshore | CondosAround.com</title>
+  <meta name="description" content="Pier House Towns by Branthaven at Lakeview Village, Mississauga. 164 three-storey townhomes from $819,900. Full price list, floor plan series, incentives and deposit structure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" type="image/avif" imagesizes="100vw" imagesrcset="images/towns/pier-house-hero-480.avif 480w, images/towns/pier-house-hero-800.avif 800w, images/towns/pier-house-hero-1280.avif 1280w, images/towns/pier-house-hero-1920.avif 1920w, images/towns/pier-house-hero-2560.avif 2560w">
+  <style>
+    :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
+             --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
+             --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(0,34,68,0.13); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    img { max-width: 100%; display: block; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+           padding: 1.15rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px);
+           border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--navy); }
+    .nav-back { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+                 color: var(--text-muted); text-decoration: none; }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy); color: #fff; padding: 0.6rem 1.4rem; border-radius: 2px;
+                text-decoration: none; font-size: 0.82rem; white-space: nowrap; }
+    nav > a { white-space: nowrap; }
+    .nav-back .nb-short { display: none; }
+
+    .hero { position: relative; min-height: 66vh; display: flex; align-items: flex-end; background: var(--navy-deep); }
+    .hero picture, .hero .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero .hero-img { object-fit: cover; object-position: center 55%; }
+    .hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,18,38,0.25) 0%, rgba(0,18,38,0.55) 45%, rgba(0,18,38,0.93) 100%); }
+    .hero-inner { position: relative; z-index: 2; padding: 5rem 3rem 2.5rem; width: 100%; }
+    .hero-builder { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+    .hero-status { display: inline-block; background: rgba(122,38,38,0.95); color: #fff; font-size: 0.66rem;
+                    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
+                    border-radius: 2px; margin-bottom: 1rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+                   font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }
+    .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }
+    .hero-addr { font-size: 0.88rem; color: rgba(255,255,255,0.62); }
+    .hero-credit { position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }
+
+    .facts { display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }
+    .fact { padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }
+    .fact:last-child { border-right: none; }
+    .fact-lbl { font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.42); margin-bottom: 0.4rem; }
+    .fact-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-soft); line-height: 1.15; }
+
+    section { padding: 4.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .sec-eyebrow { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.75rem; }
+    .sec-title em { font-style: italic; color: var(--navy); }
+
+    .overview { display: grid; grid-template-columns: 1.35fr 1fr; gap: 4rem; align-items: start; }
+    .overview p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1.15rem; }
+    .side-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1.1rem; }
+    .cm-row { display: flex; gap: 1rem; padding: 0.72rem 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+    .cm-row:last-child { border-bottom: none; }
+    .cm-time { color: var(--navy); font-weight: 600; min-width: 6.5rem; }
+    .cm-place { color: var(--text-mid); }
+
+    .tbl-block { margin-bottom: 3rem; }
+    .tbl-block:last-child { margin-bottom: 0; }
+    .tbl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; }
+    .tbl-scroll { overflow-x: auto; border: 1px solid #e8e4dc; border-radius: 10px; background: #fff; }
+    table.dt { width: 100%; border-collapse: collapse; min-width: 660px; font-size: 0.85rem; }
+    table.dt th, table.dt td { text-align: left; padding: 0.85rem 1.15rem; border-bottom: 1px solid #efebe2; }
+    table.dt thead th { background: var(--navy); color: #fff; font-weight: 500; font-size: 0.74rem;
+                         letter-spacing: 0.07em; text-transform: uppercase; border-bottom: none; }
+    table.dt tbody tr:last-child td { border-bottom: none; }
+    table.dt tr.grp td { background: var(--cream); font-size: 0.66rem; letter-spacing: 0.14em;
+                          text-transform: uppercase; color: var(--navy); font-weight: 600; }
+    table.dt td.num { color: var(--navy); font-weight: 600; white-space: nowrap; }
+    .tbl-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-top: 0.85rem; }
+    .plans-link { margin-top: 1.5rem; }
+    .plans-link a { font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase;
+                     color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 3px; }
+
+    .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3.5rem; align-items: start; }
+    .inc-list { list-style: none; }
+    .inc-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.85rem; font-size: 0.92rem;
+                    line-height: 1.7; color: var(--text-mid); }
+    .inc-list li::before { content: ''; position: absolute; left: 0; top: 0.62rem; width: 5px; height: 5px;
+                            border-radius: 50%; background: var(--gold); }
+    .dep-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; padding: 1.75rem; }
+    .dep-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0;
+                border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .dep-row:last-of-type { border-bottom: none; }
+    .dep-when { color: var(--text-muted); }
+    .dep-amt { color: var(--navy); font-weight: 600; text-align: right; }
+    .dep-amt .dim { color: var(--text-muted); font-weight: 300; font-size: 0.78rem; }
+    .dep-foot { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65;
+                 margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+
+    .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .gal-item { margin: 0; border-radius: 10px; overflow: hidden; background: var(--cream); }
+    .gal-item img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s; }
+    .gal-item:hover img { transform: scale(1.03); }
+    .gal-item figcaption { font-size: 0.7rem; color: var(--text-muted); padding: 0.7rem 0.15rem 0; }
+
+    .sibs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px;
+            padding: 1.5rem 1.75rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sib:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .sib-lbl { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+                color: var(--text-muted); margin-bottom: 0.4rem; }
+    .sib-name { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
+
+    .cta { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center;
+            justify-content: space-between; gap: 2rem; flex-wrap: wrap; border: none; }
+    .cta-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.3rem); font-weight: 300; color: #fff; }
+    .cta-h em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-w { background: #fff; color: var(--text); padding: 0.85rem 2rem; border-radius: 2px; text-decoration: none;
+              font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+    .btn-o { color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px;
+              text-decoration: none; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .disclaimer { padding: 2.25rem 3rem; background: var(--cream); font-size: 0.7rem; line-height: 1.75;
+                   color: var(--text-muted); font-style: italic; border: none; }
+    footer { background: var(--text); padding: 2rem 3rem; display: flex; justify-content: space-between;
+              align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.75; }
+
+    @media (max-width: 1000px) {
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      .fact:nth-child(3n) { border-right: none; }
+      .fact:nth-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .overview, .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 0.8rem 1rem; gap: 0.5rem; }
+      .nav-logo { display: none; }
+      .nav-compare { display: none; }
+      .nav-back .nb-long { display: none; }
+      .nav-back .nb-short { display: inline; }
+      .nav-cta { padding: 0.6rem 0.95rem; font-size: 0.8rem; }
+      .hero { min-height: 50vh; }
+      .hero .hero-img { object-position: center 62%; }
+      .hero-inner { padding: 3.5rem 1.25rem 2rem; }
+      section, .cta, .disclaimer, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      section { padding-top: 3rem; padding-bottom: 3rem; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.09); }
+      .fact:nth-child(2n) { border-right: none; }
+      .gal, .sibs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../neighbourhoods/dixie-lakeshore.html#townhomes" class="nav-back">&larr; <span class="nb-long">Dixie &amp; Lakeshore</span><span class="nb-short">Back</span></a>
+  <a href="../neighbourhoods/dixie-lakeshore.html#compare" class="nav-back nav-compare">Compare townhomes</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<header class="hero">
+  <picture>
+        <source type="image/avif" sizes="100vw" srcset="images/towns/pier-house-hero-480.avif 480w, images/towns/pier-house-hero-800.avif 800w, images/towns/pier-house-hero-1280.avif 1280w, images/towns/pier-house-hero-1920.avif 1920w, images/towns/pier-house-hero-2560.avif 2560w">
+        <source type="image/webp" sizes="100vw" srcset="images/towns/pier-house-hero-480.webp 480w, images/towns/pier-house-hero-800.webp 800w, images/towns/pier-house-hero-1280.webp 1280w, images/towns/pier-house-hero-1920.webp 1920w, images/towns/pier-house-hero-2560.webp 2560w">
+        <img src="images/towns/pier-house-hero.jpg" alt="Pier House Towns streetscape rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
+      </picture>
+  <div class="hero-inner">
+    <div class="hero-status">Sold out</div>
+    <div class="hero-builder">Branthaven &middot; Lakeview Village</div>
+    <h1 class="hero-title">Pier House Towns</h1>
+    <div class="hero-tag">Live the lake. Love the city.</div>
+    <div class="hero-addr">South of Lakeshore Rd E &amp; Dixie Rd, Mississauga</div>
+  </div>
+  <div class="hero-credit">Artist&rsquo;s concept</div>
+</header>
+
+<div class="facts">
+      <div class="fact"><div class="fact-lbl">From</div><div class="fact-val">$819,900</div></div>
+      <div class="fact"><div class="fact-lbl">Size</div><div class="fact-val">1,255 &ndash; 2,195 sq ft</div></div>
+      <div class="fact"><div class="fact-lbl">Bedrooms</div><div class="fact-val">2 &ndash; 5</div></div>
+      <div class="fact"><div class="fact-lbl">Storeys</div><div class="fact-val">3</div></div>
+      <div class="fact"><div class="fact-lbl">Homes</div><div class="fact-val">164</div></div>
+      <div class="fact"><div class="fact-lbl">Parking</div><div class="fact-val">2 &ndash; 4 spaces</div></div>
+</div>
+
+<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>Pier House Towns</em></h2>
+      <p>Introducing Pier House, Branthaven&rsquo;s townhome enclave inside the visionary Lakeview Village master plan &mdash; a 177-acre waterfront revitalization that will reshape Mississauga&rsquo;s shoreline with new parks, trails, cultural amenities and conservation lands.</p>
+      <p>Four contemporary collections of family-sized, three-storey homes, each with outdoor space, an above-grade private garage and a driveway. One minute&rsquo;s walk to the waterfront pier; a twenty-minute commute downtown via Long Branch GO, the TTC loop or the QEW.</p>
+    </div>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+        <div class="cm-row"><span class="cm-time">4 min</span><span class="cm-place">Long Branch GO Station</span></div>
+        <div class="cm-row"><span class="cm-time">4 min</span><span class="cm-place">TTC Long Branch Loop</span></div>
+        <div class="cm-row"><span class="cm-time">5 min</span><span class="cm-place">QEW / 427</span></div>
+        <div class="cm-row"><span class="cm-time">6 min</span><span class="cm-place">Sherway Gardens</span></div>
+        <div class="cm-row"><span class="cm-time">9 min</span><span class="cm-place">Queensway Hospital</span></div>
+        <div class="cm-row"><span class="cm-time">15 min</span><span class="cm-place">Pearson Airport</span></div>
+        <div class="cm-row"><span class="cm-time">20 min</span><span class="cm-place">Downtown Toronto</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Pricing</div>
+  <h2 class="sec-title">Models &amp; <em>prices</em></h2>
+  <div class="tbl-block">
+    <h3 class="tbl-title">Price list</h3>
+    <div class="tbl-scroll">
+      <table class="dt">
+        <thead><tr><th>Model</th><th>Beds</th><th>Condition</th><th>Sq ft</th><th>Outdoor space</th><th>From</th></tr></thead>
+        <tbody>
+        <tr class="grp"><td colspan="6">21&prime; Back to Back Series</td></tr>
+        <tr><td>The Cumberland</td><td>2</td><td>Interior</td><td>1,255</td><td>2 balconies</td><td class="num">$819,900</td></tr>
+        <tr><td>The Elmvale</td><td>3</td><td>Interior</td><td>1,380</td><td>2 balconies</td><td class="num">$869,900</td></tr>
+        <tr><td>The Elmvale</td><td>3</td><td>End</td><td>1,420</td><td>2 balconies</td><td class="num">$929,900</td></tr>
+        <tr><td>The Link</td><td>3</td><td>Interior</td><td>1,425</td><td>2 balconies</td><td class="num">$889,900</td></tr>
+        <tr><td>The Link</td><td>3</td><td>End</td><td>1,465</td><td>2 balconies</td><td class="num">$934,900</td></tr>
+        <tr><td>The Link</td><td>3</td><td>Flankage</td><td>1,515</td><td>2 balconies</td><td class="num">$945,900</td></tr>
+        <tr><td>The Mews</td><td>3</td><td>Corner</td><td>1,670</td><td>2 balconies</td><td class="num">$969,900</td></tr>
+        <tr class="grp"><td colspan="6">16&prime; Rear Lane Series</td></tr>
+        <tr><td>The Drift</td><td>2&ndash;4</td><td>Interior</td><td>1,740</td><td>2 balconies</td><td class="num">$1,019,900</td></tr>
+        <tr><td>The Drift</td><td>2&ndash;4</td><td>End</td><td>1,790</td><td>2 balconies</td><td class="num">$1,070,900</td></tr>
+        <tr class="grp"><td colspan="6">18&prime; Garden Series</td></tr>
+        <tr><td>The Elmswood</td><td>3&ndash;4</td><td>Interior</td><td>1,810</td><td>Backyard + 2nd-storey deck + 3rd-storey balcony</td><td class="num">$1,149,900</td></tr>
+        <tr><td>The Elmswood</td><td>3&ndash;4</td><td>End</td><td>1,915</td><td>Backyard + 2nd-storey deck + 3rd-storey balcony</td><td class="num">$1,199,900</td></tr>
+        <tr class="grp"><td colspan="6">20&prime; Rear Lane Series</td></tr>
+        <tr><td>The Bluffs</td><td>3&ndash;5</td><td>Interior</td><td>2,110</td><td>2 balconies &middot; double garage</td><td class="num">$1,264,900</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">Starting prices and square footage. Premiums vary by elevation and lot. Purchase price includes HST. Builder list dated April 25, 2026.</p>
+  </div>
+  <div class="tbl-block">
+    <h3 class="tbl-title">Optional floor plan upgrades</h3>
+    <div class="tbl-scroll">
+      <table class="dt">
+        <thead><tr><th>Model</th><th>Plan option</th><th>Cost</th></tr></thead>
+        <tbody>
+        <tr><td>16&prime; The Drift</td><td>Ground floor guest suite</td><td class="num">$18,500</td></tr>
+        <tr><td>16&prime; The Drift</td><td>Third floor luxury ensuite</td><td class="num">$7,000</td></tr>
+        <tr><td>16&prime; The Drift</td><td>Third floor dual primary bedrooms</td><td class="num">$8,000</td></tr>
+        <tr><td>18&prime; The Elmswood</td><td>Ground floor guest suite</td><td class="num">$20,000</td></tr>
+        <tr><td>18&prime; The Elmswood</td><td>Third floor luxury ensuite</td><td class="num">$8,500</td></tr>
+        <tr><td>20&prime; The Bluffs</td><td>Ground floor guest suite</td><td class="num">$19,000</td></tr>
+        <tr><td>20&prime; The Bluffs</td><td>Third floor fourth bedroom</td><td class="num">$4,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="two-col">
+    <div>
+      <div class="sec-eyebrow">What&rsquo;s included</div>
+      <h2 class="sec-title">Current <em>incentives</em></h2>
+      <ul class="inc-list">
+        <li>4-piece stainless steel kitchen appliance package with white washer &amp; dryer</li>
+        <li>$8,000 d&eacute;cor dollars</li>
+        <li>1 year free POTL fees</li>
+        <li>Free assignment (admin &amp; legal fees apply)</li>
+        <li>$0 capped development charges</li>
+        <li>Quartz counters in kitchen and bathrooms</li>
+        <li>Prefinished oak engineered hardwood on ground, second and third floor hallways</li>
+        <li>9&prime; ceilings on the ground and second floor, smooth ceilings throughout</li>
+        <li>Central air conditioning, professionally sized and installed</li>
+        <li>Smart thermostat, USB charging receptacles, integrated LED nightlights</li>
+      </ul>
+    </div>
+    <div>
+      <div class="dep-card">
+        <h3 class="side-title">Deposit &mdash; 10% total</h3>
+          <div class="dep-row"><span class="dep-when">At signing</span><span class="dep-amt">$5,000</span></div>
+          <div class="dep-row"><span class="dep-when">30 &ndash; 240 days</span><span class="dep-amt">$8,500 &times; 8 &nbsp;<span class="dim">(21&prime; B2B)</span><br>$10,000 &times; 8 &nbsp;<span class="dim">(all other series)</span></span></div>
+          <div class="dep-row"><span class="dep-when">270 days</span><span class="dep-amt">Balance to 10%</span></div>
+        <p class="dep-foot">Payable to Brattys LLP, In Trust. POTL fee $110/month covers landscaping and maintenance of common areas and roadway snow clearing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">Renderings</h2>
+  <div class="gal">
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-street-480.avif 480w, images/towns/pier-house-street-800.avif 800w, images/towns/pier-house-street-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-street-480.webp 480w, images/towns/pier-house-street-800.webp 800w, images/towns/pier-house-street-1280.webp 1280w">
+        <img src="images/towns/pier-house-street.jpg" alt="Pier House Towns streetscape" loading="lazy" decoding="async">
+      </picture><figcaption>Pier House Towns streetscape</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-b2b-front-480.avif 480w, images/towns/pier-house-b2b-front-800.avif 800w, images/towns/pier-house-b2b-front-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-b2b-front-480.webp 480w, images/towns/pier-house-b2b-front-800.webp 800w, images/towns/pier-house-b2b-front-1280.webp 1280w">
+        <img src="images/towns/pier-house-b2b-front.jpg" alt="21 foot back-to-back elevation" loading="lazy" decoding="async">
+      </picture><figcaption>21 foot back-to-back elevation</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-18-front-480.avif 480w, images/towns/pier-house-18-front-800.avif 800w, images/towns/pier-house-18-front-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-18-front-480.webp 480w, images/towns/pier-house-18-front-800.webp 800w, images/towns/pier-house-18-front-1280.webp 1280w">
+        <img src="images/towns/pier-house-18-front.jpg" alt="18 foot garden series front elevation" loading="lazy" decoding="async">
+      </picture><figcaption>18 foot garden series front elevation</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-20-front-480.avif 480w, images/towns/pier-house-20-front-800.avif 800w, images/towns/pier-house-20-front-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-20-front-480.webp 480w, images/towns/pier-house-20-front-800.webp 800w, images/towns/pier-house-20-front-1280.webp 1280w">
+        <img src="images/towns/pier-house-20-front.jpg" alt="20 foot rear lane series front elevation" loading="lazy" decoding="async">
+      </picture><figcaption>20 foot rear lane series front elevation</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-16-back-480.avif 480w, images/towns/pier-house-16-back-800.avif 800w, images/towns/pier-house-16-back-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-16-back-480.webp 480w, images/towns/pier-house-16-back-800.webp 800w, images/towns/pier-house-16-back-1280.webp 1280w">
+        <img src="images/towns/pier-house-16-back.jpg" alt="16 foot rear lane series rear elevation" loading="lazy" decoding="async">
+      </picture><figcaption>16 foot rear lane series rear elevation</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-aerial-480.avif 480w, images/towns/pier-house-aerial-800.avif 800w, images/towns/pier-house-aerial-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-aerial-480.webp 480w, images/towns/pier-house-aerial-800.webp 800w, images/towns/pier-house-aerial-1280.webp 1280w">
+        <img src="images/towns/pier-house-aerial.jpg" alt="Aerial view of Pier House Towns" loading="lazy" decoding="async">
+      </picture><figcaption>Aerial view of Pier House Towns</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-kitchen-480.avif 480w, images/towns/pier-house-kitchen-800.avif 800w, images/towns/pier-house-kitchen-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-kitchen-480.webp 480w, images/towns/pier-house-kitchen-800.webp 800w, images/towns/pier-house-kitchen-1280.webp 1280w">
+        <img src="images/towns/pier-house-kitchen.jpg" alt="Pier House Towns kitchen interior" loading="lazy" decoding="async">
+      </picture><figcaption>Pier House Towns kitchen interior</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-living-480.avif 480w, images/towns/pier-house-living-800.avif 800w, images/towns/pier-house-living-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-living-480.webp 480w, images/towns/pier-house-living-800.webp 800w, images/towns/pier-house-living-1280.webp 1280w">
+        <img src="images/towns/pier-house-living.jpg" alt="Pier House Towns living room interior" loading="lazy" decoding="async">
+      </picture><figcaption>Pier House Towns living room interior</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-bedroom-480.avif 480w, images/towns/pier-house-bedroom-800.avif 800w, images/towns/pier-house-bedroom-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-bedroom-480.webp 480w, images/towns/pier-house-bedroom-800.webp 800w, images/towns/pier-house-bedroom-1280.webp 1280w">
+        <img src="images/towns/pier-house-bedroom.jpg" alt="Pier House Towns bedroom interior" loading="lazy" decoding="async">
+      </picture><figcaption>Pier House Towns bedroom interior</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-backyard-480.avif 480w, images/towns/pier-house-backyard-800.avif 800w, images/towns/pier-house-backyard-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/pier-house-backyard-480.webp 480w, images/towns/pier-house-backyard-800.webp 800w, images/towns/pier-house-backyard-1280.webp 1280w">
+        <img src="images/towns/pier-house-backyard.jpg" alt="Pier House Towns backyard" loading="lazy" decoding="async">
+      </picture><figcaption>Pier House Towns backyard</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Nearby</div>
+  <h2 class="sec-title">Compare with the <em>other two</em></h2>
+  <div class="sibs">
+      <a class="sib" href="aura-lakeview-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Aura Lakeview Village Towns &rarr;</span></a>
+      <a class="sib" href="exhale-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Exhale Townhome Collection &rarr;</span></a>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-h">Interested in Pier House Towns?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-w">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%20Pier%20House%20Towns." class="btn-o">Text for details</a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Source: Branthaven price list dated April 25, 2026 and Pier House quick facts. Renderings are artist&rsquo;s concept. Prices, sizes, incentives,
+  specifications and availability are subject to change without notice and may not reflect
+  the current release. Any GST/HST rebate reference depends on purchaser eligibility and on
+  legislation being enacted as anticipated. Confirm all figures with the sales office before
+  relying on them. Brokers protected. E.&amp;O.E.
+</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 const { createClient } = require('@supabase/supabase-js');
 
-const SUPA_URL = 'https://aondcignkaztqpnkhetr.supabase.co';
+const SUPA_URL = 'https://nxuuxmvlttncgqypalnr.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvbmRjaWdua2F6dHFwbmtoZXRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODU3OTksImV4cCI6MjA4OTc2MTc5OX0.Knm6uXfHjQdi57Y1AEeD8RPuhyogMRAhIvBn6BFJSxk';
 const DASH_EMAIL = 'nikhiloberoi80@gmail.com';
 const DASH_PASS = 'condos2026';
