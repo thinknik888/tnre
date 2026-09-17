@@ -872,7 +872,7 @@ REGISTER_HTML = """
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="reg-hp">
       <button type="submit">%(button)s</button>
       <p class="reg-msg" id="reg-msg" role="status"></p>
-      <p class="reg-fine">No spam. Your details go only to Nikhil Oberoi, the broker behind CondosAround.</p>
+      <p class="reg-fine">No spam. Your details go only to Nikhil Oberoi, the broker behind CondosAround. <a href="../privacy.html" style="color:inherit">Privacy policy</a>.</p>
     </form>
     <div class="reg-done" id="reg-done" hidden>
       <div class="reg-done-mark">&#10003;</div>
