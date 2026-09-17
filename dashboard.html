@@ -13,6 +13,19 @@
 body{font-family:'Outfit',sans-serif;background:var(--navy);color:var(--white);min-height:100vh}
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
 
+.wl-badge{display:inline-block;min-width:18px;padding:1px 6px;margin-left:6px;border-radius:9px;background:var(--cl-gold,#b89a56);color:#fff;font-size:10px;font-weight:600;letter-spacing:0;line-height:16px;text-align:center}
+.wl-wrap{background:#fff;border:0.5px solid rgba(0,34,68,.12);border-radius:4px;overflow-x:auto;margin-top:8px}
+.wl-table{width:100%;border-collapse:collapse;font-size:13px;color:#002244;min-width:640px}
+.wl-table th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:rgba(0,34,68,.45);padding:12px 16px;border-bottom:0.5px solid rgba(0,34,68,.12);white-space:nowrap}
+.wl-table td{padding:13px 16px;border-bottom:0.5px solid rgba(0,34,68,.08);vertical-align:top}
+.wl-table tr:last-child td{border-bottom:none}
+.wl-table a{color:#002244;text-decoration:none;border-bottom:1px solid rgba(184,154,86,.55)}
+.wl-name{font-weight:600}
+.wl-new{display:inline-block;margin-left:8px;padding:1px 6px;border-radius:3px;background:rgba(74,143,94,.14);color:#2f6b43;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;vertical-align:middle}
+.wl-src{display:inline-block;padding:2px 7px;border-radius:3px;background:rgba(0,34,68,.06);font-size:11px;white-space:nowrap}
+.wl-when{white-space:nowrap;color:rgba(0,34,68,.6)}
+.wl-empty{opacity:.45;text-align:center;padding:34px 16px !important}
+@media(max-width:700px){.wl-table{font-size:12.5px}.wl-table th,.wl-table td{padding:11px 12px}}
 /* PASSWORD GATE */
 #gate{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px}
 #gate h1{font-size:2.4rem;color:var(--gold);letter-spacing:1px}
@@ -492,6 +505,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   <!-- TAB NAV -->
   <div class="tab-nav">
+    <button class="tab-btn" onclick="switchTab('leads',this)">Website Leads <span id="wl-badge" class="wl-badge" style="display:none"></span></button>
     <button class="tab-btn active" onclick="switchTab('active',this)">Active Deals</button>
     <button class="tab-btn" onclick="switchTab('past',this)">Past Clients</button>
     <button class="tab-btn" onclick="switchTab('sales',this)">Sales Dashboard</button>
@@ -810,6 +824,32 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
 
   <!-- ═══ ACTIVE DEALS TAB ═══ -->
+  <div class="tab-panel cl-panel" id="panel-leads">
+    <div class="cl-container">
+      <div class="cl-page-head">
+        <div>
+          <h1>Website leads</h1>
+          <div class="cl-sub">Everyone who registered on condosaround.com &mdash; newest first. Each one is also sent to Follow Up Boss.</div>
+        </div>
+        <div class="cl-page-actions">
+          <button class="cl-btn-primary" onclick="fetchLeads()">Refresh</button>
+        </div>
+      </div>
+      <div class="cl-kpi-grid">
+        <div class="cl-kpi"><div class="cl-kpi-label">Total leads</div><div class="cl-kpi-value" id="wl-total">0</div><div class="cl-kpi-sub">all time</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Last 7 days</div><div class="cl-kpi-value" id="wl-week">0</div><div class="cl-kpi-sub">new registrations</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Today</div><div class="cl-kpi-value" id="wl-today">0</div><div class="cl-kpi-sub">so far</div></div>
+        <div class="cl-kpi"><div class="cl-kpi-label">Top project</div><div class="cl-kpi-value" id="wl-top" style="font-size:1.35rem">&mdash;</div><div class="cl-kpi-sub" id="wl-top-sub">&nbsp;</div></div>
+      </div>
+      <div class="wl-wrap">
+        <table class="wl-table">
+          <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Project</th><th>Came from</th><th>When</th></tr></thead>
+          <tbody id="leads-body"><tr><td colspan="6" class="wl-empty">Loading&hellip;</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <div class="tab-panel cl-panel active" id="panel-active">
     <div class="cl-container">
       <div class="cl-page-head">
@@ -1079,6 +1119,7 @@ function switchTab(tab,btn){
   document.getElementById('panel-'+tab).classList.add('active');
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
+  if(tab==='leads'){fetchLeads();}
   if(tab==='sales'){if(!pipeState['condosaround-sales'].date)initPipeline('condosaround-sales');else renderPipelineToday('condosaround-sales');fetchSalesDeals();fetchSalesYTD();}
   if(tab==='rentals'){if(!pipeState.rentals.date)initPipeline('rentals');else renderPipelineToday('rentals');fetchRentalLeads();fetchRentalYTD();fetchRentalDeals();}
   if(tab==='habits')renderD1Tracker();
@@ -1178,16 +1219,43 @@ function updateSalesTotalLeads(){
   const el=document.getElementById('m-leads');
   if(el)el.textContent=total;
 }
+function wlEsc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function wlAgo(d){const m=Math.round((Date.now()-d)/60000);if(m<1)return'just now';if(m<60)return m+' min ago';const h=Math.round(m/60);if(h<24)return h+' hr ago';const dd=Math.round(h/24);return dd<8?dd+' day'+(dd>1?'s':'')+' ago':d.toLocaleDateString('en-CA',{month:'short',day:'numeric',year:'numeric'});}
 async function fetchLeads(){
+  const tbody=document.getElementById('leads-body');
   try{
-    const res=await dashFetch('/.netlify/functions/get-leads');const leads=await res.json();
+    const res=await dashFetch('/.netlify/functions/get-leads');
+    if(!res.ok)throw new Error('get-leads '+res.status);
+    const leads=(await res.json()||[]).filter(Boolean);
     _netlifyLeadCount=leads.length;
-    updateSalesTotalLeads();
-    const tbody=document.getElementById('leads-body');tbody.innerHTML='';
-    if(leads.length>0){leads.slice().reverse().forEach(p=>{const date=p.date?new Date(p.date).toLocaleDateString():'—';tbody.innerHTML+=`<tr><td>${p.name||'—'}</td><td>${p.phone||'—'}</td><td>${p.building||'—'}</td><td>${date}</td></tr>`;});}
-    else{tbody.innerHTML='<tr><td colspan="4" style="opacity:.4;text-align:center;padding:30px">No leads yet — your first registration will appear here.</td></tr>';}
-    dot('dot-leads',true);toast('Leads loaded');
-  }catch(err){console.error('Leads error:',err);dot('dot-leads',false);toast('Failed to load leads');}
+    try{updateSalesTotalLeads();}catch(e){}
+    const rows=leads.map(l=>({...l,_d:l.date?new Date(l.date):null})).sort((a,b)=>(b._d||0)-(a._d||0));
+    const now=Date.now(),day=86400000,startOfToday=new Date();startOfToday.setHours(0,0,0,0);
+    const week=rows.filter(r=>r._d&&now-r._d<7*day).length,today=rows.filter(r=>r._d&&r._d>=startOfToday).length;
+    const byProject={};rows.forEach(r=>{const k=r.building||'Unknown';byProject[k]=(byProject[k]||0)+1;});
+    const top=Object.entries(byProject).sort((a,b)=>b[1]-a[1])[0];
+    const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+    set('wl-total',rows.length);set('wl-week',week);set('wl-today',today);
+    set('wl-top',top?top[0]:'—');set('wl-top-sub',top?top[1]+' lead'+(top[1]>1?'s':''):' ');
+    const badge=document.getElementById('wl-badge');if(badge){badge.textContent=today;badge.style.display=today?'inline-block':'none';}
+    if(tbody){
+      tbody.innerHTML=rows.length?rows.map(r=>{
+        const tel=String(r.phone||'').replace(/[^0-9+]/g,'');
+        const src=[r.source,r.campaign].filter(Boolean).join(' · ');
+        return '<tr><td class="wl-name">'+wlEsc(r.name||'—')+(r._d&&now-r._d<day?'<span class="wl-new">New</span>':'')+'</td>'
+          +'<td>'+(tel?'<a href="tel:'+wlEsc(tel)+'">'+wlEsc(r.phone)+'</a> &nbsp;<a href="sms:'+wlEsc(tel)+'" title="Text">✉</a>':'—')+'</td>'
+          +'<td>'+(r.email?'<a href="mailto:'+wlEsc(r.email)+'">'+wlEsc(r.email)+'</a>':'<span style="opacity:.35">—</span>')+'</td>'
+          +'<td>'+wlEsc(r.building||'—')+'</td>'
+          +'<td>'+(src?'<span class="wl-src">'+wlEsc(src)+'</span>':'<span style="opacity:.35">website</span>')+'</td>'
+          +'<td class="wl-when" title="'+(r._d?wlEsc(r._d.toLocaleString()):'')+'">'+(r._d?wlAgo(r._d):'—')+'</td></tr>';
+      }).join(''):'<tr><td colspan="6" class="wl-empty">No leads yet — your first registration will appear here.</td></tr>';
+    }
+    try{dot('dot-leads',true);}catch(e){}
+  }catch(err){
+    console.error('Leads error:',err);
+    if(tbody)tbody.innerHTML='<tr><td colspan="6" class="wl-empty">Could not load leads. Click Refresh to try again.</td></tr>';
+    try{dot('dot-leads',false);}catch(e){}
+  }
 }
 async function fetchSalesLeadCount(){
   try{
