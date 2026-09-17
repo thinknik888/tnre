@@ -1028,12 +1028,12 @@ async function checkPassword(){
   if(res.status===401){err.textContent='Incorrect password';return;}
   if(!res.ok||!data.token){err.textContent='Sign-in error ('+res.status+')';return;}
   localStorage.setItem(DASH_TOKEN_KEY,data.token);
+  // The optional database only backs the dial tracker and daily habits. Leads, deals,
+  // clients and settings come from this site's own private functions, so a missing
+  // or unreachable database must never lock you out of the dashboard.
   if(data.supabase){
     const{data:sd,error}=await sb.auth.setSession(data.supabase);
-    if(error){err.textContent='Auth error: '+error.message;return;}
-    currentUserId=sd.user.id;
-  }else{
-    err.textContent=data.supabase_error||'Database sign-in failed';return;
+    if(!error&&sd&&sd.user)currentUserId=sd.user.id;
   }
   localStorage.setItem('tnre_dash_auth','true');
   document.getElementById('gatePw').value='';
@@ -1044,9 +1044,11 @@ async function checkPassword(){
 
 // Check for existing Supabase session on page load
 (async function(){
-  const{data:{session}}=await sb.auth.getSession();
-  if(session&&session.user&&dashToken()){
-    currentUserId=session.user.id;
+  if(!dashToken())return;
+  let session=null;
+  try{session=(await sb.auth.getSession()).data.session;}catch(e){}
+  {
+    if(session&&session.user)currentUserId=session.user.id;
     document.getElementById('gate').style.display='none';
     document.getElementById('app').style.display='block';
     initAll();
@@ -1101,6 +1103,8 @@ function closeSettings(){document.getElementById('settings').style.display='none
 // password. Generated here in your browser, stored only on the server.
 async function dbSecRefresh(){
   const el=document.getElementById('dbSecStatus'),btn=document.getElementById('dbSecBtn');if(!el)return;
+  if(!currentUserId){el.textContent='No database is connected. Leads, deals, clients and settings are unaffected; the dial tracker and daily habits are not being saved.';btn.style.display='none';return;}
+  btn.style.display='';
   try{const r=await dashFetch('/.netlify/functions/dash-rotate');const d=await r.json();
     el.textContent=d.rotated?'Secured: the database has its own private password, known only to the server.':'Not secured yet: the database still uses an old password that was once public. Click below to replace it.';
     btn.textContent=d.rotated?'Rotate again':'Secure database login';
