@@ -1,0 +1,79 @@
+{
+  "source_dir": "~/Downloads/SOUTH BANKS MARKETING ASSETS",
+  "images": [
+    {
+      "name": "south-banks-hero",
+      "file": "RENDERINGS/EXTERIOR.png",
+      "widths": "hero",
+      "crop": [
+        0.0,
+        0.33,
+        1.0,
+        0.8
+      ]
+    },
+    {
+      "name": "south-banks-detail",
+      "file": "RENDERINGS/EXTERIOR.png",
+      "crop": [
+        0.3,
+        0.36,
+        1.0,
+        0.66
+      ]
+    },
+    {
+      "name": "south-banks-rooftop",
+      "file": "RENDERINGS/ROOFTOP TERRACE.png",
+      "widths": "hero"
+    },
+    {
+      "name": "south-banks-siteplan",
+      "file": "SITE PLAN RENDERING/DO_SB_SitePlan_Rendering.pdf",
+      "pdf": true,
+      "widths": [
+        480,
+        800,
+        1280,
+        1920
+      ]
+    },
+    {
+      "name": "south-banks-waterfront",
+      "file": "PHOTOGRAPHY/DO_SB_Photography-13_RGB-FA.jpg"
+    },
+    {
+      "name": "south-banks-lake",
+      "file": "PHOTOGRAPHY/DO_SB_Photography-10_RGB-FA.jpg",
+      "crop": [
+        0.0,
+        0.13,
+        1.0,
+        0.575
+      ]
+    },
+    {
+      "name": "south-banks-park",
+      "file": "PHOTOGRAPHY/DO_SB_Photography-8_RGB-FA.jpg"
+    },
+    {
+      "name": "south-banks-sail",
+      "file": "PHOTOGRAPHY/DO_SB_Photography-6_RGB-FA.jpg"
+    },
+    {
+      "name": "south-banks-boardwalk",
+      "file": "PHOTOGRAPHY/DO_SB_Photography-9_RGB-FA.jpg",
+      "widths": [
+        480,
+        800,
+        1280
+      ],
+      "crop": [
+        0.0,
+        0.08,
+        1.0,
+        0.92
+      ]
+    }
+  ]
+}

@@ -203,6 +203,36 @@
     }
     @media (max-width: 700px) { .proj-grid { grid-template-columns: 1fr; } }
 
+    /* towns:generated-css:start (scripts/build_town_pages.py) */
+    .proj-flag.new { background: rgba(255,255,255,0.96); color: #002244; font-weight: 600; }
+    .proj-card.is-new { border-color: #d8cfb8; }
+    .proj-grid.n4 { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .proj-grid.n4 .proj-name { font-size: 1.45rem; }
+    .proj-grid.n4 .proj-body { padding: 1.25rem 1.25rem 1.35rem; }
+    @media (max-width: 1399px) {
+      .proj-grid.n4 { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+      .proj-grid.n4 .proj-name { font-size: 1.6rem; }
+      .proj-grid.n4 .proj-body { padding: 1.4rem 1.5rem 1.5rem; }
+    }
+    @media (max-width: 700px) { .proj-grid.n4 { grid-template-columns: 1fr; } }
+    table.cmp.n4 { min-width: 1020px; }
+    table.cmp .cmp-mini { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.74rem; margin-top: 0.15rem; }
+    table.cmp th.is-new { background: #0b3358; }
+    /* phones: keep the row labels pinned while the communities scroll sideways */
+    @media (max-width: 700px) {
+      table.cmp th, table.cmp td { padding: 0.8rem 0.85rem; }
+      table.cmp td:first-child, table.cmp th:first-child {
+        position: sticky; left: 0; z-index: 2; white-space: normal;
+        width: 86px; min-width: 86px; max-width: 86px;
+        font-size: 0.56rem; letter-spacing: 0.08em; box-shadow: 1px 0 0 #e6e1d6; }
+      table.cmp thead th:first-child { z-index: 3; }
+      table.cmp tbody td:first-child { background: #fff; }
+      table.cmp tbody tr:nth-child(even) td:first-child { background: #fbf9f5; }
+      table.cmp.n4 { min-width: 880px; }
+      .cmp-scroll { scroll-snap-type: x proximity; scroll-padding-left: 86px; }
+      table.cmp thead th:not(:first-child) { scroll-snap-align: start; }
+    }
+    /* towns:generated-css:end */
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -238,10 +268,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="hero-nb-inner">
     <div class="hero-nb-eyebrow">Mississauga &middot; Waterfront</div>
     <h1 class="hero-nb-title">Dixie &amp; <em>Lakeshore</em></h1>
-    <p class="hero-nb-desc">Where Mississauga&rsquo;s shoreline meets Toronto&rsquo;s edge. Three new townhome communities and a full condo collection &mdash; all within walking distance of Lake Ontario, the Waterfront Trail, and Long Branch GO.</p>
+    <p class="hero-nb-desc">Where Mississauga&rsquo;s shoreline meets Toronto&rsquo;s edge. Four new townhome communities and a full condo collection &mdash; all within walking distance of Lake Ontario, the Waterfront Trail, and Long Branch GO.</p>
     <div class="hero-nb-stats">
-      <div><div class="hero-nb-stat-val">4</div><div class="hero-nb-stat-lbl">Communities</div></div>
-      <div><div class="hero-nb-stat-val">3</div><div class="hero-nb-stat-lbl">Townhome projects</div></div>
+      <div><div class="hero-nb-stat-val">5</div><div class="hero-nb-stat-lbl">Communities</div></div>
+      <div><div class="hero-nb-stat-val">4</div><div class="hero-nb-stat-lbl">Townhome projects</div></div>
       <div><div class="hero-nb-stat-val">110</div><div class="hero-nb-stat-lbl">Floor plans</div></div>
       <div><div class="hero-nb-stat-val">$409K+</div><div class="hero-nb-stat-lbl">Starting from</div></div>
     </div>
@@ -250,7 +280,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 </section>
 
 <div class="sec-nav" id="sec-nav" role="tablist">
-  <a href="#townhomes" class="on" data-panel="panel-townhomes" data-target="townhomes" role="tab" aria-selected="true">Townhomes<span class="sec-nav-count">3</span></a>
+  <a href="#townhomes" class="on" data-panel="panel-townhomes" data-target="townhomes" role="tab" aria-selected="true">Townhomes<span class="sec-nav-count">4</span></a>
   <a href="#compare" data-panel="panel-townhomes" data-target="compare" role="tab" aria-selected="false">Compare</a>
   <a href="#exhale-towns" data-panel="panel-townhomes" data-target="exhale-towns" role="tab" aria-selected="false">Exhale Town Plans<span class="sec-nav-count">11</span></a>
   <a href="#condos" data-panel="panel-condos" data-target="condos" role="tab" aria-selected="false">Condo Apartments<span class="sec-nav-count">88</span></a>
@@ -264,30 +294,30 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div>
       <div class="cat-eyebrow">In this neighbourhood</div>
       <h2 class="cat-title">Town<em>homes</em></h2>
-      <p class="cat-sub">Ground-related living on the Mississauga waterfront &mdash; private garages, driveways and outdoor space, minutes from the lake.</p>
+      <p class="cat-sub">Ground-related living on the Mississauga waterfront &mdash; rooftop terraces, private garages and outdoor space, minutes from the lake.</p>
     </div>
-    <div class="cat-count"><b>3</b>Communities &middot; 2 selling</div>
+    <div class="cat-count"><b>4</b>Communities &middot; 2 selling now &middot; 1 launching</div>
   </div>
 
-  <div class="proj-grid">
+  <div class="proj-grid n4">
 
-    <a class="proj-card is-sold" href="../buildings/pier-house-towns.html">
+    <a class="proj-card is-new" href="../buildings/south-banks.html">
       <div class="proj-img">
-        <picture><source type="image/avif" sizes="(max-width: 900px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/pier-house-b2b-front-480.avif 480w, ../buildings/images/towns/pier-house-b2b-front-800.avif 800w, ../buildings/images/towns/pier-house-b2b-front-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/pier-house-b2b-front-480.webp 480w, ../buildings/images/towns/pier-house-b2b-front-800.webp 800w, ../buildings/images/towns/pier-house-b2b-front-1280.webp 1280w"><img src="../buildings/images/towns/pier-house-b2b-front.jpg" alt="Pier House Towns exterior rendering" loading="lazy" decoding="async"></picture>
-        <span class="proj-flag sold">Sold out</span>
+        <picture>  <source type="image/avif" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/south-banks-hero-480.avif 480w, ../buildings/images/towns/south-banks-hero-800.avif 800w, ../buildings/images/towns/south-banks-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/south-banks-hero-480.webp 480w, ../buildings/images/towns/south-banks-hero-800.webp 800w, ../buildings/images/towns/south-banks-hero-1280.webp 1280w">  <img src="../buildings/images/towns/south-banks-hero.jpg" alt="South Banks townhomes exterior rendering" loading="lazy" decoding="async"></picture>
+        <span class="proj-flag new">New &middot; price list Sept 22</span>
       </div>
       <div class="proj-body">
-        <div class="proj-builder">Branthaven</div>
-        <div class="proj-name">Pier House Towns</div>
-        <div class="proj-loc">Lakeview Village &middot; South of Lakeshore Rd E &amp; Dixie Rd</div>
+        <div class="proj-builder">DECO Homes &amp; OPUS Homes</div>
+        <div class="proj-name">South Banks</div>
+        <div class="proj-loc">Lakeview Village &middot; Jim Tovey Blvd &amp; Marina Vista</div>
         <div class="proj-specs">
-          <div><div class="proj-spec-lbl">Size</div><div class="proj-spec-val">1,255 &ndash; 2,195 sq ft</div></div>
-          <div><div class="proj-spec-lbl">Bedrooms</div><div class="proj-spec-val">2 &ndash; 5</div></div>
-          <div><div class="proj-spec-lbl">Storeys</div><div class="proj-spec-val">3</div></div>
-          <div><div class="proj-spec-lbl">Parking</div><div class="proj-spec-val">2 &ndash; 4 spaces</div></div>
+          <div><div class="proj-spec-lbl">Bedrooms</div><div class="proj-spec-val">2 &ndash; 4</div></div>
+          <div><div class="proj-spec-lbl">Baths</div><div class="proj-spec-val">2 full, every plan</div></div>
+          <div><div class="proj-spec-lbl">Storeys</div><div class="proj-spec-val">1 &amp; 2-storey towns</div></div>
+          <div><div class="proj-spec-lbl">Outdoor</div><div class="proj-spec-val">Rooftop terraces</div></div>
         </div>
         <div class="proj-foot">
-          <div><div class="proj-price-lbl">Starting from</div><div class="proj-price">$819,900</div></div>
+          <div><div class="proj-price-lbl">Starting from</div><div class="proj-price">$549,990</div></div>
           <span class="proj-go">View &rarr;</span>
         </div>
       </div>
@@ -295,7 +325,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
     <a class="proj-card" href="../buildings/aura-lakeview-towns.html">
       <div class="proj-img">
-        <picture><source type="image/avif" sizes="(max-width: 900px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/aura-hero-480.avif 480w, ../buildings/images/towns/aura-hero-800.avif 800w, ../buildings/images/towns/aura-hero-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/aura-hero-480.webp 480w, ../buildings/images/towns/aura-hero-800.webp 800w, ../buildings/images/towns/aura-hero-1280.webp 1280w"><img src="../buildings/images/towns/aura-hero.jpg" alt="Aura Lakeview Village Towns exterior rendering" loading="lazy" decoding="async"></picture>
+        <picture>  <source type="image/avif" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/aura-hero-480.avif 480w, ../buildings/images/towns/aura-hero-800.avif 800w, ../buildings/images/towns/aura-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/aura-hero-480.webp 480w, ../buildings/images/towns/aura-hero-800.webp 800w, ../buildings/images/towns/aura-hero-1280.webp 1280w">  <img src="../buildings/images/towns/aura-hero.jpg" alt="Aura Lakeview Village Towns exterior rendering" loading="lazy" decoding="async"></picture>
         <span class="proj-flag gold">Lowest entry price</span>
       </div>
       <div class="proj-body">
@@ -317,7 +347,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
     <a class="proj-card" href="../buildings/exhale-towns.html">
       <div class="proj-img">
-        <picture><source type="image/avif" sizes="(max-width: 900px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/exhale-towns-hero-480.avif 480w, ../buildings/images/towns/exhale-towns-hero-800.avif 800w, ../buildings/images/towns/exhale-towns-hero-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/exhale-towns-hero-480.webp 480w, ../buildings/images/towns/exhale-towns-hero-800.webp 800w, ../buildings/images/towns/exhale-towns-hero-1280.webp 1280w"><img src="../buildings/images/towns/exhale-towns-hero.jpg" alt="Exhale Townhome Collection exterior rendering" loading="lazy" decoding="async"></picture>
+        <picture>  <source type="image/avif" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/exhale-towns-hero-480.avif 480w, ../buildings/images/towns/exhale-towns-hero-800.avif 800w, ../buildings/images/towns/exhale-towns-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/exhale-towns-hero-480.webp 480w, ../buildings/images/towns/exhale-towns-hero-800.webp 800w, ../buildings/images/towns/exhale-towns-hero-1280.webp 1280w">  <img src="../buildings/images/towns/exhale-towns-hero.jpg" alt="Exhale Townhome Collection exterior rendering" loading="lazy" decoding="async"></picture>
         <span class="proj-flag">2026 occupancy</span>
       </div>
       <div class="proj-body">
@@ -337,105 +367,141 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
     </a>
 
+    <a class="proj-card is-sold" href="../buildings/pier-house-towns.html">
+      <div class="proj-img">
+        <picture>  <source type="image/avif" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/pier-house-b2b-front-480.avif 480w, ../buildings/images/towns/pier-house-b2b-front-800.avif 800w, ../buildings/images/towns/pier-house-b2b-front-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw" srcset="../buildings/images/towns/pier-house-b2b-front-480.webp 480w, ../buildings/images/towns/pier-house-b2b-front-800.webp 800w, ../buildings/images/towns/pier-house-b2b-front-1280.webp 1280w">  <img src="../buildings/images/towns/pier-house-b2b-front.jpg" alt="Pier House Towns exterior rendering" loading="lazy" decoding="async"></picture>
+        <span class="proj-flag sold">Sold out</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-builder">Branthaven</div>
+        <div class="proj-name">Pier House Towns</div>
+        <div class="proj-loc">Lakeview Village &middot; South of Lakeshore Rd E &amp; Dixie Rd</div>
+        <div class="proj-specs">
+          <div><div class="proj-spec-lbl">Size</div><div class="proj-spec-val">1,255 &ndash; 2,195 sq ft</div></div>
+          <div><div class="proj-spec-lbl">Bedrooms</div><div class="proj-spec-val">2 &ndash; 5</div></div>
+          <div><div class="proj-spec-lbl">Storeys</div><div class="proj-spec-val">3</div></div>
+          <div><div class="proj-spec-lbl">Parking</div><div class="proj-spec-val">2 &ndash; 4 spaces</div></div>
+        </div>
+        <div class="proj-foot">
+          <div><div class="proj-price-lbl">Starting from</div><div class="proj-price">$819,900</div></div>
+          <span class="proj-go">View &rarr;</span>
+        </div>
+      </div>
+    </a>
+
   </div>
 
   <!-- ============ COMPARE ============ -->
   <div class="cmp-wrap" id="compare">
-    <div class="cmp-title">Compare all <em>three</em></div>
+    <div class="cmp-title">Compare all <em>four</em></div>
     <div class="cmp-sub">Side by side, from the current builder price lists.</div>
     <div class="cmp-scroll">
-      <table class="cmp">
+      <table class="cmp n4">
         <thead>
           <tr>
             <th></th>
-            <th>Pier House Towns<small>Branthaven &middot; Sold out</small></th>
+            <th class="is-new">South Banks<small>DECO &amp; OPUS &middot; Coming soon</small></th>
             <th>Aura Lakeview Village<small>Caivan</small></th>
             <th>Exhale Town Collection<small>Brixen</small></th>
+            <th>Pier House Towns<small>Branthaven &middot; Sold out</small></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Starting price</td>
-            <td class="hi" style="color:#7a2626;">Sold out <span style="display:block;font-weight:400;color:var(--text-muted);font-size:0.78rem;">was $819,900</span></td>
+            <td class="hi">$549,990<span class="cmp-mini">net of HST rebate</span></td>
             <td class="hi cmp-best">$539,990</td>
             <td class="hi">$708,750</td>
+            <td class="hi" style="color:#7a2626;">Sold out<span class="cmp-mini">was $819,900</span></td>
           </tr>
           <tr>
             <td>Price ceiling</td>
-            <td>$1,264,900</td>
+            <td>From the $800s<span class="cmp-mini">3&ndash;4 bed with rooftop terrace</span></td>
             <td>$699,990</td>
             <td>$1,282,500</td>
+            <td>$1,264,900</td>
           </tr>
           <tr>
             <td>Size range</td>
-            <td>1,255 &ndash; 2,195 sq ft</td>
+            <td>Released Sept 22</td>
             <td>811 &ndash; 1,138 sq ft</td>
             <td>945 &ndash; 1,710 sq ft</td>
+            <td>1,255 &ndash; 2,195 sq ft</td>
           </tr>
           <tr>
             <td>$ / sq ft (from)</td>
-            <td>~$653</td>
+            <td>&mdash;</td>
             <td>~$666</td>
             <td>~$750</td>
+            <td>~$653</td>
           </tr>
           <tr>
             <td>Bedrooms</td>
-            <td>2 &ndash; 5</td>
+            <td>2 &ndash; 4<span class="cmp-mini">2 full baths on every plan</span></td>
             <td>2 &ndash; 3</td>
             <td>2 &ndash; 3 + den</td>
+            <td>2 &ndash; 5</td>
           </tr>
           <tr>
             <td>Storeys</td>
-            <td>3-storey traditional</td>
+            <td>Single-storey towns +<br>2-storey upper towns</td>
             <td>2-storey urban town</td>
             <td>2-storey at-grade</td>
+            <td>3-storey traditional</td>
           </tr>
           <tr>
             <td>Parking</td>
-            <td>Private garage + driveway<br>2 &ndash; 4 spaces</td>
+            <td>Underground<br>Visitor parking on site</td>
             <td>1 underground space<br>Tandem + locker $39,900</td>
             <td>See sales office</td>
+            <td>Private garage + driveway<br>2 &ndash; 4 spaces</td>
           </tr>
           <tr>
             <td>Outdoor space</td>
-            <td>Balconies, decks, backyards</td>
+            <td>Rooftop terraces on select homes</td>
             <td>Terrace / balcony</td>
             <td>Patio</td>
+            <td>Balconies, decks, backyards</td>
           </tr>
           <tr>
             <td>Deposit</td>
-            <td>10% total<br>$5,000 at signing, to 270 days</td>
+            <td>$70,000 single-storey<br>$95,000 two-storey<br>$10,000 at signing</td>
             <td>$65,000 total<br>$10,000 at signing</td>
             <td>See sales office</td>
+            <td>10% total<br>$5,000 at signing, to 270 days</td>
           </tr>
           <tr>
             <td>Occupancy</td>
-            <td>See sales office</td>
+            <td>To be announced</td>
             <td>Summer 2027</td>
-            <td class="hi">2026 &mdash; earliest</td>
+            <td><span class="hi">2026 &mdash; earliest</span></td>
+            <td>See sales office</td>
           </tr>
           <tr>
             <td>Monthly fees</td>
-            <td>POTL $110/mo</td>
+            <td>To be announced</td>
             <td>Condo fees waived 12 months</td>
             <td>See sales office</td>
+            <td>POTL $110/mo</td>
           </tr>
           <tr>
             <td>Headline incentive</td>
-            <td>$8,000 d&eacute;cor dollars &middot; appliances &middot; 1 yr free POTL &middot; free assignment &middot; $0 capped DCs</td>
+            <td>Launch pricing net of HST rebate &middot; deposits spread over 11 &ndash; 17 months</td>
             <td>FTHB pricing from $499,106 &middot; $0 DC cap &middot; $5,000 closing cost cap &middot; free assignments &middot; right to lease</td>
             <td>Promotional pricing &middot; HST rebate priced in</td>
+            <td>$8,000 d&eacute;cor dollars &middot; appliances &middot; 1 yr free POTL &middot; free assignment &middot; $0 capped DCs</td>
           </tr>
           <tr>
             <td>Total homes</td>
-            <td>164 &ndash; 165</td>
+            <td>17 blocks</td>
             <td>Block 1 releasing</td>
             <td>11 town plans</td>
+            <td>164 &ndash; 165</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="cmp-note">Figures from builder price lists dated April 25, 2026 (Pier House), February 24, 2026 (Aura) and current Exhale promotional pricing. $/sq ft is calculated from the starting price and smallest plan. Prices, incentives and availability change without notice &mdash; confirm with the sales office before relying on any figure. E.&amp;O.E.</p>
+    <p class="cmp-note">Figures from builder price lists dated pre-launch guidance for South Banks (full price list due September 22, 2026), February 24, 2026 (Aura), current Exhale promotional pricing and April 25, 2026 (Pier House). $/sq ft is calculated from the starting price and smallest plan. Prices, incentives and availability change without notice &mdash; confirm with the sales office before relying on any figure. E.&amp;O.E.</p>
   </div>
 </section>
 

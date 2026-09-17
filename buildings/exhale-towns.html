@@ -42,6 +42,7 @@
     .hero-status { display: inline-block; background: rgba(122,38,38,0.95); color: #fff; font-size: 0.66rem;
                     font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
                     border-radius: 2px; margin-bottom: 1rem; }
+    .hero-status.new { background: rgba(201,168,76,0.96); color: #17130a; }
     .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
                    font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }
     .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }
@@ -79,6 +80,13 @@
     table.dt tr.grp td { background: var(--cream); font-size: 0.66rem; letter-spacing: 0.14em;
                           text-transform: uppercase; color: var(--navy); font-weight: 600; }
     table.dt td.num { color: var(--navy); font-weight: 600; white-space: nowrap; }
+    table.dt.compact { min-width: 0; }
+    @media (max-width: 700px) {
+      table.dt.compact th, table.dt.compact td { padding: 0.75rem 0.6rem; font-size: 0.8rem; }
+      table.dt.compact thead th { font-size: 0.6rem; letter-spacing: 0.04em; }
+      table.dt.compact td.num { white-space: normal; }
+      table.dt.compact tr.grp td { font-size: 0.6rem; }
+    }
     .tbl-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-top: 0.85rem; }
     .plans-link { margin-top: 1.5rem; }
     .plans-link a { font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase;
@@ -106,7 +114,20 @@
     .gal-item:hover img { transform: scale(1.03); }
     .gal-item figcaption { font-size: 0.7rem; color: var(--text-muted); padding: 0.7rem 0.15rem 0; }
 
-    .sibs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .sibs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+
+    .logo-row { display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; margin-top: 2.25rem;
+                 padding-top: 1.75rem; border-top: 1px solid var(--border); }
+    .logo-row img { width: auto; opacity: 0.78; }
+
+    .setting { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 4.5rem; align-items: center; }
+    .setting p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+                  margin-bottom: 1.15rem; max-width: 560px; }
+    .setting-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; }
+
+    .siteplan { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }
+    .siteplan figure { margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #e8e4dc; background: var(--cream); }
+    .siteplan img { width: 100%; height: auto; aspect-ratio: 1/1; }
     .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px;
             padding: 1.5rem 1.75rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
     .sib:hover { border-color: var(--gold); transform: translateY(-2px); }
@@ -135,7 +156,9 @@
       .facts { grid-template-columns: repeat(3, 1fr); }
       .fact:nth-child(3n) { border-right: none; }
       .fact:nth-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
-      .overview, .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .overview, .two-col, .siteplan { grid-template-columns: 1fr; gap: 2.5rem; }
+      .setting { grid-template-columns: 1fr; gap: 2.5rem; }
+      .setting-media { max-width: 340px; }
     }
     @media (max-width: 700px) {
       nav { padding: 0.8rem 1rem; gap: 0.5rem; }
@@ -153,6 +176,8 @@
       .fact:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.09); }
       .fact:nth-child(2n) { border-right: none; }
       .gal, .sibs { grid-template-columns: 1fr; }
+      .logo-row { gap: 1.5rem; }
+      .logo-row img { max-height: 22px; }
     }
   </style>
 </head>
@@ -195,7 +220,7 @@
       <div class="sec-eyebrow">Overview</div>
       <h2 class="sec-title">About <em>Exhale Townhome Collection</em></h2>
       <p>The Townhome Collection sits at grade beneath Exhale on Lakeshore Road East at Dixie &mdash; directly across from Lakeshore Park, a short walk from the water, and three minutes from Dixie Outlet Mall.</p>
-      <p>Eleven two-storey plans from 945 to 1,710 sq ft, with private patios and access to the full Exhale amenity floor. The earliest occupancy of the three townhome communities in this neighbourhood.</p>
+      <p>Eleven two-storey plans from 945 to 1,710 sq ft, with private patios and access to the full Exhale amenity floor. The earliest occupancy of the townhome communities in this neighbourhood.</p>
     </div>
     <div>
       <h3 class="side-title">Getting around</h3>
@@ -243,7 +268,7 @@
       <ul class="inc-list">
         <li>Promotional pricing on every remaining town plan</li>
         <li>HST rebate value reflected in the pricing above</li>
-        <li>2026 occupancy &mdash; the earliest of the three townhome communities here</li>
+        <li>2026 occupancy &mdash; the earliest of the townhome communities here</li>
         <li>Full access to the Exhale amenity floor, gym and rooftop</li>
       </ul>
     </div>
@@ -252,6 +277,7 @@
     </div>
   </div>
 </section>
+
 
 <section>
   <div class="sec-eyebrow">Gallery</div>
@@ -277,10 +303,11 @@
 
 <section>
   <div class="sec-eyebrow">Nearby</div>
-  <h2 class="sec-title">Compare with the <em>other two</em></h2>
+  <h2 class="sec-title">More townhomes in <em>Dixie &amp; Lakeshore</em></h2>
   <div class="sibs">
-      <a class="sib" href="pier-house-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Pier House Towns &rarr;</span></a>
+      <a class="sib" href="south-banks.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore &middot; coming soon</span><span class="sib-name">South Banks &rarr;</span></a>
       <a class="sib" href="aura-lakeview-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Aura Lakeview Village Towns &rarr;</span></a>
+      <a class="sib" href="pier-house-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore &middot; sold out</span><span class="sib-name">Pier House Towns &rarr;</span></a>
   </div>
 </section>
 

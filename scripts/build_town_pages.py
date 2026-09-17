@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-Generate the townhome project pages under buildings/ from one shared template.
+Townhome communities for Dixie & Lakeshore -- one data file, every page.
 
     python3 scripts/build_town_pages.py
 
-Adding a fourth community = add one entry to PROJECTS and re-run. Images are
-expected in buildings/images/towns/ with the responsive ladder produced by
-scripts/optimize_images.py (or scratchpad/build_renderings.py for masters).
+Writes a project page per community under buildings/, then regenerates the
+townhome cards, the compare table and the counts on
+neighbourhoods/dixie-lakeshore.html (and the homepage card) from the same data.
+
+To add or update a community: edit its entry in PROJECTS (and ORDER), re-run.
+Images come from scripts/import_renderings.py, which writes the responsive
+AVIF/WebP ladder into buildings/images/towns/.
 """
 
 import html
@@ -148,6 +152,29 @@ PROJECTS = {
             ("pier-house-backyard", "Pier House Towns backyard"),
         ],
         "source": "Branthaven price list dated April 25, 2026 and Pier House quick facts.",
+        "card": {
+            "image": "pier-house-b2b-front",
+            "image_alt": "Pier House Towns exterior rendering",
+            "flag": ("Sold out", "sold"),
+            "location": "Lakeview Village &middot; South of Lakeshore Rd E &amp; Dixie Rd",
+            "specs": [("Size", "1,255 &ndash; 2,195 sq ft"), ("Bedrooms", "2 &ndash; 5"),
+                      ("Storeys", "3"), ("Parking", "2 &ndash; 4 spaces")],
+            "price": "$819,900",
+        },
+        "compare": {
+            "short": "Pier House Towns", "builder": "Branthaven",
+            "price": "$819,900", "ceiling": "$1,264,900",
+            "size": "1,255 &ndash; 2,195 sq ft", "ppsf": "~$653",
+            "beds": "2 &ndash; 5", "storeys": "3-storey traditional",
+            "parking": "Private garage + driveway<br>2 &ndash; 4 spaces",
+            "outdoor": "Balconies, decks, backyards",
+            "deposit": "10% total<br>$5,000 at signing, to 270 days",
+            "occupancy": "See sales office", "fees": "POTL $110/mo",
+            "incentive": "$8,000 d&eacute;cor dollars &middot; appliances &middot; 1 yr free POTL "
+                         "&middot; free assignment &middot; $0 capped DCs",
+            "homes": "164 &ndash; 165",
+            "dated": "April 25, 2026 (Pier House)",
+        },
     },
 
     "aura-lakeview-towns": {
@@ -243,6 +270,187 @@ PROJECTS = {
             ("aura-bedroom", "Aura Lakeview Village Towns main bedroom interior"),
         ],
         "source": "Caivan price list and available-lot list dated February 24, 2026.",
+        "card": {
+            "image": "aura-hero",
+            "image_alt": "Aura Lakeview Village Towns exterior rendering",
+            "flag": ("Lowest entry price", "gold"),
+            "location": "Lakeview Village &middot; Lakeshore Rd E between Cawthra &amp; Dixie",
+            "specs": [("Size", "811 &ndash; 1,138 sq ft"), ("Bedrooms", "2 &ndash; 3"),
+                      ("Storeys", "2 &middot; Urban town"), ("Parking", "1 underground")],
+            "price": "$539,990",
+        },
+        "compare": {
+            "short": "Aura Lakeview Village", "builder": "Caivan",
+            "price": "$539,990", "ceiling": "$699,990",
+            "size": "811 &ndash; 1,138 sq ft", "ppsf": "~$666",
+            "beds": "2 &ndash; 3", "storeys": "2-storey urban town",
+            "parking": "1 underground space<br>Tandem + locker $39,900",
+            "outdoor": "Terrace / balcony",
+            "deposit": "$65,000 total<br>$10,000 at signing",
+            "occupancy": "Summer 2027", "fees": "Condo fees waived 12 months",
+            "incentive": "FTHB pricing from $499,106 &middot; $0 DC cap &middot; $5,000 closing "
+                         "cost cap &middot; free assignments &middot; right to lease",
+            "homes": "Block 1 releasing",
+            "dated": "February 24, 2026 (Aura)",
+        },
+    },
+
+    "south-banks": {
+        "name": "South Banks",
+        "builder": "DECO Homes &amp; OPUS Homes",
+        "status": "Coming soon &middot; price list Sept 22",
+        "status_kind": "new",
+        "tagline": "Coastal townhomes in Lakeview Village.",
+        "address": "Jim Tovey Blvd &amp; Marina Vista &middot; Lakeview Village, Mississauga",
+        "area": "Lakeview Village",
+        "hero": "south-banks-hero",
+        "hero_alt": "South Banks townhomes exterior rendering",
+        "meta": "South Banks by DECO Homes and OPUS Homes &mdash; coastal townhomes in Lakeview "
+                "Village, Mississauga. 2&ndash;4 bedrooms, rooftop terraces, from $549,990. "
+                "Full price list and floor plans September 22, 2026.",
+        "facts": [
+            ("From", "$549,990*"),
+            ("Bedrooms", "2 &ndash; 4"),
+            ("Baths", "2 full, every plan"),
+            ("Home types", "1 &amp; 2-storey towns"),
+            ("Blocks", "17"),
+            ("Price list", "Sept 22"),
+        ],
+        "intro": [
+            "South Banks is a new collection of coastal townhomes by DECO Homes and OPUS Homes "
+            "inside Lakeview Village &mdash; the 177-acre master-planned waterfront community "
+            "taking shape on Mississauga&rsquo;s shoreline. Seventeen low-rise blocks sit between "
+            "Aerodrome Avenue and Marina Vista, directly across from Waterway Common Park and a "
+            "short walk from Lake Ontario.",
+            "There are two home types: single-storey townhomes and two-storey upper townhomes, "
+            "with private rooftop terraces on select upper homes. Every plan has two to four "
+            "bedrooms and two full baths, every home sits above grade, and parking is "
+            "underground &mdash; which leaves the ground level to landscaped walkways and a "
+            "central amenity area.",
+        ],
+        "logos": [
+            ("south-banks-logo.png", "South Banks", 26),
+            ("south-banks-deco-logo.png", "DECO Homes", 30),
+            ("south-banks-opus-logo.png", "OPUS Homes", 26),
+        ],
+        "pricing_title": "Expected <em>pricing</em>",
+        "tables": [
+            {
+                "title": "Launch price guidance",
+                "compact": True,   # few columns: fit a phone instead of scrolling sideways
+                "note": "*Net of HST rebate; conditions apply. Guidance shared ahead of launch "
+                        "&mdash; the full price list and floor plans are released "
+                        "September 22, 2026, and this page will be updated that day.",
+                "cols": ["Home type", "Bedrooms", "Storeys", "Expected pricing"],
+                "groups": [
+                    ("Single-Storey Townhomes", [
+                        ["Interior home", "2", "1", "From $549,990*"],
+                        ["End home", "3", "1", "Approx. $639,990"],
+                    ]),
+                    ("Two-Storey Upper Townhomes", [
+                        ["Upper townhome", "2 &ndash; 3", "2", "Mid to high $700s"],
+                        ["Upper townhome with rooftop terrace", "3 &ndash; 4", "2", "From the $800s"],
+                    ]),
+                ],
+            },
+        ],
+        "incentives_title": "What we know <em>so far</em>",
+        "incentives": [
+            "Launch pricing from $549,990, net of the HST rebate",
+            "Two to four bedrooms, with two full baths on every plan",
+            "Private rooftop terraces on select two-storey homes",
+            "Every home above grade &mdash; no below-grade living space",
+            "Underground parking and a central landscaped amenity area",
+            "Extended deposits: $10,000 at signing, the balance spread over 11 to 17 months",
+            "Floor plans and the full price list release September 22, 2026",
+        ],
+        "deposit": {
+            "title": "Deposit structure",
+            "rows": [
+                ("At signing", "$10,000"),
+                ("30, 60, 90, 150, 210 &amp; 270 days", "$7,500 each"),
+                ("330 days", "$5,000 &nbsp;<span class=\"dim\">(single-storey)</span><br>"
+                             "$7,500 &nbsp;<span class=\"dim\">(two-storey)</span>"),
+                ("390, 450 &amp; 510 days", "$7,500 each &nbsp;<span class=\"dim\">(two-storey only)</span>"),
+                ("On occupancy", "$10,000"),
+                ("Total", "$70,000 &nbsp;<span class=\"dim\">(single-storey)</span><br>"
+                          "$95,000 &nbsp;<span class=\"dim\">(two-storey)</span>"),
+            ],
+            "foot": "Cheques payable to Bratty&rsquo;s LLP, In Trust. All post-dated deposits "
+                    "must be received at signing.",
+        },
+        "commute": [
+            ("Across the street", "Waterway Common Park"),
+            ("Short walk", "Lake Ontario &amp; the Waterfront Trail"),
+            ("At the door", "Future MiWay stops on Jim Tovey Blvd &amp; Illumination Way"),
+            ("Next door", "Lakeview Village Innovation District"),
+            ("About 5 min", "Long Branch GO &middot; QEW / 427"),
+            ("About 20 min", "Downtown Toronto"),
+        ],
+        "setting": {
+            "image": "south-banks-boardwalk",
+            "image_alt": "Boardwalk along the Lake Ontario shoreline at Lakeview Village",
+            "eyebrow": "The setting",
+            "title": "Mornings on <em>the water</em>",
+            "text": [
+                "Lakeview Village reopens a stretch of Mississauga shoreline that was off-limits "
+                "for decades. South Banks sits one block from it: the pier, the marina, the "
+                "Waterfront Trail and a sand-and-pebble beach are all a walk from the front "
+                "door.",
+                "Paddle before work, cycle the trail to Port Credit, or take Long Branch GO "
+                "downtown &mdash; this is lakeside living with a twenty-minute commute.",
+            ],
+        },
+        "site_plan": {
+            "image": "south-banks-siteplan",
+            "alt": "South Banks site plan showing 17 townhome blocks in Lakeview Village",
+            "title": "Seventeen blocks, <em>one street from the park</em>",
+            "rows": [
+                ("North", "Aerodrome Avenue"),
+                ("South", "Marina Vista &middot; Waterway Common Park &middot; Lake Ontario"),
+                ("West", "Jim Tovey Boulevard"),
+                ("East", "Illumination Way &middot; Innovation District"),
+                ("Centre", "Landscaped amenity area &middot; underground parking entrance"),
+                ("Also on site", "Visitor parking &middot; bike lanes on every bordering street"),
+            ],
+        },
+        "gallery_title": "Renderings &amp; <em>setting</em>",
+        "gallery": [
+            ("south-banks-rooftop", "Private rooftop terrace overlooking Lake Ontario"),
+            ("south-banks-detail", "South Banks exterior detail"),
+            ("south-banks-waterfront", "The waterfront trail at Lakeview Village"),
+            ("south-banks-lake", "Lake Ontario, a short walk from South Banks"),
+            ("south-banks-park", "Lakefront parkland beside the community"),
+            ("south-banks-sail", "Sailing off the Mississauga shoreline"),
+        ],
+        "cta_line": "Get the price list the day it&rsquo;s released.",
+        "source": "DECO Homes and OPUS Homes launch materials, deposit schedule and pre-launch "
+                  "price guidance, September 2026.",
+        "card": {
+            "image": "south-banks-hero",
+            "image_alt": "South Banks townhomes exterior rendering",
+            "flag": ("New &middot; price list Sept 22", "new"),
+            "location": "Lakeview Village &middot; Jim Tovey Blvd &amp; Marina Vista",
+            "specs": [("Bedrooms", "2 &ndash; 4"), ("Baths", "2 full, every plan"),
+                      ("Storeys", "1 &amp; 2-storey towns"), ("Outdoor", "Rooftop terraces")],
+            "price": "$549,990",
+        },
+        "compare": {
+            "short": "South Banks", "builder": "DECO &amp; OPUS &middot; Coming soon",
+            "price": "$549,990<span class=\"cmp-mini\">net of HST rebate</span>",
+            "ceiling": "From the $800s<span class=\"cmp-mini\">3&ndash;4 bed with rooftop terrace</span>",
+            "size": "Released Sept 22", "ppsf": "&mdash;",
+            "beds": "2 &ndash; 4<span class=\"cmp-mini\">2 full baths on every plan</span>",
+            "storeys": "Single-storey towns +<br>2-storey upper towns",
+            "parking": "Underground<br>Visitor parking on site",
+            "outdoor": "Rooftop terraces on select homes",
+            "deposit": "$70,000 single-storey<br>$95,000 two-storey<br>$10,000 at signing",
+            "occupancy": "To be announced", "fees": "To be announced",
+            "incentive": "Launch pricing net of HST rebate &middot; deposits spread over "
+                         "11 &ndash; 17 months",
+            "homes": "17 blocks",
+            "dated": "pre-launch guidance for South Banks (full price list due September 22, 2026)",
+        },
     },
 
     "exhale-towns": {
@@ -270,7 +478,7 @@ PROJECTS = {
             "from the water, and three minutes from Dixie Outlet Mall.",
             "Eleven two-storey plans from 945 to 1,710 sq ft, with private patios and "
             "access to the full Exhale amenity floor. The earliest occupancy of the "
-            "three townhome communities in this neighbourhood.",
+            "townhome communities in this neighbourhood.",
         ],
         "tables": [
             {
@@ -296,7 +504,7 @@ PROJECTS = {
         "incentives": [
             "Promotional pricing on every remaining town plan",
             "HST rebate value reflected in the pricing above",
-            "2026 occupancy &mdash; the earliest of the three townhome communities here",
+            "2026 occupancy &mdash; the earliest of the townhome communities here",
             "Full access to the Exhale amenity floor, gym and rooftop",
         ],
         "deposit": None,
@@ -314,16 +522,46 @@ PROJECTS = {
         "plans_link": ("../neighbourhoods/dixie-lakeshore.html#exhale-towns",
                        "View all 11 floor plans"),
         "source": "Current Exhale promotional pricing and the Exhale Townhome Collection plan set.",
+        "card": {
+            "image": "exhale-towns-hero",
+            "image_alt": "Exhale Townhome Collection exterior rendering",
+            "flag": ("2026 occupancy", ""),
+            "location": "1381 Lakeshore Rd E &middot; Lakeshore &amp; Dixie",
+            "specs": [("Size", "945 &ndash; 1,710 sq ft"), ("Bedrooms", "2 &ndash; 3 + den"),
+                      ("Storeys", "2 &middot; At-grade"), ("Plans", "11 available")],
+            "price": "$708,750",
+        },
+        "compare": {
+            "short": "Exhale Town Collection", "builder": "Brixen",
+            "price": "$708,750", "ceiling": "$1,282,500",
+            "size": "945 &ndash; 1,710 sq ft", "ppsf": "~$750",
+            "beds": "2 &ndash; 3 + den", "storeys": "2-storey at-grade",
+            "parking": "See sales office", "outdoor": "Patio",
+            "deposit": "See sales office",
+            "occupancy": "<span class=\"hi\">2026 &mdash; earliest</span>",
+            "fees": "See sales office",
+            "incentive": "Promotional pricing &middot; HST rebate priced in",
+            "homes": "11 town plans",
+            "dated": "current Exhale promotional pricing",
+        },
     },
 }
 
-ORDER = ["pier-house-towns", "aura-lakeview-towns", "exhale-towns"]
+# Display order everywhere: newest launch first, sold-out communities last.
+ORDER = ["south-banks", "aura-lakeview-towns", "exhale-towns", "pier-house-towns"]
 
-SIBLINGS = {
-    "pier-house-towns": "Pier House Towns",
-    "aura-lakeview-towns": "Aura Lakeview Village Towns",
-    "exhale-towns": "Exhale Townhome Collection",
-}
+SIBLINGS = {slug: PROJECTS[slug]["name"] for slug in ORDER}
+
+NUMBER_WORDS = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
+
+# Compare-table rows, in display order: (key in each project's "compare", label).
+COMPARE_ROWS = [
+    ("price", "Starting price"), ("ceiling", "Price ceiling"), ("size", "Size range"),
+    ("ppsf", "$ / sq ft (from)"), ("beds", "Bedrooms"), ("storeys", "Storeys"),
+    ("parking", "Parking"), ("outdoor", "Outdoor space"), ("deposit", "Deposit"),
+    ("occupancy", "Occupancy"), ("fees", "Monthly fees"),
+    ("incentive", "Headline incentive"), ("homes", "Total homes"),
+]
 
 
 # --------------------------------------------------------------------------
@@ -334,14 +572,14 @@ def have(name, w, ext):
     return os.path.exists(os.path.join(IMG_DIR, "%s-%d.%s" % (name, w, ext)))
 
 
-def picture(name, alt, sizes, widths, cls="", eager=False):
+def picture(name, alt, sizes, widths, cls="", eager=False, prefix="images/towns/"):
     """<picture> with AVIF + WebP sources and a JPEG fallback in <img src>."""
-    avif = ", ".join("images/towns/%s-%d.avif %dw" % (name, w, w)
+    avif = ", ".join("%s%s-%d.avif %dw" % (prefix, name, w, w)
                      for w in widths if have(name, w, "avif"))
-    webp = ", ".join("images/towns/%s-%d.webp %dw" % (name, w, w)
+    webp = ", ".join("%s%s-%d.webp %dw" % (prefix, name, w, w)
                      for w in widths if have(name, w, "webp"))
     loading = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
-    src = "images/towns/%s.jpg" % name
+    src = "%s%s.jpg" % (prefix, name)
     out = ["<picture>"]
     if avif:
         out.append('  <source type="image/avif" sizes="%s" srcset="%s">' % (sizes, avif))
@@ -368,7 +606,7 @@ def table_html(t):
     return """  <div class="tbl-block">
     <h3 class="tbl-title">%s</h3>
     <div class="tbl-scroll">
-      <table class="dt">
+      <table class="dt%s">
         <thead><tr>%s</tr></thead>
         <tbody>
 %s
@@ -377,6 +615,7 @@ def table_html(t):
     </div>%s
   </div>""" % (
         t["title"],
+        " compact" if t.get("compact") else "",
         "".join("<th>%s</th>" % c for c in t["cols"]),
         "\n".join(rows),
         note,
@@ -422,11 +661,59 @@ def build(slug, p):
         for n, a in p["gallery"])
 
     others = "\n".join(
-        '      <a class="sib" href="%s.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span>'
-        '<span class="sib-name">%s &rarr;</span></a>' % (s, SIBLINGS[s])
+        '      <a class="sib" href="%s.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore%s</span>'
+        '<span class="sib-name">%s &rarr;</span></a>'
+        % (s, " &middot; sold out" if PROJECTS[s].get("status") == "Sold out"
+           else " &middot; coming soon" if PROJECTS[s].get("status_kind") == "new" else "",
+           SIBLINGS[s])
         for s in ORDER if s != slug)
 
-    status_badge = ('<div class="hero-status">%s</div>\n    ' % p["status"]) if p.get("status") else ""
+    status_badge = ""
+    if p.get("status"):
+        kind = p.get("status_kind", "")
+        status_badge = ('<div class="hero-status%s">%s</div>\n    '
+                        % (" " + kind if kind else "", p["status"]))
+
+    logos = ""
+    if p.get("logos"):
+        logos = '      <div class="logo-row">%s</div>\n' % "".join(
+            '<img src="images/towns/%s" alt="%s" height="%d" loading="lazy" decoding="async">'
+            % (f, html.escape(alt, quote=True), h) for f, alt, h in p["logos"])
+
+    extra = []
+    if p.get("setting"):
+        v = p["setting"]
+        extra.append("""<section>
+  <div class="setting">
+    <div class="setting-media">%s</div>
+    <div>
+      <div class="sec-eyebrow">%s</div>
+      <h2 class="sec-title">%s</h2>
+%s
+    </div>
+  </div>
+</section>
+""" % (picture(v["image"], v["image_alt"], "(max-width: 1000px) 80vw, 320px", CARD_W),
+       v["eyebrow"], v["title"],
+       "\n".join("      <p>%s</p>" % t for t in v["text"])))
+    if p.get("site_plan"):
+        sp = p["site_plan"]
+        extra.append("""<section>
+  <div class="sec-eyebrow">Site plan</div>
+  <h2 class="sec-title">%s</h2>
+  <div class="siteplan">
+    <figure>%s</figure>
+    <div>
+      <h3 class="side-title">What surrounds it</h3>
+%s
+    </div>
+  </div>
+</section>
+""" % (sp["title"],
+       picture(sp["image"], sp["alt"], "(max-width: 1000px) 100vw, 56vw", [480, 800, 1280, 1920]),
+       "\n".join('      <div class="cm-row"><span class="cm-time">%s</span>'
+                 '<span class="cm-place">%s</span></div>' % r for r in sp["rows"])))
+    extra_sections = "\n".join(extra)
     hero_pic = picture(p["hero"], p["hero_alt"], "100vw", HERO_W, cls="hero-img", eager=True)
     hero_preload = ""
     if have(p["hero"], 1280, "avif"):
@@ -443,6 +730,11 @@ def build(slug, p):
         facts=facts, intro=intro, tables=tables, plans_link=plans_link,
         incentives=incentives, deposit=deposit, commute=commute,
         gallery=gallery, others=others, source=p["source"], status_badge=status_badge,
+        logos=logos, extra_sections=extra_sections,
+        pricing_title=p.get("pricing_title", "Models &amp; <em>prices</em>"),
+        incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
+        gallery_title=p.get("gallery_title", "Renderings"),
+        cta_line=p.get("cta_line", "Let&rsquo;s talk floor plans."),
         price_from=dict(p["facts"])["From"],
         name_url=quote(p["name"].replace("&amp;", "&")),
     )
@@ -491,6 +783,7 @@ TEMPLATE = """<!DOCTYPE html>
     .hero-status {{ display: inline-block; background: rgba(122,38,38,0.95); color: #fff; font-size: 0.66rem;
                     font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
                     border-radius: 2px; margin-bottom: 1rem; }}
+    .hero-status.new {{ background: rgba(201,168,76,0.96); color: #17130a; }}
     .hero-title {{ font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
                    font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }}
     .hero-tag {{ font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }}
@@ -528,6 +821,13 @@ TEMPLATE = """<!DOCTYPE html>
     table.dt tr.grp td {{ background: var(--cream); font-size: 0.66rem; letter-spacing: 0.14em;
                           text-transform: uppercase; color: var(--navy); font-weight: 600; }}
     table.dt td.num {{ color: var(--navy); font-weight: 600; white-space: nowrap; }}
+    table.dt.compact {{ min-width: 0; }}
+    @media (max-width: 700px) {{
+      table.dt.compact th, table.dt.compact td {{ padding: 0.75rem 0.6rem; font-size: 0.8rem; }}
+      table.dt.compact thead th {{ font-size: 0.6rem; letter-spacing: 0.04em; }}
+      table.dt.compact td.num {{ white-space: normal; }}
+      table.dt.compact tr.grp td {{ font-size: 0.6rem; }}
+    }}
     .tbl-note {{ font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-top: 0.85rem; }}
     .plans-link {{ margin-top: 1.5rem; }}
     .plans-link a {{ font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase;
@@ -555,7 +855,20 @@ TEMPLATE = """<!DOCTYPE html>
     .gal-item:hover img {{ transform: scale(1.03); }}
     .gal-item figcaption {{ font-size: 0.7rem; color: var(--text-muted); padding: 0.7rem 0.15rem 0; }}
 
-    .sibs {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }}
+    .sibs {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }}
+
+    .logo-row {{ display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; margin-top: 2.25rem;
+                 padding-top: 1.75rem; border-top: 1px solid var(--border); }}
+    .logo-row img {{ width: auto; opacity: 0.78; }}
+
+    .setting {{ display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 4.5rem; align-items: center; }}
+    .setting p {{ font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+                  margin-bottom: 1.15rem; max-width: 560px; }}
+    .setting-media img {{ width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; }}
+
+    .siteplan {{ display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }}
+    .siteplan figure {{ margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #e8e4dc; background: var(--cream); }}
+    .siteplan img {{ width: 100%; height: auto; aspect-ratio: 1/1; }}
     .sib {{ display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px;
             padding: 1.5rem 1.75rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }}
     .sib:hover {{ border-color: var(--gold); transform: translateY(-2px); }}
@@ -584,7 +897,9 @@ TEMPLATE = """<!DOCTYPE html>
       .facts {{ grid-template-columns: repeat(3, 1fr); }}
       .fact:nth-child(3n) {{ border-right: none; }}
       .fact:nth-child(-n+3) {{ border-bottom: 1px solid rgba(255,255,255,0.09); }}
-      .overview, .two-col {{ grid-template-columns: 1fr; gap: 2.5rem; }}
+      .overview, .two-col, .siteplan {{ grid-template-columns: 1fr; gap: 2.5rem; }}
+      .setting {{ grid-template-columns: 1fr; gap: 2.5rem; }}
+      .setting-media {{ max-width: 340px; }}
     }}
     @media (max-width: 700px) {{
       nav {{ padding: 0.8rem 1rem; gap: 0.5rem; }}
@@ -602,6 +917,8 @@ TEMPLATE = """<!DOCTYPE html>
       .fact:nth-child(3n) {{ border-right: 1px solid rgba(255,255,255,0.09); }}
       .fact:nth-child(2n) {{ border-right: none; }}
       .gal, .sibs {{ grid-template-columns: 1fr; }}
+      .logo-row {{ gap: 1.5rem; }}
+      .logo-row img {{ max-height: 22px; }}
     }}
   </style>
 </head>
@@ -635,7 +952,7 @@ TEMPLATE = """<!DOCTYPE html>
       <div class="sec-eyebrow">Overview</div>
       <h2 class="sec-title">About <em>{name}</em></h2>
 {intro}
-    </div>
+{logos}    </div>
     <div>
       <h3 class="side-title">Getting around</h3>
 {commute}
@@ -645,7 +962,7 @@ TEMPLATE = """<!DOCTYPE html>
 
 <section>
   <div class="sec-eyebrow">Pricing</div>
-  <h2 class="sec-title">Models &amp; <em>prices</em></h2>
+  <h2 class="sec-title">{pricing_title}</h2>
 {tables}{plans_link}
 </section>
 
@@ -653,7 +970,7 @@ TEMPLATE = """<!DOCTYPE html>
   <div class="two-col">
     <div>
       <div class="sec-eyebrow">What&rsquo;s included</div>
-      <h2 class="sec-title">Current <em>incentives</em></h2>
+      <h2 class="sec-title">{incentives_title}</h2>
       <ul class="inc-list">
 {incentives}
       </ul>
@@ -664,9 +981,10 @@ TEMPLATE = """<!DOCTYPE html>
   </div>
 </section>
 
+{extra_sections}
 <section>
   <div class="sec-eyebrow">Gallery</div>
-  <h2 class="sec-title">Renderings</h2>
+  <h2 class="sec-title">{gallery_title}</h2>
   <div class="gal">
 {gallery}
   </div>
@@ -674,14 +992,14 @@ TEMPLATE = """<!DOCTYPE html>
 
 <section>
   <div class="sec-eyebrow">Nearby</div>
-  <h2 class="sec-title">Compare with the <em>other two</em></h2>
+  <h2 class="sec-title">More townhomes in <em>Dixie &amp; Lakeshore</em></h2>
   <div class="sibs">
 {others}
   </div>
 </section>
 
 <div class="cta">
-  <div class="cta-h">Interested in {name}?<br><em>Let&rsquo;s talk floor plans.</em></div>
+  <div class="cta-h">Interested in {name}?<br><em>{cta_line}</em></div>
   <div class="cta-actions">
     <a href="tel:6479240848" class="btn-w">Call 647-924-0848</a>
     <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%20{name_url}." class="btn-o">Text for details</a>
@@ -709,12 +1027,214 @@ TEMPLATE = """<!DOCTYPE html>
 """
 
 
+# --------------------------------------------------------------------------
+# neighbourhood page: townhome cards + compare table
+# --------------------------------------------------------------------------
+
+NB_PAGE = os.path.join(ROOT, "neighbourhoods", "dixie-lakeshore.html")
+NB_PREFIX = "../buildings/images/towns/"
+NB_CARD_SIZES = "(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw"
+
+NB_CSS_START = "    /* towns:generated-css:start (scripts/build_town_pages.py) */"
+NB_CSS_END = "    /* towns:generated-css:end */"
+NB_CSS = NB_CSS_START + """
+    .proj-flag.new { background: rgba(255,255,255,0.96); color: #002244; font-weight: 600; }
+    .proj-card.is-new { border-color: #d8cfb8; }
+    .proj-grid.n4 { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .proj-grid.n4 .proj-name { font-size: 1.45rem; }
+    .proj-grid.n4 .proj-body { padding: 1.25rem 1.25rem 1.35rem; }
+    @media (max-width: 1399px) {
+      .proj-grid.n4 { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+      .proj-grid.n4 .proj-name { font-size: 1.6rem; }
+      .proj-grid.n4 .proj-body { padding: 1.4rem 1.5rem 1.5rem; }
+    }
+    @media (max-width: 700px) { .proj-grid.n4 { grid-template-columns: 1fr; } }
+    table.cmp.n4 { min-width: 1020px; }
+    table.cmp .cmp-mini { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.74rem; margin-top: 0.15rem; }
+    table.cmp th.is-new { background: #0b3358; }
+    /* phones: keep the row labels pinned while the communities scroll sideways */
+    @media (max-width: 700px) {
+      table.cmp th, table.cmp td { padding: 0.8rem 0.85rem; }
+      table.cmp td:first-child, table.cmp th:first-child {
+        position: sticky; left: 0; z-index: 2; white-space: normal;
+        width: 86px; min-width: 86px; max-width: 86px;
+        font-size: 0.56rem; letter-spacing: 0.08em; box-shadow: 1px 0 0 #e6e1d6; }
+      table.cmp thead th:first-child { z-index: 3; }
+      table.cmp tbody td:first-child { background: #fff; }
+      table.cmp tbody tr:nth-child(even) td:first-child { background: #fbf9f5; }
+      table.cmp.n4 { min-width: 880px; }
+      .cmp-scroll { scroll-snap-type: x proximity; scroll-padding-left: 86px; }
+      table.cmp thead th:not(:first-child) { scroll-snap-align: start; }
+    }
+""" + NB_CSS_END
+
+
+def _price_number(text):
+    digits = "".join(ch for ch in text.split("<")[0] if ch.isdigit())
+    return int(digits) if digits else None
+
+
+def townhomes_section():
+    """The whole <section id="townhomes"> block: cards, then the compare table."""
+    n = len(ORDER)
+    word = NUMBER_WORDS.get(n, str(n))
+    sold = [s for s in ORDER if PROJECTS[s].get("status") == "Sold out"]
+    upcoming = [s for s in ORDER if PROJECTS[s].get("status_kind") == "new"]
+    selling = n - len(sold) - len(upcoming)
+    tally = "%d selling now" % selling
+    if upcoming:
+        tally += " &middot; %d launching" % len(upcoming)
+
+    cards = []
+    for slug in ORDER:
+        p, c = PROJECTS[slug], PROJECTS[slug]["card"]
+        flag_text, flag_kind = c["flag"]
+        is_sold = p.get("status") == "Sold out"
+        classes = "proj-card" + (" is-sold" if is_sold else "") + (" is-new" if flag_kind == "new" else "")
+        specs = "\n".join(
+            '          <div><div class="proj-spec-lbl">%s</div><div class="proj-spec-val">%s</div></div>'
+            % kv for kv in c["specs"])
+        cards.append("""    <a class="%s" href="../buildings/%s.html">
+      <div class="proj-img">
+        %s
+        <span class="proj-flag%s">%s</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-builder">%s</div>
+        <div class="proj-name">%s</div>
+        <div class="proj-loc">%s</div>
+        <div class="proj-specs">
+%s
+        </div>
+        <div class="proj-foot">
+          <div><div class="proj-price-lbl">Starting from</div><div class="proj-price">%s</div></div>
+          <span class="proj-go">View &rarr;</span>
+        </div>
+      </div>
+    </a>""" % (classes, slug,
+               picture(c["image"], c["image_alt"], NB_CARD_SIZES, CARD_W,
+                       prefix=NB_PREFIX).replace("\n      ", ""),
+               " " + flag_kind if flag_kind else "", flag_text,
+               p["builder"], p["name"], c["location"], specs, c["price"]))
+
+    # lowest starting price among communities you can still buy in
+    live = {s: _price_number(PROJECTS[s]["compare"]["price"]) for s in ORDER if s not in sold}
+    lowest = min((v, s) for s, v in live.items() if v)[1] if any(live.values()) else None
+
+    head = "".join(
+        '\n            <th%s>%s<small>%s%s</small></th>'
+        % (' class="is-new"' if PROJECTS[s].get("status_kind") == "new" else "",
+           PROJECTS[s]["compare"]["short"], PROJECTS[s]["compare"]["builder"],
+           " &middot; Sold out" if s in sold else "")
+        for s in ORDER)
+
+    rows = []
+    for key, label in COMPARE_ROWS:
+        cells = []
+        for s in ORDER:
+            val = PROJECTS[s]["compare"][key]
+            if key == "price":
+                if s in sold:
+                    cells.append('<td class="hi" style="color:#7a2626;">Sold out'
+                                 '<span class="cmp-mini">was %s</span></td>' % val)
+                else:
+                    cells.append('<td class="hi%s">%s</td>'
+                                 % (" cmp-best" if s == lowest else "", val))
+            else:
+                cells.append("<td>%s</td>" % val)
+        rows.append("          <tr>\n            <td>%s</td>\n            %s\n          </tr>"
+                    % (label, "\n            ".join(cells)))
+
+    dated = [PROJECTS[s]["compare"]["dated"] for s in ORDER]
+    note = ("Figures from builder price lists dated " + ", ".join(dated[:-1]) + " and " + dated[-1]
+            + ". $/sq ft is calculated from the starting price and smallest plan. Prices, "
+              "incentives and availability change without notice &mdash; confirm with the sales "
+              "office before relying on any figure. E.&amp;O.E.")
+
+    return """<section class="cat-band" id="townhomes">
+  <div class="cat-head">
+    <div>
+      <div class="cat-eyebrow">In this neighbourhood</div>
+      <h2 class="cat-title">Town<em>homes</em></h2>
+      <p class="cat-sub">Ground-related living on the Mississauga waterfront &mdash; rooftop terraces, private garages and outdoor space, minutes from the lake.</p>
+    </div>
+    <div class="cat-count"><b>%d</b>Communities &middot; %s</div>
+  </div>
+
+  <div class="proj-grid n%d">
+
+%s
+
+  </div>
+
+  <!-- ============ COMPARE ============ -->
+  <div class="cmp-wrap" id="compare">
+    <div class="cmp-title">Compare all <em>%s</em></div>
+    <div class="cmp-sub">Side by side, from the current builder price lists.</div>
+    <div class="cmp-scroll">
+      <table class="cmp n%d">
+        <thead>
+          <tr>
+            <th></th>%s
+          </tr>
+        </thead>
+        <tbody>
+%s
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">%s</p>
+  </div>
+</section>""" % (n, tally, n, "\n\n".join(cards), word, n, head, "\n".join(rows), note)
+
+
+def update_neighbourhood():
+    """Regenerate the townhome section of the Dixie & Lakeshore page in place."""
+    import re
+    src = open(NB_PAGE, encoding="utf-8").read()
+    start = src.find('<section class="cat-band" id="townhomes">')
+    end = src.find("</section>", start)
+    if start == -1 or end == -1:
+        raise SystemExit("dixie-lakeshore.html: townhomes section not found "
+                         "(run scripts/build_dixie_lakeshore.py first)")
+    src = src[:start] + townhomes_section() + src[end + len("</section>"):]
+
+    # generated CSS block: replace if present, otherwise append to the page <style>
+    if NB_CSS_START in src:
+        a = src.find(NB_CSS_START)
+        b = src.find(NB_CSS_END, a) + len(NB_CSS_END)
+        src = src[:a] + NB_CSS + src[b:]
+    else:
+        src = src.replace("</style>", NB_CSS + "\n</style>", 1)
+
+    n = len(ORDER)
+    word = NUMBER_WORDS.get(n, str(n)).capitalize()
+    src = re.sub(r'(<div class="hero-nb-stat-val">)\d+(</div><div class="hero-nb-stat-lbl">Communities)',
+                 r"\g<1>%d\2" % (n + 1), src)          # townhome communities + the Exhale condo tower
+    src = re.sub(r'(<div class="hero-nb-stat-val">)\d+(</div><div class="hero-nb-stat-lbl">Townhome projects)',
+                 r"\g<1>%d\2" % n, src)
+    src = re.sub(r'(Townhomes<span class="sec-nav-count">)\d+(</span>)', r"\g<1>%d\2" % n, src)
+    src = re.sub(r"\b(Two|Three|Four|Five|Six|Seven|Eight) new townhome communities",
+                 "%s new townhome communities" % word, src)
+    open(NB_PAGE, "w", encoding="utf-8").write(src)
+    print("  updated neighbourhoods/dixie-lakeshore.html  (%d townhome communities)" % n)
+
+    # homepage card
+    index = os.path.join(ROOT, "index.html")
+    html_src = open(index, encoding="utf-8").read()
+    new_src = re.sub(r"\d+ town communities", "%d town communities" % n, html_src)
+    if new_src != html_src:
+        open(index, "w", encoding="utf-8").write(new_src)
+        print("  updated index.html")
+
+
 def main():
     for slug in ORDER:
         path = os.path.join(OUT_DIR, slug + ".html")
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(build(slug, PROJECTS[slug]))
         print("  wrote buildings/%s.html  (%.1f KB)" % (slug, os.path.getsize(path) / 1024))
+    update_neighbourhood()
 
 
 if __name__ == "__main__":
