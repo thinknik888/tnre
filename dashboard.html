@@ -25,6 +25,9 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
 .wl-src{display:inline-block;padding:2px 7px;border-radius:3px;background:rgba(0,34,68,.06);font-size:11px;white-space:nowrap}
 .wl-when{white-space:nowrap;color:rgba(0,34,68,.6)}
 .wl-empty{opacity:.45;text-align:center;padding:34px 16px !important}
+.wl-del{width:26px;height:26px;border-radius:50%;border:0.5px solid rgba(0,34,68,.18);background:#fff;color:rgba(0,34,68,.45);font-size:15px;line-height:1;cursor:pointer;transition:all .15s}
+.wl-del:hover{background:#b84545;border-color:#b84545;color:#fff}
+.wl-del:disabled{opacity:.4;cursor:default}
 @media(max-width:700px){.wl-table{font-size:12.5px}.wl-table th,.wl-table td{padding:11px 12px}}
 /* PASSWORD GATE */
 #gate{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px}
@@ -843,8 +846,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </div>
       <div class="wl-wrap">
         <table class="wl-table">
-          <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Project</th><th>Came from</th><th>When</th></tr></thead>
-          <tbody id="leads-body"><tr><td colspan="6" class="wl-empty">Loading&hellip;</td></tr></tbody>
+          <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Project</th><th>Came from</th><th>When</th><th></th></tr></thead>
+          <tbody id="leads-body"><tr><td colspan="7" class="wl-empty">Loading&hellip;</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -1221,6 +1224,16 @@ function updateSalesTotalLeads(){
 }
 function wlEsc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function wlAgo(d){const m=Math.round((Date.now()-d)/60000);if(m<1)return'just now';if(m<60)return m+' min ago';const h=Math.round(m/60);if(h<24)return h+' hr ago';const dd=Math.round(h/24);return dd<8?dd+' day'+(dd>1?'s':'')+' ago':d.toLocaleDateString('en-CA',{month:'short',day:'numeric',year:'numeric'});}
+async function wlDelete(btn){
+  const d=btn.dataset;
+  if(!confirm('Remove '+(d.name||'this lead')+' from your leads? This cannot be undone.'))return;
+  btn.disabled=true;
+  try{
+    const r=await dashFetch('/.netlify/functions/delete-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:d.name,phone:d.phone,date:d.date})});
+    if(!r.ok)throw new Error(r.status);
+    toast('Lead removed');fetchLeads();
+  }catch(e){btn.disabled=false;toast('Could not remove lead');}
+}
 async function fetchLeads(){
   const tbody=document.getElementById('leads-body');
   try{
@@ -1247,13 +1260,14 @@ async function fetchLeads(){
           +'<td>'+(r.email?'<a href="mailto:'+wlEsc(r.email)+'">'+wlEsc(r.email)+'</a>':'<span style="opacity:.35">—</span>')+'</td>'
           +'<td>'+wlEsc(r.building||'—')+'</td>'
           +'<td>'+(src?'<span class="wl-src">'+wlEsc(src)+'</span>':'<span style="opacity:.35">website</span>')+'</td>'
-          +'<td class="wl-when" title="'+(r._d?wlEsc(r._d.toLocaleString()):'')+'">'+(r._d?wlAgo(r._d):'—')+'</td></tr>';
-      }).join(''):'<tr><td colspan="6" class="wl-empty">No leads yet — your first registration will appear here.</td></tr>';
+          +'<td class="wl-when" title="'+(r._d?wlEsc(r._d.toLocaleString()):'')+'">'+(r._d?wlAgo(r._d):'—')+'</td>'
+          +'<td><button class="wl-del" title="Remove this lead" onclick="wlDelete(this)" data-name="'+wlEsc(r.name||'')+'" data-phone="'+wlEsc(r.phone||'')+'" data-date="'+wlEsc(r.date||'')+'">&times;</button></td></tr>';
+      }).join(''):'<tr><td colspan="7" class="wl-empty">No leads yet — your first registration will appear here.</td></tr>';
     }
     try{dot('dot-leads',true);}catch(e){}
   }catch(err){
     console.error('Leads error:',err);
-    if(tbody)tbody.innerHTML='<tr><td colspan="6" class="wl-empty">Could not load leads. Click Refresh to try again.</td></tr>';
+    if(tbody)tbody.innerHTML='<tr><td colspan="7" class="wl-empty">Could not load leads. Click Refresh to try again.</td></tr>';
     try{dot('dot-leads',false);}catch(e){}
   }
 }
