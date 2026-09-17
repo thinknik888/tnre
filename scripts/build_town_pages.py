@@ -180,6 +180,7 @@ PROJECTS = {
     "aura-lakeview-towns": {
         "name": "Aura Lakeview Village Towns",
         "builder": "Caivan",
+        "status": "Sold out",
         "tagline": "Exceptional lakeside townhomes.",
         "address": "Lakeshore Rd E between Cawthra Rd &amp; Dixie Rd, Mississauga",
         "area": "Lakeview Village",
@@ -273,7 +274,7 @@ PROJECTS = {
         "card": {
             "image": "aura-hero",
             "image_alt": "Aura Lakeview Village Towns exterior rendering",
-            "flag": ("Lowest entry price", "gold"),
+            "flag": ("Sold out", "sold"),
             "location": "Lakeview Village &middot; Lakeshore Rd E between Cawthra &amp; Dixie",
             "specs": [("Size", "811 &ndash; 1,138 sq ft"), ("Bedrooms", "2 &ndash; 3"),
                       ("Storeys", "2 &middot; Urban town"), ("Parking", "1 underground")],
@@ -567,7 +568,7 @@ PROJECTS = {
 }
 
 # Display order everywhere: newest launch first, sold-out communities last.
-ORDER = ["south-banks", "aura-lakeview-towns", "exhale-towns", "pier-house-towns"]
+ORDER = ["south-banks", "exhale-towns", "aura-lakeview-towns", "pier-house-towns"]
 
 SIBLINGS = {slug: PROJECTS[slug]["name"] for slug in ORDER}
 
@@ -810,7 +811,8 @@ def build(slug, p):
         pricing_title=p.get("pricing_title", "Models &amp; <em>prices</em>"),
         incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
         gallery_title=p.get("gallery_title", "Renderings"),
-        cta_line=p.get("cta_line", "Let&rsquo;s talk floor plans."),
+        cta_line=p.get("cta_line", "Sold out &mdash; ask what&rsquo;s coming next nearby."
+                       if p.get("status") == "Sold out" else "Let&rsquo;s talk floor plans."),
         price_from=dict(p["facts"])["From"],
         name_url=quote(p["name"].replace("&amp;", "&")),
     )
@@ -1202,6 +1204,8 @@ def townhomes_section():
     tally = "%d selling now" % selling
     if upcoming:
         tally += " &middot; %d launching" % len(upcoming)
+    if sold:
+        tally += " &middot; %d sold out" % len(sold)
 
     cards = []
     for slug in ORDER:
