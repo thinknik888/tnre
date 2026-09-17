@@ -1,9 +1,6 @@
 const { createClient } = require('@supabase/supabase-js');
 
-const SUPA_URL = 'https://nxuuxmvlttncgqypalnr.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvbmRjaWdua2F6dHFwbmtoZXRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODU3OTksImV4cCI6MjA4OTc2MTc5OX0.Knm6uXfHjQdi57Y1AEeD8RPuhyogMRAhIvBn6BFJSxk';
-const DASH_EMAIL = 'nikhiloberoi80@gmail.com';
-const DASH_PASS = 'condos2026';
+const supa = require('../lib/dash-supabase');
 const RENTAL_TAGS = ['RENTAL INQUIRY - SLOANE-LINKED', 'RENTAL INQUIRY - ELM-LINKED'];
 const CAMPAIGN = 'rentals';
 
@@ -48,10 +45,15 @@ exports.handler = async function(event) {
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Toronto' });
 
     // Sign into Supabase as dashboard user
-    const sb = createClient(SUPA_URL, SUPA_KEY);
-    const { data: authData, error: authErr } = await sb.auth.signInWithPassword({ email: DASH_EMAIL, password: DASH_PASS });
-    if (authErr) { console.error('fub-call-webhook: Supabase auth failed', authErr.message); return ok; }
-    const userId = authData.user.id;
+    let session;
+    try { session = await supa.signIn(); }
+    catch (authErr) { console.error('fub-call-webhook: Supabase auth failed', authErr.message); return ok; }
+    const cfg = supa.config();
+    const sb = createClient(cfg.url, cfg.anon, {
+      auth: { persistSession: false, autoRefreshToken: false },
+      global: { headers: { Authorization: 'Bearer ' + session.access_token } }
+    });
+    const userId = session.user.id;
 
     // Fetch existing row for today
     const { data: existing } = await sb.from('pipeline_activity')

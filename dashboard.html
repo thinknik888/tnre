@@ -976,6 +976,11 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="field"><label>Google Ads Token</label><input id="s-google-token" placeholder="Paste Google Ads token"></div>
     <div class="field"><label>Google Ads Account ID</label><input id="s-google-account" placeholder="123-456-7890"></div>
     <div class="field"><label>SMS Phone Number</label><input id="s-sms-phone" placeholder="+1 (416) 555-0100"></div>
+    <div class="field" style="border-top:1px solid rgba(0,34,68,.12);padding-top:14px;margin-top:6px">
+      <label>Database security</label>
+      <div style="font-size:12px;line-height:1.5;opacity:.75;margin-bottom:8px" id="dbSecStatus">Checking&hellip;</div>
+      <button type="button" class="btn-save" id="dbSecBtn" onclick="rotateDbPassword()" style="width:100%">Secure database login</button>
+    </div>
     <div class="settings-actions">
       <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
       <button class="btn-save" onclick="saveSettings()">Save &amp; Connect</button>
@@ -993,26 +998,45 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 const SUPA_URL='https://nxuuxmvlttncgqypalnr.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dXV4bXZsdHRuY2dxeXBhbG5yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2OTk3MDYsImV4cCI6MjA5NTI3NTcwNn0.DJKNLxpb2FV32O0U5MinKHedMUX-LnWnUNZOqwWngU8';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
-const DASH_EMAIL='nikhiloberoi80@gmail.com';
-const DASH_PASS='condos2026';
 let currentUserId=null;
 
 // ═══════════════════════════════════════════════════════════
 // PASSWORD GATE + SUPABASE AUTH
 // ═══════════════════════════════════════════════════════════
+// The password is checked on the server (netlify/functions/dash-login). This page
+// holds no password and no database credentials -- only a signed session token.
+const DASH_TOKEN_KEY='tnre_dash_token';
+function dashToken(){return localStorage.getItem(DASH_TOKEN_KEY)||'';}
+function dashSignedOut(){localStorage.removeItem(DASH_TOKEN_KEY);localStorage.removeItem('tnre_dash_auth');}
+// fetch() for private functions: adds the session token, and bounces to the
+// login screen if the server says the session is no longer valid.
+async function dashFetch(url,opts){
+  opts=opts||{};
+  opts.headers=Object.assign({'x-dash-token':dashToken()},opts.headers||{});
+  const res=await fetch(url,opts);
+  if(res.status===401){dashSignedOut();location.reload();}
+  return res;
+}
 async function checkPassword(){
-  if(document.getElementById('gatePw').value!=='condos2026'){
-    document.getElementById('gateErr').textContent='Incorrect password';
-    return;
+  const err=document.getElementById('gateErr');
+  err.textContent='Signing in\u2026';
+  let res,data;
+  try{
+    res=await fetch('/.netlify/functions/dash-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('gatePw').value})});
+    data=await res.json();
+  }catch(e){err.textContent='Could not reach the server. Try again.';return;}
+  if(res.status===401){err.textContent='Incorrect password';return;}
+  if(!res.ok||!data.token){err.textContent='Sign-in error ('+res.status+')';return;}
+  localStorage.setItem(DASH_TOKEN_KEY,data.token);
+  if(data.supabase){
+    const{data:sd,error}=await sb.auth.setSession(data.supabase);
+    if(error){err.textContent='Auth error: '+error.message;return;}
+    currentUserId=sd.user.id;
+  }else{
+    err.textContent=data.supabase_error||'Database sign-in failed';return;
   }
-  document.getElementById('gateErr').textContent='Signing in…';
-  const{data,error}=await sb.auth.signInWithPassword({email:DASH_EMAIL,password:DASH_PASS});
-  if(error){
-    document.getElementById('gateErr').textContent='Auth error: '+error.message;
-    return;
-  }
-  currentUserId=data.user.id;
   localStorage.setItem('tnre_dash_auth','true');
+  document.getElementById('gatePw').value='';
   document.getElementById('gate').style.display='none';
   document.getElementById('app').style.display='block';
   initAll();
@@ -1021,7 +1045,7 @@ async function checkPassword(){
 // Check for existing Supabase session on page load
 (async function(){
   const{data:{session}}=await sb.auth.getSession();
-  if(session&&session.user){
+  if(session&&session.user&&dashToken()){
     currentUserId=session.user.id;
     document.getElementById('gate').style.display='none';
     document.getElementById('app').style.display='block';
@@ -1040,7 +1064,7 @@ function togglePassword(){
   btn.title=show?'Hide password':'Show password';
   btn.style.color=show?'var(--gold)':'rgba(0,34,68,.5)';
 }
-async function logout(){await sb.auth.signOut();localStorage.removeItem('tnre_dash_auth');location.reload();}
+async function logout(){await sb.auth.signOut();dashSignedOut();location.reload();}
 
 // ═══════════════════════════════════════════════════════════
 // TAB NAV
@@ -1071,8 +1095,32 @@ function initAll(){
 // ═══════════════════════════════════════════════════════════
 const KEYS=['meta-token','meta-account','google-token','google-account','sms-phone'];
 function loadKeys(){const o={};KEYS.forEach(k=>o[k]=localStorage.getItem('tnre_'+k)||'');return o;}
-function openSettings(){const k=loadKeys();KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);document.getElementById('settings').style.display='block';}
+function openSettings(){dbSecRefresh();const k=loadKeys();KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);document.getElementById('settings').style.display='block';}
 function closeSettings(){document.getElementById('settings').style.display='none'}
+// Gives the database its own long random password, separate from the dashboard
+// password. Generated here in your browser, stored only on the server.
+async function dbSecRefresh(){
+  const el=document.getElementById('dbSecStatus'),btn=document.getElementById('dbSecBtn');if(!el)return;
+  try{const r=await dashFetch('/.netlify/functions/dash-rotate');const d=await r.json();
+    el.textContent=d.rotated?'Secured: the database has its own private password, known only to the server.':'Not secured yet: the database still uses an old password that was once public. Click below to replace it.';
+    btn.textContent=d.rotated?'Rotate again':'Secure database login';
+  }catch(e){el.textContent='Could not check status.';}
+}
+async function rotateDbPassword(){
+  const el=document.getElementById('dbSecStatus'),btn=document.getElementById('dbSecBtn');
+  btn.disabled=true;el.textContent='Working\u2026';
+  const post=b=>dashFetch('/.netlify/functions/dash-rotate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+  try{
+    const bytes=crypto.getRandomValues(new Uint8Array(36));
+    const pw=btoa(String.fromCharCode.apply(null,bytes)).replace(/[^A-Za-z0-9]/g,'').slice(0,40)+'aA1!';
+    let r=await post({stage:'pending',password:pw});if(!r.ok)throw new Error('server refused ('+r.status+')');
+    const{error}=await sb.auth.updateUser({password:pw});
+    if(error){await post({stage:'abort'});throw new Error(error.message);}
+    r=await post({stage:'commit'});if(!r.ok)throw new Error('could not confirm ('+r.status+')');
+    toast('Database login secured');
+  }catch(e){el.textContent='Failed: '+e.message;btn.disabled=false;return;}
+  btn.disabled=false;dbSecRefresh();
+}
 function saveSettings(){KEYS.forEach(key=>localStorage.setItem('tnre_'+key,document.getElementById('s-'+key).value.trim()));closeSettings();toast('Settings saved');refreshAll();}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
@@ -1128,7 +1176,7 @@ function updateSalesTotalLeads(){
 }
 async function fetchLeads(){
   try{
-    const res=await fetch('/.netlify/functions/get-leads');const leads=await res.json();
+    const res=await dashFetch('/.netlify/functions/get-leads');const leads=await res.json();
     _netlifyLeadCount=leads.length;
     updateSalesTotalLeads();
     const tbody=document.getElementById('leads-body');tbody.innerHTML='';
@@ -1139,7 +1187,7 @@ async function fetchLeads(){
 }
 async function fetchSalesLeadCount(){
   try{
-    const res=await fetch('/.netlify/functions/get-sales-leads');const leads=await res.json();
+    const res=await dashFetch('/.netlify/functions/get-sales-leads');const leads=await res.json();
     _fubSalesLeadCount=leads.length;
     updateSalesTotalLeads();
   }catch(err){console.error('Sales leads count error:',err);}
@@ -1215,7 +1263,7 @@ let rentalSupaTotals={dials:0,contacts:0,engaged:0,appt_booked:0,appt_completed:
 
 async function fetchRentalLeads(){
   try{
-    const res=await fetch('/.netlify/functions/get-rental-leads');
+    const res=await dashFetch('/.netlify/functions/get-rental-leads');
     const leads=await res.json();
     rentalAdLeads=leads.length;
     const el=document.getElementById('mr-leads');
@@ -1297,7 +1345,7 @@ async function fetchRentalDeals(){
   const totalEl=document.getElementById('rental-deals-total');
   const totalVal=document.getElementById('rental-deals-total-val');
   try{
-    const res=await fetch('/.netlify/functions/get-rental-deals');
+    const res=await dashFetch('/.netlify/functions/get-rental-deals');
     const deals=await res.json();
     tbody.innerHTML='';
     if(!deals.length){
@@ -1330,7 +1378,7 @@ async function fetchSalesDeals(){
   const totalEl=document.getElementById('sales-deals-total');
   const totalVal=document.getElementById('sales-deals-total-val');
   try{
-    const res=await fetch('/.netlify/functions/get-sales-deals');
+    const res=await dashFetch('/.netlify/functions/get-sales-deals');
     const deals=await res.json();
     tbody.innerHTML='';
     if(!deals.length){
@@ -1669,7 +1717,6 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
 // CLIENTS TAB
 // ═══════════════════════════════════════════════════════════
 (function(){
-  var DASH_SECRET='condos2026';
   var state = {
     clients: [],
     settings: {default_commission_percent:2.5, default_brokerage_split_percent:20},
@@ -1761,8 +1808,8 @@ window.addEventListener('resize',()=>{if(currentTab==='habits'&&d1Tab==='tracker
 
   async function api(fn, opts){
     opts = opts || {};
-    opts.headers = Object.assign({'Content-Type':'application/json','x-dash-secret':DASH_SECRET}, opts.headers||{});
-    var res = await fetch('/.netlify/functions/'+fn, opts);
+    opts.headers = Object.assign({'Content-Type':'application/json'}, opts.headers||{});
+    var res = await dashFetch('/.netlify/functions/'+fn, opts);
     if(!res.ok){
       var text = await res.text().catch(function(){return '';});
       throw new Error(fn+' '+res.status+' '+text);

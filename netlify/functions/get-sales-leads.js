@@ -1,13 +1,16 @@
+var dashAuth = require('../lib/dash-auth');
+
 exports.handler = async function(event) {
   const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type, x-dash-token',
     'Access-Control-Allow-Methods': 'GET, OPTIONS'
   };
 
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 204, headers, body: '' };
   }
+  if (!dashAuth.isAuthorized(event)) return { statusCode: 401, headers, body: JSON.stringify({ error: 'Unauthorized' }) };
 
   const apiKey = process.env.FUB_API_KEY;
   if (!apiKey) {

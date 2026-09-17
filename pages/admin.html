@@ -55,8 +55,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <script>
     function authenticate() {
       var key = document.getElementById('admin-key').value;
-      fetch('/.netlify/functions/get-leads?key=' + encodeURIComponent(key))
-        .then(function(r) { return r.json(); })
+      // Checked on the server; the key is sent in the request body, never in a URL.
+      fetch('/.netlify/functions/dash-login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: key }) })
+        .then(function(r) { return r.json().then(function(d) { d.authenticated = r.ok && !!d.token; return d; }); })
         .then(function(data) {
           if (data.authenticated) {
             document.getElementById('login').style.display = 'none';

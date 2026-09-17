@@ -1,8 +1,9 @@
 var { getStore } = require('@netlify/blobs');
+var auth = require('../lib/dash-auth');
 
 var corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': 'Content-Type, x-dash-token',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
   'Content-Type': 'application/json'
 };
@@ -11,6 +12,7 @@ exports.handler = async function(event) {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers: corsHeaders, body: '' };
   }
+  if (!auth.isAuthorized(event)) return { statusCode: 401, headers: corsHeaders, body: JSON.stringify({ error: 'Unauthorized' }) };
   if (event.httpMethod !== 'GET') {
     return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
