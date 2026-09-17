@@ -26,6 +26,13 @@ exports.handler = async function(event) {
   var phone = body.phone || '';
   var building = body.building || 'Unknown';
   var date = body.date || new Date().toISOString();
+  // Optional extras (the project registration forms send these; older callers don't).
+  var email = String(body.email || '').trim().slice(0, 160);
+  var campaign = String(body.utm_campaign || '').trim().slice(0, 80);
+  var adSource = String(body.utm_source || '').trim().slice(0, 40);
+  if (body.website) {           // honeypot field: real people never fill it in
+    return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ success: true }) };
+  }
 
   if (!name || !phone) {
     return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Name and phone required' }) };
@@ -48,7 +55,11 @@ exports.handler = async function(event) {
       existing = raw;
     }
 
-    existing.push({ name: name, phone: phone, building: building, date: date });
+    var record = { name: name, phone: phone, building: building, date: date };
+    if (email) record.email = email;
+    if (campaign) record.campaign = campaign;
+    if (adSource) record.source = adSource;
+    existing.push(record);
     await store.setJSON('leads', existing);
 
     console.log('save-lead: saved lead #' + existing.length, { name: name, building: building });
@@ -68,6 +79,9 @@ exports.handler = async function(event) {
           source: 'condosaround.com',
           tags: ['condosaround', 'condosaround - ' + building]
         };
+        if (email) fubPayload.emails = [{ value: email }];
+        if (adSource) fubPayload.tags.push('ad - ' + adSource);
+        if (campaign) fubPayload.tags.push('campaign - ' + campaign);
         var fubRes = await fetch('https://api.followupboss.com/v1/people', {
           method: 'POST',
           headers: { 'Authorization': fubAuth, 'Content-Type': 'application/json', 'Accept': 'application/json' },

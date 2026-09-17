@@ -337,6 +337,14 @@ PROJECTS = {
             ("south-banks-deco-logo.png", "DECO Homes", 30),
             ("south-banks-opus-logo.png", "OPUS Homes", 26),
         ],
+        # Registration form (leads -> dashboard + Follow Up Boss via save-lead).
+        "register": {
+            "title": "Get the price list <em>the day it&rsquo;s released</em>",
+            "text": "Floor plans and full pricing for South Banks come out September 22. "
+                    "Leave your details and you&rsquo;ll get them first, straight from Nikhil.",
+            "button": "Send me the price list",
+            "hero_button": "Register for the price list",
+        },
         "pricing_title": "Expected <em>pricing</em>",
         "tables": [
             {
@@ -774,6 +782,15 @@ def build(slug, p):
             '<img src="images/towns/%s" alt="%s" height="%d" loading="lazy" decoding="async">'
             % (f, html.escape(alt, quote=True), h) for f, alt, h in p["logos"])
 
+    register_section = hero_cta = ""
+    if p.get("register"):
+        rg = p["register"]
+        hero_cta = '\n    <a class="hero-cta" href="#register">%s &rarr;</a>' % rg["hero_button"]
+        register_section = REGISTER_HTML % {
+            "title": rg["title"], "text": rg["text"], "button": rg["button"],
+            "building": html.escape(p["name"].replace("&amp;", "&"), quote=True),
+        }
+
     extra = []
     if p.get("deposit_example"):
         extra.append(deposit_example_html(p["deposit_example"]))
@@ -828,6 +845,7 @@ def build(slug, p):
         facts=facts, intro=intro, tables=tables, plans_link=plans_link,
         incentives=incentives, deposit=deposit, commute=commute,
         gallery=gallery, others=others, source=p["source"], status_badge=status_badge,
+        register_section=register_section, hero_cta=hero_cta,
         logos=logos, extra_sections=extra_sections, pixel=META_PIXEL, hero_class=" split" if split else "",
         pricing_title=p.get("pricing_title", "Models &amp; <em>prices</em>"),
         incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
@@ -837,6 +855,62 @@ def build(slug, p):
         price_from=dict(p["facts"])["From"],
         name_url=quote(p["name"].replace("&amp;", "&")),
     )
+
+
+REGISTER_HTML = """
+<section class="reg" id="register">
+  <div class="reg-inner">
+    <div class="reg-copy">
+      <div class="sec-eyebrow">Register</div>
+      <h2 class="sec-title">%(title)s</h2>
+      <p>%(text)s</p>
+    </div>
+    <form class="reg-form" id="reg-form" novalidate>
+      <label>Full name<input type="text" name="name" autocomplete="name" required></label>
+      <label>Phone<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required></label>
+      <label>Email <span>(optional)</span><input type="email" name="email" autocomplete="email"></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="reg-hp">
+      <button type="submit">%(button)s</button>
+      <p class="reg-msg" id="reg-msg" role="status"></p>
+      <p class="reg-fine">No spam. Your details go only to Nikhil Oberoi, the broker behind CondosAround.</p>
+    </form>
+    <div class="reg-done" id="reg-done" hidden>
+      <div class="reg-done-mark">&#10003;</div>
+      <h3>You&rsquo;re on the list.</h3>
+      <p>You&rsquo;ll get the price list and floor plans as soon as they&rsquo;re released. Questions before then? Call or text <a href="tel:6479240848">647-924-0848</a>.</p>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('reg-form');
+  if (!form) return;
+  var msg = document.getElementById('reg-msg');
+  var qs = new URLSearchParams(location.search);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim(), phone = form.phone.value.trim(), email = form.email.value.trim();
+    if (name.length < 2) { msg.textContent = 'Please enter your name.'; form.name.focus(); return; }
+    if (phone.replace(/\\D/g, '').length < 10) { msg.textContent = 'Please enter a 10-digit phone number.'; form.phone.focus(); return; }
+    var btn = form.querySelector('button'); btn.disabled = true; msg.textContent = 'Sending\u2026';
+    fetch('/.netlify/functions/save-lead', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, phone: phone, email: email, building: '%(building)s',
+        date: new Date().toISOString(), website: form.website.value,
+        utm_source: qs.get('utm_source') || '', utm_campaign: qs.get('utm_campaign') || '' })
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      try { localStorage.setItem('ca_registered', 'true'); } catch (err) {}
+      if (window.fbq) fbq('track', 'Lead', { content_name: '%(building)s' });
+      form.hidden = true; document.getElementById('reg-done').hidden = false;
+    }).catch(function () {
+      btn.disabled = false;
+      msg.textContent = 'That did not go through. Please try again, or text 647-924-0848.';
+    });
+  });
+})();
+</script>
+"""
 
 
 TEMPLATE = """<!DOCTYPE html>
@@ -903,6 +977,40 @@ TEMPLATE = """<!DOCTYPE html>
       .hero.split .hero-addr {{ font-size: 0.95rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.14); max-width: 460px; }}
       .hero.split .hero-status {{ align-self: flex-start; }}
     }}
+
+    .hero-cta {{ display: inline-block; margin-top: 1.6rem; background: var(--gold); color: #17130a; text-decoration: none;
+                 font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+                 padding: 0.95rem 1.7rem; border-radius: 2px; align-self: flex-start; transition: background 0.2s; }}
+    .hero-cta:hover {{ background: #d6b85e; }}
+
+    section.reg {{ background: var(--cream); padding-top: 3.5rem; padding-bottom: 3.5rem; scroll-margin-top: 70px; }}
+    .reg-inner {{ display: grid; grid-template-columns: 1fr 1.05fr; gap: 4rem; align-items: center; max-width: 1180px; }}
+    .reg-copy .sec-title {{ margin-bottom: 1rem; }}
+    .reg-copy p {{ font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 460px; }}
+    .reg-form, .reg-done {{ background: #fff; border: 1px solid #e3dccb; border-radius: 12px; padding: 1.75rem; }}
+    .reg-form label {{ display: block; font-size: 0.66rem; letter-spacing: 0.11em; text-transform: uppercase;
+                       color: var(--text-muted); margin-bottom: 1rem; }}
+    .reg-form label span {{ text-transform: none; letter-spacing: 0; }}
+    .reg-form input[type=text], .reg-form input[type=tel], .reg-form input[type=email] {{
+      display: block; width: 100%; margin-top: 0.4rem; padding: 0.85rem 0.9rem; font: inherit; font-size: 16px;
+      letter-spacing: 0; text-transform: none; color: var(--text); background: var(--off-white);
+      border: 1px solid #ddd6c6; border-radius: 4px; }}
+    .reg-form input:focus {{ outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }}
+    .reg-hp {{ position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }}
+    .reg-form button {{ width: 100%; margin-top: 0.35rem; padding: 1rem; border: none; border-radius: 3px; cursor: pointer;
+                        background: var(--navy); color: #fff; font: inherit; font-size: 0.78rem; font-weight: 500;
+                        letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }}
+    .reg-form button:hover {{ background: #0b3358; }}
+    .reg-form button:disabled {{ opacity: 0.6; cursor: default; }}
+    .reg-msg {{ min-height: 1.2em; margin-top: 0.7rem; font-size: 0.8rem; color: #7a2626; }}
+    .reg-fine {{ font-size: 0.7rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.35rem; }}
+    .reg-done {{ text-align: center; padding: 2.5rem 1.75rem; }}
+    .reg-done[hidden], .reg-form[hidden] {{ display: none; }}
+    .reg-done-mark {{ width: 46px; height: 46px; line-height: 46px; border-radius: 50%; background: var(--navy); color: var(--gold-soft);
+                      font-size: 1.3rem; margin: 0 auto 1rem; }}
+    .reg-done h3 {{ font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; margin-bottom: 0.6rem; }}
+    .reg-done p {{ font-size: 0.92rem; line-height: 1.7; color: var(--text-mid); }}
+    .reg-done a {{ color: var(--navy); font-weight: 600; }}
 
     .facts {{ display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }}
     .fact {{ padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }}
@@ -1033,6 +1141,7 @@ TEMPLATE = """<!DOCTYPE html>
       .fact:nth-child(3n) {{ border-right: none; }}
       .fact:nth-child(-n+3) {{ border-bottom: 1px solid rgba(255,255,255,0.09); }}
       .overview, .two-col, .siteplan {{ grid-template-columns: 1fr; gap: 2.5rem; }}
+      .reg-inner {{ grid-template-columns: 1fr; gap: 1.75rem; }}
       .dx-grid {{ grid-template-columns: 1fr; }}
       .setting {{ grid-template-columns: 1fr; gap: 2.5rem; }}
       .setting-media {{ max-width: 340px; }}
@@ -1079,7 +1188,7 @@ TEMPLATE = """<!DOCTYPE html>
     {status_badge}<div class="hero-builder">{builder} &middot; {area}</div>
     <h1 class="hero-title">{name}</h1>
     <div class="hero-tag">{tagline}</div>
-    <div class="hero-addr">{address}</div>
+    <div class="hero-addr">{address}</div>{hero_cta}
   </div>
   <div class="hero-credit">Artist&rsquo;s concept</div>
 </header>
@@ -1087,7 +1196,7 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="facts">
 {facts}
 </div>
-
+{register_section}
 <section>
   <div class="overview">
     <div>
