@@ -305,6 +305,9 @@ PROJECTS = {
         "area": "Lakeview Village",
         "hero": "south-banks-hero",
         "hero_alt": "South Banks townhomes exterior rendering",
+        # Portrait rendering: on desktop, show it whole beside the title instead
+        # of stretching it full-bleed (which crops it to a strip of wall).
+        "hero_layout": "split",
         "meta": "South Banks by DECO Homes and OPUS Homes &mdash; coastal townhomes in Lakeview "
                 "Village, Mississauga. 2&ndash;4 bedrooms, rooftop terraces, from $549,990. "
                 "Full price list and floor plans September 22, 2026.",
@@ -378,6 +381,22 @@ PROJECTS = {
             ],
             "foot": "Cheques payable to Bratty&rsquo;s LLP, In Trust. All post-dated deposits "
                     "must be received at signing.",
+        },
+        # Worked example shown as a dated timeline. Day offsets come straight from
+        # the builder's "Deposit Cheque Dates" sheet; change "signed" to re-date it.
+        "deposit_example": {
+            "signed": "2026-09-25",
+            "schedules": [
+                {"label": "Single-storey townhome",
+                 "steps": [(0, 10000), (30, 7500), (60, 7500), (90, 7500), (150, 7500),
+                           (210, 7500), (270, 7500), (330, 5000)],
+                 "occupancy": 10000},
+                {"label": "Two-storey townhome",
+                 "steps": [(0, 10000), (30, 7500), (60, 7500), (90, 7500), (150, 7500),
+                           (210, 7500), (270, 7500), (330, 7500), (390, 7500), (450, 7500),
+                           (510, 7500)],
+                 "occupancy": 10000},
+            ],
         },
         "commute": [
             ("Across the street", "Waterway Common Park"),
@@ -622,6 +641,59 @@ def table_html(t):
     )
 
 
+def _money(n):
+    return "${:,}".format(n)
+
+
+def deposit_example_html(ex):
+    """A dated, worked example of the deposit schedule, drawn as a timeline."""
+    from datetime import date, timedelta
+    signed = date.fromisoformat(ex["signed"])
+    short = lambda d: "%s %d, %d" % (d.strftime("%b"), d.day, d.year)
+    long_ = "%s %d, %d" % (signed.strftime("%B"), signed.day, signed.year)
+
+    cards = []
+    for sch in ex["schedules"]:
+        total = sum(a for _, a in sch["steps"]) + sch["occupancy"]
+        paid, rows = 0, []
+        for days, amount in sch["steps"]:
+            paid += amount
+            when = signed + timedelta(days=days)
+            rows.append("""        <li class="dx-step">
+          <div class="dx-date">%s<span>%s</span></div>
+          <div class="dx-amt">%s<span>%s paid to date</span></div>
+          <div class="dx-bar"><i style="width:%.1f%%"></i></div>
+        </li>""" % (short(when), "At signing" if days == 0 else "%d days" % days,
+                    _money(amount), _money(paid), paid * 100.0 / total))
+        last = signed + timedelta(days=sch["steps"][-1][0])
+        rows.append("""        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">%s<span>%s paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%%"></i></div>
+        </li>""" % (_money(sch["occupancy"]), _money(total)))
+        cards.append("""    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">%s</div><div class="dx-sub">%d cheques, the last on %s &middot; then %s on occupancy</div></div>
+        <div class="dx-total">%s<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+%s
+      </ol>
+    </div>""" % (sch["label"], len(sch["steps"]), short(last), _money(sch["occupancy"]),
+                 _money(total), "\n".join(rows)))
+
+    return """<section>
+  <div class="sec-eyebrow">Deposit example</div>
+  <h2 class="sec-title">If you sign on <em>%s</em></h2>
+  <p class="dx-intro">Real calendar dates, so you can see exactly when each deposit would fall due and how much you would have paid in at every step.</p>
+  <div class="dx-grid">
+%s
+  </div>
+  <p class="tbl-note">Illustration only, counted in calendar days from a %s signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bratty&rsquo;s LLP, In Trust.</p>
+</section>
+""" % (long_, "\n".join(cards), long_)
+
+
 def build(slug, p):
     facts = "\n".join(
         '      <div class="fact"><div class="fact-lbl">%s</div><div class="fact-val">%s</div></div>'
@@ -681,6 +753,8 @@ def build(slug, p):
             % (f, html.escape(alt, quote=True), h) for f, alt, h in p["logos"])
 
     extra = []
+    if p.get("deposit_example"):
+        extra.append(deposit_example_html(p["deposit_example"]))
     if p.get("setting"):
         v = p["setting"]
         extra.append("""<section>
@@ -714,14 +788,16 @@ def build(slug, p):
        "\n".join('      <div class="cm-row"><span class="cm-time">%s</span>'
                  '<span class="cm-place">%s</span></div>' % r for r in sp["rows"])))
     extra_sections = "\n".join(extra)
-    hero_pic = picture(p["hero"], p["hero_alt"], "100vw", HERO_W, cls="hero-img", eager=True)
+    split = p.get("hero_layout") == "split"
+    hero_sizes = "(min-width: 1000px) 45vw, 100vw" if split else "100vw"
+    hero_pic = picture(p["hero"], p["hero_alt"], hero_sizes, HERO_W, cls="hero-img", eager=True)
     hero_preload = ""
     if have(p["hero"], 1280, "avif"):
         hero_preload = (
             '\n  <link rel="preload" as="image" type="image/avif" '
-            'imagesizes="100vw" imagesrcset="%s">'
-            % ", ".join("images/towns/%s-%d.avif %dw" % (p["hero"], w, w)
-                        for w in HERO_W if have(p["hero"], w, "avif")))
+            'imagesizes="%s" imagesrcset="%s">'
+            % (hero_sizes, ", ".join("images/towns/%s-%d.avif %dw" % (p["hero"], w, w)
+                                     for w in HERO_W if have(p["hero"], w, "avif"))))
 
     return TEMPLATE.format(
         name=p["name"], builder=p["builder"], tagline=p["tagline"],
@@ -730,7 +806,7 @@ def build(slug, p):
         facts=facts, intro=intro, tables=tables, plans_link=plans_link,
         incentives=incentives, deposit=deposit, commute=commute,
         gallery=gallery, others=others, source=p["source"], status_badge=status_badge,
-        logos=logos, extra_sections=extra_sections,
+        logos=logos, extra_sections=extra_sections, hero_class=" split" if split else "",
         pricing_title=p.get("pricing_title", "Models &amp; <em>prices</em>"),
         incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
         gallery_title=p.get("gallery_title", "Renderings"),
@@ -789,6 +865,21 @@ TEMPLATE = """<!DOCTYPE html>
     .hero-tag {{ font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }}
     .hero-addr {{ font-size: 0.88rem; color: rgba(255,255,255,0.62); }}
     .hero-credit {{ position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }}
+
+    /* split hero (desktop only): for portrait renderings that a full-bleed band would butcher */
+    @media (min-width: 1000px) {{
+      .hero.split {{ display: grid; grid-template-columns: 1.25fr 1fr; align-items: stretch; min-height: 72vh;
+                     background: linear-gradient(155deg, #001429 0%, #002244 100%); }}
+      .hero.split::after {{ display: none; }}
+      .hero.split picture {{ position: relative; inset: auto; order: 2; width: auto; height: auto; min-height: 72vh; }}
+      .hero.split .hero-img {{ object-position: 62% 88%; }}
+      .hero.split .hero-inner {{ order: 1; display: flex; flex-direction: column; justify-content: center;
+                                 padding: 4rem 4rem 4rem 3rem; }}
+      .hero.split .hero-title {{ font-size: clamp(3.2rem, 5vw, 5.4rem); margin-bottom: 1rem; }}
+      .hero.split .hero-tag {{ font-size: 1.6rem; margin-bottom: 1.4rem; }}
+      .hero.split .hero-addr {{ font-size: 0.95rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.14); max-width: 460px; }}
+      .hero.split .hero-status {{ align-self: flex-start; }}
+    }}
 
     .facts {{ display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }}
     .fact {{ padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }}
@@ -849,6 +940,27 @@ TEMPLATE = """<!DOCTYPE html>
     .dep-foot {{ font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65;
                  margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }}
 
+    .dx-intro {{ font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; margin: -0.5rem 0 2.25rem; }}
+    .dx-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; align-items: start; }}
+    .dx-card {{ background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; }}
+    .dx-head {{ display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; padding: 1.4rem 1.6rem; background: var(--navy); color: #fff; }}
+    .dx-name {{ font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; line-height: 1.15; }}
+    .dx-sub {{ font-size: 0.7rem; color: rgba(255,255,255,0.55); margin-top: 0.35rem; line-height: 1.5; }}
+    .dx-total {{ font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--gold-soft); text-align: right; white-space: nowrap; line-height: 1; }}
+    .dx-total span {{ display: block; font-family: 'Outfit', sans-serif; font-size: 0.56rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.4rem; }}
+    .dx-list {{ list-style: none; position: relative; padding: 0.5rem 1.6rem 0.75rem 3.1rem; }}
+    .dx-list::before {{ content: ''; position: absolute; left: 1.95rem; top: 1.6rem; bottom: 2.4rem; width: 1px; background: #d9d3c5; }}
+    .dx-step {{ position: relative; display: grid; grid-template-columns: 1fr auto; gap: 0.55rem 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--border); }}
+    .dx-step:last-child {{ border-bottom: none; }}
+    .dx-step::before {{ content: ''; position: absolute; left: -1.5rem; top: 1.25rem; width: 11px; height: 11px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px #fff; }}
+    .dx-step.is-occ::before {{ background: var(--navy); }}
+    .dx-date {{ font-size: 0.95rem; font-weight: 500; color: var(--text); }}
+    .dx-date span, .dx-amt span {{ display: block; font-size: 0.7rem; font-weight: 300; color: var(--text-muted); margin-top: 0.15rem; }}
+    .dx-amt {{ font-size: 0.95rem; font-weight: 600; color: var(--navy); text-align: right; }}
+    .dx-bar {{ grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--cream); overflow: hidden; }}
+    .dx-bar i {{ display: block; height: 100%; background: var(--navy); border-radius: 2px; }}
+    .dx-step.is-occ .dx-bar i {{ background: var(--gold); }}
+
     .gal {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }}
     .gal-item {{ margin: 0; border-radius: 10px; overflow: hidden; background: var(--cream); }}
     .gal-item img {{ width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s; }}
@@ -898,6 +1010,7 @@ TEMPLATE = """<!DOCTYPE html>
       .fact:nth-child(3n) {{ border-right: none; }}
       .fact:nth-child(-n+3) {{ border-bottom: 1px solid rgba(255,255,255,0.09); }}
       .overview, .two-col, .siteplan {{ grid-template-columns: 1fr; gap: 2.5rem; }}
+      .dx-grid {{ grid-template-columns: 1fr; }}
       .setting {{ grid-template-columns: 1fr; gap: 2.5rem; }}
       .setting-media {{ max-width: 340px; }}
     }}
@@ -918,6 +1031,11 @@ TEMPLATE = """<!DOCTYPE html>
       .fact:nth-child(2n) {{ border-right: none; }}
       .gal, .sibs {{ grid-template-columns: 1fr; }}
       .logo-row {{ gap: 1.5rem; }}
+      .dx-head {{ padding: 1.2rem 1.1rem; }}
+      .dx-name {{ font-size: 1.25rem; }}
+      .dx-total {{ font-size: 1.45rem; }}
+      .dx-list {{ padding: 0.35rem 1.1rem 0.6rem 2.6rem; }}
+      .dx-list::before {{ left: 1.45rem; }}
       .logo-row img {{ max-height: 22px; }}
     }}
   </style>
@@ -931,7 +1049,7 @@ TEMPLATE = """<!DOCTYPE html>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
-<header class="hero">
+<header class="hero{hero_class}">
   {hero_pic}
   <div class="hero-inner">
     {status_badge}<div class="hero-builder">{builder} &middot; {area}</div>

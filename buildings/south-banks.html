@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" type="image/avif" imagesizes="100vw" imagesrcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
+  <link rel="preload" as="image" type="image/avif" imagesizes="(min-width: 1000px) 45vw, 100vw" imagesrcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
   <style>
     :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
              --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
@@ -48,6 +48,21 @@
     .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }
     .hero-addr { font-size: 0.88rem; color: rgba(255,255,255,0.62); }
     .hero-credit { position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }
+
+    /* split hero (desktop only): for portrait renderings that a full-bleed band would butcher */
+    @media (min-width: 1000px) {
+      .hero.split { display: grid; grid-template-columns: 1.25fr 1fr; align-items: stretch; min-height: 72vh;
+                     background: linear-gradient(155deg, #001429 0%, #002244 100%); }
+      .hero.split::after { display: none; }
+      .hero.split picture { position: relative; inset: auto; order: 2; width: auto; height: auto; min-height: 72vh; }
+      .hero.split .hero-img { object-position: 62% 88%; }
+      .hero.split .hero-inner { order: 1; display: flex; flex-direction: column; justify-content: center;
+                                 padding: 4rem 4rem 4rem 3rem; }
+      .hero.split .hero-title { font-size: clamp(3.2rem, 5vw, 5.4rem); margin-bottom: 1rem; }
+      .hero.split .hero-tag { font-size: 1.6rem; margin-bottom: 1.4rem; }
+      .hero.split .hero-addr { font-size: 0.95rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.14); max-width: 460px; }
+      .hero.split .hero-status { align-self: flex-start; }
+    }
 
     .facts { display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }
     .fact { padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }
@@ -108,6 +123,27 @@
     .dep-foot { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65;
                  margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
 
+    .dx-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; margin: -0.5rem 0 2.25rem; }
+    .dx-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; align-items: start; }
+    .dx-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; }
+    .dx-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; padding: 1.4rem 1.6rem; background: var(--navy); color: #fff; }
+    .dx-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; line-height: 1.15; }
+    .dx-sub { font-size: 0.7rem; color: rgba(255,255,255,0.55); margin-top: 0.35rem; line-height: 1.5; }
+    .dx-total { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--gold-soft); text-align: right; white-space: nowrap; line-height: 1; }
+    .dx-total span { display: block; font-family: 'Outfit', sans-serif; font-size: 0.56rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.4rem; }
+    .dx-list { list-style: none; position: relative; padding: 0.5rem 1.6rem 0.75rem 3.1rem; }
+    .dx-list::before { content: ''; position: absolute; left: 1.95rem; top: 1.6rem; bottom: 2.4rem; width: 1px; background: #d9d3c5; }
+    .dx-step { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 0.55rem 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--border); }
+    .dx-step:last-child { border-bottom: none; }
+    .dx-step::before { content: ''; position: absolute; left: -1.5rem; top: 1.25rem; width: 11px; height: 11px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px #fff; }
+    .dx-step.is-occ::before { background: var(--navy); }
+    .dx-date { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+    .dx-date span, .dx-amt span { display: block; font-size: 0.7rem; font-weight: 300; color: var(--text-muted); margin-top: 0.15rem; }
+    .dx-amt { font-size: 0.95rem; font-weight: 600; color: var(--navy); text-align: right; }
+    .dx-bar { grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--cream); overflow: hidden; }
+    .dx-bar i { display: block; height: 100%; background: var(--navy); border-radius: 2px; }
+    .dx-step.is-occ .dx-bar i { background: var(--gold); }
+
     .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     .gal-item { margin: 0; border-radius: 10px; overflow: hidden; background: var(--cream); }
     .gal-item img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s; }
@@ -157,6 +193,7 @@
       .fact:nth-child(3n) { border-right: none; }
       .fact:nth-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
       .overview, .two-col, .siteplan { grid-template-columns: 1fr; gap: 2.5rem; }
+      .dx-grid { grid-template-columns: 1fr; }
       .setting { grid-template-columns: 1fr; gap: 2.5rem; }
       .setting-media { max-width: 340px; }
     }
@@ -177,6 +214,11 @@
       .fact:nth-child(2n) { border-right: none; }
       .gal, .sibs { grid-template-columns: 1fr; }
       .logo-row { gap: 1.5rem; }
+      .dx-head { padding: 1.2rem 1.1rem; }
+      .dx-name { font-size: 1.25rem; }
+      .dx-total { font-size: 1.45rem; }
+      .dx-list { padding: 0.35rem 1.1rem 0.6rem 2.6rem; }
+      .dx-list::before { left: 1.45rem; }
       .logo-row img { max-height: 22px; }
     }
   </style>
@@ -190,10 +232,10 @@
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
-<header class="hero">
+<header class="hero split">
   <picture>
-        <source type="image/avif" sizes="100vw" srcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
-        <source type="image/webp" sizes="100vw" srcset="images/towns/south-banks-hero-480.webp 480w, images/towns/south-banks-hero-800.webp 800w, images/towns/south-banks-hero-1280.webp 1280w, images/towns/south-banks-hero-1920.webp 1920w, images/towns/south-banks-hero-2560.webp 2560w">
+        <source type="image/avif" sizes="(min-width: 1000px) 45vw, 100vw" srcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
+        <source type="image/webp" sizes="(min-width: 1000px) 45vw, 100vw" srcset="images/towns/south-banks-hero-480.webp 480w, images/towns/south-banks-hero-800.webp 800w, images/towns/south-banks-hero-1280.webp 1280w, images/towns/south-banks-hero-1920.webp 1920w, images/towns/south-banks-hero-2560.webp 2560w">
         <img src="images/towns/south-banks-hero.jpg" alt="South Banks townhomes exterior rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
       </picture>
   <div class="hero-inner">
@@ -286,6 +328,136 @@
       </div>
     </div>
   </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Deposit example</div>
+  <h2 class="sec-title">If you sign on <em>September 25, 2026</em></h2>
+  <p class="dx-intro">Real calendar dates, so you can see exactly when each deposit would fall due and how much you would have paid in at every step.</p>
+  <div class="dx-grid">
+    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">Single-storey townhome</div><div class="dx-sub">8 cheques, the last on Aug 21, 2027 &middot; then $10,000 on occupancy</div></div>
+        <div class="dx-total">$70,000<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+        <li class="dx-step">
+          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
+          <div class="dx-amt">$10,000<span>$10,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:14.3%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
+          <div class="dx-amt">$7,500<span>$17,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:25.0%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Nov 24, 2026<span>60 days</span></div>
+          <div class="dx-amt">$7,500<span>$25,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:35.7%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Dec 24, 2026<span>90 days</span></div>
+          <div class="dx-amt">$7,500<span>$32,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:46.4%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Feb 22, 2027<span>150 days</span></div>
+          <div class="dx-amt">$7,500<span>$40,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:57.1%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Apr 23, 2027<span>210 days</span></div>
+          <div class="dx-amt">$7,500<span>$47,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:67.9%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Jun 22, 2027<span>270 days</span></div>
+          <div class="dx-amt">$7,500<span>$55,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:78.6%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Aug 21, 2027<span>330 days</span></div>
+          <div class="dx-amt">$5,000<span>$60,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:85.7%"></i></div>
+        </li>
+        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">$10,000<span>$70,000 paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%"></i></div>
+        </li>
+      </ol>
+    </div>
+    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">Two-storey townhome</div><div class="dx-sub">11 cheques, the last on Feb 17, 2028 &middot; then $10,000 on occupancy</div></div>
+        <div class="dx-total">$95,000<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+        <li class="dx-step">
+          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
+          <div class="dx-amt">$10,000<span>$10,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:10.5%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
+          <div class="dx-amt">$7,500<span>$17,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:18.4%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Nov 24, 2026<span>60 days</span></div>
+          <div class="dx-amt">$7,500<span>$25,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:26.3%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Dec 24, 2026<span>90 days</span></div>
+          <div class="dx-amt">$7,500<span>$32,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:34.2%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Feb 22, 2027<span>150 days</span></div>
+          <div class="dx-amt">$7,500<span>$40,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:42.1%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Apr 23, 2027<span>210 days</span></div>
+          <div class="dx-amt">$7,500<span>$47,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:50.0%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Jun 22, 2027<span>270 days</span></div>
+          <div class="dx-amt">$7,500<span>$55,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:57.9%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Aug 21, 2027<span>330 days</span></div>
+          <div class="dx-amt">$7,500<span>$62,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:65.8%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 20, 2027<span>390 days</span></div>
+          <div class="dx-amt">$7,500<span>$70,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:73.7%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Dec 19, 2027<span>450 days</span></div>
+          <div class="dx-amt">$7,500<span>$77,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:81.6%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Feb 17, 2028<span>510 days</span></div>
+          <div class="dx-amt">$7,500<span>$85,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:89.5%"></i></div>
+        </li>
+        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">$10,000<span>$95,000 paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%"></i></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <p class="tbl-note">Illustration only, counted in calendar days from a September 25, 2026 signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bratty&rsquo;s LLP, In Trust.</p>
 </section>
 
 <section>
