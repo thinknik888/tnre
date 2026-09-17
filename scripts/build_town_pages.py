@@ -572,6 +572,27 @@ ORDER = ["south-banks", "exhale-towns", "aura-lakeview-towns", "pier-house-towns
 
 SIBLINGS = {slug: PROJECTS[slug]["name"] for slug in ORDER}
 
+# Meta Pixel -- identical to the snippet on every other page of the site, so
+# visits to the townhome pages are counted (and can be retargeted) like the rest.
+META_PIXEL_ID = "1688055534733639"
+META_PIXEL = """<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '%s');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=%s&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->""" % (META_PIXEL_ID, META_PIXEL_ID)
+
 NUMBER_WORDS = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
 
 # Compare-table rows, in display order: (key in each project's "compare", label).
@@ -807,7 +828,7 @@ def build(slug, p):
         facts=facts, intro=intro, tables=tables, plans_link=plans_link,
         incentives=incentives, deposit=deposit, commute=commute,
         gallery=gallery, others=others, source=p["source"], status_badge=status_badge,
-        logos=logos, extra_sections=extra_sections, hero_class=" split" if split else "",
+        logos=logos, extra_sections=extra_sections, pixel=META_PIXEL, hero_class=" split" if split else "",
         pricing_title=p.get("pricing_title", "Models &amp; <em>prices</em>"),
         incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
         gallery_title=p.get("gallery_title", "Renderings"),
@@ -1041,6 +1062,7 @@ TEMPLATE = """<!DOCTYPE html>
       .logo-row img {{ max-height: 22px; }}
     }}
   </style>
+{pixel}
 </head>
 <body>
 
