@@ -1325,6 +1325,16 @@ def update_neighbourhood():
     else:
         src = src.replace("</style>", NB_CSS + "\n</style>", 1)
 
+    # The page hero is static markup: drop any srcset candidate whose file is gone
+    # (e.g. the 2560px hero variants, removed because a full-bleed hero under a dark
+    # overlay never needs them and retina screens would always pick the biggest).
+    def _prune(match):
+        kept = [c for c in match.group(2).split(", ")
+                if os.path.exists(os.path.normpath(os.path.join(
+                    os.path.dirname(NB_PAGE), c.strip().split(" ")[0])))]
+        return match.group(1) + ", ".join(kept) + match.group(3)
+    src = re.sub(r'((?:imagesrcset|srcset)=")((?:\.\./buildings/images/towns/[^"]+))(")', _prune, src)
+
     n = len(ORDER)
     word = NUMBER_WORDS.get(n, str(n)).capitalize()
     src = re.sub(r'(<div class="hero-nb-stat-val">)\d+(</div><div class="hero-nb-stat-lbl">Communities)',

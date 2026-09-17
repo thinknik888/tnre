@@ -1,0 +1,35 @@
+{
+  "source_dir": "~/Downloads",
+  "images": [
+    {
+      "name": "pier-house-hero",
+      "file": "Pier House Towns Package Pro/Renderings Pro/20251105_25014_Streetscape_Editorial_Hero_1_V3_low-res.jpg",
+      "widths": [
+        480,
+        800,
+        1280,
+        1920
+      ]
+    },
+    {
+      "name": "aura-hero",
+      "file": "Aura Lakeview Village Towns Package Pro/Renderings Pro/Aura EXT_STRAIGHT.jpg",
+      "widths": [
+        480,
+        800,
+        1280,
+        1920
+      ]
+    },
+    {
+      "name": "exhale-towns-hero",
+      "file": "260830559690/Renderings/New Townhome Collection/Th.jpg",
+      "widths": [
+        480,
+        800,
+        1280,
+        1920
+      ]
+    }
+  ]
+}
