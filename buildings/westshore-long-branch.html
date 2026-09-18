@@ -264,6 +264,7 @@
     }
   
     /* floor plan book */
+    .plans-sec { scroll-margin-top: 70px; }
     .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
     .plans-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 1.25rem; }
     .plan-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -700,22 +701,44 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     media.innerHTML = ''; media.appendChild(pictureFor(fig, false)); fig.classList.add('is-open');
   }
   window.caUnlockPlans = function () {
+    var locked = sec.querySelectorAll('.plan:not(.is-open)');
+    if (!locked.length) return;                       // nothing is gated on this page
     sec.classList.add('is-unlocked');
-    Array.prototype.forEach.call(sec.querySelectorAll('.plan:not(.is-open)'), open);
+    Array.prototype.forEach.call(locked, open);
     var st = document.getElementById('plans-state');
     if (st) st.textContent = 'All plans unlocked — tap any plan to enlarge.';
   };
   if (registered()) window.caUnlockPlans();
 
-  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
-    ch.addEventListener('click', function () {
-      Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === ch); });
-      var t = ch.getAttribute('data-filter');
-      Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
-        var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
-        f.hidden = (t !== 'all' && v !== t);
-      });
+  // The chosen filter lives in the link (?beds=3#floor-plans), so a shared link opens the same view.
+  function applyFilter(t, remember) {
+    var chip = sec.querySelector('.plan-chip[data-filter="' + t + '"]');
+    if (!chip) return false;
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === chip); });
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+      var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+      f.hidden = (t !== 'all' && v !== t);
     });
+    if (remember) setParam('beds', t === 'all' ? null : t);
+    return true;
+  }
+  // Keep the address bar in step with what is on screen, so the link can be shared as-is.
+  function setParam(key, value) {
+    if (!window.history || !history.replaceState) return;
+    var u = new URL(location.href);
+    if (value === null) u.searchParams.delete(key); else u.searchParams.set(key, value);
+    u.hash = 'floor-plans';
+    history.replaceState(null, '', u.pathname + u.search + u.hash);
+  }
+  // Jump without the page's smooth-scroll animation (which a late layout shift can cancel).
+  function jump(el) {
+    var root = document.documentElement, was = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    el.scrollIntoView({ block: 'start' });
+    root.style.scrollBehavior = was;
+  }
+  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
+    ch.addEventListener('click', function () { applyFilter(ch.getAttribute('data-filter'), true); });
   });
 
   var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null;
@@ -724,8 +747,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
     lbCap.innerHTML = '<b>' + fig.getAttribute('data-name') + '</b>' + fig.getAttribute('data-spec');
     lb.hidden = false; document.body.style.overflow = 'hidden';
+    setParam('plan', fig.id.replace(/^plan-/, ''));
   }
-  function close() { lb.hidden = true; document.body.style.overflow = ''; }
+  function close() { lb.hidden = true; document.body.style.overflow = ''; setParam('plan', null); }
   function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
   sec.addEventListener('click', function (e) {
     var fig = e.target.closest('.plan'); if (!fig) return;
@@ -745,6 +769,18 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     if (lb.hidden) return;
     if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
   });
+
+  // A shared link: ?beds=3 opens that bedroom group, ?plan=sky-towns-1238 opens that drawing.
+  var q = new URLSearchParams(location.search), wantBeds = q.get('beds'), wantPlan = q.get('plan');
+  var fig = wantPlan && document.getElementById('plan-' + wantPlan);
+  if (fig && !fig.classList.contains('is-open')) fig = null;          // still locked
+  var filtered = wantBeds && applyFilter(wantBeds, false);
+  if (fig && fig.hidden) applyFilter('all', false);
+  if (fig || filtered) {
+    var target = fig || sec, land = function () { jump(target); };
+    land(); window.addEventListener('load', land); setTimeout(land, 600);
+    if (fig) show(fig);
+  }
 })();
 </script>
 </section>
