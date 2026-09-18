@@ -297,10 +297,12 @@
     .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
     .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
     .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
-    .plan-price { margin-top: 0.55rem; font-weight: 600; font-size: 0.86rem; color: var(--navy); }
-    .plan-price span { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
-    .plan-price span b { font-weight: 600; color: var(--text-mid); }
-    .plan-price .plan-net { margin-top: 0.1rem; }
+    .plan-price { margin-top: 0.55rem; font-size: 0.8rem; color: var(--text-mid); line-height: 1.45; }
+    .plan-price .plan-net { font-weight: 600; font-size: 0.95rem; color: var(--navy); }
+    .plan-price i { font-style: normal; font-size: 0.68rem; color: var(--text-muted); }
+    .plan-price .plan-list { display: block; font-weight: 400; font-size: 0.8rem; color: var(--text-mid); margin-top: 0.1rem; }
+    .plan-price .plan-blocks { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+    .plan-price .plan-blocks b { font-weight: 400; color: var(--text-mid); }
     .plans-gate { margin: 1.5rem 0; }
     .plans-gate section.reg { border-radius: 12px; padding: 2.75rem 2.5rem; }
     .plans-gate .reg-inner { max-width: none; }
@@ -397,14 +399,14 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="plans-state" id="plans-state">27 plans &middot; tap to enlarge</div>
   </div>
   <div class="plan-grid">
-    <div class="plan-group" data-beds="1" id="plans-1-bed"><span>One bedroom</span><small>4 plans &middot; 472 &ndash; 643 sq ft &middot; from $424,900</small></div>
+    <div class="plan-group" data-beds="1" id="plans-1-bed"><span>One bedroom</span><small>4 plans &middot; 472 &ndash; 643 sq ft &middot; from $400,042 net of HST*</small></div>
     <figure class="plan is-open" id="plan-flats-472" data-beds="1" data-type="flats" data-base="images/plans/westshore/flats-472" data-widths="480,800,1280" data-name="The Flats 472" data-spec="1 bed · 1 bath · 472 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-472-480.avif 480w, images/plans/westshore/flats-472-800.avif 800w, images/plans/westshore/flats-472-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-472-480.webp 480w, images/plans/westshore/flats-472-800.webp 800w, images/plans/westshore/flats-472-1280.webp 1280w"><img src="images/plans/westshore/flats-472.jpg" alt="The Flats 472 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Flats 472</div>
         <div class="plan-spec">1 bed &middot; 1 bath &middot; 472 sq ft</div>
         <div class="plan-level">1-storey mid-level with terrace</div>
-        <div class="plan-price">From $424,900<span class="plan-net">$400,042 net of HST rebate*</span><span>Block 7 <b>$424,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$400,042</b> <i>net of HST rebate*</i><span class="plan-list">List price $424,900</span><span class="plan-blocks">Block 7 <b>$424,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-flats-523" data-beds="1" data-type="flats" data-base="images/plans/westshore/flats-523" data-widths="480,800,1280" data-name="The Flats 523" data-spec="1 bed · 1 bath · 523 sq ft">
@@ -413,7 +415,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Flats 523</div>
         <div class="plan-spec">1 bed &middot; 1 bath &middot; 523 sq ft</div>
         <div class="plan-level">1-storey mid-level with terrace</div>
-        <div class="plan-price">From $454,900<span class="plan-net">$425,189 net of HST rebate*</span><span>Block 6 <b>$454,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$425,189</b> <i>net of HST rebate*</i><span class="plan-list">List price $454,900</span><span class="plan-blocks">Block 6 <b>$454,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-flats-530" data-beds="1" data-type="flats" data-base="images/plans/westshore/flats-530" data-widths="480,800,1280" data-name="The Flats 530" data-spec="1 bed · 1 bath · 530 sq ft">
@@ -422,7 +424,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Flats 530</div>
         <div class="plan-spec">1 bed &middot; 1 bath &middot; 530 sq ft</div>
         <div class="plan-level">1-storey mid-level with terrace</div>
-        <div class="plan-price">From $439,900<span class="plan-net">$412,615 net of HST rebate*</span><span>Block 1 <b>$439,900</b> &middot; Block 6 <b>$464,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $412,615</b> <i>net of HST rebate*</i><span class="plan-list">List price from $439,900</span><span class="plan-blocks">Block 1 <b>$439,900</b> &middot; Block 6 <b>$464,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-garden-flats-643" data-beds="1" data-type="garden-flats" data-base="images/plans/westshore/garden-flats-643" data-widths="480,800,1280" data-name="The Garden Flats 643" data-spec="1 + den bed · 1 bath · 643 sq ft">
@@ -431,17 +433,17 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Garden Flats 643</div>
         <div class="plan-spec">1 + den bed &middot; 1 bath &middot; 643 sq ft</div>
         <div class="plan-level">1-storey ground level with patio</div>
-        <div class="plan-price">From $531,900<span class="plan-net">$491,947 net of HST rebate*</span><span>Block 1 <b>$531,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$491,947</b> <i>net of HST rebate*</i><span class="plan-list">List price $531,900</span><span class="plan-blocks">Block 1 <b>$531,900</b></span></div>
       </figcaption>
     </figure>
-    <div class="plan-group" data-beds="2" id="plans-2-bed"><span>Two bedroom</span><small>9 plans &middot; 952 &ndash; 1,155 sq ft &middot; from $602,900</small></div>
+    <div class="plan-group" data-beds="2" id="plans-2-bed"><span>Two bedroom</span><small>9 plans &middot; 952 &ndash; 1,155 sq ft &middot; from $554,779 net of HST*</small></div>
     <figure class="plan is-open" id="plan-garden-towns-952" data-beds="2" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-952" data-widths="480,800,1280,1920" data-name="The Garden Towns 952" data-spec="2 bed · 2 bath · 952 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-952-480.avif 480w, images/plans/westshore/garden-towns-952-800.avif 800w, images/plans/westshore/garden-towns-952-1280.avif 1280w, images/plans/westshore/garden-towns-952-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-952-480.webp 480w, images/plans/westshore/garden-towns-952-800.webp 800w, images/plans/westshore/garden-towns-952-1280.webp 1280w, images/plans/westshore/garden-towns-952-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-952.jpg" alt="The Garden Towns 952 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Garden Towns 952</div>
         <div class="plan-spec">2 bed &middot; 2 bath &middot; 952 sq ft</div>
         <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $602,900<span class="plan-net">$554,779 net of HST rebate*</span><span>Block 6 <b>$602,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$554,779</b> <i>net of HST rebate*</i><span class="plan-list">List price $602,900</span><span class="plan-blocks">Block 6 <b>$602,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1071" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1071" data-widths="480,800,1280,1920" data-name="The Sky Towns 1071" data-spec="2 bed · 1 bath · 1,071 sq ft">
@@ -450,7 +452,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1071</div>
         <div class="plan-spec">2 bed &middot; 1 bath &middot; 1,071 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $652,900<span class="plan-net">$599,027 net of HST rebate*</span><span>Block 1 <b>$652,900</b> &middot; Block 2 <b>$664,900</b> &middot; Block 6 <b>$722,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $599,027</b> <i>net of HST rebate*</i><span class="plan-list">List price from $652,900</span><span class="plan-blocks">Block 1 <b>$652,900</b> &middot; Block 2 <b>$664,900</b> &middot; Block 6 <b>$722,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1091" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1091" data-widths="480,800,1280,1920" data-name="The Sky Towns 1091" data-spec="2 bed · 2.5 bath · 1,091 sq ft">
@@ -459,7 +461,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1091</div>
         <div class="plan-spec">2 bed &middot; 2.5 bath &middot; 1,091 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $757,900<span class="plan-net">$691,947 net of HST rebate*</span><span>Blocks 1 &amp; 7 <b>$757,900</b> &middot; Block 2 <b>$769,900</b> &middot; Block 6 <b>$782,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $691,947</b> <i>net of HST rebate*</i><span class="plan-list">List price from $757,900</span><span class="plan-blocks">Blocks 1 &amp; 7 <b>$757,900</b> &middot; Block 2 <b>$769,900</b> &middot; Block 6 <b>$782,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1092" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1092" data-widths="480,800,1280,1920" data-name="The Sky Towns 1092" data-spec="2 + den bed · 2 bath · 1,092 sq ft">
@@ -468,7 +470,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1092</div>
         <div class="plan-spec">2 + den bed &middot; 2 bath &middot; 1,092 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $687,900<span class="plan-net">$630,000 net of HST rebate*</span><span>Block 1 <b>$687,900</b> &middot; Block 2 <b>$764,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $630,000</b> <i>net of HST rebate*</i><span class="plan-list">List price from $687,900</span><span class="plan-blocks">Block 1 <b>$687,900</b> &middot; Block 2 <b>$764,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1106" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1106" data-widths="480,800,1280,1920" data-name="The Sky Towns 1106" data-spec="2 bed · 2.5 bath · 1,106 sq ft">
@@ -477,7 +479,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1106</div>
         <div class="plan-spec">2 bed &middot; 2.5 bath &middot; 1,106 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $762,900<span class="plan-net">$696,372 net of HST rebate*</span><span>Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $696,372</b> <i>net of HST rebate*</i><span class="plan-list">List price from $762,900</span><span class="plan-blocks">Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1138" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1138" data-widths="480,800,1280,1920" data-name="The Sky Towns 1138" data-spec="2 bed · 2 bath · 1,138 sq ft">
@@ -486,7 +488,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1138</div>
         <div class="plan-spec">2 bed &middot; 2 bath &middot; 1,138 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $707,900<span class="plan-net">$647,699 net of HST rebate*</span><span>Block 1 <b>$707,900</b> &middot; Block 7 <b>$772,900</b> &middot; Block 2 <b>$784,900</b> &middot; Block 6 <b>$797,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $647,699</b> <i>net of HST rebate*</i><span class="plan-list">List price from $707,900</span><span class="plan-blocks">Block 1 <b>$707,900</b> &middot; Block 7 <b>$772,900</b> &middot; Block 2 <b>$784,900</b> &middot; Block 6 <b>$797,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1139-a" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1139-a" data-widths="480,800,1280,1920" data-name="The Sky Towns 1139 A" data-spec="2 + den bed · 2 bath · 1,139 sq ft">
@@ -495,7 +497,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1139 A</div>
         <div class="plan-spec">2 + den bed &middot; 2 bath &middot; 1,139 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $762,900<span class="plan-net">$696,372 net of HST rebate*</span><span>Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $696,372</b> <i>net of HST rebate*</i><span class="plan-list">List price from $762,900</span><span class="plan-blocks">Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1139-b" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1139-b" data-widths="480,800,1280,1920" data-name="The Sky Towns 1139 B" data-spec="2 + den bed · 2 bath · 1,139 sq ft">
@@ -504,7 +506,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1139 B</div>
         <div class="plan-spec">2 + den bed &middot; 2 bath &middot; 1,139 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $762,900<span class="plan-net">$696,372 net of HST rebate*</span><span>Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $696,372</b> <i>net of HST rebate*</i><span class="plan-list">List price from $762,900</span><span class="plan-blocks">Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1155" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1155" data-widths="480,800,1280,1920" data-name="The Sky Towns 1155" data-spec="2 + den bed · 2 bath · 1,155 sq ft">
@@ -513,17 +515,17 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1155</div>
         <div class="plan-spec">2 + den bed &middot; 2 bath &middot; 1,155 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $772,900<span class="plan-net">$705,221 net of HST rebate*</span><span>Block 7 <b>$772,900</b> &middot; Block 6 <b>$787,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $705,221</b> <i>net of HST rebate*</i><span class="plan-list">List price from $772,900</span><span class="plan-blocks">Block 7 <b>$772,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
-    <div class="plan-group" data-beds="3" id="plans-3-bed"><span>Three bedroom</span><small>14 plans &middot; 1,077 &ndash; 1,238 sq ft &middot; from $652,900</small></div>
+    <div class="plan-group" data-beds="3" id="plans-3-bed"><span>Three bedroom</span><small>14 plans &middot; 1,077 &ndash; 1,238 sq ft &middot; from $599,027 net of HST*</small></div>
     <figure class="plan is-open" id="plan-sky-towns-1077" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1077" data-widths="480,800,1280,1920" data-name="The Sky Towns 1077" data-spec="3 bed · 2 bath · 1,077 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1077-480.avif 480w, images/plans/westshore/sky-towns-1077-800.avif 800w, images/plans/westshore/sky-towns-1077-1280.avif 1280w, images/plans/westshore/sky-towns-1077-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1077-480.webp 480w, images/plans/westshore/sky-towns-1077-800.webp 800w, images/plans/westshore/sky-towns-1077-1280.webp 1280w, images/plans/westshore/sky-towns-1077-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1077.jpg" alt="The Sky Towns 1077 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1077</div>
         <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,077 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $767,900<span class="plan-net">$700,796 net of HST rebate*</span><span>Block 6 <b>$767,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$700,796</b> <i>net of HST rebate*</i><span class="plan-list">List price $767,900</span><span class="plan-blocks">Block 6 <b>$767,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-garden-towns-1118" data-beds="3" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1118" data-widths="480,800,1280,1920" data-name="The Garden Towns 1118" data-spec="3 bed · 2.5 bath · 1,118 sq ft">
@@ -532,7 +534,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Garden Towns 1118</div>
         <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,118 sq ft</div>
         <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $652,900<span class="plan-net">$599,027 net of HST rebate*</span><span>Block 1 <b>$652,900</b> &middot; Block 7 <b>$677,900</b> &middot; Block 2 <b>$687,900</b> &middot; Block 6 <b>$702,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $599,027</b> <i>net of HST rebate*</i><span class="plan-list">List price from $652,900</span><span class="plan-blocks">Block 1 <b>$652,900</b> &middot; Block 7 <b>$677,900</b> &middot; Block 2 <b>$687,900</b> &middot; Block 6 <b>$702,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1121" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1121" data-widths="480,800,1280,1920" data-name="The Sky Towns 1121" data-spec="3 bed · 2 bath · 1,121 sq ft">
@@ -541,7 +543,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1121</div>
         <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,121 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $772,900<span class="plan-net">$705,221 net of HST rebate*</span><span>Block 1 <b>$772,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$705,221</b> <i>net of HST rebate*</i><span class="plan-list">List price $772,900</span><span class="plan-blocks">Block 1 <b>$772,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1137" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1137" data-widths="480,800,1280,1920" data-name="The Sky Towns 1137" data-spec="3 bed · 2 bath · 1,137 sq ft">
@@ -550,7 +552,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1137</div>
         <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,137 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $797,900<span class="plan-net">$727,345 net of HST rebate*</span><span>Block 6 <b>$797,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$727,345</b> <i>net of HST rebate*</i><span class="plan-list">List price $797,900</span><span class="plan-blocks">Block 6 <b>$797,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1142" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1142" data-widths="480,800,1280,1920" data-name="The Sky Towns 1142" data-spec="3 bed · 2.5 bath · 1,142 sq ft">
@@ -559,7 +561,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1142</div>
         <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,142 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $814,900<span class="plan-net">$742,389 net of HST rebate*</span><span>Block 2 <b>$814,900</b> &middot; Block 6 <b>$827,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $742,389</b> <i>net of HST rebate*</i><span class="plan-list">List price from $814,900</span><span class="plan-blocks">Block 2 <b>$814,900</b> &middot; Block 6 <b>$827,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-garden-towns-1164" data-beds="3" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1164" data-widths="480,800,1280,1920" data-name="The Garden Towns 1164" data-spec="3 bed · 3 bath · 1,164 sq ft">
@@ -568,7 +570,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Garden Towns 1164</div>
         <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,164 sq ft</div>
         <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $739,900<span class="plan-net">$676,018 net of HST rebate*</span><span>Blocks 1 &amp; 7 <b>$739,900</b> &middot; Block 2 <b>$746,900</b> &middot; Block 6 <b>$749,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $676,018</b> <i>net of HST rebate*</i><span class="plan-list">List price from $739,900</span><span class="plan-blocks">Blocks 1 &amp; 7 <b>$739,900</b> &middot; Block 2 <b>$746,900</b> &middot; Block 6 <b>$749,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1181" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1181" data-widths="480,800,1280,1920" data-name="The Sky Towns 1181" data-spec="3 bed · 3 bath · 1,181 sq ft">
@@ -577,7 +579,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1181</div>
         <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,181 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $757,900<span class="plan-net">$691,947 net of HST rebate*</span><span>Block 1 <b>$757,900</b> &middot; Block 2 <b>$804,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $691,947</b> <i>net of HST rebate*</i><span class="plan-list">List price from $757,900</span><span class="plan-blocks">Block 1 <b>$757,900</b> &middot; Block 2 <b>$804,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-flats-1183" data-beds="3" data-type="flats" data-base="images/plans/westshore/flats-1183" data-widths="480,800,1280" data-name="The Flats 1183" data-spec="3 + den bed · 2 bath · 1,183 sq ft">
@@ -586,7 +588,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Flats 1183</div>
         <div class="plan-spec">3 + den bed &middot; 2 bath &middot; 1,183 sq ft</div>
         <div class="plan-level">1-storey mid-level with terrace</div>
-        <div class="plan-price">From $769,900<span class="plan-net">$702,566 net of HST rebate*</span><span>Block 1 <b>$769,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$702,566</b> <i>net of HST rebate*</i><span class="plan-list">List price $769,900</span><span class="plan-blocks">Block 1 <b>$769,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1204" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1204" data-widths="480,800,1280,1920" data-name="The Sky Towns 1204" data-spec="3 + den bed · 3 bath · 1,204 sq ft">
@@ -595,7 +597,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1204</div>
         <div class="plan-spec">3 + den bed &middot; 3 bath &middot; 1,204 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $824,900<span class="plan-net">$751,239 net of HST rebate*</span><span>Block 2 <b>$824,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$751,239</b> <i>net of HST rebate*</i><span class="plan-list">List price $824,900</span><span class="plan-blocks">Block 2 <b>$824,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-garden-towns-1207" data-beds="3" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1207" data-widths="480,800,1280,1920" data-name="The Garden Towns 1207" data-spec="3 bed · 3 bath · 1,207 sq ft">
@@ -604,7 +606,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Garden Towns 1207</div>
         <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,207 sq ft</div>
         <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $794,900<span class="plan-net">$724,690 net of HST rebate*</span><span>Block 2 <b>$794,900</b> &middot; Block 6 <b>$804,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $724,690</b> <i>net of HST rebate*</i><span class="plan-list">List price from $794,900</span><span class="plan-blocks">Block 2 <b>$794,900</b> &middot; Block 6 <b>$804,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1208" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1208" data-widths="480,800,1280,1920" data-name="The Sky Towns 1208" data-spec="3 bed · 2.5 bath · 1,208 sq ft">
@@ -613,7 +615,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1208</div>
         <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,208 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $777,900<span class="plan-net">$709,646 net of HST rebate*</span><span>Block 1 <b>$777,900</b> &middot; Blocks 2 &amp; 7 <b>$812,900</b> &middot; Block 6 <b>$827,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $709,646</b> <i>net of HST rebate*</i><span class="plan-list">List price from $777,900</span><span class="plan-blocks">Block 1 <b>$777,900</b> &middot; Blocks 2 &amp; 7 <b>$812,900</b> &middot; Block 6 <b>$827,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1212" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1212" data-widths="480,800,1280,1920" data-name="The Sky Towns 1212" data-spec="3 bed · 2.5 bath · 1,212 sq ft">
@@ -622,7 +624,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1212</div>
         <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,212 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $812,900<span class="plan-net">$740,619 net of HST rebate*</span><span>Block 7 <b>$812,900</b> &middot; Block 6 <b>$827,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $740,619</b> <i>net of HST rebate*</i><span class="plan-list">List price from $812,900</span><span class="plan-blocks">Block 7 <b>$812,900</b> &middot; Block 6 <b>$827,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1215" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1215" data-widths="480,800,1280,1920" data-name="The Sky Towns 1215" data-spec="3 bed · 2.5 bath · 1,215 sq ft">
@@ -631,7 +633,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1215</div>
         <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,215 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $837,900<span class="plan-net">$762,743 net of HST rebate*</span><span>Block 6 <b>$837,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">$762,743</b> <i>net of HST rebate*</i><span class="plan-list">List price $837,900</span><span class="plan-blocks">Block 6 <b>$837,900</b></span></div>
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-sky-towns-1238" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1238" data-widths="480,800,1280,1920" data-name="The Sky Towns 1238" data-spec="3 bed · 2.5 bath · 1,238 sq ft">
@@ -640,7 +642,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-name">The Sky Towns 1238</div>
         <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,238 sq ft</div>
         <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $817,900<span class="plan-net">$745,044 net of HST rebate*</span><span>Blocks 1 &amp; 2 <b>$817,900</b> &middot; Block 6 <b>$862,900</b></span></div>
+        <div class="plan-price"><b class="plan-net">From $745,044</b> <i>net of HST rebate*</i><span class="plan-list">List price from $817,900</span><span class="plan-blocks">Blocks 1 &amp; 2 <b>$817,900</b> &middot; Block 6 <b>$862,900</b></span></div>
       </figcaption>
     </figure>
   </div>

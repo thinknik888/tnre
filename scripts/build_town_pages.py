@@ -782,6 +782,7 @@ PROJECTS = {
         "plans_only_priced": True,
         "plans_gate": False,
         "plans_ratio": "4 / 5",
+        "plans_price_label": "Promotional price",   # the table's price column is the promo price, not list
         "plans_title": "All 11 <em>townhome plans</em>",
         "plans_intro": "Every two-storey plan in the collection, from the 920 sq ft TH-02 to the 1,710 sq ft "
                        "TH-08, at the current promotional price.",
@@ -1178,10 +1179,19 @@ def plans_section(p, plans, plans_dir, register_html=""):
         spec = "%s bed &middot; %s bath &middot; %s sq ft" % (pl["beds"], pl["baths"], "{:,}".format(pl["sqft"]))
         if pl["slug"] in prices:
             e = prices[pl["slug"]]
-            net = '<span class="plan-net">%s net of HST rebate*</span>' % _money(e["net"]) if e.get("net") else ""
             blocks = block_prices_html(e["blocks"]) if any(g for g, _ in e["blocks"]) else ""
-            price = '<div class="plan-price">%s%s%s%s</div>' % (
-                "From " if blocks else "", _money(e["min"]), net, "<span>%s</span>" % blocks if blocks else "")
+            several = len(set(pr for _, pr in e["blocks"])) > 1
+            if e.get("net"):
+                # the net-of-HST figure leads; the list price sits under it in plain text
+                price = ('<div class="plan-price"><b class="plan-net">%s%s</b> <i>net of HST rebate*</i>'
+                         '<span class="plan-list">%s %s%s</span>%s</div>' % (
+                             "From " if several else "", _money(e["net"]),
+                             p.get("plans_price_label", "List price"), "from " if several else "", _money(e["min"]),
+                             '<span class="plan-blocks">%s</span>' % blocks if blocks else ""))
+            else:
+                price = '<div class="plan-price"><b class="plan-net">%s%s</b>%s</div>' % (
+                    "From " if several else "", _money(e["min"]),
+                    '<span class="plan-blocks">%s</span>' % blocks if blocks else "")
         else:
             price = '<div class="plan-price muted">Not on the current price list &middot; ask about availability</div>'
         if pl["slug"] in preview:
@@ -1233,12 +1243,14 @@ def plans_section(p, plans, plans_dir, register_html=""):
                 seen.add(b)
                 group = by_beds[b]
                 lo, hi = min(x["sqft"] for x in group), max(x["sqft"] for x in group)
-                cheapest = min(prices[x["slug"]]["min"] for x in group if x["slug"] in prices)
+                nets = [prices[x["slug"]]["net"] for x in group if x["slug"] in prices and prices[x["slug"]].get("net")]
+                cheapest = min(nets) if nets else min(prices[x["slug"]]["min"] for x in group if x["slug"] in prices)
+                from_lbl = "from %s net of HST*" if nets else "from %s"
                 size = "{:,}".format(lo) if lo == hi else "%s &ndash; %s" % ("{:,}".format(lo), "{:,}".format(hi))
                 rows.append('    <div class="plan-group" data-beds="%d" id="plans-%d-bed"><span>%s</span>'
-                            '<small>%d plan%s &middot; %s sq ft &middot; from %s</small></div>'
+                            '<small>%d plan%s &middot; %s sq ft &middot; %s</small></div>'
                             % (b, b, BED_WORDS.get(b, "%d bedroom" % b), len(group), "" if len(group) == 1 else "s",
-                               size, _money(cheapest)))
+                               size, from_lbl % _money(cheapest)))
             rows.append(card)
         grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(rows)
     title = p.get("plans_title", "%d plans on the <em>current price list</em>" % len(plans))
@@ -1287,10 +1299,12 @@ PLANS_CSS = """
     .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
     .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
     .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
-    .plan-price { margin-top: 0.55rem; font-weight: 600; font-size: 0.86rem; color: var(--navy); }
-    .plan-price span { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
-    .plan-price span b { font-weight: 600; color: var(--text-mid); }
-    .plan-price .plan-net { margin-top: 0.1rem; }
+    .plan-price { margin-top: 0.55rem; font-size: 0.8rem; color: var(--text-mid); line-height: 1.45; }
+    .plan-price .plan-net { font-weight: 600; font-size: 0.95rem; color: var(--navy); }
+    .plan-price i { font-style: normal; font-size: 0.68rem; color: var(--text-muted); }
+    .plan-price .plan-list { display: block; font-weight: 400; font-size: 0.8rem; color: var(--text-mid); margin-top: 0.1rem; }
+    .plan-price .plan-blocks { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+    .plan-price .plan-blocks b { font-weight: 400; color: var(--text-mid); }
     .plans-gate { margin: 1.5rem 0; }
     .plans-gate section.reg { border-radius: 12px; padding: 2.75rem 2.5rem; }
     .plans-gate .reg-inner { max-width: none; }
