@@ -493,10 +493,11 @@ PROJECTS = {
         # Plan cards (with prices) right after the hero, all open -- ad leads have
         # already registered on Facebook/Instagram, so nothing is gated. Only
         # plans on the current price list are shown; the form sits after the list.
-        "layout": "plans_first",
         "plans": "scripts/manifests/westshore-plans.json",
         "plans_only_priced": True,
         "plans_gate": False,
+        "order": ["plans", "incentives", "deposit_example", "gallery", "pricing", "register",
+                  "overview", "setting", "site_plan", "nearby"],
         "hero": "westshore-hero",
         "hero_alt": "Westshore at Long Branch, The Heights exterior rendering",
         "meta": "Westshore at Long Branch by Minto Communities &mdash; The Heights hybrid stacked "
@@ -1065,7 +1066,7 @@ def link_plan_rows(tables, plans):
     return out
 
 
-PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-type="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s">
+PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-beds="%s" data-type="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s">
       <div class="plan-media">%s</div>
       <figcaption>
         <div class="plan-name">%s</div>
@@ -1105,8 +1106,13 @@ def plans_section(p, plans, plans_dir, register_html=""):
     counts = {}
     for pl in plans:
         counts[pl["type"]] = counts.get(pl["type"], 0) + 1
-    # open previews lead, in the order given; everything else follows in catalogue order
-    ordered = [pl for x in preview for pl in plans if pl["slug"] == x] + [pl for pl in plans if pl["slug"] not in preview]
+    beds_of = lambda pl: int(str(pl["beds"]).split()[0])
+    if gate:
+        # open previews lead, in the order given; everything else follows in catalogue order
+        ordered = [pl for x in preview for pl in plans if pl["slug"] == x] + [pl for pl in plans if pl["slug"] not in preview]
+    else:
+        # grouped by bedroom count (a den stays with its bedroom count), smallest first
+        ordered = sorted(plans, key=lambda pl: (beds_of(pl), pl["sqft"], pl["slug"]))
     cards = []
     for pl in ordered:
         base = "%s/%s" % (plans_dir, pl["slug"])
@@ -1132,15 +1138,19 @@ def plans_section(p, plans, plans_dir, register_html=""):
                      '<div class="plan-lock"><span>&#128274;</span>Register to view</div>' % base)
             cls = ""
         cards.append(PLAN_CARD % (
-            cls, pl["slug"], pl["type"].lower().replace(" ", "-"), base,
+            cls, pl["slug"], beds_of(pl), pl["type"].lower().replace(" ", "-"), base,
             ",".join(str(w) for w in widths), html.escape(pl["name"], quote=True),
             html.escape(html.unescape(spec), quote=True), media, pl["name"], spec, pl["level"], price))
 
+    by_beds = {}
+    for pl in plans:
+        by_beds.setdefault(beds_of(pl), []).append(pl)
+    BED_WORDS = {1: "One bedroom", 2: "Two bedroom", 3: "Three bedroom", 4: "Four bedroom"}
     chips = ['<button type="button" class="plan-chip is-on" data-filter="all">All %d</button>' % len(plans)]
-    for t in PLAN_TYPE_ORDER:
-        if t in counts:
-            chips.append('<button type="button" class="plan-chip" data-filter="%s">%s %d</button>'
-                         % (t.lower().replace(" ", "-"), t, counts[t]))
+    for b in sorted(by_beds):
+        chips.append('<button type="button" class="plan-chip" data-filter="%d">%d bed %d</button>'
+                     % (b, b, len(by_beds[b])))
+    chips.append('<a class="plan-jump" href="#gallery">See images &darr;</a>')
     locked = len(plans) - len(preview)
     smallest, largest = min(plans, key=lambda x: x["sqft"]), max(plans, key=lambda x: x["sqft"])
     singular = lambda t: "Flat" if t == "Flats" else t.rstrip("s")
@@ -1149,14 +1159,28 @@ def plans_section(p, plans, plans_dir, register_html=""):
                  % len(preview))
         state = "%d plans locked &middot; register to open them" % locked
     else:
-        pitch = "Tap any plan to see it full size."
+        pitch = "Grouped by bedroom count; tap any plan to see it full size."
         state = "%d plans &middot; tap to enlarge" % len(plans)
     lead, rest = cards[:len(preview)], cards[len(preview):]
     if register_html and gate:
         grid = ('<div class="plan-grid">\n%s\n  </div>\n  <div class="plans-gate">%s</div>\n  <div class="plan-grid">\n%s\n  </div>'
                 % ("\n".join(lead), register_html, "\n".join(rest)))
     else:
-        grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(cards)
+        # one grid, with a full-width heading opening each bedroom group
+        rows, seen = [], set()
+        for pl, card in zip(ordered, cards):
+            b = beds_of(pl)
+            if b not in seen:
+                seen.add(b)
+                group = by_beds[b]
+                lo, hi = min(x["sqft"] for x in group), max(x["sqft"] for x in group)
+                cheapest = min(prices[x["slug"]]["min"] for x in group if x["slug"] in prices)
+                rows.append('    <div class="plan-group" data-beds="%d" id="plans-%d-bed"><span>%s</span>'
+                            '<small>%d plan%s &middot; %s &ndash; %s sq ft &middot; from %s</small></div>'
+                            % (b, b, BED_WORDS.get(b, "%d bedroom" % b), len(group), "" if len(group) == 1 else "s",
+                               "{:,}".format(lo), "{:,}".format(hi), _money(cheapest)))
+            rows.append(card)
+        grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(rows)
     return PLANS_SECTION % (
         len(plans), "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
         "{:,}".format(largest["sqft"]), singular(largest["type"]), pitch, "".join(chips), state,
@@ -1172,6 +1196,15 @@ PLANS_CSS = """
                  font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
     .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
     .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-jump { border: 1px solid var(--gold); color: var(--navy); background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-left: 0.5rem; }
+    .plan-jump:hover { background: var(--gold); color: #17130a; }
+    .plan-group { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+                  margin-top: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e3dccb; }
+    .plan-group:first-child { margin-top: 0; }
+    .plan-group[hidden] { display: none; }
+    .plan-group span { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); }
+    .plan-group small { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
     .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
     .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
             transition: border-color 0.2s, transform 0.2s; }
@@ -1221,6 +1254,8 @@ PLANS_CSS = """
       .plan-spec { font-size: 0.72rem; }
       .plan-level { display: none; }
       .plans-gate section.reg { padding: 2rem 1.25rem; border-radius: 10px; }
+      .plan-group span { font-size: 1.35rem; }
+      .plan-jump { margin-left: 0; }
       .lb-media { height: 66vh; }
       .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
       .lb-cap { padding: 0 3.5rem 2.75rem; }
@@ -1263,7 +1298,10 @@ PLANS_JS = r"""<script>
     ch.addEventListener('click', function () {
       Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === ch); });
       var t = ch.getAttribute('data-filter');
-      Array.prototype.forEach.call(sec.querySelectorAll('.plan'), function (f) { f.hidden = (t !== 'all' && f.getAttribute('data-type') !== t); });
+      Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+        var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+        f.hidden = (t !== 'all' && v !== t);
+      });
     });
   });
 
@@ -1384,12 +1422,12 @@ def build(slug, p):
                                 "<a href=\"tel:6479240848\">647-924-0848</a>."),
         }
 
-    extra = []
+    blocks = {}
     if p.get("deposit_example"):
-        extra.append(deposit_example_html(p["deposit_example"]))
+        blocks["deposit_example"] = deposit_example_html(p["deposit_example"])
     if p.get("setting"):
         v = p["setting"]
-        extra.append("""<section>
+        blocks["setting"] = ("""<section>
   <div class="setting">
     <div class="setting-media">%s</div>
     <div>
@@ -1404,7 +1442,7 @@ def build(slug, p):
        "\n".join("      <p>%s</p>" % t for t in v["text"])))
     if p.get("site_plan"):
         sp = p["site_plan"]
-        extra.append("""<section>
+        blocks["site_plan"] = ("""<section>
   <div class="sec-eyebrow">Site plan</div>
   <h2 class="sec-title">%s</h2>
   <div class="siteplan">
@@ -1420,7 +1458,6 @@ def build(slug, p):
                style="aspect-ratio: %s" % sp["ratio"] if sp.get("ratio") else ""),
        "\n".join('      <div class="cm-row"><span class="cm-time">%s</span>'
                  '<span class="cm-place">%s</span></div>' % r for r in sp["rows"])))
-    extra_sections = "\n".join(extra)
     split = p.get("hero_layout") == "split"
     hero_sizes = "(min-width: 1000px) 45vw, 100vw" if split else "100vw"
     hero_pic = picture(p["hero"], p["hero_alt"], hero_sizes, HERO_W, cls="hero-img", eager=True)
@@ -1432,39 +1469,80 @@ def build(slug, p):
             % (hero_sizes, ", ".join("images/towns/%s-%d.avif %dw" % (p["hero"], w, w)
                                      for w in HERO_W if have(p["hero"], w, "avif"))))
 
-    pricing_html = """<section id="pricing">
+    blocks["pricing"] = """<section id="pricing">
   <div class="sec-eyebrow">Pricing</div>
   <h2 class="sec-title">%s</h2>
 %s%s
 </section>
 """ % (p.get("pricing_title", "Models &amp; <em>prices</em>"), tables, plans_link)
-    layout = p.get("layout", "")
-    if plans and layout == "plans_first":
-        # cards lead; gated: the form sits between the open previews and the locked
-        # plans, ungated: it follows the full price list
-        gate = p.get("plans_gate", True)
-        after_facts = plans_section(p, plans, plans_dir, register_section if gate else "")
-        pricing_block = pricing_html + ("" if gate else register_section)
-    elif plans and layout == "prices_first":
-        after_facts = pricing_html + register_section + plans_section(p, plans, plans_dir)
-        pricing_block = ""
-    else:
-        after_facts = register_section
-        pricing_block = pricing_html + (plans_section(p, plans, plans_dir) if plans else "")
+    blocks["overview"] = """<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>%s</em></h2>
+%s
+%s    </div>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+%s
+    </div>
+  </div>
+</section>
+""" % (p["name"], intro, logos, commute)
+    blocks["incentives"] = """<section>
+  <div class="two-col">
+    <div>
+      <div class="sec-eyebrow">What&rsquo;s included</div>
+      <h2 class="sec-title">%s</h2>
+      <ul class="inc-list">
+%s
+      </ul>
+    </div>
+    <div>
+%s
+    </div>
+  </div>
+</section>
+""" % (p.get("incentives_title", "Current <em>incentives</em>"), incentives, deposit)
+    blocks["gallery"] = """<section id="gallery">
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">%s</h2>
+  <div class="gal">
+%s
+  </div>
+</section>
+""" % (p.get("gallery_title", "Renderings"), gallery)
+    blocks["nearby"] = """<section>
+  <div class="sec-eyebrow">Nearby</div>
+  <h2 class="sec-title">More townhomes in <em>Dixie &amp; Lakeshore</em></h2>
+  <div class="sibs">
+%s
+  </div>
+</section>
+""" % others
+    gate = bool(plans) and p.get("plans_gate", True)
+    if plans:
+        # gated: the form sits inside the plan section, between previews and locked plans
+        blocks["plans"] = plans_section(p, plans, plans_dir, register_section if gate else "")
+    if register_section and not gate:
+        blocks["register"] = register_section
+    order = p.get("order", ["register", "overview", "pricing", "plans", "incentives", "deposit_example",
+                            "setting", "site_plan", "gallery", "nearby"])
+    unknown = [k for k in order if k not in ("register", "overview", "pricing", "plans", "incentives",
+                                             "deposit_example", "setting", "site_plan", "gallery", "nearby")]
+    if unknown:
+        raise SystemExit("%s: unknown section(s) in order: %s" % (slug, unknown))
+    body = "\n".join(blocks[k] for k in order if k in blocks)
 
     return TEMPLATE.format(
-        after_facts=after_facts, pricing_block=pricing_block,
+        body=body,
         extra_css=PLANS_CSS if plans else "",
         name=p["name"], builder=p["builder"], tagline=p["tagline"],
         address=p["address"], area=p["area"], meta=p["meta"],
         hero_pic=hero_pic, hero_preload=hero_preload,
-        facts=facts, intro=intro,
-        incentives=incentives, deposit=deposit, commute=commute,
-        gallery=gallery, others=others, source=p["source"], status_badge=status_badge,
+        facts=facts, source=p["source"], status_badge=status_badge,
         hero_cta=hero_cta,
-        logos=logos, extra_sections=extra_sections, pixel=META_PIXEL, hero_class=" split" if split else "",
-        incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
-        gallery_title=p.get("gallery_title", "Renderings"),
+        pixel=META_PIXEL, hero_class=" split" if split else "",
         cta_line=p.get("cta_line", "Sold out &mdash; ask what&rsquo;s coming next nearby."
                        if p.get("status") == "Sold out" else "Let&rsquo;s talk floor plans."),
         price_from=dict(p["facts"])["From"],
@@ -1818,52 +1896,7 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="facts">
 {facts}
 </div>
-{after_facts}<section>
-  <div class="overview">
-    <div>
-      <div class="sec-eyebrow">Overview</div>
-      <h2 class="sec-title">About <em>{name}</em></h2>
-{intro}
-{logos}    </div>
-    <div>
-      <h3 class="side-title">Getting around</h3>
-{commute}
-    </div>
-  </div>
-</section>
-
-{pricing_block}<section>
-  <div class="two-col">
-    <div>
-      <div class="sec-eyebrow">What&rsquo;s included</div>
-      <h2 class="sec-title">{incentives_title}</h2>
-      <ul class="inc-list">
-{incentives}
-      </ul>
-    </div>
-    <div>
-{deposit}
-    </div>
-  </div>
-</section>
-
-{extra_sections}
-<section>
-  <div class="sec-eyebrow">Gallery</div>
-  <h2 class="sec-title">{gallery_title}</h2>
-  <div class="gal">
-{gallery}
-  </div>
-</section>
-
-<section>
-  <div class="sec-eyebrow">Nearby</div>
-  <h2 class="sec-title">More townhomes in <em>Dixie &amp; Lakeshore</em></h2>
-  <div class="sibs">
-{others}
-  </div>
-</section>
-
+{body}
 <div class="cta">
   <div class="cta-h">Interested in {name}?<br><em>{cta_line}</em></div>
   <div class="cta-actions">

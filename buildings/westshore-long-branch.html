@@ -271,6 +271,15 @@
                  font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
     .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
     .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-jump { border: 1px solid var(--gold); color: var(--navy); background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-left: 0.5rem; }
+    .plan-jump:hover { background: var(--gold); color: #17130a; }
+    .plan-group { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+                  margin-top: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e3dccb; }
+    .plan-group:first-child { margin-top: 0; }
+    .plan-group[hidden] { display: none; }
+    .plan-group span { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); }
+    .plan-group small { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
     .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
     .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
             transition: border-color 0.2s, transform 0.2s; }
@@ -320,6 +329,8 @@
       .plan-spec { font-size: 0.72rem; }
       .plan-level { display: none; }
       .plans-gate section.reg { padding: 2rem 1.25rem; border-radius: 10px; }
+      .plan-group span { font-size: 1.35rem; }
+      .plan-jump { margin-left: 0; }
       .lb-media { height: 66vh; }
       .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
       .lb-cap { padding: 0 3.5rem 2.75rem; }
@@ -380,13 +391,14 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <section id="floor-plans" class="plans-sec">
   <div class="sec-eyebrow">Floor plans &amp; prices</div>
   <h2 class="sec-title">27 plans on the <em>September price list</em></h2>
-  <p class="plans-intro">Every layout Minto is selling right now, from the 472 sq ft Flat to the 1,238 sq ft Sky Town, with the price in each block. Tap any plan to see it full size.</p>
+  <p class="plans-intro">Every layout Minto is selling right now, from the 472 sq ft Flat to the 1,238 sq ft Sky Town, with the price in each block. Grouped by bedroom count; tap any plan to see it full size.</p>
   <div class="plans-bar">
-    <div class="plan-chips"><button type="button" class="plan-chip is-on" data-filter="all">All 27</button><button type="button" class="plan-chip" data-filter="flats">Flats 4</button><button type="button" class="plan-chip" data-filter="garden-flats">Garden Flats 1</button><button type="button" class="plan-chip" data-filter="garden-towns">Garden Towns 4</button><button type="button" class="plan-chip" data-filter="sky-towns">Sky Towns 18</button></div>
+    <div class="plan-chips"><button type="button" class="plan-chip is-on" data-filter="all">All 27</button><button type="button" class="plan-chip" data-filter="1">1 bed 4</button><button type="button" class="plan-chip" data-filter="2">2 bed 9</button><button type="button" class="plan-chip" data-filter="3">3 bed 14</button><a class="plan-jump" href="#gallery">See images &darr;</a></div>
     <div class="plans-state" id="plans-state">27 plans &middot; tap to enlarge</div>
   </div>
   <div class="plan-grid">
-    <figure class="plan is-open" id="plan-flats-472" data-type="flats" data-base="images/plans/westshore/flats-472" data-widths="480,800,1280" data-name="The Flats 472" data-spec="1 bed · 1 bath · 472 sq ft">
+    <div class="plan-group" data-beds="1" id="plans-1-bed"><span>One bedroom</span><small>4 plans &middot; 472 &ndash; 643 sq ft &middot; from $424,900</small></div>
+    <figure class="plan is-open" id="plan-flats-472" data-beds="1" data-type="flats" data-base="images/plans/westshore/flats-472" data-widths="480,800,1280" data-name="The Flats 472" data-spec="1 bed · 1 bath · 472 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-472-480.avif 480w, images/plans/westshore/flats-472-800.avif 800w, images/plans/westshore/flats-472-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-472-480.webp 480w, images/plans/westshore/flats-472-800.webp 800w, images/plans/westshore/flats-472-1280.webp 1280w"><img src="images/plans/westshore/flats-472.jpg" alt="The Flats 472 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Flats 472</div>
@@ -395,7 +407,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $424,900<span class="plan-net">$400,042 net of HST rebate*</span><span>Block 7 <b>$424,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-flats-523" data-type="flats" data-base="images/plans/westshore/flats-523" data-widths="480,800,1280" data-name="The Flats 523" data-spec="1 bed · 1 bath · 523 sq ft">
+    <figure class="plan is-open" id="plan-flats-523" data-beds="1" data-type="flats" data-base="images/plans/westshore/flats-523" data-widths="480,800,1280" data-name="The Flats 523" data-spec="1 bed · 1 bath · 523 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-523-480.avif 480w, images/plans/westshore/flats-523-800.avif 800w, images/plans/westshore/flats-523-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-523-480.webp 480w, images/plans/westshore/flats-523-800.webp 800w, images/plans/westshore/flats-523-1280.webp 1280w"><img src="images/plans/westshore/flats-523.jpg" alt="The Flats 523 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Flats 523</div>
@@ -404,7 +416,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $454,900<span class="plan-net">$425,189 net of HST rebate*</span><span>Block 6 <b>$454,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-flats-530" data-type="flats" data-base="images/plans/westshore/flats-530" data-widths="480,800,1280" data-name="The Flats 530" data-spec="1 bed · 1 bath · 530 sq ft">
+    <figure class="plan is-open" id="plan-flats-530" data-beds="1" data-type="flats" data-base="images/plans/westshore/flats-530" data-widths="480,800,1280" data-name="The Flats 530" data-spec="1 bed · 1 bath · 530 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-530-480.avif 480w, images/plans/westshore/flats-530-800.avif 800w, images/plans/westshore/flats-530-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-530-480.webp 480w, images/plans/westshore/flats-530-800.webp 800w, images/plans/westshore/flats-530-1280.webp 1280w"><img src="images/plans/westshore/flats-530.jpg" alt="The Flats 530 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Flats 530</div>
@@ -413,16 +425,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $439,900<span class="plan-net">$412,615 net of HST rebate*</span><span>Block 1 <b>$439,900</b> &middot; Block 6 <b>$464,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-flats-1183" data-type="flats" data-base="images/plans/westshore/flats-1183" data-widths="480,800,1280" data-name="The Flats 1183" data-spec="3 + den bed · 2 bath · 1,183 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-1183-480.avif 480w, images/plans/westshore/flats-1183-800.avif 800w, images/plans/westshore/flats-1183-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-1183-480.webp 480w, images/plans/westshore/flats-1183-800.webp 800w, images/plans/westshore/flats-1183-1280.webp 1280w"><img src="images/plans/westshore/flats-1183.jpg" alt="The Flats 1183 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Flats 1183</div>
-        <div class="plan-spec">3 + den bed &middot; 2 bath &middot; 1,183 sq ft</div>
-        <div class="plan-level">1-storey mid-level with terrace</div>
-        <div class="plan-price">From $769,900<span class="plan-net">$702,566 net of HST rebate*</span><span>Block 1 <b>$769,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-garden-flats-643" data-type="garden-flats" data-base="images/plans/westshore/garden-flats-643" data-widths="480,800,1280" data-name="The Garden Flats 643" data-spec="1 + den bed · 1 bath · 643 sq ft">
+    <figure class="plan is-open" id="plan-garden-flats-643" data-beds="1" data-type="garden-flats" data-base="images/plans/westshore/garden-flats-643" data-widths="480,800,1280" data-name="The Garden Flats 643" data-spec="1 + den bed · 1 bath · 643 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-flats-643-480.avif 480w, images/plans/westshore/garden-flats-643-800.avif 800w, images/plans/westshore/garden-flats-643-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-flats-643-480.webp 480w, images/plans/westshore/garden-flats-643-800.webp 800w, images/plans/westshore/garden-flats-643-1280.webp 1280w"><img src="images/plans/westshore/garden-flats-643.jpg" alt="The Garden Flats 643 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Garden Flats 643</div>
@@ -431,7 +434,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $531,900<span class="plan-net">$491,947 net of HST rebate*</span><span>Block 1 <b>$531,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-garden-towns-952" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-952" data-widths="480,800,1280,1920" data-name="The Garden Towns 952" data-spec="2 bed · 2 bath · 952 sq ft">
+    <div class="plan-group" data-beds="2" id="plans-2-bed"><span>Two bedroom</span><small>9 plans &middot; 952 &ndash; 1,155 sq ft &middot; from $602,900</small></div>
+    <figure class="plan is-open" id="plan-garden-towns-952" data-beds="2" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-952" data-widths="480,800,1280,1920" data-name="The Garden Towns 952" data-spec="2 bed · 2 bath · 952 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-952-480.avif 480w, images/plans/westshore/garden-towns-952-800.avif 800w, images/plans/westshore/garden-towns-952-1280.avif 1280w, images/plans/westshore/garden-towns-952-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-952-480.webp 480w, images/plans/westshore/garden-towns-952-800.webp 800w, images/plans/westshore/garden-towns-952-1280.webp 1280w, images/plans/westshore/garden-towns-952-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-952.jpg" alt="The Garden Towns 952 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Garden Towns 952</div>
@@ -440,34 +444,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $602,900<span class="plan-net">$554,779 net of HST rebate*</span><span>Block 6 <b>$602,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-garden-towns-1118" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1118" data-widths="480,800,1280,1920" data-name="The Garden Towns 1118" data-spec="3 bed · 2.5 bath · 1,118 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1118-480.avif 480w, images/plans/westshore/garden-towns-1118-800.avif 800w, images/plans/westshore/garden-towns-1118-1280.avif 1280w, images/plans/westshore/garden-towns-1118-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1118-480.webp 480w, images/plans/westshore/garden-towns-1118-800.webp 800w, images/plans/westshore/garden-towns-1118-1280.webp 1280w, images/plans/westshore/garden-towns-1118-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-1118.jpg" alt="The Garden Towns 1118 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Garden Towns 1118</div>
-        <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,118 sq ft</div>
-        <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $652,900<span class="plan-net">$599,027 net of HST rebate*</span><span>Block 1 <b>$652,900</b> &middot; Block 7 <b>$677,900</b> &middot; Block 2 <b>$687,900</b> &middot; Block 6 <b>$702,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-garden-towns-1164" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1164" data-widths="480,800,1280,1920" data-name="The Garden Towns 1164" data-spec="3 bed · 3 bath · 1,164 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1164-480.avif 480w, images/plans/westshore/garden-towns-1164-800.avif 800w, images/plans/westshore/garden-towns-1164-1280.avif 1280w, images/plans/westshore/garden-towns-1164-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1164-480.webp 480w, images/plans/westshore/garden-towns-1164-800.webp 800w, images/plans/westshore/garden-towns-1164-1280.webp 1280w, images/plans/westshore/garden-towns-1164-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-1164.jpg" alt="The Garden Towns 1164 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Garden Towns 1164</div>
-        <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,164 sq ft</div>
-        <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $739,900<span class="plan-net">$676,018 net of HST rebate*</span><span>Blocks 1 &amp; 7 <b>$739,900</b> &middot; Block 2 <b>$746,900</b> &middot; Block 6 <b>$749,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-garden-towns-1207" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1207" data-widths="480,800,1280,1920" data-name="The Garden Towns 1207" data-spec="3 bed · 3 bath · 1,207 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1207-480.avif 480w, images/plans/westshore/garden-towns-1207-800.avif 800w, images/plans/westshore/garden-towns-1207-1280.avif 1280w, images/plans/westshore/garden-towns-1207-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1207-480.webp 480w, images/plans/westshore/garden-towns-1207-800.webp 800w, images/plans/westshore/garden-towns-1207-1280.webp 1280w, images/plans/westshore/garden-towns-1207-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-1207.jpg" alt="The Garden Towns 1207 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Garden Towns 1207</div>
-        <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,207 sq ft</div>
-        <div class="plan-level">2-storey ground level with patio</div>
-        <div class="plan-price">From $794,900<span class="plan-net">$724,690 net of HST rebate*</span><span>Block 2 <b>$794,900</b> &middot; Block 6 <b>$804,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1071" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1071" data-widths="480,800,1280,1920" data-name="The Sky Towns 1071" data-spec="2 bed · 1 bath · 1,071 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1071" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1071" data-widths="480,800,1280,1920" data-name="The Sky Towns 1071" data-spec="2 bed · 1 bath · 1,071 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1071-480.avif 480w, images/plans/westshore/sky-towns-1071-800.avif 800w, images/plans/westshore/sky-towns-1071-1280.avif 1280w, images/plans/westshore/sky-towns-1071-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1071-480.webp 480w, images/plans/westshore/sky-towns-1071-800.webp 800w, images/plans/westshore/sky-towns-1071-1280.webp 1280w, images/plans/westshore/sky-towns-1071-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1071.jpg" alt="The Sky Towns 1071 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1071</div>
@@ -476,16 +453,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $652,900<span class="plan-net">$599,027 net of HST rebate*</span><span>Block 1 <b>$652,900</b> &middot; Block 2 <b>$664,900</b> &middot; Block 6 <b>$722,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1077" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1077" data-widths="480,800,1280,1920" data-name="The Sky Towns 1077" data-spec="3 bed · 2 bath · 1,077 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1077-480.avif 480w, images/plans/westshore/sky-towns-1077-800.avif 800w, images/plans/westshore/sky-towns-1077-1280.avif 1280w, images/plans/westshore/sky-towns-1077-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1077-480.webp 480w, images/plans/westshore/sky-towns-1077-800.webp 800w, images/plans/westshore/sky-towns-1077-1280.webp 1280w, images/plans/westshore/sky-towns-1077-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1077.jpg" alt="The Sky Towns 1077 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Sky Towns 1077</div>
-        <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,077 sq ft</div>
-        <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $767,900<span class="plan-net">$700,796 net of HST rebate*</span><span>Block 6 <b>$767,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1091" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1091" data-widths="480,800,1280,1920" data-name="The Sky Towns 1091" data-spec="2 bed · 2.5 bath · 1,091 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1091" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1091" data-widths="480,800,1280,1920" data-name="The Sky Towns 1091" data-spec="2 bed · 2.5 bath · 1,091 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1091-480.avif 480w, images/plans/westshore/sky-towns-1091-800.avif 800w, images/plans/westshore/sky-towns-1091-1280.avif 1280w, images/plans/westshore/sky-towns-1091-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1091-480.webp 480w, images/plans/westshore/sky-towns-1091-800.webp 800w, images/plans/westshore/sky-towns-1091-1280.webp 1280w, images/plans/westshore/sky-towns-1091-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1091.jpg" alt="The Sky Towns 1091 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1091</div>
@@ -494,7 +462,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $757,900<span class="plan-net">$691,947 net of HST rebate*</span><span>Blocks 1 &amp; 7 <b>$757,900</b> &middot; Block 2 <b>$769,900</b> &middot; Block 6 <b>$782,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1092" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1092" data-widths="480,800,1280,1920" data-name="The Sky Towns 1092" data-spec="2 + den bed · 2 bath · 1,092 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1092" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1092" data-widths="480,800,1280,1920" data-name="The Sky Towns 1092" data-spec="2 + den bed · 2 bath · 1,092 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1092-480.avif 480w, images/plans/westshore/sky-towns-1092-800.avif 800w, images/plans/westshore/sky-towns-1092-1280.avif 1280w, images/plans/westshore/sky-towns-1092-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1092-480.webp 480w, images/plans/westshore/sky-towns-1092-800.webp 800w, images/plans/westshore/sky-towns-1092-1280.webp 1280w, images/plans/westshore/sky-towns-1092-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1092.jpg" alt="The Sky Towns 1092 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1092</div>
@@ -503,7 +471,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $687,900<span class="plan-net">$630,000 net of HST rebate*</span><span>Block 1 <b>$687,900</b> &middot; Block 2 <b>$764,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1106" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1106" data-widths="480,800,1280,1920" data-name="The Sky Towns 1106" data-spec="2 bed · 2.5 bath · 1,106 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1106" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1106" data-widths="480,800,1280,1920" data-name="The Sky Towns 1106" data-spec="2 bed · 2.5 bath · 1,106 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1106-480.avif 480w, images/plans/westshore/sky-towns-1106-800.avif 800w, images/plans/westshore/sky-towns-1106-1280.avif 1280w, images/plans/westshore/sky-towns-1106-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1106-480.webp 480w, images/plans/westshore/sky-towns-1106-800.webp 800w, images/plans/westshore/sky-towns-1106-1280.webp 1280w, images/plans/westshore/sky-towns-1106-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1106.jpg" alt="The Sky Towns 1106 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1106</div>
@@ -512,25 +480,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $762,900<span class="plan-net">$696,372 net of HST rebate*</span><span>Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1121" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1121" data-widths="480,800,1280,1920" data-name="The Sky Towns 1121" data-spec="3 bed · 2 bath · 1,121 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1121-480.avif 480w, images/plans/westshore/sky-towns-1121-800.avif 800w, images/plans/westshore/sky-towns-1121-1280.avif 1280w, images/plans/westshore/sky-towns-1121-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1121-480.webp 480w, images/plans/westshore/sky-towns-1121-800.webp 800w, images/plans/westshore/sky-towns-1121-1280.webp 1280w, images/plans/westshore/sky-towns-1121-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1121.jpg" alt="The Sky Towns 1121 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Sky Towns 1121</div>
-        <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,121 sq ft</div>
-        <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $772,900<span class="plan-net">$705,221 net of HST rebate*</span><span>Block 1 <b>$772,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1137" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1137" data-widths="480,800,1280,1920" data-name="The Sky Towns 1137" data-spec="3 bed · 2 bath · 1,137 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1137-480.avif 480w, images/plans/westshore/sky-towns-1137-800.avif 800w, images/plans/westshore/sky-towns-1137-1280.avif 1280w, images/plans/westshore/sky-towns-1137-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1137-480.webp 480w, images/plans/westshore/sky-towns-1137-800.webp 800w, images/plans/westshore/sky-towns-1137-1280.webp 1280w, images/plans/westshore/sky-towns-1137-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1137.jpg" alt="The Sky Towns 1137 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Sky Towns 1137</div>
-        <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,137 sq ft</div>
-        <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $797,900<span class="plan-net">$727,345 net of HST rebate*</span><span>Block 6 <b>$797,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1138" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1138" data-widths="480,800,1280,1920" data-name="The Sky Towns 1138" data-spec="2 bed · 2 bath · 1,138 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1138" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1138" data-widths="480,800,1280,1920" data-name="The Sky Towns 1138" data-spec="2 bed · 2 bath · 1,138 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1138-480.avif 480w, images/plans/westshore/sky-towns-1138-800.avif 800w, images/plans/westshore/sky-towns-1138-1280.avif 1280w, images/plans/westshore/sky-towns-1138-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1138-480.webp 480w, images/plans/westshore/sky-towns-1138-800.webp 800w, images/plans/westshore/sky-towns-1138-1280.webp 1280w, images/plans/westshore/sky-towns-1138-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1138.jpg" alt="The Sky Towns 1138 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1138</div>
@@ -539,7 +489,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $707,900<span class="plan-net">$647,699 net of HST rebate*</span><span>Block 1 <b>$707,900</b> &middot; Block 7 <b>$772,900</b> &middot; Block 2 <b>$784,900</b> &middot; Block 6 <b>$797,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1139-a" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1139-a" data-widths="480,800,1280,1920" data-name="The Sky Towns 1139 A" data-spec="2 + den bed · 2 bath · 1,139 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1139-a" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1139-a" data-widths="480,800,1280,1920" data-name="The Sky Towns 1139 A" data-spec="2 + den bed · 2 bath · 1,139 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1139-a-480.avif 480w, images/plans/westshore/sky-towns-1139-a-800.avif 800w, images/plans/westshore/sky-towns-1139-a-1280.avif 1280w, images/plans/westshore/sky-towns-1139-a-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1139-a-480.webp 480w, images/plans/westshore/sky-towns-1139-a-800.webp 800w, images/plans/westshore/sky-towns-1139-a-1280.webp 1280w, images/plans/westshore/sky-towns-1139-a-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1139-a.jpg" alt="The Sky Towns 1139 A floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1139 A</div>
@@ -548,7 +498,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $762,900<span class="plan-net">$696,372 net of HST rebate*</span><span>Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1139-b" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1139-b" data-widths="480,800,1280,1920" data-name="The Sky Towns 1139 B" data-spec="2 + den bed · 2 bath · 1,139 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1139-b" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1139-b" data-widths="480,800,1280,1920" data-name="The Sky Towns 1139 B" data-spec="2 + den bed · 2 bath · 1,139 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1139-b-480.avif 480w, images/plans/westshore/sky-towns-1139-b-800.avif 800w, images/plans/westshore/sky-towns-1139-b-1280.avif 1280w, images/plans/westshore/sky-towns-1139-b-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1139-b-480.webp 480w, images/plans/westshore/sky-towns-1139-b-800.webp 800w, images/plans/westshore/sky-towns-1139-b-1280.webp 1280w, images/plans/westshore/sky-towns-1139-b-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1139-b.jpg" alt="The Sky Towns 1139 B floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1139 B</div>
@@ -557,16 +507,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $762,900<span class="plan-net">$696,372 net of HST rebate*</span><span>Block 1 <b>$762,900</b> &middot; Block 2 <b>$774,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1142" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1142" data-widths="480,800,1280,1920" data-name="The Sky Towns 1142" data-spec="3 bed · 2.5 bath · 1,142 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1142-480.avif 480w, images/plans/westshore/sky-towns-1142-800.avif 800w, images/plans/westshore/sky-towns-1142-1280.avif 1280w, images/plans/westshore/sky-towns-1142-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1142-480.webp 480w, images/plans/westshore/sky-towns-1142-800.webp 800w, images/plans/westshore/sky-towns-1142-1280.webp 1280w, images/plans/westshore/sky-towns-1142-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1142.jpg" alt="The Sky Towns 1142 floor plan" loading="lazy" decoding="async"></picture></div>
-      <figcaption>
-        <div class="plan-name">The Sky Towns 1142</div>
-        <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,142 sq ft</div>
-        <div class="plan-level">2-storey upper level with rooftop terrace</div>
-        <div class="plan-price">From $814,900<span class="plan-net">$742,389 net of HST rebate*</span><span>Block 2 <b>$814,900</b> &middot; Block 6 <b>$827,900</b></span></div>
-      </figcaption>
-    </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1155" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1155" data-widths="480,800,1280,1920" data-name="The Sky Towns 1155" data-spec="2 + den bed · 2 bath · 1,155 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1155" data-beds="2" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1155" data-widths="480,800,1280,1920" data-name="The Sky Towns 1155" data-spec="2 + den bed · 2 bath · 1,155 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1155-480.avif 480w, images/plans/westshore/sky-towns-1155-800.avif 800w, images/plans/westshore/sky-towns-1155-1280.avif 1280w, images/plans/westshore/sky-towns-1155-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1155-480.webp 480w, images/plans/westshore/sky-towns-1155-800.webp 800w, images/plans/westshore/sky-towns-1155-1280.webp 1280w, images/plans/westshore/sky-towns-1155-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1155.jpg" alt="The Sky Towns 1155 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1155</div>
@@ -575,7 +516,62 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $772,900<span class="plan-net">$705,221 net of HST rebate*</span><span>Block 7 <b>$772,900</b> &middot; Block 6 <b>$787,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1181" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1181" data-widths="480,800,1280,1920" data-name="The Sky Towns 1181" data-spec="3 bed · 3 bath · 1,181 sq ft">
+    <div class="plan-group" data-beds="3" id="plans-3-bed"><span>Three bedroom</span><small>14 plans &middot; 1,077 &ndash; 1,238 sq ft &middot; from $652,900</small></div>
+    <figure class="plan is-open" id="plan-sky-towns-1077" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1077" data-widths="480,800,1280,1920" data-name="The Sky Towns 1077" data-spec="3 bed · 2 bath · 1,077 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1077-480.avif 480w, images/plans/westshore/sky-towns-1077-800.avif 800w, images/plans/westshore/sky-towns-1077-1280.avif 1280w, images/plans/westshore/sky-towns-1077-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1077-480.webp 480w, images/plans/westshore/sky-towns-1077-800.webp 800w, images/plans/westshore/sky-towns-1077-1280.webp 1280w, images/plans/westshore/sky-towns-1077-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1077.jpg" alt="The Sky Towns 1077 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Sky Towns 1077</div>
+        <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,077 sq ft</div>
+        <div class="plan-level">2-storey upper level with rooftop terrace</div>
+        <div class="plan-price">From $767,900<span class="plan-net">$700,796 net of HST rebate*</span><span>Block 6 <b>$767,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-garden-towns-1118" data-beds="3" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1118" data-widths="480,800,1280,1920" data-name="The Garden Towns 1118" data-spec="3 bed · 2.5 bath · 1,118 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1118-480.avif 480w, images/plans/westshore/garden-towns-1118-800.avif 800w, images/plans/westshore/garden-towns-1118-1280.avif 1280w, images/plans/westshore/garden-towns-1118-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1118-480.webp 480w, images/plans/westshore/garden-towns-1118-800.webp 800w, images/plans/westshore/garden-towns-1118-1280.webp 1280w, images/plans/westshore/garden-towns-1118-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-1118.jpg" alt="The Garden Towns 1118 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Garden Towns 1118</div>
+        <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,118 sq ft</div>
+        <div class="plan-level">2-storey ground level with patio</div>
+        <div class="plan-price">From $652,900<span class="plan-net">$599,027 net of HST rebate*</span><span>Block 1 <b>$652,900</b> &middot; Block 7 <b>$677,900</b> &middot; Block 2 <b>$687,900</b> &middot; Block 6 <b>$702,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-sky-towns-1121" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1121" data-widths="480,800,1280,1920" data-name="The Sky Towns 1121" data-spec="3 bed · 2 bath · 1,121 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1121-480.avif 480w, images/plans/westshore/sky-towns-1121-800.avif 800w, images/plans/westshore/sky-towns-1121-1280.avif 1280w, images/plans/westshore/sky-towns-1121-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1121-480.webp 480w, images/plans/westshore/sky-towns-1121-800.webp 800w, images/plans/westshore/sky-towns-1121-1280.webp 1280w, images/plans/westshore/sky-towns-1121-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1121.jpg" alt="The Sky Towns 1121 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Sky Towns 1121</div>
+        <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,121 sq ft</div>
+        <div class="plan-level">2-storey upper level with rooftop terrace</div>
+        <div class="plan-price">From $772,900<span class="plan-net">$705,221 net of HST rebate*</span><span>Block 1 <b>$772,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-sky-towns-1137" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1137" data-widths="480,800,1280,1920" data-name="The Sky Towns 1137" data-spec="3 bed · 2 bath · 1,137 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1137-480.avif 480w, images/plans/westshore/sky-towns-1137-800.avif 800w, images/plans/westshore/sky-towns-1137-1280.avif 1280w, images/plans/westshore/sky-towns-1137-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1137-480.webp 480w, images/plans/westshore/sky-towns-1137-800.webp 800w, images/plans/westshore/sky-towns-1137-1280.webp 1280w, images/plans/westshore/sky-towns-1137-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1137.jpg" alt="The Sky Towns 1137 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Sky Towns 1137</div>
+        <div class="plan-spec">3 bed &middot; 2 bath &middot; 1,137 sq ft</div>
+        <div class="plan-level">2-storey upper level with rooftop terrace</div>
+        <div class="plan-price">From $797,900<span class="plan-net">$727,345 net of HST rebate*</span><span>Block 6 <b>$797,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-sky-towns-1142" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1142" data-widths="480,800,1280,1920" data-name="The Sky Towns 1142" data-spec="3 bed · 2.5 bath · 1,142 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1142-480.avif 480w, images/plans/westshore/sky-towns-1142-800.avif 800w, images/plans/westshore/sky-towns-1142-1280.avif 1280w, images/plans/westshore/sky-towns-1142-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1142-480.webp 480w, images/plans/westshore/sky-towns-1142-800.webp 800w, images/plans/westshore/sky-towns-1142-1280.webp 1280w, images/plans/westshore/sky-towns-1142-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1142.jpg" alt="The Sky Towns 1142 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Sky Towns 1142</div>
+        <div class="plan-spec">3 bed &middot; 2.5 bath &middot; 1,142 sq ft</div>
+        <div class="plan-level">2-storey upper level with rooftop terrace</div>
+        <div class="plan-price">From $814,900<span class="plan-net">$742,389 net of HST rebate*</span><span>Block 2 <b>$814,900</b> &middot; Block 6 <b>$827,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-garden-towns-1164" data-beds="3" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1164" data-widths="480,800,1280,1920" data-name="The Garden Towns 1164" data-spec="3 bed · 3 bath · 1,164 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1164-480.avif 480w, images/plans/westshore/garden-towns-1164-800.avif 800w, images/plans/westshore/garden-towns-1164-1280.avif 1280w, images/plans/westshore/garden-towns-1164-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1164-480.webp 480w, images/plans/westshore/garden-towns-1164-800.webp 800w, images/plans/westshore/garden-towns-1164-1280.webp 1280w, images/plans/westshore/garden-towns-1164-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-1164.jpg" alt="The Garden Towns 1164 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Garden Towns 1164</div>
+        <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,164 sq ft</div>
+        <div class="plan-level">2-storey ground level with patio</div>
+        <div class="plan-price">From $739,900<span class="plan-net">$676,018 net of HST rebate*</span><span>Blocks 1 &amp; 7 <b>$739,900</b> &middot; Block 2 <b>$746,900</b> &middot; Block 6 <b>$749,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-sky-towns-1181" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1181" data-widths="480,800,1280,1920" data-name="The Sky Towns 1181" data-spec="3 bed · 3 bath · 1,181 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1181-480.avif 480w, images/plans/westshore/sky-towns-1181-800.avif 800w, images/plans/westshore/sky-towns-1181-1280.avif 1280w, images/plans/westshore/sky-towns-1181-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1181-480.webp 480w, images/plans/westshore/sky-towns-1181-800.webp 800w, images/plans/westshore/sky-towns-1181-1280.webp 1280w, images/plans/westshore/sky-towns-1181-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1181.jpg" alt="The Sky Towns 1181 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1181</div>
@@ -584,7 +580,16 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $757,900<span class="plan-net">$691,947 net of HST rebate*</span><span>Block 1 <b>$757,900</b> &middot; Block 2 <b>$804,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1204" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1204" data-widths="480,800,1280,1920" data-name="The Sky Towns 1204" data-spec="3 + den bed · 3 bath · 1,204 sq ft">
+    <figure class="plan is-open" id="plan-flats-1183" data-beds="3" data-type="flats" data-base="images/plans/westshore/flats-1183" data-widths="480,800,1280" data-name="The Flats 1183" data-spec="3 + den bed · 2 bath · 1,183 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-1183-480.avif 480w, images/plans/westshore/flats-1183-800.avif 800w, images/plans/westshore/flats-1183-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/flats-1183-480.webp 480w, images/plans/westshore/flats-1183-800.webp 800w, images/plans/westshore/flats-1183-1280.webp 1280w"><img src="images/plans/westshore/flats-1183.jpg" alt="The Flats 1183 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Flats 1183</div>
+        <div class="plan-spec">3 + den bed &middot; 2 bath &middot; 1,183 sq ft</div>
+        <div class="plan-level">1-storey mid-level with terrace</div>
+        <div class="plan-price">From $769,900<span class="plan-net">$702,566 net of HST rebate*</span><span>Block 1 <b>$769,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-sky-towns-1204" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1204" data-widths="480,800,1280,1920" data-name="The Sky Towns 1204" data-spec="3 + den bed · 3 bath · 1,204 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1204-480.avif 480w, images/plans/westshore/sky-towns-1204-800.avif 800w, images/plans/westshore/sky-towns-1204-1280.avif 1280w, images/plans/westshore/sky-towns-1204-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1204-480.webp 480w, images/plans/westshore/sky-towns-1204-800.webp 800w, images/plans/westshore/sky-towns-1204-1280.webp 1280w, images/plans/westshore/sky-towns-1204-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1204.jpg" alt="The Sky Towns 1204 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1204</div>
@@ -593,7 +598,16 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $824,900<span class="plan-net">$751,239 net of HST rebate*</span><span>Block 2 <b>$824,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1208" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1208" data-widths="480,800,1280,1920" data-name="The Sky Towns 1208" data-spec="3 bed · 2.5 bath · 1,208 sq ft">
+    <figure class="plan is-open" id="plan-garden-towns-1207" data-beds="3" data-type="garden-towns" data-base="images/plans/westshore/garden-towns-1207" data-widths="480,800,1280,1920" data-name="The Garden Towns 1207" data-spec="3 bed · 3 bath · 1,207 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1207-480.avif 480w, images/plans/westshore/garden-towns-1207-800.avif 800w, images/plans/westshore/garden-towns-1207-1280.avif 1280w, images/plans/westshore/garden-towns-1207-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/garden-towns-1207-480.webp 480w, images/plans/westshore/garden-towns-1207-800.webp 800w, images/plans/westshore/garden-towns-1207-1280.webp 1280w, images/plans/westshore/garden-towns-1207-1920.webp 1920w"><img src="images/plans/westshore/garden-towns-1207.jpg" alt="The Garden Towns 1207 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">The Garden Towns 1207</div>
+        <div class="plan-spec">3 bed &middot; 3 bath &middot; 1,207 sq ft</div>
+        <div class="plan-level">2-storey ground level with patio</div>
+        <div class="plan-price">From $794,900<span class="plan-net">$724,690 net of HST rebate*</span><span>Block 2 <b>$794,900</b> &middot; Block 6 <b>$804,900</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-sky-towns-1208" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1208" data-widths="480,800,1280,1920" data-name="The Sky Towns 1208" data-spec="3 bed · 2.5 bath · 1,208 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1208-480.avif 480w, images/plans/westshore/sky-towns-1208-800.avif 800w, images/plans/westshore/sky-towns-1208-1280.avif 1280w, images/plans/westshore/sky-towns-1208-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1208-480.webp 480w, images/plans/westshore/sky-towns-1208-800.webp 800w, images/plans/westshore/sky-towns-1208-1280.webp 1280w, images/plans/westshore/sky-towns-1208-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1208.jpg" alt="The Sky Towns 1208 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1208</div>
@@ -602,7 +616,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $777,900<span class="plan-net">$709,646 net of HST rebate*</span><span>Block 1 <b>$777,900</b> &middot; Blocks 2 &amp; 7 <b>$812,900</b> &middot; Block 6 <b>$827,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1212" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1212" data-widths="480,800,1280,1920" data-name="The Sky Towns 1212" data-spec="3 bed · 2.5 bath · 1,212 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1212" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1212" data-widths="480,800,1280,1920" data-name="The Sky Towns 1212" data-spec="3 bed · 2.5 bath · 1,212 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1212-480.avif 480w, images/plans/westshore/sky-towns-1212-800.avif 800w, images/plans/westshore/sky-towns-1212-1280.avif 1280w, images/plans/westshore/sky-towns-1212-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1212-480.webp 480w, images/plans/westshore/sky-towns-1212-800.webp 800w, images/plans/westshore/sky-towns-1212-1280.webp 1280w, images/plans/westshore/sky-towns-1212-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1212.jpg" alt="The Sky Towns 1212 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1212</div>
@@ -611,7 +625,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $812,900<span class="plan-net">$740,619 net of HST rebate*</span><span>Block 7 <b>$812,900</b> &middot; Block 6 <b>$827,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1215" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1215" data-widths="480,800,1280,1920" data-name="The Sky Towns 1215" data-spec="3 bed · 2.5 bath · 1,215 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1215" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1215" data-widths="480,800,1280,1920" data-name="The Sky Towns 1215" data-spec="3 bed · 2.5 bath · 1,215 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1215-480.avif 480w, images/plans/westshore/sky-towns-1215-800.avif 800w, images/plans/westshore/sky-towns-1215-1280.avif 1280w, images/plans/westshore/sky-towns-1215-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1215-480.webp 480w, images/plans/westshore/sky-towns-1215-800.webp 800w, images/plans/westshore/sky-towns-1215-1280.webp 1280w, images/plans/westshore/sky-towns-1215-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1215.jpg" alt="The Sky Towns 1215 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1215</div>
@@ -620,7 +634,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price">From $837,900<span class="plan-net">$762,743 net of HST rebate*</span><span>Block 6 <b>$837,900</b></span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-sky-towns-1238" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1238" data-widths="480,800,1280,1920" data-name="The Sky Towns 1238" data-spec="3 bed · 2.5 bath · 1,238 sq ft">
+    <figure class="plan is-open" id="plan-sky-towns-1238" data-beds="3" data-type="sky-towns" data-base="images/plans/westshore/sky-towns-1238" data-widths="480,800,1280,1920" data-name="The Sky Towns 1238" data-spec="3 bed · 2.5 bath · 1,238 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1238-480.avif 480w, images/plans/westshore/sky-towns-1238-800.avif 800w, images/plans/westshore/sky-towns-1238-1280.avif 1280w, images/plans/westshore/sky-towns-1238-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/westshore/sky-towns-1238-480.webp 480w, images/plans/westshore/sky-towns-1238-800.webp 800w, images/plans/westshore/sky-towns-1238-1280.webp 1280w, images/plans/westshore/sky-towns-1238-1920.webp 1920w"><img src="images/plans/westshore/sky-towns-1238.jpg" alt="The Sky Towns 1238 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">The Sky Towns 1238</div>
@@ -674,7 +688,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     ch.addEventListener('click', function () {
       Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === ch); });
       var t = ch.getAttribute('data-filter');
-      Array.prototype.forEach.call(sec.querySelectorAll('.plan'), function (f) { f.hidden = (t !== 'all' && f.getAttribute('data-type') !== t); });
+      Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+        var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+        f.hidden = (t !== 'all' && v !== t);
+      });
     });
   });
 
@@ -708,24 +725,144 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 })();
 </script>
 </section>
+
 <section>
-  <div class="overview">
+  <div class="two-col">
     <div>
-      <div class="sec-eyebrow">Overview</div>
-      <h2 class="sec-title">About <em>Westshore at Long Branch</em></h2>
-      <p>Westshore is Minto&rsquo;s master-planned community on Lake Shore Boulevard West in Long Branch &mdash; the first Toronto neighbourhood east of Dixie &amp; Lakeshore, just across Etobicoke Creek. The Heights is its current release: five-storey hybrid stacked towns that put a garden home, a flat and a two-level sky town into one low-rise block, a short walk from Long Branch GO and the 501 streetcar loop.</p>
-      <p>Four home types cover the range. The Flats are one-bedroom suites with balconies; the Garden Flats and Garden Towns open onto private patios at grade; the Sky Towns are two- and three-bedroom homes on the upper levels with rooftop terraces. Parking is underground and every block has an elevator. Pricing starts at $424,900, deposits total just 15% with 5% not due until occupancy, and development levies and assignment fees are both capped at $0.</p>
-      <div class="logo-row"><img src="images/towns/westshore-logo.png" alt="Westshore at Long Branch" height="26" loading="lazy" decoding="async"><img src="images/towns/westshore-minto-logo.png" alt="Minto Communities" height="26" loading="lazy" decoding="async"></div>
+      <div class="sec-eyebrow">What&rsquo;s included</div>
+      <h2 class="sec-title">Limited-time <em>purchaser incentives</em></h2>
+      <ul class="inc-list">
+        <li>Extended deposit structure: $5,000 at signing, 15% in total, with the last 5% not due until occupancy</li>
+        <li>$0 capped development levies on every suite</li>
+        <li>$0 assignment fee</li>
+        <li>EV parking upgrades available</li>
+        <li>Maintenance fees approx. $0.40 per sq ft (excludes hydro and water) &middot; parking $59.95/month &middot; locker $29.95/month</li>
+        <li>Tentative first occupancy 2030</li>
+      </ul>
     </div>
     <div>
-      <h3 class="side-title">Getting around</h3>
-        <div class="cm-row"><span class="cm-time">At the door</span><span class="cm-place">501 Queen streetcar &middot; Long Branch Loop</span></div>
-        <div class="cm-row"><span class="cm-time">Short walk</span><span class="cm-place">Long Branch GO &mdash; about 25 min to Union</span></div>
-        <div class="cm-row"><span class="cm-time">Short walk</span><span class="cm-place">Marie Curtis Park, the beach &amp; the Waterfront Trail</span></div>
-        <div class="cm-row"><span class="cm-time">Next door</span><span class="cm-place">Dixie &amp; Lakeshore, across Etobicoke Creek</span></div>
-        <div class="cm-row"><span class="cm-time">About 5 min</span><span class="cm-place">Sherway Gardens &middot; QEW / 427</span></div>
-        <div class="cm-row"><span class="cm-time">About 20 min</span><span class="cm-place">Downtown Toronto</span></div>
+      <div class="dep-card">
+        <h3 class="side-title">Deposit structure</h3>
+          <div class="dep-row"><span class="dep-when">At signing</span><span class="dep-amt">$5,000</span></div>
+          <div class="dep-row"><span class="dep-when">30 days</span><span class="dep-amt">Balance to 5%</span></div>
+          <div class="dep-row"><span class="dep-when">365 days</span><span class="dep-amt">5%</span></div>
+          <div class="dep-row"><span class="dep-when">On occupancy</span><span class="dep-amt">5%</span></div>
+          <div class="dep-row"><span class="dep-when">Total</span><span class="dep-amt">15%</span></div>
+        <p class="dep-foot">Cheques payable to Bennett Jones LLP, in trust. Limited-time offer; some restrictions apply and the extended structure remains subject to vendor approval.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Deposit example</div>
+  <h2 class="sec-title">If you sign on <em>September 25, 2026</em></h2>
+  <p class="dx-intro">Real calendar dates, so you can see exactly when each deposit would fall due and how much you would have paid in at every step.</p>
+  <div class="dx-grid">
+    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">One-bedroom Flat at $424,900</div><div class="dx-sub">3 cheques, the last on Sep 25, 2027 &middot; then $21,245 on occupancy</div></div>
+        <div class="dx-total">$63,735<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+        <li class="dx-step">
+          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
+          <div class="dx-amt">$5,000<span>$5,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:7.8%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
+          <div class="dx-amt">$16,245<span>$21,245 paid to date</span></div>
+          <div class="dx-bar"><i style="width:33.3%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Sep 25, 2027<span>365 days</span></div>
+          <div class="dx-amt">$21,245<span>$42,490 paid to date</span></div>
+          <div class="dx-bar"><i style="width:66.7%"></i></div>
+        </li>
+        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">$21,245<span>$63,735 paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%"></i></div>
+        </li>
+      </ol>
+    </div>
+    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">Three-bedroom Garden Town at $652,900</div><div class="dx-sub">3 cheques, the last on Sep 25, 2027 &middot; then $32,645 on occupancy</div></div>
+        <div class="dx-total">$97,935<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+        <li class="dx-step">
+          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
+          <div class="dx-amt">$5,000<span>$5,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:5.1%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
+          <div class="dx-amt">$27,645<span>$32,645 paid to date</span></div>
+          <div class="dx-bar"><i style="width:33.3%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Sep 25, 2027<span>365 days</span></div>
+          <div class="dx-amt">$32,645<span>$65,290 paid to date</span></div>
+          <div class="dx-bar"><i style="width:66.7%"></i></div>
+        </li>
+        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">$32,645<span>$97,935 paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%"></i></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <p class="tbl-note">Illustration only, counted in calendar days from a September 25, 2026 signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bennett Jones LLP, in trust.</p>
+</section>
+
+<section id="gallery">
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">Renderings</h2>
+  <div class="gal">
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-rooftop-480.avif 480w, images/towns/westshore-rooftop-800.avif 800w, images/towns/westshore-rooftop-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-rooftop-480.webp 480w, images/towns/westshore-rooftop-800.webp 800w, images/towns/westshore-rooftop-1280.webp 1280w">
+        <img src="images/towns/westshore-rooftop.jpg" alt="The Sky Towns: private rooftop terrace with the skyline in view" loading="lazy" decoding="async">
+      </picture><figcaption>The Sky Towns: private rooftop terrace with the skyline in view</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-summer-480.avif 480w, images/towns/westshore-park-summer-800.avif 800w, images/towns/westshore-park-summer-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-summer-480.webp 480w, images/towns/westshore-park-summer-800.webp 800w, images/towns/westshore-park-summer-1280.webp 1280w">
+        <img src="images/towns/westshore-park-summer.jpg" alt="The central park in summer" loading="lazy" decoding="async">
+      </picture><figcaption>The central park in summer</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-living-480.avif 480w, images/towns/westshore-sky-living-800.avif 800w, images/towns/westshore-sky-living-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-living-480.webp 480w, images/towns/westshore-sky-living-800.webp 800w, images/towns/westshore-sky-living-1280.webp 1280w">
+        <img src="images/towns/westshore-sky-living.jpg" alt="The Sky Towns: kitchen and living" loading="lazy" decoding="async">
+      </picture><figcaption>The Sky Towns: kitchen and living</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-garden-living-480.avif 480w, images/towns/westshore-garden-living-800.avif 800w, images/towns/westshore-garden-living-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-garden-living-480.webp 480w, images/towns/westshore-garden-living-800.webp 800w, images/towns/westshore-garden-living-1280.webp 1280w">
+        <img src="images/towns/westshore-garden-living.jpg" alt="The Garden Towns: kitchen and living, opening to the patio" loading="lazy" decoding="async">
+      </picture><figcaption>The Garden Towns: kitchen and living, opening to the patio</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-living-480.avif 480w, images/towns/westshore-flats-living-800.avif 800w, images/towns/westshore-flats-living-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-living-480.webp 480w, images/towns/westshore-flats-living-800.webp 800w, images/towns/westshore-flats-living-1280.webp 1280w">
+        <img src="images/towns/westshore-flats-living.jpg" alt="The Flats: kitchen and living" loading="lazy" decoding="async">
+      </picture><figcaption>The Flats: kitchen and living</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-bedroom-480.avif 480w, images/towns/westshore-flats-bedroom-800.avif 800w, images/towns/westshore-flats-bedroom-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-bedroom-480.webp 480w, images/towns/westshore-flats-bedroom-800.webp 800w, images/towns/westshore-flats-bedroom-1280.webp 1280w">
+        <img src="images/towns/westshore-flats-bedroom.jpg" alt="The Flats: primary bedroom with balcony view" loading="lazy" decoding="async">
+      </picture><figcaption>The Flats: primary bedroom with balcony view</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-ensuite-480.avif 480w, images/towns/westshore-sky-ensuite-800.avif 800w, images/towns/westshore-sky-ensuite-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-ensuite-480.webp 480w, images/towns/westshore-sky-ensuite-800.webp 800w, images/towns/westshore-sky-ensuite-1280.webp 1280w">
+        <img src="images/towns/westshore-sky-ensuite.jpg" alt="The Sky Towns: primary ensuite" loading="lazy" decoding="async">
+      </picture><figcaption>The Sky Towns: primary ensuite</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-winter-480.avif 480w, images/towns/westshore-park-winter-800.avif 800w, images/towns/westshore-park-winter-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-winter-480.webp 480w, images/towns/westshore-park-winter-800.webp 800w, images/towns/westshore-park-winter-1280.webp 1280w">
+        <img src="images/towns/westshore-park-winter.jpg" alt="The central park in winter" loading="lazy" decoding="async">
+      </picture><figcaption>The central park in winter</figcaption></figure>
   </div>
 </section>
 
@@ -820,6 +957,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
 </section>
 
+
 <section class="reg" id="register">
   <div class="reg-inner">
     <div class="reg-copy">
@@ -873,97 +1011,26 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   });
 })();
 </script>
-<section>
-  <div class="two-col">
-    <div>
-      <div class="sec-eyebrow">What&rsquo;s included</div>
-      <h2 class="sec-title">Limited-time <em>purchaser incentives</em></h2>
-      <ul class="inc-list">
-        <li>Extended deposit structure: $5,000 at signing, 15% in total, with the last 5% not due until occupancy</li>
-        <li>$0 capped development levies on every suite</li>
-        <li>$0 assignment fee</li>
-        <li>EV parking upgrades available</li>
-        <li>Maintenance fees approx. $0.40 per sq ft (excludes hydro and water) &middot; parking $59.95/month &middot; locker $29.95/month</li>
-        <li>Tentative first occupancy 2030</li>
-      </ul>
-    </div>
-    <div>
-      <div class="dep-card">
-        <h3 class="side-title">Deposit structure</h3>
-          <div class="dep-row"><span class="dep-when">At signing</span><span class="dep-amt">$5,000</span></div>
-          <div class="dep-row"><span class="dep-when">30 days</span><span class="dep-amt">Balance to 5%</span></div>
-          <div class="dep-row"><span class="dep-when">365 days</span><span class="dep-amt">5%</span></div>
-          <div class="dep-row"><span class="dep-when">On occupancy</span><span class="dep-amt">5%</span></div>
-          <div class="dep-row"><span class="dep-when">Total</span><span class="dep-amt">15%</span></div>
-        <p class="dep-foot">Cheques payable to Bennett Jones LLP, in trust. Limited-time offer; some restrictions apply and the extended structure remains subject to vendor approval.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section>
-  <div class="sec-eyebrow">Deposit example</div>
-  <h2 class="sec-title">If you sign on <em>September 25, 2026</em></h2>
-  <p class="dx-intro">Real calendar dates, so you can see exactly when each deposit would fall due and how much you would have paid in at every step.</p>
-  <div class="dx-grid">
-    <div class="dx-card">
-      <div class="dx-head">
-        <div><div class="dx-name">One-bedroom Flat at $424,900</div><div class="dx-sub">3 cheques, the last on Sep 25, 2027 &middot; then $21,245 on occupancy</div></div>
-        <div class="dx-total">$63,735<span>total deposit</span></div>
-      </div>
-      <ol class="dx-list">
-        <li class="dx-step">
-          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
-          <div class="dx-amt">$5,000<span>$5,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:7.8%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
-          <div class="dx-amt">$16,245<span>$21,245 paid to date</span></div>
-          <div class="dx-bar"><i style="width:33.3%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Sep 25, 2027<span>365 days</span></div>
-          <div class="dx-amt">$21,245<span>$42,490 paid to date</span></div>
-          <div class="dx-bar"><i style="width:66.7%"></i></div>
-        </li>
-        <li class="dx-step is-occ">
-          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
-          <div class="dx-amt">$21,245<span>$63,735 paid in full</span></div>
-          <div class="dx-bar"><i style="width:100%"></i></div>
-        </li>
-      </ol>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>Westshore at Long Branch</em></h2>
+      <p>Westshore is Minto&rsquo;s master-planned community on Lake Shore Boulevard West in Long Branch &mdash; the first Toronto neighbourhood east of Dixie &amp; Lakeshore, just across Etobicoke Creek. The Heights is its current release: five-storey hybrid stacked towns that put a garden home, a flat and a two-level sky town into one low-rise block, a short walk from Long Branch GO and the 501 streetcar loop.</p>
+      <p>Four home types cover the range. The Flats are one-bedroom suites with balconies; the Garden Flats and Garden Towns open onto private patios at grade; the Sky Towns are two- and three-bedroom homes on the upper levels with rooftop terraces. Parking is underground and every block has an elevator. Pricing starts at $424,900, deposits total just 15% with 5% not due until occupancy, and development levies and assignment fees are both capped at $0.</p>
+      <div class="logo-row"><img src="images/towns/westshore-logo.png" alt="Westshore at Long Branch" height="26" loading="lazy" decoding="async"><img src="images/towns/westshore-minto-logo.png" alt="Minto Communities" height="26" loading="lazy" decoding="async"></div>
     </div>
-    <div class="dx-card">
-      <div class="dx-head">
-        <div><div class="dx-name">Three-bedroom Garden Town at $652,900</div><div class="dx-sub">3 cheques, the last on Sep 25, 2027 &middot; then $32,645 on occupancy</div></div>
-        <div class="dx-total">$97,935<span>total deposit</span></div>
-      </div>
-      <ol class="dx-list">
-        <li class="dx-step">
-          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
-          <div class="dx-amt">$5,000<span>$5,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:5.1%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
-          <div class="dx-amt">$27,645<span>$32,645 paid to date</span></div>
-          <div class="dx-bar"><i style="width:33.3%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Sep 25, 2027<span>365 days</span></div>
-          <div class="dx-amt">$32,645<span>$65,290 paid to date</span></div>
-          <div class="dx-bar"><i style="width:66.7%"></i></div>
-        </li>
-        <li class="dx-step is-occ">
-          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
-          <div class="dx-amt">$32,645<span>$97,935 paid in full</span></div>
-          <div class="dx-bar"><i style="width:100%"></i></div>
-        </li>
-      </ol>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+        <div class="cm-row"><span class="cm-time">At the door</span><span class="cm-place">501 Queen streetcar &middot; Long Branch Loop</span></div>
+        <div class="cm-row"><span class="cm-time">Short walk</span><span class="cm-place">Long Branch GO &mdash; about 25 min to Union</span></div>
+        <div class="cm-row"><span class="cm-time">Short walk</span><span class="cm-place">Marie Curtis Park, the beach &amp; the Waterfront Trail</span></div>
+        <div class="cm-row"><span class="cm-time">Next door</span><span class="cm-place">Dixie &amp; Lakeshore, across Etobicoke Creek</span></div>
+        <div class="cm-row"><span class="cm-time">About 5 min</span><span class="cm-place">Sherway Gardens &middot; QEW / 427</span></div>
+        <div class="cm-row"><span class="cm-time">About 20 min</span><span class="cm-place">Downtown Toronto</span></div>
     </div>
   </div>
-  <p class="tbl-note">Illustration only, counted in calendar days from a September 25, 2026 signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bennett Jones LLP, in trust.</p>
 </section>
 
 <section>
@@ -1000,53 +1067,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="cm-row"><span class="cm-time">East</span><span class="cm-place">Lake Shore Blvd W &middot; 501 streetcar</span></div>
       <div class="cm-row"><span class="cm-time">West</span><span class="cm-place">Lakeshore West GO corridor &middot; Long Branch station</span></div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="sec-eyebrow">Gallery</div>
-  <h2 class="sec-title">Renderings</h2>
-  <div class="gal">
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-rooftop-480.avif 480w, images/towns/westshore-rooftop-800.avif 800w, images/towns/westshore-rooftop-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-rooftop-480.webp 480w, images/towns/westshore-rooftop-800.webp 800w, images/towns/westshore-rooftop-1280.webp 1280w">
-        <img src="images/towns/westshore-rooftop.jpg" alt="The Sky Towns: private rooftop terrace with the skyline in view" loading="lazy" decoding="async">
-      </picture><figcaption>The Sky Towns: private rooftop terrace with the skyline in view</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-summer-480.avif 480w, images/towns/westshore-park-summer-800.avif 800w, images/towns/westshore-park-summer-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-summer-480.webp 480w, images/towns/westshore-park-summer-800.webp 800w, images/towns/westshore-park-summer-1280.webp 1280w">
-        <img src="images/towns/westshore-park-summer.jpg" alt="The central park in summer" loading="lazy" decoding="async">
-      </picture><figcaption>The central park in summer</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-living-480.avif 480w, images/towns/westshore-sky-living-800.avif 800w, images/towns/westshore-sky-living-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-living-480.webp 480w, images/towns/westshore-sky-living-800.webp 800w, images/towns/westshore-sky-living-1280.webp 1280w">
-        <img src="images/towns/westshore-sky-living.jpg" alt="The Sky Towns: kitchen and living" loading="lazy" decoding="async">
-      </picture><figcaption>The Sky Towns: kitchen and living</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-garden-living-480.avif 480w, images/towns/westshore-garden-living-800.avif 800w, images/towns/westshore-garden-living-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-garden-living-480.webp 480w, images/towns/westshore-garden-living-800.webp 800w, images/towns/westshore-garden-living-1280.webp 1280w">
-        <img src="images/towns/westshore-garden-living.jpg" alt="The Garden Towns: kitchen and living, opening to the patio" loading="lazy" decoding="async">
-      </picture><figcaption>The Garden Towns: kitchen and living, opening to the patio</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-living-480.avif 480w, images/towns/westshore-flats-living-800.avif 800w, images/towns/westshore-flats-living-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-living-480.webp 480w, images/towns/westshore-flats-living-800.webp 800w, images/towns/westshore-flats-living-1280.webp 1280w">
-        <img src="images/towns/westshore-flats-living.jpg" alt="The Flats: kitchen and living" loading="lazy" decoding="async">
-      </picture><figcaption>The Flats: kitchen and living</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-bedroom-480.avif 480w, images/towns/westshore-flats-bedroom-800.avif 800w, images/towns/westshore-flats-bedroom-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-flats-bedroom-480.webp 480w, images/towns/westshore-flats-bedroom-800.webp 800w, images/towns/westshore-flats-bedroom-1280.webp 1280w">
-        <img src="images/towns/westshore-flats-bedroom.jpg" alt="The Flats: primary bedroom with balcony view" loading="lazy" decoding="async">
-      </picture><figcaption>The Flats: primary bedroom with balcony view</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-ensuite-480.avif 480w, images/towns/westshore-sky-ensuite-800.avif 800w, images/towns/westshore-sky-ensuite-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-sky-ensuite-480.webp 480w, images/towns/westshore-sky-ensuite-800.webp 800w, images/towns/westshore-sky-ensuite-1280.webp 1280w">
-        <img src="images/towns/westshore-sky-ensuite.jpg" alt="The Sky Towns: primary ensuite" loading="lazy" decoding="async">
-      </picture><figcaption>The Sky Towns: primary ensuite</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-winter-480.avif 480w, images/towns/westshore-park-winter-800.avif 800w, images/towns/westshore-park-winter-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/westshore-park-winter-480.webp 480w, images/towns/westshore-park-winter-800.webp 800w, images/towns/westshore-park-winter-1280.webp 1280w">
-        <img src="images/towns/westshore-park-winter.jpg" alt="The central park in winter" loading="lazy" decoding="async">
-      </picture><figcaption>The central park in winter</figcaption></figure>
   </div>
 </section>
 
