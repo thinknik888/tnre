@@ -1020,6 +1020,15 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="field"><label>Google Ads Account ID</label><input id="s-google-account" placeholder="123-456-7890"></div>
     <div class="field"><label>SMS Phone Number</label><input id="s-sms-phone" placeholder="+1 (416) 555-0100"></div>
     <div class="field" style="border-top:1px solid rgba(0,34,68,.12);padding-top:14px;margin-top:6px">
+      <label>Meta lead forms (Facebook &amp; Instagram)</label>
+      <div style="font-size:12px;line-height:1.5;opacity:.75;margin-bottom:8px" id="metaStatus">Checking&hellip;</div>
+      <input id="meta-token" type="password" placeholder="Paste a Facebook Page access token" autocomplete="off" style="margin-bottom:8px">
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn-save" id="metaConnectBtn" onclick="connectMeta()" style="flex:1">Connect Meta</button>
+        <button type="button" class="btn-cancel" id="metaSyncBtn" onclick="syncMeta()" style="flex:1">Sync now</button>
+      </div>
+    </div>
+    <div class="field" style="border-top:1px solid rgba(0,34,68,.12);padding-top:14px;margin-top:6px">
       <label>Text alerts (Twilio)</label>
       <div style="font-size:12px;line-height:1.5;opacity:.75;margin-bottom:8px" id="alertStatus">Checking&hellip;</div>
       <input id="tw-sid" placeholder="Twilio Account SID (starts with AC)" autocomplete="off" style="margin-bottom:6px">
@@ -1153,8 +1162,36 @@ function initAll(){
 // ═══════════════════════════════════════════════════════════
 const KEYS=['meta-token','meta-account','google-token','google-account','sms-phone'];
 function loadKeys(){const o={};KEYS.forEach(k=>o[k]=localStorage.getItem('tnre_'+k)||'');return o;}
-function openSettings(){dbSecRefresh();alertsRefresh();const k=loadKeys();KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);document.getElementById('settings').style.display='block';}
+function openSettings(){dbSecRefresh();alertsRefresh();metaRefresh();const k=loadKeys();KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);document.getElementById('settings').style.display='block';}
 function closeSettings(){document.getElementById('settings').style.display='none'}
+// Meta lead forms: the Page token goes straight to the server's private store; the
+// server then checks for new form leads every 10 minutes.
+async function metaRefresh(){
+  const el=document.getElementById('metaStatus');if(!el)return;
+  try{const r=await dashFetch('/.netlify/functions/dash-meta');const d=await r.json();
+    el.textContent=d.connected?('Connected to '+(d.pageName||'your Page')+'. '+d.imported+' form lead'+(d.imported===1?'':'s')+' imported so far'+(d.lastSync?'; last checked '+wlAgo(new Date(d.lastSync)):'')+'. Checks every 10 minutes.'):'Not connected. Paste a Page access token below and click Connect.';
+  }catch(e){el.textContent='Could not check status.';}
+}
+async function connectMeta(){
+  const el=document.getElementById('metaStatus'),btn=document.getElementById('metaConnectBtn'),inp=document.getElementById('meta-token');
+  const token=inp.value.trim();if(!token){el.textContent='Paste a token first.';return;}
+  btn.disabled=true;el.textContent='Connecting\u2026';
+  try{const r=await dashFetch('/.netlify/functions/dash-meta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});const d=await r.json();
+    if(!r.ok)throw new Error(d.error||r.status);
+    inp.value='';toast('Meta connected');el.textContent='Connected to '+d.pageName+'. Forms found: '+d.forms.map(f=>f.name).join(', ')+'. Imported '+d.imported+' new lead'+(d.imported===1?'':'s')+'.';
+    fetchLeads();
+  }catch(e){el.textContent='Could not connect: '+e.message;}
+  btn.disabled=false;
+}
+async function syncMeta(){
+  const el=document.getElementById('metaStatus'),btn=document.getElementById('metaSyncBtn');
+  btn.disabled=true;el.textContent='Checking Meta for new leads\u2026';
+  try{const r=await dashFetch('/.netlify/functions/dash-meta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sync:true})});const d=await r.json();
+    if(!r.ok||!d.ok)throw new Error(d.error||d.reason||r.status);
+    toast(d.added+' new lead'+(d.added===1?'':'s'));fetchLeads();metaRefresh();
+  }catch(e){el.textContent='Sync failed: '+e.message;}
+  btn.disabled=false;
+}
 // New-lead text alerts: credentials go straight to the server's private store.
 async function alertsRefresh(){
   const el=document.getElementById('alertStatus');if(!el)return;
