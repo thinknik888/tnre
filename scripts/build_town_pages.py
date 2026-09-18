@@ -856,6 +856,23 @@ PROJECTS = {
     },
 }
 
+# Condo towers in this neighbourhood. Their suites live on their own building page;
+# the neighbourhood page shows one card and one floor-plan index row each.
+CONDOS = [
+    {
+        "name": "Exhale Residences", "builder": "Brixen Developments",
+        "href": "../buildings/exhale.html",
+        "image": "exhale-aerial", "image_alt": "Aerial view of Exhale on Lakeshore",
+        "flag": ("2026 occupancy", ""),
+        "location": "1381 Lakeshore Rd E &middot; Lakeshore &amp; Dixie",
+        "specs": [("Size", "390 &ndash; 1,515 sq ft"), ("Suites", "Bachelor &ndash; 3 bedroom"),
+                  ("Penthouses", "4 plans"), ("Plans", "88 available")],
+        "price": "$409,500",
+        "index": {"plans": 88, "beds": "Bachelor &ndash; 3", "size": "390 &ndash; 1,515", "from": "$409,500",
+                  "chips": [("Bachelor", 5), ("1 bed", 49), ("2 bed", 27), ("3 bed", 3), ("Penthouse", 4)]},
+    },
+]
+
 # Display order everywhere: newest launch first, sold-out communities last.
 ORDER = ["south-banks", "westshore-long-branch", "exhale-towns", "aura-lakeview-towns",
          "pier-house-towns"]
@@ -1999,6 +2016,32 @@ NB_CSS = NB_CSS_START + """
     @media (max-width: 700px) { .proj-grid.n4 { grid-template-columns: 1fr; } }
     table.cmp.n4 { min-width: 1020px; }
     table.cmp.n5 { min-width: 1260px; }
+    /* floor plan index: one row per community, plans live on the project pages */
+    .fpi { border: 1px solid #e8e4dc; border-radius: 10px; background: #fff; overflow: hidden; }
+    .fpi-row { display: grid; grid-template-columns: minmax(220px, 1.3fr) 2.4fr auto; align-items: center; gap: 0.5rem 2rem;
+               padding: 1.35rem 1.6rem; border-bottom: 1px solid #efebe2; }
+    .fpi-row:last-child { border-bottom: none; }
+    .fpi-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: #002244; text-decoration: none; line-height: 1.15; }
+    .fpi-name small { display: block; font-family: 'Outfit', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em;
+                      text-transform: uppercase; color: var(--text-muted); margin-top: 0.35rem; }
+    .fpi-cells { display: grid; grid-template-columns: 0.7fr 1fr 1.3fr 1fr; gap: 1rem; }
+    .fpi-cell b { display: block; font-weight: 600; font-size: 0.98rem; color: #002244; }
+    .fpi-cell small { font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-muted); }
+    .fpi-go { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #002244; text-decoration: none;
+              border: 1px solid #c8a96e; border-radius: 999px; padding: 0.6rem 1.1rem; white-space: nowrap; }
+    .fpi-go:hover { background: #c8a96e; color: #17130a; }
+    .fpi-beds { grid-column: 1 / -1; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .fpi-beds a, .fpi-beds span { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+                                  color: var(--text-mid); background: #f7f3ea; border-radius: 999px; padding: 0.35rem 0.8rem; }
+    .fpi-beds a:hover { background: #002244; color: #fff; }
+    .fpi-beds b { font-weight: 600; margin-left: 0.2rem; }
+    @media (max-width: 900px) {
+      .fpi-row { grid-template-columns: 1fr auto; padding: 1.15rem 1.1rem; }
+      .fpi-cells { grid-column: 1 / -1; grid-row: 2; grid-template-columns: repeat(4, auto); justify-content: space-between; gap: 0.75rem; }
+      .fpi-cell b { font-size: 0.88rem; }
+      .fpi-name { font-size: 1.25rem; }
+      .fpi-go { padding: 0.5rem 0.85rem; font-size: 0.6rem; }
+    }
     table.cmp .cmp-mini { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.74rem; margin-top: 0.15rem; }
     table.cmp th.is-new { background: #0b3358; }
     /* phones: keep the row labels pinned while the communities scroll sideways */
@@ -2140,6 +2183,141 @@ def townhomes_section():
 </section>""" % (n, tally, n, "\n\n".join(cards), word, n, head, "\n".join(rows), note)
 
 
+def _index_row(name, builder, href, cells, chips, go):
+    chip_html = "".join(
+        ('<a href="%s">%s <b>%d</b></a>' % (h, label, n)) if h else ('<span>%s <b>%d</b></span>' % (label, n))
+        for label, n, h in chips)
+    return """    <div class="fpi-row">
+      <a class="fpi-name" href="%s">%s<small>%s</small></a>
+      <div class="fpi-cells">%s</div>
+      <a class="fpi-go" href="%s">%s &rarr;</a>
+      %s
+    </div>""" % (href, name, builder,
+                 "".join('<div class="fpi-cell"><b>%s</b><small>%s</small></div>' % c for c in cells),
+                 href, go, '<div class="fpi-beds">%s</div>' % chip_html if chip_html else "")
+
+
+def town_plan_stats():
+    """Per community: priced plans, bedroom range, size range, lowest price, count per bedroom."""
+    out = []
+    for slug in ORDER:
+        p = PROJECTS[slug]
+        if not p.get("plans"):
+            continue
+        plans, _ = load_plans(p)
+        prices = price_index(p["tables"], plans)
+        if p.get("plans_only_priced"):
+            plans = [pl for pl in plans if pl["slug"] in prices]
+        beds = [int(str(pl["beds"]).split()[0]) for pl in plans]
+        per_bed = {}
+        for b in beds:
+            per_bed[b] = per_bed.get(b, 0) + 1
+        out.append({"slug": slug, "p": p, "n": len(plans), "beds": (min(beds), max(beds)),
+                    "sqft": (min(pl["sqft"] for pl in plans), max(pl["sqft"] for pl in plans)),
+                    "from": min(prices[pl["slug"]]["min"] for pl in plans if pl["slug"] in prices),
+                    "per_bed": per_bed})
+    return out
+
+
+def plans_index_section():
+    """Townhome floor plans, by project: counts and links only -- the plans live on the project pages."""
+    stats = town_plan_stats()
+    rows = []
+    for st in stats:
+        href = "../buildings/%s.html" % st["slug"]
+        lo, hi = st["beds"]
+        rows.append(_index_row(
+            st["p"]["name"], st["p"]["builder"], href + "#floor-plans",
+            [(st["n"], "plans"), ("%d" % lo if lo == hi else "%d &ndash; %d" % (lo, hi), "bedrooms"),
+             ("%s &ndash; %s" % ("{:,}".format(st["sqft"][0]), "{:,}".format(st["sqft"][1])), "sq ft"),
+             (_money(st["from"]), "from")],
+            [("%d bed" % b, n, "%s#plans-%d-bed" % (href, b)) for b, n in sorted(st["per_bed"].items())],
+            "View plans"))
+    with_plans = set(st["slug"] for st in stats)
+    for slug in ORDER:
+        p = PROJECTS[slug]
+        if slug in with_plans or p.get("status") == "Sold out":
+            continue
+        rows.append(_index_row(
+            p["name"], p["builder"], "../buildings/%s.html" % slug,
+            [("&mdash;", "plans"), (dict(p["facts"]).get("Bedrooms", "&mdash;"), "bedrooms"),
+             ("&mdash;", "sq ft"), (dict(p["facts"])["From"].rstrip("*"), "from")],
+            [], "Floor plans coming"))
+    total = sum(st["n"] for st in stats)
+    return total, """<section class="cat-band fpi-band" id="floor-plans">
+  <div class="cat-head">
+    <div>
+      <div class="cat-eyebrow">Floor plans</div>
+      <h2 class="cat-title">Floor plans <em>by project</em></h2>
+      <p class="cat-sub">Every plan lives on its community&rsquo;s page, grouped by bedrooms and priced from the current list. Pick a community, or jump straight to a bedroom count.</p>
+    </div>
+    <div class="cat-count"><b>%d</b>Townhome plans &middot; %d communities</div>
+  </div>
+  <div class="fpi">
+%s
+  </div>
+</section>""" % (total, len(stats), "\n".join(rows))
+
+
+def condos_section():
+    cards, rows = [], []
+    for c in CONDOS:
+        flag_text, flag_kind = c["flag"]
+        specs = "\n".join(
+            '          <div><div class="proj-spec-lbl">%s</div><div class="proj-spec-val">%s</div></div>' % kv
+            for kv in c["specs"])
+        cards.append("""    <a class="proj-card" href="%s">
+      <div class="proj-img">
+        %s
+        <span class="proj-flag%s">%s</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-builder">%s</div>
+        <div class="proj-name">%s</div>
+        <div class="proj-loc">%s</div>
+        <div class="proj-specs">
+%s
+        </div>
+        <div class="proj-foot">
+          <div><div class="proj-price-lbl">Starting from</div><div class="proj-price">%s</div></div>
+          <span class="proj-go">View &rarr;</span>
+        </div>
+      </div>
+    </a>""" % (c["href"], picture(c["image"], c["image_alt"], NB_CARD_SIZES_3, CARD_W, prefix=NB_PREFIX).replace("\n      ", ""),
+               " " + flag_kind if flag_kind else "", flag_text, c["builder"], c["name"], c["location"], specs, c["price"]))
+        ix = c["index"]
+        rows.append(_index_row(c["name"], c["builder"], c["href"],
+                               [(ix["plans"], "plans"), (ix["beds"], "bedrooms"), (ix["size"], "sq ft"), (ix["from"], "from")],
+                               [(label, n, "") for label, n in ix["chips"]], "View plans"))
+    total = sum(c["index"]["plans"] for c in CONDOS)
+    return total, """<section class="cat-band" id="condos">
+  <div class="cat-head">
+    <div>
+      <div class="cat-eyebrow">In this neighbourhood</div>
+      <h2 class="cat-title">Condo <em>apartments</em></h2>
+      <p class="cat-sub">Tower living at Lakeshore &amp; Dixie, across from the park and a short walk from the water.</p>
+    </div>
+    <div class="cat-count"><b>%d</b>Communit%s &middot; %d floor plans</div>
+  </div>
+  <div class="proj-grid">
+
+%s
+
+  </div>
+  <div class="fpi" style="margin-top:2.5rem">
+%s
+  </div>
+</section>""" % (len(CONDOS), "y" if len(CONDOS) == 1 else "ies", total, "\n\n".join(cards), "\n".join(rows))
+
+
+def _fill(src, name, block):
+    start, end = "<!-- nb:%s:start -->" % name, "<!-- nb:%s:end -->" % name
+    a, b = src.find(start), src.find(end)
+    if a == -1 or b == -1:
+        raise SystemExit("dixie-lakeshore.html: marker %s not found" % name)
+    return src[:a + len(start)] + "\n" + block + "\n" + src[b:]
+
+
 def update_neighbourhood():
     """Regenerate the townhome section of the Dixie & Lakeshore page in place."""
     import re
@@ -2169,10 +2347,25 @@ def update_neighbourhood():
         return match.group(1) + ", ".join(kept) + match.group(3)
     src = re.sub(r'((?:imagesrcset|srcset)=")((?:\.\./buildings/images/towns/[^"]+))(")', _prune, src)
 
+    # floor plans: an index per project here, the plans themselves on the project pages
+    town_total, index_html = plans_index_section()
+    condo_total, condos_html = condos_section()
+    src = _fill(src, "plans-index", index_html)
+    src = _fill(src, "condos", condos_html)
+
     n = len(ORDER)
     word = NUMBER_WORDS.get(n, str(n)).capitalize()
+    src = re.sub(r'<div class="sec-nav" id="sec-nav" role="tablist">.*?</div>',
+                 lambda m: """<div class="sec-nav" id="sec-nav" role="tablist">
+  <a href="#townhomes" class="on" data-panel="panel-townhomes" data-target="townhomes" role="tab" aria-selected="true">Townhomes<span class="sec-nav-count">%d</span></a>
+  <a href="#compare" data-panel="panel-townhomes" data-target="compare" role="tab" aria-selected="false">Compare</a>
+  <a href="#floor-plans" data-panel="panel-townhomes" data-target="floor-plans" role="tab" aria-selected="false">Floor Plans<span class="sec-nav-count">%d</span></a>
+  <a href="#condos" data-panel="panel-condos" data-target="condos" role="tab" aria-selected="false">Condo Apartments<span class="sec-nav-count">%d</span></a>
+</div>""" % (n, town_total, len(CONDOS)), src, count=1, flags=re.S)
+    src = re.sub(r'(<div class="hero-nb-stat-val">)\d+(</div><div class="hero-nb-stat-lbl">Floor plans)',
+                 r"\g<1>%d\2" % (town_total + condo_total), src)
     src = re.sub(r'(<div class="hero-nb-stat-val">)\d+(</div><div class="hero-nb-stat-lbl">Communities)',
-                 r"\g<1>%d\2" % (n + 1), src)          # townhome communities + the Exhale condo tower
+                 r"\g<1>%d\2" % (n + len(CONDOS)), src)
     src = re.sub(r'(<div class="hero-nb-stat-val">)\d+(</div><div class="hero-nb-stat-lbl">Townhome projects)',
                  r"\g<1>%d\2" % n, src)
     src = re.sub(r'(Townhomes<span class="sec-nav-count">)\d+(</span>)', r"\g<1>%d\2" % n, src)
