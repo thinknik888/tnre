@@ -1,4 +1,5 @@
 var { getStore } = require('@netlify/blobs');
+var notify = require('../lib/notify');
 
 var corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -63,6 +64,9 @@ exports.handler = async function(event) {
     await store.setJSON('leads', existing);
 
     console.log('save-lead: saved lead #' + existing.length, { name: name, building: building });
+
+    var sms = await notify.sendLeadSms(record);
+    console.log('save-lead: sms', JSON.stringify(sms));
 
     return {
       statusCode: 200,

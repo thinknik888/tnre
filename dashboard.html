@@ -1020,6 +1020,18 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="field"><label>Google Ads Account ID</label><input id="s-google-account" placeholder="123-456-7890"></div>
     <div class="field"><label>SMS Phone Number</label><input id="s-sms-phone" placeholder="+1 (416) 555-0100"></div>
     <div class="field" style="border-top:1px solid rgba(0,34,68,.12);padding-top:14px;margin-top:6px">
+      <label>Text alerts (Twilio)</label>
+      <div style="font-size:12px;line-height:1.5;opacity:.75;margin-bottom:8px" id="alertStatus">Checking&hellip;</div>
+      <input id="tw-sid" placeholder="Twilio Account SID (starts with AC)" autocomplete="off" style="margin-bottom:6px">
+      <input id="tw-token" type="password" placeholder="Twilio Auth Token" autocomplete="off" style="margin-bottom:6px">
+      <input id="tw-from" placeholder="Your Twilio number, e.g. +14165550100" autocomplete="off" style="margin-bottom:6px">
+      <input id="tw-to" placeholder="Your mobile to text, e.g. +16479240848" autocomplete="off" style="margin-bottom:8px">
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn-save" id="alertSaveBtn" onclick="saveAlerts()" style="flex:1">Save text alerts</button>
+        <button type="button" class="btn-cancel" id="alertTestBtn" onclick="testAlerts()" style="flex:1">Send test text</button>
+      </div>
+    </div>
+    <div class="field" style="border-top:1px solid rgba(0,34,68,.12);padding-top:14px;margin-top:6px">
       <label>Database security</label>
       <div style="font-size:12px;line-height:1.5;opacity:.75;margin-bottom:8px" id="dbSecStatus">Checking&hellip;</div>
       <button type="button" class="btn-save" id="dbSecBtn" onclick="rotateDbPassword()" style="width:100%">Secure database login</button>
@@ -1141,8 +1153,35 @@ function initAll(){
 // ═══════════════════════════════════════════════════════════
 const KEYS=['meta-token','meta-account','google-token','google-account','sms-phone'];
 function loadKeys(){const o={};KEYS.forEach(k=>o[k]=localStorage.getItem('tnre_'+k)||'');return o;}
-function openSettings(){dbSecRefresh();const k=loadKeys();KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);document.getElementById('settings').style.display='block';}
+function openSettings(){dbSecRefresh();alertsRefresh();const k=loadKeys();KEYS.forEach(key=>document.getElementById('s-'+key).value=k[key]);document.getElementById('settings').style.display='block';}
 function closeSettings(){document.getElementById('settings').style.display='none'}
+// New-lead text alerts: credentials go straight to the server's private store.
+async function alertsRefresh(){
+  const el=document.getElementById('alertStatus');if(!el)return;
+  try{const r=await dashFetch('/.netlify/functions/dash-alerts');const d=await r.json();
+    el.textContent=d.configured?('On: texting '+d.to+' from '+d.from+' for every new lead.'):'Off: paste your Twilio details below and save. You only need to do this once.';
+  }catch(e){el.textContent='Could not check status.';}
+}
+async function saveAlerts(){
+  const el=document.getElementById('alertStatus'),btn=document.getElementById('alertSaveBtn');
+  const body={twilio_sid:document.getElementById('tw-sid').value.trim(),twilio_token:document.getElementById('tw-token').value.trim(),twilio_from:document.getElementById('tw-from').value.trim(),notify_to:document.getElementById('tw-to').value.trim()};
+  if(!Object.values(body).some(Boolean)){el.textContent='Nothing to save.';return;}
+  btn.disabled=true;el.textContent='Saving\u2026';
+  try{const r=await dashFetch('/.netlify/functions/dash-alerts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!r.ok)throw new Error(r.status);
+    ['tw-sid','tw-token','tw-from','tw-to'].forEach(id=>document.getElementById(id).value='');
+    toast('Text alerts saved');
+  }catch(e){toast('Could not save');}
+  btn.disabled=false;alertsRefresh();
+}
+async function testAlerts(){
+  const el=document.getElementById('alertStatus'),btn=document.getElementById('alertTestBtn');
+  btn.disabled=true;el.textContent='Sending a test text\u2026';
+  try{const r=await dashFetch('/.netlify/functions/dash-alerts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({test:true})});const d=await r.json();
+    el.textContent=d.sent?'Test text sent. Check your phone.':'Test failed: '+(d.reason||r.status);
+  }catch(e){el.textContent='Test failed.';}
+  btn.disabled=false;
+}
 // Gives the database its own long random password, separate from the dashboard
 // password. Generated here in your browser, stored only on the server.
 async function dbSecRefresh(){
