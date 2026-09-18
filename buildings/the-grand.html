@@ -119,7 +119,13 @@
       .gallery { grid-template-columns: 1fr; }
     }
       @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
-</style>
+    /* price-emphasis:start */
+    .fp-rebate { color: #002244 !important; font-weight: 600 !important; font-size: 0.95rem !important; }
+    .fp-rebate-label { font-weight: 400 !important; font-size: 0.66rem; letter-spacing: 0.02em; color: var(--text-muted, #8a8a84) !important; }
+    .fp-meta:has(.fp-rebate) .fp-price,
+    .fp-meta:has(.fp-rebate) .fp-price-promo { font-family: inherit !important; font-weight: 400 !important; font-size: 0.82rem !important; color: var(--text-mid, #4a4a46) !important; }
+    /* price-emphasis:end */
+  </style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
