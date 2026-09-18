@@ -490,13 +490,13 @@ PROJECTS = {
         "tagline": "Hybrid stacked towns beside Long Branch GO.",
         "address": "3526 Lake Shore Blvd W &middot; Long Branch, Etobicoke",
         "area": "Long Branch",
-        # Plan cards (with prices) right after the hero, registration form in the
-        # middle of them, full price list further down. Only plans on the current
-        # price list are shown.
+        # Plan cards (with prices) right after the hero, all open -- ad leads have
+        # already registered on Facebook/Instagram, so nothing is gated. Only
+        # plans on the current price list are shown; the form sits after the list.
         "layout": "plans_first",
         "plans": "scripts/manifests/westshore-plans.json",
         "plans_only_priced": True,
-        "plans_preview": ["flats-472", "garden-flats-643", "garden-towns-1118", "sky-towns-1238"],
+        "plans_gate": False,
         "hero": "westshore-hero",
         "hero_alt": "Westshore at Long Branch, The Heights exterior rendering",
         "meta": "Westshore at Long Branch by Minto Communities &mdash; The Heights hybrid stacked "
@@ -525,16 +525,14 @@ PROJECTS = {
         ],
         # Registration form (leads -> dashboard via save-lead).
         "register": {
-            "title": "Unlock the other {locked} <em>floor plans</em>",
-            "text": "{preview} plans are open above as a preview. Leave your name and number and "
-                    "every layout on the September list opens right here, instantly &mdash; Nikhil "
-                    "will also text you the full price list and the current incentives.",
-            "button": "Unlock the floor plans",
+            "title": "Have a plan <em>in mind?</em>",
+            "text": "Leave your number and Nikhil will confirm which blocks still have it, the "
+                    "current incentives, and what the next step looks like. No pressure, no spam.",
+            "button": "Check availability",
             "hero_button": "See floor plans &amp; prices",
             "hero_href": "#floor-plans",
-            "done_title": "Floor plans unlocked.",
-            "done_text": "Every plan below is open &mdash; tap one to see it full size. Nikhil will "
-                         "text you the price list and incentives shortly. Questions? Call or text "
+            "done_title": "Got it.",
+            "done_text": "Nikhil will be in touch shortly. Sooner? Call or text "
                          "<a href=\"tel:6479240848\">647-924-0848</a>.",
         },
         "pricing_title": "Price list &mdash; <em>September 2026</em>",
@@ -1080,10 +1078,10 @@ PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-type="%s" data-base=
 PLANS_SECTION = """<section id="floor-plans" class="plans-sec">
   <div class="sec-eyebrow">Floor plans &amp; prices</div>
   <h2 class="sec-title">%d plans on the <em>September price list</em></h2>
-  <p class="plans-intro">Every layout Minto is selling right now, from the %s sq ft %s to the %s sq ft %s, with the price in each block. %d are open as a preview &mdash; register once and the rest unlock instantly, on this page.</p>
+  <p class="plans-intro">Every layout Minto is selling right now, from the %s sq ft %s to the %s sq ft %s, with the price in each block. %s</p>
   <div class="plans-bar">
     <div class="plan-chips">%s</div>
-    <div class="plans-state" id="plans-state">%d plans locked &middot; register to open them</div>
+    <div class="plans-state" id="plans-state">%s</div>
   </div>
   %s
   <p class="tbl-note">Plans from Minto&rsquo;s floor plan book for The Heights; prices from the September 2026 price list, by block. *Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.</p>
@@ -1101,7 +1099,9 @@ PLANS_SECTION = """<section id="floor-plans" class="plans-sec">
 
 def plans_section(p, plans, plans_dir, register_html=""):
     prices = price_index(p["tables"], plans)
-    preview = [x for x in p.get("plans_preview", []) if any(pl["slug"] == x for pl in plans)]
+    gate = p.get("plans_gate", True)
+    preview = ([x for x in p.get("plans_preview", []) if any(pl["slug"] == x for pl in plans)]
+               if gate else [pl["slug"] for pl in plans])
     counts = {}
     for pl in plans:
         counts[pl["type"]] = counts.get(pl["type"], 0) + 1
@@ -1144,15 +1144,22 @@ def plans_section(p, plans, plans_dir, register_html=""):
     locked = len(plans) - len(preview)
     smallest, largest = min(plans, key=lambda x: x["sqft"]), max(plans, key=lambda x: x["sqft"])
     singular = lambda t: "Flat" if t == "Flats" else t.rstrip("s")
+    if gate:
+        pitch = ("%d are open as a preview &mdash; register once and the rest unlock instantly, on this page."
+                 % len(preview))
+        state = "%d plans locked &middot; register to open them" % locked
+    else:
+        pitch = "Tap any plan to see it full size."
+        state = "%d plans &middot; tap to enlarge" % len(plans)
     lead, rest = cards[:len(preview)], cards[len(preview):]
-    if register_html:
+    if register_html and gate:
         grid = ('<div class="plan-grid">\n%s\n  </div>\n  <div class="plans-gate">%s</div>\n  <div class="plan-grid">\n%s\n  </div>'
                 % ("\n".join(lead), register_html, "\n".join(rest)))
     else:
         grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(cards)
     return PLANS_SECTION % (
         len(plans), "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
-        "{:,}".format(largest["sqft"]), singular(largest["type"]), len(preview), "".join(chips), locked,
+        "{:,}".format(largest["sqft"]), singular(largest["type"]), pitch, "".join(chips), state,
         grid, PLANS_JS)
 
 
@@ -1433,9 +1440,11 @@ def build(slug, p):
 """ % (p.get("pricing_title", "Models &amp; <em>prices</em>"), tables, plans_link)
     layout = p.get("layout", "")
     if plans and layout == "plans_first":
-        # cards lead, the form sits between the open previews and the locked plans
-        after_facts = plans_section(p, plans, plans_dir, register_section)
-        pricing_block = pricing_html
+        # cards lead; gated: the form sits between the open previews and the locked
+        # plans, ungated: it follows the full price list
+        gate = p.get("plans_gate", True)
+        after_facts = plans_section(p, plans, plans_dir, register_section if gate else "")
+        pricing_block = pricing_html + ("" if gate else register_section)
     elif plans and layout == "prices_first":
         after_facts = pricing_html + register_section + plans_section(p, plans, plans_dir)
         pricing_block = ""
