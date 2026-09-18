@@ -51,14 +51,12 @@ def picture(name, alt, sizes, widths, cls="", eager=False):
 OLD_NAV = """<div class="sec-nav" id="sec-nav">
   <a href="#townhomes" class="on">Townhomes<span class="sec-nav-count">3</span></a>
   <a href="#compare">Compare</a>
-  <a href="#exhale-towns">Exhale Town Plans<span class="sec-nav-count">11</span></a>
   <a href="#condos">Condo Apartments<span class="sec-nav-count">88</span></a>
 </div>"""
 
 NEW_NAV = """<div class="sec-nav" id="sec-nav" role="tablist">
   <a href="#townhomes" class="on" data-panel="panel-townhomes" data-target="townhomes" role="tab" aria-selected="true">Townhomes<span class="sec-nav-count">3</span></a>
   <a href="#compare" data-panel="panel-townhomes" data-target="compare" role="tab" aria-selected="false">Compare</a>
-  <a href="#exhale-towns" data-panel="panel-townhomes" data-target="exhale-towns" role="tab" aria-selected="false">Exhale Town Plans<span class="sec-nav-count">11</span></a>
   <a href="#condos" data-panel="panel-condos" data-target="condos" role="tab" aria-selected="false">Condo Apartments<span class="sec-nav-count">88</span></a>
 </div>"""
 

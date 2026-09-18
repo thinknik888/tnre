@@ -1,0 +1,137 @@
+{
+ "out": "buildings/images/plans/exhale",
+ "plans": [
+  {
+   "slug": "th-01",
+   "image": "neighbourhoods/images/exhale-townhouse-1.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-01",
+   "sqft": 1265,
+   "total_sqft": 1310,
+   "beds": "2 + den",
+   "baths": "2.5",
+   "level": "2-storey at grade &middot; 1,310 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-02",
+   "image": "neighbourhoods/images/exhale-townhouse-2.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-02",
+   "sqft": 920,
+   "total_sqft": 1018,
+   "beds": "2 + flex",
+   "baths": "1.5",
+   "level": "2-storey at grade &middot; 1,018 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-03",
+   "image": "neighbourhoods/images/exhale-townhouse-3.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-03",
+   "sqft": 1005,
+   "total_sqft": 1085,
+   "beds": "2",
+   "baths": "1.5",
+   "level": "2-storey at grade &middot; 1,085 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-05",
+   "image": "neighbourhoods/images/exhale-townhouse-4.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-05",
+   "sqft": 945,
+   "total_sqft": 1041,
+   "beds": "2",
+   "baths": "2.5",
+   "level": "2-storey at grade &middot; 1,041 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-06",
+   "image": "neighbourhoods/images/exhale-townhouse-5.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-06",
+   "sqft": 1485,
+   "total_sqft": 1571,
+   "beds": "3 + flex + den",
+   "baths": "3",
+   "level": "2-storey at grade &middot; 1,571 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-07",
+   "image": "neighbourhoods/images/exhale-townhouse-6.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-07",
+   "sqft": 1430,
+   "total_sqft": 1510,
+   "beds": "3 + flex",
+   "baths": "2.5",
+   "level": "2-storey at grade &middot; 1,510 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-08",
+   "image": "neighbourhoods/images/exhale-townhouse-7.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-08",
+   "sqft": 1710,
+   "total_sqft": 1807,
+   "beds": "3 + flex",
+   "baths": "2.5",
+   "level": "2-storey at grade &middot; 1,807 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-09",
+   "image": "neighbourhoods/images/exhale-townhouse-8.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-09",
+   "sqft": 1020,
+   "total_sqft": 1096,
+   "beds": "2",
+   "baths": "1.5",
+   "level": "2-storey at grade &middot; 1,096 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-10",
+   "image": "neighbourhoods/images/exhale-townhouse-9.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-10",
+   "sqft": 1310,
+   "total_sqft": 1386,
+   "beds": "3 + flex",
+   "baths": "2.5",
+   "level": "2-storey at grade &middot; 1,386 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-11",
+   "image": "neighbourhoods/images/exhale-townhouse-10.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-11",
+   "sqft": 1055,
+   "total_sqft": 1114,
+   "beds": "2",
+   "baths": "1.5",
+   "level": "2-storey at grade &middot; 1,114 sq ft with outdoor space"
+  },
+  {
+   "slug": "th-12",
+   "image": "neighbourhoods/images/exhale-townhouse-11.jpg",
+   "half": "P",
+   "type": "Townhome",
+   "name": "TH-12",
+   "sqft": 1065,
+   "total_sqft": 1126,
+   "beds": "2",
+   "baths": "2.5",
+   "level": "2-storey at grade &middot; 1,126 sq ft with outdoor space"
+  }
+ ]
+}

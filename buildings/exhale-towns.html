@@ -262,7 +262,80 @@
       .dx-list::before { left: 1.45rem; }
       .logo-row img { max-height: 22px; }
     }
-  </style>
+  
+    /* floor plan book */
+    .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
+    .plans-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 1.25rem; }
+    .plan-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .plan-chip { border: 1px solid #d9d2c2; background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem; font: inherit;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
+    .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-jump { border: 1px solid var(--gold); color: var(--navy); background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-left: 0.5rem; }
+    .plan-jump:hover { background: var(--gold); color: #17130a; }
+    .plan-group { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+                  margin-top: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e3dccb; }
+    .plan-group:first-child { margin-top: 0; }
+    .plan-group[hidden] { display: none; }
+    .plan-group span { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); }
+    .plan-group small { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
+    .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s; }
+    .plan:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .plan[hidden] { display: none; }
+    .plan-media { position: relative; aspect-ratio: var(--plan-ratio, 4/3); background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
+    .plan-media picture { display: contents; }
+    .plan-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .plan-media .plan-blur { filter: blur(7px); transform: scale(1.06); opacity: 0.5; }
+    .plan-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                 gap: 0.4rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); }
+    .plan-lock span { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: #fff; display: grid;
+                      place-items: center; font-size: 0.9rem; }
+    .plan figcaption { padding: 0.9rem 1rem 1rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
+    .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
+    .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .plan-price { margin-top: 0.55rem; font-weight: 600; font-size: 0.86rem; color: var(--navy); }
+    .plan-price span { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+    .plan-price span b { font-weight: 600; color: var(--text-mid); }
+    .plan-price .plan-net { margin-top: 0.1rem; }
+    .plans-gate { margin: 1.5rem 0; }
+    .plans-gate section.reg { border-radius: 12px; padding: 2.75rem 2.5rem; }
+    .plans-gate .reg-inner { max-width: none; }
+    .plan-price.muted { color: var(--text-muted); font-weight: 400; font-size: 0.72rem; line-height: 1.4; }
+    .row-plan { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+                text-decoration: none; margin-left: 0.4rem; white-space: nowrap; }
+    .row-plan:hover { text-decoration: underline; }
+    .plan-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,18,36,0.95); display: grid;
+                     grid-template-rows: 1fr auto; place-items: center; padding: 3.25rem 1rem 1.25rem; }
+    .plan-lightbox[hidden] { display: none; }
+    .lb-media { width: min(96vw, 1400px); height: 74vh; display: grid; place-items: center; }
+    .lb-media picture { display: contents; }
+    .lb-media img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; background: #fff; border-radius: 8px; }
+    .lb-cap { color: #fff; font-size: 0.85rem; margin-top: 0.75rem; text-align: center; padding: 0 3.5rem; }
+    .lb-cap b { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.3rem; margin-right: 0.5rem; }
+    .lb-close, .lb-prev, .lb-next { position: fixed; background: rgba(255,255,255,0.14); color: #fff; border: none; width: 44px; height: 44px;
+                                    border-radius: 50%; font-size: 1.7rem; line-height: 44px; cursor: pointer; z-index: 1001; }
+    .lb-close { top: 14px; right: 14px; }
+    .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) {
+      .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .plan figcaption { padding: 0.7rem 0.75rem 0.8rem; }
+      .plan-name { font-size: 1.05rem; }
+      .plan-spec { font-size: 0.72rem; }
+      .plan-level { display: none; }
+      .plans-gate section.reg { padding: 2rem 1.25rem; border-radius: 10px; }
+      .plan-group span { font-size: 1.35rem; }
+      .plan-jump { margin-left: 0; }
+      .lb-media { height: 66vh; }
+      .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
+      .lb-cap { padding: 0 3.5rem 2.75rem; }
+    }
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -313,50 +386,197 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="fact"><div class="fact-lbl">Plans</div><div class="fact-val">11</div></div>
       <div class="fact"><div class="fact-lbl">Occupancy</div><div class="fact-val">2026</div></div>
 </div>
-<section>
-  <div class="overview">
-    <div>
-      <div class="sec-eyebrow">Overview</div>
-      <h2 class="sec-title">About <em>Exhale Townhome Collection</em></h2>
-      <p>The Townhome Collection sits at grade beneath Exhale on Lakeshore Road East at Dixie &mdash; directly across from Lakeshore Park, a short walk from the water, and three minutes from Dixie Outlet Mall.</p>
-      <p>Eleven two-storey plans from 945 to 1,710 sq ft, with private patios and access to the full Exhale amenity floor. The earliest occupancy of the townhome communities in this neighbourhood.</p>
-    </div>
-    <div>
-      <h3 class="side-title">Getting around</h3>
-        <div class="cm-row"><span class="cm-time">Across the street</span><span class="cm-place">Lakeshore Park</span></div>
-        <div class="cm-row"><span class="cm-time">3 min</span><span class="cm-place">Dixie Outlet Mall</span></div>
-        <div class="cm-row"><span class="cm-time">Nearby</span><span class="cm-place">Dixie GO Station</span></div>
-        <div class="cm-row"><span class="cm-time">Planned</span><span class="cm-place">Lakeshore MiWay BRT and LRT</span></div>
-    </div>
+<section id="floor-plans" class="plans-sec" style="--plan-ratio: 4 / 5">
+  <div class="sec-eyebrow">Floor plans &amp; prices</div>
+  <h2 class="sec-title">All 11 <em>townhome plans</em></h2>
+  <p class="plans-intro">Every two-storey plan in the collection, from the 920 sq ft TH-02 to the 1,710 sq ft TH-08, at the current promotional price. Grouped by bedroom count; tap any plan to see it full size.</p>
+  <div class="plans-bar">
+    <div class="plan-chips"><button type="button" class="plan-chip is-on" data-filter="all">All 11</button><button type="button" class="plan-chip" data-filter="2">2 bed 7</button><button type="button" class="plan-chip" data-filter="3">3 bed 4</button><a class="plan-jump" href="#gallery">See images &darr;</a></div>
+    <div class="plans-state" id="plans-state">11 plans &middot; tap to enlarge</div>
   </div>
-</section>
+  <div class="plan-grid">
+    <div class="plan-group" data-beds="2" id="plans-2-bed"><span>Two bedroom</span><small>7 plans &middot; 920 &ndash; 1,265 sq ft &middot; from $708,750</small></div>
+    <figure class="plan is-open" id="plan-th-02" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-02" data-widths="480,800,1280" data-name="TH-02" data-spec="2 + flex bed · 1.5 bath · 920 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-02-480.avif 480w, images/plans/exhale/th-02-800.avif 800w, images/plans/exhale/th-02-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-02-480.webp 480w, images/plans/exhale/th-02-800.webp 800w, images/plans/exhale/th-02-1280.webp 1280w"><img src="images/plans/exhale/th-02.jpg" alt="TH-02 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-02</div>
+        <div class="plan-spec">2 + flex bed &middot; 1.5 bath &middot; 920 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,018 sq ft with outdoor space</div>
+        <div class="plan-price">$763,500<span class="plan-net">$664,245 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-05" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-05" data-widths="480,800,1280" data-name="TH-05" data-spec="2 bed · 2.5 bath · 945 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-05-480.avif 480w, images/plans/exhale/th-05-800.avif 800w, images/plans/exhale/th-05-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-05-480.webp 480w, images/plans/exhale/th-05-800.webp 800w, images/plans/exhale/th-05-1280.webp 1280w"><img src="images/plans/exhale/th-05.jpg" alt="TH-05 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-05</div>
+        <div class="plan-spec">2 bed &middot; 2.5 bath &middot; 945 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,041 sq ft with outdoor space</div>
+        <div class="plan-price">$708,750<span class="plan-net">$616,612 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-03" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-03" data-widths="480,800,1280" data-name="TH-03" data-spec="2 bed · 1.5 bath · 1,005 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-03-480.avif 480w, images/plans/exhale/th-03-800.avif 800w, images/plans/exhale/th-03-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-03-480.webp 480w, images/plans/exhale/th-03-800.webp 800w, images/plans/exhale/th-03-1280.webp 1280w"><img src="images/plans/exhale/th-03.jpg" alt="TH-03 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-03</div>
+        <div class="plan-spec">2 bed &middot; 1.5 bath &middot; 1,005 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,085 sq ft with outdoor space</div>
+        <div class="plan-price">$753,750<span class="plan-net">$655,762 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-09" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-09" data-widths="480,800,1280" data-name="TH-09" data-spec="2 bed · 1.5 bath · 1,020 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-09-480.avif 480w, images/plans/exhale/th-09-800.avif 800w, images/plans/exhale/th-09-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-09-480.webp 480w, images/plans/exhale/th-09-800.webp 800w, images/plans/exhale/th-09-1280.webp 1280w"><img src="images/plans/exhale/th-09.jpg" alt="TH-09 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-09</div>
+        <div class="plan-spec">2 bed &middot; 1.5 bath &middot; 1,020 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,096 sq ft with outdoor space</div>
+        <div class="plan-price">$765,000<span class="plan-net">$665,550 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-11" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-11" data-widths="480,800,1280" data-name="TH-11" data-spec="2 bed · 1.5 bath · 1,055 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-11-480.avif 480w, images/plans/exhale/th-11-800.avif 800w, images/plans/exhale/th-11-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-11-480.webp 480w, images/plans/exhale/th-11-800.webp 800w, images/plans/exhale/th-11-1280.webp 1280w"><img src="images/plans/exhale/th-11.jpg" alt="TH-11 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-11</div>
+        <div class="plan-spec">2 bed &middot; 1.5 bath &middot; 1,055 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,114 sq ft with outdoor space</div>
+        <div class="plan-price">$791,250<span class="plan-net">$688,388 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-12" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-12" data-widths="480,800,1280" data-name="TH-12" data-spec="2 bed · 2.5 bath · 1,065 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-12-480.avif 480w, images/plans/exhale/th-12-800.avif 800w, images/plans/exhale/th-12-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-12-480.webp 480w, images/plans/exhale/th-12-800.webp 800w, images/plans/exhale/th-12-1280.webp 1280w"><img src="images/plans/exhale/th-12.jpg" alt="TH-12 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-12</div>
+        <div class="plan-spec">2 bed &middot; 2.5 bath &middot; 1,065 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,126 sq ft with outdoor space</div>
+        <div class="plan-price">$798,750<span class="plan-net">$694,912 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-01" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-01" data-widths="480,800,1280" data-name="TH-01" data-spec="2 + den bed · 2.5 bath · 1,265 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-01-480.avif 480w, images/plans/exhale/th-01-800.avif 800w, images/plans/exhale/th-01-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-01-480.webp 480w, images/plans/exhale/th-01-800.webp 800w, images/plans/exhale/th-01-1280.webp 1280w"><img src="images/plans/exhale/th-01.jpg" alt="TH-01 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-01</div>
+        <div class="plan-spec">2 + den bed &middot; 2.5 bath &middot; 1,265 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,310 sq ft with outdoor space</div>
+        <div class="plan-price">$948,750<span class="plan-net">$825,412 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <div class="plan-group" data-beds="3" id="plans-3-bed"><span>Three bedroom</span><small>4 plans &middot; 1,310 &ndash; 1,710 sq ft &middot; from $982,500</small></div>
+    <figure class="plan is-open" id="plan-th-10" data-beds="3" data-type="townhome" data-base="images/plans/exhale/th-10" data-widths="480,800,1280" data-name="TH-10" data-spec="3 + flex bed · 2.5 bath · 1,310 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-10-480.avif 480w, images/plans/exhale/th-10-800.avif 800w, images/plans/exhale/th-10-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-10-480.webp 480w, images/plans/exhale/th-10-800.webp 800w, images/plans/exhale/th-10-1280.webp 1280w"><img src="images/plans/exhale/th-10.jpg" alt="TH-10 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-10</div>
+        <div class="plan-spec">3 + flex bed &middot; 2.5 bath &middot; 1,310 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,386 sq ft with outdoor space</div>
+        <div class="plan-price">$982,500<span class="plan-net">$854,775 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-07" data-beds="3" data-type="townhome" data-base="images/plans/exhale/th-07" data-widths="480,800,1280" data-name="TH-07" data-spec="3 + flex bed · 2.5 bath · 1,430 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-07-480.avif 480w, images/plans/exhale/th-07-800.avif 800w, images/plans/exhale/th-07-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-07-480.webp 480w, images/plans/exhale/th-07-800.webp 800w, images/plans/exhale/th-07-1280.webp 1280w"><img src="images/plans/exhale/th-07.jpg" alt="TH-07 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-07</div>
+        <div class="plan-spec">3 + flex bed &middot; 2.5 bath &middot; 1,430 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,510 sq ft with outdoor space</div>
+        <div class="plan-price">$1,072,500<span class="plan-net">$933,075 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-06" data-beds="3" data-type="townhome" data-base="images/plans/exhale/th-06" data-widths="480,800,1280" data-name="TH-06" data-spec="3 + flex + den bed · 3 bath · 1,485 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-06-480.avif 480w, images/plans/exhale/th-06-800.avif 800w, images/plans/exhale/th-06-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-06-480.webp 480w, images/plans/exhale/th-06-800.webp 800w, images/plans/exhale/th-06-1280.webp 1280w"><img src="images/plans/exhale/th-06.jpg" alt="TH-06 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-06</div>
+        <div class="plan-spec">3 + flex + den bed &middot; 3 bath &middot; 1,485 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,571 sq ft with outdoor space</div>
+        <div class="plan-price">$1,113,750<span class="plan-net">$968,962 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-th-08" data-beds="3" data-type="townhome" data-base="images/plans/exhale/th-08" data-widths="480,800,1280" data-name="TH-08" data-spec="3 + flex bed · 2.5 bath · 1,710 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-08-480.avif 480w, images/plans/exhale/th-08-800.avif 800w, images/plans/exhale/th-08-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-08-480.webp 480w, images/plans/exhale/th-08-800.webp 800w, images/plans/exhale/th-08-1280.webp 1280w"><img src="images/plans/exhale/th-08.jpg" alt="TH-08 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">TH-08</div>
+        <div class="plan-spec">3 + flex bed &middot; 2.5 bath &middot; 1,710 sq ft</div>
+        <div class="plan-level">2-storey at grade &middot; 1,807 sq ft with outdoor space</div>
+        <div class="plan-price">$1,282,500<span class="plan-net">$1,115,775 net of HST rebate*</span></div>
+      </figcaption>
+    </figure>
+  </div>
+  <p class="tbl-note">Plans and pricing from the Exhale Townhome Collection plan set and current promotional price list; the list price is $1,000 per sq ft and the promotional price is 25% off. *Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.</p>
+  <div class="plan-lightbox" id="plan-lb" hidden>
+    <button type="button" class="lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
+    <div class="lb-media"></div>
+    <button type="button" class="lb-next" aria-label="Next plan">&#8250;</button>
+    <div class="lb-cap"></div>
+  </div>
+<script>
+(function () {
+  var sec = document.getElementById('floor-plans');
+  if (!sec) return;
+  function registered() { try { return localStorage.getItem('ca_registered') === 'true'; } catch (e) { return false; } }
+  function pictureFor(fig, big) {
+    var base = fig.getAttribute('data-base'), ws = fig.getAttribute('data-widths').split(',');
+    var pic = document.createElement('picture');
+    ['avif', 'webp'].forEach(function (ext) {
+      var s = document.createElement('source'); s.type = 'image/' + ext;
+      s.sizes = big ? '96vw' : '(max-width: 700px) 50vw, 25vw';
+      s.srcset = ws.map(function (w) { return base + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+      pic.appendChild(s);
+    });
+    var img = document.createElement('img');
+    img.src = base + '.jpg'; img.alt = fig.getAttribute('data-name') + ' floor plan'; img.decoding = 'async';
+    if (!big) img.loading = 'lazy';
+    pic.appendChild(img);
+    return pic;
+  }
+  function open(fig) {
+    var media = fig.querySelector('.plan-media');
+    media.innerHTML = ''; media.appendChild(pictureFor(fig, false)); fig.classList.add('is-open');
+  }
+  window.caUnlockPlans = function () {
+    sec.classList.add('is-unlocked');
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan:not(.is-open)'), open);
+    var st = document.getElementById('plans-state');
+    if (st) st.textContent = 'All plans unlocked — tap any plan to enlarge.';
+  };
+  if (registered()) window.caUnlockPlans();
 
-<section id="pricing">
-  <div class="sec-eyebrow">Pricing</div>
-  <h2 class="sec-title">Models &amp; <em>prices</em></h2>
-  <div class="tbl-block">
-    <h3 class="tbl-title">Floor plans &amp; pricing</h3>
-    <div class="tbl-scroll">
-      <table class="dt">
-        <thead><tr><th>Plan</th><th>Sq ft</th><th>List price</th><th>Promotional price</th><th>After HST rebate</th></tr></thead>
-        <tbody>
-        <tr><td>Townhome 4</td><td>945</td><td>$945,000</td><td>$708,750</td><td class="num">$616,612</td></tr>
-        <tr><td>Townhome 3</td><td>1,005</td><td>$1,005,000</td><td>$753,750</td><td class="num">$655,762</td></tr>
-        <tr><td>Townhome 2</td><td>1,018</td><td>$1,018,000</td><td>$763,500</td><td class="num">$664,245</td></tr>
-        <tr><td>Townhome 8</td><td>1,020</td><td>$1,020,000</td><td>$765,000</td><td class="num">$665,550</td></tr>
-        <tr><td>Townhome 10</td><td>1,055</td><td>$1,055,000</td><td>$791,250</td><td class="num">$688,388</td></tr>
-        <tr><td>Townhome 11</td><td>1,065</td><td>$1,065,000</td><td>$798,750</td><td class="num">$694,912</td></tr>
-        <tr><td>Townhome 1</td><td>1,265</td><td>$1,265,000</td><td>$948,750</td><td class="num">$825,412</td></tr>
-        <tr><td>Townhome 9</td><td>1,310</td><td>$1,310,000</td><td>$982,500</td><td class="num">$854,775</td></tr>
-        <tr><td>Townhome 6</td><td>1,430</td><td>$1,430,000</td><td>$1,072,500</td><td class="num">$933,075</td></tr>
-        <tr><td>Townhome 5</td><td>1,485</td><td>$1,485,000</td><td>$1,113,750</td><td class="num">$968,962</td></tr>
-        <tr><td>Townhome 7</td><td>1,710</td><td>$1,710,000</td><td>$1,282,500</td><td class="num">$1,115,775</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="tbl-note">Promotional pricing shown against the original list price. HST rebate value is the estimated net after rebate.</p>
-  </div>
-  <p class="plans-link"><a href="../neighbourhoods/dixie-lakeshore.html#exhale-towns">View all 11 floor plans &rarr;</a></p>
+  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
+    ch.addEventListener('click', function () {
+      Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === ch); });
+      var t = ch.getAttribute('data-filter');
+      Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+        var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+        f.hidden = (t !== 'all' && v !== t);
+      });
+    });
+  });
+
+  var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null;
+  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan.is-open'), function (f) { return !f.hidden; }); }
+  function show(fig) {
+    current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
+    lbCap.innerHTML = '<b>' + fig.getAttribute('data-name') + '</b>' + fig.getAttribute('data-spec');
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  function close() { lb.hidden = true; document.body.style.overflow = ''; }
+  function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
+  sec.addEventListener('click', function (e) {
+    var fig = e.target.closest('.plan'); if (!fig) return;
+    if (!fig.classList.contains('is-open')) {
+      var reg = document.getElementById('register');
+      if (reg) { reg.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = reg.querySelector('input[name=name]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, 700); }
+      return;
+    }
+    show(fig);
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.lb-next')) return step(1);
+    if (e.target.closest('.lb-prev')) return step(-1);
+    if (e.target.closest('.lb-close') || e.target === lb || e.target === lbMedia) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
+  });
+})();
+</script>
 </section>
 
 <section>
@@ -396,6 +616,51 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/exhale-siteplan-480.webp 480w, images/towns/exhale-siteplan-800.webp 800w, images/towns/exhale-siteplan-1280.webp 1280w">
         <img src="images/towns/exhale-siteplan.jpg" alt="Exhale Townhome Collection site plan" loading="lazy" decoding="async">
       </picture><figcaption>Exhale Townhome Collection site plan</figcaption></figure>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="sec-eyebrow">Pricing</div>
+  <h2 class="sec-title">Models &amp; <em>prices</em></h2>
+  <div class="tbl-block">
+    <h3 class="tbl-title">Floor plans &amp; pricing</h3>
+    <div class="tbl-scroll">
+      <table class="dt">
+        <thead><tr><th>Plan</th><th>Sq ft</th><th>List price</th><th>Promotional price</th><th>After HST rebate</th></tr></thead>
+        <tbody>
+        <tr><td>TH-05 <a class="row-plan" href="#plan-th-05">plan &rarr;</a></td><td>945</td><td>$945,000</td><td>$708,750</td><td class="num">$616,612</td></tr>
+        <tr><td>TH-03 <a class="row-plan" href="#plan-th-03">plan &rarr;</a></td><td>1,005</td><td>$1,005,000</td><td>$753,750</td><td class="num">$655,762</td></tr>
+        <tr><td>TH-02 <a class="row-plan" href="#plan-th-02">plan &rarr;</a></td><td>1,018</td><td>$1,018,000</td><td>$763,500</td><td class="num">$664,245</td></tr>
+        <tr><td>TH-09 <a class="row-plan" href="#plan-th-09">plan &rarr;</a></td><td>1,020</td><td>$1,020,000</td><td>$765,000</td><td class="num">$665,550</td></tr>
+        <tr><td>TH-11 <a class="row-plan" href="#plan-th-11">plan &rarr;</a></td><td>1,055</td><td>$1,055,000</td><td>$791,250</td><td class="num">$688,388</td></tr>
+        <tr><td>TH-12 <a class="row-plan" href="#plan-th-12">plan &rarr;</a></td><td>1,065</td><td>$1,065,000</td><td>$798,750</td><td class="num">$694,912</td></tr>
+        <tr><td>TH-01 <a class="row-plan" href="#plan-th-01">plan &rarr;</a></td><td>1,265</td><td>$1,265,000</td><td>$948,750</td><td class="num">$825,412</td></tr>
+        <tr><td>TH-10 <a class="row-plan" href="#plan-th-10">plan &rarr;</a></td><td>1,310</td><td>$1,310,000</td><td>$982,500</td><td class="num">$854,775</td></tr>
+        <tr><td>TH-07 <a class="row-plan" href="#plan-th-07">plan &rarr;</a></td><td>1,430</td><td>$1,430,000</td><td>$1,072,500</td><td class="num">$933,075</td></tr>
+        <tr><td>TH-06 <a class="row-plan" href="#plan-th-06">plan &rarr;</a></td><td>1,485</td><td>$1,485,000</td><td>$1,113,750</td><td class="num">$968,962</td></tr>
+        <tr><td>TH-08 <a class="row-plan" href="#plan-th-08">plan &rarr;</a></td><td>1,710</td><td>$1,710,000</td><td>$1,282,500</td><td class="num">$1,115,775</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">Promotional pricing shown against the original list price. HST rebate value is the estimated net after rebate.</p>
+  </div>
+</section>
+
+<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>Exhale Townhome Collection</em></h2>
+      <p>The Townhome Collection sits at grade beneath Exhale on Lakeshore Road East at Dixie &mdash; directly across from Lakeshore Park, a short walk from the water, and three minutes from Dixie Outlet Mall.</p>
+      <p>Eleven two-storey plans from 945 to 1,710 sq ft, with private patios and access to the full Exhale amenity floor. The earliest occupancy of the townhome communities in this neighbourhood.</p>
+    </div>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+        <div class="cm-row"><span class="cm-time">Across the street</span><span class="cm-place">Lakeshore Park</span></div>
+        <div class="cm-row"><span class="cm-time">3 min</span><span class="cm-place">Dixie Outlet Mall</span></div>
+        <div class="cm-row"><span class="cm-time">Nearby</span><span class="cm-place">Dixie GO Station</span></div>
+        <div class="cm-row"><span class="cm-time">Planned</span><span class="cm-place">Lakeshore MiWay BRT and LRT</span></div>
+    </div>
   </div>
 </section>
 

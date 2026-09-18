@@ -496,6 +496,13 @@ PROJECTS = {
         "plans": "scripts/manifests/westshore-plans.json",
         "plans_only_priced": True,
         "plans_gate": False,
+        "plans_title": "27 plans on the <em>September price list</em>",
+        "plans_intro": "Every layout Minto is selling right now, from the 472 sq ft Flat to the 1,238 sq ft "
+                       "Sky Town, with the price in each block.",
+        "plans_note": "Plans from Minto&rsquo;s floor plan book for The Heights; prices from the September 2026 "
+                      "price list, by block. *Net of the estimated GST/HST rebate, which applies only if the "
+                      "purchaser qualifies. Layouts and dimensions are approximate and subject to change without "
+                      "notice. E.&amp;O.E.",
         "order": ["plans", "incentives", "deposit_example", "gallery", "pricing", "register",
                   "overview", "setting", "site_plan", "nearby"],
         "hero": "westshore-hero",
@@ -770,24 +777,38 @@ PROJECTS = {
             "access to the full Exhale amenity floor. The earliest occupancy of the "
             "townhome communities in this neighbourhood.",
         ],
+        # Plan cards lead the page; the drawings are the builder's own plan cards.
+        "plans": "scripts/manifests/exhale-plans.json",
+        "plans_only_priced": True,
+        "plans_gate": False,
+        "plans_ratio": "4 / 5",
+        "plans_title": "All 11 <em>townhome plans</em>",
+        "plans_intro": "Every two-storey plan in the collection, from the 920 sq ft TH-02 to the 1,710 sq ft "
+                       "TH-08, at the current promotional price.",
+        "plans_note": "Plans and pricing from the Exhale Townhome Collection plan set and current promotional "
+                      "price list; the list price is $1,000 per sq ft and the promotional price is 25% off. "
+                      "*Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts "
+                      "and dimensions are approximate and subject to change without notice. E.&amp;O.E.",
+        "order": ["plans", "incentives", "gallery", "pricing", "overview", "nearby"],
         "tables": [
             {
                 "title": "Floor plans &amp; pricing",
                 "note": "Promotional pricing shown against the original list price. "
                         "HST rebate value is the estimated net after rebate.",
                 "cols": ["Plan", "Sq ft", "List price", "Promotional price", "After HST rebate"],
+                "plan_cols": {"model": 0, "sqft": 1, "price": 3, "net": 4},
                 "groups": [("", [
-                    ["Townhome 4", "945", "$945,000", "$708,750", "$616,612"],
-                    ["Townhome 3", "1,005", "$1,005,000", "$753,750", "$655,762"],
-                    ["Townhome 2", "1,018", "$1,018,000", "$763,500", "$664,245"],
-                    ["Townhome 8", "1,020", "$1,020,000", "$765,000", "$665,550"],
-                    ["Townhome 10", "1,055", "$1,055,000", "$791,250", "$688,388"],
-                    ["Townhome 11", "1,065", "$1,065,000", "$798,750", "$694,912"],
-                    ["Townhome 1", "1,265", "$1,265,000", "$948,750", "$825,412"],
-                    ["Townhome 9", "1,310", "$1,310,000", "$982,500", "$854,775"],
-                    ["Townhome 6", "1,430", "$1,430,000", "$1,072,500", "$933,075"],
-                    ["Townhome 5", "1,485", "$1,485,000", "$1,113,750", "$968,962"],
-                    ["Townhome 7", "1,710", "$1,710,000", "$1,282,500", "$1,115,775"],
+                    ["TH-05", "945", "$945,000", "$708,750", "$616,612"],
+                    ["TH-03", "1,005", "$1,005,000", "$753,750", "$655,762"],
+                    ["TH-02", "1,018", "$1,018,000", "$763,500", "$664,245"],
+                    ["TH-09", "1,020", "$1,020,000", "$765,000", "$665,550"],
+                    ["TH-11", "1,055", "$1,055,000", "$791,250", "$688,388"],
+                    ["TH-12", "1,065", "$1,065,000", "$798,750", "$694,912"],
+                    ["TH-01", "1,265", "$1,265,000", "$948,750", "$825,412"],
+                    ["TH-10", "1,310", "$1,310,000", "$982,500", "$854,775"],
+                    ["TH-07", "1,430", "$1,430,000", "$1,072,500", "$933,075"],
+                    ["TH-06", "1,485", "$1,485,000", "$1,113,750", "$968,962"],
+                    ["TH-08", "1,710", "$1,710,000", "$1,282,500", "$1,115,775"],
                 ])],
             },
         ],
@@ -809,8 +830,6 @@ PROJECTS = {
             ("exhale-aerial", "Aerial view of Exhale on Lakeshore"),
             ("exhale-siteplan", "Exhale Townhome Collection site plan"),
         ],
-        "plans_link": ("../neighbourhoods/dixie-lakeshore.html#exhale-towns",
-                       "View all 11 floor plans"),
         "source": "Current Exhale promotional pricing and the Exhale Townhome Collection plan set.",
         "card": {
             "image": "exhale-towns-hero",
@@ -1009,19 +1028,42 @@ def _plan_key(model, sqft):
     return (html.unescape(model).replace("The ", "").strip().lower(), int(str(sqft).replace(",", "")))
 
 
-def price_index(tables, plans):
-    """slug -> {"min": lowest list price, "blocks": [...]} from the by-block price tables."""
+def _plan_cols(t):
+    """Which columns of a price table hold the model, sq ft, price and net figure."""
+    if t.get("plan_cols"):
+        return t["plan_cols"]
+    if t["cols"] and t["cols"][0] == "Model":
+        return {"model": 0, "sqft": 2, "price": 3, "net": 4}
+    return None
+
+
+def _plan_lookup(plans):
+    """Plans keyed both by name ('th-05') and by (type, sq ft) ('sky towns', 1238)."""
     by = {}
     for pl in plans:
+        by.setdefault(("name", pl["name"].lower()), []).append(pl["slug"])
         by.setdefault((pl["type"].lower(), pl["sqft"]), []).append(pl["slug"])
+    return by
+
+
+def _row_slugs(by, r, c):
+    model = html.unescape(r[c["model"]]).split("<")[0].strip()
+    return by.get(("name", model.lower())) or by.get(_plan_key(model, r[c["sqft"]]), [])
+
+
+def price_index(tables, plans):
+    """slug -> {"min": lowest list price, "net": ..., "blocks": [(group, price)]} from the price tables."""
+    by = _plan_lookup(plans)
     idx = {}
     for t in tables:
-        if not t["cols"] or t["cols"][0] != "Model":
+        c = _plan_cols(t)
+        if not c:
             continue
         for gname, rows in t["groups"]:
             for r in rows:
-                price, net = _price_number(r[3]), _price_number(r[4]) if len(r) > 4 else None
-                for slug in by.get(_plan_key(r[0], r[2]), []):
+                price = _price_number(r[c["price"]])
+                net = _price_number(r[c["net"]]) if c.get("net") is not None and len(r) > c["net"] else None
+                for slug in _row_slugs(by, r, c):
                     e = idx.setdefault(slug, {"min": price, "net": net, "blocks": []})
                     if price < e["min"]:
                         e["min"], e["net"] = price, net
@@ -1044,21 +1086,20 @@ def block_prices_html(blocks):
 
 def link_plan_rows(tables, plans):
     """Add a 'plan' link to every price-list row that has a matching drawing."""
-    first = {}
-    for pl in plans:
-        first.setdefault((pl["type"].lower(), pl["sqft"]), pl["slug"])
+    by = _plan_lookup(plans)
     out = []
     for t in tables:
         t = dict(t)
-        if t["cols"] and t["cols"][0] == "Model":
+        c = _plan_cols(t)
+        if c:
             groups = []
             for gname, rows in t["groups"]:
                 new_rows = []
                 for r in rows:
                     r = list(r)
-                    slug = first.get(_plan_key(r[0], r[2]))
-                    if slug:
-                        r[0] = '%s <a class="row-plan" href="#plan-%s">plan &rarr;</a>' % (r[0], slug)
+                    slugs = _row_slugs(by, r, c)
+                    if slugs:
+                        r[c["model"]] = '%s <a class="row-plan" href="#plan-%s">plan &rarr;</a>' % (r[c["model"]], slugs[0])
                     new_rows.append(r)
                 groups.append((gname, new_rows))
             t["groups"] = groups
@@ -1076,16 +1117,16 @@ PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-beds="%s" data-type=
       </figcaption>
     </figure>"""
 
-PLANS_SECTION = """<section id="floor-plans" class="plans-sec">
+PLANS_SECTION = """<section id="floor-plans" class="plans-sec"%s>
   <div class="sec-eyebrow">Floor plans &amp; prices</div>
-  <h2 class="sec-title">%d plans on the <em>September price list</em></h2>
-  <p class="plans-intro">Every layout Minto is selling right now, from the %s sq ft %s to the %s sq ft %s, with the price in each block. %s</p>
+  <h2 class="sec-title">%s</h2>
+  <p class="plans-intro">%s %s</p>
   <div class="plans-bar">
     <div class="plan-chips">%s</div>
     <div class="plans-state" id="plans-state">%s</div>
   </div>
   %s
-  <p class="tbl-note">Plans from Minto&rsquo;s floor plan book for The Heights; prices from the September 2026 price list, by block. *Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.</p>
+  <p class="tbl-note">%s</p>
   <div class="plan-lightbox" id="plan-lb" hidden>
     <button type="button" class="lb-close" aria-label="Close">&times;</button>
     <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
@@ -1121,8 +1162,9 @@ def plans_section(p, plans, plans_dir, register_html=""):
         if pl["slug"] in prices:
             e = prices[pl["slug"]]
             net = '<span class="plan-net">%s net of HST rebate*</span>' % _money(e["net"]) if e.get("net") else ""
-            price = '<div class="plan-price">From %s%s<span>%s</span></div>' % (
-                _money(e["min"]), net, block_prices_html(e["blocks"]))
+            blocks = block_prices_html(e["blocks"]) if any(g for g, _ in e["blocks"]) else ""
+            price = '<div class="plan-price">%s%s%s%s</div>' % (
+                "From " if blocks else "", _money(e["min"]), net, "<span>%s</span>" % blocks if blocks else "")
         else:
             price = '<div class="plan-price muted">Not on the current price list &middot; ask about availability</div>'
         if pl["slug"] in preview:
@@ -1175,16 +1217,22 @@ def plans_section(p, plans, plans_dir, register_html=""):
                 group = by_beds[b]
                 lo, hi = min(x["sqft"] for x in group), max(x["sqft"] for x in group)
                 cheapest = min(prices[x["slug"]]["min"] for x in group if x["slug"] in prices)
+                size = "{:,}".format(lo) if lo == hi else "%s &ndash; %s" % ("{:,}".format(lo), "{:,}".format(hi))
                 rows.append('    <div class="plan-group" data-beds="%d" id="plans-%d-bed"><span>%s</span>'
-                            '<small>%d plan%s &middot; %s &ndash; %s sq ft &middot; from %s</small></div>'
+                            '<small>%d plan%s &middot; %s sq ft &middot; from %s</small></div>'
                             % (b, b, BED_WORDS.get(b, "%d bedroom" % b), len(group), "" if len(group) == 1 else "s",
-                               "{:,}".format(lo), "{:,}".format(hi), _money(cheapest)))
+                               size, _money(cheapest)))
             rows.append(card)
         grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(rows)
-    return PLANS_SECTION % (
-        len(plans), "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
-        "{:,}".format(largest["sqft"]), singular(largest["type"]), pitch, "".join(chips), state,
-        grid, PLANS_JS)
+    title = p.get("plans_title", "%d plans on the <em>current price list</em>" % len(plans))
+    intro = p.get("plans_intro", "Every layout on the current price list, from the %s sq ft %s to the %s sq ft %s." % (
+        "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
+        "{:,}".format(largest["sqft"]), singular(largest["type"])))
+    style = ' style="--plan-ratio: %s"' % p["plans_ratio"] if p.get("plans_ratio") else ""
+    note = p.get("plans_note", "Plans from the builder&rsquo;s floor plan set; prices from the current price list. "
+                 "*Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts and "
+                 "dimensions are approximate and subject to change without notice. E.&amp;O.E.")
+    return PLANS_SECTION % (style, title, intro, pitch, "".join(chips), state, grid, note, PLANS_JS)
 
 
 PLANS_CSS = """
@@ -1210,7 +1258,7 @@ PLANS_CSS = """
             transition: border-color 0.2s, transform 0.2s; }
     .plan:hover { border-color: var(--gold); transform: translateY(-2px); }
     .plan[hidden] { display: none; }
-    .plan-media { position: relative; aspect-ratio: 4/3; background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
+    .plan-media { position: relative; aspect-ratio: var(--plan-ratio, 4/3); background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
     .plan-media picture { display: contents; }
     .plan-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .plan-media .plan-blur { filter: blur(7px); transform: scale(1.06); opacity: 0.5; }

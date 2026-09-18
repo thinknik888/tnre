@@ -5,8 +5,9 @@ Render every floor plan in a builder's plan book into web-ready images.
     python3 scripts/import_floorplans.py scripts/manifests/westshore-plans.json
 
 The manifest lists each plan with the PDF page it sits on and which half of
-the spread ("L", "R", or "F" for a plan that spans the whole spread), plus the
-facts the page shows (type, sq ft, beds, baths, level).  For every plan the
+the spread ("L", "R", or "F" for a plan that spans the whole spread) -- or an
+"image" path for a ready-made plan card -- plus the facts the page shows
+(type, sq ft, beds, baths, level).  For every plan the
 repo receives, under <out>/:
 
     <slug>.jpg              1280px JPEG fallback
@@ -40,26 +41,31 @@ def main():
     if len(sys.argv) != 2:
         sys.exit(__doc__)
     m = json.load(open(sys.argv[1], encoding="utf-8"))
-    doc = fitz.open(os.path.expanduser(m["pdf"]))
+    doc = fitz.open(os.path.expanduser(m["pdf"])) if m.get("pdf") else None
     out = os.path.join(ROOT, m["out"])
     os.makedirs(out, exist_ok=True)
-    top, bottom = m["crop"]["top"], m["crop"]["bottom"]
+    crop = m.get("crop", {"top": 0.0, "bottom": 1.0})
+    top, bottom = crop["top"], crop["bottom"]
 
     cache = {}
     total = 0
     for p in m["plans"]:
-        if p["page"] not in cache:
-            cache = {p["page"]: render(doc, p["page"], 200)}   # one page at a time
-        im = cache[p["page"]]
-        w, h = im.size
-        x0, x1 = {"L": (0.0, 0.5), "R": (0.5, 1.0), "F": (0.0, 1.0)}[p["half"]]
-        plan = im.crop((round(w * x0), round(h * top), round(w * x1), round(h * bottom)))
-        # trim white margins, keeping a little breathing room
-        bbox = Image.eval(plan.convert("L"), lambda v: 0 if v > 245 else 255).getbbox()
-        if bbox:
-            pad = 24
-            plan = plan.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
-                              min(plan.width, bbox[2] + pad), min(plan.height, bbox[3] + pad)))
+        if p.get("image"):
+            # a ready-made plan image (e.g. the builder's own plan card): used whole
+            plan = Image.open(os.path.join(ROOT, p["image"])).convert("RGB")
+        else:
+            if p["page"] not in cache:
+                cache = {p["page"]: render(doc, p["page"], 200)}   # one page at a time
+            im = cache[p["page"]]
+            w, h = im.size
+            x0, x1 = {"L": (0.0, 0.5), "R": (0.5, 1.0), "F": (0.0, 1.0)}[p["half"]]
+            plan = im.crop((round(w * x0), round(h * top), round(w * x1), round(h * bottom)))
+            # trim white margins, keeping a little breathing room
+            bbox = Image.eval(plan.convert("L"), lambda v: 0 if v > 245 else 255).getbbox()
+            if bbox:
+                pad = 24
+                plan = plan.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
+                                  min(plan.width, bbox[2] + pad), min(plan.height, bbox[3] + pad)))
 
         widths = [480, 800, 1280] + ([1920] if p["half"] == "F" else [])
 
