@@ -503,8 +503,8 @@ PROJECTS = {
                       "price list, by block. *Net of the estimated GST/HST rebate, which applies only if the "
                       "purchaser qualifies. Layouts and dimensions are approximate and subject to change without "
                       "notice. E.&amp;O.E.",
-        "order": ["plans", "incentives", "deposit_example", "gallery", "pricing", "register",
-                  "overview", "setting", "site_plan", "nearby"],
+        "order": ["overview", "plans", "incentives", "deposit_example", "gallery", "pricing", "register",
+                  "setting", "site_plan", "nearby"],
         "hero": "westshore-hero",
         "hero_alt": "Westshore at Long Branch, The Heights exterior rendering",
         "meta": "Westshore at Long Branch by Minto Communities &mdash; The Heights hybrid stacked "
@@ -790,7 +790,7 @@ PROJECTS = {
                       "price list; the list price is $1,000 per sq ft and the promotional price is 25% off. "
                       "*Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts "
                       "and dimensions are approximate and subject to change without notice. E.&amp;O.E.",
-        "order": ["plans", "incentives", "gallery", "pricing", "overview", "nearby"],
+        "order": ["overview", "plans", "incentives", "gallery", "pricing", "nearby"],
         "tables": [
             {
                 "title": "Floor plans &amp; pricing",
