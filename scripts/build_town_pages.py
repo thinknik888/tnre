@@ -481,6 +481,255 @@ PROJECTS = {
         },
     },
 
+    "westshore-long-branch": {
+        "name": "Westshore at Long Branch",
+        "builder": "Minto Communities",
+        "status": "Now selling &middot; The Heights",
+        "status_kind": "live",
+        "tagline": "Hybrid stacked towns beside Long Branch GO.",
+        "address": "3526 Lake Shore Blvd W &middot; Long Branch, Etobicoke",
+        "area": "Long Branch",
+        "hero": "westshore-hero",
+        "hero_alt": "Westshore at Long Branch, The Heights exterior rendering",
+        "meta": "Westshore at Long Branch by Minto Communities &mdash; The Heights hybrid stacked "
+                "towns at 3526 Lake Shore Blvd W, Etobicoke. 1&ndash;3 bedrooms, 472&ndash;1,238 sq ft, "
+                "from $424,900 with a 15% deposit and 2030 occupancy. Full September 2026 price list.",
+        "facts": [
+            ("From", "$424,900*"),
+            ("Size", "472 &ndash; 1,238 sq ft"),
+            ("Bedrooms", "1 &ndash; 3 + den"),
+            ("Home types", "Flats &middot; Garden &amp; Sky Towns"),
+            ("Deposit", "15%"),
+            ("Occupancy", "2030"),
+        ],
+        "intro": [
+            "Westshore is Minto&rsquo;s master-planned community on Lake Shore Boulevard West in "
+            "Long Branch &mdash; the first Toronto neighbourhood east of Dixie &amp; Lakeshore, just "
+            "across Etobicoke Creek. The Heights is its current release: five-storey hybrid "
+            "stacked towns that put a garden home, a flat and a two-level sky town into one "
+            "low-rise block, a short walk from Long Branch GO and the 501 streetcar loop.",
+            "Four home types cover the range. The Flats are one-bedroom suites with balconies; "
+            "the Garden Flats and Garden Towns open onto private patios at grade; the Sky Towns "
+            "are two- and three-bedroom homes on the upper levels with rooftop terraces. Pricing "
+            "starts at $424,900, deposits total just 15% with 5% not due until occupancy, and "
+            "development levies and assignment fees are both capped at $0.",
+        ],
+        # Registration form (leads -> dashboard via save-lead).
+        "register": {
+            "title": "Get the floor plans <em>and current incentives</em>",
+            "text": "Leave your details and Nikhil will send you the full September 2026 price "
+                    "list, the floor plans for every model, and the deposit and levy incentives "
+                    "while they last.",
+            "button": "Send me the floor plans",
+            "hero_button": "Get the floor plans &amp; price list",
+        },
+        "pricing_title": "Price list &mdash; <em>September 2026</em>",
+        "tables": [
+            {
+                "title": "At a glance, by home type",
+                "compact": True,
+                "note": "*Original list price. The full price list below also shows each home net "
+                        "of the estimated new-home GST/HST rebate, which applies only if the "
+                        "purchaser qualifies.",
+                "cols": ["Home type", "Bedrooms", "Sq ft", "From"],
+                "groups": [("", [
+                    ["The Flats", "1 &ndash; 3 + den", "472 &ndash; 1,183", "$424,900*"],
+                    ["The Garden Flats", "1 + den", "643", "$531,900"],
+                    ["The Garden Towns", "2 &ndash; 3", "952 &ndash; 1,207", "$602,900"],
+                    ["The Sky Towns", "2 &ndash; 3 + den", "1,071 &ndash; 1,238", "$652,900"],
+                ])],
+            },
+            {
+                "title": "Full price list by block",
+                "note": "*Net of the estimated GST/HST rebate. Rebate amounts are estimates based "
+                        "on federal and provincial guidance; eligibility and the actual rebate are "
+                        "determined by the government. If the purchaser does not qualify, the full "
+                        "purchase price applies. Prices, sizes and specifications are subject to "
+                        "change without notice. E.&amp;O.E. September 2026.",
+                "cols": ["Model", "Bedrooms", "Sq ft", "Price", "Net of HST rebate*"],
+                "groups": [
+                    ("Block 1", [
+                        ["The Flats", "1", "530", "$439,900", "$412,615"],
+                        ["The Garden Flats", "1 + 1", "643", "$531,900", "$491,947"],
+                        ["The Flats", "3 + 1", "1,183", "$769,900", "$702,566"],
+                        ["The Garden Towns", "3", "1,118", "$652,900", "$599,027"],
+                        ["The Garden Towns", "3", "1,164", "$739,900", "$676,018"],
+                        ["The Sky Towns", "2", "1,071", "$652,900", "$599,027"],
+                        ["The Sky Towns", "2", "1,091", "$757,900", "$691,947"],
+                        ["The Sky Towns", "2 + 1", "1,092", "$687,900", "$630,000"],
+                        ["The Sky Towns", "2", "1,106", "$762,900", "$696,372"],
+                        ["The Sky Towns", "3", "1,121", "$772,900", "$705,221"],
+                        ["The Sky Towns", "2", "1,138", "$707,900", "$647,699"],
+                        ["The Sky Towns", "2 + 1", "1,139", "$762,900", "$696,372"],
+                        ["The Sky Towns", "3", "1,181", "$757,900", "$691,947"],
+                        ["The Sky Towns", "3", "1,208", "$777,900", "$709,646"],
+                        ["The Sky Towns", "3", "1,238", "$817,900", "$745,044"],
+                    ]),
+                    ("Block 2", [
+                        ["The Garden Towns", "3", "1,118", "$687,900", "$630,000"],
+                        ["The Garden Towns", "3", "1,164", "$746,900", "$682,212"],
+                        ["The Garden Towns", "3", "1,207", "$794,900", "$724,690"],
+                        ["The Sky Towns", "2", "1,071", "$664,900", "$609,646"],
+                        ["The Sky Towns", "2", "1,091", "$769,900", "$702,566"],
+                        ["The Sky Towns", "2 + 1", "1,092", "$764,900", "$698,142"],
+                        ["The Sky Towns", "2", "1,106", "$774,900", "$706,991"],
+                        ["The Sky Towns", "2", "1,138", "$784,900", "$715,841"],
+                        ["The Sky Towns", "2 + 1", "1,139", "$774,900", "$706,991"],
+                        ["The Sky Towns", "3", "1,142", "$814,900", "$742,389"],
+                        ["The Sky Towns", "3", "1,181", "$804,900", "$733,540"],
+                        ["The Sky Towns", "3 + 1", "1,204", "$824,900", "$751,239"],
+                        ["The Sky Towns", "3", "1,208", "$812,900", "$740,619"],
+                        ["The Sky Towns", "3", "1,238", "$817,900", "$745,044"],
+                    ]),
+                    ("Block 6", [
+                        ["The Flats", "1", "523", "$454,900", "$425,189"],
+                        ["The Flats", "1", "530", "$464,900", "$433,571"],
+                        ["The Garden Towns", "2", "952", "$602,900", "$554,779"],
+                        ["The Garden Towns", "3", "1,118", "$702,900", "$643,274"],
+                        ["The Garden Towns", "3", "1,164", "$749,900", "$684,867"],
+                        ["The Garden Towns", "3", "1,207", "$804,900", "$733,540"],
+                        ["The Sky Towns", "2", "1,071", "$722,900", "$660,973"],
+                        ["The Sky Towns", "3", "1,077", "$767,900", "$700,796"],
+                        ["The Sky Towns", "2", "1,091", "$782,900", "$714,071"],
+                        ["The Sky Towns", "2", "1,106", "$787,900", "$718,496"],
+                        ["The Sky Towns", "3", "1,137", "$797,900", "$727,345"],
+                        ["The Sky Towns", "2", "1,138", "$797,900", "$727,345"],
+                        ["The Sky Towns", "2 + 1", "1,139", "$787,900", "$718,496"],
+                        ["The Sky Towns", "3", "1,142", "$827,900", "$753,894"],
+                        ["The Sky Towns", "2 + 1", "1,155", "$787,900", "$718,496"],
+                        ["The Sky Towns", "3", "1,208", "$827,900", "$753,894"],
+                        ["The Sky Towns", "3", "1,212", "$827,900", "$753,894"],
+                        ["The Sky Towns", "3", "1,215", "$837,900", "$762,743"],
+                        ["The Sky Towns", "3", "1,238", "$862,900", "$784,867"],
+                    ]),
+                    ("Block 7", [
+                        ["The Flats", "1", "472", "$424,900", "$400,042"],
+                        ["The Garden Towns", "3", "1,118", "$677,900", "$621,150"],
+                        ["The Garden Towns", "3", "1,164", "$739,900", "$676,018"],
+                        ["The Sky Towns", "2", "1,091", "$757,900", "$691,947"],
+                        ["The Sky Towns", "2", "1,138", "$772,900", "$705,221"],
+                        ["The Sky Towns", "2 + 1", "1,155", "$772,900", "$705,221"],
+                        ["The Sky Towns", "3", "1,208", "$812,900", "$740,619"],
+                        ["The Sky Towns", "3", "1,212", "$812,900", "$740,619"],
+                    ]),
+                ],
+            },
+        ],
+        "incentives_title": "Limited-time <em>purchaser incentives</em>",
+        "incentives": [
+            "Extended deposit structure: $5,000 at signing, 15% in total, with the last 5% not due until occupancy",
+            "$0 capped development levies on every suite",
+            "$0 assignment fee",
+            "EV parking upgrades available",
+            "Maintenance fees approx. $0.40 per sq ft (excludes hydro and water) &middot; parking $59.95/month &middot; locker $29.95/month",
+            "Tentative first occupancy 2030",
+        ],
+        "deposit": {
+            "title": "Deposit structure",
+            "rows": [
+                ("At signing", "$5,000"),
+                ("30 days", "Balance to 5%"),
+                ("365 days", "5%"),
+                ("On occupancy", "5%"),
+                ("Total", "15%"),
+            ],
+            "foot": "Cheques payable to Bennett Jones LLP, in trust. Limited-time offer; some "
+                    "restrictions apply and the extended structure remains subject to vendor approval.",
+        },
+        # Percentage deposits worked out on two real price points from the September list.
+        "deposit_example": {
+            "signed": "2026-09-25",
+            "payee": "Bennett Jones LLP, in trust",
+            "schedules": [
+                {"label": "One-bedroom Flat at $424,900",
+                 "steps": [(0, 5000), (30, 16245), (365, 21245)],
+                 "occupancy": 21245},
+                {"label": "Three-bedroom Garden Town at $652,900",
+                 "steps": [(0, 5000), (30, 27645), (365, 32645)],
+                 "occupancy": 32645},
+            ],
+        },
+        "commute": [
+            ("At the door", "501 Queen streetcar &middot; Long Branch Loop"),
+            ("Short walk", "Long Branch GO &mdash; about 25 min to Union"),
+            ("Short walk", "Marie Curtis Park, the beach &amp; the Waterfront Trail"),
+            ("Next door", "Dixie &amp; Lakeshore, across Etobicoke Creek"),
+            ("About 5 min", "Sherway Gardens &middot; QEW / 427"),
+            ("About 20 min", "Downtown Toronto"),
+        ],
+        "logos": [
+            ("westshore-logo.png", "Westshore at Long Branch", 26),
+            ("westshore-minto-logo.png", "Minto Communities", 26),
+        ],
+        "setting": {
+            "image": "westshore-entrance",
+            "image_alt": "Entrance to the hybrid stacked towns at Westshore",
+            "eyebrow": "The setting",
+            "title": "Long Branch, <em>one creek over</em>",
+            "text": [
+                "Long Branch is the lakeside village at Toronto&rsquo;s western edge &mdash; Etobicoke "
+                "Creek and Marie Curtis Park on one side, Lake Shore West&rsquo;s cafés and shops "
+                "on the other. Westshore sits between the GO line and the boulevard, so the "
+                "Lakeshore West train, the 501 streetcar and the QEW are all a few minutes away.",
+                "Inside the community, the blocks face a central park with a splash pad and "
+                "playground, and the Sky Towns look out over the treetops to the lake and the "
+                "downtown skyline.",
+            ],
+        },
+        "site_plan": {
+            "image": "westshore-siteplan",
+            "alt": "Westshore Phase 1 site plan with blocks 1 to 16 numbered, Lake Shore Blvd W on the right",
+            "title": "Sixteen blocks <em>around a park</em>",
+            "ratio": "2000 / 917",
+            "rows": [
+                ("Blocks 1 &ndash; 7", "Hybrid stacks &mdash; The Heights (this price list covers 1, 2, 6 &amp; 7)"),
+                ("Blocks 8 &ndash; 9", "Traditional towns"),
+                ("Blocks 13 &ndash; 16", "Stacked towns along Lake Shore"),
+                ("Centre", "Park with splash pad, playground &amp; lawn"),
+                ("East", "Lake Shore Blvd W &middot; 501 streetcar"),
+                ("West", "Lakeshore West GO corridor &middot; Long Branch station"),
+            ],
+        },
+        "gallery_title": "Renderings",
+        "gallery": [
+            ("westshore-rooftop", "The Sky Towns: private rooftop terrace with the skyline in view"),
+            ("westshore-park-summer", "The central park in summer"),
+            ("westshore-sky-living", "The Sky Towns: kitchen and living"),
+            ("westshore-garden-living", "The Garden Towns: kitchen and living, opening to the patio"),
+            ("westshore-flats-living", "The Flats: kitchen and living"),
+            ("westshore-flats-bedroom", "The Flats: primary bedroom with balcony view"),
+            ("westshore-sky-ensuite", "The Sky Towns: primary ensuite"),
+            ("westshore-park-winter", "The central park in winter"),
+        ],
+        "cta_line": "Want the floor plans and current incentives?",
+        "source": "Minto Communities &mdash; The Heights hybrid stacks price list (Blocks 1, 2, 6 "
+                  "and 7) and purchaser incentives sheet, September 2026.",
+        "card": {
+            "image": "westshore-hero",
+            "image_alt": "Westshore at Long Branch, The Heights exterior rendering",
+            "flag": ("Now selling &middot; 2030 occupancy", ""),
+            "location": "3526 Lake Shore Blvd W &middot; Long Branch",
+            "specs": [("Size", "472 &ndash; 1,238 sq ft"), ("Bedrooms", "1 &ndash; 3 + den"),
+                      ("Storeys", "5-storey hybrid stacks"), ("Outdoor", "Terraces, patios &amp; balconies")],
+            "price": "$424,900",
+        },
+        "compare": {
+            "short": "Westshore at Long Branch", "builder": "Minto",
+            "price": "$424,900<span class=\"cmp-mini\">$400,042 net of HST rebate</span>",
+            "ceiling": "$862,900<span class=\"cmp-mini\">3-bed Sky Town, 1,238 sq ft</span>",
+            "size": "472 &ndash; 1,238 sq ft", "ppsf": "~$900",
+            "beds": "1 &ndash; 3 + den",
+            "storeys": "5-storey hybrid stacks<br>Flats, Garden &amp; Sky Towns",
+            "parking": "Available &middot; $59.95/mo<br>EV upgrades available",
+            "outdoor": "Rooftop terraces on Sky Towns<br>Patios &amp; balconies",
+            "deposit": "15% total<br>$5,000 at signing &middot; 5% at occupancy",
+            "occupancy": "2030 (tentative)",
+            "fees": "~$0.40/sq ft + hydro &amp; water<br>Locker $29.95/mo",
+            "incentive": "$0 development levies &middot; $0 assignment fee",
+            "homes": "7 hybrid-stack blocks<br>1, 2, 6 &amp; 7 on the current list",
+            "dated": "the Westshore Heights price list dated September 2026",
+        },
+    },
     "exhale-towns": {
         "name": "Exhale Townhome Collection",
         "builder": "Brixen Developments",
@@ -576,7 +825,8 @@ PROJECTS = {
 }
 
 # Display order everywhere: newest launch first, sold-out communities last.
-ORDER = ["south-banks", "exhale-towns", "aura-lakeview-towns", "pier-house-towns"]
+ORDER = ["south-banks", "westshore-long-branch", "exhale-towns", "aura-lakeview-towns",
+         "pier-house-towns"]
 
 SIBLINGS = {slug: PROJECTS[slug]["name"] for slug in ORDER}
 
@@ -621,7 +871,7 @@ def have(name, w, ext):
     return os.path.exists(os.path.join(IMG_DIR, "%s-%d.%s" % (name, w, ext)))
 
 
-def picture(name, alt, sizes, widths, cls="", eager=False, prefix="images/towns/"):
+def picture(name, alt, sizes, widths, cls="", eager=False, prefix="images/towns/", style=""):
     """<picture> with AVIF + WebP sources and a JPEG fallback in <img src>."""
     avif = ", ".join("%s%s-%d.avif %dw" % (prefix, name, w, w)
                      for w in widths if have(name, w, "avif"))
@@ -634,9 +884,10 @@ def picture(name, alt, sizes, widths, cls="", eager=False, prefix="images/towns/
         out.append('  <source type="image/avif" sizes="%s" srcset="%s">' % (sizes, avif))
     if webp:
         out.append('  <source type="image/webp" sizes="%s" srcset="%s">' % (sizes, webp))
-    out.append('  <img src="%s" alt="%s" %s decoding="async"%s>'
+    out.append('  <img src="%s" alt="%s" %s decoding="async"%s%s>'
                % (src, html.escape(alt, quote=True), loading,
-                  ' class="%s"' % cls if cls else ""))
+                  ' class="%s"' % cls if cls else "",
+                  ' style="%s"' % style if style else ""))
     out.append("</picture>")
     return "\n      ".join(out)
 
@@ -678,6 +929,7 @@ def _money(n):
 def deposit_example_html(ex):
     """A dated, worked example of the deposit schedule, drawn as a timeline."""
     from datetime import date, timedelta
+    payee = ex.get("payee", "Bratty&rsquo;s LLP, In Trust")
     signed = date.fromisoformat(ex["signed"])
     short = lambda d: "%s %d, %d" % (d.strftime("%b"), d.day, d.year)
     long_ = "%s %d, %d" % (signed.strftime("%B"), signed.day, signed.year)
@@ -719,9 +971,9 @@ def deposit_example_html(ex):
   <div class="dx-grid">
 %s
   </div>
-  <p class="tbl-note">Illustration only, counted in calendar days from a %s signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bratty&rsquo;s LLP, In Trust.</p>
+  <p class="tbl-note">Illustration only, counted in calendar days from a %s signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to %s.</p>
 </section>
-""" % (long_, "\n".join(cards), long_)
+""" % (long_, "\n".join(cards), long_, payee)
 
 
 def build(slug, p):
@@ -823,7 +1075,8 @@ def build(slug, p):
   </div>
 </section>
 """ % (sp["title"],
-       picture(sp["image"], sp["alt"], "(max-width: 1000px) 100vw, 56vw", [480, 800, 1280, 1920]),
+       picture(sp["image"], sp["alt"], "(max-width: 1000px) 100vw, 56vw", [480, 800, 1280, 1920],
+               style="aspect-ratio: %s" % sp["ratio"] if sp.get("ratio") else ""),
        "\n".join('      <div class="cm-row"><span class="cm-time">%s</span>'
                  '<span class="cm-place">%s</span></div>' % r for r in sp["rows"])))
     extra_sections = "\n".join(extra)
@@ -957,6 +1210,7 @@ TEMPLATE = """<!DOCTYPE html>
                     font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
                     border-radius: 2px; margin-bottom: 1rem; }}
     .hero-status.new {{ background: rgba(201,168,76,0.96); color: #17130a; }}
+    .hero-status.live {{ background: rgba(0,34,68,0.92); color: #fff; }}
     .hero-title {{ font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
                    font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }}
     .hero-tag {{ font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }}
@@ -1284,7 +1538,8 @@ TEMPLATE = """<!DOCTYPE html>
 
 NB_PAGE = os.path.join(ROOT, "neighbourhoods", "dixie-lakeshore.html")
 NB_PREFIX = "../buildings/images/towns/"
-NB_CARD_SIZES = "(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw"
+NB_CARD_SIZES = "(max-width: 700px) 100vw, (max-width: 1399px) 50vw, 25vw"   # four across
+NB_CARD_SIZES_3 = "(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 33vw"  # three across
 
 NB_CSS_START = "    /* towns:generated-css:start (scripts/build_town_pages.py) */"
 NB_CSS_END = "    /* towns:generated-css:end */"
@@ -1301,6 +1556,7 @@ NB_CSS = NB_CSS_START + """
     }
     @media (max-width: 700px) { .proj-grid.n4 { grid-template-columns: 1fr; } }
     table.cmp.n4 { min-width: 1020px; }
+    table.cmp.n5 { min-width: 1260px; }
     table.cmp .cmp-mini { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.74rem; margin-top: 0.15rem; }
     table.cmp th.is-new { background: #0b3358; }
     /* phones: keep the row labels pinned while the communities scroll sideways */
@@ -1314,6 +1570,7 @@ NB_CSS = NB_CSS_START + """
       table.cmp tbody td:first-child { background: #fff; }
       table.cmp tbody tr:nth-child(even) td:first-child { background: #fbf9f5; }
       table.cmp.n4 { min-width: 880px; }
+      table.cmp.n5 { min-width: 1090px; }
       .cmp-scroll { scroll-snap-type: x proximity; scroll-padding-left: 86px; }
       table.cmp thead th:not(:first-child) { scroll-snap-align: start; }
     }
@@ -1365,7 +1622,7 @@ def townhomes_section():
         </div>
       </div>
     </a>""" % (classes, slug,
-               picture(c["image"], c["image_alt"], NB_CARD_SIZES, CARD_W,
+               picture(c["image"], c["image_alt"], NB_CARD_SIZES if n == 4 else NB_CARD_SIZES_3, CARD_W,
                        prefix=NB_PREFIX).replace("\n      ", ""),
                " " + flag_kind if flag_kind else "", flag_text,
                p["builder"], p["name"], c["location"], specs, c["price"]))

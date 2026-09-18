@@ -1,0 +1,27 @@
+{
+  "source_dir": "~/Downloads/Westshore",
+  "images": [
+    {"name": "westshore-hero", "file": "hybrid-stacked-town-block.webp", "widths": "hero",
+     "crop": [0.0, 0.0038, 1.0, 0.9551]},
+    {"name": "westshore-siteplan", "file": "site-plan-phase-1.webp", "widths": [480, 800, 1280, 1920],
+     "crop": [0.0, 0.0038, 1.0, 0.7011]},
+    {"name": "westshore-entrance", "file": "hybrid-stacked-towns-entrance.webp",
+     "crop": [0.0008, 0.0368, 0.9992, 0.9547]},
+    {"name": "westshore-park-summer", "file": "park-view-summer.webp",
+     "crop": [0.0, 0.0038, 1.0, 0.9551]},
+    {"name": "westshore-park-winter", "file": "park-view-winter.webp",
+     "crop": [0.0, 0.0038, 1.0, 0.9551]},
+    {"name": "westshore-rooftop", "file": "sky-towns-rooftop-terrace.webp",
+     "crop": [0.0, 0.115, 1.0, 0.83]},
+    {"name": "westshore-garden-living", "file": "garden-towns-kitchen-living.webp",
+     "crop": [0.0005, 0.0036, 0.9995, 0.955]},
+    {"name": "westshore-sky-living", "file": "sky-towns-kitchen-living.webp",
+     "crop": [0.0665, 0.0036, 0.9335, 0.955]},
+    {"name": "westshore-sky-ensuite", "file": "sky-towns-primary-ensuite.webp",
+     "crop": [0.0, 0.25, 1.0, 0.75]},
+    {"name": "westshore-flats-living", "file": "flats-kitchen-living.webp",
+     "crop": [0.0, 0.0, 1.0, 0.872]},
+    {"name": "westshore-flats-bedroom", "file": "flats-primary-bedroom.webp",
+     "crop": [0.0, 0.0, 1.0, 0.9595]}
+  ]
+}
