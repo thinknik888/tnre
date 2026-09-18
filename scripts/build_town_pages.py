@@ -490,9 +490,12 @@ PROJECTS = {
         "tagline": "Hybrid stacked towns beside Long Branch GO.",
         "address": "3526 Lake Shore Blvd W &middot; Long Branch, Etobicoke",
         "area": "Long Branch",
-        # Price list first, then the floor plan book behind the registration form.
-        "layout": "prices_first",
+        # Plan cards (with prices) right after the hero, registration form in the
+        # middle of them, full price list further down. Only plans on the current
+        # price list are shown.
+        "layout": "plans_first",
         "plans": "scripts/manifests/westshore-plans.json",
+        "plans_only_priced": True,
         "plans_preview": ["flats-472", "garden-flats-643", "garden-towns-1118", "sky-towns-1238"],
         "hero": "westshore-hero",
         "hero_alt": "Westshore at Long Branch, The Heights exterior rendering",
@@ -522,13 +525,13 @@ PROJECTS = {
         ],
         # Registration form (leads -> dashboard via save-lead).
         "register": {
-            "title": "Unlock all 52 <em>floor plans</em>",
-            "text": "Four plans are open below as a preview. Leave your name and number and every "
-                    "layout in The Heights opens right here, instantly &mdash; Nikhil will also "
-                    "text you the September price list and the current incentives.",
+            "title": "Unlock the other {locked} <em>floor plans</em>",
+            "text": "{preview} plans are open above as a preview. Leave your name and number and "
+                    "every layout on the September list opens right here, instantly &mdash; Nikhil "
+                    "will also text you the full price list and the current incentives.",
             "button": "Unlock the floor plans",
-            "hero_button": "See prices &amp; floor plans",
-            "hero_href": "#pricing",
+            "hero_button": "See floor plans &amp; prices",
+            "hero_href": "#floor-plans",
             "done_title": "Floor plans unlocked.",
             "done_text": "Every plan below is open &mdash; tap one to see it full size. Nikhil will "
                          "text you the price list and incentives shortly. Questions? Call or text "
@@ -1018,13 +1021,26 @@ def price_index(tables, plans):
             continue
         for gname, rows in t["groups"]:
             for r in rows:
-                price = _price_number(r[3])
+                price, net = _price_number(r[3]), _price_number(r[4]) if len(r) > 4 else None
                 for slug in by.get(_plan_key(r[0], r[2]), []):
-                    e = idx.setdefault(slug, {"min": price, "blocks": []})
-                    e["min"] = min(e["min"], price)
-                    if gname not in e["blocks"]:
-                        e["blocks"].append(gname)
+                    e = idx.setdefault(slug, {"min": price, "net": net, "blocks": []})
+                    if price < e["min"]:
+                        e["min"], e["net"] = price, net
+                    e["blocks"].append((gname, price))
     return idx
+
+
+def block_prices_html(blocks):
+    """'Block 1 & 7 $757,900 · Block 2 $769,900' -- blocks grouped by price, cheapest first."""
+    by_price = {}
+    for gname, price in blocks:
+        by_price.setdefault(price, []).append(gname.replace("Block ", ""))
+    parts = []
+    for price in sorted(by_price):
+        nums = by_price[price]
+        label = ("Block " if len(nums) == 1 else "Blocks ") + " &amp; ".join(nums)
+        parts.append("%s <b>%s</b>" % (label, _money(price)))
+    return " &middot; ".join(parts)
 
 
 def link_plan_rows(tables, plans):
@@ -1062,17 +1078,15 @@ PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-type="%s" data-base=
     </figure>"""
 
 PLANS_SECTION = """<section id="floor-plans" class="plans-sec">
-  <div class="sec-eyebrow">Floor plans</div>
-  <h2 class="sec-title">All %d <em>floor plans</em></h2>
-  <p class="plans-intro">Every layout in The Heights, from the %s sq ft %s to the %s sq ft %s. %d are open as a preview &mdash; register above once and the rest unlock instantly, on this page.</p>
+  <div class="sec-eyebrow">Floor plans &amp; prices</div>
+  <h2 class="sec-title">%d plans on the <em>September price list</em></h2>
+  <p class="plans-intro">Every layout Minto is selling right now, from the %s sq ft %s to the %s sq ft %s, with the price in each block. %d are open as a preview &mdash; register once and the rest unlock instantly, on this page.</p>
   <div class="plans-bar">
     <div class="plan-chips">%s</div>
-    <div class="plans-state" id="plans-state">%d plans locked &middot; register above to open them</div>
+    <div class="plans-state" id="plans-state">%d plans locked &middot; register to open them</div>
   </div>
-  <div class="plan-grid">
-%s
-  </div>
-  <p class="tbl-note">Plans from Minto&rsquo;s floor plan book for The Heights. Layouts and dimensions are approximate and subject to change without notice; &ldquo;from&rdquo; is the lowest list price for that layout on the September 2026 price list. E.&amp;O.E.</p>
+  %s
+  <p class="tbl-note">Plans from Minto&rsquo;s floor plan book for The Heights; prices from the September 2026 price list, by block. *Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.</p>
   <div class="plan-lightbox" id="plan-lb" hidden>
     <button type="button" class="lb-close" aria-label="Close">&times;</button>
     <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
@@ -1085,23 +1099,26 @@ PLANS_SECTION = """<section id="floor-plans" class="plans-sec">
 """
 
 
-def plans_section(p, plans, plans_dir):
+def plans_section(p, plans, plans_dir, register_html=""):
     prices = price_index(p["tables"], plans)
-    preview = set(p.get("plans_preview", []))
+    preview = [x for x in p.get("plans_preview", []) if any(pl["slug"] == x for pl in plans)]
     counts = {}
     for pl in plans:
         counts[pl["type"]] = counts.get(pl["type"], 0) + 1
+    # open previews lead, in the order given; everything else follows in catalogue order
+    ordered = [pl for x in preview for pl in plans if pl["slug"] == x] + [pl for pl in plans if pl["slug"] not in preview]
     cards = []
-    for pl in plans:
+    for pl in ordered:
         base = "%s/%s" % (plans_dir, pl["slug"])
         widths = [480, 800, 1280] + ([1920] if pl["half"] == "F" else [])
         spec = "%s bed &middot; %s bath &middot; %s sq ft" % (pl["beds"], pl["baths"], "{:,}".format(pl["sqft"]))
         if pl["slug"] in prices:
             e = prices[pl["slug"]]
-            price = '<div class="plan-price">From %s<span>%s</span></div>' % (
-                _money(e["min"]), " &middot; ".join(e["blocks"]))
+            net = '<span class="plan-net">%s net of HST rebate*</span>' % _money(e["net"]) if e.get("net") else ""
+            price = '<div class="plan-price">From %s%s<span>%s</span></div>' % (
+                _money(e["min"]), net, block_prices_html(e["blocks"]))
         else:
-            price = '<div class="plan-price muted">Not on the September list &middot; ask about availability</div>'
+            price = '<div class="plan-price muted">Not on the current price list &middot; ask about availability</div>'
         if pl["slug"] in preview:
             media = ('<picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="%s">'
                      '<source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="%s">'
@@ -1124,13 +1141,19 @@ def plans_section(p, plans, plans_dir):
         if t in counts:
             chips.append('<button type="button" class="plan-chip" data-filter="%s">%s %d</button>'
                          % (t.lower().replace(" ", "-"), t, counts[t]))
-    locked = len(plans) - len(preview & set(pl["slug"] for pl in plans))
+    locked = len(plans) - len(preview)
     smallest, largest = min(plans, key=lambda x: x["sqft"]), max(plans, key=lambda x: x["sqft"])
     singular = lambda t: "Flat" if t == "Flats" else t.rstrip("s")
+    lead, rest = cards[:len(preview)], cards[len(preview):]
+    if register_html:
+        grid = ('<div class="plan-grid">\n%s\n  </div>\n  <div class="plans-gate">%s</div>\n  <div class="plan-grid">\n%s\n  </div>'
+                % ("\n".join(lead), register_html, "\n".join(rest)))
+    else:
+        grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(cards)
     return PLANS_SECTION % (
         len(plans), "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
         "{:,}".format(largest["sqft"]), singular(largest["type"]), len(preview), "".join(chips), locked,
-        "\n".join(cards), PLANS_JS)
+        grid, PLANS_JS)
 
 
 PLANS_CSS = """
@@ -1160,7 +1183,12 @@ PLANS_CSS = """
     .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
     .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
     .plan-price { margin-top: 0.55rem; font-weight: 600; font-size: 0.86rem; color: var(--navy); }
-    .plan-price span { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); }
+    .plan-price span { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+    .plan-price span b { font-weight: 600; color: var(--text-mid); }
+    .plan-price .plan-net { margin-top: 0.1rem; }
+    .plans-gate { margin: 1.5rem 0; }
+    .plans-gate section.reg { border-radius: 12px; padding: 2.75rem 2.5rem; }
+    .plans-gate .reg-inner { max-width: none; }
     .plan-price.muted { color: var(--text-muted); font-weight: 400; font-size: 0.72rem; line-height: 1.4; }
     .row-plan { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
                 text-decoration: none; margin-left: 0.4rem; white-space: nowrap; }
@@ -1185,6 +1213,7 @@ PLANS_CSS = """
       .plan-name { font-size: 1.05rem; }
       .plan-spec { font-size: 0.72rem; }
       .plan-level { display: none; }
+      .plans-gate section.reg { padding: 2rem 1.25rem; border-radius: 10px; }
       .lb-media { height: 66vh; }
       .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
       .lb-cap { padding: 0 3.5rem 2.75rem; }
@@ -1271,6 +1300,9 @@ def build(slug, p):
     intro = "\n".join("      <p>%s</p>" % t for t in p["intro"])
 
     plans, plans_dir = (load_plans(p) if p.get("plans") else ([], ""))
+    if plans and p.get("plans_only_priced"):
+        priced = price_index(p["tables"], plans)
+        plans = [pl for pl in plans if pl["slug"] in priced]
     tables = "\n".join(table_html(t) for t in (link_plan_rows(p["tables"], plans) if plans else p["tables"]))
 
     plans_link = ""
@@ -1327,7 +1359,14 @@ def build(slug, p):
 
     register_section = hero_cta = ""
     if p.get("register"):
-        rg = p["register"]
+        rg = dict(p["register"])
+        n_preview = len([x for x in p.get("plans_preview", []) if any(pl["slug"] == x for pl in plans)])
+        counts = {"{n}": str(len(plans)), "{preview}": NUMBER_WORDS.get(n_preview, str(n_preview)).capitalize(),
+                  "{locked}": str(len(plans) - n_preview)}
+        for k in ("title", "text", "button", "done_title", "done_text"):
+            if k in rg:
+                for a, b in counts.items():
+                    rg[k] = rg[k].replace(a, b)
         hero_cta = '\n    <a class="hero-cta" href="%s">%s &rarr;</a>' % (rg.get("hero_href", "#register"), rg["hero_button"])
         register_section = REGISTER_HTML % {
             "title": rg["title"], "text": rg["text"], "button": rg["button"],
@@ -1392,11 +1431,17 @@ def build(slug, p):
 %s%s
 </section>
 """ % (p.get("pricing_title", "Models &amp; <em>prices</em>"), tables, plans_link)
-    plans_html = plans_section(p, plans, plans_dir) if plans else ""
-    if p.get("layout") == "prices_first":
-        after_facts, pricing_block = pricing_html + register_section + plans_html, ""
+    layout = p.get("layout", "")
+    if plans and layout == "plans_first":
+        # cards lead, the form sits between the open previews and the locked plans
+        after_facts = plans_section(p, plans, plans_dir, register_section)
+        pricing_block = pricing_html
+    elif plans and layout == "prices_first":
+        after_facts = pricing_html + register_section + plans_section(p, plans, plans_dir)
+        pricing_block = ""
     else:
-        after_facts, pricing_block = register_section, pricing_html + plans_html
+        after_facts = register_section
+        pricing_block = pricing_html + (plans_section(p, plans, plans_dir) if plans else "")
 
     return TEMPLATE.format(
         after_facts=after_facts, pricing_block=pricing_block,
