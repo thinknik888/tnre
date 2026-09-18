@@ -27,7 +27,7 @@ exports.handler = async function (event) {
     if (body.token) {
       var r = await meta.connect(String(body.token).trim());
       var first = await meta.importNew();
-      return reply(200, { connected: true, pageName: r.pageName, forms: r.forms, imported: first.added });
+      return reply(200, { connected: true, pageName: r.pageName, forms: r.forms, imported: first.added, expires: r.expires });
     }
     return reply(400, { error: 'Nothing to do' });
   } catch (err) {

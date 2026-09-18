@@ -34,10 +34,12 @@ async function graph(path, params, token) {
 
 async function readConfig() {
   var s = blobs('dash-secrets');
+  var exp = (await s.get('meta_token_expires')) || '';
   return {
     token: (await s.get('meta_page_token')) || '',
     pageId: (await s.get('meta_page_id')) || '',
-    pageName: (await s.get('meta_page_name')) || ''
+    pageName: (await s.get('meta_page_name')) || '',
+    expires: exp === '' ? null : parseInt(exp, 10)
   };
 }
 
@@ -54,11 +56,24 @@ async function connect(rawToken) {
     }
   } catch (e) { /* page tokens cannot call me/accounts; that is fine */ }
   var forms = await graph(pageId + '/leadgen_forms', { fields: 'id,name,status', limit: 100 }, pageToken);
+
+  // How long will this Page token live? A Page token taken from a short-lived
+  // user token dies within hours; one taken from an extended (60-day) user
+  // token never expires. Say which, so a connection never fails silently.
+  // expires: 0 = never, a millisecond timestamp, or null when Meta will not say.
+  var expires = null;
+  try {
+    var dbg = await graph('debug_token', { input_token: pageToken }, rawToken);
+    if (dbg.data && typeof dbg.data.expires_at === 'number') expires = dbg.data.expires_at === 0 ? 0 : dbg.data.expires_at * 1000;
+  } catch (e) { /* not a developer token for this app; expiry stays unknown */ }
+
   var s = blobs('dash-secrets');
   await s.set('meta_page_token', pageToken);
   await s.set('meta_page_id', pageId);
   await s.set('meta_page_name', pageName);
-  return { pageId: pageId, pageName: pageName, forms: (forms.data || []).map(function (f) { return { id: f.id, name: f.name, status: f.status }; }) };
+  await s.set('meta_token_expires', expires === null ? '' : String(expires));
+  return { pageId: pageId, pageName: pageName, expires: expires,
+           forms: (forms.data || []).map(function (f) { return { id: f.id, name: f.name, status: f.status }; }) };
 }
 
 function field(lead, names) {
@@ -80,7 +95,13 @@ async function importNew() {
   // look back 26 hours from the last sync (or 90 days on the first run) so nothing is missed
   var since = lastSync ? Math.floor(lastSync / 1000) - 26 * 3600 : Math.floor(Date.now() / 1000) - 90 * 86400;
 
-  var forms = await graph(cfg.pageId + '/leadgen_forms', { fields: 'id,name,status', limit: 100 }, cfg.token);
+  var forms;
+  try {
+    forms = await graph(cfg.pageId + '/leadgen_forms', { fields: 'id,name,status', limit: 100 }, cfg.token);
+  } catch (e) {
+    if (/expired|session|validat|OAuth/i.test(e.message)) return { ok: false, reason: 'The Facebook connection has expired. Reconnect it in Settings.' };
+    throw e;
+  }
   var leadsStore = blobs('leads');
   var existing = (await leadsStore.get('leads', { type: 'json' })) || [];
   var added = [];
@@ -131,6 +152,7 @@ async function status() {
   return {
     connected: !!(cfg.token && cfg.pageId),
     pageName: cfg.pageName,
+    expires: cfg.expires,
     imported: Object.keys(imported).length,
     lastSync: parseInt((await state.get('last_sync')) || '0', 10) || null
   };

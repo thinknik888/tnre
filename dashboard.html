@@ -1022,7 +1022,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="field" style="border-top:1px solid rgba(0,34,68,.12);padding-top:14px;margin-top:6px">
       <label>Meta lead forms (Facebook &amp; Instagram)</label>
       <div style="font-size:12px;line-height:1.5;opacity:.75;margin-bottom:8px" id="metaStatus">Checking&hellip;</div>
-      <input id="meta-token" type="password" placeholder="Paste a Facebook Page access token" autocomplete="off" style="margin-bottom:8px">
+      <input id="meta-token" type="password" placeholder="Paste a Facebook access token" autocomplete="off" style="margin-bottom:8px">
       <div style="display:flex;gap:8px">
         <button type="button" class="btn-save" id="metaConnectBtn" onclick="connectMeta()" style="flex:1">Connect Meta</button>
         <button type="button" class="btn-cancel" id="metaSyncBtn" onclick="syncMeta()" style="flex:1">Sync now</button>
@@ -1166,10 +1166,18 @@ function openSettings(){dbSecRefresh();alertsRefresh();metaRefresh();const k=loa
 function closeSettings(){document.getElementById('settings').style.display='none'}
 // Meta lead forms: the Page token goes straight to the server's private store; the
 // server then checks for new form leads every 10 minutes.
+function metaLife(exp){
+  if(exp===0)return ' This connection does not expire.';
+  if(typeof exp==='number'){const h=(exp-Date.now())/36e5;
+    if(h<=0)return ' WARNING: this connection has expired. Reconnect with an extended token.';
+    if(h<72)return ' WARNING: this token is the short-lived kind and stops working in about '+Math.max(1,Math.round(h))+' hour'+(Math.round(h)===1?'':'s')+'. Extend it in Meta\u2019s Access Token Debugger, then connect again.';
+    return ' Connection valid until '+new Date(exp).toLocaleDateString()+'.';}
+  return '';
+}
 async function metaRefresh(){
   const el=document.getElementById('metaStatus');if(!el)return;
   try{const r=await dashFetch('/.netlify/functions/dash-meta');const d=await r.json();
-    el.textContent=d.connected?('Connected to '+(d.pageName||'your Page')+'. '+d.imported+' form lead'+(d.imported===1?'':'s')+' imported so far'+(d.lastSync?'; last checked '+wlAgo(new Date(d.lastSync)):'')+'. Checks every 10 minutes.'):'Not connected. Paste a Page access token below and click Connect.';
+    el.textContent=d.connected?('Connected to '+(d.pageName||'your Page')+'. '+d.imported+' form lead'+(d.imported===1?'':'s')+' imported so far'+(d.lastSync?'; last checked '+wlAgo(new Date(d.lastSync)):'')+'. Checks every 10 minutes.'+metaLife(d.expires)):'Not connected. Paste a Facebook access token below and click Connect.';
   }catch(e){el.textContent='Could not check status.';}
 }
 async function connectMeta(){
@@ -1178,7 +1186,7 @@ async function connectMeta(){
   btn.disabled=true;el.textContent='Connecting\u2026';
   try{const r=await dashFetch('/.netlify/functions/dash-meta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});const d=await r.json();
     if(!r.ok)throw new Error(d.error||r.status);
-    inp.value='';toast('Meta connected');el.textContent='Connected to '+d.pageName+'. Forms found: '+d.forms.map(f=>f.name).join(', ')+'. Imported '+d.imported+' new lead'+(d.imported===1?'':'s')+'.';
+    inp.value='';toast('Meta connected');el.textContent='Connected to '+d.pageName+'. Forms found: '+d.forms.map(f=>f.name).join(', ')+'. Imported '+d.imported+' new lead'+(d.imported===1?'':'s')+'.'+metaLife(d.expires);
     fetchLeads();
   }catch(e){el.textContent='Could not connect: '+e.message;}
   btn.disabled=false;
