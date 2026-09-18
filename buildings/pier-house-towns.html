@@ -199,8 +199,10 @@
     .siteplan { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }
     .siteplan figure { margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #e8e4dc; background: var(--cream); }
     .siteplan img { width: 100%; height: auto; aspect-ratio: 1/1; }
-    .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px;
-            padding: 1.5rem 1.75rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden;
+            text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sib-img img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .sib-body { padding: 1.1rem 1.35rem 1.25rem; }
     .sib:hover { border-color: var(--gold); transform: translateY(-2px); }
     .sib-lbl { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
                 color: var(--text-muted); margin-bottom: 0.4rem; }
@@ -248,7 +250,10 @@
       .facts { grid-template-columns: repeat(2, 1fr); }
       .fact:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.09); }
       .fact:nth-child(2n) { border-right: none; }
-      .gal, .sibs { grid-template-columns: 1fr; }
+      .gal { grid-template-columns: 1fr; }
+      .sibs { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+      .sib-body { padding: 0.85rem 0.95rem 0.95rem; }
+      .sib-name { font-size: 1.1rem; }
       .logo-row { gap: 1.5rem; }
       .dx-head { padding: 1.2rem 1.1rem; }
       .dx-name { font-size: 1.25rem; }
@@ -309,7 +314,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="fact"><div class="fact-lbl">Homes</div><div class="fact-val">164</div></div>
       <div class="fact"><div class="fact-lbl">Parking</div><div class="fact-val">2 &ndash; 4 spaces</div></div>
 </div>
-
 <section>
   <div class="overview">
     <div>
@@ -331,7 +335,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section>
+<section id="pricing">
   <div class="sec-eyebrow">Pricing</div>
   <h2 class="sec-title">Models &amp; <em>prices</em></h2>
   <div class="tbl-block">
@@ -379,7 +383,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
-
 <section>
   <div class="two-col">
     <div>
@@ -472,10 +475,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="sec-eyebrow">Nearby</div>
   <h2 class="sec-title">More townhomes in <em>Dixie &amp; Lakeshore</em></h2>
   <div class="sibs">
-      <a class="sib" href="south-banks.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore &middot; coming soon</span><span class="sib-name">South Banks &rarr;</span></a>
-      <a class="sib" href="westshore-long-branch.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Westshore at Long Branch &rarr;</span></a>
-      <a class="sib" href="exhale-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Exhale Townhome Collection &rarr;</span></a>
-      <a class="sib" href="aura-lakeview-towns.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore &middot; sold out</span><span class="sib-name">Aura Lakeview Village Towns &rarr;</span></a>
+      <a class="sib" href="south-banks.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/south-banks-hero-480.webp 480w, images/towns/south-banks-hero-800.webp 800w, images/towns/south-banks-hero-1280.webp 1280w">  <img src="images/towns/south-banks-hero.jpg" alt="South Banks townhomes exterior rendering" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Dixie &amp; Lakeshore &middot; coming soon</span><span class="sib-name">South Banks &rarr;</span></div></a>
+      <a class="sib" href="westshore-long-branch.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/westshore-hero-480.avif 480w, images/towns/westshore-hero-800.avif 800w, images/towns/westshore-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/westshore-hero-480.webp 480w, images/towns/westshore-hero-800.webp 800w, images/towns/westshore-hero-1280.webp 1280w">  <img src="images/towns/westshore-hero.jpg" alt="Westshore at Long Branch, The Heights exterior rendering" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Westshore at Long Branch &rarr;</span></div></a>
+      <a class="sib" href="exhale-towns.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/exhale-towns-hero-480.avif 480w, images/towns/exhale-towns-hero-800.avif 800w, images/towns/exhale-towns-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/exhale-towns-hero-480.webp 480w, images/towns/exhale-towns-hero-800.webp 800w, images/towns/exhale-towns-hero-1280.webp 1280w">  <img src="images/towns/exhale-towns-hero.jpg" alt="Exhale Townhome Collection exterior rendering" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Dixie &amp; Lakeshore</span><span class="sib-name">Exhale Townhome Collection &rarr;</span></div></a>
+      <a class="sib" href="aura-lakeview-towns.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/aura-hero-480.avif 480w, images/towns/aura-hero-800.avif 800w, images/towns/aura-hero-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/aura-hero-480.webp 480w, images/towns/aura-hero-800.webp 800w, images/towns/aura-hero-1280.webp 1280w">  <img src="images/towns/aura-hero.jpg" alt="Aura Lakeview Village Towns exterior rendering" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Dixie &amp; Lakeshore &middot; sold out</span><span class="sib-name">Aura Lakeview Village Towns &rarr;</span></div></a>
   </div>
 </section>
 

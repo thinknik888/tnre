@@ -14,6 +14,7 @@ AVIF/WebP ladder into buildings/images/towns/.
 """
 
 import html
+import json
 import os
 from urllib.parse import quote
 
@@ -489,6 +490,10 @@ PROJECTS = {
         "tagline": "Hybrid stacked towns beside Long Branch GO.",
         "address": "3526 Lake Shore Blvd W &middot; Long Branch, Etobicoke",
         "area": "Long Branch",
+        # Price list first, then the floor plan book behind the registration form.
+        "layout": "prices_first",
+        "plans": "scripts/manifests/westshore-plans.json",
+        "plans_preview": ["flats-472", "garden-flats-643", "garden-towns-1118", "sky-towns-1238"],
         "hero": "westshore-hero",
         "hero_alt": "Westshore at Long Branch, The Heights exterior rendering",
         "meta": "Westshore at Long Branch by Minto Communities &mdash; The Heights hybrid stacked "
@@ -510,18 +515,24 @@ PROJECTS = {
             "low-rise block, a short walk from Long Branch GO and the 501 streetcar loop.",
             "Four home types cover the range. The Flats are one-bedroom suites with balconies; "
             "the Garden Flats and Garden Towns open onto private patios at grade; the Sky Towns "
-            "are two- and three-bedroom homes on the upper levels with rooftop terraces. Pricing "
-            "starts at $424,900, deposits total just 15% with 5% not due until occupancy, and "
-            "development levies and assignment fees are both capped at $0.",
+            "are two- and three-bedroom homes on the upper levels with rooftop terraces. Parking "
+            "is underground and every block has an elevator. Pricing starts at $424,900, deposits "
+            "total just 15% with 5% not due until occupancy, and development levies and "
+            "assignment fees are both capped at $0.",
         ],
         # Registration form (leads -> dashboard via save-lead).
         "register": {
-            "title": "Get the floor plans <em>and current incentives</em>",
-            "text": "Leave your details and Nikhil will send you the full September 2026 price "
-                    "list, the floor plans for every model, and the deposit and levy incentives "
-                    "while they last.",
-            "button": "Send me the floor plans",
-            "hero_button": "Get the floor plans &amp; price list",
+            "title": "Unlock all 52 <em>floor plans</em>",
+            "text": "Four plans are open below as a preview. Leave your name and number and every "
+                    "layout in The Heights opens right here, instantly &mdash; Nikhil will also "
+                    "text you the September price list and the current incentives.",
+            "button": "Unlock the floor plans",
+            "hero_button": "See prices &amp; floor plans",
+            "hero_href": "#pricing",
+            "done_title": "Floor plans unlocked.",
+            "done_text": "Every plan below is open &mdash; tap one to see it full size. Nikhil will "
+                         "text you the price list and incentives shortly. Questions? Call or text "
+                         "<a href=\"tel:6479240848\">647-924-0848</a>.",
         },
         "pricing_title": "Price list &mdash; <em>September 2026</em>",
         "tables": [
@@ -719,8 +730,8 @@ PROJECTS = {
             "ceiling": "$862,900<span class=\"cmp-mini\">3-bed Sky Town, 1,238 sq ft</span>",
             "size": "472 &ndash; 1,238 sq ft", "ppsf": "~$900",
             "beds": "1 &ndash; 3 + den",
-            "storeys": "5-storey hybrid stacks<br>Flats, Garden &amp; Sky Towns",
-            "parking": "Available &middot; $59.95/mo<br>EV upgrades available",
+            "storeys": "5-storey hybrid stacks with elevator<br>Flats, Garden &amp; Sky Towns",
+            "parking": "Underground &middot; $59.95/mo<br>EV upgrades available",
             "outdoor": "Rooftop terraces on Sky Towns<br>Patios &amp; balconies",
             "deposit": "15% total<br>$5,000 at signing &middot; 5% at occupancy",
             "occupancy": "2030 (tentative)",
@@ -976,6 +987,282 @@ def deposit_example_html(ex):
 """ % (long_, "\n".join(cards), long_, payee)
 
 
+# --------------------------------------------------------------------------
+# floor plan book (rendered by scripts/import_floorplans.py)
+# --------------------------------------------------------------------------
+
+PLAN_TYPE_ORDER = ["Flats", "Garden Flats", "Garden Towns", "Sky Towns"]
+
+
+def load_plans(p):
+    m = json.load(open(os.path.join(ROOT, p["plans"]), encoding="utf-8"))
+    order = {t: i for i, t in enumerate(PLAN_TYPE_ORDER)}
+    plans = sorted(m["plans"], key=lambda pl: (order.get(pl["type"], 99), pl["sqft"], pl["slug"]))
+    # image paths are written relative to buildings/
+    rel = os.path.relpath(os.path.join(ROOT, m["out"]), OUT_DIR).replace(os.sep, "/")
+    return plans, rel
+
+
+def _plan_key(model, sqft):
+    return (html.unescape(model).replace("The ", "").strip().lower(), int(str(sqft).replace(",", "")))
+
+
+def price_index(tables, plans):
+    """slug -> {"min": lowest list price, "blocks": [...]} from the by-block price tables."""
+    by = {}
+    for pl in plans:
+        by.setdefault((pl["type"].lower(), pl["sqft"]), []).append(pl["slug"])
+    idx = {}
+    for t in tables:
+        if not t["cols"] or t["cols"][0] != "Model":
+            continue
+        for gname, rows in t["groups"]:
+            for r in rows:
+                price = _price_number(r[3])
+                for slug in by.get(_plan_key(r[0], r[2]), []):
+                    e = idx.setdefault(slug, {"min": price, "blocks": []})
+                    e["min"] = min(e["min"], price)
+                    if gname not in e["blocks"]:
+                        e["blocks"].append(gname)
+    return idx
+
+
+def link_plan_rows(tables, plans):
+    """Add a 'plan' link to every price-list row that has a matching drawing."""
+    first = {}
+    for pl in plans:
+        first.setdefault((pl["type"].lower(), pl["sqft"]), pl["slug"])
+    out = []
+    for t in tables:
+        t = dict(t)
+        if t["cols"] and t["cols"][0] == "Model":
+            groups = []
+            for gname, rows in t["groups"]:
+                new_rows = []
+                for r in rows:
+                    r = list(r)
+                    slug = first.get(_plan_key(r[0], r[2]))
+                    if slug:
+                        r[0] = '%s <a class="row-plan" href="#plan-%s">plan &rarr;</a>' % (r[0], slug)
+                    new_rows.append(r)
+                groups.append((gname, new_rows))
+            t["groups"] = groups
+        out.append(t)
+    return out
+
+
+PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-type="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s">
+      <div class="plan-media">%s</div>
+      <figcaption>
+        <div class="plan-name">%s</div>
+        <div class="plan-spec">%s</div>
+        <div class="plan-level">%s</div>
+        %s
+      </figcaption>
+    </figure>"""
+
+PLANS_SECTION = """<section id="floor-plans" class="plans-sec">
+  <div class="sec-eyebrow">Floor plans</div>
+  <h2 class="sec-title">All %d <em>floor plans</em></h2>
+  <p class="plans-intro">Every layout in The Heights, from the %s sq ft %s to the %s sq ft %s. %d are open as a preview &mdash; register above once and the rest unlock instantly, on this page.</p>
+  <div class="plans-bar">
+    <div class="plan-chips">%s</div>
+    <div class="plans-state" id="plans-state">%d plans locked &middot; register above to open them</div>
+  </div>
+  <div class="plan-grid">
+%s
+  </div>
+  <p class="tbl-note">Plans from Minto&rsquo;s floor plan book for The Heights. Layouts and dimensions are approximate and subject to change without notice; &ldquo;from&rdquo; is the lowest list price for that layout on the September 2026 price list. E.&amp;O.E.</p>
+  <div class="plan-lightbox" id="plan-lb" hidden>
+    <button type="button" class="lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
+    <div class="lb-media"></div>
+    <button type="button" class="lb-next" aria-label="Next plan">&#8250;</button>
+    <div class="lb-cap"></div>
+  </div>
+%s
+</section>
+"""
+
+
+def plans_section(p, plans, plans_dir):
+    prices = price_index(p["tables"], plans)
+    preview = set(p.get("plans_preview", []))
+    counts = {}
+    for pl in plans:
+        counts[pl["type"]] = counts.get(pl["type"], 0) + 1
+    cards = []
+    for pl in plans:
+        base = "%s/%s" % (plans_dir, pl["slug"])
+        widths = [480, 800, 1280] + ([1920] if pl["half"] == "F" else [])
+        spec = "%s bed &middot; %s bath &middot; %s sq ft" % (pl["beds"], pl["baths"], "{:,}".format(pl["sqft"]))
+        if pl["slug"] in prices:
+            e = prices[pl["slug"]]
+            price = '<div class="plan-price">From %s<span>%s</span></div>' % (
+                _money(e["min"]), " &middot; ".join(e["blocks"]))
+        else:
+            price = '<div class="plan-price muted">Not on the September list &middot; ask about availability</div>'
+        if pl["slug"] in preview:
+            media = ('<picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="%s">'
+                     '<source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="%s">'
+                     '<img src="%s.jpg" alt="%s floor plan" loading="lazy" decoding="async"></picture>' % (
+                         ", ".join("%s-%d.avif %dw" % (base, w, w) for w in widths),
+                         ", ".join("%s-%d.webp %dw" % (base, w, w) for w in widths),
+                         base, html.escape(pl["name"], quote=True)))
+            cls = " is-open"
+        else:
+            media = ('<img class="plan-blur" src="%s-lock.webp" alt="" loading="lazy" decoding="async">'
+                     '<div class="plan-lock"><span>&#128274;</span>Register to view</div>' % base)
+            cls = ""
+        cards.append(PLAN_CARD % (
+            cls, pl["slug"], pl["type"].lower().replace(" ", "-"), base,
+            ",".join(str(w) for w in widths), html.escape(pl["name"], quote=True),
+            html.escape(html.unescape(spec), quote=True), media, pl["name"], spec, pl["level"], price))
+
+    chips = ['<button type="button" class="plan-chip is-on" data-filter="all">All %d</button>' % len(plans)]
+    for t in PLAN_TYPE_ORDER:
+        if t in counts:
+            chips.append('<button type="button" class="plan-chip" data-filter="%s">%s %d</button>'
+                         % (t.lower().replace(" ", "-"), t, counts[t]))
+    locked = len(plans) - len(preview & set(pl["slug"] for pl in plans))
+    smallest, largest = min(plans, key=lambda x: x["sqft"]), max(plans, key=lambda x: x["sqft"])
+    singular = lambda t: "Flat" if t == "Flats" else t.rstrip("s")
+    return PLANS_SECTION % (
+        len(plans), "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
+        "{:,}".format(largest["sqft"]), singular(largest["type"]), len(preview), "".join(chips), locked,
+        "\n".join(cards), PLANS_JS)
+
+
+PLANS_CSS = """
+    /* floor plan book */
+    .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
+    .plans-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 1.25rem; }
+    .plan-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .plan-chip { border: 1px solid #d9d2c2; background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem; font: inherit;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
+    .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s; }
+    .plan:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .plan[hidden] { display: none; }
+    .plan-media { position: relative; aspect-ratio: 4/3; background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
+    .plan-media picture { display: contents; }
+    .plan-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .plan-media .plan-blur { filter: blur(7px); transform: scale(1.06); opacity: 0.5; }
+    .plan-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                 gap: 0.4rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); }
+    .plan-lock span { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: #fff; display: grid;
+                      place-items: center; font-size: 0.9rem; }
+    .plan figcaption { padding: 0.9rem 1rem 1rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
+    .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
+    .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .plan-price { margin-top: 0.55rem; font-weight: 600; font-size: 0.86rem; color: var(--navy); }
+    .plan-price span { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); }
+    .plan-price.muted { color: var(--text-muted); font-weight: 400; font-size: 0.72rem; line-height: 1.4; }
+    .row-plan { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+                text-decoration: none; margin-left: 0.4rem; white-space: nowrap; }
+    .row-plan:hover { text-decoration: underline; }
+    .plan-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,18,36,0.95); display: grid;
+                     grid-template-rows: 1fr auto; place-items: center; padding: 3.25rem 1rem 1.25rem; }
+    .plan-lightbox[hidden] { display: none; }
+    .lb-media { width: min(96vw, 1400px); height: 74vh; display: grid; place-items: center; }
+    .lb-media picture { display: contents; }
+    .lb-media img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; background: #fff; border-radius: 8px; }
+    .lb-cap { color: #fff; font-size: 0.85rem; margin-top: 0.75rem; text-align: center; padding: 0 3.5rem; }
+    .lb-cap b { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.3rem; margin-right: 0.5rem; }
+    .lb-close, .lb-prev, .lb-next { position: fixed; background: rgba(255,255,255,0.14); color: #fff; border: none; width: 44px; height: 44px;
+                                    border-radius: 50%; font-size: 1.7rem; line-height: 44px; cursor: pointer; z-index: 1001; }
+    .lb-close { top: 14px; right: 14px; }
+    .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) {
+      .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .plan figcaption { padding: 0.7rem 0.75rem 0.8rem; }
+      .plan-name { font-size: 1.05rem; }
+      .plan-spec { font-size: 0.72rem; }
+      .plan-level { display: none; }
+      .lb-media { height: 66vh; }
+      .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
+      .lb-cap { padding: 0 3.5rem 2.75rem; }
+    }
+"""
+
+PLANS_JS = r"""<script>
+(function () {
+  var sec = document.getElementById('floor-plans');
+  if (!sec) return;
+  function registered() { try { return localStorage.getItem('ca_registered') === 'true'; } catch (e) { return false; } }
+  function pictureFor(fig, big) {
+    var base = fig.getAttribute('data-base'), ws = fig.getAttribute('data-widths').split(',');
+    var pic = document.createElement('picture');
+    ['avif', 'webp'].forEach(function (ext) {
+      var s = document.createElement('source'); s.type = 'image/' + ext;
+      s.sizes = big ? '96vw' : '(max-width: 700px) 50vw, 25vw';
+      s.srcset = ws.map(function (w) { return base + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+      pic.appendChild(s);
+    });
+    var img = document.createElement('img');
+    img.src = base + '.jpg'; img.alt = fig.getAttribute('data-name') + ' floor plan'; img.decoding = 'async';
+    if (!big) img.loading = 'lazy';
+    pic.appendChild(img);
+    return pic;
+  }
+  function open(fig) {
+    var media = fig.querySelector('.plan-media');
+    media.innerHTML = ''; media.appendChild(pictureFor(fig, false)); fig.classList.add('is-open');
+  }
+  window.caUnlockPlans = function () {
+    sec.classList.add('is-unlocked');
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan:not(.is-open)'), open);
+    var st = document.getElementById('plans-state');
+    if (st) st.textContent = 'All plans unlocked — tap any plan to enlarge.';
+  };
+  if (registered()) window.caUnlockPlans();
+
+  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
+    ch.addEventListener('click', function () {
+      Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === ch); });
+      var t = ch.getAttribute('data-filter');
+      Array.prototype.forEach.call(sec.querySelectorAll('.plan'), function (f) { f.hidden = (t !== 'all' && f.getAttribute('data-type') !== t); });
+    });
+  });
+
+  var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null;
+  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan.is-open'), function (f) { return !f.hidden; }); }
+  function show(fig) {
+    current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
+    lbCap.innerHTML = '<b>' + fig.getAttribute('data-name') + '</b>' + fig.getAttribute('data-spec');
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  function close() { lb.hidden = true; document.body.style.overflow = ''; }
+  function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
+  sec.addEventListener('click', function (e) {
+    var fig = e.target.closest('.plan'); if (!fig) return;
+    if (!fig.classList.contains('is-open')) {
+      var reg = document.getElementById('register');
+      if (reg) { reg.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = reg.querySelector('input[name=name]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, 700); }
+      return;
+    }
+    show(fig);
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.lb-next')) return step(1);
+    if (e.target.closest('.lb-prev')) return step(-1);
+    if (e.target.closest('.lb-close') || e.target === lb || e.target === lbMedia) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
+  });
+})();
+</script>"""
+
+
+
 def build(slug, p):
     facts = "\n".join(
         '      <div class="fact"><div class="fact-lbl">%s</div><div class="fact-val">%s</div></div>'
@@ -983,7 +1270,8 @@ def build(slug, p):
 
     intro = "\n".join("      <p>%s</p>" % t for t in p["intro"])
 
-    tables = "\n".join(table_html(t) for t in p["tables"])
+    plans, plans_dir = (load_plans(p) if p.get("plans") else ([], ""))
+    tables = "\n".join(table_html(t) for t in (link_plan_rows(p["tables"], plans) if plans else p["tables"]))
 
     plans_link = ""
     if p.get("plans_link"):
@@ -1015,9 +1303,12 @@ def build(slug, p):
         for n, a in p["gallery"])
 
     others = "\n".join(
-        '      <a class="sib" href="%s.html"><span class="sib-lbl">Also in Dixie &amp; Lakeshore%s</span>'
-        '<span class="sib-name">%s &rarr;</span></a>'
-        % (s, " &middot; sold out" if PROJECTS[s].get("status") == "Sold out"
+        '      <a class="sib" href="%s.html"><div class="sib-img">%s</div><div class="sib-body">'
+        '<span class="sib-lbl">Also in Dixie &amp; Lakeshore%s</span>'
+        '<span class="sib-name">%s &rarr;</span></div></a>'
+        % (s, picture(PROJECTS[s]["card"]["image"], PROJECTS[s]["card"]["image_alt"],
+                      "(max-width: 700px) 50vw, 25vw", CARD_W).replace("\n      ", ""),
+           " &middot; sold out" if PROJECTS[s].get("status") == "Sold out"
            else " &middot; coming soon" if PROJECTS[s].get("status_kind") == "new" else "",
            SIBLINGS[s])
         for s in ORDER if s != slug)
@@ -1037,10 +1328,14 @@ def build(slug, p):
     register_section = hero_cta = ""
     if p.get("register"):
         rg = p["register"]
-        hero_cta = '\n    <a class="hero-cta" href="#register">%s &rarr;</a>' % rg["hero_button"]
+        hero_cta = '\n    <a class="hero-cta" href="%s">%s &rarr;</a>' % (rg.get("hero_href", "#register"), rg["hero_button"])
         register_section = REGISTER_HTML % {
             "title": rg["title"], "text": rg["text"], "button": rg["button"],
             "building": html.escape(p["name"].replace("&amp;", "&"), quote=True),
+            "done_title": rg.get("done_title", "You&rsquo;re on the list."),
+            "done_text": rg.get("done_text", "You&rsquo;ll get the price list and floor plans as soon as "
+                                "they&rsquo;re released. Questions before then? Call or text "
+                                "<a href=\"tel:6479240848\">647-924-0848</a>."),
         }
 
     extra = []
@@ -1091,16 +1386,29 @@ def build(slug, p):
             % (hero_sizes, ", ".join("images/towns/%s-%d.avif %dw" % (p["hero"], w, w)
                                      for w in HERO_W if have(p["hero"], w, "avif"))))
 
+    pricing_html = """<section id="pricing">
+  <div class="sec-eyebrow">Pricing</div>
+  <h2 class="sec-title">%s</h2>
+%s%s
+</section>
+""" % (p.get("pricing_title", "Models &amp; <em>prices</em>"), tables, plans_link)
+    plans_html = plans_section(p, plans, plans_dir) if plans else ""
+    if p.get("layout") == "prices_first":
+        after_facts, pricing_block = pricing_html + register_section + plans_html, ""
+    else:
+        after_facts, pricing_block = register_section, pricing_html + plans_html
+
     return TEMPLATE.format(
+        after_facts=after_facts, pricing_block=pricing_block,
+        extra_css=PLANS_CSS if plans else "",
         name=p["name"], builder=p["builder"], tagline=p["tagline"],
         address=p["address"], area=p["area"], meta=p["meta"],
         hero_pic=hero_pic, hero_preload=hero_preload,
-        facts=facts, intro=intro, tables=tables, plans_link=plans_link,
+        facts=facts, intro=intro,
         incentives=incentives, deposit=deposit, commute=commute,
         gallery=gallery, others=others, source=p["source"], status_badge=status_badge,
-        register_section=register_section, hero_cta=hero_cta,
+        hero_cta=hero_cta,
         logos=logos, extra_sections=extra_sections, pixel=META_PIXEL, hero_class=" split" if split else "",
-        pricing_title=p.get("pricing_title", "Models &amp; <em>prices</em>"),
         incentives_title=p.get("incentives_title", "Current <em>incentives</em>"),
         gallery_title=p.get("gallery_title", "Renderings"),
         cta_line=p.get("cta_line", "Sold out &mdash; ask what&rsquo;s coming next nearby."
@@ -1129,8 +1437,8 @@ REGISTER_HTML = """
     </form>
     <div class="reg-done" id="reg-done" hidden>
       <div class="reg-done-mark">&#10003;</div>
-      <h3>You&rsquo;re on the list.</h3>
-      <p>You&rsquo;ll get the price list and floor plans as soon as they&rsquo;re released. Questions before then? Call or text <a href="tel:6479240848">647-924-0848</a>.</p>
+      <h3>%(done_title)s</h3>
+      <p>%(done_text)s</p>
     </div>
   </div>
 </section>
@@ -1156,6 +1464,7 @@ REGISTER_HTML = """
       try { localStorage.setItem('ca_registered', 'true'); } catch (err) {}
       if (window.fbq) fbq('track', 'Lead', { content_name: '%(building)s' });
       form.hidden = true; document.getElementById('reg-done').hidden = false;
+      if (window.caUnlockPlans) window.caUnlockPlans();
     }).catch(function () {
       btn.disabled = false;
       msg.textContent = 'That did not go through. Please try again, or text 647-924-0848.';
@@ -1366,8 +1675,10 @@ TEMPLATE = """<!DOCTYPE html>
     .siteplan {{ display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }}
     .siteplan figure {{ margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #e8e4dc; background: var(--cream); }}
     .siteplan img {{ width: 100%; height: auto; aspect-ratio: 1/1; }}
-    .sib {{ display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px;
-            padding: 1.5rem 1.75rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }}
+    .sib {{ display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden;
+            text-decoration: none; transition: border-color 0.2s, transform 0.2s; }}
+    .sib-img img {{ display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }}
+    .sib-body {{ padding: 1.1rem 1.35rem 1.25rem; }}
     .sib:hover {{ border-color: var(--gold); transform: translateY(-2px); }}
     .sib-lbl {{ display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
                 color: var(--text-muted); margin-bottom: 0.4rem; }}
@@ -1415,7 +1726,10 @@ TEMPLATE = """<!DOCTYPE html>
       .facts {{ grid-template-columns: repeat(2, 1fr); }}
       .fact:nth-child(3n) {{ border-right: 1px solid rgba(255,255,255,0.09); }}
       .fact:nth-child(2n) {{ border-right: none; }}
-      .gal, .sibs {{ grid-template-columns: 1fr; }}
+      .gal {{ grid-template-columns: 1fr; }}
+      .sibs {{ grid-template-columns: 1fr 1fr; gap: 0.85rem; }}
+      .sib-body {{ padding: 0.85rem 0.95rem 0.95rem; }}
+      .sib-name {{ font-size: 1.1rem; }}
       .logo-row {{ gap: 1.5rem; }}
       .dx-head {{ padding: 1.2rem 1.1rem; }}
       .dx-name {{ font-size: 1.25rem; }}
@@ -1424,7 +1738,7 @@ TEMPLATE = """<!DOCTYPE html>
       .dx-list::before {{ left: 1.45rem; }}
       .logo-row img {{ max-height: 22px; }}
     }}
-  </style>
+  {extra_css}</style>
 {pixel}
 </head>
 <body>
@@ -1450,8 +1764,7 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="facts">
 {facts}
 </div>
-{register_section}
-<section>
+{after_facts}<section>
   <div class="overview">
     <div>
       <div class="sec-eyebrow">Overview</div>
@@ -1465,13 +1778,7 @@ TEMPLATE = """<!DOCTYPE html>
   </div>
 </section>
 
-<section>
-  <div class="sec-eyebrow">Pricing</div>
-  <h2 class="sec-title">{pricing_title}</h2>
-{tables}{plans_link}
-</section>
-
-<section>
+{pricing_block}<section>
   <div class="two-col">
     <div>
       <div class="sec-eyebrow">What&rsquo;s included</div>
