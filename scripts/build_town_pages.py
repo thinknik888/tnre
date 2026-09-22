@@ -1449,18 +1449,22 @@ PLANS_JS = r"""<script>
     if (!window.history || !history.replaceState) return;
     var u = new URL(location.href);
     if (value === null) u.searchParams.delete(key); else u.searchParams.set(key, value);
-    u.hash = 'floor-plans';
-    history.replaceState(null, '', u.pathname + u.search + u.hash);
+    history.replaceState(null, '', u.pathname + u.search);
   }
   // Jump without the page's smooth-scroll animation (which a late layout shift can cancel).
   function jump(el) {
-    var root = document.documentElement, was = root.style.scrollBehavior;
-    root.style.scrollBehavior = 'auto';
-    el.scrollIntoView({ block: 'start' });
-    root.style.scrollBehavior = was;
+    var y = el.getBoundingClientRect().top + (document.scrollingElement || document.documentElement).scrollTop - 70;
+    try { (document.scrollingElement || document.documentElement).scrollTo({ top: y, behavior: 'instant' }); }
+    catch (e) { window.scrollTo(0, y); }
   }
   Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
     ch.addEventListener('click', function () { applyFilter(ch.getAttribute('data-filter'), true); });
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#floor-plans"]');
+    if (!a) return;
+    e.preventDefault(); jump(sec);
+    if (window.history && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
   });
 
   var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null, before = null;
@@ -1477,7 +1481,7 @@ PLANS_JS = r"""<script>
     // back to the exact link the visitor had before opening the plan (minus any plan= they arrived with)
     var u = new URL(before || (location.pathname + location.search), location.origin);
     u.searchParams.delete('plan');
-    if (window.history && history.replaceState) history.replaceState(null, '', u.pathname + u.search + u.hash);
+    if (window.history && history.replaceState) history.replaceState(null, '', u.pathname + u.search);
     before = null;
   }
   function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
@@ -1506,6 +1510,10 @@ PLANS_JS = r"""<script>
   if (fig && !fig.classList.contains('is-open')) fig = null;          // still locked
   var filtered = wantBeds && applyFilter(wantBeds, false);
   if (fig && fig.hidden) applyFilter('all', false);
+  if (location.hash === '#floor-plans' && window.history && history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);   // keep the link clean
+    if (!fig && !filtered) { jump(sec); window.addEventListener('load', function () { jump(sec); }); }
+  }
   if (fig || filtered) {
     var target = fig || sec, land = function () { jump(target); };
     land(); window.addEventListener('load', land); setTimeout(land, 600);
@@ -2345,7 +2353,7 @@ def plans_index_section():
             [(st["n"], "plans"), ("%d" % lo if lo == hi else "%d &ndash; %d" % (lo, hi), "bedrooms"),
              ("%s &ndash; %s" % ("{:,}".format(st["sqft"][0]), "{:,}".format(st["sqft"][1])), "sq ft"),
              (_money(st["from"]), "from")],
-            [("%d bed" % b, n, "%s?beds=%d#floor-plans" % (href, b)) for b, n in sorted(st["per_bed"].items())],
+            [("%d bed" % b, n, "%s?beds=%d" % (href, b)) for b, n in sorted(st["per_bed"].items())],
             "View plans"))
     with_plans = set(st["slug"] for st in stats)
     for slug in ORDER:
