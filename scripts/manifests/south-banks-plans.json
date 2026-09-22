@@ -1,0 +1,97 @@
+{
+ "pdf": "~/Downloads/South Banks - Assets/South Banks Floorplan Brochure Phase 1.pdf",
+ "out": "buildings/images/plans/south-banks",
+ "crop": {
+  "top": 0.0,
+  "bottom": 1.0
+ },
+ "plans": [
+  {
+   "slug": "azure",
+   "page": 2,
+   "half": "F",
+   "type": "Town",
+   "name": "Azure",
+   "sqft": 931,
+   "beds": "2",
+   "baths": "2",
+   "level": "1-storey, above grade &middot; 1,014 sq ft total with an 83 sq ft terrace",
+   "aliases": [
+    "Azure End"
+   ],
+   "variant_labels": {
+    "Azure": "Interior",
+    "Azure End": "End unit"
+   }
+  },
+  {
+   "slug": "breeze-end",
+   "page": 5,
+   "half": "F",
+   "type": "Town",
+   "name": "Breeze End",
+   "sqft": 997,
+   "beds": "3",
+   "baths": "2",
+   "level": "1-storey, above grade &middot; end unit with two balconies &middot; 1,069 sq ft total"
+  },
+  {
+   "slug": "coast",
+   "page": 8,
+   "half": "F",
+   "type": "Town",
+   "name": "Coast",
+   "sqft": 1179,
+   "beds": "2 + opt. 3rd",
+   "baths": "2",
+   "level": "3 levels &middot; two balconies &middot; 1,259 sq ft total",
+   "aliases": [
+    "Coast End"
+   ],
+   "variant_labels": {
+    "Coast": "Interior",
+    "Coast End": "End unit"
+   }
+  },
+  {
+   "slug": "drift-end",
+   "page": 11,
+   "half": "F",
+   "type": "Town",
+   "name": "Drift End",
+   "sqft": 1252,
+   "beds": "3 + opt. 4th",
+   "baths": "2",
+   "level": "3 levels &middot; end unit with main-level balcony &middot; 1,288 sq ft total"
+  },
+  {
+   "slug": "coast-rooftop",
+   "page": 14,
+   "half": "F",
+   "type": "Town",
+   "name": "Coast with Rooftop Terrace",
+   "sqft": 1385,
+   "beds": "2 + opt. 3rd",
+   "baths": "2",
+   "level": "3 levels plus rooftop &middot; 392 sq ft outdoor &middot; 1,777 sq ft total",
+   "aliases": [
+    "Coast with Rooftop Terrace End"
+   ],
+   "variant_labels": {
+    "Coast with Rooftop Terrace": "Interior",
+    "Coast with Rooftop Terrace End": "End unit"
+   }
+  },
+  {
+   "slug": "drift-rooftop-end",
+   "page": 17,
+   "half": "F",
+   "type": "Town",
+   "name": "Drift with Rooftop Terrace End",
+   "sqft": 1463,
+   "beds": "3 + opt. 4th",
+   "baths": "2",
+   "level": "3 levels plus rooftop &middot; end unit &middot; 340 sq ft outdoor &middot; 1,803 sq ft total"
+  }
+ ]
+}

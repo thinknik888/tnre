@@ -1,0 +1,93 @@
+{
+ "source_dir": "~/Downloads/South Banks - Assets",
+ "images": [
+  {
+   "name": "south-banks-hero",
+   "file": "South Banks Exterior - Elevation C.png",
+   "widths": "hero"
+  },
+  {
+   "name": "south-banks-elevation-a",
+   "file": "South Banks Exterior - Elevation A.png"
+  },
+  {
+   "name": "south-banks-street",
+   "file": "South Banks Street View.png",
+   "crop": [
+    0.0,
+    0.16,
+    1.0,
+    0.785
+   ]
+  },
+  {
+   "name": "south-banks-park",
+   "file": "South Banks Park View.png",
+   "crop": [
+    0.0,
+    0.14,
+    1.0,
+    0.765
+   ]
+  },
+  {
+   "name": "south-banks-living",
+   "file": "South Banks Living Room.png",
+   "crop": [
+    0.0,
+    0.14,
+    1.0,
+    0.74
+   ]
+  },
+  {
+   "name": "south-banks-rooftop",
+   "file": "South Banks Rooftop Terrace.png",
+   "crop": [
+    0.0,
+    0.17,
+    1.0,
+    0.795
+   ]
+  },
+  {
+   "name": "south-banks-rooftop-2",
+   "file": "South Banks Rooftop Terrace 2.png",
+   "crop": [
+    0.0,
+    0.14,
+    1.0,
+    0.765
+   ]
+  },
+  {
+   "name": "south-banks-kitchen",
+   "file": "South Banks Package B.png",
+   "crop": [
+    0.0,
+    0.2,
+    1.0,
+    0.7
+   ]
+  },
+  {
+   "name": "south-banks-amenities",
+   "file": "South Banks Amenity Plan.jpg"
+  },
+  {
+   "name": "south-banks-village",
+   "file": "Lakeview Village Site Plan.png"
+  },
+  {
+   "name": "south-banks-siteplan",
+   "file": "DO_SB_SitePlan_Rendering_11AUG26 FA3.pdf",
+   "pdf": true,
+   "widths": [
+    480,
+    800,
+    1280,
+    1920
+   ]
+  }
+ ]
+}

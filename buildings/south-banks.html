@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>South Banks &mdash; DECO Homes &amp; OPUS Homes &middot; Dixie &amp; Lakeshore | CondosAround.com</title>
-  <meta name="description" content="South Banks by DECO Homes and OPUS Homes &mdash; coastal townhomes in Lakeview Village, Mississauga. 2&ndash;4 bedrooms, rooftop terraces, from $549,990. Full price list and floor plans September 22, 2026." />
+  <meta name="description" content="South Banks by DECO Homes and OPUS Homes: coastal townhomes in Lakeview Village, Mississauga. Nine homes across six plans, 2 to 4 bedrooms, 931 to 1,463 sq ft, from $549,990 net of HST rebate. Underground parking included, 2029 occupancy. Full VIP launch price list and floor plans." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" type="image/avif" imagesizes="(min-width: 1000px) 45vw, 100vw" imagesrcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
+  <link rel="preload" as="image" type="image/avif" imagesizes="100vw" imagesrcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
   <style>
     :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
              --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
@@ -262,7 +262,83 @@
       .dx-list::before { left: 1.45rem; }
       .logo-row img { max-height: 22px; }
     }
-  </style>
+  
+    /* floor plan book */
+    .plans-sec { scroll-margin-top: 70px; }
+    .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
+    .plans-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 1.25rem; }
+    .plan-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .plan-chip { border: 1px solid #d9d2c2; background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem; font: inherit;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
+    .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-jump { border: 1px solid var(--gold); color: var(--navy); background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-left: 0.5rem; }
+    .plan-jump:hover { background: var(--gold); color: #17130a; }
+    .plan-group { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+                  margin-top: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e3dccb; }
+    .plan-group:first-child { margin-top: 0; }
+    .plan-group[hidden] { display: none; }
+    .plan-group span { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); }
+    .plan-group small { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
+    .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s; }
+    .plan:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .plan[hidden] { display: none; }
+    .plan-media { position: relative; aspect-ratio: var(--plan-ratio, 4/3); background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
+    .plan-media picture { display: contents; }
+    .plan-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .plan-media .plan-blur { filter: blur(7px); transform: scale(1.06); opacity: 0.5; }
+    .plan-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                 gap: 0.4rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); }
+    .plan-lock span { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: #fff; display: grid;
+                      place-items: center; font-size: 0.9rem; }
+    .plan figcaption { padding: 0.9rem 1rem 1rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
+    .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
+    .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .plan-price { margin-top: 0.55rem; font-size: 0.8rem; color: var(--text-mid); line-height: 1.45; }
+    .plan-price .plan-net { font-weight: 600; font-size: 0.95rem; color: var(--navy); }
+    .plan-price i { font-style: normal; font-size: 0.68rem; color: var(--text-muted); }
+    .plan-price .plan-list { display: block; font-weight: 400; font-size: 0.8rem; color: var(--text-mid); margin-top: 0.1rem; }
+    .plan-price .plan-blocks { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+    .plan-price .plan-blocks b { font-weight: 400; color: var(--text-mid); }
+    .plans-gate { margin: 1.5rem 0; }
+    .plans-gate section.reg { border-radius: 12px; padding: 2.75rem 2.5rem; }
+    .plans-gate .reg-inner { max-width: none; }
+    .plan-price.muted { color: var(--text-muted); font-weight: 400; font-size: 0.72rem; line-height: 1.4; }
+    .row-plan { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+                text-decoration: none; margin-left: 0.4rem; white-space: nowrap; }
+    .row-plan:hover { text-decoration: underline; }
+    .plan-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,18,36,0.95); display: grid;
+                     grid-template-rows: 1fr auto; place-items: center; padding: 3.25rem 1rem 1.25rem; }
+    .plan-lightbox[hidden] { display: none; }
+    .lb-media { width: min(96vw, 1400px); height: 74vh; display: grid; place-items: center; }
+    .lb-media picture { display: contents; }
+    .lb-media img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; background: #fff; border-radius: 8px; }
+    .lb-cap { color: #fff; font-size: 0.85rem; margin-top: 0.75rem; text-align: center; padding: 0 3.5rem; }
+    .lb-cap b { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.3rem; margin-right: 0.5rem; }
+    .lb-close, .lb-prev, .lb-next { position: fixed; background: rgba(255,255,255,0.14); color: #fff; border: none; width: 44px; height: 44px;
+                                    border-radius: 50%; font-size: 1.7rem; line-height: 44px; cursor: pointer; z-index: 1001; }
+    .lb-close { top: 14px; right: 14px; }
+    .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) {
+      .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .plan figcaption { padding: 0.7rem 0.75rem 0.8rem; }
+      .plan-name { font-size: 1.05rem; }
+      .plan-spec { font-size: 0.72rem; }
+      .plan-level { display: none; }
+      .plans-gate section.reg { padding: 2rem 1.25rem; border-radius: 10px; }
+      .plan-group span { font-size: 1.35rem; }
+      .plan-jump { margin-left: 0; }
+      .lb-media { height: 66vh; }
+      .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
+      .lb-cap { padding: 0 3.5rem 2.75rem; }
+    }
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -290,52 +366,522 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
-<header class="hero split">
+<header class="hero">
   <picture>
-        <source type="image/avif" sizes="(min-width: 1000px) 45vw, 100vw" srcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
-        <source type="image/webp" sizes="(min-width: 1000px) 45vw, 100vw" srcset="images/towns/south-banks-hero-480.webp 480w, images/towns/south-banks-hero-800.webp 800w, images/towns/south-banks-hero-1280.webp 1280w, images/towns/south-banks-hero-1920.webp 1920w, images/towns/south-banks-hero-2560.webp 2560w">
-        <img src="images/towns/south-banks-hero.jpg" alt="South Banks townhomes exterior rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
+        <source type="image/avif" sizes="100vw" srcset="images/towns/south-banks-hero-480.avif 480w, images/towns/south-banks-hero-800.avif 800w, images/towns/south-banks-hero-1280.avif 1280w, images/towns/south-banks-hero-1920.avif 1920w, images/towns/south-banks-hero-2560.avif 2560w">
+        <source type="image/webp" sizes="100vw" srcset="images/towns/south-banks-hero-480.webp 480w, images/towns/south-banks-hero-800.webp 800w, images/towns/south-banks-hero-1280.webp 1280w, images/towns/south-banks-hero-1920.webp 1920w, images/towns/south-banks-hero-2560.webp 2560w">
+        <img src="images/towns/south-banks-hero.jpg" alt="South Banks townhomes, Elevation C rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
       </picture>
   <div class="hero-inner">
-    <div class="hero-status new">Coming soon &middot; price list Sept 22</div>
+    <div class="hero-status live">Now selling &middot; VIP launch</div>
     <div class="hero-builder">DECO Homes &amp; OPUS Homes &middot; Lakeview Village</div>
     <h1 class="hero-title">South Banks</h1>
-    <div class="hero-tag">Coastal townhomes in Lakeview Village.</div>
+    <div class="hero-tag">Coastal townhomes in Lakeview Village, from $549,990.</div>
     <div class="hero-addr">Jim Tovey Blvd &amp; Marina Vista &middot; Lakeview Village, Mississauga</div>
-    <a class="hero-cta" href="#register">Register for the price list &rarr;</a>
+    <a class="hero-cta" href="#floor-plans">See floor plans &amp; prices &rarr;</a>
   </div>
   <div class="hero-credit">Artist&rsquo;s concept</div>
 </header>
 
 <div class="facts">
       <div class="fact"><div class="fact-lbl">From</div><div class="fact-val">$549,990*</div></div>
+      <div class="fact"><div class="fact-lbl">Size</div><div class="fact-val">931 &ndash; 1,463 sq ft</div></div>
       <div class="fact"><div class="fact-lbl">Bedrooms</div><div class="fact-val">2 &ndash; 4</div></div>
       <div class="fact"><div class="fact-lbl">Baths</div><div class="fact-val">2 full, every plan</div></div>
-      <div class="fact"><div class="fact-lbl">Home types</div><div class="fact-val">1 &amp; 2-storey towns</div></div>
-      <div class="fact"><div class="fact-lbl">Blocks</div><div class="fact-val">17</div></div>
-      <div class="fact"><div class="fact-lbl">Price list</div><div class="fact-val">Sept 22</div></div>
+      <div class="fact"><div class="fact-lbl">Deposit</div><div class="fact-val">$70K &ndash; $95K</div></div>
+      <div class="fact"><div class="fact-lbl">Occupancy</div><div class="fact-val">2029</div></div>
 </div>
+<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>South Banks</em></h2>
+      <p>South Banks is a new collection of coastal townhomes by DECO Homes and OPUS Homes inside Lakeview Village &mdash; the 177-acre master-planned waterfront community taking shape on Mississauga&rsquo;s shoreline. Seventeen low-rise blocks sit between Aerodrome Avenue and Marina Vista, directly across from Waterway Common Park and a short walk from Lake Ontario.</p>
+      <p>The launch offers six plans at nine price points: single-storey Azure and Breeze homes with private terraces, and three-level Coast and Drift homes, some with a rooftop terrace. Every home is above grade with two full baths, an underground parking spot included, and a third or fourth bedroom option. Pricing starts at $549,990 net of the HST rebate, development levies are capped at $0, and occupancy is 2029.</p>
+      <div class="logo-row"><img src="images/towns/south-banks-logo.png" alt="South Banks" height="26" loading="lazy" decoding="async"><img src="images/towns/south-banks-deco-logo.png" alt="DECO Homes" height="30" loading="lazy" decoding="async"><img src="images/towns/south-banks-opus-logo.png" alt="OPUS Homes" height="26" loading="lazy" decoding="async"></div>
+    </div>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+        <div class="cm-row"><span class="cm-time">Across the street</span><span class="cm-place">Waterway Common Park</span></div>
+        <div class="cm-row"><span class="cm-time">Short walk</span><span class="cm-place">Lake Ontario, the pier &amp; the Waterfront Trail</span></div>
+        <div class="cm-row"><span class="cm-time">At the door</span><span class="cm-place">Future MiWay stops on Jim Tovey Blvd &amp; Illumination Way</span></div>
+        <div class="cm-row"><span class="cm-time">Next door</span><span class="cm-place">Lakeview Village Innovation District</span></div>
+        <div class="cm-row"><span class="cm-time">About 5 min</span><span class="cm-place">Long Branch GO &middot; QEW / 427</span></div>
+        <div class="cm-row"><span class="cm-time">About 25 min</span><span class="cm-place">Union Station by GO train</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="floor-plans" class="plans-sec" style="--plan-ratio: 1224 / 792">
+  <div class="sec-eyebrow">Floor plans &amp; prices</div>
+  <h2 class="sec-title">9 homes on the <em>VIP launch price list</em></h2>
+  <p class="plans-intro">Six layouts across nine price points, from the 931 sq ft Azure to the 1,463 sq ft Drift with rooftop terrace. Every plan has two full baths and one underground parking spot; end units add windows and a small premium. Grouped by bedroom count; tap any plan to see it full size.</p>
+  <div class="plans-bar">
+    <div class="plan-chips"><button type="button" class="plan-chip is-on" data-filter="all">All 6</button><button type="button" class="plan-chip" data-filter="2">2 bed 3</button><button type="button" class="plan-chip" data-filter="3">3 bed 3</button><a class="plan-jump" href="#gallery">See images &darr;</a></div>
+    <div class="plans-state" id="plans-state">6 plans &middot; tap to enlarge</div>
+  </div>
+  <div class="plan-grid">
+    <div class="plan-group" data-beds="2" id="plans-2-bed"><span>Two bedroom</span><small>3 plans &middot; 931 &ndash; 1,385 sq ft &middot; from $549,990 net of HST*</small></div>
+    <figure class="plan is-open" id="plan-azure" data-beds="2" data-type="town" data-base="images/plans/south-banks/azure" data-widths="480,800,1280,1920" data-name="Azure" data-spec="2 bed · 2 bath · 931 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/azure-480.avif 480w, images/plans/south-banks/azure-800.avif 800w, images/plans/south-banks/azure-1280.avif 1280w, images/plans/south-banks/azure-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/azure-480.webp 480w, images/plans/south-banks/azure-800.webp 800w, images/plans/south-banks/azure-1280.webp 1280w, images/plans/south-banks/azure-1920.webp 1920w"><img src="images/plans/south-banks/azure.jpg" alt="Azure floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Azure</div>
+        <div class="plan-spec">2 bed &middot; 2 bath &middot; 931 sq ft</div>
+        <div class="plan-level">1-storey, above grade &middot; 1,014 sq ft total with an 83 sq ft terrace</div>
+        <div class="plan-price"><b class="plan-net">From $549,990</b> <i>net of HST rebate*</i><span class="plan-list">List price from $621,489</span><span class="plan-blocks">Interior <b>$549,990</b> &middot; End unit <b>$559,990</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-coast" data-beds="2" data-type="town" data-base="images/plans/south-banks/coast" data-widths="480,800,1280,1920" data-name="Coast" data-spec="2 + opt. 3rd bed · 2 bath · 1,179 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/coast-480.avif 480w, images/plans/south-banks/coast-800.avif 800w, images/plans/south-banks/coast-1280.avif 1280w, images/plans/south-banks/coast-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/coast-480.webp 480w, images/plans/south-banks/coast-800.webp 800w, images/plans/south-banks/coast-1280.webp 1280w, images/plans/south-banks/coast-1920.webp 1920w"><img src="images/plans/south-banks/coast.jpg" alt="Coast floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Coast</div>
+        <div class="plan-spec">2 + opt. 3rd bed &middot; 2 bath &middot; 1,179 sq ft</div>
+        <div class="plan-level">3 levels &middot; two balconies &middot; 1,259 sq ft total</div>
+        <div class="plan-price"><b class="plan-net">From $669,990</b> <i>net of HST rebate*</i><span class="plan-list">List price from $757,089</span><span class="plan-blocks">Interior <b>$669,990</b> &middot; End unit <b>$689,990</b></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-coast-rooftop" data-beds="2" data-type="town" data-base="images/plans/south-banks/coast-rooftop" data-widths="480,800,1280,1920" data-name="Coast with Rooftop Terrace" data-spec="2 + opt. 3rd bed · 2 bath · 1,385 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/coast-rooftop-480.avif 480w, images/plans/south-banks/coast-rooftop-800.avif 800w, images/plans/south-banks/coast-rooftop-1280.avif 1280w, images/plans/south-banks/coast-rooftop-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/coast-rooftop-480.webp 480w, images/plans/south-banks/coast-rooftop-800.webp 800w, images/plans/south-banks/coast-rooftop-1280.webp 1280w, images/plans/south-banks/coast-rooftop-1920.webp 1920w"><img src="images/plans/south-banks/coast-rooftop.jpg" alt="Coast with Rooftop Terrace floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Coast with Rooftop Terrace</div>
+        <div class="plan-spec">2 + opt. 3rd bed &middot; 2 bath &middot; 1,385 sq ft</div>
+        <div class="plan-level">3 levels plus rooftop &middot; 392 sq ft outdoor &middot; 1,777 sq ft total</div>
+        <div class="plan-price"><b class="plan-net">From $739,990</b> <i>net of HST rebate*</i><span class="plan-list">List price from $836,189</span><span class="plan-blocks">Interior <b>$739,990</b> &middot; End unit <b>$759,990</b></span></div>
+      </figcaption>
+    </figure>
+    <div class="plan-group" data-beds="3" id="plans-3-bed"><span>Three bedroom</span><small>3 plans &middot; 997 &ndash; 1,463 sq ft &middot; from $609,990 net of HST*</small></div>
+    <figure class="plan is-open" id="plan-breeze-end" data-beds="3" data-type="town" data-base="images/plans/south-banks/breeze-end" data-widths="480,800,1280,1920" data-name="Breeze End" data-spec="3 bed · 2 bath · 997 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/breeze-end-480.avif 480w, images/plans/south-banks/breeze-end-800.avif 800w, images/plans/south-banks/breeze-end-1280.avif 1280w, images/plans/south-banks/breeze-end-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/breeze-end-480.webp 480w, images/plans/south-banks/breeze-end-800.webp 800w, images/plans/south-banks/breeze-end-1280.webp 1280w, images/plans/south-banks/breeze-end-1920.webp 1920w"><img src="images/plans/south-banks/breeze-end.jpg" alt="Breeze End floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Breeze End</div>
+        <div class="plan-spec">3 bed &middot; 2 bath &middot; 997 sq ft</div>
+        <div class="plan-level">1-storey, above grade &middot; end unit with two balconies &middot; 1,069 sq ft total</div>
+        <div class="plan-price"><b class="plan-net">$609,990</b> <i>net of HST rebate*</i><span class="plan-list">List price $689,289</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-drift-end" data-beds="3" data-type="town" data-base="images/plans/south-banks/drift-end" data-widths="480,800,1280,1920" data-name="Drift End" data-spec="3 + opt. 4th bed · 2 bath · 1,252 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/drift-end-480.avif 480w, images/plans/south-banks/drift-end-800.avif 800w, images/plans/south-banks/drift-end-1280.avif 1280w, images/plans/south-banks/drift-end-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/drift-end-480.webp 480w, images/plans/south-banks/drift-end-800.webp 800w, images/plans/south-banks/drift-end-1280.webp 1280w, images/plans/south-banks/drift-end-1920.webp 1920w"><img src="images/plans/south-banks/drift-end.jpg" alt="Drift End floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Drift End</div>
+        <div class="plan-spec">3 + opt. 4th bed &middot; 2 bath &middot; 1,252 sq ft</div>
+        <div class="plan-level">3 levels &middot; end unit with main-level balcony &middot; 1,288 sq ft total</div>
+        <div class="plan-price"><b class="plan-net">$699,990</b> <i>net of HST rebate*</i><span class="plan-list">List price $790,989</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-drift-rooftop-end" data-beds="3" data-type="town" data-base="images/plans/south-banks/drift-rooftop-end" data-widths="480,800,1280,1920" data-name="Drift with Rooftop Terrace End" data-spec="3 + opt. 4th bed · 2 bath · 1,463 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/drift-rooftop-end-480.avif 480w, images/plans/south-banks/drift-rooftop-end-800.avif 800w, images/plans/south-banks/drift-rooftop-end-1280.avif 1280w, images/plans/south-banks/drift-rooftop-end-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/south-banks/drift-rooftop-end-480.webp 480w, images/plans/south-banks/drift-rooftop-end-800.webp 800w, images/plans/south-banks/drift-rooftop-end-1280.webp 1280w, images/plans/south-banks/drift-rooftop-end-1920.webp 1920w"><img src="images/plans/south-banks/drift-rooftop-end.jpg" alt="Drift with Rooftop Terrace End floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Drift with Rooftop Terrace End</div>
+        <div class="plan-spec">3 + opt. 4th bed &middot; 2 bath &middot; 1,463 sq ft</div>
+        <div class="plan-level">3 levels plus rooftop &middot; end unit &middot; 340 sq ft outdoor &middot; 1,803 sq ft total</div>
+        <div class="plan-price"><b class="plan-net">$754,990</b> <i>net of HST rebate*</i><span class="plan-list">List price $853,138</span></div>
+      </figcaption>
+    </figure>
+  </div>
+  <p class="tbl-note">Plans from the Phase 1 floor plan brochure; prices from the VIP launch price list dated September 22, 2026. *Net price reflects the first-time home buyer HST rebate and applies only if the purchaser qualifies; otherwise the list price applies. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.</p>
+  <div class="plan-lightbox" id="plan-lb" hidden>
+    <button type="button" class="lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
+    <div class="lb-media"></div>
+    <button type="button" class="lb-next" aria-label="Next plan">&#8250;</button>
+    <div class="lb-cap"></div>
+  </div>
+<script>
+(function () {
+  var sec = document.getElementById('floor-plans');
+  if (!sec) return;
+  function registered() { try { return localStorage.getItem('ca_registered') === 'true'; } catch (e) { return false; } }
+  function pictureFor(fig, big) {
+    var base = fig.getAttribute('data-base'), ws = fig.getAttribute('data-widths').split(',');
+    var pic = document.createElement('picture');
+    ['avif', 'webp'].forEach(function (ext) {
+      var s = document.createElement('source'); s.type = 'image/' + ext;
+      s.sizes = big ? '96vw' : '(max-width: 700px) 50vw, 25vw';
+      s.srcset = ws.map(function (w) { return base + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+      pic.appendChild(s);
+    });
+    var img = document.createElement('img');
+    img.src = base + '.jpg'; img.alt = fig.getAttribute('data-name') + ' floor plan'; img.decoding = 'async';
+    if (!big) img.loading = 'lazy';
+    pic.appendChild(img);
+    return pic;
+  }
+  function open(fig) {
+    var media = fig.querySelector('.plan-media');
+    media.innerHTML = ''; media.appendChild(pictureFor(fig, false)); fig.classList.add('is-open');
+  }
+  window.caUnlockPlans = function () {
+    var locked = sec.querySelectorAll('.plan:not(.is-open)');
+    if (!locked.length) return;                       // nothing is gated on this page
+    sec.classList.add('is-unlocked');
+    Array.prototype.forEach.call(locked, open);
+    var st = document.getElementById('plans-state');
+    if (st) st.textContent = 'All plans unlocked — tap any plan to enlarge.';
+  };
+  if (registered()) window.caUnlockPlans();
+
+  // The chosen filter lives in the link (?beds=3#floor-plans), so a shared link opens the same view.
+  function applyFilter(t, remember) {
+    var chip = sec.querySelector('.plan-chip[data-filter="' + t + '"]');
+    if (!chip) return false;
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === chip); });
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+      var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+      f.hidden = (t !== 'all' && v !== t);
+    });
+    if (remember) setParam('beds', t === 'all' ? null : t);
+    return true;
+  }
+  // Keep the address bar in step with what is on screen, so the link can be shared as-is.
+  function setParam(key, value) {
+    if (!window.history || !history.replaceState) return;
+    var u = new URL(location.href);
+    if (value === null) u.searchParams.delete(key); else u.searchParams.set(key, value);
+    u.hash = 'floor-plans';
+    history.replaceState(null, '', u.pathname + u.search + u.hash);
+  }
+  // Jump without the page's smooth-scroll animation (which a late layout shift can cancel).
+  function jump(el) {
+    var root = document.documentElement, was = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    el.scrollIntoView({ block: 'start' });
+    root.style.scrollBehavior = was;
+  }
+  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
+    ch.addEventListener('click', function () { applyFilter(ch.getAttribute('data-filter'), true); });
+  });
+
+  var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null;
+  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan.is-open'), function (f) { return !f.hidden; }); }
+  function show(fig) {
+    current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
+    lbCap.innerHTML = '<b>' + fig.getAttribute('data-name') + '</b>' + fig.getAttribute('data-spec');
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+    setParam('plan', fig.id.replace(/^plan-/, ''));
+  }
+  function close() { lb.hidden = true; document.body.style.overflow = ''; setParam('plan', null); }
+  function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
+  sec.addEventListener('click', function (e) {
+    var fig = e.target.closest('.plan'); if (!fig) return;
+    if (!fig.classList.contains('is-open')) {
+      var reg = document.getElementById('register');
+      if (reg) { reg.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = reg.querySelector('input[name=name]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, 700); }
+      return;
+    }
+    show(fig);
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.lb-next')) return step(1);
+    if (e.target.closest('.lb-prev')) return step(-1);
+    if (e.target.closest('.lb-close') || e.target === lb || e.target === lbMedia) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
+  });
+
+  // A shared link: ?beds=3 opens that bedroom group, ?plan=sky-towns-1238 opens that drawing.
+  var q = new URLSearchParams(location.search), wantBeds = q.get('beds'), wantPlan = q.get('plan');
+  var fig = wantPlan && document.getElementById('plan-' + wantPlan);
+  if (fig && !fig.classList.contains('is-open')) fig = null;          // still locked
+  var filtered = wantBeds && applyFilter(wantBeds, false);
+  if (fig && fig.hidden) applyFilter('all', false);
+  if (fig || filtered) {
+    var target = fig || sec, land = function () { jump(target); };
+    land(); window.addEventListener('load', land); setTimeout(land, 600);
+    if (fig) show(fig);
+  }
+})();
+</script>
+</section>
+
+<section>
+  <div class="two-col">
+    <div>
+      <div class="sec-eyebrow">What&rsquo;s included</div>
+      <h2 class="sec-title">VIP launch <em>incentives</em></h2>
+      <ul class="inc-list">
+        <li>One year of maintenance fees free</li>
+        <li>One underground parking spot included</li>
+        <li>Development levies capped at $0</li>
+        <li>Closing costs capped at $5,000</li>
+        <li>Free assignment (legal fees apply)</li>
+        <li>Extended deposits: $10,000 at signing, then $7,500 cheques spread over 11 to 17 months</li>
+        <li>6-piece appliance package and ceramic kitchen backsplash included</li>
+        <li>Quartz counters, oak stairs, smooth ceilings and laminate floors throughout</li>
+        <li>Launch timeline: worksheets to September 24 at 8 PM, allocations September 25, signing September 26</li>
+      </ul>
+    </div>
+    <div>
+      <div class="dep-card">
+        <h3 class="side-title">Deposit structure</h3>
+          <div class="dep-row"><span class="dep-when">At signing</span><span class="dep-amt">$10,000 &nbsp;<span class="dim">(bank draft)</span></span></div>
+          <div class="dep-row"><span class="dep-when">30, 60, 90, 150, 210 &amp; 270 days</span><span class="dep-amt">$7,500 each</span></div>
+          <div class="dep-row"><span class="dep-when">330 days</span><span class="dep-amt">$5,000 &nbsp;<span class="dim">(1-storey)</span><br>$7,500 &nbsp;<span class="dim">(2+ storey)</span></span></div>
+          <div class="dep-row"><span class="dep-when">390, 450 &amp; 510 days</span><span class="dep-amt">$7,500 each &nbsp;<span class="dim">(2+ storey only)</span></span></div>
+          <div class="dep-row"><span class="dep-when">On occupancy</span><span class="dep-amt">$10,000</span></div>
+          <div class="dep-row"><span class="dep-when">Total</span><span class="dep-amt">$70,000 &nbsp;<span class="dim">(1-storey)</span><br>$95,000 &nbsp;<span class="dim">(2+ storey)</span></span></div>
+        <p class="dep-foot">Cheques payable to Brattys LLP in trust; the first $10,000 by bank draft. All post-dated cheques are provided at signing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Deposit example</div>
+  <h2 class="sec-title">If you sign on <em>September 26, 2026</em></h2>
+  <p class="dx-intro">Real calendar dates, so you can see exactly when each deposit would fall due and how much you would have paid in at every step.</p>
+  <div class="dx-grid">
+    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">1-storey townhome (Azure, Breeze)</div><div class="dx-sub">8 cheques, the last on Aug 22, 2027 &middot; then $10,000 on occupancy</div></div>
+        <div class="dx-total">$70,000<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+        <li class="dx-step">
+          <div class="dx-date">Sep 26, 2026<span>At signing</span></div>
+          <div class="dx-amt">$10,000<span>$10,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:14.3%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 26, 2026<span>30 days</span></div>
+          <div class="dx-amt">$7,500<span>$17,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:25.0%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Nov 25, 2026<span>60 days</span></div>
+          <div class="dx-amt">$7,500<span>$25,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:35.7%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Dec 25, 2026<span>90 days</span></div>
+          <div class="dx-amt">$7,500<span>$32,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:46.4%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Feb 23, 2027<span>150 days</span></div>
+          <div class="dx-amt">$7,500<span>$40,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:57.1%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Apr 24, 2027<span>210 days</span></div>
+          <div class="dx-amt">$7,500<span>$47,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:67.9%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Jun 23, 2027<span>270 days</span></div>
+          <div class="dx-amt">$7,500<span>$55,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:78.6%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Aug 22, 2027<span>330 days</span></div>
+          <div class="dx-amt">$5,000<span>$60,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:85.7%"></i></div>
+        </li>
+        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">$10,000<span>$70,000 paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%"></i></div>
+        </li>
+      </ol>
+    </div>
+    <div class="dx-card">
+      <div class="dx-head">
+        <div><div class="dx-name">2+ storey townhome (Coast, Drift)</div><div class="dx-sub">11 cheques, the last on Feb 18, 2028 &middot; then $10,000 on occupancy</div></div>
+        <div class="dx-total">$95,000<span>total deposit</span></div>
+      </div>
+      <ol class="dx-list">
+        <li class="dx-step">
+          <div class="dx-date">Sep 26, 2026<span>At signing</span></div>
+          <div class="dx-amt">$10,000<span>$10,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:10.5%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 26, 2026<span>30 days</span></div>
+          <div class="dx-amt">$7,500<span>$17,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:18.4%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Nov 25, 2026<span>60 days</span></div>
+          <div class="dx-amt">$7,500<span>$25,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:26.3%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Dec 25, 2026<span>90 days</span></div>
+          <div class="dx-amt">$7,500<span>$32,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:34.2%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Feb 23, 2027<span>150 days</span></div>
+          <div class="dx-amt">$7,500<span>$40,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:42.1%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Apr 24, 2027<span>210 days</span></div>
+          <div class="dx-amt">$7,500<span>$47,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:50.0%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Jun 23, 2027<span>270 days</span></div>
+          <div class="dx-amt">$7,500<span>$55,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:57.9%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Aug 22, 2027<span>330 days</span></div>
+          <div class="dx-amt">$7,500<span>$62,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:65.8%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Oct 21, 2027<span>390 days</span></div>
+          <div class="dx-amt">$7,500<span>$70,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:73.7%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Dec 20, 2027<span>450 days</span></div>
+          <div class="dx-amt">$7,500<span>$77,500 paid to date</span></div>
+          <div class="dx-bar"><i style="width:81.6%"></i></div>
+        </li>
+        <li class="dx-step">
+          <div class="dx-date">Feb 18, 2028<span>510 days</span></div>
+          <div class="dx-amt">$7,500<span>$85,000 paid to date</span></div>
+          <div class="dx-bar"><i style="width:89.5%"></i></div>
+        </li>
+        <li class="dx-step is-occ">
+          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
+          <div class="dx-amt">$10,000<span>$95,000 paid in full</span></div>
+          <div class="dx-bar"><i style="width:100%"></i></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <p class="tbl-note">Illustration only, counted in calendar days from a September 26, 2026 signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bratty&rsquo;s LLP, In Trust.</p>
+</section>
+
+<section id="gallery">
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">Renderings &amp; <em>setting</em></h2>
+  <div class="gal">
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-street-480.avif 480w, images/towns/south-banks-street-800.avif 800w, images/towns/south-banks-street-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-street-480.webp 480w, images/towns/south-banks-street-800.webp 800w, images/towns/south-banks-street-1280.webp 1280w">
+        <img src="images/towns/south-banks-street.jpg" alt="South Banks from the street" loading="lazy" decoding="async">
+      </picture><figcaption>South Banks from the street</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-park-480.avif 480w, images/towns/south-banks-park-800.avif 800w, images/towns/south-banks-park-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-park-480.webp 480w, images/towns/south-banks-park-800.webp 800w, images/towns/south-banks-park-1280.webp 1280w">
+        <img src="images/towns/south-banks-park.jpg" alt="The courtyard and park side of the community" loading="lazy" decoding="async">
+      </picture><figcaption>The courtyard and park side of the community</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-elevation-a-480.avif 480w, images/towns/south-banks-elevation-a-800.avif 800w, images/towns/south-banks-elevation-a-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-elevation-a-480.webp 480w, images/towns/south-banks-elevation-a-800.webp 800w, images/towns/south-banks-elevation-a-1280.webp 1280w">
+        <img src="images/towns/south-banks-elevation-a.jpg" alt="Elevation A" loading="lazy" decoding="async">
+      </picture><figcaption>Elevation A</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-rooftop-480.avif 480w, images/towns/south-banks-rooftop-800.avif 800w, images/towns/south-banks-rooftop-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-rooftop-480.webp 480w, images/towns/south-banks-rooftop-800.webp 800w, images/towns/south-banks-rooftop-1280.webp 1280w">
+        <img src="images/towns/south-banks-rooftop.jpg" alt="Rooftop terrace on the Coast and Drift rooftop plans" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop terrace on the Coast and Drift rooftop plans</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-rooftop-2-480.avif 480w, images/towns/south-banks-rooftop-2-800.avif 800w, images/towns/south-banks-rooftop-2-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-rooftop-2-480.webp 480w, images/towns/south-banks-rooftop-2-800.webp 800w, images/towns/south-banks-rooftop-2-1280.webp 1280w">
+        <img src="images/towns/south-banks-rooftop-2.jpg" alt="Rooftop terrace at sunset" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop terrace at sunset</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-living-480.avif 480w, images/towns/south-banks-living-800.avif 800w, images/towns/south-banks-living-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-living-480.webp 480w, images/towns/south-banks-living-800.webp 800w, images/towns/south-banks-living-1280.webp 1280w">
+        <img src="images/towns/south-banks-living.jpg" alt="Living and dining, main level" loading="lazy" decoding="async">
+      </picture><figcaption>Living and dining, main level</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-kitchen-480.avif 480w, images/towns/south-banks-kitchen-800.avif 800w, images/towns/south-banks-kitchen-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-kitchen-480.webp 480w, images/towns/south-banks-kitchen-800.webp 800w, images/towns/south-banks-kitchen-1280.webp 1280w">
+        <img src="images/towns/south-banks-kitchen.jpg" alt="Kitchen finishes, Package B" loading="lazy" decoding="async">
+      </picture><figcaption>Kitchen finishes, Package B</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-amenities-480.avif 480w, images/towns/south-banks-amenities-800.avif 800w, images/towns/south-banks-amenities-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-amenities-480.webp 480w, images/towns/south-banks-amenities-800.webp 800w, images/towns/south-banks-amenities-1280.webp 1280w">
+        <img src="images/towns/south-banks-amenities.jpg" alt="Courtyard amenity plan: covered dining, bocce, games and seating" loading="lazy" decoding="async">
+      </picture><figcaption>Courtyard amenity plan: covered dining, bocce, games and seating</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-village-480.avif 480w, images/towns/south-banks-village-800.avif 800w, images/towns/south-banks-village-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-village-480.webp 480w, images/towns/south-banks-village-800.webp 800w, images/towns/south-banks-village-1280.webp 1280w">
+        <img src="images/towns/south-banks-village.jpg" alt="South Banks within the Lakeview Village master plan" loading="lazy" decoding="async">
+      </picture><figcaption>South Banks within the Lakeview Village master plan</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-waterfront-480.avif 480w, images/towns/south-banks-waterfront-800.avif 800w, images/towns/south-banks-waterfront-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-waterfront-480.webp 480w, images/towns/south-banks-waterfront-800.webp 800w, images/towns/south-banks-waterfront-1280.webp 1280w">
+        <img src="images/towns/south-banks-waterfront.jpg" alt="The waterfront trail at Lakeview Village" loading="lazy" decoding="async">
+      </picture><figcaption>The waterfront trail at Lakeview Village</figcaption></figure>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="sec-eyebrow">Pricing</div>
+  <h2 class="sec-title">VIP launch <em>price list</em></h2>
+  <div class="tbl-block">
+    <h3 class="tbl-title">All nine homes</h3>
+    <div class="tbl-scroll">
+      <table class="dt">
+        <thead><tr><th>Model</th><th>Type</th><th>Bedrooms</th><th>Sq ft</th><th>List price</th><th>Net of HST rebate*</th></tr></thead>
+        <tbody>
+        <tr class="grp"><td colspan="6">1-storey towns, above grade</td></tr>
+        <tr><td>Azure <a class="row-plan" href="#plan-azure">plan &rarr;</a></td><td>1-storey</td><td>2</td><td>931</td><td>$621,489</td><td class="num">$549,990</td></tr>
+        <tr><td>Azure End <a class="row-plan" href="#plan-azure">plan &rarr;</a></td><td>1-storey &middot; end</td><td>2</td><td>931</td><td>$632,789</td><td class="num">$559,990</td></tr>
+        <tr><td>Breeze End <a class="row-plan" href="#plan-breeze-end">plan &rarr;</a></td><td>1-storey &middot; end</td><td>3</td><td>997</td><td>$689,289</td><td class="num">$609,990</td></tr>
+        <tr class="grp"><td colspan="6">2+ storey towns</td></tr>
+        <tr><td>Coast <a class="row-plan" href="#plan-coast">plan &rarr;</a></td><td>3 levels</td><td>2 (opt. 3)</td><td>1,179</td><td>$757,089</td><td class="num">$669,990</td></tr>
+        <tr><td>Coast End <a class="row-plan" href="#plan-coast">plan &rarr;</a></td><td>3 levels &middot; end</td><td>2 (opt. 3)</td><td>1,179</td><td>$779,689</td><td class="num">$689,990</td></tr>
+        <tr><td>Drift End <a class="row-plan" href="#plan-drift-end">plan &rarr;</a></td><td>3 levels &middot; end</td><td>3 (opt. 4)</td><td>1,252</td><td>$790,989</td><td class="num">$699,990</td></tr>
+        <tr class="grp"><td colspan="6">2+ storey towns with rooftop terrace</td></tr>
+        <tr><td>Coast with Rooftop Terrace <a class="row-plan" href="#plan-coast-rooftop">plan &rarr;</a></td><td>3 levels + rooftop</td><td>2 (opt. 3)</td><td>1,385</td><td>$836,189</td><td class="num">$739,990</td></tr>
+        <tr><td>Coast with Rooftop Terrace End <a class="row-plan" href="#plan-coast-rooftop">plan &rarr;</a></td><td>3 levels + rooftop &middot; end</td><td>2 (opt. 3)</td><td>1,385</td><td>$858,789</td><td class="num">$759,990</td></tr>
+        <tr><td>Drift with Rooftop Terrace End <a class="row-plan" href="#plan-drift-rooftop-end">plan &rarr;</a></td><td>3 levels + rooftop &middot; end</td><td>3 (opt. 4)</td><td>1,463</td><td>$853,138</td><td class="num">$754,990</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">*Net of the first-time home buyer HST rebate, which applies only if the purchaser qualifies; otherwise the list price applies. Prices are base prices and may not reflect current availability. Subject to change without notice. E.&amp;O.E. September 22, 2026.</p>
+  </div>
+  <div class="tbl-block">
+    <h3 class="tbl-title">Options &amp; monthly costs</h3>
+    <div class="tbl-scroll">
+      <table class="dt compact">
+        <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+        <tbody>
+        <tr><td>Parking</td><td class="num">One underground spot included</td></tr>
+        <tr><td>Second parking spot</td><td class="num">$40,000</td></tr>
+        <tr><td>Locker</td><td class="num">$6,500</td></tr>
+        <tr><td>Private locker room</td><td class="num">$25,000</td></tr>
+        <tr><td>Second parking spot + private locker room</td><td class="num">$50,000</td></tr>
+        <tr><td>EV charger upgrade</td><td class="num">$10,600</td></tr>
+        <tr><td>Optional 3rd or 4th bedroom</td><td class="num">$9,500</td></tr>
+        <tr><td>Maintenance fee</td><td class="num">$199.99 per month, free for the first year</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">Maintenance fee covers the unit; parking and locker fees are extra where applicable. From the VIP launch price list, September 22, 2026.</p>
+  </div>
+</section>
+
 
 <section class="reg" id="register">
   <div class="reg-inner">
     <div class="reg-copy">
       <div class="sec-eyebrow">Register</div>
-      <h2 class="sec-title">Get the price list <em>the day it&rsquo;s released</em></h2>
-      <p>Floor plans and full pricing for South Banks come out September 22. Leave your details and you&rsquo;ll get them first, straight from Nikhil.</p>
+      <h2 class="sec-title">Want one of <em>these</em>?</h2>
+      <p>Leave your number and Nikhil will check what is still available, get your worksheet in, and walk you through the deposit and signing. No pressure, no spam.</p>
     </div>
     <form class="reg-form" id="reg-form" novalidate>
       <label>Full name<input type="text" name="name" autocomplete="name" required></label>
       <label>Phone<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required></label>
       <label>Email <span>(optional)</span><input type="email" name="email" autocomplete="email"></label>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="reg-hp">
-      <button type="submit">Send me the price list</button>
+      <button type="submit">Request a worksheet</button>
       <p class="reg-msg" id="reg-msg" role="status"></p>
       <p class="reg-fine">No spam. Your details go only to Nikhil Oberoi, the broker behind CondosAround. <a href="../privacy.html" style="color:inherit">Privacy policy</a>.</p>
     </form>
     <div class="reg-done" id="reg-done" hidden>
       <div class="reg-done-mark">&#10003;</div>
-      <h3>You&rsquo;re on the list.</h3>
-      <p>You&rsquo;ll get the price list and floor plans as soon as they&rsquo;re released. Questions before then? Call or text <a href="tel:6479240848">647-924-0848</a>.</p>
+      <h3>Got it.</h3>
+      <p>Nikhil will be in touch shortly. Sooner? Call or text <a href="tel:6479240848">647-924-0848</a>.</p>
     </div>
   </div>
 </section>
@@ -371,209 +917,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 </script>
 
 <section>
-  <div class="overview">
-    <div>
-      <div class="sec-eyebrow">Overview</div>
-      <h2 class="sec-title">About <em>South Banks</em></h2>
-      <p>South Banks is a new collection of coastal townhomes by DECO Homes and OPUS Homes inside Lakeview Village &mdash; the 177-acre master-planned waterfront community taking shape on Mississauga&rsquo;s shoreline. Seventeen low-rise blocks sit between Aerodrome Avenue and Marina Vista, directly across from Waterway Common Park and a short walk from Lake Ontario.</p>
-      <p>There are two home types: single-storey townhomes and two-storey upper townhomes, with private rooftop terraces on select upper homes. Every plan has two to four bedrooms and two full baths, every home sits above grade, and parking is underground &mdash; which leaves the ground level to landscaped walkways and a central amenity area.</p>
-      <div class="logo-row"><img src="images/towns/south-banks-logo.png" alt="South Banks" height="26" loading="lazy" decoding="async"><img src="images/towns/south-banks-deco-logo.png" alt="DECO Homes" height="30" loading="lazy" decoding="async"><img src="images/towns/south-banks-opus-logo.png" alt="OPUS Homes" height="26" loading="lazy" decoding="async"></div>
-    </div>
-    <div>
-      <h3 class="side-title">Getting around</h3>
-        <div class="cm-row"><span class="cm-time">Across the street</span><span class="cm-place">Waterway Common Park</span></div>
-        <div class="cm-row"><span class="cm-time">Short walk</span><span class="cm-place">Lake Ontario &amp; the Waterfront Trail</span></div>
-        <div class="cm-row"><span class="cm-time">At the door</span><span class="cm-place">Future MiWay stops on Jim Tovey Blvd &amp; Illumination Way</span></div>
-        <div class="cm-row"><span class="cm-time">Next door</span><span class="cm-place">Lakeview Village Innovation District</span></div>
-        <div class="cm-row"><span class="cm-time">About 5 min</span><span class="cm-place">Long Branch GO &middot; QEW / 427</span></div>
-        <div class="cm-row"><span class="cm-time">About 20 min</span><span class="cm-place">Downtown Toronto</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing">
-  <div class="sec-eyebrow">Pricing</div>
-  <h2 class="sec-title">Expected <em>pricing</em></h2>
-  <div class="tbl-block">
-    <h3 class="tbl-title">Launch price guidance</h3>
-    <div class="tbl-scroll">
-      <table class="dt compact">
-        <thead><tr><th>Home type</th><th>Bedrooms</th><th>Storeys</th><th>Expected pricing</th></tr></thead>
-        <tbody>
-        <tr class="grp"><td colspan="4">Single-Storey Townhomes</td></tr>
-        <tr><td>Interior home</td><td>2</td><td>1</td><td class="num">From $549,990*</td></tr>
-        <tr><td>End home</td><td>3</td><td>1</td><td class="num">Approx. $639,990</td></tr>
-        <tr class="grp"><td colspan="4">Two-Storey Upper Townhomes</td></tr>
-        <tr><td>Upper townhome</td><td>2 &ndash; 3</td><td>2</td><td class="num">Mid to high $700s</td></tr>
-        <tr><td>Upper townhome with rooftop terrace</td><td>3 &ndash; 4</td><td>2</td><td class="num">From the $800s</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="tbl-note">*Net of HST rebate; conditions apply. Guidance shared ahead of launch &mdash; the full price list and floor plans are released September 22, 2026, and this page will be updated that day.</p>
-  </div>
-</section>
-
-<section>
-  <div class="two-col">
-    <div>
-      <div class="sec-eyebrow">What&rsquo;s included</div>
-      <h2 class="sec-title">What we know <em>so far</em></h2>
-      <ul class="inc-list">
-        <li>Launch pricing from $549,990, net of the HST rebate</li>
-        <li>Two to four bedrooms, with two full baths on every plan</li>
-        <li>Private rooftop terraces on select two-storey homes</li>
-        <li>Every home above grade &mdash; no below-grade living space</li>
-        <li>Underground parking and a central landscaped amenity area</li>
-        <li>Extended deposits: $10,000 at signing, the balance spread over 11 to 17 months</li>
-        <li>Floor plans and the full price list release September 22, 2026</li>
-      </ul>
-    </div>
-    <div>
-      <div class="dep-card">
-        <h3 class="side-title">Deposit structure</h3>
-          <div class="dep-row"><span class="dep-when">At signing</span><span class="dep-amt">$10,000</span></div>
-          <div class="dep-row"><span class="dep-when">30, 60, 90, 150, 210 &amp; 270 days</span><span class="dep-amt">$7,500 each</span></div>
-          <div class="dep-row"><span class="dep-when">330 days</span><span class="dep-amt">$5,000 &nbsp;<span class="dim">(single-storey)</span><br>$7,500 &nbsp;<span class="dim">(two-storey)</span></span></div>
-          <div class="dep-row"><span class="dep-when">390, 450 &amp; 510 days</span><span class="dep-amt">$7,500 each &nbsp;<span class="dim">(two-storey only)</span></span></div>
-          <div class="dep-row"><span class="dep-when">On occupancy</span><span class="dep-amt">$10,000</span></div>
-          <div class="dep-row"><span class="dep-when">Total</span><span class="dep-amt">$70,000 &nbsp;<span class="dim">(single-storey)</span><br>$95,000 &nbsp;<span class="dim">(two-storey)</span></span></div>
-        <p class="dep-foot">Cheques payable to Bratty&rsquo;s LLP, In Trust. All post-dated deposits must be received at signing.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="sec-eyebrow">Deposit example</div>
-  <h2 class="sec-title">If you sign on <em>September 25, 2026</em></h2>
-  <p class="dx-intro">Real calendar dates, so you can see exactly when each deposit would fall due and how much you would have paid in at every step.</p>
-  <div class="dx-grid">
-    <div class="dx-card">
-      <div class="dx-head">
-        <div><div class="dx-name">Single-storey townhome</div><div class="dx-sub">8 cheques, the last on Aug 21, 2027 &middot; then $10,000 on occupancy</div></div>
-        <div class="dx-total">$70,000<span>total deposit</span></div>
-      </div>
-      <ol class="dx-list">
-        <li class="dx-step">
-          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
-          <div class="dx-amt">$10,000<span>$10,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:14.3%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
-          <div class="dx-amt">$7,500<span>$17,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:25.0%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Nov 24, 2026<span>60 days</span></div>
-          <div class="dx-amt">$7,500<span>$25,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:35.7%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Dec 24, 2026<span>90 days</span></div>
-          <div class="dx-amt">$7,500<span>$32,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:46.4%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Feb 22, 2027<span>150 days</span></div>
-          <div class="dx-amt">$7,500<span>$40,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:57.1%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Apr 23, 2027<span>210 days</span></div>
-          <div class="dx-amt">$7,500<span>$47,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:67.9%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Jun 22, 2027<span>270 days</span></div>
-          <div class="dx-amt">$7,500<span>$55,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:78.6%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Aug 21, 2027<span>330 days</span></div>
-          <div class="dx-amt">$5,000<span>$60,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:85.7%"></i></div>
-        </li>
-        <li class="dx-step is-occ">
-          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
-          <div class="dx-amt">$10,000<span>$70,000 paid in full</span></div>
-          <div class="dx-bar"><i style="width:100%"></i></div>
-        </li>
-      </ol>
-    </div>
-    <div class="dx-card">
-      <div class="dx-head">
-        <div><div class="dx-name">Two-storey townhome</div><div class="dx-sub">11 cheques, the last on Feb 17, 2028 &middot; then $10,000 on occupancy</div></div>
-        <div class="dx-total">$95,000<span>total deposit</span></div>
-      </div>
-      <ol class="dx-list">
-        <li class="dx-step">
-          <div class="dx-date">Sep 25, 2026<span>At signing</span></div>
-          <div class="dx-amt">$10,000<span>$10,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:10.5%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Oct 25, 2026<span>30 days</span></div>
-          <div class="dx-amt">$7,500<span>$17,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:18.4%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Nov 24, 2026<span>60 days</span></div>
-          <div class="dx-amt">$7,500<span>$25,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:26.3%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Dec 24, 2026<span>90 days</span></div>
-          <div class="dx-amt">$7,500<span>$32,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:34.2%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Feb 22, 2027<span>150 days</span></div>
-          <div class="dx-amt">$7,500<span>$40,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:42.1%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Apr 23, 2027<span>210 days</span></div>
-          <div class="dx-amt">$7,500<span>$47,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:50.0%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Jun 22, 2027<span>270 days</span></div>
-          <div class="dx-amt">$7,500<span>$55,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:57.9%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Aug 21, 2027<span>330 days</span></div>
-          <div class="dx-amt">$7,500<span>$62,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:65.8%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Oct 20, 2027<span>390 days</span></div>
-          <div class="dx-amt">$7,500<span>$70,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:73.7%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Dec 19, 2027<span>450 days</span></div>
-          <div class="dx-amt">$7,500<span>$77,500 paid to date</span></div>
-          <div class="dx-bar"><i style="width:81.6%"></i></div>
-        </li>
-        <li class="dx-step">
-          <div class="dx-date">Feb 17, 2028<span>510 days</span></div>
-          <div class="dx-amt">$7,500<span>$85,000 paid to date</span></div>
-          <div class="dx-bar"><i style="width:89.5%"></i></div>
-        </li>
-        <li class="dx-step is-occ">
-          <div class="dx-date">On occupancy<span>Date to be announced</span></div>
-          <div class="dx-amt">$10,000<span>$95,000 paid in full</span></div>
-          <div class="dx-bar"><i style="width:100%"></i></div>
-        </li>
-      </ol>
-    </div>
-  </div>
-  <p class="tbl-note">Illustration only, counted in calendar days from a September 25, 2026 signing. Your actual deposit dates are set out in your Agreement of Purchase and Sale; all post-dated cheques are provided at signing, payable to Bratty&rsquo;s LLP, In Trust.</p>
-</section>
-
-<section>
   <div class="setting">
     <div class="setting-media"><picture>
         <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/south-banks-boardwalk-480.avif 480w, images/towns/south-banks-boardwalk-800.avif 800w, images/towns/south-banks-boardwalk-1280.avif 1280w">
@@ -583,8 +926,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div>
       <div class="sec-eyebrow">The setting</div>
       <h2 class="sec-title">Mornings on <em>the water</em></h2>
-      <p>Lakeview Village reopens a stretch of Mississauga shoreline that was off-limits for decades. South Banks sits one block from it: the pier, the marina, the Waterfront Trail and a sand-and-pebble beach are all a walk from the front door.</p>
-      <p>Paddle before work, cycle the trail to Port Credit, or take Long Branch GO downtown &mdash; this is lakeside living with a twenty-minute commute.</p>
+      <p>Lakeview Village reopens a stretch of Mississauga shoreline that was off-limits for decades: 177 acres, 45 acres of parkland, a one-kilometre pier, and a waterfront trail that runs to Port Credit. South Banks sits one block from it.</p>
+      <p>Paddle before work, cycle the trail, or take Long Branch GO downtown in about 25 minutes &mdash; lakeside living with a city commute.</p>
     </div>
   </div>
 </section>
@@ -604,46 +947,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="cm-row"><span class="cm-time">South</span><span class="cm-place">Marina Vista &middot; Waterway Common Park &middot; Lake Ontario</span></div>
       <div class="cm-row"><span class="cm-time">West</span><span class="cm-place">Jim Tovey Boulevard</span></div>
       <div class="cm-row"><span class="cm-time">East</span><span class="cm-place">Illumination Way &middot; Innovation District</span></div>
-      <div class="cm-row"><span class="cm-time">Centre</span><span class="cm-place">Landscaped amenity area &middot; underground parking entrance</span></div>
-      <div class="cm-row"><span class="cm-time">Also on site</span><span class="cm-place">Visitor parking &middot; bike lanes on every bordering street</span></div>
+      <div class="cm-row"><span class="cm-time">Centre</span><span class="cm-place">Courtyard lawn, covered dining, bocce court &amp; oversized games</span></div>
+      <div class="cm-row"><span class="cm-time">Below grade</span><span class="cm-place">Resident parking, one spot per home, with EV upgrade available</span></div>
+      <div class="cm-row"><span class="cm-time">Presentation gallery</span><span class="cm-place">985 Jim Tovey Blvd, Lakeview Village Discovery Centre</span></div>
     </div>
-  </div>
-</section>
-
-<section id="gallery">
-  <div class="sec-eyebrow">Gallery</div>
-  <h2 class="sec-title">Renderings &amp; <em>setting</em></h2>
-  <div class="gal">
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-rooftop-480.avif 480w, images/towns/south-banks-rooftop-800.avif 800w, images/towns/south-banks-rooftop-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-rooftop-480.webp 480w, images/towns/south-banks-rooftop-800.webp 800w, images/towns/south-banks-rooftop-1280.webp 1280w">
-        <img src="images/towns/south-banks-rooftop.jpg" alt="Private rooftop terrace overlooking Lake Ontario" loading="lazy" decoding="async">
-      </picture><figcaption>Private rooftop terrace overlooking Lake Ontario</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-detail-480.avif 480w, images/towns/south-banks-detail-800.avif 800w, images/towns/south-banks-detail-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-detail-480.webp 480w, images/towns/south-banks-detail-800.webp 800w, images/towns/south-banks-detail-1280.webp 1280w">
-        <img src="images/towns/south-banks-detail.jpg" alt="South Banks exterior detail" loading="lazy" decoding="async">
-      </picture><figcaption>South Banks exterior detail</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-waterfront-480.avif 480w, images/towns/south-banks-waterfront-800.avif 800w, images/towns/south-banks-waterfront-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-waterfront-480.webp 480w, images/towns/south-banks-waterfront-800.webp 800w, images/towns/south-banks-waterfront-1280.webp 1280w">
-        <img src="images/towns/south-banks-waterfront.jpg" alt="The waterfront trail at Lakeview Village" loading="lazy" decoding="async">
-      </picture><figcaption>The waterfront trail at Lakeview Village</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-lake-480.avif 480w, images/towns/south-banks-lake-800.avif 800w, images/towns/south-banks-lake-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-lake-480.webp 480w, images/towns/south-banks-lake-800.webp 800w, images/towns/south-banks-lake-1280.webp 1280w">
-        <img src="images/towns/south-banks-lake.jpg" alt="Lake Ontario, a short walk from South Banks" loading="lazy" decoding="async">
-      </picture><figcaption>Lake Ontario, a short walk from South Banks</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-park-480.avif 480w, images/towns/south-banks-park-800.avif 800w, images/towns/south-banks-park-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-park-480.webp 480w, images/towns/south-banks-park-800.webp 800w, images/towns/south-banks-park-1280.webp 1280w">
-        <img src="images/towns/south-banks-park.jpg" alt="Lakefront parkland beside the community" loading="lazy" decoding="async">
-      </picture><figcaption>Lakefront parkland beside the community</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-sail-480.avif 480w, images/towns/south-banks-sail-800.avif 800w, images/towns/south-banks-sail-1280.avif 1280w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/south-banks-sail-480.webp 480w, images/towns/south-banks-sail-800.webp 800w, images/towns/south-banks-sail-1280.webp 1280w">
-        <img src="images/towns/south-banks-sail.jpg" alt="Sailing off the Mississauga shoreline" loading="lazy" decoding="async">
-      </picture><figcaption>Sailing off the Mississauga shoreline</figcaption></figure>
   </div>
 </section>
 
@@ -659,7 +966,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 </section>
 
 <div class="cta">
-  <div class="cta-h">Interested in South Banks?<br><em>Get the price list the day it&rsquo;s released.</em></div>
+  <div class="cta-h">Interested in South Banks?<br><em>Want one of these? Let&rsquo;s get your worksheet in.</em></div>
   <div class="cta-actions">
     <a href="tel:6479240848" class="btn-w">Call 647-924-0848</a>
     <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%20South%20Banks." class="btn-o">Text for details</a>
@@ -667,7 +974,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 </div>
 
 <div class="disclaimer">
-  Source: DECO Homes and OPUS Homes launch materials, deposit schedule and pre-launch price guidance, September 2026. Renderings are artist&rsquo;s concept. Prices, sizes, incentives,
+  Source: DECO Homes and OPUS Homes VIP launch price list, incentives sheet, deposit structure and Phase 1 floor plan brochure, September 22, 2026. Renderings are artist&rsquo;s concept. Prices, sizes, incentives,
   specifications and availability are subject to change without notice and may not reflect
   the current release. Any GST/HST rebate reference depends on purchaser eligibility and on
   legislation being enacted as anticipated. Confirm all figures with the sales office before

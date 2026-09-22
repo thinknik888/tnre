@@ -300,26 +300,24 @@ PROJECTS = {
     "south-banks": {
         "name": "South Banks",
         "builder": "DECO Homes &amp; OPUS Homes",
-        "status": "Coming soon &middot; price list Sept 22",
-        "status_kind": "new",
-        "tagline": "Coastal townhomes in Lakeview Village.",
+        "status": "Now selling &middot; VIP launch",
+        "status_kind": "live",
+        "tagline": "Coastal townhomes in Lakeview Village, from $549,990.",
         "address": "Jim Tovey Blvd &amp; Marina Vista &middot; Lakeview Village, Mississauga",
         "area": "Lakeview Village",
         "hero": "south-banks-hero",
-        "hero_alt": "South Banks townhomes exterior rendering",
-        # Portrait rendering: on desktop, show it whole beside the title instead
-        # of stretching it full-bleed (which crops it to a strip of wall).
-        "hero_layout": "split",
-        "meta": "South Banks by DECO Homes and OPUS Homes &mdash; coastal townhomes in Lakeview "
-                "Village, Mississauga. 2&ndash;4 bedrooms, rooftop terraces, from $549,990. "
-                "Full price list and floor plans September 22, 2026.",
+        "hero_alt": "South Banks townhomes, Elevation C rendering",
+        "meta": "South Banks by DECO Homes and OPUS Homes: coastal townhomes in Lakeview Village, "
+                "Mississauga. Nine homes across six plans, 2 to 4 bedrooms, 931 to 1,463 sq ft, "
+                "from $549,990 net of HST rebate. Underground parking included, 2029 occupancy. "
+                "Full VIP launch price list and floor plans.",
         "facts": [
             ("From", "$549,990*"),
+            ("Size", "931 &ndash; 1,463 sq ft"),
             ("Bedrooms", "2 &ndash; 4"),
             ("Baths", "2 full, every plan"),
-            ("Home types", "1 &amp; 2-storey towns"),
-            ("Blocks", "17"),
-            ("Price list", "Sept 22"),
+            ("Deposit", "$70K &ndash; $95K"),
+            ("Occupancy", "2029"),
         ],
         "intro": [
             "South Banks is a new collection of coastal townhomes by DECO Homes and OPUS Homes "
@@ -327,81 +325,125 @@ PROJECTS = {
             "taking shape on Mississauga&rsquo;s shoreline. Seventeen low-rise blocks sit between "
             "Aerodrome Avenue and Marina Vista, directly across from Waterway Common Park and a "
             "short walk from Lake Ontario.",
-            "There are two home types: single-storey townhomes and two-storey upper townhomes, "
-            "with private rooftop terraces on select upper homes. Every plan has two to four "
-            "bedrooms and two full baths, every home sits above grade, and parking is "
-            "underground &mdash; which leaves the ground level to landscaped walkways and a "
-            "central amenity area.",
+            "The launch offers six plans at nine price points: single-storey Azure and Breeze homes "
+            "with private terraces, and three-level Coast and Drift homes, some with a rooftop "
+            "terrace. Every home is above grade with two full baths, an underground parking spot "
+            "included, and a third or fourth bedroom option. Pricing starts at $549,990 net of "
+            "the HST rebate, development levies are capped at $0, and occupancy is 2029.",
         ],
         "logos": [
             ("south-banks-logo.png", "South Banks", 26),
             ("south-banks-deco-logo.png", "DECO Homes", 30),
             ("south-banks-opus-logo.png", "OPUS Homes", 26),
         ],
-        # Registration form (leads -> dashboard + Follow Up Boss via save-lead).
+        "plans": "scripts/manifests/south-banks-plans.json",
+        "plans_only_priced": True,
+        "plans_gate": False,
+        "plans_ratio": "1224 / 792",
+        "plans_title": "9 homes on the <em>VIP launch price list</em>",
+        "plans_intro": "Six layouts across nine price points, from the 931 sq ft Azure to the 1,463 sq ft "
+                       "Drift with rooftop terrace. Every plan has two full baths and one underground "
+                       "parking spot; end units add windows and a small premium.",
+        "plans_note": "Plans from the Phase 1 floor plan brochure; prices from the VIP launch price list "
+                      "dated September 22, 2026. *Net price reflects the first-time home buyer HST "
+                      "rebate and applies only if the purchaser qualifies; otherwise the list price "
+                      "applies. Layouts and dimensions are approximate and subject to change without "
+                      "notice. E.&amp;O.E.",
+        "order": ["overview", "plans", "incentives", "deposit_example", "gallery", "pricing", "register",
+                  "setting", "site_plan", "nearby"],
         "register": {
-            "title": "Get the price list <em>the day it&rsquo;s released</em>",
-            "text": "Floor plans and full pricing for South Banks come out September 22. "
-                    "Leave your details and you&rsquo;ll get them first, straight from Nikhil.",
-            "button": "Send me the price list",
-            "hero_button": "Register for the price list",
+            "title": "Want one of <em>these</em>?",
+            "text": "Leave your number and Nikhil will check what is still available, get your "
+                    "worksheet in, and walk you through the deposit and signing. No pressure, no spam.",
+            "button": "Request a worksheet",
+            "hero_button": "See floor plans &amp; prices",
+            "hero_href": "#floor-plans",
+            "done_title": "Got it.",
+            "done_text": "Nikhil will be in touch shortly. Sooner? Call or text "
+                         "<a href=\"tel:6479240848\">647-924-0848</a>.",
         },
-        "pricing_title": "Expected <em>pricing</em>",
+        "pricing_title": "VIP launch <em>price list</em>",
         "tables": [
             {
-                "title": "Launch price guidance",
-                "compact": True,   # few columns: fit a phone instead of scrolling sideways
-                "note": "*Net of HST rebate; conditions apply. Guidance shared ahead of launch "
-                        "&mdash; the full price list and floor plans are released "
-                        "September 22, 2026, and this page will be updated that day.",
-                "cols": ["Home type", "Bedrooms", "Storeys", "Expected pricing"],
+                "title": "All nine homes",
+                "note": "*Net of the first-time home buyer HST rebate, which applies only if the purchaser "
+                        "qualifies; otherwise the list price applies. Prices are base prices and may not "
+                        "reflect current availability. Subject to change without notice. E.&amp;O.E. "
+                        "September 22, 2026.",
+                "cols": ["Model", "Type", "Bedrooms", "Sq ft", "List price", "Net of HST rebate*"],
+                "plan_cols": {"model": 0, "sqft": 3, "price": 4, "net": 5},
                 "groups": [
-                    ("Single-Storey Townhomes", [
-                        ["Interior home", "2", "1", "From $549,990*"],
-                        ["End home", "3", "1", "Approx. $639,990"],
+                    ("1-storey towns, above grade", [
+                        ["Azure", "1-storey", "2", "931", "$621,489", "$549,990"],
+                        ["Azure End", "1-storey &middot; end", "2", "931", "$632,789", "$559,990"],
+                        ["Breeze End", "1-storey &middot; end", "3", "997", "$689,289", "$609,990"],
                     ]),
-                    ("Two-Storey Upper Townhomes", [
-                        ["Upper townhome", "2 &ndash; 3", "2", "Mid to high $700s"],
-                        ["Upper townhome with rooftop terrace", "3 &ndash; 4", "2", "From the $800s"],
+                    ("2+ storey towns", [
+                        ["Coast", "3 levels", "2 (opt. 3)", "1,179", "$757,089", "$669,990"],
+                        ["Coast End", "3 levels &middot; end", "2 (opt. 3)", "1,179", "$779,689", "$689,990"],
+                        ["Drift End", "3 levels &middot; end", "3 (opt. 4)", "1,252", "$790,989", "$699,990"],
+                    ]),
+                    ("2+ storey towns with rooftop terrace", [
+                        ["Coast with Rooftop Terrace", "3 levels + rooftop", "2 (opt. 3)", "1,385", "$836,189", "$739,990"],
+                        ["Coast with Rooftop Terrace End", "3 levels + rooftop &middot; end", "2 (opt. 3)", "1,385", "$858,789", "$759,990"],
+                        ["Drift with Rooftop Terrace End", "3 levels + rooftop &middot; end", "3 (opt. 4)", "1,463", "$853,138", "$754,990"],
                     ]),
                 ],
             },
+            {
+                "title": "Options &amp; monthly costs",
+                "compact": True,
+                "note": "Maintenance fee covers the unit; parking and locker fees are extra where "
+                        "applicable. From the VIP launch price list, September 22, 2026.",
+                "cols": ["Item", "Cost"],
+                "groups": [("", [
+                    ["Parking", "One underground spot included"],
+                    ["Second parking spot", "$40,000"],
+                    ["Locker", "$6,500"],
+                    ["Private locker room", "$25,000"],
+                    ["Second parking spot + private locker room", "$50,000"],
+                    ["EV charger upgrade", "$10,600"],
+                    ["Optional 3rd or 4th bedroom", "$9,500"],
+                    ["Maintenance fee", "$199.99 per month, free for the first year"],
+                ])],
+            },
         ],
-        "incentives_title": "What we know <em>so far</em>",
+        "incentives_title": "VIP launch <em>incentives</em>",
         "incentives": [
-            "Launch pricing from $549,990, net of the HST rebate",
-            "Two to four bedrooms, with two full baths on every plan",
-            "Private rooftop terraces on select two-storey homes",
-            "Every home above grade &mdash; no below-grade living space",
-            "Underground parking and a central landscaped amenity area",
-            "Extended deposits: $10,000 at signing, the balance spread over 11 to 17 months",
-            "Floor plans and the full price list release September 22, 2026",
+            "One year of maintenance fees free",
+            "One underground parking spot included",
+            "Development levies capped at $0",
+            "Closing costs capped at $5,000",
+            "Free assignment (legal fees apply)",
+            "Extended deposits: $10,000 at signing, then $7,500 cheques spread over 11 to 17 months",
+            "6-piece appliance package and ceramic kitchen backsplash included",
+            "Quartz counters, oak stairs, smooth ceilings and laminate floors throughout",
+            "Launch timeline: worksheets to September 24 at 8 PM, allocations September 25, signing September 26",
         ],
         "deposit": {
             "title": "Deposit structure",
             "rows": [
-                ("At signing", "$10,000"),
+                ("At signing", "$10,000 &nbsp;<span class=\"dim\">(bank draft)</span>"),
                 ("30, 60, 90, 150, 210 &amp; 270 days", "$7,500 each"),
-                ("330 days", "$5,000 &nbsp;<span class=\"dim\">(single-storey)</span><br>"
-                             "$7,500 &nbsp;<span class=\"dim\">(two-storey)</span>"),
-                ("390, 450 &amp; 510 days", "$7,500 each &nbsp;<span class=\"dim\">(two-storey only)</span>"),
+                ("330 days", "$5,000 &nbsp;<span class=\"dim\">(1-storey)</span><br>"
+                             "$7,500 &nbsp;<span class=\"dim\">(2+ storey)</span>"),
+                ("390, 450 &amp; 510 days", "$7,500 each &nbsp;<span class=\"dim\">(2+ storey only)</span>"),
                 ("On occupancy", "$10,000"),
-                ("Total", "$70,000 &nbsp;<span class=\"dim\">(single-storey)</span><br>"
-                          "$95,000 &nbsp;<span class=\"dim\">(two-storey)</span>"),
+                ("Total", "$70,000 &nbsp;<span class=\"dim\">(1-storey)</span><br>"
+                          "$95,000 &nbsp;<span class=\"dim\">(2+ storey)</span>"),
             ],
-            "foot": "Cheques payable to Bratty&rsquo;s LLP, In Trust. All post-dated deposits "
-                    "must be received at signing.",
+            "foot": "Cheques payable to Brattys LLP in trust; the first $10,000 by bank draft. All "
+                    "post-dated cheques are provided at signing.",
         },
-        # Worked example shown as a dated timeline. Day offsets come straight from
-        # the builder's "Deposit Cheque Dates" sheet; change "signed" to re-date it.
+        # Worked example dated from the launch signing day.
         "deposit_example": {
-            "signed": "2026-09-25",
+            "signed": "2026-09-26",
             "schedules": [
-                {"label": "Single-storey townhome",
+                {"label": "1-storey townhome (Azure, Breeze)",
                  "steps": [(0, 10000), (30, 7500), (60, 7500), (90, 7500), (150, 7500),
                            (210, 7500), (270, 7500), (330, 5000)],
                  "occupancy": 10000},
-                {"label": "Two-storey townhome",
+                {"label": "2+ storey townhome (Coast, Drift)",
                  "steps": [(0, 10000), (30, 7500), (60, 7500), (90, 7500), (150, 7500),
                            (210, 7500), (270, 7500), (330, 7500), (390, 7500), (450, 7500),
                            (510, 7500)],
@@ -410,11 +452,11 @@ PROJECTS = {
         },
         "commute": [
             ("Across the street", "Waterway Common Park"),
-            ("Short walk", "Lake Ontario &amp; the Waterfront Trail"),
+            ("Short walk", "Lake Ontario, the pier &amp; the Waterfront Trail"),
             ("At the door", "Future MiWay stops on Jim Tovey Blvd &amp; Illumination Way"),
             ("Next door", "Lakeview Village Innovation District"),
             ("About 5 min", "Long Branch GO &middot; QEW / 427"),
-            ("About 20 min", "Downtown Toronto"),
+            ("About 25 min", "Union Station by GO train"),
         ],
         "setting": {
             "image": "south-banks-boardwalk",
@@ -423,11 +465,10 @@ PROJECTS = {
             "title": "Mornings on <em>the water</em>",
             "text": [
                 "Lakeview Village reopens a stretch of Mississauga shoreline that was off-limits "
-                "for decades. South Banks sits one block from it: the pier, the marina, the "
-                "Waterfront Trail and a sand-and-pebble beach are all a walk from the front "
-                "door.",
-                "Paddle before work, cycle the trail to Port Credit, or take Long Branch GO "
-                "downtown &mdash; this is lakeside living with a twenty-minute commute.",
+                "for decades: 177 acres, 45 acres of parkland, a one-kilometre pier, and a "
+                "waterfront trail that runs to Port Credit. South Banks sits one block from it.",
+                "Paddle before work, cycle the trail, or take Long Branch GO downtown in about "
+                "25 minutes &mdash; lakeside living with a city commute.",
             ],
         },
         "site_plan": {
@@ -439,49 +480,53 @@ PROJECTS = {
                 ("South", "Marina Vista &middot; Waterway Common Park &middot; Lake Ontario"),
                 ("West", "Jim Tovey Boulevard"),
                 ("East", "Illumination Way &middot; Innovation District"),
-                ("Centre", "Landscaped amenity area &middot; underground parking entrance"),
-                ("Also on site", "Visitor parking &middot; bike lanes on every bordering street"),
+                ("Centre", "Courtyard lawn, covered dining, bocce court &amp; oversized games"),
+                ("Below grade", "Resident parking, one spot per home, with EV upgrade available"),
+                ("Presentation gallery", "985 Jim Tovey Blvd, Lakeview Village Discovery Centre"),
             ],
         },
         "gallery_title": "Renderings &amp; <em>setting</em>",
         "gallery": [
-            ("south-banks-rooftop", "Private rooftop terrace overlooking Lake Ontario"),
-            ("south-banks-detail", "South Banks exterior detail"),
+            ("south-banks-street", "South Banks from the street"),
+            ("south-banks-park", "The courtyard and park side of the community"),
+            ("south-banks-elevation-a", "Elevation A"),
+            ("south-banks-rooftop", "Rooftop terrace on the Coast and Drift rooftop plans"),
+            ("south-banks-rooftop-2", "Rooftop terrace at sunset"),
+            ("south-banks-living", "Living and dining, main level"),
+            ("south-banks-kitchen", "Kitchen finishes, Package B"),
+            ("south-banks-amenities", "Courtyard amenity plan: covered dining, bocce, games and seating"),
+            ("south-banks-village", "South Banks within the Lakeview Village master plan"),
             ("south-banks-waterfront", "The waterfront trail at Lakeview Village"),
-            ("south-banks-lake", "Lake Ontario, a short walk from South Banks"),
-            ("south-banks-park", "Lakefront parkland beside the community"),
-            ("south-banks-sail", "Sailing off the Mississauga shoreline"),
         ],
-        "cta_line": "Get the price list the day it&rsquo;s released.",
-        "source": "DECO Homes and OPUS Homes launch materials, deposit schedule and pre-launch "
-                  "price guidance, September 2026.",
+        "cta_line": "Want one of these? Let&rsquo;s get your worksheet in.",
+        "source": "DECO Homes and OPUS Homes VIP launch price list, incentives sheet, deposit "
+                  "structure and Phase 1 floor plan brochure, September 22, 2026.",
         "card": {
             "image": "south-banks-hero",
-            "image_alt": "South Banks townhomes exterior rendering",
-            "flag": ("New &middot; price list Sept 22", "new"),
+            "image_alt": "South Banks townhomes, Elevation C rendering",
+            "flag": ("Now selling &middot; 2029 occupancy", ""),
             "location": "Lakeview Village &middot; Jim Tovey Blvd &amp; Marina Vista",
-            "specs": [("Bedrooms", "2 &ndash; 4"), ("Baths", "2 full, every plan"),
-                      ("Storeys", "1 &amp; 2-storey towns"), ("Outdoor", "Rooftop terraces")],
+            "specs": [("Size", "931 &ndash; 1,463 sq ft"), ("Bedrooms", "2 &ndash; 4"),
+                      ("Storeys", "1 &amp; 2+ storey towns"), ("Parking", "1 underground spot included")],
             "price": "$549,990",
         },
         "compare": {
-            "short": "South Banks", "builder": "DECO &amp; OPUS &middot; Coming soon",
-            "price": "$549,990<span class=\"cmp-mini\">net of HST rebate</span>",
-            "ceiling": "From the $800s<span class=\"cmp-mini\">3&ndash;4 bed with rooftop terrace</span>",
-            "size": "Released Sept 22", "ppsf": "&mdash;",
+            "short": "South Banks", "builder": "DECO &amp; OPUS",
+            "price": "$549,990<span class=\"cmp-mini\">net of HST rebate*</span>",
+            "ceiling": "$759,990<span class=\"cmp-mini\">net of HST rebate &middot; list to $858,789</span>",
+            "size": "931 &ndash; 1,463 sq ft", "ppsf": "~$591",
             "beds": "2 &ndash; 4<span class=\"cmp-mini\">2 full baths on every plan</span>",
-            "storeys": "Single-storey towns +<br>2-storey upper towns",
-            "parking": "Underground<br>Visitor parking on site",
-            "outdoor": "Rooftop terraces on select homes",
-            "deposit": "$70,000 single-storey<br>$95,000 two-storey<br>$10,000 at signing",
-            "occupancy": "To be announced", "fees": "To be announced",
-            "incentive": "Launch pricing net of HST rebate &middot; deposits spread over "
-                         "11 &ndash; 17 months",
-            "homes": "17 blocks",
-            "dated": "pre-launch guidance for South Banks (full price list due September 22, 2026)",
+            "storeys": "1-storey towns +<br>3-level towns, some with rooftop",
+            "parking": "1 underground spot included<br>2nd spot $40,000",
+            "outdoor": "Terraces, balconies &amp; rooftop terraces",
+            "deposit": "$70,000 1-storey<br>$95,000 2+ storey<br>$10,000 at signing",
+            "occupancy": "2029",
+            "fees": "$199.99/mo<br>first year free",
+            "incentive": "$0 levies &middot; free assignment &middot; 1 year of fees free",
+            "homes": "9 homes across 6 plans<br>17 blocks",
+            "dated": "the South Banks VIP launch price list dated September 22, 2026",
         },
     },
-
     "westshore-long-branch": {
         "name": "Westshore at Long Branch",
         "builder": "Minto Communities",
@@ -1060,6 +1105,8 @@ def _plan_lookup(plans):
     by = {}
     for pl in plans:
         by.setdefault(("name", pl["name"].lower()), []).append(pl["slug"])
+        for a in pl.get("aliases", []):
+            by.setdefault(("name", a.lower()), []).append(pl["slug"])
         by.setdefault((pl["type"].lower(), pl["sqft"]), []).append(pl["slug"])
     return by
 
@@ -1072,6 +1119,7 @@ def _row_slugs(by, r, c):
 def price_index(tables, plans):
     """slug -> {"min": lowest list price, "net": ..., "blocks": [(group, price)]} from the price tables."""
     by = _plan_lookup(plans)
+    by_slug = {pl["slug"]: pl for pl in plans}
     idx = {}
     for t in tables:
         c = _plan_cols(t)
@@ -1081,24 +1129,32 @@ def price_index(tables, plans):
             for r in rows:
                 price = _price_number(r[c["price"]])
                 net = _price_number(r[c["net"]]) if c.get("net") is not None and len(r) > c["net"] else None
+                model = html.unescape(r[c["model"]]).split("<")[0].strip()
                 for slug in _row_slugs(by, r, c):
                     e = idx.setdefault(slug, {"min": price, "net": net, "blocks": []})
                     if price < e["min"]:
                         e["min"], e["net"] = price, net
-                    e["blocks"].append((gname, price))
+                    label = by_slug[slug].get("variant_labels", {}).get(model, gname)
+                    e["blocks"].append((label, price, net))
     return idx
 
 
 def block_prices_html(blocks):
-    """'Block 1 & 7 $757,900 · Block 2 $769,900' -- blocks grouped by price, cheapest first."""
+    """'Block 1 & 7 $757,900 · Block 2 $769,900' (blocks grouped by price, cheapest first),
+    or 'Interior $549,990 · End unit $559,990' when the labels are not blocks. Shows the
+    net figure where the table has one, since that is what the card leads with."""
+    if len(blocks) < 2:
+        return ""
+    blocky = all(str(g).startswith("Block ") for g, _, _ in blocks)
     by_price = {}
-    for gname, price in blocks:
-        by_price.setdefault(price, []).append(gname.replace("Block ", ""))
+    for g, price, net in blocks:
+        shown = net if net else price
+        by_price.setdefault(shown, []).append(str(g).replace("Block ", "") if blocky else str(g))
     parts = []
-    for price in sorted(by_price):
-        nums = by_price[price]
-        label = ("Block " if len(nums) == 1 else "Blocks ") + " &amp; ".join(nums)
-        parts.append("%s <b>%s</b>" % (label, _money(price)))
+    for shown in sorted(by_price):
+        names = by_price[shown]
+        label = (("Block " if len(names) == 1 else "Blocks ") + " &amp; ".join(names)) if blocky else " &amp; ".join(names)
+        parts.append("%s <b>%s</b>" % (label, _money(shown)))
     return " &middot; ".join(parts)
 
 
@@ -1179,8 +1235,8 @@ def plans_section(p, plans, plans_dir, register_html=""):
         spec = "%s bed &middot; %s bath &middot; %s sq ft" % (pl["beds"], pl["baths"], "{:,}".format(pl["sqft"]))
         if pl["slug"] in prices:
             e = prices[pl["slug"]]
-            blocks = block_prices_html(e["blocks"]) if any(g for g, _ in e["blocks"]) else ""
-            several = len(set(pr for _, pr in e["blocks"])) > 1
+            blocks = block_prices_html(e["blocks"]) if any(g for g, _, _ in e["blocks"]) else ""
+            several = len(set(pr for _, pr, _ in e["blocks"])) > 1
             if e.get("net"):
                 # the net-of-HST figure leads; the list price sits under it in plain text
                 price = ('<div class="plan-price"><b class="plan-net">%s%s</b> <i>net of HST rebate*</i>'
