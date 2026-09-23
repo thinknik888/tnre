@@ -3,169 +3,349 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8 Temple &mdash; Floor Plans &amp; Suites | CondosAround.com</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>8 Temple &mdash; Curated Properties &middot; Liberty Village | CondosAround.com</title>
+  <meta name="description" content="8 Temple by Curated Properties: 229 suites at 8 Temple Avenue in Toronto Waterfront West, beside Liberty Village. 29 floor plans from 477 to 2,156 sq ft, one to three bedrooms, promo pricing from $589,900 with HST included. Rooftop sauna, fitness studio and lounge. Early 2029 occupancy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" type="image/avif" imagesizes="100vw" imagesrcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w, images/towns/8-temple-hero-2560.avif 2560w">
   <style>
-    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
+             --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
+             --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(0,34,68,0.13); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; max-width: 100%; }
     body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    img { max-width: 100%; display: block; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+           padding: 1.15rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px);
+           border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
-    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .nav-back:hover {color: #002244; }
-    .nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--navy); }
+    .nav-back { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+                 color: var(--text-muted); text-decoration: none; }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy); color: #fff; padding: 0.6rem 1.4rem; border-radius: 2px;
+                text-decoration: none; font-size: 0.82rem; white-space: nowrap; }
+    nav > a { white-space: nowrap; }
+    .nav-back .nb-short { display: none; }
 
-    /* HERO */
-    .hero { position: relative; height: 70vh; min-height: 500px; overflow: hidden; }
-    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.6) 100%); }
-    .hero-content { position: absolute; bottom: 3rem; left: 3rem; right: 3rem; color: var(--white); }
-    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.75rem; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
-    .hero-title em { font-style: italic; color: var(--gold-light); }
-    .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
-    .hero-meta-item { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
-    .hero-meta-item strong { color: var(--white); font-weight: 400; }
+    .hero { position: relative; min-height: 66vh; display: flex; align-items: flex-end; background: var(--navy-deep); }
+    .hero picture, .hero .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero .hero-img { object-fit: cover; object-position: center 55%; }
+    .hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,18,38,0.25) 0%, rgba(0,18,38,0.55) 45%, rgba(0,18,38,0.93) 100%); }
+    .hero-inner { position: relative; z-index: 2; padding: 5rem 3rem 2.5rem; width: 100%; }
+    .hero-builder { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+    .hero-status { display: inline-block; background: rgba(122,38,38,0.95); color: #fff; font-size: 0.66rem;
+                    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
+                    border-radius: 2px; margin-bottom: 1rem; }
+    .hero-status.new { background: rgba(201,168,76,0.96); color: #17130a; }
+    .hero-status.live { background: rgba(0,34,68,0.92); color: #fff; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+                   font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }
+    .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }
+    .hero-addr { font-size: 0.88rem; color: rgba(255,255,255,0.62); }
+    .hero-credit { position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }
 
-    /* BUILDING INFO */
-    .building-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; }
-    .building-desc { padding: 4rem 3rem; border-right: 1px solid var(--border); }
-    .building-desc h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1.25rem; }
-    .building-desc h2 em {color: #002244; }
-    .building-desc p { font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
-    .building-stats { padding: 4rem 3rem; background: var(--cream); }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .stat-item .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.25rem; color: #002244; }
-    .stat-item .stat-lbl { font-size: 0.77rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+    /* split hero (desktop only): for portrait renderings that a full-bleed band would butcher */
+    @media (min-width: 1000px) {
+      .hero.split { display: grid; grid-template-columns: 1.25fr 1fr; align-items: stretch; min-height: 72vh;
+                     background: linear-gradient(155deg, #001429 0%, #002244 100%); }
+      .hero.split::after { display: none; }
+      .hero.split picture { position: relative; inset: auto; order: 2; width: auto; height: auto; min-height: 72vh; }
+      .hero.split .hero-img { object-position: 62% 88%; }
+      .hero.split .hero-inner { order: 1; display: flex; flex-direction: column; justify-content: center;
+                                 padding: 4rem 4rem 4rem 3rem; }
+      .hero.split .hero-title { font-size: clamp(3.2rem, 5vw, 5.4rem); margin-bottom: 1rem; }
+      .hero.split .hero-tag { font-size: 1.6rem; margin-bottom: 1.4rem; }
+      .hero.split .hero-addr { font-size: 0.95rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.14); max-width: 460px; }
+      .hero.split .hero-status { align-self: flex-start; }
+    }
 
-    /* GALLERY */
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .gallery-item { cursor: pointer; }
-    .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+    .hero-cta { display: inline-block; margin-top: 1.6rem; background: var(--gold); color: #17130a; text-decoration: none;
+                 font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+                 padding: 0.95rem 1.7rem; border-radius: 2px; align-self: flex-start; transition: background 0.2s; }
+    .hero-cta:hover { background: #d6b85e; }
 
-    /* LIGHTBOX */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 300; align-items: center; justify-content: center; }
-    .lightbox.active { display: flex; }
-    .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
-    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 2rem; cursor: pointer; z-index: 301; line-height: 1; padding: 0.5rem; }
-    .lightbox-close:hover { color: var(--white); }
-    .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.6); font-size: 2.5rem; cursor: pointer; padding: 1rem; z-index: 301; transition: color 0.2s; }
-    .lightbox-arrow:hover { color: var(--white); }
-    .lightbox-prev { left: 1rem; }
-    .lightbox-next { right: 1rem; }
-    .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+    section.reg { background: var(--cream); padding-top: 3.5rem; padding-bottom: 3.5rem; scroll-margin-top: 70px; }
+    .reg-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 4rem; align-items: center; max-width: 1180px; }
+    .reg-copy .sec-title { margin-bottom: 1rem; }
+    .reg-copy p { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 460px; }
+    .reg-form, .reg-done { background: #fff; border: 1px solid #e3dccb; border-radius: 12px; padding: 1.75rem; }
+    .reg-form label { display: block; font-size: 0.66rem; letter-spacing: 0.11em; text-transform: uppercase;
+                       color: var(--text-muted); margin-bottom: 1rem; }
+    .reg-form label span { text-transform: none; letter-spacing: 0; }
+    .reg-form input[type=text], .reg-form input[type=tel], .reg-form input[type=email] {
+      display: block; width: 100%; margin-top: 0.4rem; padding: 0.85rem 0.9rem; font: inherit; font-size: 16px;
+      letter-spacing: 0; text-transform: none; color: var(--text); background: var(--off-white);
+      border: 1px solid #ddd6c6; border-radius: 4px; }
+    .reg-form input:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+    .reg-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .reg-form button { width: 100%; margin-top: 0.35rem; padding: 1rem; border: none; border-radius: 3px; cursor: pointer;
+                        background: var(--navy); color: #fff; font: inherit; font-size: 0.78rem; font-weight: 500;
+                        letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+    .reg-form button:hover { background: #0b3358; }
+    .reg-form button:disabled { opacity: 0.6; cursor: default; }
+    .reg-msg { min-height: 1.2em; margin-top: 0.7rem; font-size: 0.8rem; color: #7a2626; }
+    .reg-fine { font-size: 0.7rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.35rem; }
+    .reg-done { text-align: center; padding: 2.5rem 1.75rem; }
+    .reg-done[hidden], .reg-form[hidden] { display: none; }
+    .reg-done-mark { width: 46px; height: 46px; line-height: 46px; border-radius: 50%; background: var(--navy); color: var(--gold-soft);
+                      font-size: 1.3rem; margin: 0 auto 1rem; }
+    .reg-done h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; margin-bottom: 0.6rem; }
+    .reg-done p { font-size: 0.92rem; line-height: 1.7; color: var(--text-mid); }
+    .reg-done a { color: var(--navy); font-weight: 600; }
 
-    /* FLOOR PLAN SECTIONS */
-    .sqft-section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
-    .sqft-section:last-of-type { border-bottom: none; }
-    .sqft-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
-    .sqft-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; }
-    .sqft-title em {color: #002244; }
-    .sqft-count { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .facts { display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }
+    .fact { padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }
+    .fact:last-child { border-right: none; }
+    .fact-lbl { font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.42); margin-bottom: 0.4rem; }
+    .fact-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-soft); line-height: 1.15; }
 
-    /* FILTER BUTTONS */
-    .fp-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .fp-filter-btn { font-family: 'Outfit', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
-    .fp-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .fp-filter-btn.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    section { padding: 4.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .sec-eyebrow { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.75rem; }
+    .sec-title em { font-style: italic; color: var(--navy); }
 
-    /* FP GRID */
-    .fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .fp-card { background: var(--white); cursor: pointer; transition: background 0.2s; color: inherit; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
-    .fp-card:hover { background: var(--gold-pale); }
-    .fp-card:hover .fp-image img { transform: scale(1.02); }
-    .fp-image { position: relative; overflow: hidden; min-height: 450px; display: flex; align-items: center; justify-content: center; background: var(--white); padding: 1rem; }
-    .fp-image img { width: 100%; height: 100%; object-fit: cover; object-position: 70% center; display: block; margin: auto; }
-    .fp-info { padding: 1.25rem 1.5rem; }
-    .fp-building-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
-    .fp-suite {color: #002244; margin-bottom: 0.3rem; }
-    .fp-type { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .fp-exposure { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
-    .fp-meta { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
-    .fp-meta-row { display: flex; justify-content: space-between; align-items: baseline; }
-    .fp-sqft { font-size: 0.78rem; color: var(--text-mid); }
-    .fp-price { font-size: 1.13rem; font-weight: 500; color: var(--text); }
-    .fp-price s { color: var(--text-muted); font-weight: 300; }
-    .fp-price-promo {color: #002244; font-weight: 500; }
-    .fp-rebate { font-size: 0.68rem; color: var(--gold); text-align: right; margin-top: 0.3rem; display: block; }
-    .fp-rebate-label { font-weight: 300; color: var(--text-muted); }
-    .fp-offers { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
-    .fp-contact { font-size: 0.68rem; color: var(--text-muted); font-style: italic; text-align: right; margin-top: 0.3rem; display: block; }
+    .overview { display: grid; grid-template-columns: 1.35fr 1fr; gap: 4rem; align-items: start; }
+    .overview p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1.15rem; }
+    .side-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1.1rem; }
+    .cm-row { display: flex; gap: 1rem; padding: 0.72rem 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+    .cm-row:last-child { border-bottom: none; }
+    .cm-time { color: var(--navy); font-weight: 600; min-width: 6.5rem; }
+    .cm-place { color: var(--text-mid); }
 
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.85); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
-    .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); width: 95vw; max-width: 1600px; height: 92vh; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
-    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 2rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-    .modal-eyebrow {color: #002244; margin-bottom: 0.3rem; }
-    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
-    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; line-height: 1; }
-    .modal-body { display: grid; grid-template-columns: 70% 30%; flex: 1; min-height: 0; }
-    .modal-image { background: var(--cream); display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden; }
-    .modal-image img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; cursor: zoom-in; }
-    .modal-image.zoomed img { cursor: grab; }
-    .modal-image.zoomed.dragging img { cursor: grabbing; }
-    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(26,26,24,0.6); border: none; color: rgba(255,255,255,0.8); font-size: 1.5rem; cursor: pointer; padding: 0.75rem; border-radius: 2px; z-index: 10; transition: background 0.2s; }
-    .modal-nav:hover { background: rgba(26,26,24,0.9); }
-    .modal-nav-prev { left: 0.5rem; }
-    .modal-nav-next { right: 0.5rem; }
-    .modal-details { padding: 2rem; border-left: 1px solid var(--border); }
-    .detail-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
-    .detail-row:last-of-type { border-bottom: none; }
-    .detail-label { color: var(--text-muted); }
-    .detail-val { font-weight: 500; text-align: right; max-width: 60%; }
-    .detail-val .promo {color: #002244; }
-    .detail-val .hst-rebate { display: block; font-size: 0.72rem; color: var(--gold); font-weight: 400; margin-top: 3px; }
-    .detail-val .hst-rebate-label { color: var(--text-muted); font-weight: 300; }
-    .detail-val .parking-note { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
-    .modal-cta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-    .modal-cta-text { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
-    .btn-full { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; margin-bottom: 0.75rem; }
-    .btn-full-outline { display: block; text-align: center; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--text-mid); border: 1px solid var(--border); padding: 0.85rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
-    .hst-disclaimer { font-size: 0.68rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; font-style: italic; }
+    .tbl-block { margin-bottom: 3rem; }
+    .tbl-block:last-child { margin-bottom: 0; }
+    .tbl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; }
+    .tbl-scroll { overflow-x: auto; border: 1px solid #e8e4dc; border-radius: 10px; background: #fff; }
+    table.dt { width: 100%; border-collapse: collapse; min-width: 660px; font-size: 0.85rem; }
+    table.dt th, table.dt td { text-align: left; padding: 0.85rem 1.15rem; border-bottom: 1px solid #efebe2; }
+    table.dt thead th { background: var(--navy); color: #fff; font-weight: 500; font-size: 0.74rem;
+                         letter-spacing: 0.07em; text-transform: uppercase; border-bottom: none; }
+    table.dt tbody tr:last-child td { border-bottom: none; }
+    table.dt tr.grp td { background: var(--cream); font-size: 0.66rem; letter-spacing: 0.14em;
+                          text-transform: uppercase; color: var(--navy); font-weight: 600; }
+    table.dt td.num { color: var(--navy); font-weight: 600; white-space: nowrap; }
+    table.dt.compact { min-width: 0; }
+    @media (max-width: 700px) {
+      table.dt.compact th, table.dt.compact td { padding: 0.75rem 0.6rem; font-size: 0.8rem; }
+      table.dt.compact thead th { font-size: 0.6rem; letter-spacing: 0.04em; }
+      table.dt.compact td.num { white-space: normal; }
+      table.dt.compact tr.grp td { font-size: 0.6rem; }
+    }
+    .tbl-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-top: 0.85rem; }
+    .plans-link { margin-top: 1.5rem; }
+    .plans-link a { font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase;
+                     color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 3px; }
 
-    /* CTA */
-    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
-    .cta-headline em {color: #002244; }
-    .cta-actions { display: flex; gap: 1rem; }
-    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
-    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
-    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3.5rem; align-items: start; }
+    .inc-list { list-style: none; }
+    .inc-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.85rem; font-size: 0.92rem;
+                    line-height: 1.7; color: var(--text-mid); }
+    .inc-list li::before { content: ''; position: absolute; left: 0; top: 0.62rem; width: 5px; height: 5px;
+                            border-radius: 50%; background: var(--gold); }
+    .dep-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; padding: 1.75rem; }
+    .dep-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0;
+                border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .dep-row:last-of-type { border-bottom: none; }
+    .dep-when { color: var(--text-muted); }
+    .dep-amt { color: var(--navy); font-weight: 600; text-align: right; }
+    .dep-amt .dim { color: var(--text-muted); font-weight: 300; font-size: 0.78rem; }
+    .dep-foot { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65;
+                 margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+
+    .dx-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; margin: -0.5rem 0 2.25rem; }
+    .dx-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; align-items: start; }
+    .dx-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; }
+    .dx-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; padding: 1.4rem 1.6rem; background: var(--navy); color: #fff; }
+    .dx-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; line-height: 1.15; }
+    .dx-sub { font-size: 0.7rem; color: rgba(255,255,255,0.55); margin-top: 0.35rem; line-height: 1.5; }
+    .dx-total { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--gold-soft); text-align: right; white-space: nowrap; line-height: 1; }
+    .dx-total span { display: block; font-family: 'Outfit', sans-serif; font-size: 0.56rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.4rem; }
+    .dx-list { list-style: none; position: relative; padding: 0.5rem 1.6rem 0.75rem 3.1rem; }
+    .dx-list::before { content: ''; position: absolute; left: 1.95rem; top: 1.6rem; bottom: 2.4rem; width: 1px; background: #d9d3c5; }
+    .dx-step { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 0.55rem 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--border); }
+    .dx-step:last-child { border-bottom: none; }
+    .dx-step::before { content: ''; position: absolute; left: -1.5rem; top: 1.25rem; width: 11px; height: 11px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px #fff; }
+    .dx-step.is-occ::before { background: var(--navy); }
+    .dx-date { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+    .dx-date span, .dx-amt span { display: block; font-size: 0.7rem; font-weight: 300; color: var(--text-muted); margin-top: 0.15rem; }
+    .dx-amt { font-size: 0.95rem; font-weight: 600; color: var(--navy); text-align: right; }
+    .dx-bar { grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--cream); overflow: hidden; }
+    .dx-bar i { display: block; height: 100%; background: var(--navy); border-radius: 2px; }
+    .dx-step.is-occ .dx-bar i { background: var(--gold); }
+
+    .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .gal-item { margin: 0; border-radius: 10px; overflow: hidden; background: var(--cream); }
+    .gal-item img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s; }
+    .gal-item:hover img { transform: scale(1.03); }
+    .gal-item figcaption { font-size: 0.7rem; color: var(--text-muted); padding: 0.7rem 0.15rem 0; }
+
+    .sibs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+
+    .video { position: relative; max-width: 960px; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden; cursor: pointer; }
+    .video img, .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+    .video-play { position: absolute; inset: 0; margin: auto; width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
+                   background: rgba(0,34,68,0.92); box-shadow: 0 6px 24px rgba(0,0,0,0.35); transition: transform 0.2s, background 0.2s; }
+    .video-play span { position: absolute; left: 30px; top: 22px; border-style: solid; border-width: 15px 0 15px 24px; border-color: transparent transparent transparent #fff; }
+    .video:hover .video-play { transform: scale(1.06); background: var(--navy); }
+
+    .logo-row { display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; margin-top: 2.25rem;
+                 padding-top: 1.75rem; border-top: 1px solid var(--border); }
+    .logo-row img { width: auto; opacity: 0.78; }
+
+    .setting { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 4.5rem; align-items: center; }
+    .setting p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+                  margin-bottom: 1.15rem; max-width: 560px; }
+    .setting-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; }
+
+    .siteplan { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }
+    .siteplan figure { margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #e8e4dc; background: var(--cream); }
+    .siteplan img { width: 100%; height: auto; aspect-ratio: 1/1; }
+    .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden;
+            text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sib-img img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .sib-body { padding: 1.1rem 1.35rem 1.25rem; }
+    .sib:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .sib-lbl { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+                color: var(--text-muted); margin-bottom: 0.4rem; }
+    .sib-name { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
+
+    .cta { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center;
+            justify-content: space-between; gap: 2rem; flex-wrap: wrap; border: none; }
+    .cta-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.3rem); font-weight: 300; color: #fff; }
+    .cta-h em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-w { background: #fff; color: var(--text); padding: 0.85rem 2rem; border-radius: 2px; text-decoration: none;
+              font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+    .btn-o { color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px;
+              text-decoration: none; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .disclaimer { padding: 2.25rem 3rem; background: var(--cream); font-size: 0.7rem; line-height: 1.75;
+                   color: var(--text-muted); font-style: italic; border: none; }
+    footer { background: var(--text); padding: 2rem 3rem; display: flex; justify-content: space-between;
+              align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.75; }
 
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .hero-content { left: 1.5rem; right: 1.5rem; bottom: 2rem; }
-      .building-info { grid-template-columns: 1fr; }
-      .building-desc { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
-      .building-stats { padding: 3rem 1.5rem; }
-      .gallery { grid-template-columns: repeat(2, 1fr); }
-      .sqft-section { padding: 3rem 1.5rem; }
-      .fp-grid { grid-template-columns: repeat(2, 1fr); }
-      .modal { width: 100%; height: 100vh; border-radius: 0; }
-      .modal-body { grid-template-columns: 1fr; overflow-y: auto; }
-      .modal-image { min-height: 300px; border-bottom: 1px solid var(--border); }
-      .modal-details { border-left: none; }
-      .cta-strip { padding: 3rem 1.5rem; }
-      footer { padding: 1.5rem; }
+    @media (max-width: 1000px) {
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      .fact:nth-child(3n) { border-right: none; }
+      .fact:nth-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .overview, .two-col, .siteplan { grid-template-columns: 1fr; gap: 2.5rem; }
+      .reg-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+      .dx-grid { grid-template-columns: 1fr; }
+      .setting { grid-template-columns: 1fr; gap: 2.5rem; }
+      .setting-media { max-width: 340px; }
     }
-    @media (max-width: 600px) {
-      .fp-grid { grid-template-columns: 1fr; }
-      .gallery { grid-template-columns: 1fr; }
-      .stat-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 700px) {
+      nav { padding: 0.8rem 1rem; gap: 0.5rem; }
+      .nav-logo { display: none; }
+      .nav-compare { display: none; }
+      .nav-back .nb-long { display: none; }
+      .nav-back .nb-short { display: inline; }
+      .nav-cta { padding: 0.6rem 0.95rem; font-size: 0.8rem; }
+      .hero { min-height: 50vh; }
+      .hero .hero-img { object-position: center 62%; }
+      .hero-inner { padding: 3.5rem 1.25rem 2rem; }
+      section, .cta, .disclaimer, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      section { padding-top: 3rem; padding-bottom: 3rem; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.09); }
+      .fact:nth-child(2n) { border-right: none; }
+      .gal { grid-template-columns: 1fr; }
+      .sibs { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+      .sib-body { padding: 0.85rem 0.95rem 0.95rem; }
+      .sib-name { font-size: 1.1rem; }
+      .logo-row { gap: 1.5rem; }
+      .dx-head { padding: 1.2rem 1.1rem; }
+      .dx-name { font-size: 1.25rem; }
+      .dx-total { font-size: 1.45rem; }
+      .dx-list { padding: 0.35rem 1.1rem 0.6rem 2.6rem; }
+      .dx-list::before { left: 1.45rem; }
+      .logo-row img { max-height: 22px; }
     }
-      @media(max-width:768px){.nav-logo{display:none!important;}nav a[href*="stats"]{display:none!important;}.nav-link:not([href*="saved"]){display:none!important;}}
-    /* price-emphasis:start */
-    .fp-rebate { color: #002244 !important; font-weight: 600 !important; font-size: 0.95rem !important; }
-    .fp-rebate-label { font-weight: 400 !important; font-size: 0.66rem; letter-spacing: 0.02em; color: var(--text-muted, #8a8a84) !important; }
-    .fp-meta:has(.fp-rebate) .fp-price,
-    .fp-meta:has(.fp-rebate) .fp-price-promo { font-family: inherit !important; font-weight: 400 !important; font-size: 0.82rem !important; color: var(--text-mid, #4a4a46) !important; }
-    /* price-emphasis:end */
-    .detail-val .hst-rebate { color: #002244; font-weight: 600; font-size: 0.9rem; }
-    .detail-val .hst-rebate-label { font-weight: 400; font-size: 0.68rem; }
-  </style>
+  
+    /* floor plan book */
+    .plans-sec { scroll-margin-top: 70px; }
+    .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
+    .plans-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 1.25rem; }
+    .plan-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .plan-chip { border: 1px solid #d9d2c2; background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem; font: inherit;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
+    .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-jump { border: 1px solid var(--gold); color: var(--navy); background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-left: 0.5rem; }
+    .plan-jump:hover { background: var(--gold); color: #17130a; }
+    .plan-group { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+                  margin-top: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e3dccb; }
+    .plan-group:first-child { margin-top: 0; }
+    .plan-group[hidden] { display: none; }
+    .plan-group span { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); }
+    .plan-group small { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
+    .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s; }
+    .plan:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .plan[hidden] { display: none; }
+    .plan-media { position: relative; aspect-ratio: var(--plan-ratio, 4/3); background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
+    .plan-media picture { display: contents; }
+    .plan-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .plan-media .plan-blur { filter: blur(7px); transform: scale(1.06); opacity: 0.5; }
+    .plan-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                 gap: 0.4rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); }
+    .plan-lock span { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: #fff; display: grid;
+                      place-items: center; font-size: 0.9rem; }
+    .plan figcaption { padding: 0.9rem 1rem 1rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
+    .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
+    .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .plan-price { margin-top: 0.55rem; font-size: 0.8rem; color: var(--text-mid); line-height: 1.45; }
+    .plan-price .plan-net { font-weight: 600; font-size: 0.95rem; color: var(--navy); }
+    .plan-price i { font-style: normal; font-size: 0.68rem; color: var(--text-muted); }
+    .plan-price .plan-list { display: block; font-weight: 400; font-size: 0.8rem; color: var(--text-mid); margin-top: 0.1rem; }
+    .plan-price .plan-blocks { display: block; font-weight: 400; font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.5; }
+    .plan-price .plan-blocks b { font-weight: 400; color: var(--text-mid); }
+    .plans-gate { margin: 1.5rem 0; }
+    .plans-gate section.reg { border-radius: 12px; padding: 2.75rem 2.5rem; }
+    .plans-gate .reg-inner { max-width: none; }
+    .plan-price.muted { color: var(--text-muted); font-weight: 400; font-size: 0.72rem; line-height: 1.4; }
+    .row-plan { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+                text-decoration: none; margin-left: 0.4rem; white-space: nowrap; }
+    .row-plan:hover { text-decoration: underline; }
+    .plan-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,18,36,0.95); display: grid;
+                     grid-template-rows: 1fr auto; place-items: center; padding: 3.25rem 1rem 1.25rem; }
+    .plan-lightbox[hidden] { display: none; }
+    .lb-media { width: min(96vw, 1400px); height: 74vh; display: grid; place-items: center; }
+    .lb-media picture { display: contents; }
+    .lb-media img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; background: #fff; border-radius: 8px; }
+    .lb-cap { color: #fff; font-size: 0.85rem; margin-top: 0.75rem; text-align: center; padding: 0 3.5rem; }
+    .lb-cap b { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.3rem; margin-right: 0.5rem; }
+    .lb-close, .lb-prev, .lb-next { position: fixed; background: rgba(255,255,255,0.14); color: #fff; border: none; width: 44px; height: 44px;
+                                    border-radius: 50%; font-size: 1.7rem; line-height: 44px; cursor: pointer; z-index: 1001; }
+    .lb-close { top: 14px; right: 14px; }
+    .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) {
+      .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .plan figcaption { padding: 0.7rem 0.75rem 0.8rem; }
+      .plan-name { font-size: 1.05rem; }
+      .plan-spec { font-size: 0.72rem; }
+      .plan-level { display: none; }
+      .plans-gate section.reg { padding: 2rem 1.25rem; border-radius: 10px; }
+      .plan-group span { font-size: 1.35rem; }
+      .plan-jump { margin-left: 0; }
+      .lb-media { height: 66vh; }
+      .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
+      .lb-cap { padding: 0 3.5rem 2.75rem; }
+    }
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -187,699 +367,783 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <body>
 
 <nav>
-  <a href="../index.html" class="nav-logo">CondosAround<span style="color:#002244">.</span>com</a>
-  <a href="../index.html" class="nav-back">&larr; All Buildings</a>
-<a href="../about.html" style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); text-decoration:none;" onmouseover="this.style.color='#002244'" onmouseout="this.style.color='var(--text-muted)'">About</a>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../neighbourhoods/liberty-village.html" class="nav-back">&larr; <span class="nb-long">Liberty Village</span><span class="nb-short">Back</span></a>
+  <a href="../neighbourhoods/liberty-village.html#floor-plans" class="nav-back nav-compare">All Liberty Village plans</a>
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <img src="../neighbourhoods/images/8 Temple Interior Exterior Fitness.jpg" alt="8 Temple Rooftop Fitness with CN Tower View" />
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Toronto &middot; Toronto Waterfront West &middot; Curated</div>
-    <h1 class="hero-title">8 <em>Temple</em></h1>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><strong>8 Temple Avenue</strong></div>
-      <div class="hero-meta-item"><strong>Early 2029</strong> Occupancy</div>
-      <div class="hero-meta-item"><strong>From</strong> $589,900</div>
-    </div>
+<header class="hero">
+  <picture>
+        <source type="image/avif" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w, images/towns/8-temple-hero-2560.avif 2560w">
+        <source type="image/webp" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w, images/towns/8-temple-hero-1280.webp 1280w, images/towns/8-temple-hero-1920.webp 1920w, images/towns/8-temple-hero-2560.webp 2560w">
+        <img src="images/towns/8-temple-hero.jpg" alt="8 Temple by Curated Properties, exterior rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
+      </picture>
+  <div class="hero-inner">
+    <div class="hero-status live">Now selling &middot; Promo pricing</div>
+    <div class="hero-builder">Curated Properties &middot; Toronto Waterfront West</div>
+    <h1 class="hero-title">8 Temple</h1>
+    <div class="hero-tag">A modern sanctuary rising in Toronto Waterfront West, from $589,900.</div>
+    <div class="hero-addr">8 Temple Avenue, Toronto M6K 1C8 &middot; Exhibition &amp; Liberty Village</div>
+    <a class="hero-cta" href="#floor-plans">See floor plans &amp; prices &rarr;</a>
   </div>
+  <div class="hero-credit">Artist&rsquo;s concept</div>
+</header>
+
+<div class="facts">
+      <div class="fact"><div class="fact-lbl">From</div><div class="fact-val">$589,900*</div></div>
+      <div class="fact"><div class="fact-lbl">Size</div><div class="fact-val">477 &ndash; 2,156 sq ft</div></div>
+      <div class="fact"><div class="fact-lbl">Bedrooms</div><div class="fact-val">1 &ndash; 3</div></div>
+      <div class="fact"><div class="fact-lbl">Suites</div><div class="fact-val">229</div></div>
+      <div class="fact"><div class="fact-lbl">Deposit</div><div class="fact-val">20% over 540 days</div></div>
+      <div class="fact"><div class="fact-lbl">Occupancy</div><div class="fact-val">Early 2029</div></div>
 </div>
-
-<!-- BUILDING INFO -->
-<div class="building-info">
-  <div class="building-desc">
-    <h2>A modern sanctuary <em>rising in Toronto Waterfront West</em></h2>
-    <div style="display:flex; flex-direction:column; gap:1.25rem; margin-top:0.5rem;">
-      <div style="display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color:#002244; line-height:1.6; font-weight:400;"><span style="color:var(--gold); font-weight:500; flex-shrink:0;">&mdash;</span>Same design team behind the Ritz-Carlton and St. Regis Toronto</div>
-      <div style="display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color:#002244; line-height:1.6; font-weight:400;"><span style="color:var(--gold); font-weight:500; flex-shrink:0;">&mdash;</span>Rooftop amenities with sauna facing the lake</div>
-      <div style="display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color:#002244; line-height:1.6; font-weight:400;"><span style="color:var(--gold); font-weight:500; flex-shrink:0;">&mdash;</span>Units up to 2,200 sq ft with water views</div>
+<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>8 Temple</em></h2>
+      <p>8 Temple is a 229-suite building by Curated Properties on Temple Avenue, just off Dufferin Street, on the quiet edge of Liberty Village where Toronto Waterfront West meets the Exhibition grounds. The interiors come from the design team behind the Ritz-Carlton and St. Regis Toronto, and the rooftop is the centrepiece: a residents&rsquo; lounge and kitchen, a fitness studio with the CN Tower in its windows, and a sauna facing the lake.</p>
+      <p>Twenty-nine layouts run from a 477 sq ft one bedroom plus den to combined suites of up to 2,156 sq ft with water views. Most suites carry a promotional price, applied as a credit on closing, and HST is included in the purchase price. Occupancy is estimated for early 2029.</p>
+    </div>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+        <div class="cm-row"><span class="cm-time">At the door</span><span class="cm-place">Dufferin 29 bus &middot; King St W streetcar a few minutes north</span></div>
+        <div class="cm-row"><span class="cm-time">About 10 min walk</span><span class="cm-place">Liberty Village shops and restaurants on East Liberty St</span></div>
+        <div class="cm-row"><span class="cm-time">About 15 min walk</span><span class="cm-place">Exhibition GO &middot; future Ontario Line station</span></div>
+        <div class="cm-row"><span class="cm-time">About 10 min walk</span><span class="cm-place">Lake Ontario, Marilyn Bell Park &amp; the Martin Goodman Trail</span></div>
+        <div class="cm-row"><span class="cm-time">About 5 min drive</span><span class="cm-place">Gardiner Expressway via Jameson or Dufferin</span></div>
+        <div class="cm-row"><span class="cm-time">About 10 min</span><span class="cm-place">Union Station by GO train from Exhibition</span></div>
     </div>
   </div>
-  <div class="building-stats">
-    <div class="stat-grid">
-      <div class="stat-item" style="grid-column: 1 / -1;"><div class="stat-val" style="font-size:1.5rem; line-height:1.2;">8 Temple Avenue, Toronto, ON M6K 1C8</div><div class="stat-lbl">Address</div></div>
-      <div class="stat-item"><div class="stat-val">229</div><div class="stat-lbl">Units</div></div>
-      <div class="stat-item"><div class="stat-val">$589K</div><div class="stat-lbl">Starting from</div></div>
-      <div class="stat-item"><div class="stat-val">2029</div><div class="stat-lbl">Occupancy</div></div>
-      <div class="stat-item"><div class="stat-val">Curated</div><div class="stat-lbl">Developer</div></div>
-      <div class="stat-item"><div class="stat-val">Exhibition</div><div class="stat-lbl">Neighbourhood</div></div>
-      <div class="stat-item"><div class="stat-val">HST</div><div class="stat-lbl">Included</div></div>
-      <div class="stat-item"><div class="stat-val">$1,197</div><div class="stat-lbl">Promo $/Sq Ft</div></div>
-      <div class="stat-item"><div class="stat-val">$1,449</div><div class="stat-lbl">Regular $/Sq Ft</div></div>
-      <div class="stat-item"><div class="stat-val">2029</div><div class="stat-lbl">Closing</div></div>
+</section>
+
+<section id="floor-plans" class="plans-sec" style="--plan-ratio: 1 / 1">
+  <div class="sec-eyebrow">Floor plans &amp; prices</div>
+  <h2 class="sec-title">29 plans on the <em>promo price list</em></h2>
+  <p class="plans-intro">Every layout currently offered, from the 477 sq ft one bedroom plus den to the 2,156 sq ft combined suite. Most carry a promotional price, applied as a credit on closing, and HST is included. Grouped by bedroom count; tap any plan to see it full size.</p>
+  <div class="plans-bar">
+    <div class="plan-chips"><button type="button" class="plan-chip is-on" data-filter="all">All 29</button><button type="button" class="plan-chip" data-filter="1">1 bed 8</button><button type="button" class="plan-chip" data-filter="2">2 bed 17</button><button type="button" class="plan-chip" data-filter="3">3 bed 4</button><a class="plan-jump" href="#gallery">See images &darr;</a></div>
+    <div class="plans-state" id="plans-state">29 plans &middot; tap to enlarge</div>
+  </div>
+  <div class="plan-grid">
+    <div class="plan-group" data-beds="1" id="plans-1-bed"><span>One bedroom</span><small>8 plans &middot; 477 &ndash; 650 sq ft &middot; from $530,910 net of HST*</small></div>
+    <figure class="plan is-open" id="plan-477" data-beds="1" data-type="suite" data-base="images/plans/8-temple/477" data-widths="480,800,1280,1920" data-name="Plan 477" data-spec="1 bed + den · 1 bath · 477 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/477-480.avif 480w, images/plans/8-temple/477-800.avif 800w, images/plans/8-temple/477-1280.avif 1280w, images/plans/8-temple/477-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/477-480.webp 480w, images/plans/8-temple/477-800.webp 800w, images/plans/8-temple/477-1280.webp 1280w, images/plans/8-temple/477-1920.webp 1920w"><img src="images/plans/8-temple/477.jpg" alt="Plan 477 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 477</div>
+        <div class="plan-spec">1 bed + den &middot; 1 bath &middot; 477 sq ft</div>
+        <div class="plan-level">First floor &middot; North &middot; 143 sq ft terrace</div>
+        <div class="plan-price"><b class="plan-net">$530,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $589,900 <s>$719,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-489" data-beds="1" data-type="suite" data-base="images/plans/8-temple/489" data-widths="480,800,1280,1920" data-name="Plan 489" data-spec="1 bed + den · 1 bath · 489 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/489-480.avif 480w, images/plans/8-temple/489-800.avif 800w, images/plans/8-temple/489-1280.avif 1280w, images/plans/8-temple/489-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/489-480.webp 480w, images/plans/8-temple/489-800.webp 800w, images/plans/8-temple/489-1280.webp 1280w, images/plans/8-temple/489-1920.webp 1920w"><img src="images/plans/8-temple/489.jpg" alt="Plan 489 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 489</div>
+        <div class="plan-spec">1 bed + den &middot; 1 bath &middot; 489 sq ft</div>
+        <div class="plan-level">First floor &middot; North &middot; 143 sq ft terrace</div>
+        <div class="plan-price"><b class="plan-net">$530,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $589,900 <s>$719,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-506" data-beds="1" data-type="suite" data-base="images/plans/8-temple/506" data-widths="480,800,1280,1920" data-name="Plan 506" data-spec="1 bed · 1 bath · 506 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/506-480.avif 480w, images/plans/8-temple/506-800.avif 800w, images/plans/8-temple/506-1280.avif 1280w, images/plans/8-temple/506-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/506-480.webp 480w, images/plans/8-temple/506-800.webp 800w, images/plans/8-temple/506-1280.webp 1280w, images/plans/8-temple/506-1920.webp 1920w"><img src="images/plans/8-temple/506.jpg" alt="Plan 506 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 506</div>
+        <div class="plan-spec">1 bed &middot; 1 bath &middot; 506 sq ft</div>
+        <div class="plan-level">Second floor &middot; East &middot; 55 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$535,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $594,900 <s>$714,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-527" data-beds="1" data-type="suite" data-base="images/plans/8-temple/527" data-widths="480,800,1280,1920" data-name="Plan 527" data-spec="1 bed · 1 bath · 527 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/527-480.avif 480w, images/plans/8-temple/527-800.avif 800w, images/plans/8-temple/527-1280.avif 1280w, images/plans/8-temple/527-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/527-480.webp 480w, images/plans/8-temple/527-800.webp 800w, images/plans/8-temple/527-1280.webp 1280w, images/plans/8-temple/527-1920.webp 1920w"><img src="images/plans/8-temple/527.jpg" alt="Plan 527 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 527</div>
+        <div class="plan-spec">1 bed &middot; 1 bath &middot; 527 sq ft</div>
+        <div class="plan-level">Second floor &middot; East &middot; 55 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$539,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $599,900 <s>$724,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-563" data-beds="1" data-type="suite" data-base="images/plans/8-temple/563" data-widths="480,800,1280,1920" data-name="Plan 563" data-spec="1 bed + den · 1 bath · 563 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/563-480.avif 480w, images/plans/8-temple/563-800.avif 800w, images/plans/8-temple/563-1280.avif 1280w, images/plans/8-temple/563-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/563-480.webp 480w, images/plans/8-temple/563-800.webp 800w, images/plans/8-temple/563-1280.webp 1280w, images/plans/8-temple/563-1920.webp 1920w"><img src="images/plans/8-temple/563.jpg" alt="Plan 563 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 563</div>
+        <div class="plan-spec">1 bed + den &middot; 1 bath &middot; 563 sq ft</div>
+        <div class="plan-level">Thirteenth floor &middot; North &middot; 100 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$665,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $739,900 <s>$829,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-638" data-beds="1" data-type="suite" data-base="images/plans/8-temple/638" data-widths="480,800,1280,1920" data-name="Plan 638" data-spec="1 bed + den · 2 bath · 638 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/638-480.avif 480w, images/plans/8-temple/638-800.avif 800w, images/plans/8-temple/638-1280.avif 1280w, images/plans/8-temple/638-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/638-480.webp 480w, images/plans/8-temple/638-800.webp 800w, images/plans/8-temple/638-1280.webp 1280w, images/plans/8-temple/638-1920.webp 1920w"><img src="images/plans/8-temple/638.jpg" alt="Plan 638 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 638</div>
+        <div class="plan-spec">1 bed + den &middot; 2 bath &middot; 638 sq ft</div>
+        <div class="plan-level">Fifth floor &middot; North &middot; 100 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$724,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $804,900 <s>$884,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-647" data-beds="1" data-type="suite" data-base="images/plans/8-temple/647" data-widths="480,800,1280,1920" data-name="Plan 647" data-spec="1 bed + den · 2 bath · 647 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/647-480.avif 480w, images/plans/8-temple/647-800.avif 800w, images/plans/8-temple/647-1280.avif 1280w, images/plans/8-temple/647-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/647-480.webp 480w, images/plans/8-temple/647-800.webp 800w, images/plans/8-temple/647-1280.webp 1280w, images/plans/8-temple/647-1920.webp 1920w"><img src="images/plans/8-temple/647.jpg" alt="Plan 647 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 647</div>
+        <div class="plan-spec">1 bed + den &middot; 2 bath &middot; 647 sq ft</div>
+        <div class="plan-level">Fifth floor &middot; North &middot; 100 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$737,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $819,900 <s>$899,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-650" data-beds="1" data-type="suite" data-base="images/plans/8-temple/650" data-widths="480,800,1280,1920" data-name="Plan 650" data-spec="1 bed + den · 2 bath · 650 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/650-480.avif 480w, images/plans/8-temple/650-800.avif 800w, images/plans/8-temple/650-1280.avif 1280w, images/plans/8-temple/650-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/650-480.webp 480w, images/plans/8-temple/650-800.webp 800w, images/plans/8-temple/650-1280.webp 1280w, images/plans/8-temple/650-1920.webp 1920w"><img src="images/plans/8-temple/650.jpg" alt="Plan 650 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 650</div>
+        <div class="plan-spec">1 bed + den &middot; 2 bath &middot; 650 sq ft</div>
+        <div class="plan-level">Fifth floor &middot; North &middot; 100 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$737,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $819,900 <s>$899,900</s></span></div>
+      </figcaption>
+    </figure>
+    <div class="plan-group" data-beds="2" id="plans-2-bed"><span>Two bedroom</span><small>17 plans &middot; 677 &ndash; 1,358 sq ft &middot; from $719,910 net of HST*</small></div>
+    <figure class="plan is-open" id="plan-677" data-beds="2" data-type="suite" data-base="images/plans/8-temple/677" data-widths="480,800,1280,1920" data-name="Plan 677" data-spec="2 bed · 677 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/677-480.avif 480w, images/plans/8-temple/677-800.avif 800w, images/plans/8-temple/677-1280.avif 1280w, images/plans/8-temple/677-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/677-480.webp 480w, images/plans/8-temple/677-800.webp 800w, images/plans/8-temple/677-1280.webp 1280w, images/plans/8-temple/677-1920.webp 1920w"><img src="images/plans/8-temple/677.jpg" alt="Plan 677 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 677</div>
+        <div class="plan-spec">2 bed &middot; 677 sq ft</div>
+        <div class="plan-level">Second floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$719,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $799,900 <s>$934,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-700" data-beds="2" data-type="suite" data-base="images/plans/8-temple/700" data-widths="480,800,1280,1920" data-name="Plan 700" data-spec="2 bed · 2 bath · 700 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/700-480.avif 480w, images/plans/8-temple/700-800.avif 800w, images/plans/8-temple/700-1280.avif 1280w, images/plans/8-temple/700-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/700-480.webp 480w, images/plans/8-temple/700-800.webp 800w, images/plans/8-temple/700-1280.webp 1280w, images/plans/8-temple/700-1920.webp 1920w"><img src="images/plans/8-temple/700.jpg" alt="Plan 700 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 700</div>
+        <div class="plan-spec">2 bed &middot; 2 bath &middot; 700 sq ft</div>
+        <div class="plan-level">Thirteenth floor &middot; North West &middot; 229 sq ft terrace and balcony</div>
+        <div class="plan-price"><b class="plan-net">$921,600</b> <i>net of HST rebate*</i><span class="plan-list">List price $1,024,000</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-707" data-beds="2" data-type="suite" data-base="images/plans/8-temple/707" data-widths="480,800,1280,1920" data-name="Plan 707" data-spec="2 bed · 707 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/707-480.avif 480w, images/plans/8-temple/707-800.avif 800w, images/plans/8-temple/707-1280.avif 1280w, images/plans/8-temple/707-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/707-480.webp 480w, images/plans/8-temple/707-800.webp 800w, images/plans/8-temple/707-1280.webp 1280w, images/plans/8-temple/707-1920.webp 1920w"><img src="images/plans/8-temple/707.jpg" alt="Plan 707 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 707</div>
+        <div class="plan-spec">2 bed &middot; 707 sq ft</div>
+        <div class="plan-level">Third floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$755,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $839,900 <s>$959,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-724" data-beds="2" data-type="suite" data-base="images/plans/8-temple/724" data-widths="480,800,1280,1920" data-name="Plan 724" data-spec="2 bed · 2 bath · 724 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/724-480.avif 480w, images/plans/8-temple/724-800.avif 800w, images/plans/8-temple/724-1280.avif 1280w, images/plans/8-temple/724-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/724-480.webp 480w, images/plans/8-temple/724-800.webp 800w, images/plans/8-temple/724-1280.webp 1280w, images/plans/8-temple/724-1920.webp 1920w"><img src="images/plans/8-temple/724.jpg" alt="Plan 724 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 724</div>
+        <div class="plan-spec">2 bed &middot; 2 bath &middot; 724 sq ft</div>
+        <div class="plan-level">Sixth to ninth floors &middot; North West &middot; 100 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$890,100</b> <i>net of HST rebate*</i><span class="plan-list">List price $989,000</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-726" data-beds="2" data-type="suite" data-base="images/plans/8-temple/726" data-widths="480,800,1280,1920" data-name="Plan 726" data-spec="2 bed · 726 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/726-480.avif 480w, images/plans/8-temple/726-800.avif 800w, images/plans/8-temple/726-1280.avif 1280w, images/plans/8-temple/726-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/726-480.webp 480w, images/plans/8-temple/726-800.webp 800w, images/plans/8-temple/726-1280.webp 1280w, images/plans/8-temple/726-1920.webp 1920w"><img src="images/plans/8-temple/726.jpg" alt="Plan 726 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 726</div>
+        <div class="plan-spec">2 bed &middot; 726 sq ft</div>
+        <div class="plan-level">Second floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$787,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $874,900 <s>$974,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-797" data-beds="2" data-type="suite" data-base="images/plans/8-temple/797" data-widths="480,800,1280,1920" data-name="Plan 797" data-spec="2 bed + den · 797 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/797-480.avif 480w, images/plans/8-temple/797-800.avif 800w, images/plans/8-temple/797-1280.avif 1280w, images/plans/8-temple/797-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/797-480.webp 480w, images/plans/8-temple/797-800.webp 800w, images/plans/8-temple/797-1280.webp 1280w, images/plans/8-temple/797-1920.webp 1920w"><img src="images/plans/8-temple/797.jpg" alt="Plan 797 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 797</div>
+        <div class="plan-spec">2 bed + den &middot; 797 sq ft</div>
+        <div class="plan-level">Third floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$868,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $964,900 <s>$1,064,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-820" data-beds="2" data-type="suite" data-base="images/plans/8-temple/820" data-widths="480,800,1280,1920" data-name="Plan 820" data-spec="2 bed · 820 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/820-480.avif 480w, images/plans/8-temple/820-800.avif 800w, images/plans/8-temple/820-1280.avif 1280w, images/plans/8-temple/820-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/820-480.webp 480w, images/plans/8-temple/820-800.webp 800w, images/plans/8-temple/820-1280.webp 1280w, images/plans/8-temple/820-1920.webp 1920w"><img src="images/plans/8-temple/820.jpg" alt="Plan 820 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 820</div>
+        <div class="plan-spec">2 bed &middot; 820 sq ft</div>
+        <div class="plan-level">Third floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$877,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $974,900 <s>$1,074,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-821" data-beds="2" data-type="suite" data-base="images/plans/8-temple/821" data-widths="480,800,1280,1920" data-name="Plan 821" data-spec="2 bed + den · 821 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/821-480.avif 480w, images/plans/8-temple/821-800.avif 800w, images/plans/8-temple/821-1280.avif 1280w, images/plans/8-temple/821-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/821-480.webp 480w, images/plans/8-temple/821-800.webp 800w, images/plans/8-temple/821-1280.webp 1280w, images/plans/8-temple/821-1920.webp 1920w"><img src="images/plans/8-temple/821.jpg" alt="Plan 821 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 821</div>
+        <div class="plan-spec">2 bed + den &middot; 821 sq ft</div>
+        <div class="plan-level">Second floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$872,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $969,900 <s>$1,069,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-842" data-beds="2" data-type="suite" data-base="images/plans/8-temple/842" data-widths="480,800,1280,1920" data-name="Plan 842" data-spec="2 bed + den · 842 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/842-480.avif 480w, images/plans/8-temple/842-800.avif 800w, images/plans/8-temple/842-1280.avif 1280w, images/plans/8-temple/842-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/842-480.webp 480w, images/plans/8-temple/842-800.webp 800w, images/plans/8-temple/842-1280.webp 1280w, images/plans/8-temple/842-1920.webp 1920w"><img src="images/plans/8-temple/842.jpg" alt="Plan 842 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 842</div>
+        <div class="plan-spec">2 bed + den &middot; 842 sq ft</div>
+        <div class="plan-level">Third floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$895,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $994,900 <s>$1,094,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-845" data-beds="2" data-type="suite" data-base="images/plans/8-temple/845" data-widths="480,800,1280,1920" data-name="Plan 845" data-spec="2 bed + den · 845 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/845-480.avif 480w, images/plans/8-temple/845-800.avif 800w, images/plans/8-temple/845-1280.avif 1280w, images/plans/8-temple/845-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/845-480.webp 480w, images/plans/8-temple/845-800.webp 800w, images/plans/8-temple/845-1280.webp 1280w, images/plans/8-temple/845-1920.webp 1920w"><img src="images/plans/8-temple/845.jpg" alt="Plan 845 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 845</div>
+        <div class="plan-spec">2 bed + den &middot; 845 sq ft</div>
+        <div class="plan-level">Fourth floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$913,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $1,014,900 <s>$1,114,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-858" data-beds="2" data-type="suite" data-base="images/plans/8-temple/858" data-widths="480,800,1280,1920" data-name="Plan 858" data-spec="2 bed · 858 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/858-480.avif 480w, images/plans/8-temple/858-800.avif 800w, images/plans/8-temple/858-1280.avif 1280w, images/plans/8-temple/858-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/858-480.webp 480w, images/plans/8-temple/858-800.webp 800w, images/plans/8-temple/858-1280.webp 1280w, images/plans/8-temple/858-1920.webp 1920w"><img src="images/plans/8-temple/858.jpg" alt="Plan 858 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 858</div>
+        <div class="plan-spec">2 bed &middot; 858 sq ft</div>
+        <div class="plan-level">Second floor &middot; South West &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$926,910</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $1,029,900 <s>$1,129,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-883" data-beds="2" data-type="suite" data-base="images/plans/8-temple/883" data-widths="480,800,1280,1920" data-name="Plan 883" data-spec="2 bed + den · 883 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/883-480.avif 480w, images/plans/8-temple/883-800.avif 800w, images/plans/8-temple/883-1280.avif 1280w, images/plans/8-temple/883-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/883-480.webp 480w, images/plans/8-temple/883-800.webp 800w, images/plans/8-temple/883-1280.webp 1280w, images/plans/8-temple/883-1920.webp 1920w"><img src="images/plans/8-temple/883.jpg" alt="Plan 883 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 883</div>
+        <div class="plan-spec">2 bed + den &middot; 883 sq ft</div>
+        <div class="plan-level">First floor &middot; South &middot; 202 sq ft terrace</div>
+        <div class="plan-price"><b class="plan-net">$958,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $1,064,900 <s>$1,164,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-890" data-beds="2" data-type="suite" data-base="images/plans/8-temple/890" data-widths="480,800,1280,1920" data-name="Plan 890" data-spec="2 bed + den · 890 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/890-480.avif 480w, images/plans/8-temple/890-800.avif 800w, images/plans/8-temple/890-1280.avif 1280w, images/plans/8-temple/890-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/890-480.webp 480w, images/plans/8-temple/890-800.webp 800w, images/plans/8-temple/890-1280.webp 1280w, images/plans/8-temple/890-1920.webp 1920w"><img src="images/plans/8-temple/890.jpg" alt="Plan 890 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 890</div>
+        <div class="plan-spec">2 bed + den &middot; 890 sq ft</div>
+        <div class="plan-level">Second floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$913,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $1,014,900 <s>$1,114,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-894" data-beds="2" data-type="suite" data-base="images/plans/8-temple/894" data-widths="480,800,1280,1920" data-name="Plan 894" data-spec="2 bed + den · 894 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/894-480.avif 480w, images/plans/8-temple/894-800.avif 800w, images/plans/8-temple/894-1280.avif 1280w, images/plans/8-temple/894-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/894-480.webp 480w, images/plans/8-temple/894-800.webp 800w, images/plans/8-temple/894-1280.webp 1280w, images/plans/8-temple/894-1920.webp 1920w"><img src="images/plans/8-temple/894.jpg" alt="Plan 894 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 894</div>
+        <div class="plan-spec">2 bed + den &middot; 894 sq ft</div>
+        <div class="plan-level">Second floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$913,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $1,014,900 <s>$1,114,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-912" data-beds="2" data-type="suite" data-base="images/plans/8-temple/912" data-widths="480,800,1280,1920" data-name="Plan 912" data-spec="2 bed + den · 912 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/912-480.avif 480w, images/plans/8-temple/912-800.avif 800w, images/plans/8-temple/912-1280.avif 1280w, images/plans/8-temple/912-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/912-480.webp 480w, images/plans/8-temple/912-800.webp 800w, images/plans/8-temple/912-1280.webp 1280w, images/plans/8-temple/912-1920.webp 1920w"><img src="images/plans/8-temple/912.jpg" alt="Plan 912 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 912</div>
+        <div class="plan-spec">2 bed + den &middot; 912 sq ft</div>
+        <div class="plan-level">Fourth floor &middot; South &middot; 50 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$958,410</b> <i>net of HST rebate*</i><span class="plan-list">Promo price $1,064,900 <s>$1,164,900</s></span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-901-919" data-beds="2" data-type="combo-suite" data-base="images/plans/8-temple/901-919" data-widths="480,800,1280,1920" data-name="Combo 901 + 919" data-spec="2 bed + den · 1,358 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-480.avif 480w, images/plans/8-temple/901-919-800.avif 800w, images/plans/8-temple/901-919-1280.avif 1280w, images/plans/8-temple/901-919-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-480.webp 480w, images/plans/8-temple/901-919-800.webp 800w, images/plans/8-temple/901-919-1280.webp 1280w, images/plans/8-temple/901-919-1920.webp 1920w"><img src="images/plans/8-temple/901-919.jpg" alt="Combo 901 + 919 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Combo 901 + 919</div>
+        <div class="plan-spec">2 bed + den &middot; 1,358 sq ft</div>
+        <div class="plan-level">Ninth floor &middot; South &middot; 196 sq ft outdoor &middot; open to offers</div>
+        <div class="plan-price"><b class="plan-net">$1,949,800</b></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-901-919-b" data-beds="2" data-type="combo-suite" data-base="images/plans/8-temple/901-919-b" data-widths="480,800,1280,1920" data-name="Combo 901 + 919 B" data-spec="2 bed + den · 1,358 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-b-480.avif 480w, images/plans/8-temple/901-919-b-800.avif 800w, images/plans/8-temple/901-919-b-1280.avif 1280w, images/plans/8-temple/901-919-b-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-b-480.webp 480w, images/plans/8-temple/901-919-b-800.webp 800w, images/plans/8-temple/901-919-b-1280.webp 1280w, images/plans/8-temple/901-919-b-1920.webp 1920w"><img src="images/plans/8-temple/901-919-b.jpg" alt="Combo 901 + 919 B floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Combo 901 + 919 B</div>
+        <div class="plan-spec">2 bed + den &middot; 1,358 sq ft</div>
+        <div class="plan-level">Ninth floor &middot; South &middot; 196 sq ft outdoor &middot; layout B &middot; open to offers</div>
+        <div class="plan-price"><b class="plan-net">$1,949,800</b></div>
+      </figcaption>
+    </figure>
+    <div class="plan-group" data-beds="3" id="plans-3-bed"><span>Three bedroom</span><small>4 plans &middot; 980 &ndash; 2,156 sq ft &middot; from $1,107,000 net of HST*</small></div>
+    <figure class="plan is-open" id="plan-980" data-beds="3" data-type="suite" data-base="images/plans/8-temple/980" data-widths="480,800,1280,1920" data-name="Plan 980" data-spec="3 bed · 2 bath · 980 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/980-480.avif 480w, images/plans/8-temple/980-800.avif 800w, images/plans/8-temple/980-1280.avif 1280w, images/plans/8-temple/980-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/980-480.webp 480w, images/plans/8-temple/980-800.webp 800w, images/plans/8-temple/980-1280.webp 1280w, images/plans/8-temple/980-1920.webp 1920w"><img src="images/plans/8-temple/980.jpg" alt="Plan 980 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Plan 980</div>
+        <div class="plan-spec">3 bed &middot; 2 bath &middot; 980 sq ft</div>
+        <div class="plan-level">Fifth and tenth to twelfth floors &middot; North West &middot; 100 sq ft balcony</div>
+        <div class="plan-price"><b class="plan-net">$1,107,000</b> <i>net of HST rebate*</i><span class="plan-list">List price $1,230,000</span></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-916-917" data-beds="3" data-type="combo-suite" data-base="images/plans/8-temple/916-917" data-widths="480,800,1280,1920" data-name="Combo 916 + 917" data-spec="3 bed · 1,397 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/916-917-480.avif 480w, images/plans/8-temple/916-917-800.avif 800w, images/plans/8-temple/916-917-1280.avif 1280w, images/plans/8-temple/916-917-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/916-917-480.webp 480w, images/plans/8-temple/916-917-800.webp 800w, images/plans/8-temple/916-917-1280.webp 1280w, images/plans/8-temple/916-917-1920.webp 1920w"><img src="images/plans/8-temple/916-917.jpg" alt="Combo 916 + 917 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Combo 916 + 917</div>
+        <div class="plan-spec">3 bed &middot; 1,397 sq ft</div>
+        <div class="plan-level">Ninth floor &middot; North &middot; 327 sq ft outdoor &middot; open to offers</div>
+        <div class="plan-price"><b class="plan-net">$2,039,800</b></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-1117-1118" data-beds="3" data-type="combo-suite" data-base="images/plans/8-temple/1117-1118" data-widths="480,800,1280,1920" data-name="Combo 1117 + 1118" data-spec="3 bed + den · 1,940 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1117-1118-480.avif 480w, images/plans/8-temple/1117-1118-800.avif 800w, images/plans/8-temple/1117-1118-1280.avif 1280w, images/plans/8-temple/1117-1118-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1117-1118-480.webp 480w, images/plans/8-temple/1117-1118-800.webp 800w, images/plans/8-temple/1117-1118-1280.webp 1280w, images/plans/8-temple/1117-1118-1920.webp 1920w"><img src="images/plans/8-temple/1117-1118.jpg" alt="Combo 1117 + 1118 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Combo 1117 + 1118</div>
+        <div class="plan-spec">3 bed + den &middot; 1,940 sq ft</div>
+        <div class="plan-level">Eleventh floor &middot; South &middot; 387 sq ft outdoor &middot; open to offers</div>
+        <div class="plan-price"><b class="plan-net">$2,829,800</b></div>
+      </figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-1016-1017" data-beds="3" data-type="combo-suite" data-base="images/plans/8-temple/1016-1017" data-widths="480,800,1280,1920" data-name="Combo 1016 + 1017" data-spec="3 bed · 2,156 sq ft">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1016-1017-480.avif 480w, images/plans/8-temple/1016-1017-800.avif 800w, images/plans/8-temple/1016-1017-1280.avif 1280w, images/plans/8-temple/1016-1017-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1016-1017-480.webp 480w, images/plans/8-temple/1016-1017-800.webp 800w, images/plans/8-temple/1016-1017-1280.webp 1280w, images/plans/8-temple/1016-1017-1920.webp 1920w"><img src="images/plans/8-temple/1016-1017.jpg" alt="Combo 1016 + 1017 floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption>
+        <div class="plan-name">Combo 1016 + 1017</div>
+        <div class="plan-spec">3 bed &middot; 2,156 sq ft</div>
+        <div class="plan-level">Tenth floor &middot; North, East and South &middot; 518 sq ft outdoor &middot; open to offers</div>
+        <div class="plan-price"><b class="plan-net">$3,139,900</b></div>
+      </figcaption>
+    </figure>
+  </div>
+  <p class="tbl-note">Plans from the Curated Properties floor plan set; prices from the 8 Temple promo price list, 2026, with additional suites priced September 2026. *Net figure is an estimate of the promo price less the HST rebate (10%) for eligible buyers; HST is included in the purchase price. Combined suites are open to offers. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.</p>
+  <div class="plan-lightbox" id="plan-lb" hidden>
+    <button type="button" class="lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
+    <div class="lb-media"></div>
+    <button type="button" class="lb-next" aria-label="Next plan">&#8250;</button>
+    <div class="lb-cap"></div>
+  </div>
+<script>(function(){var m={"t-1":"477","t-2":"489","t-3":"506","t-4":"527","t-5":"563","t-6":"638","t-7":"647","t-8":"650","t-9":"677","t-10":"707","t-11":"726","t-12":"797","t-13":"820","t-14":"821","t-15":"842","t-16":"845","t-17":"858","t-18":"883","t-19":"890","t-20":"894","t-21":"912","t-22":"700","t-23":"724","t-24":"980","t-combo1":"901-919","t-combo1b":"901-919-b","t-combo2":"916-917","t-combo5":"1117-1118","t-combo6":"1016-1017"},u=new URL(location.href),v=u.searchParams.get("plan");u.searchParams.delete("filter");if(v&&m[v])u.searchParams.set("plan",m[v]);if(u.search!==location.search&&history.replaceState)history.replaceState(null,"",u.pathname+u.search+u.hash);})();</script>
+<script>
+(function () {
+  var sec = document.getElementById('floor-plans');
+  if (!sec) return;
+  function registered() { try { return localStorage.getItem('ca_registered') === 'true'; } catch (e) { return false; } }
+  function pictureFor(fig, big) {
+    var base = fig.getAttribute('data-base'), ws = fig.getAttribute('data-widths').split(',');
+    var pic = document.createElement('picture');
+    ['avif', 'webp'].forEach(function (ext) {
+      var s = document.createElement('source'); s.type = 'image/' + ext;
+      s.sizes = big ? '96vw' : '(max-width: 700px) 50vw, 25vw';
+      s.srcset = ws.map(function (w) { return base + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+      pic.appendChild(s);
+    });
+    var img = document.createElement('img');
+    img.src = base + '.jpg'; img.alt = fig.getAttribute('data-name') + ' floor plan'; img.decoding = 'async';
+    if (!big) img.loading = 'lazy';
+    pic.appendChild(img);
+    return pic;
+  }
+  function open(fig) {
+    var media = fig.querySelector('.plan-media');
+    media.innerHTML = ''; media.appendChild(pictureFor(fig, false)); fig.classList.add('is-open');
+  }
+  window.caUnlockPlans = function () {
+    var locked = sec.querySelectorAll('.plan:not(.is-open)');
+    if (!locked.length) return;                       // nothing is gated on this page
+    sec.classList.add('is-unlocked');
+    Array.prototype.forEach.call(locked, open);
+    var st = document.getElementById('plans-state');
+    if (st) st.textContent = 'All plans unlocked — tap any plan to enlarge.';
+  };
+  if (registered()) window.caUnlockPlans();
+
+  // The chosen filter lives in the link (?beds=3#floor-plans), so a shared link opens the same view.
+  function applyFilter(t, remember) {
+    var chip = sec.querySelector('.plan-chip[data-filter="' + t + '"]');
+    if (!chip) return false;
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === chip); });
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+      var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+      f.hidden = (t !== 'all' && v !== t);
+    });
+    if (remember) setParam('beds', t === 'all' ? null : t);
+    return true;
+  }
+  // Keep the address bar in step with what is on screen, so the link can be shared as-is.
+  function setParam(key, value) {
+    if (!window.history || !history.replaceState) return;
+    var u = new URL(location.href);
+    if (value === null) u.searchParams.delete(key); else u.searchParams.set(key, value);
+    history.replaceState(null, '', u.pathname + u.search);
+  }
+  // Jump without the page's smooth-scroll animation (which a late layout shift can cancel).
+  function jump(el) {
+    var y = el.getBoundingClientRect().top + (document.scrollingElement || document.documentElement).scrollTop - 70;
+    try { (document.scrollingElement || document.documentElement).scrollTo({ top: y, behavior: 'instant' }); }
+    catch (e) { window.scrollTo(0, y); }
+  }
+  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
+    ch.addEventListener('click', function () { applyFilter(ch.getAttribute('data-filter'), true); });
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#floor-plans"]');
+    if (!a) return;
+    e.preventDefault(); jump(sec);
+    if (window.history && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null, before = null;
+  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan.is-open'), function (f) { return !f.hidden; }); }
+  function show(fig) {
+    if (lb.hidden) before = location.pathname + location.search + location.hash;   // what to go back to on close
+    current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
+    lbCap.innerHTML = '<b>' + fig.getAttribute('data-name') + '</b>' + fig.getAttribute('data-spec');
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+    setParam('plan', fig.id.replace(/^plan-/, ''));
+  }
+  function close() {
+    lb.hidden = true; document.body.style.overflow = '';
+    // back to the exact link the visitor had before opening the plan (minus any plan= they arrived with)
+    var u = new URL(before || (location.pathname + location.search), location.origin);
+    u.searchParams.delete('plan');
+    if (window.history && history.replaceState) history.replaceState(null, '', u.pathname + u.search);
+    before = null;
+  }
+  function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
+  sec.addEventListener('click', function (e) {
+    var fig = e.target.closest('.plan'); if (!fig) return;
+    if (!fig.classList.contains('is-open')) {
+      var reg = document.getElementById('register');
+      if (reg) { reg.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = reg.querySelector('input[name=name]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, 700); }
+      return;
+    }
+    show(fig);
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.lb-next')) return step(1);
+    if (e.target.closest('.lb-prev')) return step(-1);
+    if (e.target.closest('.lb-close') || e.target === lb || e.target === lbMedia) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
+  });
+
+  // A shared link: ?beds=3 opens that bedroom group, ?plan=sky-towns-1238 opens that drawing.
+  var q = new URLSearchParams(location.search), wantBeds = q.get('beds'), wantPlan = q.get('plan');
+  var fig = wantPlan && document.getElementById('plan-' + wantPlan);
+  if (fig && !fig.classList.contains('is-open')) fig = null;          // still locked
+  var filtered = wantBeds && applyFilter(wantBeds, false);
+  if (fig && fig.hidden) applyFilter('all', false);
+  if (location.hash === '#floor-plans' && window.history && history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);   // keep the link clean
+    if (!fig && !filtered) { jump(sec); window.addEventListener('load', function () { jump(sec); }); }
+  }
+  if (fig || filtered) {
+    var target = fig || sec, land = function () { jump(target); };
+    land(); window.addEventListener('load', land); setTimeout(land, 600);
+    if (fig) show(fig);
+  }
+})();
+</script>
+</section>
+
+<section>
+  <div class="two-col">
+    <div>
+      <div class="sec-eyebrow">What&rsquo;s included</div>
+      <h2 class="sec-title">What&rsquo;s <em>included</em></h2>
+      <ul class="inc-list">
+        <li>HST included in the purchase price</li>
+        <li>Promotional pricing on most suites, applied as a credit on closing</li>
+        <li>Extended deposit: $10,000 with the offer, then 20% spread over 540 days and occupancy</li>
+        <li>EV-ready parking available for suites 771 sq ft and larger</li>
+        <li>Smart home system with bulk high-speed internet</li>
+        <li>Combined suites up to 2,156 sq ft, open to offers</li>
+      </ul>
+    </div>
+    <div>
+      <div class="dep-card">
+        <h3 class="side-title">Deposit structure</h3>
+          <div class="dep-row"><span class="dep-when">With the offer</span><span class="dep-amt">$10,000</span></div>
+          <div class="dep-row"><span class="dep-when">30 days</span><span class="dep-amt">Balance to 5%</span></div>
+          <div class="dep-row"><span class="dep-when">180 days</span><span class="dep-amt">2.5%</span></div>
+          <div class="dep-row"><span class="dep-when">365 days</span><span class="dep-amt">2.5%</span></div>
+          <div class="dep-row"><span class="dep-when">540 days</span><span class="dep-amt">5%</span></div>
+          <div class="dep-row"><span class="dep-when">On occupancy</span><span class="dep-amt">5%</span></div>
+          <div class="dep-row"><span class="dep-when">Total</span><span class="dep-amt">20%</span></div>
+        <p class="dep-foot">Extended deposit structure from the 8 Temple promo price list. The promo discount is applied as a credit on closing; floor and exterior space premiums apply.</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- VIDEO -->
-<div style="padding:3rem 3rem 0; border-bottom:1px solid var(--border);">
-  <div style="max-width:900px; margin:0 auto; padding-bottom:3rem;">
-    <div style="font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:1rem;">View from the Suites</div>
-    <div style="position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:4px;">
-      <iframe src="https://www.youtube.com/embed/Q2veMjfbQqE?start=50" title="View from the Suites" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+<section id="gallery">
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">Renderings &amp; <em>amenities</em></h2>
+  <div class="gal">
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w, images/towns/8-temple-hero-1-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w, images/towns/8-temple-hero-1-1280.webp 1280w">
+        <img src="images/towns/8-temple-hero-1.jpg" alt="8 Temple from the street" loading="lazy" decoding="async">
+      </picture><figcaption>8 Temple from the street</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">
+        <img src="images/towns/8-temple-archway.jpg" alt="The archway entrance" loading="lazy" decoding="async">
+      </picture><figcaption>The archway entrance</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.avif 480w, images/towns/8-temple-lobby-800.avif 800w, images/towns/8-temple-lobby-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.webp 480w, images/towns/8-temple-lobby-800.webp 800w, images/towns/8-temple-lobby-1280.webp 1280w">
+        <img src="images/towns/8-temple-lobby.jpg" alt="Lobby" loading="lazy" decoding="async">
+      </picture><figcaption>Lobby</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.avif 480w, images/towns/8-temple-lobby-lounge-800.avif 800w, images/towns/8-temple-lobby-lounge-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.webp 480w, images/towns/8-temple-lobby-lounge-800.webp 800w, images/towns/8-temple-lobby-lounge-1280.webp 1280w">
+        <img src="images/towns/8-temple-lobby-lounge.jpg" alt="Lobby lounge" loading="lazy" decoding="async">
+      </picture><figcaption>Lobby lounge</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.avif 480w, images/towns/8-temple-rooftop-exterior-800.avif 800w, images/towns/8-temple-rooftop-exterior-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.webp 480w, images/towns/8-temple-rooftop-exterior-800.webp 800w, images/towns/8-temple-rooftop-exterior-1280.webp 1280w">
+        <img src="images/towns/8-temple-rooftop-exterior.jpg" alt="Rooftop amenity terrace" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop amenity terrace</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.avif 480w, images/towns/8-temple-rooftop-lounge-800.avif 800w, images/towns/8-temple-rooftop-lounge-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.webp 480w, images/towns/8-temple-rooftop-lounge-800.webp 800w, images/towns/8-temple-rooftop-lounge-1280.webp 1280w">
+        <img src="images/towns/8-temple-rooftop-lounge.jpg" alt="Rooftop lounge" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop lounge</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.avif 480w, images/towns/8-temple-rooftop-kitchen-800.avif 800w, images/towns/8-temple-rooftop-kitchen-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.webp 480w, images/towns/8-temple-rooftop-kitchen-800.webp 800w, images/towns/8-temple-rooftop-kitchen-1280.webp 1280w">
+        <img src="images/towns/8-temple-rooftop-kitchen.jpg" alt="Rooftop kitchen" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop kitchen</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.avif 480w, images/towns/8-temple-fitness-800.avif 800w, images/towns/8-temple-fitness-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.webp 480w, images/towns/8-temple-fitness-800.webp 800w, images/towns/8-temple-fitness-1280.webp 1280w">
+        <img src="images/towns/8-temple-fitness.jpg" alt="Rooftop fitness studio with CN Tower views" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop fitness studio with CN Tower views</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w, images/towns/8-temple-sauna-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w, images/towns/8-temple-sauna-1280.webp 1280w">
+        <img src="images/towns/8-temple-sauna.jpg" alt="Rooftop sauna facing the lake" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop sauna facing the lake</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.avif 480w, images/towns/8-temple-kids-800.avif 800w, images/towns/8-temple-kids-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.webp 480w, images/towns/8-temple-kids-800.webp 800w, images/towns/8-temple-kids-1280.webp 1280w">
+        <img src="images/towns/8-temple-kids.jpg" alt="Kids&amp;rsquo; room" loading="lazy" decoding="async">
+      </picture><figcaption>Kids&rsquo; room</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.avif 480w, images/towns/8-temple-living-east-800.avif 800w, images/towns/8-temple-living-east-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.webp 480w, images/towns/8-temple-living-east-800.webp 800w, images/towns/8-temple-living-east-1280.webp 1280w">
+        <img src="images/towns/8-temple-living-east.jpg" alt="Living and dining, east-facing suite" loading="lazy" decoding="async">
+      </picture><figcaption>Living and dining, east-facing suite</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.avif 480w, images/towns/8-temple-living-south-800.avif 800w, images/towns/8-temple-living-south-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.webp 480w, images/towns/8-temple-living-south-800.webp 800w, images/towns/8-temple-living-south-1280.webp 1280w">
+        <img src="images/towns/8-temple-living-south.jpg" alt="Living and dining, south-facing suite" loading="lazy" decoding="async">
+      </picture><figcaption>Living and dining, south-facing suite</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.avif 480w, images/towns/8-temple-bathroom-800.avif 800w, images/towns/8-temple-bathroom-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.webp 480w, images/towns/8-temple-bathroom-800.webp 800w, images/towns/8-temple-bathroom-1280.webp 1280w">
+        <img src="images/towns/8-temple-bathroom.jpg" alt="Suite bathroom" loading="lazy" decoding="async">
+      </picture><figcaption>Suite bathroom</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.avif 480w, images/towns/8-temple-ground-plan-800.avif 800w, images/towns/8-temple-ground-plan-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.webp 480w, images/towns/8-temple-ground-plan-800.webp 800w, images/towns/8-temple-ground-plan-1280.webp 1280w">
+        <img src="images/towns/8-temple-ground-plan.jpg" alt="Ground floor amenity plan" loading="lazy" decoding="async">
+      </picture><figcaption>Ground floor amenity plan</figcaption></figure>
+  </div>
+</section>
+
+<section id="video">
+  <div class="sec-eyebrow">Video</div>
+  <h2 class="sec-title">The view from <em>the suites</em></h2>
+  <div class="video" id="video-box" data-src="https://www.youtube-nocookie.com/embed/Q2veMjfbQqE?autoplay=1&rel=0&start=50">
+    <img src="https://i.ytimg.com/vi/Q2veMjfbQqE/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+    <button type="button" class="video-play" aria-label="Play video"><span></span></button>
+  </div>
+</section>
+<script>
+(function () {
+  var box = document.getElementById('video-box'); if (!box) return;
+  box.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = box.getAttribute('data-src'); f.title = 'Video'; f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true;
+    box.innerHTML = ''; box.appendChild(f); box.classList.add('is-on');
+  }, { once: true });
+})();
+</script>
+
+<section id="pricing">
+  <div class="sec-eyebrow">Pricing</div>
+  <h2 class="sec-title">Promo <em>price list</em></h2>
+  <div class="tbl-block">
+    <h3 class="tbl-title">All 29 suites</h3>
+    <div class="tbl-scroll">
+      <table class="dt">
+        <thead><tr><th>Model</th><th>Type</th><th>Floor</th><th>Exposure</th><th>Sq ft</th><th>Outdoor</th><th>List price</th><th>Promo price</th><th>Net of HST rebate*</th></tr></thead>
+        <tbody>
+        <tr class="grp"><td colspan="9">One bedroom &amp; one + den</td></tr>
+        <tr><td>Plan 477 <a class="row-plan" href="#plan-477">plan &rarr;</a></td><td>1 bed + den &middot; 1 bath</td><td>1st</td><td>North</td><td>477</td><td>143</td><td>$719,900</td><td>$589,900</td><td class="num">$530,910</td></tr>
+        <tr><td>Plan 489 <a class="row-plan" href="#plan-489">plan &rarr;</a></td><td>1 bed + den &middot; 1 bath</td><td>1st</td><td>North</td><td>489</td><td>143</td><td>$719,900</td><td>$589,900</td><td class="num">$530,910</td></tr>
+        <tr><td>Plan 506 <a class="row-plan" href="#plan-506">plan &rarr;</a></td><td>1 bed &middot; 1 bath</td><td>2nd</td><td>East</td><td>506</td><td>55</td><td>$714,900</td><td>$594,900</td><td class="num">$535,410</td></tr>
+        <tr><td>Plan 527 <a class="row-plan" href="#plan-527">plan &rarr;</a></td><td>1 bed &middot; 1 bath</td><td>2nd</td><td>East</td><td>527</td><td>55</td><td>$724,900</td><td>$599,900</td><td class="num">$539,910</td></tr>
+        <tr><td>Plan 563 <a class="row-plan" href="#plan-563">plan &rarr;</a></td><td>1 bed + den &middot; 1 bath</td><td>13th</td><td>North</td><td>563</td><td>100</td><td>$829,900</td><td>$739,900</td><td class="num">$665,910</td></tr>
+        <tr><td>Plan 638 <a class="row-plan" href="#plan-638">plan &rarr;</a></td><td>1 bed + den &middot; 2 bath</td><td>5th</td><td>North</td><td>638</td><td>100</td><td>$884,900</td><td>$804,900</td><td class="num">$724,410</td></tr>
+        <tr><td>Plan 647 <a class="row-plan" href="#plan-647">plan &rarr;</a></td><td>1 bed + den &middot; 2 bath</td><td>5th</td><td>North</td><td>647</td><td>100</td><td>$899,900</td><td>$819,900</td><td class="num">$737,910</td></tr>
+        <tr><td>Plan 650 <a class="row-plan" href="#plan-650">plan &rarr;</a></td><td>1 bed + den &middot; 2 bath</td><td>5th</td><td>North</td><td>650</td><td>100</td><td>$899,900</td><td>$819,900</td><td class="num">$737,910</td></tr>
+        <tr class="grp"><td colspan="9">Two bedroom &amp; two + den</td></tr>
+        <tr><td>Plan 677 <a class="row-plan" href="#plan-677">plan &rarr;</a></td><td>2 bed</td><td>2nd</td><td>South</td><td>677</td><td>50</td><td>$934,900</td><td>$799,900</td><td class="num">$719,910</td></tr>
+        <tr><td>Plan 700 <a class="row-plan" href="#plan-700">plan &rarr;</a></td><td>2 bed &middot; 2 bath</td><td>13th</td><td>North West</td><td>700</td><td>229</td><td>$1,024,000</td><td>&mdash;</td><td class="num">$921,600</td></tr>
+        <tr><td>Plan 707 <a class="row-plan" href="#plan-707">plan &rarr;</a></td><td>2 bed</td><td>3rd</td><td>South</td><td>707</td><td>50</td><td>$959,900</td><td>$839,900</td><td class="num">$755,910</td></tr>
+        <tr><td>Plan 724 <a class="row-plan" href="#plan-724">plan &rarr;</a></td><td>2 bed &middot; 2 bath</td><td>6th &ndash; 9th</td><td>North West</td><td>724</td><td>100</td><td>$989,000</td><td>&mdash;</td><td class="num">$890,100</td></tr>
+        <tr><td>Plan 726 <a class="row-plan" href="#plan-726">plan &rarr;</a></td><td>2 bed</td><td>2nd</td><td>South</td><td>726</td><td>50</td><td>$974,900</td><td>$874,900</td><td class="num">$787,410</td></tr>
+        <tr><td>Plan 797 <a class="row-plan" href="#plan-797">plan &rarr;</a></td><td>2 bed + den</td><td>3rd</td><td>South</td><td>797</td><td>50</td><td>$1,064,900</td><td>$964,900</td><td class="num">$868,410</td></tr>
+        <tr><td>Plan 820 <a class="row-plan" href="#plan-820">plan &rarr;</a></td><td>2 bed</td><td>3rd</td><td>South</td><td>820</td><td>50</td><td>$1,074,900</td><td>$974,900</td><td class="num">$877,410</td></tr>
+        <tr><td>Plan 821 <a class="row-plan" href="#plan-821">plan &rarr;</a></td><td>2 bed + den</td><td>2nd</td><td>South</td><td>821</td><td>50</td><td>$1,069,900</td><td>$969,900</td><td class="num">$872,910</td></tr>
+        <tr><td>Plan 842 <a class="row-plan" href="#plan-842">plan &rarr;</a></td><td>2 bed + den</td><td>3rd</td><td>South</td><td>842</td><td>50</td><td>$1,094,900</td><td>$994,900</td><td class="num">$895,410</td></tr>
+        <tr><td>Plan 845 <a class="row-plan" href="#plan-845">plan &rarr;</a></td><td>2 bed + den</td><td>4th</td><td>South</td><td>845</td><td>50</td><td>$1,114,900</td><td>$1,014,900</td><td class="num">$913,410</td></tr>
+        <tr><td>Plan 858 <a class="row-plan" href="#plan-858">plan &rarr;</a></td><td>2 bed</td><td>2nd</td><td>South West</td><td>858</td><td>50</td><td>$1,129,900</td><td>$1,029,900</td><td class="num">$926,910</td></tr>
+        <tr><td>Plan 883 <a class="row-plan" href="#plan-883">plan &rarr;</a></td><td>2 bed + den</td><td>1st</td><td>South</td><td>883</td><td>202</td><td>$1,164,900</td><td>$1,064,900</td><td class="num">$958,410</td></tr>
+        <tr><td>Plan 890 <a class="row-plan" href="#plan-890">plan &rarr;</a></td><td>2 bed + den</td><td>2nd</td><td>South</td><td>890</td><td>50</td><td>$1,114,900</td><td>$1,014,900</td><td class="num">$913,410</td></tr>
+        <tr><td>Plan 894 <a class="row-plan" href="#plan-894">plan &rarr;</a></td><td>2 bed + den</td><td>2nd</td><td>South</td><td>894</td><td>50</td><td>$1,114,900</td><td>$1,014,900</td><td class="num">$913,410</td></tr>
+        <tr><td>Plan 912 <a class="row-plan" href="#plan-912">plan &rarr;</a></td><td>2 bed + den</td><td>4th</td><td>South</td><td>912</td><td>50</td><td>$1,164,900</td><td>$1,064,900</td><td class="num">$958,410</td></tr>
+        <tr><td>Combo 901 + 919 <a class="row-plan" href="#plan-901-919">plan &rarr;</a></td><td>2 bed + den &middot; combined</td><td>9th</td><td>South</td><td>1,358</td><td>196</td><td>$1,949,800</td><td>Open to offers</td><td class="num">&mdash;</td></tr>
+        <tr><td>Combo 901 + 919 B <a class="row-plan" href="#plan-901-919-b">plan &rarr;</a></td><td>2 bed + den &middot; combined, layout B</td><td>9th</td><td>South</td><td>1,358</td><td>196</td><td>$1,949,800</td><td>Open to offers</td><td class="num">&mdash;</td></tr>
+        <tr class="grp"><td colspan="9">Three bedroom &amp; three + den</td></tr>
+        <tr><td>Plan 980 <a class="row-plan" href="#plan-980">plan &rarr;</a></td><td>3 bed &middot; 2 bath</td><td>5th, 10th &ndash; 12th</td><td>North West</td><td>980</td><td>100</td><td>$1,230,000</td><td>&mdash;</td><td class="num">$1,107,000</td></tr>
+        <tr><td>Combo 916 + 917 <a class="row-plan" href="#plan-916-917">plan &rarr;</a></td><td>3 bed &middot; combined</td><td>9th</td><td>North</td><td>1,397</td><td>327</td><td>$2,039,800</td><td>Open to offers</td><td class="num">&mdash;</td></tr>
+        <tr><td>Combo 1117 + 1118 <a class="row-plan" href="#plan-1117-1118">plan &rarr;</a></td><td>3 bed + den &middot; combined</td><td>11th</td><td>South</td><td>1,940</td><td>387</td><td>$2,829,800</td><td>Open to offers</td><td class="num">&mdash;</td></tr>
+        <tr><td>Combo 1016 + 1017 <a class="row-plan" href="#plan-1016-1017">plan &rarr;</a></td><td>3 bed &middot; combined</td><td>10th</td><td>North, East &amp; South</td><td>2,156</td><td>518</td><td>$3,139,900</td><td>Open to offers</td><td class="num">&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">List and promo prices from the 8 Temple promo price list, 2026; the 700, 724 and 980 sq ft suites were priced by the sales team in September 2026. The promo discount is applied as a credit on closing; floor and exterior space premiums apply. *Estimated promo price less the 10% HST rebate for eligible buyers. Combined suites are open to offers. Subject to change without notice. E.&amp;O.E.</p>
+  </div>
+  <div class="tbl-block">
+    <h3 class="tbl-title">Fees, parking &amp; occupancy</h3>
+    <div class="tbl-scroll">
+      <table class="dt compact">
+        <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+        <tbody>
+        <tr><td>Maintenance fees</td><td class="num">Estimated at $0.68 per sq ft per month</td></tr>
+        <tr><td>Parking</td><td class="num">$125,000, EV-ready &middot; available for suites 771 sq ft and larger</td></tr>
+        <tr><td>Parking maintenance</td><td class="num">$99.95 per month</td></tr>
+        <tr><td>Locker</td><td class="num">By waitlist &middot; $29.95 per month</td></tr>
+        <tr><td>Smart home system &amp; bulk high-speed internet</td><td class="num">$64 per month</td></tr>
+        <tr><td>HST</td><td class="num">Included in the purchase price*</td></tr>
+        <tr><td>Occupancy</td><td class="num">Estimated early 2029</td></tr>
+        <tr><td>Presentation gallery</td><td class="num">171 East Liberty Street, Suite 140</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">From the 8 Temple promo price list, 2026. Hydro and water are individually metered.</p>
+  </div>
+</section>
+
+
+<section class="reg" id="register">
+  <div class="reg-inner">
+    <div class="reg-copy">
+      <div class="sec-eyebrow">Register</div>
+      <h2 class="sec-title">Have a suite <em>in mind?</em></h2>
+      <p>Leave your number and Nikhil will confirm which suites are still available at the promo price and walk you through the deposit. No pressure, no spam.</p>
+    </div>
+    <form class="reg-form" id="reg-form" novalidate>
+      <label>Full name<input type="text" name="name" autocomplete="name" required></label>
+      <label>Phone<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required></label>
+      <label>Email <span>(optional)</span><input type="email" name="email" autocomplete="email"></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="reg-hp">
+      <button type="submit">Check availability</button>
+      <p class="reg-msg" id="reg-msg" role="status"></p>
+      <p class="reg-fine">No spam. Your details go only to Nikhil Oberoi, the broker behind CondosAround. <a href="../privacy.html" style="color:inherit">Privacy policy</a>.</p>
+    </form>
+    <div class="reg-done" id="reg-done" hidden>
+      <div class="reg-done-mark">&#10003;</div>
+      <h3>Got it.</h3>
+      <p>Nikhil will be in touch shortly. Sooner? Call or text <a href="tel:6479240848">647-924-0848</a>.</p>
     </div>
   </div>
-</div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('reg-form');
+  if (!form) return;
+  var msg = document.getElementById('reg-msg');
+  var qs = new URLSearchParams(location.search);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim(), phone = form.phone.value.trim(), email = form.email.value.trim();
+    if (name.length < 2) { msg.textContent = 'Please enter your name.'; form.name.focus(); return; }
+    if (phone.replace(/\D/g, '').length < 10) { msg.textContent = 'Please enter a 10-digit phone number.'; form.phone.focus(); return; }
+    var btn = form.querySelector('button'); btn.disabled = true; msg.textContent = 'Sending…';
+    fetch('/.netlify/functions/save-lead', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, phone: phone, email: email, building: '8 Temple',
+        date: new Date().toISOString(), website: form.website.value,
+        utm_source: qs.get('utm_source') || '', utm_campaign: qs.get('utm_campaign') || '' })
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      try { localStorage.setItem('ca_registered', 'true'); } catch (err) {}
+      if (window.fbq) fbq('track', 'Lead', { content_name: '8 Temple' });
+      form.hidden = true; document.getElementById('reg-done').hidden = false;
+      if (window.caUnlockPlans) window.caUnlockPlans();
+    }).catch(function () {
+      btn.disabled = false;
+      msg.textContent = 'That did not go through. Please try again, or text 647-924-0848.';
+    });
+  });
+})();
+</script>
 
-<!-- FLOOR PLANS -->
-<div class="sqft-section">
-  <div class="sqft-header">
-    <div class="sqft-title">Floor <em>Plans</em></div>
-    <div class="sqft-count">29 floor plans</div>
-    <a href="#gallery" class="btn-gold-outline" style="margin-left:auto; padding:0.5rem 1.2rem; font-size:0.72rem;">Images &darr;</a>
-  </div>
-
-  <div class="fp-filters">
-    <button class="fp-filter-btn active" data-filter="all">All</button>
-    <button class="fp-filter-btn" data-filter="500-700">500 &ndash; 700 sq ft</button>
-    <button class="fp-filter-btn" data-filter="700-900">700 &ndash; 900 sq ft</button>
-    <button class="fp-filter-btn" data-filter="900-1300">900 &ndash; 1,300 sq ft</button>
-    <button class="fp-filter-btn" data-filter="1300-2200-combos">1,300 &ndash; 2,200 sq ft (Combos)</button>
-  </div>
-
-  <div class="fp-grid" id="fp-grid">
-    <div class="fp-card" data-sqft="477" onclick="openModal('t-1')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1.jpg" alt="477 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">477 sq ft &middot; 1 Bedroom + Den</div>
-        <div class="fp-type">1 Bedroom + Den</div>
-        <div class="fp-exposure">North &middot; Outdoor 143 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">477 sq ft</span><span class="fp-price"><s>$719,900</s> <span class="fp-price-promo">$589,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$530,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="489" onclick="openModal('t-2')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2.jpg" alt="489 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">489 sq ft &middot; 1 Bedroom + Den</div>
-        <div class="fp-type">1 Bedroom + Den</div>
-        <div class="fp-exposure">North &middot; Outdoor 143 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">489 sq ft</span><span class="fp-price"><s>$719,900</s> <span class="fp-price-promo">$589,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$530,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="506" onclick="openModal('t-3')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3.jpg" alt="506 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">506 sq ft &middot; 1 Bedroom</div>
-        <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">East &middot; Outdoor 55 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">506 sq ft</span><span class="fp-price"><s>$714,900</s> <span class="fp-price-promo">$594,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$535,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="527" onclick="openModal('t-4')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4.jpg" alt="527 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">527 sq ft &middot; 1 Bedroom</div>
-        <div class="fp-type">1 Bedroom</div>
-        <div class="fp-exposure">East &middot; Outdoor 55 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">527 sq ft</span><span class="fp-price"><s>$724,900</s> <span class="fp-price-promo">$599,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$539,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="563" onclick="openModal('t-5')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5.jpg" alt="563 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">563 sq ft &middot; 1 Bedroom + Den</div>
-        <div class="fp-type">1 Bedroom + Den</div>
-        <div class="fp-exposure">North &middot; Outdoor 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">563 sq ft</span><span class="fp-price"><s>$829,900</s> <span class="fp-price-promo">$739,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$665,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="638" onclick="openModal('t-6')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6.jpg" alt="638 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">638 sq ft &middot; 1 Bedroom + Den</div>
-        <div class="fp-type">1 Bedroom + Den</div>
-        <div class="fp-exposure">North &middot; Outdoor 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">638 sq ft</span><span class="fp-price"><s>$884,900</s> <span class="fp-price-promo">$804,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$724,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="647" onclick="openModal('t-7')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7.jpg" alt="647 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">647 sq ft &middot; 1 Bedroom + Den</div>
-        <div class="fp-type">1 Bedroom + Den</div>
-        <div class="fp-exposure">North &middot; Outdoor 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">647 sq ft</span><span class="fp-price"><s>$899,900</s> <span class="fp-price-promo">$819,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$737,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="650" onclick="openModal('t-8')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8.jpg" alt="650 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">650 sq ft &middot; 1 Bedroom + Den</div>
-        <div class="fp-type">1 Bedroom + Den</div>
-        <div class="fp-exposure">North &middot; Outdoor 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">650 sq ft</span><span class="fp-price"><s>$899,900</s> <span class="fp-price-promo">$819,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$737,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="677" onclick="openModal('t-9')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9.jpg" alt="677 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">677 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">677 sq ft</span><span class="fp-price"><s>$934,900</s> <span class="fp-price-promo">$799,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$719,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="700" onclick="openModal('t-22')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-700-13f-600.avif 600w, ../neighbourhoods/images/8temple-700-13f-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-700-13f-600.webp 600w, ../neighbourhoods/images/8temple-700-13f-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-700-13f.jpg" alt="700 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">700 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">North West &middot; Outdoor 229 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">700 sq ft</span><span class="fp-price">$1,024,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$921,600</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="707" onclick="openModal('t-10')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10.jpg" alt="707 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">707 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">707 sq ft</span><span class="fp-price"><s>$959,900</s> <span class="fp-price-promo">$839,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$755,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="724" onclick="openModal('t-23')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-724-600.avif 600w, ../neighbourhoods/images/8temple-724-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-724-600.webp 600w, ../neighbourhoods/images/8temple-724-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-724.jpg" alt="724 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">724 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">North West &middot; Outdoor 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">724 sq ft</span><span class="fp-price">$989,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$890,100</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="726" onclick="openModal('t-11')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11.jpg" alt="726 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">726 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">726 sq ft</span><span class="fp-price"><s>$974,900</s> <span class="fp-price-promo">$874,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$787,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="797" onclick="openModal('t-12')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12.jpg" alt="797 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">797 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">797 sq ft</span><span class="fp-price"><s>$1,064,900</s> <span class="fp-price-promo">$964,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$868,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="820" onclick="openModal('t-13')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13.jpg" alt="820 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">820 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">820 sq ft</span><span class="fp-price"><s>$1,074,900</s> <span class="fp-price-promo">$974,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$877,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="821" onclick="openModal('t-14')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14.jpg" alt="821 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">821 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">821 sq ft</span><span class="fp-price"><s>$1,069,900</s> <span class="fp-price-promo">$969,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$872,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="842" onclick="openModal('t-15')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15.jpg" alt="842 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">842 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">842 sq ft</span><span class="fp-price"><s>$1,094,900</s> <span class="fp-price-promo">$994,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$895,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="845" onclick="openModal('t-16')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16.jpg" alt="845 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">845 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">845 sq ft</span><span class="fp-price"><s>$1,114,900</s> <span class="fp-price-promo">$1,014,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$913,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="858" onclick="openModal('t-17')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17.jpg" alt="858 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">858 sq ft &middot; 2 Bedroom</div>
-        <div class="fp-type">2 Bedroom</div>
-        <div class="fp-exposure">South West &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">858 sq ft</span><span class="fp-price"><s>$1,129,900</s> <span class="fp-price-promo">$1,029,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$926,910</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="883" onclick="openModal('t-18')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18.jpg" alt="883 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">883 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 202 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">883 sq ft</span><span class="fp-price"><s>$1,164,900</s> <span class="fp-price-promo">$1,064,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$958,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="890" onclick="openModal('t-19')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19.jpg" alt="890 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">890 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">890 sq ft</span><span class="fp-price"><s>$1,114,900</s> <span class="fp-price-promo">$1,014,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$913,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="894" onclick="openModal('t-20')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20.jpg" alt="894 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">894 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">894 sq ft</span><span class="fp-price"><s>$1,114,900</s> <span class="fp-price-promo">$1,014,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$913,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="912" onclick="openModal('t-21')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21-600.avif 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21-600.webp 600w, ../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21-1200.webp 1200w"><img src="../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21.jpg" alt="912 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">912 sq ft &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 50 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">912 sq ft</span><span class="fp-price"><s>$1,164,900</s> <span class="fp-price-promo">$1,064,900</span></span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$958,410</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="980" onclick="openModal('t-24')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-980-600.avif 600w, ../neighbourhoods/images/8temple-980-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-980-600.webp 600w, ../neighbourhoods/images/8temple-980-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-980.jpg" alt="980 sq ft Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple</div>
-        <div class="fp-suite">980 sq ft &middot; 3 Bedroom</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">North West &middot; Outdoor 100 sq ft</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">980 sq ft</span><span class="fp-price">$1,230,000</span></div>
-          <span class="fp-rebate"><span class="fp-rebate-label">Net of HST rebate </span>$1,107,000</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1358" onclick="openModal('t-combo1')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-901-919-a-600.avif 600w, ../neighbourhoods/images/8temple-901-919-a-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-901-919-a-600.webp 600w, ../neighbourhoods/images/8temple-901-919-a-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-901-919-a.jpg" alt="Unit 901+919 Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 901+919 &middot; 2 Bedroom + Den</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 196 sq ft &middot; Floor 9</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,358 sq ft</span><span class="fp-price">$1,949,800</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1358" onclick="openModal('t-combo1b')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-901-919-b-600.avif 600w, ../neighbourhoods/images/8temple-901-919-b-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-901-919-b-600.webp 600w, ../neighbourhoods/images/8temple-901-919-b-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-901-919-b.jpg" alt="Unit 901+919 Layout B Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 901+919 &middot; Layout B</div>
-        <div class="fp-type">2 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 196 sq ft &middot; Floor 9</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,358 sq ft</span><span class="fp-price">$1,949,800</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1397" onclick="openModal('t-combo2')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-916-917-600.avif 600w, ../neighbourhoods/images/8temple-916-917-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-916-917-600.webp 600w, ../neighbourhoods/images/8temple-916-917-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-916-917.jpg" alt="Unit 916+917 Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 916+917 &middot; 3 Bedroom</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">North &middot; Outdoor 327 sq ft &middot; Floor 9</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,397 sq ft</span><span class="fp-price">$2,039,800</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="1940" onclick="openModal('t-combo5')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-1117-1118-600.avif 600w, ../neighbourhoods/images/8temple-1117-1118-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-1117-1118-600.webp 600w, ../neighbourhoods/images/8temple-1117-1118-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-1117-1118.jpg" alt="Unit 1117+1118 Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 1117+1118 &middot; 3 Bedroom + Den</div>
-        <div class="fp-type">3 Bedroom + Den</div>
-        <div class="fp-exposure">South &middot; Outdoor 387 sq ft &middot; Floor 11</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">1,940 sq ft</span><span class="fp-price">$2,829,800</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
-    </div>
-    <div class="fp-card" data-sqft="2156" onclick="openModal('t-combo6')">
-      <div class="fp-image"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-1016-1017-600.avif 600w, ../neighbourhoods/images/8temple-1016-1017-1200.avif 1200w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="../neighbourhoods/images/8temple-1016-1017-600.webp 600w, ../neighbourhoods/images/8temple-1016-1017-1200.webp 1200w"><img src="../neighbourhoods/images/8temple-1016-1017.jpg" alt="Unit 1016+1017 Floor Plan" loading="lazy" decoding="async"></picture></div>
-      <div class="fp-info">
-        <div class="fp-building-tag">8 Temple &middot; Combo</div>
-        <div class="fp-suite">Unit 1016+1017 &middot; 3 Bedroom</div>
-        <div class="fp-type">3 Bedroom</div>
-        <div class="fp-exposure">North / East / South &middot; Outdoor 518 sq ft &middot; Floor 10</div>
-        <div class="fp-meta">
-          <div class="fp-meta-row"><span class="fp-sqft">2,156 sq ft</span><span class="fp-price">$3,139,900</span></div>
-          <span class="fp-offers">Open to offers</span>
-        </div>
-      </div>
+<section>
+  <div class="setting">
+    <div class="setting-media"><picture>
+        <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w, images/towns/8-temple-sauna-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w, images/towns/8-temple-sauna-1280.webp 1280w">
+        <img src="images/towns/8-temple-sauna.jpg" alt="Rooftop sauna at 8 Temple, facing the lake" loading="lazy" decoding="async">
+      </picture></div>
+    <div>
+      <div class="sec-eyebrow">Amenities</div>
+      <h2 class="sec-title">A rooftop <em>facing the lake</em></h2>
+      <p>The rooftop is the centrepiece of 8 Temple: a residents&rsquo; lounge and kitchen for entertaining, an outdoor terrace, a fitness studio with the CN Tower framed in its windows, and a sauna that looks out over Lake Ontario.</p>
+      <p>Downstairs, an archway entrance leads into the lobby and lobby lounge, with a kids&rsquo; room for families. Suites are finished by the team behind the Ritz-Carlton and St. Regis Toronto.</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- GALLERY -->
-<div class="gallery" id="gallery">
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 0)"><img src="../neighbourhoods/images/8 Temple Archway Entrance.jpg" alt="8 Temple Archway Entrance" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 1)"><img src="../neighbourhoods/images/8 Temple Exterior Rooftop Amenity.jpg" alt="8 Temple Exterior Rooftop Amenity" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 2)"><img src="../neighbourhoods/images/8 Temple Ground Floor Amenity Plan.jpg" alt="8 Temple Ground Floor Amenity Plan" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 3)"><img src="../neighbourhoods/images/8 Temple Hero Rendering 2.jpg" alt="8 Temple Hero Rendering 2" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 4)"><img src="../neighbourhoods/images/8 Temple Interior Exterior Fitness.jpg" alt="8 Temple Interior Exterior Fitness" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 5)"><img src="../neighbourhoods/images/8 Temple Kids Room.jpg" alt="8 Temple Kids Room" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 6)"><img src="../neighbourhoods/images/8 Temple Living Dining East.jpg" alt="8 Temple Living Dining East" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 7)"><img src="../neighbourhoods/images/8 Temple Living Dining South.jpg" alt="8 Temple Living Dining South" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 8)"><img src="../neighbourhoods/images/8 Temple Lobby Lounge.jpg" alt="8 Temple Lobby Lounge" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 9)"><img src="../neighbourhoods/images/8 Temple Lobby.jpg" alt="8 Temple Lobby" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 10)"><img src="../neighbourhoods/images/8 Temple Rooftop Amenity Plan.jpg" alt="8 Temple Rooftop Amenity Plan" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 11)"><img src="../neighbourhoods/images/8 Temple Rooftop Kitchen.jpg" alt="8 Temple Rooftop Kitchen" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 12)"><img src="../neighbourhoods/images/8 Temple Rooftop Lounge.jpg" alt="8 Temple Rooftop Lounge" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 13)"><img src="../neighbourhoods/images/8 Temple Sauna.jpg" alt="8 Temple Sauna" /></div>
-  <div class="gallery-item" onclick="openLightbox(galleryImages, 14)"><img src="../neighbourhoods/images/8 Temple Suite Bathroom.jpg" alt="8 Temple Suite Bathroom" /></div>
-</div>
+<section>
+  <div class="sec-eyebrow">Site plan</div>
+  <h2 class="sec-title">Two amenity floors, <em>ground and rooftop</em></h2>
+  <div class="siteplan">
+    <figure><picture>
+        <source type="image/avif" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.avif 480w, images/towns/8-temple-rooftop-plan-800.avif 800w, images/towns/8-temple-rooftop-plan-1280.avif 1280w, images/towns/8-temple-rooftop-plan-1920.avif 1920w">
+        <source type="image/webp" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.webp 480w, images/towns/8-temple-rooftop-plan-800.webp 800w, images/towns/8-temple-rooftop-plan-1280.webp 1280w, images/towns/8-temple-rooftop-plan-1920.webp 1920w">
+        <img src="images/towns/8-temple-rooftop-plan.jpg" alt="8 Temple rooftop amenity plan" loading="lazy" decoding="async" style="aspect-ratio: 5000 / 2273">
+      </picture></figure>
+    <div>
+      <h3 class="side-title">What&rsquo;s where</h3>
+      <div class="cm-row"><span class="cm-time">Rooftop</span><span class="cm-place">Lounge, kitchen and outdoor terrace</span></div>
+      <div class="cm-row"><span class="cm-time">Rooftop</span><span class="cm-place">Fitness studio with CN Tower views</span></div>
+      <div class="cm-row"><span class="cm-time">Rooftop</span><span class="cm-place">Sauna facing the lake</span></div>
+      <div class="cm-row"><span class="cm-time">Ground floor</span><span class="cm-place">Archway entrance, lobby and lobby lounge</span></div>
+      <div class="cm-row"><span class="cm-time">Ground floor</span><span class="cm-place">Kids&rsquo; room</span></div>
+      <div class="cm-row"><span class="cm-time">Suites</span><span class="cm-place">Combined suites on the 9th, 10th and 11th floors</span></div>
+      <div class="cm-row"><span class="cm-time">Presentation gallery</span><span class="cm-place">171 East Liberty Street, Suite 140</span></div>
+    </div>
+  </div>
+</section>
 
-<div class="cta-strip">
-  <div class="cta-headline">Interested in 8 Temple?<br><em>Let&rsquo;s talk floor plans.</em></div>
+<section>
+  <div class="sec-eyebrow">Nearby</div>
+  <h2 class="sec-title">More in <em>Liberty Village</em></h2>
+  <div class="sibs">
+      <a class="sib" href="xo2.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.avif 480w, images/towns/xo2-card-800.avif 800w, images/towns/xo2-card-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.webp 480w, images/towns/xo2-card-800.webp 800w, images/towns/xo2-card-1280.webp 1280w">  <img src="images/towns/xo2-card.jpg" alt="XO2 Condos, Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Liberty Village</span><span class="sib-name">XO2 Condos &rarr;</span></div></a>
+      <a class="sib" href="../neighbourhoods/liberty-village.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">  <img src="images/towns/8-temple-archway.jpg" alt="Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">The neighbourhood</span><span class="sib-name">All Liberty Village plans &rarr;</span></div></a>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-h">Interested in 8 Temple?<br><em>Let&rsquo;s talk suites.</em></div>
   <div class="cta-actions">
-    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
-    <a href="mailto:nik@thinknik.ca" class="btn-gold-outline">Email Nikhil</a>
+    <a href="tel:6479240848" class="btn-w">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%208%20Temple." class="btn-o">Text for details</a>
   </div>
 </div>
+
+<div class="disclaimer">
+  Source: Curated Properties promo price list and floor plan set for 8 Temple, 2026, plus suite pricing supplied by the sales team in September 2026. Renderings are artist&rsquo;s concept. Prices, sizes, incentives,
+  specifications and availability are subject to change without notice and may not reflect
+  the current release. Any GST/HST rebate reference depends on purchaser eligibility and on
+  legislation being enacted as anticipated. Confirm all figures with the sales office before
+  relying on them. Brokers protected. E.&amp;O.E.
+</div>
+
 <footer>
-  <div class="footer-logo">CondosAround<span style="color:#002244">.</span>com</div>
+  <div class="footer-logo">Condos<em>Around</em></div>
   <div>CondosAround.com &middot; &copy; 2025</div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div><div class="modal-eyebrow" id="modal-eyebrow"></div><div class="modal-title" id="modal-title"></div></div>
-      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-image">
-        <button class="modal-nav modal-nav-prev" onclick="modalNav(-1); event.stopPropagation();">&#8249;</button>
-        <img id="modal-img" alt="Floor Plan" />
-        <button class="modal-nav modal-nav-next" onclick="modalNav(1); event.stopPropagation();">&#8250;</button>
-      </div>
-      <div class="modal-details">
-        <div class="detail-row"><span class="detail-label">Building</span><span class="detail-val" id="m-building"></span></div>
-        <div class="detail-row"><span class="detail-label">Suite</span><span class="detail-val" id="m-suite"></span></div>
-        <div class="detail-row"><span class="detail-label">Type</span><span class="detail-val" id="m-type"></span></div>
-        <div class="detail-row"><span class="detail-label">Indoor</span><span class="detail-val" id="m-indoor"></span></div>
-        <div class="detail-row"><span class="detail-label">Outdoor</span><span class="detail-val" id="m-outdoor"></span></div>
-        <div class="detail-row"><span class="detail-label">Floors</span><span class="detail-val" id="m-floors"></span></div>
-        <div class="detail-row"><span class="detail-label">Exposure</span><span class="detail-val" id="m-exposure"></span></div>
-        <div class="detail-row"><span class="detail-label">Price</span><span class="detail-val" id="m-price"></span></div>
-        <div class="modal-cta">
-          <div class="modal-cta-text">Questions about this suite? Nikhil can walk you through availability, views, and assignment options.</div>
-          <a href="tel:6479240848" class="btn-full">Call Nikhil &mdash; 647-924-0848</a>
-          <a href="mailto:nik@thinknik.ca" class="btn-full-outline">Send an email</a>
-          <div class="hst-disclaimer">* HST is included in the purchase price. HST Rebate Price is estimated at promo price &times; 0.90 for eligible buyers. Promo pricing is limited time only &mdash; discount applied as credit on closing.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-  <button class="lightbox-arrow lightbox-prev" onclick="lightboxNav(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
-  <button class="lightbox-arrow lightbox-next" onclick="lightboxNav(1)">&#8250;</button>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
-</div>
-
-<script>
-  const plans = {
-    't-1':  { building: '8 Temple', suite: '477 sq ft Suite', type: '1 Bedroom + Den', indoor: '477 sq ft', outdoor: '143 sq ft', floors: 'First', exposure: 'North', price: '$719,900', promo: '$589,900', rebate: '$530,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-1.jpg' },
-    't-2':  { building: '8 Temple', suite: '489 sq ft Suite', type: '1 Bedroom + Den', indoor: '489 sq ft', outdoor: '143 sq ft', floors: 'First', exposure: 'North', price: '$719,900', promo: '$589,900', rebate: '$530,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-2.jpg' },
-    't-3':  { building: '8 Temple', suite: '506 sq ft Suite', type: '1 Bedroom', indoor: '506 sq ft', outdoor: '55 sq ft', floors: 'Second', exposure: 'East', price: '$714,900', promo: '$594,900', rebate: '$535,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-3.jpg' },
-    't-4':  { building: '8 Temple', suite: '527 sq ft Suite', type: '1 Bedroom', indoor: '527 sq ft', outdoor: '55 sq ft', floors: 'Second', exposure: 'East', price: '$724,900', promo: '$599,900', rebate: '$539,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-4.jpg' },
-    't-5':  { building: '8 Temple', suite: '563 sq ft Suite', type: '1 Bedroom + Den', indoor: '563 sq ft', outdoor: '100 sq ft', floors: 'Thirteenth', exposure: 'North', price: '$829,900', promo: '$739,900', rebate: '$665,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-5.jpg' },
-    't-6':  { building: '8 Temple', suite: '638 sq ft Suite', type: '1 Bedroom + Den', indoor: '638 sq ft', outdoor: '100 sq ft', floors: 'Fifth', exposure: 'North', price: '$884,900', promo: '$804,900', rebate: '$724,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-6.jpg' },
-    't-7':  { building: '8 Temple', suite: '647 sq ft Suite', type: '1 Bedroom + Den', indoor: '647 sq ft', outdoor: '100 sq ft', floors: 'Fifth', exposure: 'North', price: '$899,900', promo: '$819,900', rebate: '$737,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-7.jpg' },
-    't-8':  { building: '8 Temple', suite: '650 sq ft Suite', type: '1 Bedroom + Den', indoor: '650 sq ft', outdoor: '100 sq ft', floors: 'Fifth', exposure: 'North', price: '$899,900', promo: '$819,900', rebate: '$737,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-8.jpg' },
-    't-9':  { building: '8 Temple', suite: '677 sq ft Suite', type: '2 Bedroom', indoor: '677 sq ft', outdoor: '50 sq ft', floors: 'Second', exposure: 'South', price: '$934,900', promo: '$799,900', rebate: '$719,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-9.jpg' },
-    't-10': { building: '8 Temple', suite: '707 sq ft Suite', type: '2 Bedroom', indoor: '707 sq ft', outdoor: '50 sq ft', floors: 'Third', exposure: 'South', price: '$959,900', promo: '$839,900', rebate: '$755,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-10.jpg' },
-    't-11': { building: '8 Temple', suite: '726 sq ft Suite', type: '2 Bedroom', indoor: '726 sq ft', outdoor: '50 sq ft', floors: 'Second', exposure: 'South', price: '$974,900', promo: '$874,900', rebate: '$787,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-11.jpg' },
-    't-12': { building: '8 Temple', suite: '797 sq ft Suite', type: '2 Bedroom + Den', indoor: '797 sq ft', outdoor: '50 sq ft', floors: 'Third', exposure: 'South', price: '$1,064,900', promo: '$964,900', rebate: '$868,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-12.jpg' },
-    't-13': { building: '8 Temple', suite: '820 sq ft Suite', type: '2 Bedroom', indoor: '820 sq ft', outdoor: '50 sq ft', floors: 'Third', exposure: 'South', price: '$1,074,900', promo: '$974,900', rebate: '$877,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-13.jpg' },
-    't-14': { building: '8 Temple', suite: '821 sq ft Suite', type: '2 Bedroom + Den', indoor: '821 sq ft', outdoor: '50 sq ft', floors: 'Second', exposure: 'South', price: '$1,069,900', promo: '$969,900', rebate: '$872,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-14.jpg' },
-    't-15': { building: '8 Temple', suite: '842 sq ft Suite', type: '2 Bedroom + Den', indoor: '842 sq ft', outdoor: '50 sq ft', floors: 'Third', exposure: 'South', price: '$1,094,900', promo: '$994,900', rebate: '$895,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-15.jpg' },
-    't-16': { building: '8 Temple', suite: '845 sq ft Suite', type: '2 Bedroom + Den', indoor: '845 sq ft', outdoor: '50 sq ft', floors: 'Fourth', exposure: 'South', price: '$1,114,900', promo: '$1,014,900', rebate: '$913,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-16.jpg' },
-    't-17': { building: '8 Temple', suite: '858 sq ft Suite', type: '2 Bedroom', indoor: '858 sq ft', outdoor: '50 sq ft', floors: 'Second', exposure: 'South West', price: '$1,129,900', promo: '$1,029,900', rebate: '$926,910', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-17.jpg' },
-    't-18': { building: '8 Temple', suite: '883 sq ft Suite', type: '2 Bedroom + Den', indoor: '883 sq ft', outdoor: '202 sq ft', floors: 'First', exposure: 'South', price: '$1,164,900', promo: '$1,064,900', rebate: '$958,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-18.jpg' },
-    't-19': { building: '8 Temple', suite: '890 sq ft Suite', type: '2 Bedroom + Den', indoor: '890 sq ft', outdoor: '50 sq ft', floors: 'Second', exposure: 'South', price: '$1,114,900', promo: '$1,014,900', rebate: '$913,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-19.jpg' },
-    't-20': { building: '8 Temple', suite: '894 sq ft Suite', type: '2 Bedroom + Den', indoor: '894 sq ft', outdoor: '50 sq ft', floors: 'Second', exposure: 'South', price: '$1,114,900', promo: '$1,014,900', rebate: '$913,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-20.jpg' },
-    't-21': { building: '8 Temple', suite: '912 sq ft Suite', type: '2 Bedroom + Den', indoor: '912 sq ft', outdoor: '50 sq ft', floors: 'Fourth', exposure: 'South', price: '$1,164,900', promo: '$1,064,900', rebate: '$958,410', img: '../neighbourhoods/images/8 Temple Floor Plans 2026.pdf-21.jpg' },
-    't-22': { building: '8 Temple', suite: '700 sq ft Suite', type: '2 Bedroom', indoor: '700 sq ft', outdoor: '229 sq ft', floors: 'Thirteenth', exposure: 'North West', price: '$1,024,000', promo: null, rebate: '$921,600', img: '../neighbourhoods/images/8temple-700-13f.jpg' },
-    't-23': { building: '8 Temple', suite: '724 sq ft Suite', type: '2 Bedroom', indoor: '724 sq ft', outdoor: '100 sq ft', floors: 'Sixth – Ninth', exposure: 'North West', price: '$989,000', promo: null, rebate: '$890,100', img: '../neighbourhoods/images/8temple-724.jpg' },
-    't-24': { building: '8 Temple', suite: '980 sq ft Suite', type: '3 Bedroom', indoor: '980 sq ft', outdoor: '100 sq ft', floors: 'Fifth, Tenth – Twelfth', exposure: 'North West', price: '$1,230,000', promo: null, rebate: '$1,107,000', img: '../neighbourhoods/images/8temple-980.jpg' },
-    't-combo1': { building: '8 Temple', suite: 'Unit 901+919', type: '2 Bedroom + Den', indoor: '1,358 sq ft', outdoor: '196 sq ft', floors: '9th', exposure: 'South', price: '$1,949,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-901-919-a.jpg' },
-    't-combo1b': { building: '8 Temple', suite: 'Unit 901+919 (Layout B)', type: '2 Bedroom + Den', indoor: '1,358 sq ft', outdoor: '196 sq ft', floors: '9th', exposure: 'South', price: '$1,949,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-901-919-b.jpg' },
-    't-combo2': { building: '8 Temple', suite: 'Unit 916+917', type: '3 Bedroom', indoor: '1,397 sq ft', outdoor: '327 sq ft', floors: '9th', exposure: 'North', price: '$2,039,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-916-917.jpg' },
-    't-combo5': { building: '8 Temple', suite: 'Unit 1117+1118', type: '3 Bedroom + Den', indoor: '1,940 sq ft', outdoor: '387 sq ft', floors: '11th', exposure: 'South', price: '$2,829,800', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-1117-1118.jpg' },
-    't-combo6': { building: '8 Temple', suite: 'Unit 1016+1017', type: '3 Bedroom', indoor: '2,156 sq ft', outdoor: '518 sq ft', floors: '10th', exposure: 'North / East / South', price: '$3,139,900', promo: null, rebate: null, openOffers: true, img: '../neighbourhoods/images/8temple-1016-1017.jpg' },
-  };
-
-  function openModal(id) {
-    const p = plans[id]; if (!p) return;
-    document.getElementById('modal-eyebrow').textContent = '8 Temple \u00b7 ' + p.type;
-    document.getElementById('modal-title').textContent = p.suite + ' \u2014 ' + p.type;
-    document.getElementById('modal-img').src = p.img;
-    document.getElementById('m-building').textContent = p.building;
-    document.getElementById('m-suite').textContent = p.suite;
-    document.getElementById('m-type').textContent = p.type;
-    document.getElementById('m-indoor').textContent = p.indoor;
-    document.getElementById('m-outdoor').textContent = p.outdoor;
-    document.getElementById('m-floors').textContent = p.floors;
-    document.getElementById('m-exposure').textContent = p.exposure;
-    const priceEl = document.getElementById('m-price');
-    if (p.rebate) {
-      priceEl.innerHTML = (p.promo ? '<s>' + p.price + '</s> <span class="promo">' + p.promo + '</span>' : p.price) + '<span class="hst-rebate"><span class="hst-rebate-label">Net of HST rebate </span>' + p.rebate + '</span>';
-    } else if (p.openOffers) {
-      priceEl.innerHTML = p.price + '<span style="display:block;font-size:0.68rem;color:var(--text-muted);font-style:italic;margin-top:3px;">Open to offers</span>';
-    } else {
-      priceEl.textContent = p.price;
-    }
-    document.getElementById('modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
-  function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeLightbox(); closeModal(); }
-    if (e.key === 'ArrowLeft') lightboxNav(-1);
-    if (e.key === 'ArrowRight') lightboxNav(1);
-  });
-
-  function applyFpFilter(filter) {
-    document.querySelectorAll('.fp-filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.filter === filter);
-    });
-    document.querySelectorAll('#fp-grid .fp-card').forEach(card => {
-      const sqft = parseInt(card.dataset.sqft);
-      let show = true;
-      if (filter === '500-700') show = sqft >= 500 && sqft < 700;
-      else if (filter === '700-900') show = sqft >= 700 && sqft < 900;
-      else if (filter === '900-1300') show = sqft >= 900 && sqft < 1300;
-      else if (filter === '1300-2200-combos') show = sqft >= 1300;
-      card.style.display = show ? '' : 'none';
-    });
-  }
-
-  document.querySelectorAll('.fp-filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const slug = btn.dataset.filter;
-      applyFpFilter(slug);
-      const url = new URL(window.location);
-      if (slug === 'all') url.searchParams.delete('filter');
-      else url.searchParams.set('filter', slug);
-      window.history.replaceState({}, '', url);
-    });
-  });
-
-  (function restoreFilterFromUrl() {
-    const slug = new URLSearchParams(window.location.search).get('filter');
-    if (!slug) return;
-    const btn = document.querySelector('.fp-filter-btn[data-filter="' + slug + '"]');
-    if (btn) applyFpFilter(slug);
-  })();
-
-  // Lightbox
-  const galleryImages = [
-    '../neighbourhoods/images/8 Temple Archway Entrance.jpg',
-    '../neighbourhoods/images/8 Temple Exterior Rooftop Amenity.jpg',
-    '../neighbourhoods/images/8 Temple Ground Floor Amenity Plan.jpg',
-    '../neighbourhoods/images/8 Temple Hero Rendering 2.jpg',
-    '../neighbourhoods/images/8 Temple Interior Exterior Fitness.jpg',
-    '../neighbourhoods/images/8 Temple Kids Room.jpg',
-    '../neighbourhoods/images/8 Temple Living Dining East.jpg',
-    '../neighbourhoods/images/8 Temple Living Dining South.jpg',
-    '../neighbourhoods/images/8 Temple Lobby Lounge.jpg',
-    '../neighbourhoods/images/8 Temple Lobby.jpg',
-    '../neighbourhoods/images/8 Temple Rooftop Amenity Plan.jpg',
-    '../neighbourhoods/images/8 Temple Rooftop Kitchen.jpg',
-    '../neighbourhoods/images/8 Temple Rooftop Lounge.jpg',
-    '../neighbourhoods/images/8 Temple Sauna.jpg',
-    '../neighbourhoods/images/8 Temple Suite Bathroom.jpg'
-  ];
-
-  let lbImages = [];
-  let lbIndex = 0;
-
-  function openLightbox(images, index) {
-    lbImages = images;
-    lbIndex = index;
-    showLightboxImage();
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-    if (!document.getElementById('modal').classList.contains('active')) {
-      document.body.style.overflow = '';
-    }
-  }
-
-  function closeLightboxOutside(e) {
-    if (e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-img')) {
-      closeLightbox();
-    }
-  }
-
-  function lightboxNav(dir) {
-    if (!lbImages.length) return;
-    lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
-    showLightboxImage();
-  }
-
-  function showLightboxImage() {
-    document.getElementById('lightbox-img').src = lbImages[lbIndex];
-    document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
-  }
-
-  // Floor plan image click → lightbox with all floor plan images
-  const fpImgs = document.querySelectorAll('.fp-image img');
-  fpImgs.forEach(img => {
-    img.addEventListener('click', e => {
-      e.stopPropagation();
-      const allSrcs = Array.from(fpImgs).filter(i => i.closest('.fp-card').style.display !== 'none').map(i => i.src);
-      const idx = allSrcs.indexOf(img.src);
-      openLightbox(allSrcs, idx >= 0 ? idx : 0);
-    });
-  });
-</script>
-<script src="../js/deeplink.js"></script>
 <script src="../js/save.js"></script>
 <script src="../js/sofia.js"></script>
 <script src="../js/protect.js"></script>
-<script src="../js/modal-full-plan.js"></script>
 </body>
 </html>

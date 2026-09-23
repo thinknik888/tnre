@@ -900,6 +900,239 @@ PROJECTS = {
             "dated": "current Exhale promotional pricing",
         },
     },
+
+    # -- 8 Temple (Liberty Village / Toronto Waterfront West) -- a condo page built the same
+    # way as the townhome pages; it hangs off the Liberty Village hub, not Dixie & Lakeshore.
+    "8-temple": {
+        "name": "8 Temple",
+        "builder": "Curated Properties",
+        "hub": {"name": "Liberty Village", "href": "../neighbourhoods/liberty-village.html",
+                "extra_label": "All Liberty Village plans",
+                "extra_href": "../neighbourhoods/liberty-village.html#floor-plans"},
+        "status": "Now selling &middot; Promo pricing",
+        "status_kind": "live",
+        "tagline": "A modern sanctuary rising in Toronto Waterfront West, from $589,900.",
+        "address": "8 Temple Avenue, Toronto M6K 1C8 &middot; Exhibition &amp; Liberty Village",
+        "area": "Toronto Waterfront West",
+        "hero": "8-temple-hero",
+        "hero_alt": "8 Temple by Curated Properties, exterior rendering",
+        "meta": "8 Temple by Curated Properties: 229 suites at 8 Temple Avenue in Toronto Waterfront West, "
+                "beside Liberty Village. 29 floor plans from 477 to 2,156 sq ft, one to three bedrooms, "
+                "promo pricing from $589,900 with HST included. Rooftop sauna, fitness studio and lounge. "
+                "Early 2029 occupancy.",
+        "facts": [
+            ("From", "$589,900*"),
+            ("Size", "477 &ndash; 2,156 sq ft"),
+            ("Bedrooms", "1 &ndash; 3"),
+            ("Suites", "229"),
+            ("Deposit", "20% over 540 days"),
+            ("Occupancy", "Early 2029"),
+        ],
+        "intro": [
+            "8 Temple is a 229-suite building by Curated Properties on Temple Avenue, just off Dufferin "
+            "Street, on the quiet edge of Liberty Village where Toronto Waterfront West meets the "
+            "Exhibition grounds. The interiors come from the design team behind the Ritz-Carlton and "
+            "St. Regis Toronto, and the rooftop is the centrepiece: a residents&rsquo; lounge and "
+            "kitchen, a fitness studio with the CN Tower in its windows, and a sauna facing the lake.",
+            "Twenty-nine layouts run from a 477 sq ft one bedroom plus den to combined suites of up to "
+            "2,156 sq ft with water views. Most suites carry a promotional price, applied as a credit "
+            "on closing, and HST is included in the purchase price. Occupancy is estimated for early 2029.",
+        ],
+        "plans": "scripts/manifests/8-temple-plans.json",
+        "plans_only_priced": True,
+        "plans_gate": False,
+        "plans_ratio": "1 / 1",
+        "plans_title": "29 plans on the <em>promo price list</em>",
+        "plans_intro": "Every layout currently offered, from the 477 sq ft one bedroom plus den to the "
+                       "2,156 sq ft combined suite. Most carry a promotional price, applied as a credit "
+                       "on closing, and HST is included.",
+        "plans_price_label": "List price",
+        "plans_promo_label": "Promo price",
+        "plans_note": "Plans from the Curated Properties floor plan set; prices from the 8 Temple promo price "
+                      "list, 2026, with additional suites priced September 2026. *Net figure is an estimate "
+                      "of the promo price less the HST rebate (10%) for eligible buyers; HST is included in "
+                      "the purchase price. Combined suites are open to offers. Layouts and dimensions are "
+                      "approximate and subject to change without notice. E.&amp;O.E.",
+        "order": ["overview", "plans", "incentives", "gallery", "video", "pricing", "register",
+                  "setting", "site_plan", "nearby"],
+        "register": {
+            "title": "Have a suite <em>in mind?</em>",
+            "text": "Leave your number and Nikhil will confirm which suites are still available at the "
+                    "promo price and walk you through the deposit. No pressure, no spam.",
+            "button": "Check availability",
+            "hero_button": "See floor plans &amp; prices",
+            "hero_href": "#floor-plans",
+            "done_title": "Got it.",
+            "done_text": "Nikhil will be in touch shortly. Sooner? Call or text "
+                         "<a href=\"tel:6479240848\">647-924-0848</a>.",
+        },
+        "pricing_title": "Promo <em>price list</em>",
+        "tables": [
+            {
+                "title": "All 29 suites",
+                "note": "List and promo prices from the 8 Temple promo price list, 2026; the 700, 724 and "
+                        "980 sq ft suites were priced by the sales team in September 2026. The promo "
+                        "discount is applied as a credit on closing; floor and exterior space premiums "
+                        "apply. *Estimated promo price less the 10% HST rebate for eligible buyers. "
+                        "Combined suites are open to offers. Subject to change without notice. E.&amp;O.E.",
+                "cols": ["Model", "Type", "Floor", "Exposure", "Sq ft", "Outdoor", "List price",
+                         "Promo price", "Net of HST rebate*"],
+                "plan_cols": {"model": 0, "sqft": 4, "price": 7, "net": 8, "was": 6},
+                "groups": [
+                    ("One bedroom &amp; one + den", [
+                        ["Plan 477", "1 bed + den &middot; 1 bath", "1st", "North", "477", "143", "$719,900", "$589,900", "$530,910"],
+                        ["Plan 489", "1 bed + den &middot; 1 bath", "1st", "North", "489", "143", "$719,900", "$589,900", "$530,910"],
+                        ["Plan 506", "1 bed &middot; 1 bath", "2nd", "East", "506", "55", "$714,900", "$594,900", "$535,410"],
+                        ["Plan 527", "1 bed &middot; 1 bath", "2nd", "East", "527", "55", "$724,900", "$599,900", "$539,910"],
+                        ["Plan 563", "1 bed + den &middot; 1 bath", "13th", "North", "563", "100", "$829,900", "$739,900", "$665,910"],
+                        ["Plan 638", "1 bed + den &middot; 2 bath", "5th", "North", "638", "100", "$884,900", "$804,900", "$724,410"],
+                        ["Plan 647", "1 bed + den &middot; 2 bath", "5th", "North", "647", "100", "$899,900", "$819,900", "$737,910"],
+                        ["Plan 650", "1 bed + den &middot; 2 bath", "5th", "North", "650", "100", "$899,900", "$819,900", "$737,910"],
+                    ]),
+                    ("Two bedroom &amp; two + den", [
+                        ["Plan 677", "2 bed", "2nd", "South", "677", "50", "$934,900", "$799,900", "$719,910"],
+                        ["Plan 700", "2 bed &middot; 2 bath", "13th", "North West", "700", "229", "$1,024,000", "&mdash;", "$921,600"],
+                        ["Plan 707", "2 bed", "3rd", "South", "707", "50", "$959,900", "$839,900", "$755,910"],
+                        ["Plan 724", "2 bed &middot; 2 bath", "6th &ndash; 9th", "North West", "724", "100", "$989,000", "&mdash;", "$890,100"],
+                        ["Plan 726", "2 bed", "2nd", "South", "726", "50", "$974,900", "$874,900", "$787,410"],
+                        ["Plan 797", "2 bed + den", "3rd", "South", "797", "50", "$1,064,900", "$964,900", "$868,410"],
+                        ["Plan 820", "2 bed", "3rd", "South", "820", "50", "$1,074,900", "$974,900", "$877,410"],
+                        ["Plan 821", "2 bed + den", "2nd", "South", "821", "50", "$1,069,900", "$969,900", "$872,910"],
+                        ["Plan 842", "2 bed + den", "3rd", "South", "842", "50", "$1,094,900", "$994,900", "$895,410"],
+                        ["Plan 845", "2 bed + den", "4th", "South", "845", "50", "$1,114,900", "$1,014,900", "$913,410"],
+                        ["Plan 858", "2 bed", "2nd", "South West", "858", "50", "$1,129,900", "$1,029,900", "$926,910"],
+                        ["Plan 883", "2 bed + den", "1st", "South", "883", "202", "$1,164,900", "$1,064,900", "$958,410"],
+                        ["Plan 890", "2 bed + den", "2nd", "South", "890", "50", "$1,114,900", "$1,014,900", "$913,410"],
+                        ["Plan 894", "2 bed + den", "2nd", "South", "894", "50", "$1,114,900", "$1,014,900", "$913,410"],
+                        ["Plan 912", "2 bed + den", "4th", "South", "912", "50", "$1,164,900", "$1,064,900", "$958,410"],
+                        ["Combo 901 + 919", "2 bed + den &middot; combined", "9th", "South", "1,358", "196", "$1,949,800", "Open to offers", "&mdash;"],
+                        ["Combo 901 + 919 B", "2 bed + den &middot; combined, layout B", "9th", "South", "1,358", "196", "$1,949,800", "Open to offers", "&mdash;"],
+                    ]),
+                    ("Three bedroom &amp; three + den", [
+                        ["Plan 980", "3 bed &middot; 2 bath", "5th, 10th &ndash; 12th", "North West", "980", "100", "$1,230,000", "&mdash;", "$1,107,000"],
+                        ["Combo 916 + 917", "3 bed &middot; combined", "9th", "North", "1,397", "327", "$2,039,800", "Open to offers", "&mdash;"],
+                        ["Combo 1117 + 1118", "3 bed + den &middot; combined", "11th", "South", "1,940", "387", "$2,829,800", "Open to offers", "&mdash;"],
+                        ["Combo 1016 + 1017", "3 bed &middot; combined", "10th", "North, East &amp; South", "2,156", "518", "$3,139,900", "Open to offers", "&mdash;"],
+                    ]),
+                ],
+            },
+            {
+                "title": "Fees, parking &amp; occupancy",
+                "compact": True,
+                "note": "From the 8 Temple promo price list, 2026. Hydro and water are individually metered.",
+                "cols": ["Item", "Detail"],
+                "groups": [("", [
+                    ["Maintenance fees", "Estimated at $0.68 per sq ft per month"],
+                    ["Parking", "$125,000, EV-ready &middot; available for suites 771 sq ft and larger"],
+                    ["Parking maintenance", "$99.95 per month"],
+                    ["Locker", "By waitlist &middot; $29.95 per month"],
+                    ["Smart home system &amp; bulk high-speed internet", "$64 per month"],
+                    ["HST", "Included in the purchase price*"],
+                    ["Occupancy", "Estimated early 2029"],
+                    ["Presentation gallery", "171 East Liberty Street, Suite 140"],
+                ])],
+            },
+        ],
+        "incentives_title": "What&rsquo;s <em>included</em>",
+        "incentives": [
+            "HST included in the purchase price",
+            "Promotional pricing on most suites, applied as a credit on closing",
+            "Extended deposit: $10,000 with the offer, then 20% spread over 540 days and occupancy",
+            "EV-ready parking available for suites 771 sq ft and larger",
+            "Smart home system with bulk high-speed internet",
+            "Combined suites up to 2,156 sq ft, open to offers",
+        ],
+        "deposit": {
+            "title": "Deposit structure",
+            "rows": [
+                ("With the offer", "$10,000"),
+                ("30 days", "Balance to 5%"),
+                ("180 days", "2.5%"),
+                ("365 days", "2.5%"),
+                ("540 days", "5%"),
+                ("On occupancy", "5%"),
+                ("Total", "20%"),
+            ],
+            "foot": "Extended deposit structure from the 8 Temple promo price list. The promo discount is "
+                    "applied as a credit on closing; floor and exterior space premiums apply.",
+        },
+        "commute": [
+            ("At the door", "Dufferin 29 bus &middot; King St W streetcar a few minutes north"),
+            ("About 10 min walk", "Liberty Village shops and restaurants on East Liberty St"),
+            ("About 15 min walk", "Exhibition GO &middot; future Ontario Line station"),
+            ("About 10 min walk", "Lake Ontario, Marilyn Bell Park &amp; the Martin Goodman Trail"),
+            ("About 5 min drive", "Gardiner Expressway via Jameson or Dufferin"),
+            ("About 10 min", "Union Station by GO train from Exhibition"),
+        ],
+        "video": {
+            "id": "Q2veMjfbQqE", "start": 50,
+            "eyebrow": "Video",
+            "title": "The view from <em>the suites</em>",
+        },
+        "setting": {
+            "image": "8-temple-sauna",
+            "image_alt": "Rooftop sauna at 8 Temple, facing the lake",
+            "eyebrow": "Amenities",
+            "title": "A rooftop <em>facing the lake</em>",
+            "text": [
+                "The rooftop is the centrepiece of 8 Temple: a residents&rsquo; lounge and kitchen for "
+                "entertaining, an outdoor terrace, a fitness studio with the CN Tower framed in its "
+                "windows, and a sauna that looks out over Lake Ontario.",
+                "Downstairs, an archway entrance leads into the lobby and lobby lounge, with a kids&rsquo; "
+                "room for families. Suites are finished by the team behind the Ritz-Carlton and "
+                "St. Regis Toronto.",
+            ],
+        },
+        "site_plan": {
+            "image": "8-temple-rooftop-plan",
+            "ratio": "5000 / 2273",
+            "alt": "8 Temple rooftop amenity plan",
+            "title": "Two amenity floors, <em>ground and rooftop</em>",
+            "side_title": "What&rsquo;s where",
+            "rows": [
+                ("Rooftop", "Lounge, kitchen and outdoor terrace"),
+                ("Rooftop", "Fitness studio with CN Tower views"),
+                ("Rooftop", "Sauna facing the lake"),
+                ("Ground floor", "Archway entrance, lobby and lobby lounge"),
+                ("Ground floor", "Kids&rsquo; room"),
+                ("Suites", "Combined suites on the 9th, 10th and 11th floors"),
+                ("Presentation gallery", "171 East Liberty Street, Suite 140"),
+            ],
+        },
+        "gallery_title": "Renderings &amp; <em>amenities</em>",
+        "gallery": [
+            ("8-temple-hero-1", "8 Temple from the street"),
+            ("8-temple-archway", "The archway entrance"),
+            ("8-temple-lobby", "Lobby"),
+            ("8-temple-lobby-lounge", "Lobby lounge"),
+            ("8-temple-rooftop-exterior", "Rooftop amenity terrace"),
+            ("8-temple-rooftop-lounge", "Rooftop lounge"),
+            ("8-temple-rooftop-kitchen", "Rooftop kitchen"),
+            ("8-temple-fitness", "Rooftop fitness studio with CN Tower views"),
+            ("8-temple-sauna", "Rooftop sauna facing the lake"),
+            ("8-temple-kids", "Kids&rsquo; room"),
+            ("8-temple-living-east", "Living and dining, east-facing suite"),
+            ("8-temple-living-south", "Living and dining, south-facing suite"),
+            ("8-temple-bathroom", "Suite bathroom"),
+            ("8-temple-ground-plan", "Ground floor amenity plan"),
+        ],
+        "nearby_title": "More in <em>Liberty Village</em>",
+        "nearby": [
+            {"href": "xo2.html", "image": "xo2-card", "alt": "XO2 Condos, Liberty Village",
+             "label": "Also in Liberty Village", "name": "XO2 Condos"},
+            {"href": "../neighbourhoods/liberty-village.html", "image": "8-temple-archway",
+             "alt": "Liberty Village", "label": "The neighbourhood", "name": "All Liberty Village plans"},
+        ],
+        "cta_line": "Let&rsquo;s talk suites.",
+        "source": "Curated Properties promo price list and floor plan set for 8 Temple, 2026, plus suite "
+                  "pricing supplied by the sales team in September 2026.",
+        # Links shared from the previous version of this page (?plan=t-7) still open the right drawing.
+        "plan_aliases": dict(
+            [("t-%d" % (i + 1), str(s)) for i, s in enumerate(
+                [477, 489, 506, 527, 563, 638, 647, 650, 677, 707, 726, 797, 820, 821, 842, 845, 858, 883, 890, 894, 912])]
+            + [("t-22", "700"), ("t-23", "724"), ("t-24", "980"), ("t-combo1", "901-919"), ("t-combo1b", "901-919-b"),
+               ("t-combo2", "916-917"), ("t-combo5", "1117-1118"), ("t-combo6", "1016-1017")]),
+    },
 }
 
 # Condo towers in this neighbourhood. Their suites live on their own building page;
@@ -924,6 +1157,12 @@ ORDER = ["south-banks", "westshore-long-branch", "exhale-towns", "aura-lakeview-
          "pier-house-towns"]
 
 SIBLINGS = {slug: PROJECTS[slug]["name"] for slug in ORDER}
+
+# Pages built the same way that belong to another neighbourhood hub: written like the
+# rest, but kept out of the Dixie & Lakeshore cards, compare table and counts.
+EXTRA_PAGES = ["8-temple"]
+DEFAULT_HUB = {"name": "Dixie &amp; Lakeshore", "href": "../neighbourhoods/dixie-lakeshore.html#townhomes",
+               "extra_label": "Compare townhomes", "extra_href": "../neighbourhoods/dixie-lakeshore.html#compare"}
 
 # Meta Pixel -- identical to the snippet on every other page of the site, so
 # visits to the townhome pages are counted (and can be retargeted) like the rest.
@@ -1128,12 +1367,21 @@ def price_index(tables, plans):
         for gname, rows in t["groups"]:
             for r in rows:
                 price = _price_number(r[c["price"]])
+                # "was": a list price column shown struck through beside a promo price; a row with
+                # no promo figure ("--" or "Open to offers") falls back to the list price alone
+                was = _price_number(r[c["was"]]) if c.get("was") is not None else None
+                if price is None:
+                    price, was = was, None
+                if price is None:
+                    continue
+                if was == price:
+                    was = None
                 net = _price_number(r[c["net"]]) if c.get("net") is not None and len(r) > c["net"] else None
                 model = html.unescape(r[c["model"]]).split("<")[0].strip()
                 for slug in _row_slugs(by, r, c):
-                    e = idx.setdefault(slug, {"min": price, "net": net, "blocks": []})
+                    e = idx.setdefault(slug, {"min": price, "net": net, "was": was, "blocks": []})
                     if price < e["min"]:
-                        e["min"], e["net"] = price, net
+                        e["min"], e["net"], e["was"] = price, net, was
                     label = by_slug[slug].get("variant_labels", {}).get(model, gname)
                     e["blocks"].append((label, price, net))
     return idx
@@ -1231,18 +1479,24 @@ def plans_section(p, plans, plans_dir, register_html=""):
     cards = []
     for pl in ordered:
         base = "%s/%s" % (plans_dir, pl["slug"])
-        widths = [480, 800, 1280] + ([1920] if pl["half"] == "F" else [])
-        spec = "%s bed &middot; %s bath &middot; %s sq ft" % (pl["beds"], pl["baths"], "{:,}".format(pl["sqft"]))
+        widths = [480, 800, 1280] + ([1920] if pl.get("half", "F") == "F" else [])
+        beds = str(pl["beds"])
+        beds_lbl = "%s bed + den" % beds.split("+")[0].strip() if "den" in beds else "%s bed" % beds   # "2 + den" reads "2 bed + den"
+        spec = " &middot; ".join(x for x in [beds_lbl, ("%s bath" % pl["baths"]) if pl.get("baths") else "",
+                                              "%s sq ft" % "{:,}".format(pl["sqft"])] if x)
         if pl["slug"] in prices:
             e = prices[pl["slug"]]
             blocks = block_prices_html(e["blocks"]) if any(g for g, _, _ in e["blocks"]) else ""
             several = len(set(pr for _, pr, _ in e["blocks"])) > 1
+            # a promo price shows its struck-through list price beside it
+            label = p.get("plans_promo_label", "Promo price") if e.get("was") else p.get("plans_price_label", "List price")
+            was = " <s>%s</s>" % _money(e["was"]) if e.get("was") else ""
             if e.get("net"):
                 # the net-of-HST figure leads; the list price sits under it in plain text
                 price = ('<div class="plan-price"><b class="plan-net">%s%s</b> <i>net of HST rebate*</i>'
-                         '<span class="plan-list">%s %s%s</span>%s</div>' % (
+                         '<span class="plan-list">%s %s%s%s</span>%s</div>' % (
                              "From " if several else "", _money(e["net"]),
-                             p.get("plans_price_label", "List price"), "from " if several else "", _money(e["min"]),
+                             label, "from " if several else "", _money(e["min"]), was,
                              '<span class="plan-blocks">%s</span>' % blocks if blocks else ""))
             else:
                 price = '<div class="plan-price"><b class="plan-net">%s%s</b>%s</div>' % (
@@ -1314,10 +1568,17 @@ def plans_section(p, plans, plans_dir, register_html=""):
         "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
         "{:,}".format(largest["sqft"]), singular(largest["type"])))
     style = ' style="--plan-ratio: %s"' % p["plans_ratio"] if p.get("plans_ratio") else ""
+    js = PLANS_JS
+    if p.get("plan_aliases"):
+        # ids from an earlier version of the page: rewrite ?plan= before the lightbox script reads it
+        js = ('<script>(function(){var m=%s,u=new URL(location.href),v=u.searchParams.get("plan");'
+              'u.searchParams.delete("filter");if(v&&m[v])u.searchParams.set("plan",m[v]);'
+              'if(u.search!==location.search&&history.replaceState)history.replaceState(null,"",u.pathname+u.search+u.hash);})();</script>\n'
+              % json.dumps(p["plan_aliases"], separators=(",", ":"))) + PLANS_JS
     note = p.get("plans_note", "Plans from the builder&rsquo;s floor plan set; prices from the current price list. "
                  "*Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts and "
                  "dimensions are approximate and subject to change without notice. E.&amp;O.E.")
-    return PLANS_SECTION % (style, title, intro, pitch, "".join(chips), state, grid, note, PLANS_JS)
+    return PLANS_SECTION % (style, title, intro, pitch, "".join(chips), state, grid, note, js)
 
 
 PLANS_CSS = """
@@ -1566,16 +1827,26 @@ def build(slug, p):
         % (picture(n, a, "(max-width: 700px) 100vw, 50vw", CARD_W), a)
         for n, a in p["gallery"])
 
-    others = "\n".join(
-        '      <a class="sib" href="%s.html"><div class="sib-img">%s</div><div class="sib-body">'
-        '<span class="sib-lbl">Also in Dixie &amp; Lakeshore%s</span>'
-        '<span class="sib-name">%s &rarr;</span></div></a>'
-        % (s, picture(PROJECTS[s]["card"]["image"], PROJECTS[s]["card"]["image_alt"],
-                      "(max-width: 700px) 50vw, 25vw", CARD_W).replace("\n      ", ""),
-           " &middot; sold out" if PROJECTS[s].get("status") == "Sold out"
-           else " &middot; coming soon" if PROJECTS[s].get("status_kind") == "new" else "",
-           SIBLINGS[s])
-        for s in ORDER if s != slug)
+    hub = dict(DEFAULT_HUB, **p.get("hub", {}))
+    if p.get("nearby"):
+        others = "\n".join(
+            '      <a class="sib" href="%s"><div class="sib-img">%s</div><div class="sib-body">'
+            '<span class="sib-lbl">%s</span><span class="sib-name">%s &rarr;</span></div></a>'
+            % (n["href"], picture(n["image"], n["alt"], "(max-width: 700px) 50vw, 25vw", CARD_W).replace("\n      ", ""),
+               n["label"], n["name"])
+            for n in p["nearby"])
+    else:
+        others = "\n".join(
+            '      <a class="sib" href="%s.html"><div class="sib-img">%s</div><div class="sib-body">'
+            '<span class="sib-lbl">Also in %s%s</span>'
+            '<span class="sib-name">%s &rarr;</span></div></a>'
+            % (s, picture(PROJECTS[s]["card"]["image"], PROJECTS[s]["card"]["image_alt"],
+                          "(max-width: 700px) 50vw, 25vw", CARD_W).replace("\n      ", ""),
+               hub["name"],
+               " &middot; sold out" if PROJECTS[s].get("status") == "Sold out"
+               else " &middot; coming soon" if PROJECTS[s].get("status_kind") == "new" else "",
+               SIBLINGS[s])
+            for s in ORDER if s != slug)
 
     status_badge = ""
     if p.get("status"):
@@ -1635,7 +1906,7 @@ def build(slug, p):
   <div class="siteplan">
     <figure>%s</figure>
     <div>
-      <h3 class="side-title">What surrounds it</h3>
+      <h3 class="side-title">%s</h3>
 %s
     </div>
   </div>
@@ -1643,6 +1914,7 @@ def build(slug, p):
 """ % (sp["title"],
        picture(sp["image"], sp["alt"], "(max-width: 1000px) 100vw, 56vw", [480, 800, 1280, 1920],
                style="aspect-ratio: %s" % sp["ratio"] if sp.get("ratio") else ""),
+       sp.get("side_title", "What surrounds it"),
        "\n".join('      <div class="cm-row"><span class="cm-time">%s</span>'
                  '<span class="cm-place">%s</span></div>' % r for r in sp["rows"])))
     split = p.get("hero_layout") == "split"
@@ -1701,12 +1973,35 @@ def build(slug, p):
 """ % (p.get("gallery_title", "Renderings"), gallery)
     blocks["nearby"] = """<section>
   <div class="sec-eyebrow">Nearby</div>
-  <h2 class="sec-title">More townhomes in <em>Dixie &amp; Lakeshore</em></h2>
+  <h2 class="sec-title">%s</h2>
   <div class="sibs">
 %s
   </div>
 </section>
-""" % others
+""" % (p.get("nearby_title", "More townhomes in <em>%s</em>" % hub["name"]), others)
+    if p.get("video"):
+        # a YouTube clip loads only when tapped: a poster and a play button until then
+        v = p["video"]
+        start = "&start=%d" % v["start"] if v.get("start") else ""
+        blocks["video"] = """<section id="video">
+  <div class="sec-eyebrow">%s</div>
+  <h2 class="sec-title">%s</h2>
+  <div class="video" id="video-box" data-src="https://www.youtube-nocookie.com/embed/%s?autoplay=1&rel=0%s">
+    <img src="https://i.ytimg.com/vi/%s/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+    <button type="button" class="video-play" aria-label="Play video"><span></span></button>
+  </div>
+</section>
+<script>
+(function () {
+  var box = document.getElementById('video-box'); if (!box) return;
+  box.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = box.getAttribute('data-src'); f.title = 'Video'; f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true;
+    box.innerHTML = ''; box.appendChild(f); box.classList.add('is-on');
+  }, { once: true });
+})();
+</script>
+""" % (v.get("eyebrow", "Video"), v["title"], v["id"], start, v["id"])
     gate = bool(plans) and p.get("plans_gate", True)
     if plans:
         # gated: the form sits inside the plan section, between previews and locked plans
@@ -1716,7 +2011,7 @@ def build(slug, p):
     order = p.get("order", ["register", "overview", "pricing", "plans", "incentives", "deposit_example",
                             "setting", "site_plan", "gallery", "nearby"])
     unknown = [k for k in order if k not in ("register", "overview", "pricing", "plans", "incentives",
-                                             "deposit_example", "setting", "site_plan", "gallery", "nearby")]
+                                             "deposit_example", "setting", "site_plan", "gallery", "nearby", "video")]
     if unknown:
         raise SystemExit("%s: unknown section(s) in order: %s" % (slug, unknown))
     body = "\n".join(blocks[k] for k in order if k in blocks)
@@ -1734,6 +2029,9 @@ def build(slug, p):
                        if p.get("status") == "Sold out" else "Let&rsquo;s talk floor plans."),
         price_from=dict(p["facts"])["From"],
         name_url=quote(p["name"].replace("&amp;", "&")),
+        hub_name=hub["name"], hub_href=hub["href"],
+        hub_extra=('  <a href="%s" class="nav-back nav-compare">%s</a>\n' % (hub["extra_href"], hub["extra_label"])
+                   if hub.get("extra_href") else ""),
     )
 
 
@@ -1799,7 +2097,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{name} &mdash; {builder} &middot; Dixie &amp; Lakeshore | CondosAround.com</title>
+  <title>{name} &mdash; {builder} &middot; {hub_name} | CondosAround.com</title>
   <meta name="description" content="{meta}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1982,6 +2280,13 @@ TEMPLATE = """<!DOCTYPE html>
 
     .sibs {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }}
 
+    .video {{ position: relative; max-width: 960px; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden; cursor: pointer; }}
+    .video img, .video iframe {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }}
+    .video-play {{ position: absolute; inset: 0; margin: auto; width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
+                   background: rgba(0,34,68,0.92); box-shadow: 0 6px 24px rgba(0,0,0,0.35); transition: transform 0.2s, background 0.2s; }}
+    .video-play span {{ position: absolute; left: 30px; top: 22px; border-style: solid; border-width: 15px 0 15px 24px; border-color: transparent transparent transparent #fff; }}
+    .video:hover .video-play {{ transform: scale(1.06); background: var(--navy); }}
+
     .logo-row {{ display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; margin-top: 2.25rem;
                  padding-top: 1.75rem; border-top: 1px solid var(--border); }}
     .logo-row img {{ width: auto; opacity: 0.78; }}
@@ -2064,9 +2369,8 @@ TEMPLATE = """<!DOCTYPE html>
 
 <nav>
   <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
-  <a href="../neighbourhoods/dixie-lakeshore.html#townhomes" class="nav-back">&larr; <span class="nb-long">Dixie &amp; Lakeshore</span><span class="nb-short">Back</span></a>
-  <a href="../neighbourhoods/dixie-lakeshore.html#compare" class="nav-back nav-compare">Compare townhomes</a>
-  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+  <a href="{hub_href}" class="nav-back">&larr; <span class="nb-long">{hub_name}</span><span class="nb-short">Back</span></a>
+{hub_extra}  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
 <header class="hero{hero_class}">
@@ -2506,7 +2810,7 @@ def update_neighbourhood():
 
 
 def main():
-    for slug in ORDER:
+    for slug in ORDER + EXTRA_PAGES:
         path = os.path.join(OUT_DIR, slug + ".html")
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(build(slug, PROJECTS[slug]))

@@ -187,6 +187,13 @@
 
     .sibs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
 
+    .video { position: relative; max-width: 960px; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden; cursor: pointer; }
+    .video img, .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+    .video-play { position: absolute; inset: 0; margin: auto; width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
+                   background: rgba(0,34,68,0.92); box-shadow: 0 6px 24px rgba(0,0,0,0.35); transition: transform 0.2s, background 0.2s; }
+    .video-play span { position: absolute; left: 30px; top: 22px; border-style: solid; border-width: 15px 0 15px 24px; border-color: transparent transparent transparent #fff; }
+    .video:hover .video-play { transform: scale(1.06); background: var(--navy); }
+
     .logo-row { display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; margin-top: 2.25rem;
                  padding-top: 1.75rem; border-top: 1px solid var(--border); }
     .logo-row img { width: auto; opacity: 0.78; }
@@ -471,11 +478,11 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price"><b class="plan-net">$694,912</b> <i>net of HST rebate*</i><span class="plan-list">Promotional price $798,750</span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-th-01" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-01" data-widths="480,800,1280" data-name="TH-01" data-spec="2 + den bed · 2.5 bath · 1,265 sq ft">
+    <figure class="plan is-open" id="plan-th-01" data-beds="2" data-type="townhome" data-base="images/plans/exhale/th-01" data-widths="480,800,1280" data-name="TH-01" data-spec="2 bed + den · 2.5 bath · 1,265 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-01-480.avif 480w, images/plans/exhale/th-01-800.avif 800w, images/plans/exhale/th-01-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-01-480.webp 480w, images/plans/exhale/th-01-800.webp 800w, images/plans/exhale/th-01-1280.webp 1280w"><img src="images/plans/exhale/th-01.jpg" alt="TH-01 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">TH-01</div>
-        <div class="plan-spec">2 + den bed &middot; 2.5 bath &middot; 1,265 sq ft</div>
+        <div class="plan-spec">2 bed + den &middot; 2.5 bath &middot; 1,265 sq ft</div>
         <div class="plan-level">2-storey at grade &middot; 1,310 sq ft with outdoor space</div>
         <div class="plan-price"><b class="plan-net">$825,412</b> <i>net of HST rebate*</i><span class="plan-list">Promotional price $948,750</span></div>
       </figcaption>
@@ -499,11 +506,11 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <div class="plan-price"><b class="plan-net">$933,075</b> <i>net of HST rebate*</i><span class="plan-list">Promotional price $1,072,500</span></div>
       </figcaption>
     </figure>
-    <figure class="plan is-open" id="plan-th-06" data-beds="3" data-type="townhome" data-base="images/plans/exhale/th-06" data-widths="480,800,1280" data-name="TH-06" data-spec="3 + flex + den bed · 3 bath · 1,485 sq ft">
+    <figure class="plan is-open" id="plan-th-06" data-beds="3" data-type="townhome" data-base="images/plans/exhale/th-06" data-widths="480,800,1280" data-name="TH-06" data-spec="3 bed + den · 3 bath · 1,485 sq ft">
       <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-06-480.avif 480w, images/plans/exhale/th-06-800.avif 800w, images/plans/exhale/th-06-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/exhale/th-06-480.webp 480w, images/plans/exhale/th-06-800.webp 800w, images/plans/exhale/th-06-1280.webp 1280w"><img src="images/plans/exhale/th-06.jpg" alt="TH-06 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">TH-06</div>
-        <div class="plan-spec">3 + flex + den bed &middot; 3 bath &middot; 1,485 sq ft</div>
+        <div class="plan-spec">3 bed + den &middot; 3 bath &middot; 1,485 sq ft</div>
         <div class="plan-level">2-storey at grade &middot; 1,571 sq ft with outdoor space</div>
         <div class="plan-price"><b class="plan-net">$968,962</b> <i>net of HST rebate*</i><span class="plan-list">Promotional price $1,113,750</span></div>
       </figcaption>

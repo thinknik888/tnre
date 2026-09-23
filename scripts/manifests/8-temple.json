@@ -1,0 +1,22 @@
+{
+ "source_dir": "~/Downloads/8 Temple Renderings/RENDERINGS",
+ "images": [
+  {"name": "8-temple-hero", "file": "8 Temple Hero Rendering 2.jpg.jpg", "widths": "hero"},
+  {"name": "8-temple-hero-1", "file": "8 Temple Hero Rendering 1.jpg.jpg"},
+  {"name": "8-temple-archway", "file": "8 Temple Archway Entrance.jpg.jpg"},
+  {"name": "8-temple-rooftop-exterior", "file": "8 Temple Exterior Rooftop Amenity.jpg.jpg"},
+  {"name": "8-temple-fitness", "file": "8 Temple Interior Exterior Fitness.jpg.jpg"},
+  {"name": "8-temple-kids", "file": "8 Temple Kids Room.jpg.jpg"},
+  {"name": "8-temple-living-east", "file": "8 Temple Living Dining East.jpg.jpg"},
+  {"name": "8-temple-living-south", "file": "8 Temple Living Dining South.jpg.jpg"},
+  {"name": "8-temple-lobby-lounge", "file": "8 Temple Lobby Lounge.jpg.jpg"},
+  {"name": "8-temple-lobby", "file": "8 Temple Lobby.jpg.jpg"},
+  {"name": "8-temple-rooftop-plan", "file": "8 Temple Rooftop Amenity Plan.jpg..jpg", "widths": [480, 800, 1280, 1920]},
+  {"name": "8-temple-ground-plan", "file": "8 Temple Ground Floor Amenity Plan.jpg.jpg", "widths": [480, 800, 1280, 1920]},
+  {"name": "8-temple-rooftop-kitchen", "file": "8 Temple Rooftop Kitchen.jpg.jpg"},
+  {"name": "8-temple-rooftop-lounge", "file": "8 Temple Rooftop Lounge.jpg.jpg"},
+  {"name": "8-temple-sauna", "file": "8 Temple Sauna.jpg.jpg"},
+  {"name": "8-temple-bathroom", "file": "8 Temple Suite Bathroom.jpg.jpg"},
+  {"name": "xo2-card", "file": "XO2-Hero.jpg"}
+ ]
+}

@@ -41,24 +41,45 @@ def main():
     if len(sys.argv) != 2:
         sys.exit(__doc__)
     m = json.load(open(sys.argv[1], encoding="utf-8"))
-    doc = fitz.open(os.path.expanduser(m["pdf"])) if m.get("pdf") else None
+    docs = {}
+
+    def doc_for(path):
+        path = os.path.expanduser(path)
+        if path not in docs:
+            docs[path] = fitz.open(path)
+        return docs[path]
+
     out = os.path.join(ROOT, m["out"])
     os.makedirs(out, exist_ok=True)
     crop = m.get("crop", {"top": 0.0, "bottom": 1.0})
     top, bottom = crop["top"], crop["bottom"]
+    left, right = crop.get("left", 0.0), crop.get("right", 1.0)
 
     cache = {}
     total = 0
     for p in m["plans"]:
         if p.get("image"):
-            # a ready-made plan image (e.g. the builder's own plan card): used whole
+            # a ready-made plan image (e.g. the builder's own plan card): used whole, unless
+            # "crop": true asks for the manifest crop and margin trim like a PDF page
             plan = Image.open(os.path.join(ROOT, p["image"])).convert("RGB")
+            if p.get("crop"):
+                w, h = plan.size
+                plan = plan.crop((round(w * left), round(h * top), round(w * right), round(h * bottom)))
+                bbox = Image.eval(plan.convert("L"), lambda v: 0 if v > 245 else 255).getbbox()
+                if bbox:
+                    pad = 24
+                    plan = plan.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
+                                      min(plan.width, bbox[2] + pad), min(plan.height, bbox[3] + pad)))
         else:
-            if p["page"] not in cache:
-                cache = {p["page"]: render(doc, p["page"], 200)}   # one page at a time
-            im = cache[p["page"]]
+            # a plan may come from its own PDF ("pdf" on the entry) instead of the shared book
+            key = (p.get("pdf") or m["pdf"], p["page"])
+            if key not in cache:
+                cache = {key: render(doc_for(key[0]), p["page"], 200)}   # one page at a time
+            im = cache[key]
             w, h = im.size
             x0, x1 = {"L": (0.0, 0.5), "R": (0.5, 1.0), "F": (0.0, 1.0)}[p["half"]]
+            # optional side crop (e.g. a builder's info column beside every drawing)
+            x0, x1 = left + (right - left) * x0, left + (right - left) * x1
             plan = im.crop((round(w * x0), round(h * top), round(w * x1), round(h * bottom)))
             # trim white margins, keeping a little breathing room
             bbox = Image.eval(plan.convert("L"), lambda v: 0 if v > 245 else 255).getbbox()
@@ -67,7 +88,7 @@ def main():
                 plan = plan.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
                                   min(plan.width, bbox[2] + pad), min(plan.height, bbox[3] + pad)))
 
-        widths = [480, 800, 1280] + ([1920] if p["half"] == "F" else [])
+        widths = [480, 800, 1280] + ([1920] if p.get("half", "F") == "F" else [])
 
         def at(width):
             width = min(width, plan.width)

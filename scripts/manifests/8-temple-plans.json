@@ -1,0 +1,316 @@
+{
+ "pdf": "~/Downloads/8 Temple Renderings/8 Temple Floor Plans 2026.pdf",
+ "out": "buildings/images/plans/8-temple",
+ "crop": {
+  "top": 0.0,
+  "bottom": 0.93,
+  "left": 0.27,
+  "right": 1.0
+ },
+ "plans": [
+  {
+   "slug": "477",
+   "type": "Suite",
+   "name": "Plan 477",
+   "sqft": 477,
+   "beds": "1 + den",
+   "level": "First floor &middot; North &middot; 143 sq ft terrace",
+   "baths": "1",
+   "page": 1,
+   "half": "F"
+  },
+  {
+   "slug": "489",
+   "type": "Suite",
+   "name": "Plan 489",
+   "sqft": 489,
+   "beds": "1 + den",
+   "level": "First floor &middot; North &middot; 143 sq ft terrace",
+   "baths": "1",
+   "page": 2,
+   "half": "F"
+  },
+  {
+   "slug": "506",
+   "type": "Suite",
+   "name": "Plan 506",
+   "sqft": 506,
+   "beds": "1",
+   "level": "Second floor &middot; East &middot; 55 sq ft balcony",
+   "baths": "1",
+   "page": 3,
+   "half": "F"
+  },
+  {
+   "slug": "527",
+   "type": "Suite",
+   "name": "Plan 527",
+   "sqft": 527,
+   "beds": "1",
+   "level": "Second floor &middot; East &middot; 55 sq ft balcony",
+   "baths": "1",
+   "page": 4,
+   "half": "F"
+  },
+  {
+   "slug": "563",
+   "type": "Suite",
+   "name": "Plan 563",
+   "sqft": 563,
+   "beds": "1 + den",
+   "level": "Thirteenth floor &middot; North &middot; 100 sq ft balcony",
+   "baths": "1",
+   "page": 5,
+   "half": "F"
+  },
+  {
+   "slug": "638",
+   "type": "Suite",
+   "name": "Plan 638",
+   "sqft": 638,
+   "beds": "1 + den",
+   "level": "Fifth floor &middot; North &middot; 100 sq ft balcony",
+   "baths": "2",
+   "page": 6,
+   "half": "F"
+  },
+  {
+   "slug": "647",
+   "type": "Suite",
+   "name": "Plan 647",
+   "sqft": 647,
+   "beds": "1 + den",
+   "level": "Fifth floor &middot; North &middot; 100 sq ft balcony",
+   "baths": "2",
+   "page": 7,
+   "half": "F"
+  },
+  {
+   "slug": "650",
+   "type": "Suite",
+   "name": "Plan 650",
+   "sqft": 650,
+   "beds": "1 + den",
+   "level": "Fifth floor &middot; North &middot; 100 sq ft balcony",
+   "baths": "2",
+   "page": 8,
+   "half": "F"
+  },
+  {
+   "slug": "677",
+   "type": "Suite",
+   "name": "Plan 677",
+   "sqft": 677,
+   "beds": "2",
+   "level": "Second floor &middot; South &middot; 50 sq ft balcony",
+   "page": 9,
+   "half": "F"
+  },
+  {
+   "slug": "707",
+   "type": "Suite",
+   "name": "Plan 707",
+   "sqft": 707,
+   "beds": "2",
+   "level": "Third floor &middot; South &middot; 50 sq ft balcony",
+   "page": 10,
+   "half": "F"
+  },
+  {
+   "slug": "726",
+   "type": "Suite",
+   "name": "Plan 726",
+   "sqft": 726,
+   "beds": "2",
+   "level": "Second floor &middot; South &middot; 50 sq ft balcony",
+   "page": 11,
+   "half": "F"
+  },
+  {
+   "slug": "797",
+   "type": "Suite",
+   "name": "Plan 797",
+   "sqft": 797,
+   "beds": "2 + den",
+   "level": "Third floor &middot; South &middot; 50 sq ft balcony",
+   "page": 12,
+   "half": "F"
+  },
+  {
+   "slug": "820",
+   "type": "Suite",
+   "name": "Plan 820",
+   "sqft": 820,
+   "beds": "2",
+   "level": "Third floor &middot; South &middot; 50 sq ft balcony",
+   "page": 13,
+   "half": "F"
+  },
+  {
+   "slug": "821",
+   "type": "Suite",
+   "name": "Plan 821",
+   "sqft": 821,
+   "beds": "2 + den",
+   "level": "Second floor &middot; South &middot; 50 sq ft balcony",
+   "page": 14,
+   "half": "F"
+  },
+  {
+   "slug": "842",
+   "type": "Suite",
+   "name": "Plan 842",
+   "sqft": 842,
+   "beds": "2 + den",
+   "level": "Third floor &middot; South &middot; 50 sq ft balcony",
+   "page": 15,
+   "half": "F"
+  },
+  {
+   "slug": "845",
+   "type": "Suite",
+   "name": "Plan 845",
+   "sqft": 845,
+   "beds": "2 + den",
+   "level": "Fourth floor &middot; South &middot; 50 sq ft balcony",
+   "page": 16,
+   "half": "F"
+  },
+  {
+   "slug": "858",
+   "type": "Suite",
+   "name": "Plan 858",
+   "sqft": 858,
+   "beds": "2",
+   "level": "Second floor &middot; South West &middot; 50 sq ft balcony",
+   "page": 17,
+   "half": "F"
+  },
+  {
+   "slug": "883",
+   "type": "Suite",
+   "name": "Plan 883",
+   "sqft": 883,
+   "beds": "2 + den",
+   "level": "First floor &middot; South &middot; 202 sq ft terrace",
+   "page": 18,
+   "half": "F"
+  },
+  {
+   "slug": "890",
+   "type": "Suite",
+   "name": "Plan 890",
+   "sqft": 890,
+   "beds": "2 + den",
+   "level": "Second floor &middot; South &middot; 50 sq ft balcony",
+   "page": 19,
+   "half": "F"
+  },
+  {
+   "slug": "894",
+   "type": "Suite",
+   "name": "Plan 894",
+   "sqft": 894,
+   "beds": "2 + den",
+   "level": "Second floor &middot; South &middot; 50 sq ft balcony",
+   "page": 20,
+   "half": "F"
+  },
+  {
+   "slug": "912",
+   "type": "Suite",
+   "name": "Plan 912",
+   "sqft": 912,
+   "beds": "2 + den",
+   "level": "Fourth floor &middot; South &middot; 50 sq ft balcony",
+   "page": 21,
+   "half": "F"
+  },
+  {
+   "slug": "700",
+   "type": "Suite",
+   "name": "Plan 700",
+   "sqft": 700,
+   "beds": "2",
+   "level": "Thirteenth floor &middot; North West &middot; 229 sq ft terrace and balcony",
+   "baths": "2",
+   "pdf": "~/Downloads/8 Temple Renderings/700.pdf",
+   "page": 1,
+   "half": "F"
+  },
+  {
+   "slug": "724",
+   "type": "Suite",
+   "name": "Plan 724",
+   "sqft": 724,
+   "beds": "2",
+   "level": "Sixth to ninth floors &middot; North West &middot; 100 sq ft balcony",
+   "baths": "2",
+   "pdf": "~/Downloads/8 Temple Renderings/724.pdf",
+   "page": 1,
+   "half": "F"
+  },
+  {
+   "slug": "980",
+   "type": "Suite",
+   "name": "Plan 980",
+   "sqft": 980,
+   "beds": "3",
+   "level": "Fifth and tenth to twelfth floors &middot; North West &middot; 100 sq ft balcony",
+   "baths": "2",
+   "pdf": "~/Downloads/8 Temple Renderings/980.pdf",
+   "page": 1,
+   "half": "F"
+  },
+  {
+   "slug": "901-919",
+   "type": "Combo suite",
+   "name": "Combo 901 + 919",
+   "sqft": 1358,
+   "beds": "2 + den",
+   "level": "Ninth floor &middot; South &middot; 196 sq ft outdoor &middot; open to offers",
+   "image": "neighbourhoods/images/8temple-901-919-a.jpg",
+   "crop": true
+  },
+  {
+   "slug": "901-919-b",
+   "type": "Combo suite",
+   "name": "Combo 901 + 919 B",
+   "sqft": 1358,
+   "beds": "2 + den",
+   "level": "Ninth floor &middot; South &middot; 196 sq ft outdoor &middot; layout B &middot; open to offers",
+   "image": "neighbourhoods/images/8temple-901-919-b.jpg",
+   "crop": true
+  },
+  {
+   "slug": "916-917",
+   "type": "Combo suite",
+   "name": "Combo 916 + 917",
+   "sqft": 1397,
+   "beds": "3",
+   "level": "Ninth floor &middot; North &middot; 327 sq ft outdoor &middot; open to offers",
+   "image": "neighbourhoods/images/8temple-916-917.jpg",
+   "crop": true
+  },
+  {
+   "slug": "1117-1118",
+   "type": "Combo suite",
+   "name": "Combo 1117 + 1118",
+   "sqft": 1940,
+   "beds": "3 + den",
+   "level": "Eleventh floor &middot; South &middot; 387 sq ft outdoor &middot; open to offers",
+   "image": "neighbourhoods/images/8temple-1117-1118.jpg",
+   "crop": true
+  },
+  {
+   "slug": "1016-1017",
+   "type": "Combo suite",
+   "name": "Combo 1016 + 1017",
+   "sqft": 2156,
+   "beds": "3",
+   "level": "Tenth floor &middot; North, East and South &middot; 518 sq ft outdoor &middot; open to offers",
+   "image": "neighbourhoods/images/8temple-1016-1017.jpg",
+   "crop": true
+  }
+ ]
+}
