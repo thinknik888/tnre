@@ -1906,7 +1906,11 @@ PLANS_CSS = """
     .lb-close { top: 14px; right: 14px; }
     .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
     .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
-    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    /* featured row: two big cards per row */
+    #featured .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+    #featured .plan-name { font-size: 1.5rem; }
+    #featured .plan-spec { font-size: 0.86rem; }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } #featured .plan-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 700px) {
       .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
       .plan figcaption { padding: 0.7rem 0.75rem 0.8rem; }
