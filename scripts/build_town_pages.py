@@ -809,7 +809,7 @@ PROJECTS = {
             ("Size", "945 &ndash; 1,710 sq ft"),
             ("Bedrooms", "2 &ndash; 3 + den"),
             ("Storeys", "2"),
-            ("Plans", "11"),
+            ("Plans", "11 towns + 1 penthouse"),
             ("Occupancy", "2026"),
         ],
         "intro": [
@@ -826,11 +826,13 @@ PROJECTS = {
         "plans_gate": False,
         "plans_ratio": "4 / 5",
         "plans_price_label": "Promotional price",   # the table's price column is the promo price, not list
-        "plans_title": "All 11 <em>townhome plans</em>",
+        "plans_title": "All 11 townhome plans <em>plus the Valencia penthouse</em>",
         "plans_intro": "Every two-storey plan in the collection, from the 920 sq ft TH-02 to the 1,710 sq ft "
-                       "TH-08, at the current promotional price.",
+                       "TH-08, at the current promotional price &mdash; and The Valencia, the 1,245 sq ft "
+                       "two-bedroom penthouse on the 11th floor with a 650 sq ft terrace.",
         "plans_note": "Plans and pricing from the Exhale Townhome Collection plan set and current promotional "
-                      "price list; the list price is $1,000 per sq ft and the promotional price is 25% off. "
+                      "price list; the townhome list price is $1,000 per sq ft and the promotional price is 25% off. "
+                      "The Valencia is priced from the Exhale penthouse collection list. "
                       "*Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts "
                       "and dimensions are approximate and subject to change without notice. E.&amp;O.E.",
         "order": ["overview", "plans", "incentives", "gallery", "pricing", "nearby"],
@@ -853,6 +855,8 @@ PROJECTS = {
                     ["TH-07", "1,430", "$1,430,000", "$1,072,500", "$933,075"],
                     ["TH-06", "1,485", "$1,485,000", "$1,113,750", "$968,962"],
                     ["TH-08", "1,710", "$1,710,000", "$1,282,500", "$1,115,775"],
+                ]), ("Penthouse collection", [
+                    ["The Valencia (PH 02)", "1,245", "$1,680,750", "$1,369,500", "$1,232,550"],
                 ])],
             },
         ],
@@ -1427,7 +1431,7 @@ def link_plan_rows(tables, plans):
     return out
 
 
-PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-beds="%s" data-type="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s">
+PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-beds="%s" data-type="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s"%s>
       <div class="plan-media">%s</div>
       <figcaption>
         <div class="plan-name">%s</div>
@@ -1517,7 +1521,9 @@ def plans_section(p, plans, plans_dir, register_html=""):
         cards.append(PLAN_CARD % (
             cls, pl["slug"], beds_of(pl), pl["type"].lower().replace(" ", "-"), base,
             ",".join(str(w) for w in widths), html.escape(pl["name"], quote=True),
-            html.escape(html.unescape(spec), quote=True), media, pl["name"], spec, pl["level"], price))
+            html.escape(html.unescape(spec), quote=True),
+            ' style="--plan-ratio: %s"' % pl["ratio"] if pl.get("ratio") else "",   # e.g. one landscape card
+            media, pl["name"], spec, pl["level"], price))
 
     by_beds = {}
     for pl in plans:

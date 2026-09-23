@@ -132,6 +132,22 @@
    "beds": "2",
    "baths": "2.5",
    "level": "2-storey at grade &middot; 1,126 sq ft with outdoor space"
+  },
+  {
+   "slug": "ph-02-valencia",
+   "image": "neighbourhoods/images/exhale-ph-valencia.jpg",
+   "half": "P",
+   "type": "Penthouse",
+   "name": "The Valencia",
+   "sqft": 1245,
+   "total_sqft": 1895,
+   "beds": "2",
+   "baths": "2",
+   "ratio": "1600 / 972",
+   "level": "Penthouse 02, 11th floor &middot; 650 sq ft terrace &middot; 1,895 sq ft total",
+   "aliases": [
+    "The Valencia (PH 02)"
+   ]
   }
  ]
 }
