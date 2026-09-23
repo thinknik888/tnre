@@ -809,7 +809,7 @@ PROJECTS = {
             ("Size", "945 &ndash; 1,710 sq ft"),
             ("Bedrooms", "2 &ndash; 3 + den"),
             ("Storeys", "2"),
-            ("Plans", "11 towns + 1 penthouse"),
+            ("Plans", "11 towns + 4 suites"),
             ("Occupancy", "2026"),
         ],
         "intro": [
@@ -826,13 +826,19 @@ PROJECTS = {
         "plans_gate": False,
         "plans_ratio": "4 / 5",
         "plans_price_label": "Promotional price",   # the table's price column is the promo price, not list
-        "plans_title": "All 11 townhome plans <em>plus the Valencia penthouse</em>",
+        "plans_group_by": "type",
+        "plans_type_order": ["Townhome", "Terrace suite", "Penthouse"],
+        "plans_type_labels": {"Townhome": "Townhome Collection", "Terrace suite": "Terrace Collection suites",
+                              "Penthouse": "Penthouse Collection"},
+        "plans_type_chips": {"Townhome": "Townhomes", "Terrace suite": "Terrace suites", "Penthouse": "Penthouse"},
+        "plans_title": "11 townhomes, 3 terrace suites <em>and the Valencia penthouse</em>",
         "plans_intro": "Every two-storey plan in the collection, from the 920 sq ft TH-02 to the 1,710 sq ft "
-                       "TH-08, at the current promotional price &mdash; and The Valencia, the 1,245 sq ft "
-                       "two-bedroom penthouse on the 11th floor with a 650 sq ft terrace.",
+                       "TH-08, at the current promotional price &mdash; plus three Terrace Collection suites "
+                       "upstairs with oversized outdoor space, and The Valencia, the 1,245 sq ft penthouse on "
+                       "the 11th floor with a 650 sq ft terrace.",
         "plans_note": "Plans and pricing from the Exhale Townhome Collection plan set and current promotional "
                       "price list; the townhome list price is $1,000 per sq ft and the promotional price is 25% off. "
-                      "The Valencia is priced from the Exhale penthouse collection list. "
+                      "The terrace suites and The Valencia are priced from the Exhale suite and penthouse lists. "
                       "*Net of the estimated GST/HST rebate, which applies only if the purchaser qualifies. Layouts "
                       "and dimensions are approximate and subject to change without notice. E.&amp;O.E.",
         "order": ["overview", "plans", "incentives", "gallery", "pricing", "nearby"],
@@ -843,7 +849,7 @@ PROJECTS = {
                         "HST rebate value is the estimated net after rebate.",
                 "cols": ["Plan", "Sq ft", "List price", "Promotional price", "After HST rebate"],
                 "plan_cols": {"model": 0, "sqft": 1, "price": 3, "net": 4},
-                "groups": [("", [
+                "groups": [("Townhome Collection", [
                     ["TH-05", "945", "$945,000", "$708,750", "$616,612"],
                     ["TH-03", "1,005", "$1,005,000", "$753,750", "$655,762"],
                     ["TH-02", "1,018", "$1,018,000", "$763,500", "$664,245"],
@@ -855,7 +861,11 @@ PROJECTS = {
                     ["TH-07", "1,430", "$1,430,000", "$1,072,500", "$933,075"],
                     ["TH-06", "1,485", "$1,485,000", "$1,113,750", "$968,962"],
                     ["TH-08", "1,710", "$1,710,000", "$1,282,500", "$1,115,775"],
-                ]), ("Penthouse collection", [
+                ]), ("Terrace Collection suites", [
+                    ["Suite 2A+D", "840", "$1,008,000", "$882,000", "$793,800"],
+                    ["Suite 3B", "870", "$1,044,000", "$913,500", "$822,150"],
+                    ["Suite 3C", "925", "$1,110,000", "$971,250", "$874,125"],
+                ]), ("Penthouse Collection", [
                     ["The Valencia (PH 02)", "1,245", "$1,680,750", "$1,369,500", "$1,232,550"],
                 ])],
             },
@@ -1431,7 +1441,7 @@ def link_plan_rows(tables, plans):
     return out
 
 
-PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-beds="%s" data-type="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s"%s>
+PLAN_CARD = """    <figure class="plan%s" id="plan-%s" data-beds="%s" data-type="%s" data-key="%s" data-base="%s" data-widths="%s" data-name="%s" data-spec="%s"%s>
       <div class="plan-media">%s</div>
       <figcaption>
         <div class="plan-name">%s</div>
@@ -1472,12 +1482,22 @@ def plans_section(p, plans, plans_dir, register_html=""):
     for pl in plans:
         counts[pl["type"]] = counts.get(pl["type"], 0) + 1
     beds_of = lambda pl: int(str(pl["beds"]).split()[0])
+    type_slug = lambda pl: pl["type"].lower().replace(" ", "-")
+    # groups (and the filter chips) are by bedroom count, or by collection/type when the
+    # page mixes kinds of homes ("plans_group_by": "type")
+    by_type = p.get("plans_group_by") == "type"
+    if by_type:
+        type_order = p.get("plans_type_order", PLAN_TYPE_ORDER)
+        rank = lambda pl: (type_order.index(pl["type"]) if pl["type"] in type_order else 99)
+        key_of, sort_key = type_slug, (lambda pl: (rank(pl), pl["sqft"], pl["slug"]))
+    else:
+        key_of, sort_key = beds_of, (lambda pl: (beds_of(pl), pl["sqft"], pl["slug"]))
     if gate:
         # open previews lead, in the order given; everything else follows in catalogue order
         ordered = [pl for x in preview for pl in plans if pl["slug"] == x] + [pl for pl in plans if pl["slug"] not in preview]
     else:
-        # grouped by bedroom count (a den stays with its bedroom count), smallest first
-        ordered = sorted(plans, key=lambda pl: (beds_of(pl), pl["sqft"], pl["slug"]))
+        # grouped, smallest first (a den stays with its bedroom count)
+        ordered = sorted(plans, key=sort_key)
     cards = []
     for pl in ordered:
         base = "%s/%s" % (plans_dir, pl["slug"])
@@ -1519,20 +1539,30 @@ def plans_section(p, plans, plans_dir, register_html=""):
                      '<div class="plan-lock"><span>&#128274;</span>Register to view</div>' % base)
             cls = ""
         cards.append(PLAN_CARD % (
-            cls, pl["slug"], beds_of(pl), pl["type"].lower().replace(" ", "-"), base,
+            cls, pl["slug"], beds_of(pl), type_slug(pl), key_of(pl), base,
             ",".join(str(w) for w in widths), html.escape(pl["name"], quote=True),
             html.escape(html.unescape(spec), quote=True),
             ' style="--plan-ratio: %s"' % pl["ratio"] if pl.get("ratio") else "",   # e.g. one landscape card
             media, pl["name"], spec, pl["level"], price))
 
-    by_beds = {}
-    for pl in plans:
-        by_beds.setdefault(beds_of(pl), []).append(pl)
+    by_key, first = {}, {}
+    for pl in sorted(plans, key=sort_key):
+        by_key.setdefault(key_of(pl), []).append(pl)
+        first.setdefault(key_of(pl), pl)
     BED_WORDS = {1: "One bedroom", 2: "Two bedroom", 3: "Three bedroom", 4: "Four bedroom"}
+    if by_type:
+        labels = p.get("plans_type_labels", {})
+        heading = lambda k: labels.get(first[k]["type"], first[k]["type"] + "s")
+        chip_lbl = lambda k: p.get("plans_type_chips", {}).get(first[k]["type"], heading(k))
+        group_id = lambda k: "plans-%s" % k
+    else:
+        heading = lambda k: BED_WORDS.get(k, "%d bedroom" % k)
+        chip_lbl = lambda k: "%d bed" % k
+        group_id = lambda k: "plans-%d-bed" % k
     chips = ['<button type="button" class="plan-chip is-on" data-filter="all">All %d</button>' % len(plans)]
-    for b in sorted(by_beds):
-        chips.append('<button type="button" class="plan-chip" data-filter="%d">%d bed %d</button>'
-                     % (b, b, len(by_beds[b])))
+    for k in by_key:
+        chips.append('<button type="button" class="plan-chip" data-filter="%s">%s %d</button>'
+                     % (k, chip_lbl(k), len(by_key[k])))
     chips.append('<a class="plan-jump" href="#gallery">See images &darr;</a>')
     locked = len(plans) - len(preview)
     smallest, largest = min(plans, key=lambda x: x["sqft"]), max(plans, key=lambda x: x["sqft"])
@@ -1542,7 +1572,7 @@ def plans_section(p, plans, plans_dir, register_html=""):
                  % len(preview))
         state = "%d plans locked &middot; register to open them" % locked
     else:
-        pitch = "Grouped by bedroom count; tap any plan to see it full size."
+        pitch = "Grouped by %s; tap any plan to see it full size." % ("collection" if by_type else "bedroom count")
         state = "%d plans &middot; tap to enlarge" % len(plans)
     lead, rest = cards[:len(preview)], cards[len(preview):]
     if register_html and gate:
@@ -1552,18 +1582,18 @@ def plans_section(p, plans, plans_dir, register_html=""):
         # one grid, with a full-width heading opening each bedroom group
         rows, seen = [], set()
         for pl, card in zip(ordered, cards):
-            b = beds_of(pl)
+            b = key_of(pl)
             if b not in seen:
                 seen.add(b)
-                group = by_beds[b]
+                group = by_key[b]
                 lo, hi = min(x["sqft"] for x in group), max(x["sqft"] for x in group)
                 nets = [prices[x["slug"]]["net"] for x in group if x["slug"] in prices and prices[x["slug"]].get("net")]
                 cheapest = min(nets) if nets else min(prices[x["slug"]]["min"] for x in group if x["slug"] in prices)
                 from_lbl = "from %s net of HST*" if nets else "from %s"
                 size = "{:,}".format(lo) if lo == hi else "%s &ndash; %s" % ("{:,}".format(lo), "{:,}".format(hi))
-                rows.append('    <div class="plan-group" data-beds="%d" id="plans-%d-bed"><span>%s</span>'
+                rows.append('    <div class="plan-group" data-key="%s" id="%s"><span>%s</span>'
                             '<small>%d plan%s &middot; %s sq ft &middot; %s</small></div>'
-                            % (b, b, BED_WORDS.get(b, "%d bedroom" % b), len(group), "" if len(group) == 1 else "s",
+                            % (b, group_id(b), heading(b), len(group), "" if len(group) == 1 else "s",
                                size, from_lbl % _money(cheapest)))
             rows.append(card)
         grid = '<div class="plan-grid">\n%s\n  </div>' % "\n".join(rows)
@@ -1571,7 +1601,8 @@ def plans_section(p, plans, plans_dir, register_html=""):
     intro = p.get("plans_intro", "Every layout on the current price list, from the %s sq ft %s to the %s sq ft %s." % (
         "{:,}".format(smallest["sqft"]), singular(smallest["type"]),
         "{:,}".format(largest["sqft"]), singular(largest["type"])))
-    style = ' style="--plan-ratio: %s"' % p["plans_ratio"] if p.get("plans_ratio") else ""
+    style = (' style="--plan-ratio: %s"' % p["plans_ratio"] if p.get("plans_ratio") else "") + \
+            ' data-param="%s"' % ("type" if by_type else "beds")
     js = PLANS_JS
     if p.get("plan_aliases"):
         # ids from an earlier version of the page: rewrite ?plan= before the lightbox script reads it
@@ -1667,6 +1698,7 @@ PLANS_JS = r"""<script>
 (function () {
   var sec = document.getElementById('floor-plans');
   if (!sec) return;
+  var param = sec.getAttribute('data-param') || 'beds';   // ?beds=2 or ?type=townhome, per page
   function registered() { try { return localStorage.getItem('ca_registered') === 'true'; } catch (e) { return false; } }
   function pictureFor(fig, big) {
     var base = fig.getAttribute('data-base'), ws = fig.getAttribute('data-widths').split(',');
@@ -1703,10 +1735,10 @@ PLANS_JS = r"""<script>
     if (!chip) return false;
     Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === chip); });
     Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
-      var v = f.getAttribute('data-beds') || f.getAttribute('data-type');
+      var v = f.getAttribute('data-key');
       f.hidden = (t !== 'all' && v !== t);
     });
-    if (remember) setParam('beds', t === 'all' ? null : t);
+    if (remember) setParam(param, t === 'all' ? null : t);
     return true;
   }
   // Keep the address bar in step with what is on screen, so the link can be shared as-is.
@@ -1770,7 +1802,7 @@ PLANS_JS = r"""<script>
   });
 
   // A shared link: ?beds=3 opens that bedroom group, ?plan=sky-towns-1238 opens that drawing.
-  var q = new URLSearchParams(location.search), wantBeds = q.get('beds'), wantPlan = q.get('plan');
+  var q = new URLSearchParams(location.search), wantBeds = q.get(param), wantPlan = q.get('plan');
   var fig = wantPlan && document.getElementById('plan-' + wantPlan);
   if (fig && !fig.classList.contains('is-open')) fig = null;          // still locked
   var filtered = wantBeds && applyFilter(wantBeds, false);
@@ -2642,10 +2674,16 @@ def town_plan_stats():
         per_bed = {}
         for b in beds:
             per_bed[b] = per_bed.get(b, 0) + 1
+        per_type = []
+        if p.get("plans_group_by") == "type":
+            order = p.get("plans_type_order", PLAN_TYPE_ORDER)
+            for t in sorted(set(pl["type"] for pl in plans), key=lambda t: order.index(t) if t in order else 99):
+                per_type.append((p.get("plans_type_chips", {}).get(t, p.get("plans_type_labels", {}).get(t, t + "s")),
+                                 sum(1 for pl in plans if pl["type"] == t), t.lower().replace(" ", "-")))
         out.append({"slug": slug, "p": p, "n": len(plans), "beds": (min(beds), max(beds)),
                     "sqft": (min(pl["sqft"] for pl in plans), max(pl["sqft"] for pl in plans)),
                     "from": min(prices[pl["slug"]]["min"] for pl in plans if pl["slug"] in prices),
-                    "per_bed": per_bed})
+                    "per_bed": per_bed, "per_type": per_type})
     return out
 
 
@@ -2661,7 +2699,8 @@ def plans_index_section():
             [(st["n"], "plans"), ("%d" % lo if lo == hi else "%d &ndash; %d" % (lo, hi), "bedrooms"),
              ("%s &ndash; %s" % ("{:,}".format(st["sqft"][0]), "{:,}".format(st["sqft"][1])), "sq ft"),
              (_money(st["from"]), "from")],
-            [("%d bed" % b, n, "%s?beds=%d" % (href, b)) for b, n in sorted(st["per_bed"].items())],
+            ([(lbl, n, "%s?type=%s" % (href, t)) for lbl, n, t in st["per_type"]] if st["per_type"]
+             else [("%d bed" % b, n, "%s?beds=%d" % (href, b)) for b, n in sorted(st["per_bed"].items())]),
             "View plans"))
     with_plans = set(st["slug"] for st in stats)
     for slug in ORDER:

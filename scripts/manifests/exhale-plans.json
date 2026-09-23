@@ -148,6 +148,42 @@
    "aliases": [
     "The Valencia (PH 02)"
    ]
+  },
+  {
+   "slug": "2a-d",
+   "image": "neighbourhoods/images/exhale-2bed-2a-d.jpg",
+   "half": "P",
+   "type": "Terrace suite",
+   "name": "Suite 2A+D",
+   "sqft": 840,
+   "total_sqft": 1324,
+   "beds": "2 + den",
+   "baths": "2",
+   "level": "Terrace Collection, 8th floor &middot; 484 sq ft terrace &middot; 1,324 sq ft total"
+  },
+  {
+   "slug": "3b",
+   "image": "neighbourhoods/images/exhale-3bed-3b.jpg",
+   "half": "P",
+   "type": "Terrace suite",
+   "name": "Suite 3B",
+   "sqft": 870,
+   "total_sqft": 1262,
+   "beds": "3",
+   "baths": "2",
+   "level": "Terrace Collection, 7th floor &middot; 392 sq ft terrace &middot; 1,262 sq ft total"
+  },
+  {
+   "slug": "3c",
+   "image": "neighbourhoods/images/exhale-3bed-3c.jpg",
+   "half": "P",
+   "type": "Terrace suite",
+   "name": "Suite 3C",
+   "sqft": 925,
+   "total_sqft": 1187,
+   "beds": "3",
+   "baths": "2",
+   "level": "Terrace Collection, 6th floor &middot; 262 sq ft terrace &middot; 1,187 sq ft total"
   }
  ]
 }
