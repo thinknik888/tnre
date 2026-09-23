@@ -1145,6 +1145,212 @@ PROJECTS = {
             + [("t-22", "700"), ("t-23", "724"), ("t-24", "980"), ("t-combo1", "901-919"), ("t-combo1b", "901-919-b"),
                ("t-combo2", "916-917"), ("t-combo5", "1117-1118"), ("t-combo6", "1016-1017")]),
     },
+
+    # -- Exhale Residences (the condo tower above the Townhome Collection) -- featured suites first,
+    # then renderings, then every other plan; the drawings reuse the ladders already on disk.
+    "exhale": {
+        "name": "Exhale Residences",
+        "builder": "Brixen Developments",
+        "status": "Promo pricing &middot; 2026 occupancy",
+        "status_kind": "live",
+        "tagline": "Boutique lakeside living across from Lakeshore Park, from $409,500.",
+        "address": "1381 Lakeshore Rd E, Mississauga &middot; Lakeshore &amp; Dixie",
+        "area": "Lakeshore &amp; Dixie",
+        "hero": "exhale-aerial",
+        "hero_alt": "Aerial view of Exhale Residences on Lakeshore",
+        "meta": "Exhale Residences by Brixen Developments at 1381 Lakeshore Rd E, Mississauga: 88 suite plans "
+                "from 390 to 1,515 sq ft, bachelor to three bedroom plus the Penthouse Collection, at promotional "
+                "prices from $409,500 with 2026 occupancy. Directly across from Lakeshore Park.",
+        "facts": [
+            ("From", "$409,500*"),
+            ("Size", "390 &ndash; 1,515 sq ft"),
+            ("Bedrooms", "Bachelor &ndash; 3"),
+            ("Suites", "284+"),
+            ("Storeys", "11"),
+            ("Occupancy", "2026"),
+        ],
+        "intro": [
+            "Exhale Residences is an 11-storey boutique building by Brixen Developments on Lakeshore Road "
+            "East at Dixie, directly across from Lakeshore Park at the border of Etobicoke and Mississauga. "
+            "Suites face the lake to the south and the golf course to the north.",
+            "Eighty-eight layouts run from a 390 sq ft bachelor to the 1,515 sq ft Aveline penthouse, every "
+            "one at a promotional price with the HST rebate priced in, and occupancy is 2026 &mdash; the "
+            "earliest in the neighbourhood. The Townhome Collection sits at grade beneath the tower.",
+        ],
+        "plans": "scripts/manifests/exhale-suites.json",
+        "plans_only_priced": True,
+        "plans_gate": False,
+        "plans_ratio": "4 / 5",
+        "plans_group_by": "type",
+        "plans_type_order": ["Bachelor", "1 bedroom", "2 bedroom", "3 bedroom", "Penthouse"],
+        "plans_type_labels": {"Bachelor": "Bachelor suites", "1 bedroom": "One bedroom &amp; one + den",
+                              "2 bedroom": "Two bedroom &amp; two + den", "3 bedroom": "Three bedroom",
+                              "Penthouse": "Penthouse Collection"},
+        "plans_type_chips": {"Bachelor": "Bachelor", "1 bedroom": "1 bed", "2 bedroom": "2 bed", "3 bedroom": "3 bed",
+                             "Penthouse": "Penthouse"},
+        "plans_price_label": "List price",
+        "plans_promo_label": "Promo price",
+        "featured": ["ph-02-valencia", "3b", "3c", "2a-d"],
+        "featured_title": "Four suites <em>worth a look</em>",
+        "featured_intro": "The Valencia penthouse and three Terrace Collection suites with oversized outdoor "
+                          "space &mdash; tap any plan to see it full size.",
+        "plans_title": "The rest of the <em>floor plans</em>",
+        "plans_intro": "Every other suite on the current promotional price list, from the 390 sq ft bachelor "
+                       "to the 1,515 sq ft Aveline penthouse.",
+        "plans_pitch": "Grouped by bedroom count; tap any plan to see it full size.",
+        "plans_note": "Plans from the Exhale Residences plan set; prices from the current promotional price list, "
+                      "shown against the original list price. *After HST rebate is the estimated net for eligible "
+                      "buyers. Layouts and dimensions are approximate and subject to change without notice. E.&amp;O.E.",
+        "order": ["featured", "gallery", "plans", "overview", "incentives", "pricing", "register", "nearby"],
+        "register": {
+            "title": "Have a suite <em>in mind?</em>",
+            "text": "Leave your number and Nikhil will confirm availability and the current promotional price "
+                    "on the suite you want. No pressure, no spam.",
+            "button": "Check availability",
+            "hero_button": "See floor plans &amp; prices",
+            "hero_href": "#floor-plans",
+            "done_title": "Got it.",
+            "done_text": "Nikhil will be in touch shortly. Sooner? Call or text "
+                         "<a href=\"tel:6479240848\">647-924-0848</a>.",
+        },
+        "pricing_title": "Promotional <em>price list</em>",
+        "tables": [
+            {
+                "title": "All suites",
+                "note": "Promotional pricing shown against the original list price. *After HST rebate is the "
+                        "estimated net for eligible buyers. Subject to change without notice. E.&amp;O.E.",
+                "cols": ["Suite", "Type", "Sq ft", "List price", "Promotional price", "After HST rebate*"],
+                "plan_cols": {"model": 0, "sqft": 2, "price": 4, "net": 5, "was": 3},
+                "groups": [
+                    ("Bachelor suites", [
+                    ["BB", "Bachelor", "390", "$468,000", "$409,500", "$368,550"],
+                    ["BA", "Bachelor", "395", "$474,000", "$414,750", "$373,275"],
+                    ["BA2", "Bachelor", "410", "$492,000", "$430,500", "$387,450"],
+                    ["BB2", "Bachelor", "410", "$492,000", "$430,500", "$387,450"],
+                    ["BC", "Bachelor", "475", "$570,000", "$498,750", "$448,875"],
+                    ]),
+                    ("One bedroom &amp; one + den", [
+                    ["1A", "1 bed", "450", "$540,000", "$472,500", "$425,250"],
+                    ["1D", "1 bed", "450", "$540,000", "$472,500", "$425,250"],
+                    ["1C", "1 bed", "485", "$582,000", "$509,250", "$458,325"],
+                    ["1E", "1 bed", "485", "$582,000", "$509,250", "$458,325"],
+                    ["1U", "1 bed", "500", "$600,000", "$525,000", "$472,500"],
+                    ["1M", "1 bed", "520", "$624,000", "$546,000", "$491,400"],
+                    ["1N", "1 bed", "525", "$630,000", "$551,250", "$496,125"],
+                    ["1F & 1BB", "1 bed", "525", "$630,000", "$551,250", "$496,125"],
+                    ["1B", "1 bed", "530", "$636,000", "$556,500", "$500,850"],
+                    ["1V", "1 bed", "530", "$636,000", "$556,500", "$500,850"],
+                    ["1T", "1 bed", "535", "$642,000", "$561,750", "$505,575"],
+                    ["1C+D", "1 bed + den", "535", "$642,000", "$561,750", "$505,575"],
+                    ["1Y", "1 bed", "540", "$648,000", "$567,000", "$510,300"],
+                    ["1R", "1 bed", "545", "$654,000", "$572,250", "$515,025"],
+                    ["1K", "1 bed", "550", "$660,000", "$577,500", "$519,750"],
+                    ["1L", "1 bed", "550", "$660,000", "$577,500", "$519,750"],
+                    ["1O+D", "1 bed + den", "550", "$660,000", "$577,500", "$519,750"],
+                    ["1AA", "1 bed", "555", "$666,000", "$582,750", "$524,475"],
+                    ["1G", "1 bed", "560", "$672,000", "$588,000", "$529,200"],
+                    ["1S", "1 bed", "560", "$672,000", "$588,000", "$529,200"],
+                    ["1P", "1 bed", "580", "$696,000", "$609,000", "$548,100"],
+                    ["1D+D", "1 bed + den", "580", "$696,000", "$609,000", "$548,100"],
+                    ["1Z", "1 bed", "585", "$702,000", "$614,250", "$552,825"],
+                    ["1K+D", "1 bed + den", "590", "$708,000", "$619,500", "$557,550"],
+                    ["1AA+D", "1 bed + den", "595", "$714,000", "$624,750", "$562,275"],
+                    ["1S+D", "1 bed + den", "595", "$714,000", "$624,750", "$562,275"],
+                    ["1T+D", "1 bed + den", "595", "$714,000", "$624,750", "$562,275"],
+                    ["1BB+D", "1 bed + den", "600", "$720,000", "$630,000", "$567,000"],
+                    ["1L+D", "1 bed + den", "600", "$720,000", "$630,000", "$567,000"],
+                    ["1HA+D", "1 bed + den", "601", "$721,200", "$631,050", "$567,945"],
+                    ["1JA+D", "1 bed + den", "601", "$721,200", "$631,050", "$567,945"],
+                    ["1CC+D", "1 bed + den", "610", "$732,000", "$640,500", "$576,450"],
+                    ["1E+D", "1 bed + den", "610", "$732,000", "$640,500", "$576,450"],
+                    ["1F+D", "1 bed + den", "615", "$738,000", "$645,750", "$581,175"],
+                    ["1Y+D", "1 bed + den", "625", "$750,000", "$656,250", "$590,625"],
+                    ["1I", "1 bed", "630", "$756,000", "$661,500", "$595,350"],
+                    ["1X+D", "1 bed + den", "630", "$756,000", "$661,500", "$595,350"],
+                    ["1R+D", "1 bed + den", "635", "$762,000", "$666,750", "$600,075"],
+                    ["1Q+D", "1 bed + den", "640", "$768,000", "$672,000", "$604,800"],
+                    ["1H+D", "1 bed + den", "645", "$774,000", "$677,250", "$609,525"],
+                    ["1V+D", "1 bed + den", "651", "$781,200", "$683,550", "$615,195"],
+                    ["1J+D", "1 bed + den", "655", "$786,000", "$687,750", "$618,975"],
+                    ["1U+D", "1 bed + den", "655", "$786,000", "$687,750", "$618,975"],
+                    ["1P+D", "1 bed + den", "670", "$804,000", "$703,500", "$633,150"],
+                    ["1G+D", "1 bed + den", "675", "$810,000", "$708,750", "$637,875"],
+                    ["1M+D", "1 bed + den", "675", "$810,000", "$708,750", "$637,875"],
+                    ["1W+D", "1 bed + den", "695", "$834,000", "$729,750", "$656,775"],
+                    ["1B+D", "1 bed + den", "695", "$834,000", "$729,750", "$656,775"],
+                    ["1A+D", "1 bed + den", "1,005", "$1,206,000", "$1,055,250", "$949,725"],
+                    ]),
+                    ("Two bedroom &amp; two + den", [
+                    ["2G", "2 bed", "655", "$786,000", "$687,750", "$618,975"],
+                    ["2Z", "2 bed", "670", "$804,000", "$703,500", "$633,150"],
+                    ["2O", "2 bed", "690", "$828,000", "$724,500", "$652,050"],
+                    ["2K", "2 bed", "700", "$840,000", "$735,000", "$661,500"],
+                    ["2L", "2 bed", "705", "$846,000", "$740,250", "$666,225"],
+                    ["2C", "2 bed", "710", "$852,000", "$745,500", "$670,950"],
+                    ["2W", "2 bed", "710", "$852,000", "$745,500", "$670,950"],
+                    ["2D", "2 bed", "715", "$858,000", "$750,750", "$675,675"],
+                    ["2Q", "2 bed", "720", "$864,000", "$756,000", "$680,400"],
+                    ["2Y", "2 bed", "720", "$864,000", "$756,000", "$680,400"],
+                    ["2M", "2 bed", "725", "$870,000", "$761,250", "$685,125"],
+                    ["2J", "2 bed", "730", "$876,000", "$766,500", "$689,850"],
+                    ["2F", "2 bed", "740", "$888,000", "$777,000", "$699,300"],
+                    ["2N", "2 bed", "740", "$888,000", "$777,000", "$699,300"],
+                    ["2B+D", "2 bed + den", "745", "$894,000", "$782,250", "$704,025"],
+                    ["2R", "2 bed", "750", "$900,000", "$787,500", "$708,750"],
+                    ["2H", "2 bed", "755", "$906,000", "$792,750", "$713,475"],
+                    ["2P", "2 bed", "760", "$912,000", "$798,000", "$718,200"],
+                    ["2X", "2 bed", "765", "$918,000", "$803,250", "$722,925"],
+                    ["2S+D", "2 bed + den", "780", "$936,000", "$819,000", "$737,100"],
+                    ["2A", "2 bed", "795", "$954,000", "$834,750", "$751,275"],
+                    ["2E", "2 bed", "800", "$960,000", "$840,000", "$756,000"],
+                    ["2C+D", "2 bed + den", "820", "$984,000", "$861,000", "$774,900"],
+                    ["2A+D", "2 bed + den", "840", "$1,008,000", "$882,000", "$793,800"],
+                    ["2B", "2 bed", "880", "$1,056,000", "$924,000", "$831,600"],
+                    ["2D+D", "2 bed + den", "910", "$1,092,000", "$955,500", "$859,950"],
+                    ["2U", "2 bed", "1,102", "$1,322,400", "$1,157,100", "$1,041,390"],
+                    ]),
+                    ("Three bedroom", [
+                    ["3B", "3 bed", "870", "$1,044,000", "$913,500", "$822,150"],
+                    ["3C", "3 bed", "925", "$1,110,000", "$971,250", "$874,125"],
+                    ["3A", "3 bed", "985", "$1,182,000", "$1,034,250", "$930,825"],
+                    ]),
+                    ("Penthouse Collection", [
+                    ["The Valencia", "Penthouse · 2 Bed + den", "1,245", "$1,680,750", "$1,369,500", "$1,232,550"],
+                    ["The Essex", "Penthouse · 2 Bed + den", "1,250", "$1,687,500", "$1,375,000", "$1,237,500"],
+                    ["The Indigo", "Penthouse · 2 Bed + den", "1,355", "$1,829,250", "$1,490,500", "$1,341,450"],
+                    ["The Aveline", "Penthouse · 2 Bed &middot; open to offers", "1,515", "$2,045,250", "$1,666,500", "$1,499,850"],
+                    ]),
+                ],
+            },
+        ],
+        "incentives_title": "What&rsquo;s <em>included</em>",
+        "incentives": [
+            "Promotional pricing on every suite, shown against the original list price",
+            "HST rebate value reflected in the pricing",
+            "2026 occupancy &mdash; the earliest in the neighbourhood",
+            "Full amenity floor, gym and rooftop",
+            "Lakeshore Park across the street; lake views south, golf course views north",
+        ],
+        "deposit": None,
+        "commute": [
+            ("Across the street", "Lakeshore Park"),
+            ("Steps", "Marie Curtis Park &amp; the Etobicoke Creek trails"),
+            ("Nearby", "Long Branch GO Station"),
+            ("3 min", "Dixie Outlet Mall"),
+            ("Planned", "Lakeshore MiWay BRT and LRT"),
+        ],
+        "gallery_title": "Renderings",
+        "gallery": [
+            ("exhale-towns-hero", "Exhale on Lakeshore from the street"),
+            ("exhale-towns-suite", "Suite interior"),
+            ("exhale-aerial", "Aerial view of Exhale and Lakeshore Park"),
+            ("exhale-siteplan", "Site plan"),
+        ],
+        "cta_line": "Let&rsquo;s talk suites.",
+        "source": "Current Exhale promotional pricing and the Exhale Residences plan set.",
+        # Links shared from the previous version of this page (?plan=ex-56) still open the right drawing.
+        "plan_aliases": {"ex-1": "ba", "ex-2": "ba2", "ex-3": "bb", "ex-4": "bb2", "ex-5": "bc", "ex-6": "1a", "ex-7": "1aa", "ex-8": "1b", "ex-9": "1c", "ex-10": "1d", "ex-11": "1e", "ex-12": "1f-d", "ex-13": "1g", "ex-14": "1ha-d", "ex-15": "1i", "ex-16": "1j-d", "ex-17": "1ja-d", "ex-18": "1k", "ex-19": "1l", "ex-20": "1m", "ex-21": "1n", "ex-22": "1o-d", "ex-23": "1p", "ex-24": "1r", "ex-25": "1s", "ex-26": "1t", "ex-27": "1u", "ex-28": "1v", "ex-29": "1w-d", "ex-30": "1x-d", "ex-31": "1y", "ex-32": "1z", "ex-33": "1a-d", "ex-34": "1aa-d", "ex-35": "1b-d", "ex-36": "1bb-d", "ex-37": "1c-d", "ex-38": "1cc-d", "ex-39": "1d-d", "ex-40": "1e-d", "ex-41": "1f-1bb", "ex-42": "1g-d", "ex-43": "1h-d", "ex-44": "1k-d", "ex-45": "1l-d", "ex-46": "1m-d", "ex-47": "1p-d", "ex-48": "1q-d", "ex-49": "1r-d", "ex-50": "1s-d", "ex-51": "1t-d", "ex-52": "1u-d", "ex-53": "1v-d", "ex-54": "1y-d", "ex-55": "2a", "ex-56": "2a-d", "ex-57": "2b", "ex-58": "2b-d", "ex-59": "2c", "ex-60": "2c-d", "ex-61": "2d", "ex-62": "2d-d", "ex-63": "2e", "ex-64": "2f", "ex-65": "2g", "ex-66": "2h", "ex-67": "2j", "ex-68": "2k", "ex-69": "2l", "ex-70": "2m", "ex-71": "2n", "ex-72": "2o", "ex-73": "2p", "ex-74": "2q", "ex-75": "2r", "ex-76": "2s-d", "ex-77": "2u", "ex-78": "2w", "ex-79": "2x", "ex-80": "2y", "ex-81": "2z", "ex-82": "3a", "ex-83": "3b", "ex-84": "3c", "ex-85": "ph-essex", "ex-86": "ph-indigo", "ex-87": "ph-aveline", "ex-88": "ph-02-valencia"},
+    },
 }
 
 # Condo towers in this neighbourhood. Their suites live on their own building page;
@@ -1160,7 +1366,9 @@ CONDOS = [
                   ("Penthouses", "4 plans"), ("Plans", "88 available")],
         "price": "$409,500",
         "index": {"plans": 88, "beds": "Bachelor &ndash; 3", "size": "390 &ndash; 1,515", "from": "$409,500",
-                  "chips": [("Bachelor", 5), ("1 bed", 49), ("2 bed", 27), ("3 bed", 3), ("Penthouse", 4)]},
+                  "chips": [("Bachelor", 5, "../buildings/exhale.html?type=bachelor"), ("1 bed", 49, "../buildings/exhale.html?type=1-bedroom"),
+                            ("2 bed", 27, "../buildings/exhale.html?type=2-bedroom"), ("3 bed", 3, "../buildings/exhale.html?type=3-bedroom"),
+                            ("Penthouse", 4, "../buildings/exhale.html?type=penthouse")]},
     },
 ]
 
@@ -1172,7 +1380,7 @@ SIBLINGS = {slug: PROJECTS[slug]["name"] for slug in ORDER}
 
 # Pages built the same way that belong to another neighbourhood hub: written like the
 # rest, but kept out of the Dixie & Lakeshore cards, compare table and counts.
-EXTRA_PAGES = ["8-temple"]
+EXTRA_PAGES = ["8-temple", "exhale"]
 DEFAULT_HUB = {"name": "Dixie &amp; Lakeshore", "href": "../neighbourhoods/dixie-lakeshore.html#townhomes",
                "extra_label": "Compare townhomes", "extra_href": "../neighbourhoods/dixie-lakeshore.html#compare"}
 
@@ -1333,6 +1541,8 @@ def load_plans(p):
     m = json.load(open(os.path.join(ROOT, p["plans"]), encoding="utf-8"))
     order = {t: i for i, t in enumerate(PLAN_TYPE_ORDER)}
     plans = sorted(m["plans"], key=lambda pl: (order.get(pl["type"], 99), pl["sqft"], pl["slug"]))
+    for pl in plans:
+        pl["_widths"] = m.get("widths")      # a manifest may point at an existing image ladder
     # image paths are written relative to buildings/
     rel = os.path.relpath(os.path.join(ROOT, m["out"]), OUT_DIR).replace(os.sep, "/")
     return plans, rel
@@ -1473,7 +1683,18 @@ PLANS_SECTION = """<section id="floor-plans" class="plans-sec"%s>
 """
 
 
-def plans_section(p, plans, plans_dir, register_html=""):
+FEATURED_SECTION = """<section id="featured" class="plans-sec">
+  <div class="sec-eyebrow">Featured</div>
+  <h2 class="sec-title">%s</h2>
+  <p class="plans-intro">%s</p>
+  <div class="plan-grid">
+%s
+  </div>
+</section>
+"""
+
+
+def plans_section(p, plans, plans_dir, register_html="", featured=False):
     prices = price_index(p["tables"], plans)
     gate = p.get("plans_gate", True)
     preview = ([x for x in p.get("plans_preview", []) if any(pl["slug"] == x for pl in plans)]
@@ -1481,7 +1702,7 @@ def plans_section(p, plans, plans_dir, register_html=""):
     counts = {}
     for pl in plans:
         counts[pl["type"]] = counts.get(pl["type"], 0) + 1
-    beds_of = lambda pl: int(str(pl["beds"]).split()[0])
+    beds_of = lambda pl: 0 if str(pl["beds"]).lower().startswith("bach") else int(str(pl["beds"]).split()[0])
     type_slug = lambda pl: pl["type"].lower().replace(" ", "-")
     # groups (and the filter chips) are by bedroom count, or by collection/type when the
     # page mixes kinds of homes ("plans_group_by": "type")
@@ -1492,7 +1713,9 @@ def plans_section(p, plans, plans_dir, register_html=""):
         key_of, sort_key = type_slug, (lambda pl: (rank(pl), pl["sqft"], pl["slug"]))
     else:
         key_of, sort_key = beds_of, (lambda pl: (beds_of(pl), pl["sqft"], pl["slug"]))
-    if gate:
+    if featured:
+        ordered = list(plans)
+    elif gate:
         # open previews lead, in the order given; everything else follows in catalogue order
         ordered = [pl for x in preview for pl in plans if pl["slug"] == x] + [pl for pl in plans if pl["slug"] not in preview]
     else:
@@ -1500,10 +1723,11 @@ def plans_section(p, plans, plans_dir, register_html=""):
         ordered = sorted(plans, key=sort_key)
     cards = []
     for pl in ordered:
-        base = "%s/%s" % (plans_dir, pl["slug"])
-        widths = [480, 800, 1280] + ([1920] if pl.get("half", "F") == "F" else [])
+        base = "%s/%s" % (plans_dir, pl.get("file", pl["slug"]))
+        widths = pl.get("_widths") or ([480, 800, 1280] + ([1920] if pl.get("half", "F") == "F" else []))
         beds = str(pl["beds"])
-        beds_lbl = "%s bed + den" % beds.split("+")[0].strip() if "den" in beds else "%s bed" % beds   # "2 + den" reads "2 bed + den"
+        beds_lbl = ("Bachelor" if beds.lower().startswith("bach")
+                    else "%s bed + den" % beds.split("+")[0].strip() if "den" in beds else "%s bed" % beds)
         spec = " &middot; ".join(x for x in [beds_lbl, ("%s bath" % pl["baths"]) if pl.get("baths") else "",
                                               "%s sq ft" % "{:,}".format(pl["sqft"])] if x)
         if pl["slug"] in prices:
@@ -1545,6 +1769,10 @@ def plans_section(p, plans, plans_dir, register_html=""):
             ' style="--plan-ratio: %s"' % pl["ratio"] if pl.get("ratio") else "",   # e.g. one landscape card
             media, pl["name"], spec, pl["level"], price))
 
+    if featured:
+        # a hand-picked row of suites at the top of the page, in the order given
+        return FEATURED_SECTION % (p.get("featured_title", "Featured <em>suites</em>"),
+                                   p.get("featured_intro", ""), "\n".join(cards))
     by_key, first = {}, {}
     for pl in sorted(plans, key=sort_key):
         by_key.setdefault(key_of(pl), []).append(pl)
@@ -1572,7 +1800,7 @@ def plans_section(p, plans, plans_dir, register_html=""):
                  % len(preview))
         state = "%d plans locked &middot; register to open them" % locked
     else:
-        pitch = "Grouped by %s; tap any plan to see it full size." % ("collection" if by_type else "bedroom count")
+        pitch = p.get("plans_pitch", "Grouped by %s; tap any plan to see it full size." % ("collection" if by_type else "bedroom count"))
         state = "%d plans &middot; tap to enlarge" % len(plans)
     lead, rest = cards[:len(preview)], cards[len(preview):]
     if register_html and gate:
@@ -1765,7 +1993,7 @@ PLANS_JS = r"""<script>
   });
 
   var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null, before = null;
-  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan.is-open'), function (f) { return !f.hidden; }); }
+  function visible() { return Array.prototype.filter.call(document.querySelectorAll('.plans-sec .plan.is-open'), function (f) { return !f.hidden; }); }
   function show(fig) {
     if (lb.hidden) before = location.pathname + location.search + location.hash;   // what to go back to on close
     current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
@@ -1782,8 +2010,8 @@ PLANS_JS = r"""<script>
     before = null;
   }
   function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
-  sec.addEventListener('click', function (e) {
-    var fig = e.target.closest('.plan'); if (!fig) return;
+  document.addEventListener('click', function (e) {
+    var fig = e.target.closest('.plans-sec .plan'); if (!fig) return;
     if (!fig.classList.contains('is-open')) {
       var reg = document.getElementById('register');
       if (reg) { reg.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = reg.querySelector('input[name=name]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, 700); }
@@ -2039,6 +2267,10 @@ def build(slug, p):
 </script>
 """ % (v.get("eyebrow", "Video"), v["title"], v["id"], start, v["id"])
     gate = bool(plans) and p.get("plans_gate", True)
+    if plans and p.get("featured"):
+        feat = [pl for x in p["featured"] for pl in plans if pl["slug"] == x]
+        blocks["featured"] = plans_section(p, feat, plans_dir, featured=True)
+        plans = [pl for pl in plans if pl["slug"] not in p["featured"]]
     if plans:
         # gated: the form sits inside the plan section, between previews and locked plans
         blocks["plans"] = plans_section(p, plans, plans_dir, register_section if gate else "")
@@ -2047,7 +2279,7 @@ def build(slug, p):
     order = p.get("order", ["register", "overview", "pricing", "plans", "incentives", "deposit_example",
                             "setting", "site_plan", "gallery", "nearby"])
     unknown = [k for k in order if k not in ("register", "overview", "pricing", "plans", "incentives",
-                                             "deposit_example", "setting", "site_plan", "gallery", "nearby", "video")]
+                                             "deposit_example", "setting", "site_plan", "gallery", "nearby", "video", "featured")]
     if unknown:
         raise SystemExit("%s: unknown section(s) in order: %s" % (slug, unknown))
     body = "\n".join(blocks[k] for k in order if k in blocks)
@@ -2757,7 +2989,7 @@ def condos_section():
         ix = c["index"]
         rows.append(_index_row(c["name"], c["builder"], c["href"],
                                [(ix["plans"], "plans"), (ix["beds"], "bedrooms"), (ix["size"], "sq ft"), (ix["from"], "from")],
-                               [(label, n, "") for label, n in ix["chips"]], "View plans"))
+                               [(c[0], c[1], c[2] if len(c) > 2 else "") for c in ix["chips"]], "View plans"))
     total = sum(c["index"]["plans"] for c in CONDOS)
     return total, """<section class="cat-band" id="condos">
   <div class="cat-head">

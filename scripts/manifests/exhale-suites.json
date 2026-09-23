@@ -1,0 +1,792 @@
+{
+ "out": "neighbourhoods/images",
+ "widths": [
+  600,
+  1200
+ ],
+ "plans": [
+  {
+   "slug": "ba",
+   "file": "exhale-bachelor-ba2",
+   "type": "Bachelor",
+   "name": "BA",
+   "sqft": 395,
+   "beds": "Bachelor",
+   "level": "Bachelor suite"
+  },
+  {
+   "slug": "ba2",
+   "file": "exhale-bachelor-ba3",
+   "type": "Bachelor",
+   "name": "BA2",
+   "sqft": 410,
+   "beds": "Bachelor",
+   "level": "Bachelor suite"
+  },
+  {
+   "slug": "bb",
+   "file": "exhale-bachelor-ba5",
+   "type": "Bachelor",
+   "name": "BB",
+   "sqft": 390,
+   "beds": "Bachelor",
+   "level": "Bachelor suite"
+  },
+  {
+   "slug": "bb2",
+   "file": "exhale-bachelor-ba6",
+   "type": "Bachelor",
+   "name": "BB2",
+   "sqft": 410,
+   "beds": "Bachelor",
+   "level": "Bachelor suite"
+  },
+  {
+   "slug": "bc",
+   "file": "exhale-bachelor-jr1",
+   "type": "Bachelor",
+   "name": "BC",
+   "sqft": 475,
+   "beds": "Bachelor",
+   "level": "Bachelor suite"
+  },
+  {
+   "slug": "1aa",
+   "file": "exhale-1bed-1aa",
+   "type": "1 bedroom",
+   "name": "1AA",
+   "sqft": 555,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1b",
+   "file": "exhale-1bed-1b",
+   "type": "1 bedroom",
+   "name": "1B",
+   "sqft": 530,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1c",
+   "file": "exhale-1bed-1c",
+   "type": "1 bedroom",
+   "name": "1C",
+   "sqft": 485,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1d",
+   "file": "exhale-1bed-1d",
+   "type": "1 bedroom",
+   "name": "1D",
+   "sqft": 450,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1e",
+   "file": "exhale-1bed-1e",
+   "type": "1 bedroom",
+   "name": "1E",
+   "sqft": 485,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1f-d",
+   "file": "exhale-1bed-1f-d",
+   "type": "1 bedroom",
+   "name": "1F+D",
+   "sqft": 615,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1g",
+   "file": "exhale-1bed-1g",
+   "type": "1 bedroom",
+   "name": "1G",
+   "sqft": 560,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1ha-d",
+   "file": "exhale-1bed-1ha-d",
+   "type": "1 bedroom",
+   "name": "1HA+D",
+   "sqft": 601,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1i",
+   "file": "exhale-1bed-1i",
+   "type": "1 bedroom",
+   "name": "1I",
+   "sqft": 630,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1j-d",
+   "file": "exhale-1bed-1j-d",
+   "type": "1 bedroom",
+   "name": "1J+D",
+   "sqft": 655,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1ja-d",
+   "file": "exhale-1bed-1ja-d",
+   "type": "1 bedroom",
+   "name": "1JA+D",
+   "sqft": 601,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1k",
+   "file": "exhale-1bed-1k",
+   "type": "1 bedroom",
+   "name": "1K",
+   "sqft": 550,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1l",
+   "file": "exhale-1bed-1l",
+   "type": "1 bedroom",
+   "name": "1L",
+   "sqft": 550,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1m",
+   "file": "exhale-1bed-1m",
+   "type": "1 bedroom",
+   "name": "1M",
+   "sqft": 520,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1n",
+   "file": "exhale-1bed-1n",
+   "type": "1 bedroom",
+   "name": "1N",
+   "sqft": 525,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1o-d",
+   "file": "exhale-1bed-1o-d",
+   "type": "1 bedroom",
+   "name": "1O+D",
+   "sqft": 550,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1p",
+   "file": "exhale-1bed-1p",
+   "type": "1 bedroom",
+   "name": "1P",
+   "sqft": 580,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1r",
+   "file": "exhale-1bed-1r",
+   "type": "1 bedroom",
+   "name": "1R",
+   "sqft": 545,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1s",
+   "file": "exhale-1bed-1s",
+   "type": "1 bedroom",
+   "name": "1S",
+   "sqft": 560,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1t",
+   "file": "exhale-1bed-1t",
+   "type": "1 bedroom",
+   "name": "1T",
+   "sqft": 535,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1u",
+   "file": "exhale-1bed-1u",
+   "type": "1 bedroom",
+   "name": "1U",
+   "sqft": 500,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1v",
+   "file": "exhale-1bed-1v",
+   "type": "1 bedroom",
+   "name": "1V",
+   "sqft": 530,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1w-d",
+   "file": "exhale-1bed-1w-d",
+   "type": "1 bedroom",
+   "name": "1W+D",
+   "sqft": 695,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1x-d",
+   "file": "exhale-1bed-1x-d",
+   "type": "1 bedroom",
+   "name": "1X+D",
+   "sqft": 630,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1y",
+   "file": "exhale-1bed-1y",
+   "type": "1 bedroom",
+   "name": "1Y",
+   "sqft": 540,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1z",
+   "file": "exhale-1bed-1z",
+   "type": "1 bedroom",
+   "name": "1Z",
+   "sqft": 585,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1a-d",
+   "file": "exhale-1bed-1a-d",
+   "type": "1 bedroom",
+   "name": "1A+D",
+   "sqft": 1005,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1aa-d",
+   "file": "exhale-1bed-1aa-d",
+   "type": "1 bedroom",
+   "name": "1AA+D",
+   "sqft": 595,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1b-d",
+   "file": "exhale-1bed-1b-d",
+   "type": "1 bedroom",
+   "name": "1B+D",
+   "sqft": 695,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1bb-d",
+   "file": "exhale-1bed-1bb-d",
+   "type": "1 bedroom",
+   "name": "1BB+D",
+   "sqft": 600,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1c-d",
+   "file": "exhale-1bed-1c-d",
+   "type": "1 bedroom",
+   "name": "1C+D",
+   "sqft": 535,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1cc-d",
+   "file": "exhale-1bed-1cc-d",
+   "type": "1 bedroom",
+   "name": "1CC+D",
+   "sqft": 610,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1d-d",
+   "file": "exhale-1bed-1d-d",
+   "type": "1 bedroom",
+   "name": "1D+D",
+   "sqft": 580,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1e-d",
+   "file": "exhale-1bed-1e-d",
+   "type": "1 bedroom",
+   "name": "1E+D",
+   "sqft": 610,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1f-1bb",
+   "file": "exhale-1bed-1f-and-1-bb",
+   "type": "1 bedroom",
+   "name": "1F & 1BB",
+   "sqft": 525,
+   "beds": "1",
+   "level": "1 bedroom"
+  },
+  {
+   "slug": "1g-d",
+   "file": "exhale-1bed-1g-d",
+   "type": "1 bedroom",
+   "name": "1G+D",
+   "sqft": 675,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1h-d",
+   "file": "exhale-1bed-1h-d",
+   "type": "1 bedroom",
+   "name": "1H+D",
+   "sqft": 645,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1k-d",
+   "file": "exhale-1bed-1k-d",
+   "type": "1 bedroom",
+   "name": "1K+D",
+   "sqft": 590,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1l-d",
+   "file": "exhale-1bed-1l-d",
+   "type": "1 bedroom",
+   "name": "1L+D",
+   "sqft": 600,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1m-d",
+   "file": "exhale-1bed-1m-d",
+   "type": "1 bedroom",
+   "name": "1M+D",
+   "sqft": 675,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1p-d",
+   "file": "exhale-1bed-1p-d",
+   "type": "1 bedroom",
+   "name": "1P+D",
+   "sqft": 670,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1q-d",
+   "file": "exhale-1bed-1q-d",
+   "type": "1 bedroom",
+   "name": "1Q+D",
+   "sqft": 640,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1r-d",
+   "file": "exhale-1bed-1r-d",
+   "type": "1 bedroom",
+   "name": "1R+D",
+   "sqft": 635,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1s-d",
+   "file": "exhale-1bed-1s-d",
+   "type": "1 bedroom",
+   "name": "1S+D",
+   "sqft": 595,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1t-d",
+   "file": "exhale-1bed-1t-d",
+   "type": "1 bedroom",
+   "name": "1T+D",
+   "sqft": 595,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1u-d",
+   "file": "exhale-1bed-1u-d",
+   "type": "1 bedroom",
+   "name": "1U+D",
+   "sqft": 655,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1v-d",
+   "file": "exhale-1bed-1v-d",
+   "type": "1 bedroom",
+   "name": "1V+D",
+   "sqft": 651,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "1y-d",
+   "file": "exhale-1bed-1y-d",
+   "type": "1 bedroom",
+   "name": "1Y+D",
+   "sqft": 625,
+   "beds": "1 + den",
+   "level": "1 bedroom + den"
+  },
+  {
+   "slug": "2a",
+   "file": "exhale-2bed-2a",
+   "type": "2 bedroom",
+   "name": "2A",
+   "sqft": 795,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2a-d",
+   "file": "exhale-2bed-2a-d",
+   "type": "2 bedroom",
+   "name": "2A+D",
+   "sqft": 840,
+   "beds": "2 + den",
+   "level": "2 bedroom + den"
+  },
+  {
+   "slug": "2b",
+   "file": "exhale-2bed-2b",
+   "type": "2 bedroom",
+   "name": "2B",
+   "sqft": 880,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2b-d",
+   "file": "exhale-2bed-2b-d",
+   "type": "2 bedroom",
+   "name": "2B+D",
+   "sqft": 745,
+   "beds": "2 + den",
+   "level": "2 bedroom + den"
+  },
+  {
+   "slug": "2c",
+   "file": "exhale-2bed-2c",
+   "type": "2 bedroom",
+   "name": "2C",
+   "sqft": 710,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2c-d",
+   "file": "exhale-2bed-2c-d",
+   "type": "2 bedroom",
+   "name": "2C+D",
+   "sqft": 820,
+   "beds": "2 + den",
+   "level": "2 bedroom + den"
+  },
+  {
+   "slug": "2d",
+   "file": "exhale-2bed-2d",
+   "type": "2 bedroom",
+   "name": "2D",
+   "sqft": 715,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2d-d",
+   "file": "exhale-2bed-2d-d",
+   "type": "2 bedroom",
+   "name": "2D+D",
+   "sqft": 910,
+   "beds": "2 + den",
+   "level": "2 bedroom + den"
+  },
+  {
+   "slug": "2e",
+   "file": "exhale-2bed-2e",
+   "type": "2 bedroom",
+   "name": "2E",
+   "sqft": 800,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2f",
+   "file": "exhale-2bed-2f",
+   "type": "2 bedroom",
+   "name": "2F",
+   "sqft": 740,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2g",
+   "file": "exhale-2bed-2g",
+   "type": "2 bedroom",
+   "name": "2G",
+   "sqft": 655,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2h",
+   "file": "exhale-2bed-2h",
+   "type": "2 bedroom",
+   "name": "2H",
+   "sqft": 755,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2j",
+   "file": "exhale-2bed-2j",
+   "type": "2 bedroom",
+   "name": "2J",
+   "sqft": 730,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2k",
+   "file": "exhale-2bed-2k",
+   "type": "2 bedroom",
+   "name": "2K",
+   "sqft": 700,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2l",
+   "file": "exhale-2bed-2l",
+   "type": "2 bedroom",
+   "name": "2L",
+   "sqft": 705,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2m",
+   "file": "exhale-2bed-2m",
+   "type": "2 bedroom",
+   "name": "2M",
+   "sqft": 725,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2n",
+   "file": "exhale-2bed-2n",
+   "type": "2 bedroom",
+   "name": "2N",
+   "sqft": 740,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2o",
+   "file": "exhale-2bed-2o",
+   "type": "2 bedroom",
+   "name": "2O",
+   "sqft": 690,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2p",
+   "file": "exhale-2bed-2p",
+   "type": "2 bedroom",
+   "name": "2P",
+   "sqft": 760,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2q",
+   "file": "exhale-2bed-2q",
+   "type": "2 bedroom",
+   "name": "2Q",
+   "sqft": 720,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2r",
+   "file": "exhale-2bed-2r",
+   "type": "2 bedroom",
+   "name": "2R",
+   "sqft": 750,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2s-d",
+   "file": "exhale-2bed-2s-d",
+   "type": "2 bedroom",
+   "name": "2S+D",
+   "sqft": 780,
+   "beds": "2 + den",
+   "level": "2 bedroom + den"
+  },
+  {
+   "slug": "2u",
+   "file": "exhale-2bed-2u",
+   "type": "2 bedroom",
+   "name": "2U",
+   "sqft": 1102,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2w",
+   "file": "exhale-2bed-2w",
+   "type": "2 bedroom",
+   "name": "2W",
+   "sqft": 710,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2x",
+   "file": "exhale-2bed-2x",
+   "type": "2 bedroom",
+   "name": "2X",
+   "sqft": 765,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2y",
+   "file": "exhale-2bed-2y",
+   "type": "2 bedroom",
+   "name": "2Y",
+   "sqft": 720,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "2z",
+   "file": "exhale-2bed-2z",
+   "type": "2 bedroom",
+   "name": "2Z",
+   "sqft": 670,
+   "beds": "2",
+   "level": "2 bedroom"
+  },
+  {
+   "slug": "3a",
+   "file": "exhale-3bed-3a",
+   "type": "3 bedroom",
+   "name": "3A",
+   "sqft": 985,
+   "beds": "3",
+   "level": "3 bedroom"
+  },
+  {
+   "slug": "3b",
+   "file": "exhale-3bed-3b",
+   "type": "3 bedroom",
+   "name": "3B",
+   "sqft": 870,
+   "beds": "3",
+   "level": "3 bedroom"
+  },
+  {
+   "slug": "3c",
+   "file": "exhale-3bed-3c",
+   "type": "3 bedroom",
+   "name": "3C",
+   "sqft": 925,
+   "beds": "3",
+   "level": "3 bedroom"
+  },
+  {
+   "slug": "ph-essex",
+   "file": "exhale-ph-essex",
+   "type": "Penthouse",
+   "name": "The Essex",
+   "sqft": 1250,
+   "beds": "2 + den",
+   "level": "Penthouse Collection, 11th floor"
+  },
+  {
+   "slug": "ph-indigo",
+   "file": "exhale-ph-indigo",
+   "type": "Penthouse",
+   "name": "The Indigo",
+   "sqft": 1355,
+   "beds": "2 + den",
+   "level": "Penthouse Collection, 11th floor"
+  },
+  {
+   "slug": "ph-aveline",
+   "file": "exhale-ph-aveline",
+   "type": "Penthouse",
+   "name": "The Aveline",
+   "sqft": 1515,
+   "beds": "2",
+   "level": "Penthouse Collection, 11th floor"
+  },
+  {
+   "slug": "ph-02-valencia",
+   "file": "exhale-ph-valencia",
+   "type": "Penthouse",
+   "name": "The Valencia",
+   "sqft": 1245,
+   "beds": "2 + den",
+   "level": "Penthouse Collection, 11th floor"
+  }
+ ]
+}

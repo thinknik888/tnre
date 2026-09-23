@@ -564,7 +564,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   });
 
   var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'), lbCap = lb.querySelector('.lb-cap'), current = null, before = null;
-  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan.is-open'), function (f) { return !f.hidden; }); }
+  function visible() { return Array.prototype.filter.call(document.querySelectorAll('.plans-sec .plan.is-open'), function (f) { return !f.hidden; }); }
   function show(fig) {
     if (lb.hidden) before = location.pathname + location.search + location.hash;   // what to go back to on close
     current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
@@ -581,8 +581,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     before = null;
   }
   function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
-  sec.addEventListener('click', function (e) {
-    var fig = e.target.closest('.plan'); if (!fig) return;
+  document.addEventListener('click', function (e) {
+    var fig = e.target.closest('.plans-sec .plan'); if (!fig) return;
     if (!fig.classList.contains('is-open')) {
       var reg = document.getElementById('register');
       if (reg) { reg.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = reg.querySelector('input[name=name]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, 700); }
