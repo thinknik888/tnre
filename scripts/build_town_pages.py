@@ -490,7 +490,6 @@ PROJECTS = {
             ("south-banks-street", "South Banks from the street"),
             ("south-banks-park", "The courtyard and park side of the community"),
             ("south-banks-elevation-a", "Elevation A"),
-            ("south-banks-rooftop", "Rooftop terrace on the Coast and Drift rooftop plans"),
             ("south-banks-rooftop-2", "Rooftop terrace at sunset"),
             ("south-banks-living", "Living and dining, main level"),
             ("south-banks-kitchen", "Kitchen finishes, Package B"),
