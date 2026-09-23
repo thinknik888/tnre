@@ -1,0 +1,18 @@
+{
+ "source_dir": "~/Downloads/Renderings 3/Amenities and Suites",
+ "images": [
+  {"name": "exhale-hero", "file": "Aerial Terrace.jpg", "widths": "hero"},
+  {"name": "exhale-entry", "file": "Entry Exterior.jpg"},
+  {"name": "exhale-lobby", "file": "Lobby.jpg"},
+  {"name": "exhale-lobby-detail", "file": "Interior Building Image.jpg"},
+  {"name": "exhale-suite", "file": "Suite.jpg"},
+  {"name": "exhale-ensuite", "file": "Ensuite.jpg"},
+  {"name": "exhale-party-room", "file": "Party Room.jpg"},
+  {"name": "exhale-gym", "file": "Gym.jpg"},
+  {"name": "exhale-kids", "file": "Kids Room.jpg"},
+  {"name": "exhale-rooftop", "file": "Rooftop.jpg"},
+  {"name": "exhale-rooftop-2", "file": "Rooftop 2.jpg"},
+  {"name": "exhale-outdoor", "file": "Outdoor Amenity.jpg"},
+  {"name": "exhale-amenity-plan", "file": "2D Amenity Plan.jpg", "widths": [480, 800, 1280, 1920]}
+ ]
+}
