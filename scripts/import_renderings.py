@@ -111,8 +111,8 @@ def main():
             a = os.path.join(DST, "%s-%d.avif" % (name, w))
             p = os.path.join(DST, "%s-%d.webp" % (name, w))
             big = w >= 1920
-            frame.save(a, "AVIF", quality=entry.get("avif_quality", 38 if big else 55))
-            frame.save(p, "WEBP", quality=entry.get("webp_quality", 70 if big else 80), method=6)
+            frame.save(a, "AVIF", quality=entry.get("avif_quality", 36 if big else 46))
+            frame.save(p, "WEBP", quality=entry.get("webp_quality", 66 if big else 74), method=6)
             repo += os.path.getsize(a) + os.path.getsize(p)
             biggest = os.path.getsize(a)
 

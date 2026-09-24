@@ -1435,19 +1435,28 @@ def have(name, w, ext):
     return os.path.exists(os.path.join(IMG_DIR, "%s-%d.%s" % (name, w, ext)))
 
 
-def picture(name, alt, sizes, widths, cls="", eager=False, prefix="images/towns/", style=""):
-    """<picture> with AVIF + WebP sources and a JPEG fallback in <img src>."""
-    avif = ", ".join("%s%s-%d.avif %dw" % (prefix, name, w, w)
-                     for w in widths if have(name, w, "avif"))
-    webp = ", ".join("%s%s-%d.webp %dw" % (prefix, name, w, w)
-                     for w in widths if have(name, w, "webp"))
+def picture(name, alt, sizes, widths, cls="", eager=False, prefix="images/towns/", style="",
+            phone_max=800, mid_max=None):
+    """<picture> with AVIF + WebP sources and a JPEG fallback in <img src>.
+
+    Phones (3x screens) would otherwise pick a 1280px file for a 375px-wide slot, so a
+    media-scoped source caps them at `phone_max`; `mid_max` does the same for laptops
+    (viewports up to 1600px), leaving the biggest files to large screens only."""
+    def srcset(ext, cap):
+        return ", ".join("%s%s-%d.%s %dw" % (prefix, name, w, ext, w)
+                         for w in widths if have(name, w, ext) and (cap is None or w <= cap))
     loading = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
     src = "%s%s.jpg" % (prefix, name)
     out = ["<picture>"]
-    if avif:
-        out.append('  <source type="image/avif" sizes="%s" srcset="%s">' % (sizes, avif))
-    if webp:
-        out.append('  <source type="image/webp" sizes="%s" srcset="%s">' % (sizes, webp))
+    for ext in ("avif", "webp"):
+        full = srcset(ext, None)
+        if not full:
+            continue
+        for media, cap in (("(max-width: 700px)", phone_max), ("(max-width: 1600px)", mid_max)):
+            capped = srcset(ext, cap) if cap else ""
+            if capped and capped != full:
+                out.append('  <source type="image/%s" media="%s" sizes="%s" srcset="%s">' % (ext, media, sizes, capped))
+        out.append('  <source type="image/%s" sizes="%s" srcset="%s">' % (ext, sizes, full))
     out.append('  <img src="%s" alt="%s" %s decoding="async"%s%s>'
                % (src, html.escape(alt, quote=True), loading,
                   ' class="%s"' % cls if cls else "",
@@ -1761,11 +1770,12 @@ def plans_section(p, plans, plans_dir, register_html="", featured=False):
         else:
             price = '<div class="plan-price muted">Not on the current price list &middot; ask about availability</div>'
         if pl["slug"] in preview:
-            media = ('<picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="%s">'
-                     '<source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="%s">'
+            card_w = [w for w in widths if w <= 800] or widths[:1]     # a card is ~330px wide; 800 covers 2x screens
+            media = ('<picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="%s">'
+                     '<source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="%s">'
                      '<img src="%s.jpg" alt="%s floor plan" loading="lazy" decoding="async"></picture>' % (
-                         ", ".join("%s-%d.avif %dw" % (base, w, w) for w in widths),
-                         ", ".join("%s-%d.webp %dw" % (base, w, w) for w in widths),
+                         ", ".join("%s-%d.avif %dw" % (base, w, w) for w in card_w),
+                         ", ".join("%s-%d.webp %dw" % (base, w, w) for w in card_w),
                          base, html.escape(pl["name"], quote=True)))
             cls = " is-open"
         else:
@@ -2197,14 +2207,15 @@ def build(slug, p):
                  '<span class="cm-place">%s</span></div>' % r for r in sp["rows"])))
     split = p.get("hero_layout") == "split"
     hero_sizes = "(min-width: 1000px) 45vw, 100vw" if split else "100vw"
-    hero_pic = picture(p["hero"], p["hero_alt"], hero_sizes, HERO_W, cls="hero-img", eager=True)
+    hero_pic = picture(p["hero"], p["hero_alt"], hero_sizes, HERO_W, cls="hero-img", eager=True, phone_max=800, mid_max=1920)
     hero_preload = ""
     if have(p["hero"], 1280, "avif"):
+        # preload the laptop ladder (up to 1920); phones and big screens fetch from the <picture>
         hero_preload = (
-            '\n  <link rel="preload" as="image" type="image/avif" '
+            '\n  <link rel="preload" as="image" type="image/avif" media="(min-width: 701px) and (max-width: 1600px)" '
             'imagesizes="%s" imagesrcset="%s">'
             % (hero_sizes, ", ".join("images/towns/%s-%d.avif %dw" % (p["hero"], w, w)
-                                     for w in HERO_W if have(p["hero"], w, "avif"))))
+                                     for w in HERO_W if have(p["hero"], w, "avif") and w <= 1920)))
 
     blocks["pricing"] = """<section id="pricing">
   <div class="sec-eyebrow">Pricing</div>

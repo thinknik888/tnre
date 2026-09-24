@@ -1,0 +1,7 @@
+# Netlify cache rules. Image ladders and scripts are safe to keep for a week; HTML stays fresh.
+/buildings/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/neighbourhoods/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=86400

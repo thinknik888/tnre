@@ -103,8 +103,9 @@ def main():
             frame = at(width)
             a = os.path.join(out, "%s-%d.avif" % (slug, width))
             wp = os.path.join(out, "%s-%d.webp" % (slug, width))
-            frame.save(a, "AVIF", quality=60)
-            frame.save(wp, "WEBP", quality=82, method=6)
+            # line art: q38 AVIF / q58 WebP are visually identical to q60/q82 at a third less weight
+            frame.save(a, "AVIF", quality=38)
+            frame.save(wp, "WEBP", quality=58, method=6)
             size += os.path.getsize(a) + os.path.getsize(wp)
         lock = at(160).filter(ImageFilter.GaussianBlur(3)).resize((64, max(1, round(plan.height * 64 / plan.width))), Image.LANCZOS)
         lock.save(os.path.join(out, slug + "-lock.webp"), "WEBP", quality=55, method=6)

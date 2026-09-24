@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" type="image/avif" imagesizes="100vw" imagesrcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w, images/towns/8-temple-hero-2560.avif 2560w">
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 701px) and (max-width: 1600px)" imagesizes="100vw" imagesrcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w">
   <style>
     :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
              --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
@@ -379,7 +379,11 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
 <header class="hero">
   <picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w">
+        <source type="image/avif" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w">
         <source type="image/avif" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w, images/towns/8-temple-hero-2560.avif 2560w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w">
+        <source type="image/webp" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w, images/towns/8-temple-hero-1280.webp 1280w, images/towns/8-temple-hero-1920.webp 1920w">
         <source type="image/webp" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w, images/towns/8-temple-hero-1280.webp 1280w, images/towns/8-temple-hero-1920.webp 1920w, images/towns/8-temple-hero-2560.webp 2560w">
         <img src="images/towns/8-temple-hero.jpg" alt="8 Temple by Curated Properties, exterior rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
       </picture>
@@ -433,7 +437,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="plan-grid">
     <div class="plan-group" data-key="1" id="plans-1-bed"><span>One bedroom</span><small>8 plans &middot; 477 &ndash; 650 sq ft &middot; from $530,910 net of HST*</small></div>
     <figure class="plan is-open" id="plan-477" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/477" data-widths="480,800,1280,1920" data-name="Plan 477" data-spec="1 bed + den · 1 bath · 477 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/477-480.avif 480w, images/plans/8-temple/477-800.avif 800w, images/plans/8-temple/477-1280.avif 1280w, images/plans/8-temple/477-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/477-480.webp 480w, images/plans/8-temple/477-800.webp 800w, images/plans/8-temple/477-1280.webp 1280w, images/plans/8-temple/477-1920.webp 1920w"><img src="images/plans/8-temple/477.jpg" alt="Plan 477 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/477-480.avif 480w, images/plans/8-temple/477-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/477-480.webp 480w, images/plans/8-temple/477-800.webp 800w"><img src="images/plans/8-temple/477.jpg" alt="Plan 477 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 477</div>
         <div class="plan-spec">1 bed + den &middot; 1 bath &middot; 477 sq ft</div>
@@ -442,7 +446,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-489" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/489" data-widths="480,800,1280,1920" data-name="Plan 489" data-spec="1 bed + den · 1 bath · 489 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/489-480.avif 480w, images/plans/8-temple/489-800.avif 800w, images/plans/8-temple/489-1280.avif 1280w, images/plans/8-temple/489-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/489-480.webp 480w, images/plans/8-temple/489-800.webp 800w, images/plans/8-temple/489-1280.webp 1280w, images/plans/8-temple/489-1920.webp 1920w"><img src="images/plans/8-temple/489.jpg" alt="Plan 489 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/489-480.avif 480w, images/plans/8-temple/489-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/489-480.webp 480w, images/plans/8-temple/489-800.webp 800w"><img src="images/plans/8-temple/489.jpg" alt="Plan 489 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 489</div>
         <div class="plan-spec">1 bed + den &middot; 1 bath &middot; 489 sq ft</div>
@@ -451,7 +455,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-506" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/506" data-widths="480,800,1280,1920" data-name="Plan 506" data-spec="1 bed · 1 bath · 506 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/506-480.avif 480w, images/plans/8-temple/506-800.avif 800w, images/plans/8-temple/506-1280.avif 1280w, images/plans/8-temple/506-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/506-480.webp 480w, images/plans/8-temple/506-800.webp 800w, images/plans/8-temple/506-1280.webp 1280w, images/plans/8-temple/506-1920.webp 1920w"><img src="images/plans/8-temple/506.jpg" alt="Plan 506 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/506-480.avif 480w, images/plans/8-temple/506-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/506-480.webp 480w, images/plans/8-temple/506-800.webp 800w"><img src="images/plans/8-temple/506.jpg" alt="Plan 506 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 506</div>
         <div class="plan-spec">1 bed &middot; 1 bath &middot; 506 sq ft</div>
@@ -460,7 +464,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-527" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/527" data-widths="480,800,1280,1920" data-name="Plan 527" data-spec="1 bed · 1 bath · 527 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/527-480.avif 480w, images/plans/8-temple/527-800.avif 800w, images/plans/8-temple/527-1280.avif 1280w, images/plans/8-temple/527-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/527-480.webp 480w, images/plans/8-temple/527-800.webp 800w, images/plans/8-temple/527-1280.webp 1280w, images/plans/8-temple/527-1920.webp 1920w"><img src="images/plans/8-temple/527.jpg" alt="Plan 527 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/527-480.avif 480w, images/plans/8-temple/527-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/527-480.webp 480w, images/plans/8-temple/527-800.webp 800w"><img src="images/plans/8-temple/527.jpg" alt="Plan 527 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 527</div>
         <div class="plan-spec">1 bed &middot; 1 bath &middot; 527 sq ft</div>
@@ -469,7 +473,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-563" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/563" data-widths="480,800,1280,1920" data-name="Plan 563" data-spec="1 bed + den · 1 bath · 563 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/563-480.avif 480w, images/plans/8-temple/563-800.avif 800w, images/plans/8-temple/563-1280.avif 1280w, images/plans/8-temple/563-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/563-480.webp 480w, images/plans/8-temple/563-800.webp 800w, images/plans/8-temple/563-1280.webp 1280w, images/plans/8-temple/563-1920.webp 1920w"><img src="images/plans/8-temple/563.jpg" alt="Plan 563 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/563-480.avif 480w, images/plans/8-temple/563-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/563-480.webp 480w, images/plans/8-temple/563-800.webp 800w"><img src="images/plans/8-temple/563.jpg" alt="Plan 563 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 563</div>
         <div class="plan-spec">1 bed + den &middot; 1 bath &middot; 563 sq ft</div>
@@ -478,7 +482,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-638" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/638" data-widths="480,800,1280,1920" data-name="Plan 638" data-spec="1 bed + den · 2 bath · 638 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/638-480.avif 480w, images/plans/8-temple/638-800.avif 800w, images/plans/8-temple/638-1280.avif 1280w, images/plans/8-temple/638-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/638-480.webp 480w, images/plans/8-temple/638-800.webp 800w, images/plans/8-temple/638-1280.webp 1280w, images/plans/8-temple/638-1920.webp 1920w"><img src="images/plans/8-temple/638.jpg" alt="Plan 638 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/638-480.avif 480w, images/plans/8-temple/638-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/638-480.webp 480w, images/plans/8-temple/638-800.webp 800w"><img src="images/plans/8-temple/638.jpg" alt="Plan 638 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 638</div>
         <div class="plan-spec">1 bed + den &middot; 2 bath &middot; 638 sq ft</div>
@@ -487,7 +491,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-647" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/647" data-widths="480,800,1280,1920" data-name="Plan 647" data-spec="1 bed + den · 2 bath · 647 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/647-480.avif 480w, images/plans/8-temple/647-800.avif 800w, images/plans/8-temple/647-1280.avif 1280w, images/plans/8-temple/647-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/647-480.webp 480w, images/plans/8-temple/647-800.webp 800w, images/plans/8-temple/647-1280.webp 1280w, images/plans/8-temple/647-1920.webp 1920w"><img src="images/plans/8-temple/647.jpg" alt="Plan 647 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/647-480.avif 480w, images/plans/8-temple/647-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/647-480.webp 480w, images/plans/8-temple/647-800.webp 800w"><img src="images/plans/8-temple/647.jpg" alt="Plan 647 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 647</div>
         <div class="plan-spec">1 bed + den &middot; 2 bath &middot; 647 sq ft</div>
@@ -496,7 +500,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-650" data-beds="1" data-type="suite" data-key="1" data-base="images/plans/8-temple/650" data-widths="480,800,1280,1920" data-name="Plan 650" data-spec="1 bed + den · 2 bath · 650 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/650-480.avif 480w, images/plans/8-temple/650-800.avif 800w, images/plans/8-temple/650-1280.avif 1280w, images/plans/8-temple/650-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/650-480.webp 480w, images/plans/8-temple/650-800.webp 800w, images/plans/8-temple/650-1280.webp 1280w, images/plans/8-temple/650-1920.webp 1920w"><img src="images/plans/8-temple/650.jpg" alt="Plan 650 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/650-480.avif 480w, images/plans/8-temple/650-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/650-480.webp 480w, images/plans/8-temple/650-800.webp 800w"><img src="images/plans/8-temple/650.jpg" alt="Plan 650 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 650</div>
         <div class="plan-spec">1 bed + den &middot; 2 bath &middot; 650 sq ft</div>
@@ -506,7 +510,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </figure>
     <div class="plan-group" data-key="2" id="plans-2-bed"><span>Two bedroom</span><small>17 plans &middot; 677 &ndash; 1,358 sq ft &middot; from $719,910 net of HST*</small></div>
     <figure class="plan is-open" id="plan-677" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/677" data-widths="480,800,1280,1920" data-name="Plan 677" data-spec="2 bed · 677 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/677-480.avif 480w, images/plans/8-temple/677-800.avif 800w, images/plans/8-temple/677-1280.avif 1280w, images/plans/8-temple/677-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/677-480.webp 480w, images/plans/8-temple/677-800.webp 800w, images/plans/8-temple/677-1280.webp 1280w, images/plans/8-temple/677-1920.webp 1920w"><img src="images/plans/8-temple/677.jpg" alt="Plan 677 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/677-480.avif 480w, images/plans/8-temple/677-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/677-480.webp 480w, images/plans/8-temple/677-800.webp 800w"><img src="images/plans/8-temple/677.jpg" alt="Plan 677 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 677</div>
         <div class="plan-spec">2 bed &middot; 677 sq ft</div>
@@ -515,7 +519,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-700" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/700" data-widths="480,800,1280,1920" data-name="Plan 700" data-spec="2 bed · 2 bath · 700 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/700-480.avif 480w, images/plans/8-temple/700-800.avif 800w, images/plans/8-temple/700-1280.avif 1280w, images/plans/8-temple/700-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/700-480.webp 480w, images/plans/8-temple/700-800.webp 800w, images/plans/8-temple/700-1280.webp 1280w, images/plans/8-temple/700-1920.webp 1920w"><img src="images/plans/8-temple/700.jpg" alt="Plan 700 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/700-480.avif 480w, images/plans/8-temple/700-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/700-480.webp 480w, images/plans/8-temple/700-800.webp 800w"><img src="images/plans/8-temple/700.jpg" alt="Plan 700 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 700</div>
         <div class="plan-spec">2 bed &middot; 2 bath &middot; 700 sq ft</div>
@@ -524,7 +528,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-707" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/707" data-widths="480,800,1280,1920" data-name="Plan 707" data-spec="2 bed · 707 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/707-480.avif 480w, images/plans/8-temple/707-800.avif 800w, images/plans/8-temple/707-1280.avif 1280w, images/plans/8-temple/707-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/707-480.webp 480w, images/plans/8-temple/707-800.webp 800w, images/plans/8-temple/707-1280.webp 1280w, images/plans/8-temple/707-1920.webp 1920w"><img src="images/plans/8-temple/707.jpg" alt="Plan 707 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/707-480.avif 480w, images/plans/8-temple/707-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/707-480.webp 480w, images/plans/8-temple/707-800.webp 800w"><img src="images/plans/8-temple/707.jpg" alt="Plan 707 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 707</div>
         <div class="plan-spec">2 bed &middot; 707 sq ft</div>
@@ -533,7 +537,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-724" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/724" data-widths="480,800,1280,1920" data-name="Plan 724" data-spec="2 bed · 2 bath · 724 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/724-480.avif 480w, images/plans/8-temple/724-800.avif 800w, images/plans/8-temple/724-1280.avif 1280w, images/plans/8-temple/724-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/724-480.webp 480w, images/plans/8-temple/724-800.webp 800w, images/plans/8-temple/724-1280.webp 1280w, images/plans/8-temple/724-1920.webp 1920w"><img src="images/plans/8-temple/724.jpg" alt="Plan 724 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/724-480.avif 480w, images/plans/8-temple/724-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/724-480.webp 480w, images/plans/8-temple/724-800.webp 800w"><img src="images/plans/8-temple/724.jpg" alt="Plan 724 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 724</div>
         <div class="plan-spec">2 bed &middot; 2 bath &middot; 724 sq ft</div>
@@ -542,7 +546,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-726" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/726" data-widths="480,800,1280,1920" data-name="Plan 726" data-spec="2 bed · 726 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/726-480.avif 480w, images/plans/8-temple/726-800.avif 800w, images/plans/8-temple/726-1280.avif 1280w, images/plans/8-temple/726-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/726-480.webp 480w, images/plans/8-temple/726-800.webp 800w, images/plans/8-temple/726-1280.webp 1280w, images/plans/8-temple/726-1920.webp 1920w"><img src="images/plans/8-temple/726.jpg" alt="Plan 726 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/726-480.avif 480w, images/plans/8-temple/726-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/726-480.webp 480w, images/plans/8-temple/726-800.webp 800w"><img src="images/plans/8-temple/726.jpg" alt="Plan 726 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 726</div>
         <div class="plan-spec">2 bed &middot; 726 sq ft</div>
@@ -551,7 +555,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-797" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/797" data-widths="480,800,1280,1920" data-name="Plan 797" data-spec="2 bed + den · 797 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/797-480.avif 480w, images/plans/8-temple/797-800.avif 800w, images/plans/8-temple/797-1280.avif 1280w, images/plans/8-temple/797-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/797-480.webp 480w, images/plans/8-temple/797-800.webp 800w, images/plans/8-temple/797-1280.webp 1280w, images/plans/8-temple/797-1920.webp 1920w"><img src="images/plans/8-temple/797.jpg" alt="Plan 797 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/797-480.avif 480w, images/plans/8-temple/797-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/797-480.webp 480w, images/plans/8-temple/797-800.webp 800w"><img src="images/plans/8-temple/797.jpg" alt="Plan 797 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 797</div>
         <div class="plan-spec">2 bed + den &middot; 797 sq ft</div>
@@ -560,7 +564,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-820" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/820" data-widths="480,800,1280,1920" data-name="Plan 820" data-spec="2 bed · 820 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/820-480.avif 480w, images/plans/8-temple/820-800.avif 800w, images/plans/8-temple/820-1280.avif 1280w, images/plans/8-temple/820-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/820-480.webp 480w, images/plans/8-temple/820-800.webp 800w, images/plans/8-temple/820-1280.webp 1280w, images/plans/8-temple/820-1920.webp 1920w"><img src="images/plans/8-temple/820.jpg" alt="Plan 820 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/820-480.avif 480w, images/plans/8-temple/820-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/820-480.webp 480w, images/plans/8-temple/820-800.webp 800w"><img src="images/plans/8-temple/820.jpg" alt="Plan 820 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 820</div>
         <div class="plan-spec">2 bed &middot; 820 sq ft</div>
@@ -569,7 +573,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-821" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/821" data-widths="480,800,1280,1920" data-name="Plan 821" data-spec="2 bed + den · 821 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/821-480.avif 480w, images/plans/8-temple/821-800.avif 800w, images/plans/8-temple/821-1280.avif 1280w, images/plans/8-temple/821-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/821-480.webp 480w, images/plans/8-temple/821-800.webp 800w, images/plans/8-temple/821-1280.webp 1280w, images/plans/8-temple/821-1920.webp 1920w"><img src="images/plans/8-temple/821.jpg" alt="Plan 821 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/821-480.avif 480w, images/plans/8-temple/821-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/821-480.webp 480w, images/plans/8-temple/821-800.webp 800w"><img src="images/plans/8-temple/821.jpg" alt="Plan 821 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 821</div>
         <div class="plan-spec">2 bed + den &middot; 821 sq ft</div>
@@ -578,7 +582,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-842" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/842" data-widths="480,800,1280,1920" data-name="Plan 842" data-spec="2 bed + den · 842 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/842-480.avif 480w, images/plans/8-temple/842-800.avif 800w, images/plans/8-temple/842-1280.avif 1280w, images/plans/8-temple/842-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/842-480.webp 480w, images/plans/8-temple/842-800.webp 800w, images/plans/8-temple/842-1280.webp 1280w, images/plans/8-temple/842-1920.webp 1920w"><img src="images/plans/8-temple/842.jpg" alt="Plan 842 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/842-480.avif 480w, images/plans/8-temple/842-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/842-480.webp 480w, images/plans/8-temple/842-800.webp 800w"><img src="images/plans/8-temple/842.jpg" alt="Plan 842 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 842</div>
         <div class="plan-spec">2 bed + den &middot; 842 sq ft</div>
@@ -587,7 +591,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-845" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/845" data-widths="480,800,1280,1920" data-name="Plan 845" data-spec="2 bed + den · 845 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/845-480.avif 480w, images/plans/8-temple/845-800.avif 800w, images/plans/8-temple/845-1280.avif 1280w, images/plans/8-temple/845-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/845-480.webp 480w, images/plans/8-temple/845-800.webp 800w, images/plans/8-temple/845-1280.webp 1280w, images/plans/8-temple/845-1920.webp 1920w"><img src="images/plans/8-temple/845.jpg" alt="Plan 845 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/845-480.avif 480w, images/plans/8-temple/845-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/845-480.webp 480w, images/plans/8-temple/845-800.webp 800w"><img src="images/plans/8-temple/845.jpg" alt="Plan 845 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 845</div>
         <div class="plan-spec">2 bed + den &middot; 845 sq ft</div>
@@ -596,7 +600,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-858" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/858" data-widths="480,800,1280,1920" data-name="Plan 858" data-spec="2 bed · 858 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/858-480.avif 480w, images/plans/8-temple/858-800.avif 800w, images/plans/8-temple/858-1280.avif 1280w, images/plans/8-temple/858-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/858-480.webp 480w, images/plans/8-temple/858-800.webp 800w, images/plans/8-temple/858-1280.webp 1280w, images/plans/8-temple/858-1920.webp 1920w"><img src="images/plans/8-temple/858.jpg" alt="Plan 858 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/858-480.avif 480w, images/plans/8-temple/858-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/858-480.webp 480w, images/plans/8-temple/858-800.webp 800w"><img src="images/plans/8-temple/858.jpg" alt="Plan 858 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 858</div>
         <div class="plan-spec">2 bed &middot; 858 sq ft</div>
@@ -605,7 +609,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-883" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/883" data-widths="480,800,1280,1920" data-name="Plan 883" data-spec="2 bed + den · 883 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/883-480.avif 480w, images/plans/8-temple/883-800.avif 800w, images/plans/8-temple/883-1280.avif 1280w, images/plans/8-temple/883-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/883-480.webp 480w, images/plans/8-temple/883-800.webp 800w, images/plans/8-temple/883-1280.webp 1280w, images/plans/8-temple/883-1920.webp 1920w"><img src="images/plans/8-temple/883.jpg" alt="Plan 883 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/883-480.avif 480w, images/plans/8-temple/883-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/883-480.webp 480w, images/plans/8-temple/883-800.webp 800w"><img src="images/plans/8-temple/883.jpg" alt="Plan 883 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 883</div>
         <div class="plan-spec">2 bed + den &middot; 883 sq ft</div>
@@ -614,7 +618,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-890" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/890" data-widths="480,800,1280,1920" data-name="Plan 890" data-spec="2 bed + den · 890 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/890-480.avif 480w, images/plans/8-temple/890-800.avif 800w, images/plans/8-temple/890-1280.avif 1280w, images/plans/8-temple/890-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/890-480.webp 480w, images/plans/8-temple/890-800.webp 800w, images/plans/8-temple/890-1280.webp 1280w, images/plans/8-temple/890-1920.webp 1920w"><img src="images/plans/8-temple/890.jpg" alt="Plan 890 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/890-480.avif 480w, images/plans/8-temple/890-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/890-480.webp 480w, images/plans/8-temple/890-800.webp 800w"><img src="images/plans/8-temple/890.jpg" alt="Plan 890 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 890</div>
         <div class="plan-spec">2 bed + den &middot; 890 sq ft</div>
@@ -623,7 +627,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-894" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/894" data-widths="480,800,1280,1920" data-name="Plan 894" data-spec="2 bed + den · 894 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/894-480.avif 480w, images/plans/8-temple/894-800.avif 800w, images/plans/8-temple/894-1280.avif 1280w, images/plans/8-temple/894-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/894-480.webp 480w, images/plans/8-temple/894-800.webp 800w, images/plans/8-temple/894-1280.webp 1280w, images/plans/8-temple/894-1920.webp 1920w"><img src="images/plans/8-temple/894.jpg" alt="Plan 894 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/894-480.avif 480w, images/plans/8-temple/894-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/894-480.webp 480w, images/plans/8-temple/894-800.webp 800w"><img src="images/plans/8-temple/894.jpg" alt="Plan 894 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 894</div>
         <div class="plan-spec">2 bed + den &middot; 894 sq ft</div>
@@ -632,7 +636,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-912" data-beds="2" data-type="suite" data-key="2" data-base="images/plans/8-temple/912" data-widths="480,800,1280,1920" data-name="Plan 912" data-spec="2 bed + den · 912 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/912-480.avif 480w, images/plans/8-temple/912-800.avif 800w, images/plans/8-temple/912-1280.avif 1280w, images/plans/8-temple/912-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/912-480.webp 480w, images/plans/8-temple/912-800.webp 800w, images/plans/8-temple/912-1280.webp 1280w, images/plans/8-temple/912-1920.webp 1920w"><img src="images/plans/8-temple/912.jpg" alt="Plan 912 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/912-480.avif 480w, images/plans/8-temple/912-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/912-480.webp 480w, images/plans/8-temple/912-800.webp 800w"><img src="images/plans/8-temple/912.jpg" alt="Plan 912 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 912</div>
         <div class="plan-spec">2 bed + den &middot; 912 sq ft</div>
@@ -641,7 +645,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-901-919" data-beds="2" data-type="combo-suite" data-key="2" data-base="images/plans/8-temple/901-919" data-widths="480,800,1280,1920" data-name="Combo 901 + 919" data-spec="2 bed + den · 1,358 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-480.avif 480w, images/plans/8-temple/901-919-800.avif 800w, images/plans/8-temple/901-919-1280.avif 1280w, images/plans/8-temple/901-919-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-480.webp 480w, images/plans/8-temple/901-919-800.webp 800w, images/plans/8-temple/901-919-1280.webp 1280w, images/plans/8-temple/901-919-1920.webp 1920w"><img src="images/plans/8-temple/901-919.jpg" alt="Combo 901 + 919 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/901-919-480.avif 480w, images/plans/8-temple/901-919-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/901-919-480.webp 480w, images/plans/8-temple/901-919-800.webp 800w"><img src="images/plans/8-temple/901-919.jpg" alt="Combo 901 + 919 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Combo 901 + 919</div>
         <div class="plan-spec">2 bed + den &middot; 1,358 sq ft</div>
@@ -650,7 +654,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-901-919-b" data-beds="2" data-type="combo-suite" data-key="2" data-base="images/plans/8-temple/901-919-b" data-widths="480,800,1280,1920" data-name="Combo 901 + 919 B" data-spec="2 bed + den · 1,358 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-b-480.avif 480w, images/plans/8-temple/901-919-b-800.avif 800w, images/plans/8-temple/901-919-b-1280.avif 1280w, images/plans/8-temple/901-919-b-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/901-919-b-480.webp 480w, images/plans/8-temple/901-919-b-800.webp 800w, images/plans/8-temple/901-919-b-1280.webp 1280w, images/plans/8-temple/901-919-b-1920.webp 1920w"><img src="images/plans/8-temple/901-919-b.jpg" alt="Combo 901 + 919 B floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/901-919-b-480.avif 480w, images/plans/8-temple/901-919-b-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/901-919-b-480.webp 480w, images/plans/8-temple/901-919-b-800.webp 800w"><img src="images/plans/8-temple/901-919-b.jpg" alt="Combo 901 + 919 B floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Combo 901 + 919 B</div>
         <div class="plan-spec">2 bed + den &middot; 1,358 sq ft</div>
@@ -660,7 +664,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     </figure>
     <div class="plan-group" data-key="3" id="plans-3-bed"><span>Three bedroom</span><small>4 plans &middot; 980 &ndash; 2,156 sq ft &middot; from $1,107,000 net of HST*</small></div>
     <figure class="plan is-open" id="plan-980" data-beds="3" data-type="suite" data-key="3" data-base="images/plans/8-temple/980" data-widths="480,800,1280,1920" data-name="Plan 980" data-spec="3 bed · 2 bath · 980 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/980-480.avif 480w, images/plans/8-temple/980-800.avif 800w, images/plans/8-temple/980-1280.avif 1280w, images/plans/8-temple/980-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/980-480.webp 480w, images/plans/8-temple/980-800.webp 800w, images/plans/8-temple/980-1280.webp 1280w, images/plans/8-temple/980-1920.webp 1920w"><img src="images/plans/8-temple/980.jpg" alt="Plan 980 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/980-480.avif 480w, images/plans/8-temple/980-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/980-480.webp 480w, images/plans/8-temple/980-800.webp 800w"><img src="images/plans/8-temple/980.jpg" alt="Plan 980 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Plan 980</div>
         <div class="plan-spec">3 bed &middot; 2 bath &middot; 980 sq ft</div>
@@ -669,7 +673,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-916-917" data-beds="3" data-type="combo-suite" data-key="3" data-base="images/plans/8-temple/916-917" data-widths="480,800,1280,1920" data-name="Combo 916 + 917" data-spec="3 bed · 1,397 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/916-917-480.avif 480w, images/plans/8-temple/916-917-800.avif 800w, images/plans/8-temple/916-917-1280.avif 1280w, images/plans/8-temple/916-917-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/916-917-480.webp 480w, images/plans/8-temple/916-917-800.webp 800w, images/plans/8-temple/916-917-1280.webp 1280w, images/plans/8-temple/916-917-1920.webp 1920w"><img src="images/plans/8-temple/916-917.jpg" alt="Combo 916 + 917 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/916-917-480.avif 480w, images/plans/8-temple/916-917-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/916-917-480.webp 480w, images/plans/8-temple/916-917-800.webp 800w"><img src="images/plans/8-temple/916-917.jpg" alt="Combo 916 + 917 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Combo 916 + 917</div>
         <div class="plan-spec">3 bed &middot; 1,397 sq ft</div>
@@ -678,7 +682,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-1117-1118" data-beds="3" data-type="combo-suite" data-key="3" data-base="images/plans/8-temple/1117-1118" data-widths="480,800,1280,1920" data-name="Combo 1117 + 1118" data-spec="3 bed + den · 1,940 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1117-1118-480.avif 480w, images/plans/8-temple/1117-1118-800.avif 800w, images/plans/8-temple/1117-1118-1280.avif 1280w, images/plans/8-temple/1117-1118-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1117-1118-480.webp 480w, images/plans/8-temple/1117-1118-800.webp 800w, images/plans/8-temple/1117-1118-1280.webp 1280w, images/plans/8-temple/1117-1118-1920.webp 1920w"><img src="images/plans/8-temple/1117-1118.jpg" alt="Combo 1117 + 1118 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/1117-1118-480.avif 480w, images/plans/8-temple/1117-1118-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/1117-1118-480.webp 480w, images/plans/8-temple/1117-1118-800.webp 800w"><img src="images/plans/8-temple/1117-1118.jpg" alt="Combo 1117 + 1118 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Combo 1117 + 1118</div>
         <div class="plan-spec">3 bed + den &middot; 1,940 sq ft</div>
@@ -687,7 +691,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </figcaption>
     </figure>
     <figure class="plan is-open" id="plan-1016-1017" data-beds="3" data-type="combo-suite" data-key="3" data-base="images/plans/8-temple/1016-1017" data-widths="480,800,1280,1920" data-name="Combo 1016 + 1017" data-spec="3 bed · 2,156 sq ft">
-      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1016-1017-480.avif 480w, images/plans/8-temple/1016-1017-800.avif 800w, images/plans/8-temple/1016-1017-1280.avif 1280w, images/plans/8-temple/1016-1017-1920.avif 1920w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/8-temple/1016-1017-480.webp 480w, images/plans/8-temple/1016-1017-800.webp 800w, images/plans/8-temple/1016-1017-1280.webp 1280w, images/plans/8-temple/1016-1017-1920.webp 1920w"><img src="images/plans/8-temple/1016-1017.jpg" alt="Combo 1016 + 1017 floor plan" loading="lazy" decoding="async"></picture></div>
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/1016-1017-480.avif 480w, images/plans/8-temple/1016-1017-800.avif 800w"><source type="image/webp" sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 25vw" srcset="images/plans/8-temple/1016-1017-480.webp 480w, images/plans/8-temple/1016-1017-800.webp 800w"><img src="images/plans/8-temple/1016-1017.jpg" alt="Combo 1016 + 1017 floor plan" loading="lazy" decoding="async"></picture></div>
       <figcaption>
         <div class="plan-name">Combo 1016 + 1017</div>
         <div class="plan-spec">3 bed &middot; 2,156 sq ft</div>
@@ -866,72 +870,100 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <h2 class="sec-title">Renderings &amp; <em>amenities</em></h2>
   <div class="gal">
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w, images/towns/8-temple-hero-1-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w, images/towns/8-temple-hero-1-1280.webp 1280w">
         <img src="images/towns/8-temple-hero-1.jpg" alt="8 Temple from the street" loading="lazy" decoding="async">
       </picture><figcaption>8 Temple from the street</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">
         <img src="images/towns/8-temple-archway.jpg" alt="The archway entrance" loading="lazy" decoding="async">
       </picture><figcaption>The archway entrance</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.avif 480w, images/towns/8-temple-lobby-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.avif 480w, images/towns/8-temple-lobby-800.avif 800w, images/towns/8-temple-lobby-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.webp 480w, images/towns/8-temple-lobby-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.webp 480w, images/towns/8-temple-lobby-800.webp 800w, images/towns/8-temple-lobby-1280.webp 1280w">
         <img src="images/towns/8-temple-lobby.jpg" alt="Lobby" loading="lazy" decoding="async">
       </picture><figcaption>Lobby</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.avif 480w, images/towns/8-temple-lobby-lounge-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.avif 480w, images/towns/8-temple-lobby-lounge-800.avif 800w, images/towns/8-temple-lobby-lounge-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.webp 480w, images/towns/8-temple-lobby-lounge-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.webp 480w, images/towns/8-temple-lobby-lounge-800.webp 800w, images/towns/8-temple-lobby-lounge-1280.webp 1280w">
         <img src="images/towns/8-temple-lobby-lounge.jpg" alt="Lobby lounge" loading="lazy" decoding="async">
       </picture><figcaption>Lobby lounge</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.avif 480w, images/towns/8-temple-rooftop-exterior-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.avif 480w, images/towns/8-temple-rooftop-exterior-800.avif 800w, images/towns/8-temple-rooftop-exterior-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.webp 480w, images/towns/8-temple-rooftop-exterior-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.webp 480w, images/towns/8-temple-rooftop-exterior-800.webp 800w, images/towns/8-temple-rooftop-exterior-1280.webp 1280w">
         <img src="images/towns/8-temple-rooftop-exterior.jpg" alt="Rooftop amenity terrace" loading="lazy" decoding="async">
       </picture><figcaption>Rooftop amenity terrace</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.avif 480w, images/towns/8-temple-rooftop-lounge-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.avif 480w, images/towns/8-temple-rooftop-lounge-800.avif 800w, images/towns/8-temple-rooftop-lounge-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.webp 480w, images/towns/8-temple-rooftop-lounge-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.webp 480w, images/towns/8-temple-rooftop-lounge-800.webp 800w, images/towns/8-temple-rooftop-lounge-1280.webp 1280w">
         <img src="images/towns/8-temple-rooftop-lounge.jpg" alt="Rooftop lounge" loading="lazy" decoding="async">
       </picture><figcaption>Rooftop lounge</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.avif 480w, images/towns/8-temple-rooftop-kitchen-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.avif 480w, images/towns/8-temple-rooftop-kitchen-800.avif 800w, images/towns/8-temple-rooftop-kitchen-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.webp 480w, images/towns/8-temple-rooftop-kitchen-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.webp 480w, images/towns/8-temple-rooftop-kitchen-800.webp 800w, images/towns/8-temple-rooftop-kitchen-1280.webp 1280w">
         <img src="images/towns/8-temple-rooftop-kitchen.jpg" alt="Rooftop kitchen" loading="lazy" decoding="async">
       </picture><figcaption>Rooftop kitchen</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.avif 480w, images/towns/8-temple-fitness-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.avif 480w, images/towns/8-temple-fitness-800.avif 800w, images/towns/8-temple-fitness-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.webp 480w, images/towns/8-temple-fitness-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.webp 480w, images/towns/8-temple-fitness-800.webp 800w, images/towns/8-temple-fitness-1280.webp 1280w">
         <img src="images/towns/8-temple-fitness.jpg" alt="Rooftop fitness studio with CN Tower views" loading="lazy" decoding="async">
       </picture><figcaption>Rooftop fitness studio with CN Tower views</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w, images/towns/8-temple-sauna-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w, images/towns/8-temple-sauna-1280.webp 1280w">
         <img src="images/towns/8-temple-sauna.jpg" alt="Rooftop sauna facing the lake" loading="lazy" decoding="async">
       </picture><figcaption>Rooftop sauna facing the lake</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.avif 480w, images/towns/8-temple-kids-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.avif 480w, images/towns/8-temple-kids-800.avif 800w, images/towns/8-temple-kids-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.webp 480w, images/towns/8-temple-kids-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.webp 480w, images/towns/8-temple-kids-800.webp 800w, images/towns/8-temple-kids-1280.webp 1280w">
         <img src="images/towns/8-temple-kids.jpg" alt="Kids&amp;rsquo; room" loading="lazy" decoding="async">
       </picture><figcaption>Kids&rsquo; room</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.avif 480w, images/towns/8-temple-living-east-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.avif 480w, images/towns/8-temple-living-east-800.avif 800w, images/towns/8-temple-living-east-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.webp 480w, images/towns/8-temple-living-east-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.webp 480w, images/towns/8-temple-living-east-800.webp 800w, images/towns/8-temple-living-east-1280.webp 1280w">
         <img src="images/towns/8-temple-living-east.jpg" alt="Living and dining, east-facing suite" loading="lazy" decoding="async">
       </picture><figcaption>Living and dining, east-facing suite</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.avif 480w, images/towns/8-temple-living-south-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.avif 480w, images/towns/8-temple-living-south-800.avif 800w, images/towns/8-temple-living-south-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.webp 480w, images/towns/8-temple-living-south-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.webp 480w, images/towns/8-temple-living-south-800.webp 800w, images/towns/8-temple-living-south-1280.webp 1280w">
         <img src="images/towns/8-temple-living-south.jpg" alt="Living and dining, south-facing suite" loading="lazy" decoding="async">
       </picture><figcaption>Living and dining, south-facing suite</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.avif 480w, images/towns/8-temple-bathroom-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.avif 480w, images/towns/8-temple-bathroom-800.avif 800w, images/towns/8-temple-bathroom-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.webp 480w, images/towns/8-temple-bathroom-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.webp 480w, images/towns/8-temple-bathroom-800.webp 800w, images/towns/8-temple-bathroom-1280.webp 1280w">
         <img src="images/towns/8-temple-bathroom.jpg" alt="Suite bathroom" loading="lazy" decoding="async">
       </picture><figcaption>Suite bathroom</figcaption></figure>
       <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.avif 480w, images/towns/8-temple-ground-plan-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.avif 480w, images/towns/8-temple-ground-plan-800.avif 800w, images/towns/8-temple-ground-plan-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.webp 480w, images/towns/8-temple-ground-plan-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.webp 480w, images/towns/8-temple-ground-plan-800.webp 800w, images/towns/8-temple-ground-plan-1280.webp 1280w">
         <img src="images/towns/8-temple-ground-plan.jpg" alt="Ground floor amenity plan" loading="lazy" decoding="async">
       </picture><figcaption>Ground floor amenity plan</figcaption></figure>
@@ -1082,7 +1114,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <section>
   <div class="setting">
     <div class="setting-media"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w, images/towns/8-temple-sauna-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w, images/towns/8-temple-sauna-1280.webp 1280w">
         <img src="images/towns/8-temple-sauna.jpg" alt="Rooftop sauna at 8 Temple, facing the lake" loading="lazy" decoding="async">
       </picture></div>
@@ -1100,7 +1134,9 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <h2 class="sec-title">Two amenity floors, <em>ground and rooftop</em></h2>
   <div class="siteplan">
     <figure><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.avif 480w, images/towns/8-temple-rooftop-plan-800.avif 800w">
         <source type="image/avif" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.avif 480w, images/towns/8-temple-rooftop-plan-800.avif 800w, images/towns/8-temple-rooftop-plan-1280.avif 1280w, images/towns/8-temple-rooftop-plan-1920.avif 1920w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.webp 480w, images/towns/8-temple-rooftop-plan-800.webp 800w">
         <source type="image/webp" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.webp 480w, images/towns/8-temple-rooftop-plan-800.webp 800w, images/towns/8-temple-rooftop-plan-1280.webp 1280w, images/towns/8-temple-rooftop-plan-1920.webp 1920w">
         <img src="images/towns/8-temple-rooftop-plan.jpg" alt="8 Temple rooftop amenity plan" loading="lazy" decoding="async" style="aspect-ratio: 5000 / 2273">
       </picture></figure>
@@ -1121,8 +1157,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="sec-eyebrow">Nearby</div>
   <h2 class="sec-title">More in <em>Liberty Village</em></h2>
   <div class="sibs">
-      <a class="sib" href="xo2.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.avif 480w, images/towns/xo2-card-800.avif 800w, images/towns/xo2-card-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.webp 480w, images/towns/xo2-card-800.webp 800w, images/towns/xo2-card-1280.webp 1280w">  <img src="images/towns/xo2-card.jpg" alt="XO2 Condos, Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Liberty Village</span><span class="sib-name">XO2 Condos &rarr;</span></div></a>
-      <a class="sib" href="../neighbourhoods/liberty-village.html"><div class="sib-img"><picture>  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">  <img src="images/towns/8-temple-archway.jpg" alt="Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">The neighbourhood</span><span class="sib-name">All Liberty Village plans &rarr;</span></div></a>
+      <a class="sib" href="xo2.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.avif 480w, images/towns/xo2-card-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.avif 480w, images/towns/xo2-card-800.avif 800w, images/towns/xo2-card-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.webp 480w, images/towns/xo2-card-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.webp 480w, images/towns/xo2-card-800.webp 800w, images/towns/xo2-card-1280.webp 1280w">  <img src="images/towns/xo2-card.jpg" alt="XO2 Condos, Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Liberty Village</span><span class="sib-name">XO2 Condos &rarr;</span></div></a>
+      <a class="sib" href="../neighbourhoods/liberty-village.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">  <img src="images/towns/8-temple-archway.jpg" alt="Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">The neighbourhood</span><span class="sib-name">All Liberty Village plans &rarr;</span></div></a>
   </div>
 </section>
 
