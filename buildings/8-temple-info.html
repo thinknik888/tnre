@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8 Temple &mdash; Renderings &amp; Building Info | CondosAround.com</title>
+  <meta name="description" content="8 Temple by Curated Properties: renderings and building information. 229 suites at 8 Temple Avenue in Toronto Waterfront West, beside Liberty Village. Interiors by the team behind the Ritz-Carlton and St. Regis Toronto, rooftop sauna, fitness studio and lounge." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 701px) and (max-width: 1600px)" imagesizes="100vw" imagesrcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w">
+  <style>
+    :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
+             --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
+             --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(0,34,68,0.13); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    img { max-width: 100%; display: block; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+           padding: 1.15rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px);
+           border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--navy); }
+    .nav-back { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+                 color: var(--text-muted); text-decoration: none; }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy); color: #fff; padding: 0.6rem 1.4rem; border-radius: 2px;
+                text-decoration: none; font-size: 0.82rem; white-space: nowrap; }
+    nav > a { white-space: nowrap; }
+    .nav-back .nb-short { display: none; }
+
+    .hero { position: relative; min-height: 66vh; display: flex; align-items: flex-end; background: var(--navy-deep); }
+    .hero picture, .hero .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero .hero-img { object-fit: cover; object-position: center 55%; }
+    .hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,18,38,0.25) 0%, rgba(0,18,38,0.55) 45%, rgba(0,18,38,0.93) 100%); }
+    .hero-inner { position: relative; z-index: 2; padding: 5rem 3rem 2.5rem; width: 100%; }
+    .hero-builder { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+    .hero-status { display: inline-block; background: rgba(0,34,68,0.92); color: #fff; font-size: 0.66rem;
+                    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
+                    border-radius: 2px; margin-bottom: 1rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+                   font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }
+    .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }
+    .hero-addr { font-size: 0.88rem; color: rgba(255,255,255,0.62); }
+    .hero-credit { position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }
+    .hero-cta { display: inline-block; margin-top: 1.6rem; background: var(--gold); color: #17130a; text-decoration: none;
+                 font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+                 padding: 0.95rem 1.7rem; border-radius: 2px; align-self: flex-start; transition: background 0.2s; }
+    .hero-cta:hover { background: #d6b85e; }
+
+    .facts { display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }
+    .fact { padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }
+    .fact:last-child { border-right: none; }
+    .fact-lbl { font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.42); margin-bottom: 0.4rem; }
+    .fact-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-soft); line-height: 1.15; }
+
+    section { padding: 4.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .sec-eyebrow { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.75rem; }
+    .sec-title em { font-style: italic; color: var(--navy); }
+
+    .overview { display: grid; grid-template-columns: 1.35fr 1fr; gap: 4rem; align-items: start; }
+    .overview p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1.15rem; }
+    .side-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1.1rem; }
+    .cm-row { display: flex; gap: 1rem; padding: 0.72rem 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+    .cm-row:last-child { border-bottom: none; }
+    .cm-time { color: var(--navy); font-weight: 600; min-width: 6.5rem; }
+    .cm-place { color: var(--text-mid); }
+
+    .tbl-scroll { overflow-x: auto; border: 1px solid #e8e4dc; border-radius: 10px; background: #fff; }
+    table.dt { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.dt th, table.dt td { text-align: left; padding: 0.85rem 1.15rem; border-bottom: 1px solid #efebe2; }
+    table.dt thead th { background: var(--navy); color: #fff; font-weight: 500; font-size: 0.74rem;
+                         letter-spacing: 0.07em; text-transform: uppercase; border-bottom: none; }
+    table.dt tbody tr:last-child td { border-bottom: none; }
+    table.dt td.num { color: var(--navy); font-weight: 600; }
+    @media (max-width: 700px) {
+      table.dt th, table.dt td { padding: 0.75rem 0.6rem; font-size: 0.8rem; }
+      table.dt thead th { font-size: 0.6rem; letter-spacing: 0.04em; }
+    }
+    .tbl-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-top: 0.85rem; }
+
+    .inc-list { list-style: none; }
+    .inc-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.85rem; font-size: 0.92rem;
+                    line-height: 1.7; color: var(--text-mid); }
+    .inc-list li::before { content: ''; position: absolute; left: 0; top: 0.62rem; width: 5px; height: 5px;
+                            border-radius: 50%; background: var(--gold); }
+
+    .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .gal-item { margin: 0; border-radius: 10px; overflow: hidden; background: var(--cream); }
+    .gal-item img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s; }
+    .gal-item:hover img { transform: scale(1.03); }
+    .gal-item figcaption { font-size: 0.7rem; color: var(--text-muted); padding: 0.7rem 0.15rem 0; }
+
+    .sibs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden;
+            text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sib-img img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .sib-body { padding: 1.1rem 1.35rem 1.25rem; }
+    .sib:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .sib-lbl { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+                color: var(--text-muted); margin-bottom: 0.4rem; }
+    .sib-name { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
+
+    .video { position: relative; max-width: 960px; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden; cursor: pointer; }
+    .video img, .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+    .video-play { position: absolute; inset: 0; margin: auto; width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
+                   background: rgba(0,34,68,0.92); box-shadow: 0 6px 24px rgba(0,0,0,0.35); transition: transform 0.2s, background 0.2s; }
+    .video-play span { position: absolute; left: 30px; top: 22px; border-style: solid; border-width: 15px 0 15px 24px; border-color: transparent transparent transparent #fff; }
+    .video:hover .video-play { transform: scale(1.06); background: var(--navy); }
+
+    .setting { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 4.5rem; align-items: center; }
+    .setting p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+                  margin-bottom: 1.15rem; max-width: 560px; }
+    .setting-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; }
+
+    .siteplan { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }
+    .siteplan figure { margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #e8e4dc; background: var(--cream); }
+    .siteplan img { width: 100%; height: auto; }
+
+    .cta { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center;
+            justify-content: space-between; gap: 2rem; flex-wrap: wrap; border: none; }
+    .cta-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.3rem); font-weight: 300; color: #fff; }
+    .cta-h em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-w { background: #fff; color: var(--text); padding: 0.85rem 2rem; border-radius: 2px; text-decoration: none;
+              font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+    .btn-o { color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px;
+              text-decoration: none; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .disclaimer { padding: 2.25rem 3rem; background: var(--cream); font-size: 0.7rem; line-height: 1.75;
+                   color: var(--text-muted); font-style: italic; border: none; }
+    footer { background: var(--text); padding: 2rem 3rem; display: flex; justify-content: space-between;
+              align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.75; }
+
+    @media (max-width: 1000px) {
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      .fact:nth-child(3n) { border-right: none; }
+      .fact:nth-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .overview, .siteplan { grid-template-columns: 1fr; gap: 2.5rem; }
+      .setting { grid-template-columns: 1fr; gap: 2.5rem; }
+      .setting-media { max-width: 340px; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 0.8rem 1rem; gap: 0.5rem; }
+      .nav-logo { display: none; }
+      .nav-back .nb-long { display: none; }
+      .nav-back .nb-short { display: inline; }
+      .nav-cta { padding: 0.6rem 0.95rem; font-size: 0.8rem; }
+      .hero { min-height: 50vh; }
+      .hero .hero-img { object-position: center 62%; }
+      .hero-inner { padding: 3.5rem 1.25rem 2rem; }
+      section, .cta, .disclaimer, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      section { padding-top: 3rem; padding-bottom: 3rem; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.09); }
+      .fact:nth-child(2n) { border-right: none; }
+      .gal { grid-template-columns: 1fr; }
+      .sibs { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+      .sib-body { padding: 0.85rem 0.95rem 0.95rem; }
+      .sib-name { font-size: 1.1rem; }
+    }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="8-temple.html" class="nav-back">&larr; <span class="nb-long">8 Temple plans &amp; pricing</span><span class="nb-short">Back</span></a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<header class="hero">
+  <picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w">
+        <source type="image/avif" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w">
+        <source type="image/avif" sizes="100vw" srcset="images/towns/8-temple-hero-480.avif 480w, images/towns/8-temple-hero-800.avif 800w, images/towns/8-temple-hero-1280.avif 1280w, images/towns/8-temple-hero-1920.avif 1920w, images/towns/8-temple-hero-2560.avif 2560w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w">
+        <source type="image/webp" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w, images/towns/8-temple-hero-1280.webp 1280w, images/towns/8-temple-hero-1920.webp 1920w">
+        <source type="image/webp" sizes="100vw" srcset="images/towns/8-temple-hero-480.webp 480w, images/towns/8-temple-hero-800.webp 800w, images/towns/8-temple-hero-1280.webp 1280w, images/towns/8-temple-hero-1920.webp 1920w, images/towns/8-temple-hero-2560.webp 2560w">
+        <img src="images/towns/8-temple-hero.jpg" alt="8 Temple by Curated Properties, exterior rendering" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
+      </picture>
+  <div class="hero-inner">
+    <div class="hero-status">Renderings &amp; building info</div>
+    <div class="hero-builder">Curated Properties &middot; Toronto Waterfront West</div>
+    <h1 class="hero-title">8 Temple</h1>
+    <div class="hero-tag">A modern sanctuary rising in Toronto Waterfront West.</div>
+    <div class="hero-addr">8 Temple Avenue, Toronto M6K 1C8 &middot; Exhibition &amp; Liberty Village</div>
+    <a class="hero-cta" href="#gallery">See the renderings &rarr;</a>
+  </div>
+  <div class="hero-credit">Artist&rsquo;s concept</div>
+</header>
+
+<div class="facts">
+      <div class="fact"><div class="fact-lbl">Builder</div><div class="fact-val">Curated Properties</div></div>
+      <div class="fact"><div class="fact-lbl">Suites</div><div class="fact-val">229</div></div>
+      <div class="fact"><div class="fact-lbl">Size</div><div class="fact-val">477 &ndash; 2,156 sq&nbsp;ft</div></div>
+      <div class="fact"><div class="fact-lbl">Bedrooms</div><div class="fact-val">1 &ndash; 3</div></div>
+      <div class="fact"><div class="fact-lbl">Neighbourhood</div><div class="fact-val">Liberty Village</div></div>
+      <div class="fact"><div class="fact-lbl">Occupancy</div><div class="fact-val">Early 2029</div></div>
+</div>
+
+<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>8 Temple</em></h2>
+      <p>8 Temple is a 229-suite building by Curated Properties on Temple Avenue, just off Dufferin Street, on the quiet edge of Liberty Village where Toronto Waterfront West meets the Exhibition grounds. The interiors come from the design team behind the Ritz-Carlton and St. Regis Toronto, and the rooftop is the centrepiece: a residents&rsquo; lounge and kitchen, a fitness studio with the CN Tower in its windows, and a sauna facing the lake.</p>
+      <p>Layouts run from a 477 sq ft one bedroom plus den to combined suites of up to 2,156 sq ft with water views, on the 9th, 10th and 11th floors. Occupancy is estimated for early 2029.</p>
+    </div>
+    <div>
+      <h3 class="side-title">Getting around</h3>
+        <div class="cm-row"><span class="cm-time">At the door</span><span class="cm-place">Dufferin 29 bus &middot; King St W streetcar a few minutes north</span></div>
+        <div class="cm-row"><span class="cm-time">About 10 min walk</span><span class="cm-place">Liberty Village shops and restaurants on East Liberty St</span></div>
+        <div class="cm-row"><span class="cm-time">About 15 min walk</span><span class="cm-place">Exhibition GO &middot; future Ontario Line station</span></div>
+        <div class="cm-row"><span class="cm-time">About 10 min walk</span><span class="cm-place">Lake Ontario, Marilyn Bell Park &amp; the Martin Goodman Trail</span></div>
+        <div class="cm-row"><span class="cm-time">About 5 min drive</span><span class="cm-place">Gardiner Expressway via Jameson or Dufferin</span></div>
+        <div class="cm-row"><span class="cm-time">About 10 min</span><span class="cm-place">Union Station by GO train from Exhibition</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">Renderings &amp; <em>amenities</em></h2>
+  <div class="gal">
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w, images/towns/8-temple-hero-1-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w, images/towns/8-temple-hero-1-1280.webp 1280w">
+        <img src="images/towns/8-temple-hero-1.jpg" alt="8 Temple from the street" loading="lazy" decoding="async">
+      </picture><figcaption>8 Temple from the street</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">
+        <img src="images/towns/8-temple-archway.jpg" alt="The archway entrance" loading="lazy" decoding="async">
+      </picture><figcaption>The archway entrance</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.avif 480w, images/towns/8-temple-lobby-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.avif 480w, images/towns/8-temple-lobby-800.avif 800w, images/towns/8-temple-lobby-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.webp 480w, images/towns/8-temple-lobby-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-480.webp 480w, images/towns/8-temple-lobby-800.webp 800w, images/towns/8-temple-lobby-1280.webp 1280w">
+        <img src="images/towns/8-temple-lobby.jpg" alt="Lobby" loading="lazy" decoding="async">
+      </picture><figcaption>Lobby</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.avif 480w, images/towns/8-temple-lobby-lounge-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.avif 480w, images/towns/8-temple-lobby-lounge-800.avif 800w, images/towns/8-temple-lobby-lounge-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.webp 480w, images/towns/8-temple-lobby-lounge-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-lobby-lounge-480.webp 480w, images/towns/8-temple-lobby-lounge-800.webp 800w, images/towns/8-temple-lobby-lounge-1280.webp 1280w">
+        <img src="images/towns/8-temple-lobby-lounge.jpg" alt="Lobby lounge" loading="lazy" decoding="async">
+      </picture><figcaption>Lobby lounge</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.avif 480w, images/towns/8-temple-rooftop-exterior-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.avif 480w, images/towns/8-temple-rooftop-exterior-800.avif 800w, images/towns/8-temple-rooftop-exterior-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.webp 480w, images/towns/8-temple-rooftop-exterior-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-exterior-480.webp 480w, images/towns/8-temple-rooftop-exterior-800.webp 800w, images/towns/8-temple-rooftop-exterior-1280.webp 1280w">
+        <img src="images/towns/8-temple-rooftop-exterior.jpg" alt="Rooftop amenity terrace" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop amenity terrace</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.avif 480w, images/towns/8-temple-rooftop-lounge-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.avif 480w, images/towns/8-temple-rooftop-lounge-800.avif 800w, images/towns/8-temple-rooftop-lounge-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.webp 480w, images/towns/8-temple-rooftop-lounge-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-lounge-480.webp 480w, images/towns/8-temple-rooftop-lounge-800.webp 800w, images/towns/8-temple-rooftop-lounge-1280.webp 1280w">
+        <img src="images/towns/8-temple-rooftop-lounge.jpg" alt="Rooftop lounge" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop lounge</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.avif 480w, images/towns/8-temple-rooftop-kitchen-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.avif 480w, images/towns/8-temple-rooftop-kitchen-800.avif 800w, images/towns/8-temple-rooftop-kitchen-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.webp 480w, images/towns/8-temple-rooftop-kitchen-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-rooftop-kitchen-480.webp 480w, images/towns/8-temple-rooftop-kitchen-800.webp 800w, images/towns/8-temple-rooftop-kitchen-1280.webp 1280w">
+        <img src="images/towns/8-temple-rooftop-kitchen.jpg" alt="Rooftop kitchen" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop kitchen</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.avif 480w, images/towns/8-temple-fitness-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.avif 480w, images/towns/8-temple-fitness-800.avif 800w, images/towns/8-temple-fitness-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.webp 480w, images/towns/8-temple-fitness-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-fitness-480.webp 480w, images/towns/8-temple-fitness-800.webp 800w, images/towns/8-temple-fitness-1280.webp 1280w">
+        <img src="images/towns/8-temple-fitness.jpg" alt="Rooftop fitness studio with CN Tower views" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop fitness studio with CN Tower views</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w, images/towns/8-temple-sauna-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w, images/towns/8-temple-sauna-1280.webp 1280w">
+        <img src="images/towns/8-temple-sauna.jpg" alt="Rooftop sauna facing the lake" loading="lazy" decoding="async">
+      </picture><figcaption>Rooftop sauna facing the lake</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.avif 480w, images/towns/8-temple-kids-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.avif 480w, images/towns/8-temple-kids-800.avif 800w, images/towns/8-temple-kids-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.webp 480w, images/towns/8-temple-kids-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-kids-480.webp 480w, images/towns/8-temple-kids-800.webp 800w, images/towns/8-temple-kids-1280.webp 1280w">
+        <img src="images/towns/8-temple-kids.jpg" alt="Kids&rsquo; room" loading="lazy" decoding="async">
+      </picture><figcaption>Kids&rsquo; room</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.avif 480w, images/towns/8-temple-living-east-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.avif 480w, images/towns/8-temple-living-east-800.avif 800w, images/towns/8-temple-living-east-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.webp 480w, images/towns/8-temple-living-east-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-east-480.webp 480w, images/towns/8-temple-living-east-800.webp 800w, images/towns/8-temple-living-east-1280.webp 1280w">
+        <img src="images/towns/8-temple-living-east.jpg" alt="Living and dining, east-facing suite" loading="lazy" decoding="async">
+      </picture><figcaption>Living and dining, east-facing suite</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.avif 480w, images/towns/8-temple-living-south-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.avif 480w, images/towns/8-temple-living-south-800.avif 800w, images/towns/8-temple-living-south-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.webp 480w, images/towns/8-temple-living-south-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-living-south-480.webp 480w, images/towns/8-temple-living-south-800.webp 800w, images/towns/8-temple-living-south-1280.webp 1280w">
+        <img src="images/towns/8-temple-living-south.jpg" alt="Living and dining, south-facing suite" loading="lazy" decoding="async">
+      </picture><figcaption>Living and dining, south-facing suite</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.avif 480w, images/towns/8-temple-bathroom-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.avif 480w, images/towns/8-temple-bathroom-800.avif 800w, images/towns/8-temple-bathroom-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.webp 480w, images/towns/8-temple-bathroom-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-bathroom-480.webp 480w, images/towns/8-temple-bathroom-800.webp 800w, images/towns/8-temple-bathroom-1280.webp 1280w">
+        <img src="images/towns/8-temple-bathroom.jpg" alt="Suite bathroom" loading="lazy" decoding="async">
+      </picture><figcaption>Suite bathroom</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.avif 480w, images/towns/8-temple-ground-plan-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.avif 480w, images/towns/8-temple-ground-plan-800.avif 800w, images/towns/8-temple-ground-plan-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.webp 480w, images/towns/8-temple-ground-plan-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/8-temple-ground-plan-480.webp 480w, images/towns/8-temple-ground-plan-800.webp 800w, images/towns/8-temple-ground-plan-1280.webp 1280w">
+        <img src="images/towns/8-temple-ground-plan.jpg" alt="Ground floor amenity plan" loading="lazy" decoding="async">
+      </picture><figcaption>Ground floor amenity plan</figcaption></figure>
+  </div>
+</section>
+
+<section id="video">
+  <div class="sec-eyebrow">Video</div>
+  <h2 class="sec-title">The view from <em>the suites</em></h2>
+  <div class="video" id="video-box" data-src="https://www.youtube-nocookie.com/embed/Q2veMjfbQqE?autoplay=1&rel=0&start=50">
+    <img src="https://i.ytimg.com/vi/Q2veMjfbQqE/maxresdefault.jpg" alt="" loading="lazy" decoding="async">
+    <button type="button" class="video-play" aria-label="Play video"><span></span></button>
+  </div>
+</section>
+<script>
+(function () {
+  var box = document.getElementById('video-box'); if (!box) return;
+  box.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = box.getAttribute('data-src'); f.title = 'Video'; f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true;
+    box.innerHTML = ''; box.appendChild(f); box.classList.add('is-on');
+  }, { once: true });
+})();
+</script>
+
+<section>
+  <div class="setting">
+    <div class="setting-media"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.avif 480w, images/towns/8-temple-sauna-800.avif 800w, images/towns/8-temple-sauna-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/8-temple-sauna-480.webp 480w, images/towns/8-temple-sauna-800.webp 800w, images/towns/8-temple-sauna-1280.webp 1280w">
+        <img src="images/towns/8-temple-sauna.jpg" alt="Rooftop sauna at 8 Temple, facing the lake" loading="lazy" decoding="async">
+      </picture></div>
+    <div>
+      <div class="sec-eyebrow">Amenities</div>
+      <h2 class="sec-title">A rooftop <em>facing the lake</em></h2>
+      <p>The rooftop is the centrepiece of 8 Temple: a residents&rsquo; lounge and kitchen for entertaining, an outdoor terrace, a fitness studio with the CN Tower framed in its windows, and a sauna that looks out over Lake Ontario.</p>
+      <p>Downstairs, an archway entrance leads into the lobby and lobby lounge, with a kids&rsquo; room for families. Suites are finished by the team behind the Ritz-Carlton and St. Regis Toronto.</p>
+      <ul class="inc-list">
+        <li>Rooftop residents&rsquo; lounge and kitchen</li>
+        <li>Rooftop outdoor terrace</li>
+        <li>Fitness studio with CN Tower views</li>
+        <li>Sauna facing Lake Ontario</li>
+        <li>Archway entrance, lobby and lobby lounge</li>
+        <li>Kids&rsquo; room</li>
+        <li>EV-ready parking for suites 771 sq ft and larger</li>
+        <li>Smart home system with bulk high-speed internet</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Site plan</div>
+  <h2 class="sec-title">Two amenity floors, <em>ground and rooftop</em></h2>
+  <div class="siteplan">
+    <figure><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.avif 480w, images/towns/8-temple-rooftop-plan-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.avif 480w, images/towns/8-temple-rooftop-plan-800.avif 800w, images/towns/8-temple-rooftop-plan-1280.avif 1280w, images/towns/8-temple-rooftop-plan-1920.avif 1920w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.webp 480w, images/towns/8-temple-rooftop-plan-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 1000px) 100vw, 56vw" srcset="images/towns/8-temple-rooftop-plan-480.webp 480w, images/towns/8-temple-rooftop-plan-800.webp 800w, images/towns/8-temple-rooftop-plan-1280.webp 1280w, images/towns/8-temple-rooftop-plan-1920.webp 1920w">
+        <img src="images/towns/8-temple-rooftop-plan.jpg" alt="8 Temple rooftop amenity plan" loading="lazy" decoding="async" style="aspect-ratio: 5000 / 2273">
+      </picture></figure>
+    <div>
+      <h3 class="side-title">What&rsquo;s where</h3>
+      <div class="cm-row"><span class="cm-time">Rooftop</span><span class="cm-place">Lounge, kitchen and outdoor terrace</span></div>
+      <div class="cm-row"><span class="cm-time">Rooftop</span><span class="cm-place">Fitness studio with CN Tower views</span></div>
+      <div class="cm-row"><span class="cm-time">Rooftop</span><span class="cm-place">Sauna facing the lake</span></div>
+      <div class="cm-row"><span class="cm-time">Ground floor</span><span class="cm-place">Archway entrance, lobby and lobby lounge</span></div>
+      <div class="cm-row"><span class="cm-time">Ground floor</span><span class="cm-place">Kids&rsquo; room</span></div>
+      <div class="cm-row"><span class="cm-time">Suites</span><span class="cm-place">Combined suites on the 9th, 10th and 11th floors</span></div>
+      <div class="cm-row"><span class="cm-time">Presentation gallery</span><span class="cm-place">171 East Liberty Street, Suite 140</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="details">
+  <div class="sec-eyebrow">Building info</div>
+  <h2 class="sec-title">The <em>building</em></h2>
+  <div class="tbl-scroll">
+    <table class="dt">
+      <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+      <tbody>
+      <tr><td>Builder</td><td class="num">Curated Properties</td></tr>
+      <tr><td>Address</td><td class="num">8 Temple Avenue, Toronto M6K 1C8</td></tr>
+      <tr><td>Neighbourhood</td><td class="num">Toronto Waterfront West &middot; Exhibition &amp; Liberty Village</td></tr>
+      <tr><td>Suites</td><td class="num">229</td></tr>
+      <tr><td>Suite sizes</td><td class="num">477 &ndash; 2,156 sq ft</td></tr>
+      <tr><td>Bedrooms</td><td class="num">One to three bedroom, plus combined suites</td></tr>
+      <tr><td>Combined suites</td><td class="num">9th, 10th and 11th floors</td></tr>
+      <tr><td>Interiors</td><td class="num">Design team behind the Ritz-Carlton and St. Regis Toronto</td></tr>
+      <tr><td>Amenity floors</td><td class="num">Ground floor and rooftop</td></tr>
+      <tr><td>Parking</td><td class="num">EV-ready &middot; available for suites 771 sq ft and larger</td></tr>
+      <tr><td>Locker</td><td class="num">By waitlist</td></tr>
+      <tr><td>Smart home system &amp; bulk high-speed internet</td><td class="num">Included</td></tr>
+      <tr><td>Occupancy</td><td class="num">Estimated early 2029</td></tr>
+      <tr><td>Presentation gallery</td><td class="num">171 East Liberty Street, Suite 140</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Hydro and water are individually metered.</p>
+</section>
+
+<section>
+  <div class="sec-eyebrow">Nearby</div>
+  <h2 class="sec-title">More in <em>Liberty Village</em></h2>
+  <div class="sibs">
+      <a class="sib" href="8-temple.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-hero-1-480.avif 480w, images/towns/8-temple-hero-1-800.avif 800w, images/towns/8-temple-hero-1-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-hero-1-480.webp 480w, images/towns/8-temple-hero-1-800.webp 800w, images/towns/8-temple-hero-1-1280.webp 1280w">  <img src="images/towns/8-temple-hero-1.jpg" alt="8 Temple floor plans and pricing" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">This building</span><span class="sib-name">8 Temple plans &amp; pricing &rarr;</span></div></a>
+      <a class="sib" href="xo2.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.avif 480w, images/towns/xo2-card-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.avif 480w, images/towns/xo2-card-800.avif 800w, images/towns/xo2-card-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.webp 480w, images/towns/xo2-card-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/xo2-card-480.webp 480w, images/towns/xo2-card-800.webp 800w, images/towns/xo2-card-1280.webp 1280w">  <img src="images/towns/xo2-card.jpg" alt="XO2 Condos, Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Liberty Village</span><span class="sib-name">XO2 Condos &rarr;</span></div></a>
+      <a class="sib" href="../neighbourhoods/liberty-village.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.avif 480w, images/towns/8-temple-archway-800.avif 800w, images/towns/8-temple-archway-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/8-temple-archway-480.webp 480w, images/towns/8-temple-archway-800.webp 800w, images/towns/8-temple-archway-1280.webp 1280w">  <img src="images/towns/8-temple-archway.jpg" alt="Liberty Village" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">The neighbourhood</span><span class="sib-name">Explore Liberty Village &rarr;</span></div></a>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-h">Interested in 8 Temple?<br><em>Let&rsquo;s talk suites.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-w">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%208%20Temple." class="btn-o">Text for details</a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Source: Curated Properties project material for 8 Temple, 2026. Renderings are artist&rsquo;s concept. Sizes, specifications
+  and availability are subject to change without notice and may not reflect the current release. Confirm all
+  details with the sales office before relying on them. Brokers protected. E.&amp;O.E.
+</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>
