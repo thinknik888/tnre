@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alba Condos &mdash; Edenshaw &middot; Downtown Mississauga | CondosAround.com</title>
+  <meta name="description" content="Alba Condos by Edenshaw at 1 Fairview Road East, Downtown Mississauga, a short walk from Square One. 418 suites in a 32-storey tower, 427 to 863 sq ft, VIP broker pricing from $419,990 with only a 5% deposit. Over 20,000 sq ft of amenities by Cecconi Simone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 701px) and (max-width: 1600px)" imagesizes="100vw" imagesrcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w, images/towns/alba-hero-1280.avif 1280w, images/towns/alba-hero-1920.avif 1920w">
+  <style>
+    :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
+             --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
+             --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(0,34,68,0.13); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    img { max-width: 100%; display: block; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+           padding: 1.15rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px);
+           border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: var(--navy); }
+    .nav-back { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+                 color: var(--text-muted); text-decoration: none; }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy); color: #fff; padding: 0.6rem 1.4rem; border-radius: 2px;
+                text-decoration: none; font-size: 0.82rem; white-space: nowrap; }
+    nav > a { white-space: nowrap; }
+    .nav-back .nb-short { display: none; }
+
+    .hero { position: relative; min-height: 66vh; display: flex; align-items: flex-end; background: var(--navy-deep); }
+    .hero picture, .hero .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero .hero-img { object-fit: cover; object-position: center 45%; }
+    .hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,18,38,0.25) 0%, rgba(0,18,38,0.55) 45%, rgba(0,18,38,0.93) 100%); }
+    .hero-inner { position: relative; z-index: 2; padding: 5rem 3rem 2.5rem; width: 100%; }
+    .hero-builder { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+    .hero-status { display: inline-block; background: rgba(201,168,76,0.96); color: #17130a; font-size: 0.66rem;
+                    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.42rem 0.9rem;
+                    border-radius: 2px; margin-bottom: 1rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+                   font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.7rem; }
+    .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 0.9rem; }
+    .hero-addr { font-size: 0.88rem; color: rgba(255,255,255,0.62); }
+    .hero-credit { position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }
+    .hero-cta { display: inline-block; margin-top: 1.6rem; background: var(--gold); color: #17130a; text-decoration: none;
+                 font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+                 padding: 0.95rem 1.7rem; border-radius: 2px; align-self: flex-start; transition: background 0.2s; }
+    .hero-cta:hover { background: #d6b85e; }
+
+    section.reg { background: var(--cream); padding-top: 3.5rem; padding-bottom: 3.5rem; scroll-margin-top: 70px; }
+    .reg-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 4rem; align-items: center; max-width: 1180px; }
+    .reg-copy .sec-title { margin-bottom: 1rem; }
+    .reg-copy p { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 460px; }
+    .reg-form, .reg-done { background: #fff; border: 1px solid #e3dccb; border-radius: 12px; padding: 1.75rem; }
+    .reg-form label { display: block; font-size: 0.66rem; letter-spacing: 0.11em; text-transform: uppercase;
+                       color: var(--text-muted); margin-bottom: 1rem; }
+    .reg-form label span { text-transform: none; letter-spacing: 0; }
+    .reg-form input[type=text], .reg-form input[type=tel], .reg-form input[type=email] {
+      display: block; width: 100%; margin-top: 0.4rem; padding: 0.85rem 0.9rem; font: inherit; font-size: 16px;
+      letter-spacing: 0; text-transform: none; color: var(--text); background: var(--off-white);
+      border: 1px solid #ddd6c6; border-radius: 4px; }
+    .reg-form input:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+    .reg-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .reg-form button { width: 100%; margin-top: 0.35rem; padding: 1rem; border: none; border-radius: 3px; cursor: pointer;
+                        background: var(--navy); color: #fff; font: inherit; font-size: 0.78rem; font-weight: 500;
+                        letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+    .reg-form button:hover { background: #0b3358; }
+    .reg-form button:disabled { opacity: 0.6; cursor: default; }
+    .reg-msg { min-height: 1.2em; margin-top: 0.7rem; font-size: 0.8rem; color: #7a2626; }
+    .reg-fine { font-size: 0.7rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.35rem; }
+    .reg-done { text-align: center; padding: 2.5rem 1.75rem; }
+    .reg-done[hidden], .reg-form[hidden] { display: none; }
+    .reg-done-mark { width: 46px; height: 46px; line-height: 46px; border-radius: 50%; background: var(--navy); color: var(--gold-soft);
+                      font-size: 1.3rem; margin: 0 auto 1rem; }
+    .reg-done h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; margin-bottom: 0.6rem; }
+    .reg-done p { font-size: 0.92rem; line-height: 1.7; color: var(--text-mid); }
+    .reg-done a { color: var(--navy); font-weight: 600; }
+
+    .facts { display: grid; grid-template-columns: repeat(6, 1fr); background: var(--navy); }
+    .fact { padding: 1.5rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.09); }
+    .fact:last-child { border-right: none; }
+    .fact-lbl { font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.42); margin-bottom: 0.4rem; }
+    .fact-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-soft); line-height: 1.15; }
+
+    section { padding: 4.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .sec-eyebrow { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.75rem; }
+    .sec-title em { font-style: italic; color: var(--navy); }
+
+    .overview { display: grid; grid-template-columns: 1.35fr 1fr; gap: 4rem; align-items: start; }
+    .overview p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1.15rem; }
+    .side-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1.1rem; }
+    .cm-row { display: flex; gap: 1rem; padding: 0.72rem 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+    .cm-row:last-child { border-bottom: none; }
+    .cm-time { color: var(--navy); font-weight: 600; min-width: 7rem; }
+    .cm-place { color: var(--text-mid); }
+
+    .tbl-block { margin-bottom: 3rem; }
+    .tbl-block:last-child { margin-bottom: 0; }
+    .tbl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; }
+    .tbl-scroll { overflow-x: auto; border: 1px solid #e8e4dc; border-radius: 10px; background: #fff; }
+    table.dt { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 0.85rem; }
+    table.dt th, table.dt td { text-align: left; padding: 0.85rem 1.1rem; border-bottom: 1px solid #efebe2; }
+    table.dt thead th { background: var(--navy); color: #fff; font-weight: 500; font-size: 0.72rem;
+                         letter-spacing: 0.06em; text-transform: uppercase; border-bottom: none; }
+    table.dt tbody tr:last-child td { border-bottom: none; }
+    table.dt tr.grp td { background: var(--cream); font-size: 0.66rem; letter-spacing: 0.14em;
+                          text-transform: uppercase; color: var(--navy); font-weight: 600; }
+    table.dt td.num { color: var(--navy); font-weight: 600; white-space: nowrap; }
+    table.dt td.was { color: var(--text-muted); font-weight: 300; text-decoration: line-through; white-space: nowrap; }
+    table.dt.compact { min-width: 0; }
+    @media (max-width: 700px) {
+      table.dt.compact th, table.dt.compact td { padding: 0.75rem 0.6rem; font-size: 0.8rem; }
+      table.dt.compact thead th { font-size: 0.6rem; letter-spacing: 0.04em; }
+      table.dt.compact td.num { white-space: normal; }
+    }
+    .tbl-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-top: 0.85rem; }
+
+    .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3.5rem; align-items: start; }
+    .inc-list { list-style: none; }
+    .inc-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.85rem; font-size: 0.92rem;
+                    line-height: 1.7; color: var(--text-mid); }
+    .inc-list li::before { content: ''; position: absolute; left: 0; top: 0.62rem; width: 5px; height: 5px;
+                            border-radius: 50%; background: var(--gold); }
+    .dep-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; padding: 1.75rem; }
+    .dep-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0;
+                border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .dep-row:last-of-type { border-bottom: none; }
+    .dep-when { color: var(--text-muted); }
+    .dep-amt { color: var(--navy); font-weight: 600; text-align: right; }
+    .dep-amt .dim { color: var(--text-muted); font-weight: 300; font-size: 0.78rem; display: block; }
+    .dep-foot { font-size: 0.72rem; color: var(--text-muted); font-style: italic; line-height: 1.65;
+                 margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+
+    .amen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .amen-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; padding: 1.6rem 1.7rem; }
+    .amen-flr { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .amen-h { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 400; margin-bottom: 0.9rem; }
+    .amen-card .inc-list li { font-size: 0.86rem; margin-bottom: 0.6rem; }
+
+    .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .gal-item { margin: 0; border-radius: 10px; overflow: hidden; background: var(--cream); }
+    .gal-item img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s; }
+    .gal-item:hover img { transform: scale(1.03); }
+    .gal-item figcaption { font-size: 0.7rem; color: var(--text-muted); padding: 0.7rem 0.15rem 0; }
+
+    .sibs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .sib { display: block; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden;
+            text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sib-img img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .sib-body { padding: 1.1rem 1.35rem 1.25rem; }
+    .sib:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .sib-lbl { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+                color: var(--text-muted); margin-bottom: 0.4rem; }
+    .sib-name { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
+
+    .setting { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 4.5rem; align-items: center; }
+    .setting p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+                  margin-bottom: 1.15rem; max-width: 560px; }
+    .setting-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; }
+
+    .cta { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center;
+            justify-content: space-between; gap: 2rem; flex-wrap: wrap; border: none; }
+    .cta-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.3rem); font-weight: 300; color: #fff; }
+    .cta-h em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-w { background: #fff; color: var(--text); padding: 0.85rem 2rem; border-radius: 2px; text-decoration: none;
+              font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+    .btn-o { color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px;
+              text-decoration: none; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .disclaimer { padding: 2.25rem 3rem; background: var(--cream); font-size: 0.7rem; line-height: 1.75;
+                   color: var(--text-muted); font-style: italic; border: none; }
+    footer { background: var(--text); padding: 2rem 3rem; display: flex; justify-content: space-between;
+              align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.75; }
+
+    @media (max-width: 1000px) {
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      .fact:nth-child(3n) { border-right: none; }
+      .fact:nth-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .overview, .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .reg-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+      .amen { grid-template-columns: 1fr; }
+      .setting { grid-template-columns: 1fr; gap: 2.5rem; }
+      .setting-media { max-width: 340px; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 0.8rem 1rem; gap: 0.5rem; }
+      .nav-logo { display: none; }
+      .nav-back .nb-long { display: none; }
+      .nav-back .nb-short { display: inline; }
+      .nav-cta { padding: 0.6rem 0.95rem; font-size: 0.8rem; }
+      .hero { min-height: 50vh; }
+      .hero-inner { padding: 3.5rem 1.25rem 2rem; }
+      section, .cta, .disclaimer, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      section { padding-top: 3rem; padding-bottom: 3rem; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.09); }
+      .fact:nth-child(2n) { border-right: none; }
+      .gal { grid-template-columns: 1fr; }
+      .sibs { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+      .sib-body { padding: 0.85rem 0.95rem 0.95rem; }
+      .sib-name { font-size: 1.1rem; }
+    }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../neighbourhoods/square-one.html" class="nav-back">&larr; <span class="nb-long">Square One</span><span class="nb-short">Back</span></a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<header class="hero">
+  <picture>
+    <source type="image/avif" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w">
+    <source type="image/avif" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w, images/towns/alba-hero-1280.avif 1280w, images/towns/alba-hero-1920.avif 1920w">
+    <source type="image/avif" sizes="100vw" srcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w, images/towns/alba-hero-1280.avif 1280w, images/towns/alba-hero-1920.avif 1920w, images/towns/alba-hero-2560.avif 2560w">
+    <source type="image/webp" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/alba-hero-480.webp 480w, images/towns/alba-hero-800.webp 800w">
+    <source type="image/webp" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/alba-hero-480.webp 480w, images/towns/alba-hero-800.webp 800w, images/towns/alba-hero-1280.webp 1280w, images/towns/alba-hero-1920.webp 1920w">
+    <source type="image/webp" sizes="100vw" srcset="images/towns/alba-hero-480.webp 480w, images/towns/alba-hero-800.webp 800w, images/towns/alba-hero-1280.webp 1280w, images/towns/alba-hero-1920.webp 1920w, images/towns/alba-hero-2560.webp 2560w">
+    <img src="images/towns/alba-hero.jpg" alt="Alba Condos by Edenshaw, curved balcony detail at sunset" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
+  </picture>
+  <div class="hero-inner">
+    <div class="hero-status">VIP broker pricing &middot; Only 5% deposit</div>
+    <div class="hero-builder">Edenshaw Developments &middot; Downtown Mississauga</div>
+    <h1 class="hero-title">Alba</h1>
+    <div class="hero-tag">A new standard on Hurontario, from $419,990.</div>
+    <div class="hero-addr">1 Fairview Road East, Mississauga &middot; Hurontario &amp; Fairview, steps from Square One</div>
+    <a class="hero-cta" href="#pricing">See the VIP price list &rarr;</a>
+  </div>
+  <div class="hero-credit">Artist&rsquo;s concept</div>
+</header>
+
+<div class="facts">
+      <div class="fact"><div class="fact-lbl">From</div><div class="fact-val">$419,990*</div></div>
+      <div class="fact"><div class="fact-lbl">Size</div><div class="fact-val">427 &ndash; 863 sq&nbsp;ft</div></div>
+      <div class="fact"><div class="fact-lbl">Bedrooms</div><div class="fact-val">1 &ndash; 2 + den</div></div>
+      <div class="fact"><div class="fact-lbl">Suites</div><div class="fact-val">418</div></div>
+      <div class="fact"><div class="fact-lbl">Storeys</div><div class="fact-val">32</div></div>
+      <div class="fact"><div class="fact-lbl">Deposit</div><div class="fact-val">Only 5%</div></div>
+</div>
+
+<section>
+  <div class="overview">
+    <div>
+      <div class="sec-eyebrow">Overview</div>
+      <h2 class="sec-title">About <em>Alba</em></h2>
+      <p>Alba is a 418-suite community by Edenshaw Developments at the corner of Hurontario Street and Fairview Road East, in Downtown Mississauga. A 25-storey tower rises from a seven-storey black-and-white clad podium, with elegantly curved balconies and unobstructed views &mdash; Lake Ontario to the south, the Toronto skyline to the east, and the Mississauga skyline to the north.</p>
+      <p>Designed with Core Architects and Cecconi Simone, the interiors take a Scandinavian direction: neutral tones, natural textures, warmth and quiet. Over 20,000 square feet of amenities spread across three floors, and the building runs on a geothermal energy system as a LEED Certified Candidate.</p>
+      <p>Suites run from a 427 sq ft one bedroom to an 863 sq ft two bedroom plus den, with four townhomes at the base. Ceilings are 9 ft on floors 3 to 30, and 10 ft on 31 and 32.</p>
+    </div>
+    <div>
+      <h3 class="side-title">What&rsquo;s nearby</h3>
+        <div class="cm-row"><span class="cm-time">Walking distance</span><span class="cm-place">Square One Shopping Centre, Whole Foods and Crate and Barrel on Square One Drive</span></div>
+        <div class="cm-row"><span class="cm-time">Downtown core</span><span class="cm-place">Celebration Square, Art Gallery of Mississauga and the Central Library on City Centre Drive</span></div>
+        <div class="cm-row"><span class="cm-time">Culture</span><span class="cm-place">Living Arts Centre on Living Arts Drive</span></div>
+        <div class="cm-row"><span class="cm-time">Campus</span><span class="cm-place">Sheridan College, Duke of York Boulevard</span></div>
+        <div class="cm-row"><span class="cm-time">Green space</span><span class="cm-place">Mississauga Valley Park and its trails</span></div>
+        <div class="cm-row"><span class="cm-time">Transit</span><span class="cm-place">Hurontario LRT along Hurontario &middot; Cooksville GO mobility hub</span></div>
+        <div class="cm-row"><span class="cm-time">Driving</span><span class="cm-place">Highway 403 to the north, QEW and the lakeshore to the south</span></div>
+        <div class="cm-row"><span class="cm-time">Everyday</span><span class="cm-place">Metro, FreshCo, LCBO and La Novita Bakery within a few minutes</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="offers">
+  <div class="two-col">
+    <div>
+      <div class="sec-eyebrow">VIP broker offers</div>
+      <h2 class="sec-title">What&rsquo;s <em>included</em></h2>
+      <ul class="inc-list">
+        <li><strong>Only 5% deposit</strong> &mdash; for a limited time</li>
+        <li><strong>$0 builder closing costs</strong> on costs within the developer&rsquo;s control</li>
+        <li>One bedroom &amp; one plus den: <strong>one locker included</strong> (value $5,500&nbsp;+&nbsp;HST) and <strong>50% off parking</strong> (value $32,500&nbsp;+&nbsp;HST)</li>
+        <li>Two bedroom &amp; larger: <strong>one locker included</strong> (value $5,500&nbsp;+&nbsp;HST) and <strong>one parking space included</strong> (value $65,000&nbsp;+&nbsp;HST)</li>
+        <li>Flexible closing date &mdash; 30 to 60 days</li>
+        <li>Edenshaw Elevated smart home and smart building package</li>
+      </ul>
+      <p class="tbl-note">Offer ends December 31, 2026. Limited time offers, some conditions apply. The $0 builder closing costs incentive applies exclusively to costs within the control of the developer and does not cover land transfer tax, other government taxes and levies, or the purchaser&rsquo;s own legal fees.</p>
+    </div>
+    <div>
+      <div class="dep-card">
+        <h3 class="side-title">The essentials</h3>
+          <div class="dep-row"><span class="dep-when">Deposit</span><span class="dep-amt">5%</span></div>
+          <div class="dep-row"><span class="dep-when">Maintenance fees</span><span class="dep-amt">Approx. $0.60<span class="dim">per sq ft, monthly</span></span></div>
+          <div class="dep-row"><span class="dep-when">Rogers package</span><span class="dep-amt">$65 + HST<span class="dim">per month</span></span></div>
+          <div class="dep-row"><span class="dep-when">Parking value</span><span class="dep-amt">$65,000 + HST</span></div>
+          <div class="dep-row"><span class="dep-when">Locker value</span><span class="dep-amt">$5,500 + HST</span></div>
+          <div class="dep-row"><span class="dep-when">Closing</span><span class="dep-amt">30 &ndash; 60 days</span></div>
+        <p class="dep-foot">Maintenance fees exclude hydro and water, which are individually metered. Cheques payable to Aird &amp; Berlis LLP, in trust. From the Alba VIP broker price list, October 21, 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="sec-eyebrow">Gallery</div>
+  <h2 class="sec-title">Renderings &amp; <em>amenities</em></h2>
+  <div class="gal">
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w, images/towns/square-one-hero-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w, images/towns/square-one-hero-1280.webp 1280w">
+        <img src="images/towns/square-one-hero.jpg" alt="Alba tower at sunset over Downtown Mississauga" loading="lazy" decoding="async">
+      </picture><figcaption>The tower at sunset</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.avif 480w, images/towns/alba-street-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.avif 480w, images/towns/alba-street-800.avif 800w, images/towns/alba-street-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.webp 480w, images/towns/alba-street-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.webp 480w, images/towns/alba-street-800.webp 800w, images/towns/alba-street-1280.webp 1280w">
+        <img src="images/towns/alba-street.jpg" alt="Alba from Hurontario Street" loading="lazy" decoding="async">
+      </picture><figcaption>The podium from Hurontario Street</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.avif 480w, images/towns/alba-exterior-dusk-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.avif 480w, images/towns/alba-exterior-dusk-800.avif 800w, images/towns/alba-exterior-dusk-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.webp 480w, images/towns/alba-exterior-dusk-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.webp 480w, images/towns/alba-exterior-dusk-800.webp 800w, images/towns/alba-exterior-dusk-1280.webp 1280w">
+        <img src="images/towns/alba-exterior-dusk.jpg" alt="Alba exterior at dusk" loading="lazy" decoding="async">
+      </picture><figcaption>Fairview Road East at dusk</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.avif 480w, images/towns/alba-lobby-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.avif 480w, images/towns/alba-lobby-800.avif 800w, images/towns/alba-lobby-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.webp 480w, images/towns/alba-lobby-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.webp 480w, images/towns/alba-lobby-800.webp 800w, images/towns/alba-lobby-1280.webp 1280w">
+        <img src="images/towns/alba-lobby.jpg" alt="Double-height hotel-style lobby" loading="lazy" decoding="async">
+      </picture><figcaption>Double-height hotel-style lobby</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.avif 480w, images/towns/alba-wellness-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.avif 480w, images/towns/alba-wellness-800.avif 800w, images/towns/alba-wellness-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.webp 480w, images/towns/alba-wellness-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.webp 480w, images/towns/alba-wellness-800.webp 800w, images/towns/alba-wellness-1280.webp 1280w">
+        <img src="images/towns/alba-wellness.jpg" alt="Wellness centre with fitness area and yoga studio" loading="lazy" decoding="async">
+      </picture><figcaption>Wellness centre, ground floor</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.avif 480w, images/towns/alba-fireside-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.avif 480w, images/towns/alba-fireside-800.avif 800w, images/towns/alba-fireside-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.webp 480w, images/towns/alba-fireside-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.webp 480w, images/towns/alba-fireside-800.webp 800w, images/towns/alba-fireside-1280.webp 1280w">
+        <img src="images/towns/alba-fireside.jpg" alt="Fireside lounge with suspended fireplace" loading="lazy" decoding="async">
+      </picture><figcaption>Fireside lounge, seventh floor</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.avif 480w, images/towns/alba-fireside-lounge-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.avif 480w, images/towns/alba-fireside-lounge-800.avif 800w, images/towns/alba-fireside-lounge-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.webp 480w, images/towns/alba-fireside-lounge-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.webp 480w, images/towns/alba-fireside-lounge-800.webp 800w, images/towns/alba-fireside-lounge-1280.webp 1280w">
+        <img src="images/towns/alba-fireside-lounge.jpg" alt="Lounge seating and architectural louvers" loading="lazy" decoding="async">
+      </picture><figcaption>Lounge seating and architectural louvers</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.avif 480w, images/towns/alba-terrace-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.avif 480w, images/towns/alba-terrace-800.avif 800w, images/towns/alba-terrace-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.webp 480w, images/towns/alba-terrace-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.webp 480w, images/towns/alba-terrace-800.webp 800w, images/towns/alba-terrace-1280.webp 1280w">
+        <img src="images/towns/alba-terrace.jpg" alt="Landscaped terrace lounge with skyline views" loading="lazy" decoding="async">
+      </picture><figcaption>Terrace lounge, seventh floor</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.avif 480w, images/towns/alba-terrace-dining-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.avif 480w, images/towns/alba-terrace-dining-800.avif 800w, images/towns/alba-terrace-dining-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.webp 480w, images/towns/alba-terrace-dining-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.webp 480w, images/towns/alba-terrace-dining-800.webp 800w, images/towns/alba-terrace-dining-1280.webp 1280w">
+        <img src="images/towns/alba-terrace-dining.jpg" alt="Outdoor dining on the terrace" loading="lazy" decoding="async">
+      </picture><figcaption>Al fresco dining and BBQ stations</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.avif 480w, images/towns/alba-living-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.avif 480w, images/towns/alba-living-800.avif 800w, images/towns/alba-living-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.webp 480w, images/towns/alba-living-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.webp 480w, images/towns/alba-living-800.webp 800w, images/towns/alba-living-1280.webp 1280w">
+        <img src="images/towns/alba-living.jpg" alt="Living and dining with floor-to-ceiling windows" loading="lazy" decoding="async">
+      </picture><figcaption>Living and dining, floor-to-ceiling glass</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.avif 480w, images/towns/alba-kitchen-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.avif 480w, images/towns/alba-kitchen-800.avif 800w, images/towns/alba-kitchen-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.webp 480w, images/towns/alba-kitchen-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.webp 480w, images/towns/alba-kitchen-800.webp 800w, images/towns/alba-kitchen-1280.webp 1280w">
+        <img src="images/towns/alba-kitchen.jpg" alt="Kitchen and dining area" loading="lazy" decoding="async">
+      </picture><figcaption>Kitchen and dining</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.avif 480w, images/towns/alba-kitchen-island-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.avif 480w, images/towns/alba-kitchen-island-800.avif 800w, images/towns/alba-kitchen-island-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.webp 480w, images/towns/alba-kitchen-island-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.webp 480w, images/towns/alba-kitchen-island-800.webp 800w, images/towns/alba-kitchen-island-1280.webp 1280w">
+        <img src="images/towns/alba-kitchen-island.jpg" alt="Open plan kitchen with island" loading="lazy" decoding="async">
+      </picture><figcaption>Open plan kitchen with island</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.avif 480w, images/towns/alba-suite-view-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.avif 480w, images/towns/alba-suite-view-800.avif 800w, images/towns/alba-suite-view-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.webp 480w, images/towns/alba-suite-view-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.webp 480w, images/towns/alba-suite-view-800.webp 800w, images/towns/alba-suite-view-1280.webp 1280w">
+        <img src="images/towns/alba-suite-view.jpg" alt="Suite interior with city view" loading="lazy" decoding="async">
+      </picture><figcaption>Suite interior with city view</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w, images/towns/alba-bedroom-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w, images/towns/alba-bedroom-1280.webp 1280w">
+        <img src="images/towns/alba-bedroom.jpg" alt="Bedroom with walkout" loading="lazy" decoding="async">
+      </picture><figcaption>Bedroom</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.avif 480w, images/towns/alba-balcony-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.avif 480w, images/towns/alba-balcony-800.avif 800w, images/towns/alba-balcony-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.webp 480w, images/towns/alba-balcony-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.webp 480w, images/towns/alba-balcony-800.webp 800w, images/towns/alba-balcony-1280.webp 1280w">
+        <img src="images/towns/alba-balcony.jpg" alt="Curved balcony with lounge seating" loading="lazy" decoding="async">
+      </picture><figcaption>Curved balcony</figcaption></figure>
+      <figure class="gal-item"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.avif 480w, images/towns/alba-skyline-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.avif 480w, images/towns/alba-skyline-800.avif 800w, images/towns/alba-skyline-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.webp 480w, images/towns/alba-skyline-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.webp 480w, images/towns/alba-skyline-800.webp 800w, images/towns/alba-skyline-1280.webp 1280w">
+        <img src="images/towns/alba-skyline.jpg" alt="Sunrise over the city from Alba" loading="lazy" decoding="async">
+      </picture><figcaption>Sunrise from the upper floors</figcaption></figure>
+  </div>
+</section>
+
+<section id="amenities">
+  <div class="sec-eyebrow">Amenities</div>
+  <h2 class="sec-title">Over 20,000 sq ft, <em>across three floors</em></h2>
+  <div class="amen">
+    <div class="amen-card">
+      <div class="amen-flr">Ground floor</div>
+      <div class="amen-h">Arrival &amp; wellness</div>
+      <ul class="inc-list">
+        <li>24-hour concierge</li>
+        <li>Double-height hotel-style lobby with chimneyed fireplace and architectural louvers</li>
+        <li>Secure parcel storage and mail room</li>
+        <li>Wellness centre with yoga studio, fitness area and water fill station</li>
+        <li>Wellness deck &mdash; landscaped outdoor recovery space</li>
+      </ul>
+    </div>
+    <div class="amen-card">
+      <div class="amen-flr">Second floor</div>
+      <div class="amen-h">Guests &amp; laundry</div>
+      <ul class="inc-list">
+        <li>Two hotel-appointed guest suites, available by reservation</li>
+        <li>Spin lounge with oversized commercial washers and dryers</li>
+        <li>Lounge seating to read or work while laundry runs</li>
+      </ul>
+    </div>
+    <div class="amen-card">
+      <div class="amen-flr">Seventh floor</div>
+      <div class="amen-h">Live, work &amp; entertain</div>
+      <ul class="inc-list">
+        <li>East fireside lounge with two dining areas</li>
+        <li>Landscaped terrace lounge with BBQs and lake and skyline views</li>
+        <li>Large demonstration kitchen</li>
+        <li>Co-working lounge with private stations and boardrooms</li>
+        <li>Private dining lounge with its own kitchen, reservable</li>
+        <li>Games room and entertainment lounge with shared partition</li>
+        <li>Kids&rsquo; play area with connected outdoor space</li>
+        <li>Pet spa with attached dog run</li>
+        <li>Makers&rsquo; studio for creative projects</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="setting">
+    <div class="setting-media"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w, images/towns/alba-bedroom-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w, images/towns/alba-bedroom-1280.webp 1280w">
+        <img src="images/towns/alba-bedroom.jpg" alt="Alba suite interior by Cecconi Simone" loading="lazy" decoding="async">
+      </picture></div>
+    <div>
+      <div class="sec-eyebrow">Features &amp; finishes</div>
+      <h2 class="sec-title">Inside <em>the suites</em></h2>
+      <ul class="inc-list">
+        <li>9 ft smooth ceilings on floors 3 to 30, 10 ft on floors 31 and 32</li>
+        <li>Finishes selected by Cecconi Simone in coordinated design packages</li>
+        <li>Frameless glass shower or 5' acrylic tub, as per plan</li>
+        <li>Porcelain floor tiles in bathrooms, recessed pot lights where indicated</li>
+        <li>Geothermal heating and cooling &mdash; premium, on-demand, year-round hydronic</li>
+        <li>ENERGY STAR rated appliances and Energy Recovery Ventilation</li>
+        <li>Individual suite metering of electricity, cold and hot water</li>
+        <li>Fibre-optic cable to the suite, Rogers 1 Gigabyte internet</li>
+        <li>Eddy Solutions water leak detection in every suite</li>
+        <li>Edenshaw Elevated &mdash; keyless digital entry, in-suite touchpad, smartphone control, licence plate recognition at the garage</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="sec-eyebrow">Pricing</div>
+  <h2 class="sec-title">VIP broker <em>price list</em></h2>
+  <div class="tbl-block">
+    <h3 class="tbl-title">21 suites released</h3>
+    <div class="tbl-scroll">
+      <table class="dt">
+        <thead><tr><th>Suite</th><th>Collection</th><th>Level</th><th>Model</th><th>Type</th><th>View</th><th>Bath</th><th>Sq ft</th><th>Original</th><th>VIP broker price</th><th>After enhanced HST*</th></tr></thead>
+        <tbody>
+        <tr class="grp"><td colspan="11">One bedroom</td></tr>
+        <tr><td>2210</td><td>Tower</td><td>22</td><td>T-1N1-C</td><td>1 bed</td><td>West</td><td>1</td><td>427</td><td class="was">$527,990</td><td class="num">$419,990</td><td class="num">$395,711</td></tr>
+        <tr><td>1806</td><td>Tower</td><td>18</td><td>T-1N1-A</td><td>1 bed</td><td>North</td><td>1</td><td>500</td><td class="was">$562,990</td><td class="num">$460,990</td><td class="num">$430,293</td></tr>
+        <tr><td>611</td><td>Podium</td><td>6</td><td>P-1N1-B</td><td>1 bed</td><td>North</td><td>1</td><td>571</td><td class="was">$587,990</td><td class="num">$442,990</td><td class="num">$415,205</td></tr>
+        <tr class="grp"><td colspan="11">One bedroom + work-from-home / den</td></tr>
+        <tr><td>913</td><td>Tower</td><td>9</td><td>T-1W1-A</td><td>1 bed + WFH</td><td>South</td><td>1</td><td>550</td><td class="was">$580,990</td><td class="num">$486,990</td><td class="num">$452,204</td></tr>
+        <tr><td>315</td><td>Podium</td><td>3</td><td>P-1D1-E</td><td>1 bed + den</td><td>West</td><td>1</td><td>536</td><td class="was">$589,990</td><td class="num">$460,990</td><td class="num">$430,293</td></tr>
+        <tr><td>812</td><td>Tower</td><td>8</td><td>T-1D1-E</td><td>1 bed + den</td><td>South</td><td>1</td><td>559</td><td class="was">$621,990</td><td class="num">$515,990</td><td class="num">$477,867</td></tr>
+        <tr><td>316</td><td>Podium</td><td>3</td><td>P-1D2-C</td><td>1 bed + den</td><td>West</td><td>2</td><td>582</td><td class="was">$609,990</td><td class="num">$500,990</td><td class="num">$464,593</td></tr>
+        <tr><td>2201</td><td>Tower</td><td>22</td><td>T-1D1-A</td><td>1 bed + den</td><td>South</td><td>1.5</td><td>623</td><td class="was">$688,990</td><td class="num">$564,990</td><td class="num">$521,230</td></tr>
+        <tr><td>505</td><td>Podium</td><td>5</td><td>P-1D1-B</td><td>1 bed + den</td><td>South East</td><td>1</td><td>635</td><td class="was">$654,990</td><td class="num">$482,990</td><td class="num">$448,734</td></tr>
+        <tr><td>2008</td><td>Tower</td><td>20</td><td>T-1D1-D</td><td>1 bed + den</td><td>North</td><td>1.5</td><td>643</td><td class="was">$680,990</td><td class="num">$544,990</td><td class="num">$503,531</td></tr>
+        <tr><td>319</td><td>Podium</td><td>3</td><td>P-1D1-F</td><td>1 bed + den</td><td>South</td><td>1</td><td>672</td><td class="was">$669,990</td><td class="num">$502,990</td><td class="num">$466,363</td></tr>
+        <tr class="grp"><td colspan="11">Two bedroom</td></tr>
+        <tr><td>618</td><td>Podium</td><td>6</td><td>P-2N2-E</td><td>2 bed</td><td>South West</td><td>2</td><td>685</td><td class="was">$702,990</td><td class="num">$556,990</td><td class="num">$514,150</td></tr>
+        <tr><td>1209</td><td>Tower</td><td>12</td><td>T-2N2-B</td><td>2 bed</td><td>North West</td><td>2</td><td>761</td><td class="was">$735,990</td><td class="num">$638,990</td><td class="num">$586,717</td></tr>
+        <tr><td>521</td><td>Podium</td><td>5</td><td>P-2N2-G</td><td>2 bed</td><td>South East</td><td>2</td><td>766</td><td class="was">$756,990</td><td class="num">$655,990</td><td class="num">$601,761</td></tr>
+        <tr><td>2011</td><td>Tower</td><td>20</td><td>T-2N2-C</td><td>2 bed</td><td>South West</td><td>2</td><td>768</td><td class="was">$810,990</td><td class="num">$709,990</td><td class="num">$649,549</td></tr>
+        <tr><td>1604</td><td>Tower</td><td>16</td><td>T-2N2-A</td><td>2 bed</td><td>North East</td><td>2</td><td>772</td><td class="was">$771,990</td><td class="num">$659,990</td><td class="num">$605,301</td></tr>
+        <tr><td>607</td><td>Podium</td><td>6</td><td>P-2N2-A</td><td>2 bed</td><td>North East</td><td>2</td><td>798</td><td class="was">$785,990</td><td class="num">$675,990</td><td class="num">$619,460</td></tr>
+        <tr class="grp"><td colspan="11">Two bedroom + den</td></tr>
+        <tr><td>601</td><td>Podium</td><td>6</td><td>P-2D2-A</td><td>2 bed + den</td><td>South</td><td>2</td><td>807</td><td class="was">$840,990</td><td class="num">$717,990</td><td class="num">$656,628</td></tr>
+        <tr><td>314</td><td>Podium</td><td>3</td><td>P-2D2-C</td><td>2 bed + den</td><td>North West</td><td>2</td><td>852</td><td class="was">$862,990</td><td class="num">$755,990</td><td class="num">$690,257</td></tr>
+        <tr><td>1003</td><td>Tower</td><td>10</td><td>T-2D2-A</td><td>2 bed + den</td><td>South East</td><td>2</td><td>863</td><td class="was">$946,990</td><td class="num">$790,990</td><td class="num">$721,230</td></tr>
+        <tr><td>2203</td><td>Tower</td><td>22</td><td>T-2D2-A</td><td>2 bed + den</td><td>South East</td><td>2</td><td>863</td><td class="was">$958,990</td><td class="num">$812,990</td><td class="num">$740,699</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">From the Alba VIP broker price list, October 21, 2026. Exclusive listing: The Greenheart Group, Brokerage. *Effective purchase price after the new enhanced HST rebate, which depends on purchaser eligibility and on legislation being enacted as anticipated. Prices, specifications and promotions subject to change without notice. Brokers protected. E.&amp;O.E.</p>
+  </div>
+</section>
+
+<section id="details">
+  <div class="sec-eyebrow">Building info</div>
+  <h2 class="sec-title">The <em>building</em></h2>
+  <div class="tbl-scroll">
+    <table class="dt compact">
+      <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+      <tbody>
+      <tr><td>Developer</td><td class="num">Edenshaw Developments, in partnership with Windsor Private Capital</td></tr>
+      <tr><td>Architect</td><td class="num">Core Architects</td></tr>
+      <tr><td>Interior designer</td><td class="num">Cecconi Simone</td></tr>
+      <tr><td>Address</td><td class="num">1 Fairview Road East, Mississauga &middot; Hurontario &amp; Fairview Rd E</td></tr>
+      <tr><td>Building height</td><td class="num">32 storeys &mdash; a 25-storey tower on a 7-storey podium</td></tr>
+      <tr><td>Suites</td><td class="num">418, including 4 townhomes</td></tr>
+      <tr><td>Suite sizes</td><td class="num">427 &ndash; 863 sq ft</td></tr>
+      <tr><td>Ceiling heights</td><td class="num">9 ft floors 3&ndash;30 &middot; 10 ft floors 31&ndash;32</td></tr>
+      <tr><td>Heating system</td><td class="num">Geothermal</td></tr>
+      <tr><td>Sustainability</td><td class="num">LEED Certified Candidate</td></tr>
+      <tr><td>Elevators</td><td class="num">4</td></tr>
+      <tr><td>Parking</td><td class="num">8 levels, 372 residential spots</td></tr>
+      <tr><td>Amenities</td><td class="num">Over 20,000 sq ft on the 1st, 2nd and 7th floors</td></tr>
+      <tr><td>Maintenance fees</td><td class="num">Approx. $0.60 per sq ft per month, plus $65 + HST Rogers package</td></tr>
+      <tr><td>Closing</td><td class="num">Flexible, 30 &ndash; 60 days</td></tr>
+      <tr><td>Sales office</td><td class="num">414 &ndash; 1 Fairview Rd E, Mississauga ON L5A 0B4</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Hydro and water are individually metered and excluded from maintenance fees. All deals are signed electronically; cheques payable to Aird &amp; Berlis LLP, in trust.</p>
+</section>
+
+<section class="reg" id="register">
+  <div class="reg-inner">
+    <div class="reg-copy">
+      <div class="sec-eyebrow">Register</div>
+      <h2 class="sec-title">Want a <em>floor plan?</em></h2>
+      <p>Leave your number and Nikhil will send the plan for the suite you like, confirm it is still available at the VIP broker price, and walk you through the 5% deposit. No pressure, no spam.</p>
+    </div>
+    <form class="reg-form" id="reg-form" novalidate>
+      <label>Full name<input type="text" name="name" autocomplete="name" required></label>
+      <label>Phone<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required></label>
+      <label>Email <span>(optional)</span><input type="email" name="email" autocomplete="email"></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="reg-hp">
+      <button type="submit">Check availability</button>
+      <p class="reg-msg" id="reg-msg" role="status"></p>
+      <p class="reg-fine">No spam. Your details go only to Nikhil Oberoi, the broker behind CondosAround. <a href="../privacy.html" style="color:inherit">Privacy policy</a>.</p>
+    </form>
+    <div class="reg-done" id="reg-done" hidden>
+      <div class="reg-done-mark">&#10003;</div>
+      <h3>Got it.</h3>
+      <p>Nikhil will be in touch shortly. Sooner? Call or text <a href="tel:6479240848">647-924-0848</a>.</p>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('reg-form');
+  if (!form) return;
+  var msg = document.getElementById('reg-msg');
+  var qs = new URLSearchParams(location.search);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim(), phone = form.phone.value.trim(), email = form.email.value.trim();
+    if (name.length < 2) { msg.textContent = 'Please enter your name.'; form.name.focus(); return; }
+    if (phone.replace(/\D/g, '').length < 10) { msg.textContent = 'Please enter a 10-digit phone number.'; form.phone.focus(); return; }
+    var btn = form.querySelector('button'); btn.disabled = true; msg.textContent = 'Sending…';
+    fetch('/.netlify/functions/save-lead', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, phone: phone, email: email, building: 'Alba',
+        date: new Date().toISOString(), website: form.website.value,
+        utm_source: qs.get('utm_source') || '', utm_campaign: qs.get('utm_campaign') || '' })
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      try { localStorage.setItem('ca_registered', 'true'); } catch (err) {}
+      if (window.fbq) fbq('track', 'Lead', { content_name: 'Alba' });
+      form.hidden = true; document.getElementById('reg-done').hidden = false;
+    }).catch(function () {
+      btn.disabled = false;
+      msg.textContent = 'That did not go through. Please try again, or text 647-924-0848.';
+    });
+  });
+})();
+</script>
+
+<section>
+  <div class="sec-eyebrow">Nearby</div>
+  <h2 class="sec-title">More around <em>Square One</em></h2>
+  <div class="sibs">
+      <a class="sib" href="../neighbourhoods/square-one.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w, images/towns/square-one-hero-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w, images/towns/square-one-hero-1280.webp 1280w">  <img src="images/towns/square-one-hero.jpg" alt="Condos around Square One" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">The neighbourhood</span><span class="sib-name">Condos around Square One &rarr;</span></div></a>
+      <a class="sib" href="../neighbourhoods/dixie-lakeshore.html"><div class="sib-img"><picture>  <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/pier-house-hero-480.avif 480w, images/towns/pier-house-hero-800.avif 800w">  <source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/pier-house-hero-480.avif 480w, images/towns/pier-house-hero-800.avif 800w, images/towns/pier-house-hero-1280.avif 1280w">  <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/pier-house-hero-480.webp 480w, images/towns/pier-house-hero-800.webp 800w">  <source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/towns/pier-house-hero-480.webp 480w, images/towns/pier-house-hero-800.webp 800w, images/towns/pier-house-hero-1280.webp 1280w">  <img src="images/towns/pier-house-hero.jpg" alt="Dixie and Lakeshore" loading="lazy" decoding="async"></picture></div><div class="sib-body"><span class="sib-lbl">Also in Mississauga</span><span class="sib-name">Dixie &amp; Lakeshore &rarr;</span></div></a>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-h">Interested in Alba?<br><em>Let&rsquo;s talk suites.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-w">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%20Alba%20Condos." class="btn-o">Text for details</a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Source: Edenshaw Developments brochure, amenities, features and finishes and FAQ sheets for Alba, plus the VIP broker
+  price list dated October 21, 2026. Exclusive listing: The Greenheart Group, Brokerage. Renderings are artist&rsquo;s concept.
+  Prices, sizes, incentives, specifications and availability are subject to change without notice and may not reflect the
+  current release. Any GST/HST rebate reference depends on purchaser eligibility and on legislation being enacted as
+  anticipated. Confirm all figures with the sales office before relying on them. Brokers protected. E.&amp;O.E.
+</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>

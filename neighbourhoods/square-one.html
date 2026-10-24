@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Condos Around Square One &mdash; Downtown Mississauga | CondosAround.com</title>
+  <meta name="description" content="New condos around Square One in Downtown Mississauga. Alba by Edenshaw at Hurontario and Fairview, 418 suites from $419,990 with only a 5% deposit. Floor plans, pricing and incentives from a licensed broker." />
+  <link rel="preload" as="image" type="image/avif" imagesizes="100vw" imagesrcset="../buildings/images/towns/square-one-hero-480.avif 480w, ../buildings/images/towns/square-one-hero-800.avif 800w, ../buildings/images/towns/square-one-hero-1280.avif 1280w, ../buildings/images/towns/square-one-hero-1920.avif 1920w">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --gold: #c8a96e; --gold-light: #e8d5b0; --gold-pale: #f7f0e4; --white: #ffffff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18; --text-mid: #4a4a46; --text-muted: #8a8a84; --border: rgba(200,169,110,0.2); }
+    html, body { overflow-x: hidden; max-width: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--off-white); color: var(--text); }
+    img { max-width: 100%; display: block; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-logo em { font-style: italic; color: #002244; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: #002244; }
+    .nav-cta { background: #002244; color: var(--white); border: none; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif; text-decoration: none; }
+    nav > a { white-space: nowrap; }
+    .nav-back .nav-back-short { display: none; }
+
+    .hero-nb { position: relative; min-height: 62vh; display: flex; align-items: flex-end; background: #0d1b2a; overflow: hidden; }
+    .hero-nb picture { position: absolute; inset: 0; }
+    .hero-nb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 50%; }
+    .hero-nb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,18,38,0.30) 0%, rgba(0,18,38,0.55) 45%, rgba(0,18,38,0.92) 100%); }
+    .hero-nb-inner { position: relative; z-index: 2; width: 100%; padding: 5rem 3rem 2.75rem; }
+    .hero-nb-eyebrow { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c9a84c; margin-bottom: 1rem; }
+    .hero-nb-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.75rem, 6vw, 5rem); font-weight: 300; line-height: 1.0; color: #fff; margin-bottom: 1.1rem; }
+    .hero-nb-title em { font-style: italic; color: #e2c684; }
+    .hero-nb-desc { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.72); max-width: 620px; font-weight: 300; }
+    .hero-nb-stats { display: flex; gap: 3.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .hero-nb-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; color: #e2c684; line-height: 1; }
+    .hero-nb-stat-lbl { font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.45rem; }
+    .hero-nb-credit { position: absolute; right: 1rem; bottom: 0.5rem; z-index: 2; font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+
+    .cat-band { padding: 4.5rem 3rem; border-bottom: 1px solid var(--border); }
+    .cat-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2.75rem; }
+    .cat-eyebrow { font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c9a84c; margin-bottom: 0.6rem; }
+    .cat-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 300; line-height: 1.1; }
+    .cat-title em { font-style: italic; color: #002244; }
+    .cat-sub { font-size: 0.9rem; line-height: 1.7; color: var(--text-mid); max-width: 560px; font-weight: 300; margin-top: 0.75rem; }
+    .cat-count { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+    .cat-count b { color: #002244; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 400; display: block; }
+
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .proj-grid.n1 { grid-template-columns: minmax(0, 520px); }
+    .proj-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+    .proj-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(0,34,68,0.13); border-color: #d8cfb8; }
+    .proj-img { position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--cream); }
+    .proj-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .proj-card:hover .proj-img img { transform: scale(1.045); }
+    .proj-flag { position: absolute; top: 0.85rem; left: 0.85rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(0,34,68,0.92); color: #fff; padding: 0.38rem 0.75rem; border-radius: 2px; }
+    .proj-flag.gold { background: rgba(201,168,76,0.95); color: #17130a; }
+    .proj-body { padding: 1.4rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .proj-builder { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.45rem; }
+    .proj-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; line-height: 1.15; margin-bottom: 0.4rem; }
+    .proj-loc { font-size: 0.76rem; color: var(--text-mid); line-height: 1.55; margin-bottom: 1.1rem; }
+    .proj-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 1.1rem; }
+    .proj-spec-lbl { font-size: 0.58rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.18rem; }
+    .proj-spec-val { font-size: 0.86rem; font-weight: 500; color: var(--text); }
+    .proj-foot { margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+    .proj-price-lbl { font-size: 0.58rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted); }
+    .proj-price { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; color: #002244; line-height: 1.1; }
+    .proj-go { font-size: 0.65rem; letter-spacing: 0.11em; text-transform: uppercase; color: #c9a84c; white-space: nowrap; }
+
+    .area { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start; }
+    .area p { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1.15rem; }
+    .side-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1.1rem; }
+    .cm-row { display: flex; gap: 1rem; padding: 0.72rem 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+    .cm-row:last-child { border-bottom: none; }
+    .cm-time { color: #002244; font-weight: 600; min-width: 8.5rem; }
+    .cm-place { color: var(--text-mid); }
+
+    .soon { background: var(--white); border: 1px dashed #d8cfb8; border-radius: 10px; padding: 2rem 2.25rem; margin-top: 2rem; }
+    .soon h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.6rem; }
+    .soon p { font-size: 0.9rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; }
+    .soon a { color: #002244; font-weight: 500; }
+
+    .cta-strip { background: var(--text); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--white); }
+    .cta-headline em { font-style: italic; color: var(--gold); }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-white { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--white); color: var(--text); border: none; padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; }
+    .btn-gold-outline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 0.85rem 2rem; border-radius: 2px; font-family: 'Outfit', sans-serif; text-decoration: none; display: inline-block; }
+
+    .disclaimer { padding: 2.25rem 3rem; background: var(--cream); font-size: 0.7rem; line-height: 1.75; color: var(--text-muted); font-style: italic; }
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.75; }
+
+    @media (max-width: 1024px) { .proj-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 900px) {
+      .hero-nb { min-height: 50vh; }
+      .hero-nb-inner { padding: 3.5rem 1.5rem 2rem; }
+      .hero-nb-stats { gap: 2rem; }
+      .cat-band { padding: 3rem 1.5rem; }
+      .area { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cta-strip, .disclaimer, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.85rem 1rem; gap: 0.5rem; min-height: 56px; }
+      .nav-logo { display: none; }
+      .nav-back { font-size: 0.62rem; letter-spacing: 0.06em; }
+      .nav-back .nav-back-long { display: none; }
+      .nav-back .nav-back-short { display: inline; }
+      .nav-cta { padding: 0.55rem 0.9rem; font-size: 0.78rem; }
+    }
+    @media (max-width: 700px) { .proj-grid, .proj-grid.n1 { grid-template-columns: 1fr; } }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1688055534733639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Condos<em>Around</em></a>
+  <a href="../index.html" class="nav-back">&larr; <span class="nav-back-long">All neighbourhoods</span><span class="nav-back-short">All areas</span></a>
+  <a href="../about.html" style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); text-decoration:none;">About</a>
+  <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero-nb">
+  <picture>
+    <source type="image/avif" sizes="100vw" srcset="../buildings/images/towns/square-one-hero-480.avif 480w, ../buildings/images/towns/square-one-hero-800.avif 800w, ../buildings/images/towns/square-one-hero-1280.avif 1280w, ../buildings/images/towns/square-one-hero-1920.avif 1920w">
+    <source type="image/webp" sizes="100vw" srcset="../buildings/images/towns/square-one-hero-480.webp 480w, ../buildings/images/towns/square-one-hero-800.webp 800w, ../buildings/images/towns/square-one-hero-1280.webp 1280w, ../buildings/images/towns/square-one-hero-1920.webp 1920w">
+    <img class="hero-nb-img" src="../buildings/images/towns/square-one-hero.jpg" alt="Alba tower rising over Downtown Mississauga at sunset" loading="eager" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="hero-nb-inner">
+    <div class="hero-nb-eyebrow">Mississauga &middot; Downtown</div>
+    <h1 class="hero-nb-title">Condos Around <em>Square One</em></h1>
+    <p class="hero-nb-desc">Downtown Mississauga is the second downtown of the GTA &mdash; a real city centre built around Square One, Celebration Square and the Hurontario corridor. New towers, walkable retail, and a straight run into Toronto.</p>
+    <div class="hero-nb-stats">
+      <div><div class="hero-nb-stat-val">1</div><div class="hero-nb-stat-lbl">Community</div></div>
+      <div><div class="hero-nb-stat-val">418</div><div class="hero-nb-stat-lbl">Suites</div></div>
+      <div><div class="hero-nb-stat-val">427&ndash;863</div><div class="hero-nb-stat-lbl">Sq ft</div></div>
+      <div><div class="hero-nb-stat-val">$419K+</div><div class="hero-nb-stat-lbl">Starting from</div></div>
+    </div>
+  </div>
+  <div class="hero-nb-credit">Alba &middot; artist&rsquo;s concept</div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="cat-band" id="condos">
+  <div class="cat-head">
+    <div>
+      <div class="cat-eyebrow">In this neighbourhood</div>
+      <h2 class="cat-title">Condo <em>apartments</em></h2>
+      <p class="cat-sub">New construction within walking distance of Square One, with VIP broker pricing and incentives you will not find on the builder&rsquo;s own site.</p>
+    </div>
+    <div class="cat-count"><b>1</b>Community &middot; selling now</div>
+  </div>
+
+  <div class="proj-grid n1">
+
+    <a class="proj-card" href="../buildings/alba.html">
+      <div class="proj-img">
+        <picture>
+          <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/alba-street-480.avif 480w, ../buildings/images/towns/alba-street-800.avif 800w">
+          <source type="image/avif" sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/alba-street-480.avif 480w, ../buildings/images/towns/alba-street-800.avif 800w, ../buildings/images/towns/alba-street-1280.avif 1280w">
+          <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/alba-street-480.webp 480w, ../buildings/images/towns/alba-street-800.webp 800w">
+          <source type="image/webp" sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 33vw" srcset="../buildings/images/towns/alba-street-480.webp 480w, ../buildings/images/towns/alba-street-800.webp 800w, ../buildings/images/towns/alba-street-1280.webp 1280w">
+          <img src="../buildings/images/towns/alba-street.jpg" alt="Alba Condos by Edenshaw, podium from Hurontario Street" loading="eager" decoding="async">
+        </picture>
+        <span class="proj-flag gold">VIP pricing &middot; Only 5% deposit</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-builder">Edenshaw Developments</div>
+        <div class="proj-name">Alba</div>
+        <div class="proj-loc">1 Fairview Road East &middot; Hurontario &amp; Fairview, steps from Square One</div>
+        <div class="proj-specs">
+          <div><div class="proj-spec-lbl">Size</div><div class="proj-spec-val">427 &ndash; 863 sq ft</div></div>
+          <div><div class="proj-spec-lbl">Bedrooms</div><div class="proj-spec-val">1 &ndash; 2 + den</div></div>
+          <div><div class="proj-spec-lbl">Storeys</div><div class="proj-spec-val">32 &middot; 418 suites</div></div>
+          <div><div class="proj-spec-lbl">Amenities</div><div class="proj-spec-val">20,000+ sq ft, three floors</div></div>
+        </div>
+        <div class="proj-foot">
+          <div><div class="proj-price-lbl">Starting from</div><div class="proj-price">$419,990</div></div>
+          <span class="proj-go">View &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="soon">
+    <h3>More around Square One, shortly</h3>
+    <p>Downtown Mississauga has a long list of towers in the pipeline. This page covers what we can actually get you into today at broker pricing. If you are looking at something specific nearby, <a href="tel:6479240848">call 647-924-0848</a> and we will tell you straight whether it is worth it.</p>
+  </div>
+</section>
+
+<!-- ============ THE AREA ============ -->
+<section class="cat-band" id="area">
+  <div class="cat-head">
+    <div>
+      <div class="cat-eyebrow">The area</div>
+      <h2 class="cat-title">Why <em>Square One</em></h2>
+    </div>
+  </div>
+  <div class="area">
+    <div>
+      <p>Square One Shopping Centre is the largest mall in Ontario, and the neighbourhood around it has turned into a genuine downtown &mdash; Celebration Square for events and skating, the Living Arts Centre, the Art Gallery of Mississauga, the Central Library, and Sheridan College&rsquo;s downtown campus all within a few blocks.</p>
+      <p>The Hurontario corridor is the spine of it. The Hurontario LRT runs the length of the street, connecting Port Credit on the lake up through downtown toward Brampton, and the Cooksville GO mobility hub puts the Milton line and the Toronto core within reach without a car.</p>
+      <p>It is still Mississauga, so the practical stuff is close too: Whole Foods and Crate and Barrel on Square One Drive, Metro and FreshCo for the weekly shop, the 403 to the north, and the QEW and the lakeshore to the south.</p>
+    </div>
+    <div>
+      <h3 class="side-title">What&rsquo;s around</h3>
+        <div class="cm-row"><span class="cm-time">Shopping</span><span class="cm-place">Square One Shopping Centre &middot; Whole Foods, 155 Square One Drive &middot; Crate and Barrel, 95 Square One Drive</span></div>
+        <div class="cm-row"><span class="cm-time">Civic &amp; culture</span><span class="cm-place">Mississauga Celebration Square and the Art Gallery of Mississauga, 300 City Centre Drive</span></div>
+        <div class="cm-row"><span class="cm-time">Arts</span><span class="cm-place">Living Arts Centre, 4141 Living Arts Drive</span></div>
+        <div class="cm-row"><span class="cm-time">Education</span><span class="cm-place">Sheridan College, 4180 Duke of York Boulevard &middot; T. L. Kennedy Secondary School, 3100 Hurontario</span></div>
+        <div class="cm-row"><span class="cm-time">Eating</span><span class="cm-place">The Food District at 100 City Centre Drive &middot; La Novita Bakery, 25 John Street</span></div>
+        <div class="cm-row"><span class="cm-time">Everyday</span><span class="cm-place">Metro, FreshCo and LCBO within a few minutes</span></div>
+        <div class="cm-row"><span class="cm-time">Green space</span><span class="cm-place">Mississauga Valley Park and its trails</span></div>
+        <div class="cm-row"><span class="cm-time">Transit</span><span class="cm-place">Hurontario LRT &middot; Cooksville GO mobility hub</span></div>
+        <div class="cm-row"><span class="cm-time">Driving</span><span class="cm-place">Highway 403 north &middot; QEW and the lakeshore south &middot; Pearson a short drive</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-headline">Looking around Square One?<br><em>Let&rsquo;s talk.</em></div>
+  <div class="cta-actions">
+    <a href="tel:6479240848" class="btn-white">Call 647-924-0848</a>
+    <a href="sms:6479240848?body=Hi%2C%20I%27d%20like%20information%20on%20condos%20around%20Square%20One." class="btn-gold-outline">Text for details</a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Project information from builder marketing material current at the time of writing. Renderings are artist&rsquo;s concept.
+  Prices, sizes, incentives, specifications and availability are subject to change without notice and may not reflect the
+  current release. Confirm all figures with the sales office before relying on them. Brokers protected. E.&amp;O.E.
+</div>
+
+<footer>
+  <div class="footer-logo">Condos<em>Around</em></div>
+  <div>CondosAround.com &middot; &copy; 2025</div>
+</footer>
+
+<script src="../js/save.js"></script>
+<script src="../js/sofia.js"></script>
+<script src="../js/protect.js"></script>
+</body>
+</html>

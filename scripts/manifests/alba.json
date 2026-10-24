@@ -1,0 +1,22 @@
+{
+ "source_dir": "/private/tmp/claude-501/-Users-nik/42c01934-f159-40f0-8866-411f426a2a66/scratchpad/alba-img",
+ "images": [
+  {"name": "alba-hero",            "file": "p03_1_1374x1580.png", "widths": "hero"},
+  {"name": "square-one-hero",      "file": "p28_1_1969x2263.png", "widths": "hero"},
+  {"name": "alba-street",          "file": "p18_0_1374x1314.png"},
+  {"name": "alba-exterior-dusk",   "file": "p18_1_1374x1314.png"},
+  {"name": "alba-lobby",           "file": "p19_0_1132x1502.png"},
+  {"name": "alba-wellness",        "file": "p21_0_2711x1312.png"},
+  {"name": "alba-fireside",        "file": "p23_0_2704x1314.png"},
+  {"name": "alba-fireside-lounge", "file": "p20_0_2509x1312.png"},
+  {"name": "alba-terrace",         "file": "p25_0_2509x1310.png"},
+  {"name": "alba-terrace-dining",  "file": "p24_0_1355x1500.png"},
+  {"name": "alba-living",          "file": "p06_1_1374x1315.png"},
+  {"name": "alba-kitchen",         "file": "p09_0_1276x1310.png"},
+  {"name": "alba-kitchen-island",  "file": "p10_0_1130x1505.png"},
+  {"name": "alba-suite-view",      "file": "p05_0_1130x1500.png"},
+  {"name": "alba-bedroom",         "file": "p12_1_1355x1501.png"},
+  {"name": "alba-balcony",         "file": "p07_0_1354x1500.png"},
+  {"name": "alba-skyline",         "file": "p03_0_1374x1580.png"}
+ ]
+}
