@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alba Condos &mdash; Edenshaw &middot; Downtown Mississauga | CondosAround.com</title>
-  <meta name="description" content="Alba Condos by Edenshaw at 1 Fairview Road East, Downtown Mississauga, a short walk from Square One. 418 suites in a 32-storey tower, 427 to 863 sq ft, VIP broker pricing from $419,990 with only a 5% deposit. Over 20,000 sq ft of amenities by Cecconi Simone." />
+  <meta name="description" content="Alba Condos by Edenshaw at 1 Fairview Road East, Downtown Mississauga, across the street from Cooksville GO and the Hurontario LRT. 418 suites in a 32-storey tower, 427 to 863 sq ft, VIP broker pricing from $419,990 with only a 5% deposit. Over 20,000 sq ft of amenities by Cecconi Simone." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -192,9 +192,9 @@
     /* intro: renderings beside the pitch — the first thing on the page */
     .intro { padding-top: 2.5rem; padding-bottom: 3.25rem; }
     /* Both columns end on the same line: the copy sets the height, the image covers it. */
-    .intro-grid { display: grid; grid-template-columns: 1.18fr 1fr; gap: 3rem; align-items: stretch; }
+    .intro-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2.75rem; align-items: stretch; }
     .intro-copy { display: flex; flex-direction: column; }
-    .intro-copy .intro-cta { margin-top: auto; padding-top: 1.5rem; }
+    .intro-copy .intro-cta { margin-top: 1.3rem; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
                 overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
     .intro-copy p { font-size: 0.98rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
@@ -202,7 +202,7 @@
     .car-cap { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0.9rem; z-index: 2;
                 font-size: 0.66rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.92);
                 text-shadow: 0 1px 4px rgba(0,0,0,0.6); white-space: nowrap; pointer-events: none; }
-    .intro-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .intro-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.75rem; }
     .btn-gold { background: var(--gold); color: #17130a; text-decoration: none; font-size: 0.72rem; font-weight: 600;
                  letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 1.4rem; border-radius: 2px; }
     .btn-gold:hover { background: #d6b85e; }
@@ -211,14 +211,15 @@
     .btn-line:hover { border-color: var(--gold); }
 
     /* carousel: a native scroll-snap track, so touch swipe works without JS */
-    .carousel { position: relative; border-radius: 12px; overflow: hidden; background: var(--cream); height: 100%; min-height: 420px; }
-    .car-track { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-                  scrollbar-width: none; -ms-overflow-style: none; }
+    .carousel { position: relative; border-radius: 12px; overflow: hidden; background: var(--cream); height: 100%; min-height: 380px; }
+    .car-track { position: absolute; inset: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+                  scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
     .car-track::-webkit-scrollbar { display: none; }
     .car-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; height: 100%; }
     .car-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
     @media (max-width: 900px) {
       .carousel { height: auto; min-height: 0; }
+      .car-track { position: static; }
       .car-slide img { height: auto; aspect-ratio: 16/10; }
     }
     .car-prev, .car-next { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px;
@@ -236,15 +237,15 @@
 
 
     .jot { list-style: none; margin: 0 0 0.5rem; }
-    .jot li { position: relative; padding-left: 1.4rem; margin-bottom: 0.7rem; font-size: 0.92rem;
-               line-height: 1.6; color: var(--text-mid); }
-    .jot li::before { content: ''; position: absolute; left: 0; top: 0.58rem; width: 5px; height: 5px;
+    .jot li { position: relative; padding-left: 1.3rem; margin-bottom: 0.48rem; font-size: 0.88rem;
+               line-height: 1.5; color: var(--text-mid); }
+    .jot li::before { content: ''; position: absolute; left: 0; top: 0.52rem; width: 5px; height: 5px;
                        border-radius: 50%; background: var(--gold); }
     .jot b { font-weight: 600; color: var(--text); }
-    .intro-copy .jot-lbl:first-of-type + .jot li { font-size: 0.96rem; }
+    .intro-copy .jot-lbl:first-of-type + .jot li { font-size: 0.92rem; }
     .intro-copy .jot-lbl:first-of-type + .jot li::before { background: var(--navy); width: 6px; height: 6px; top: 0.55rem; }
-    .jot-lbl { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
-                margin: 1.4rem 0 0.8rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+    .jot-lbl { font-size: 0.56rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+                margin: 1rem 0 0.6rem; padding-top: 0.85rem; border-top: 1px solid var(--border); }
     .intro-copy .jot-lbl:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
     .facts { border-top: 1px solid rgba(255,255,255,0.09); }
 
@@ -256,6 +257,9 @@
     }
     @media (max-width: 700px) {
       .car-prev, .car-next { width: 36px; height: 36px; line-height: 36px; font-size: 1.25rem; }
+      /* the credit moves up top so it stops colliding with the caption */
+      .car-credit { top: 0.6rem; bottom: auto; }
+      .car-cap { font-size: 0.6rem; max-width: 70%; white-space: normal; text-align: center; }
     }
 
     /* floor plan book */
@@ -397,9 +401,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </ul>
       <div class="jot-lbl">What&rsquo;s nearby</div>
       <ul class="jot">
-        <li><b>Walk to Square One</b> &mdash; Whole Foods, Crate and Barrel</li>
-        <li><b>Celebration Square</b>, Art Gallery and the Central Library</li>
-        <li><b>Hurontario LRT</b> &middot; <b>Cooksville GO</b> mobility hub</li>
+        <li><b>Cooksville GO across the street</b> &mdash; Milton line into Union</li>
+        <li><b>Hurontario LRT</b> at the door</li>
+        <li><b>Metro across the street</b></li>
+        <li><b>Square One</b> and Celebration Square, a short drive north</li>
         <li><b>Highway 403</b> north &middot; <b>QEW</b> and the lakeshore south</li>
       </ul>
       <div class="intro-cta">
