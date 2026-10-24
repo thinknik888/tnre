@@ -214,6 +214,78 @@
       .sib-name { font-size: 1.1rem; }
     }
 
+    /* intro: renderings beside the pitch — the first thing on the page */
+    .intro { padding-top: 2.5rem; padding-bottom: 3.25rem; }
+    .intro-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; }
+    .intro-copy p { font-size: 0.98rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
+    .intro-copy .sec-title { margin-bottom: 0.9rem; }
+    .car-cap { font-size: 0.72rem !important; letter-spacing: 0.12em; text-transform: uppercase;
+                color: var(--text-muted) !important; margin-bottom: 1.25rem !important; min-height: 1.1em; }
+    .intro-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .btn-gold { background: var(--gold); color: #17130a; text-decoration: none; font-size: 0.72rem; font-weight: 600;
+                 letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 1.4rem; border-radius: 2px; }
+    .btn-gold:hover { background: #d6b85e; }
+    .btn-line { color: var(--navy); border: 1px solid var(--border); text-decoration: none; font-size: 0.72rem;
+                 letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 1.4rem; border-radius: 2px; }
+    .btn-line:hover { border-color: var(--gold); }
+
+    /* carousel: a native scroll-snap track, so touch swipe works without JS */
+    .carousel { position: relative; border-radius: 12px; overflow: hidden; background: var(--cream); }
+    .car-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+                  scrollbar-width: none; -ms-overflow-style: none; }
+    .car-track::-webkit-scrollbar { display: none; }
+    .car-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; }
+    .car-slide img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+    .car-prev, .car-next { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px;
+                            border: none; border-radius: 50%; background: rgba(255,255,255,0.88); color: var(--navy);
+                            font-size: 1.5rem; line-height: 42px; cursor: pointer; z-index: 2;
+                            box-shadow: 0 2px 10px rgba(0,34,68,0.18); transition: background 0.2s; }
+    .car-prev:hover, .car-next:hover { background: #fff; }
+    .car-prev { left: 0.85rem; } .car-next { right: 0.85rem; }
+    .car-count { position: absolute; left: 0.85rem; bottom: 0.85rem; z-index: 2; background: rgba(0,34,68,0.85);
+                  color: #fff; font-size: 0.68rem; letter-spacing: 0.08em; padding: 0.35rem 0.7rem; border-radius: 999px; }
+    .car-count b { color: var(--gold-soft); font-weight: 600; }
+    .car-credit { position: absolute; right: 0.85rem; bottom: 0.9rem; z-index: 2; font-size: 0.56rem;
+                   color: rgba(255,255,255,0.75); text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+
+    /* what's nearby, as its own two-column band */
+    .near-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
+    .near-grid .cm-row:nth-last-child(-n+1) { border-bottom: none; }
+
+    /* the offer that actually sells the building */
+    .offers-band { background: var(--navy); border-bottom: none; }
+    .offers-band .sec-eyebrow.gold { color: var(--gold-soft); }
+    .offers-band .sec-title.light { color: #fff; margin-bottom: 2rem; }
+    .offers-band .sec-title.light em { color: var(--gold-soft); }
+    .offer-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .offer-card { background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.13);
+                   border-radius: 10px; padding: 1.5rem 1.4rem; }
+    .offer-card.is-hero { background: var(--gold); border-color: var(--gold); }
+    .offer-lbl { font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+                  color: rgba(255,255,255,0.5); margin-bottom: 0.7rem; }
+    .offer-card.is-hero .offer-lbl { color: rgba(23,19,10,0.6); }
+    .offer-val { font-family: 'Cormorant Garamond', serif; font-size: 1.95rem; line-height: 1.05; color: var(--gold-soft); }
+    .offer-card.is-hero .offer-val { color: #17130a; font-weight: 600; }
+    .offer-sub { font-size: 0.76rem; line-height: 1.6; color: rgba(255,255,255,0.6); margin-top: 0.55rem; }
+    .offer-card.is-hero .offer-sub { color: rgba(23,19,10,0.72); }
+    .offers-fine { font-size: 0.68rem; line-height: 1.7; color: rgba(255,255,255,0.4); font-style: italic;
+                    margin-top: 1.75rem; max-width: 900px; }
+
+    .ess-wrap { margin-top: 2.5rem; max-width: 460px; }
+
+    @media (max-width: 1100px) { .offer-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 900px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .near-grid { grid-template-columns: 1fr; gap: 0; }
+      .ess-wrap { max-width: none; }
+    }
+    @media (max-width: 700px) {
+      .offer-cards { grid-template-columns: 1fr; gap: 0.85rem; }
+      .offer-card { padding: 1.1rem 1.15rem; }
+      .offer-val { font-size: 1.7rem; }
+      .car-prev, .car-next { width: 36px; height: 36px; line-height: 36px; font-size: 1.25rem; }
+    }
+
     /* floor plan book */
     .plans-sec { scroll-margin-top: 70px; }
     .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
@@ -329,246 +401,88 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="fact"><div class="fact-lbl">Deposit</div><div class="fact-val">Only 5%</div></div>
 </div>
 
-<section>
-  <div class="overview">
-    <div>
+<section class="intro">
+  <div class="intro-grid">
+    <div class="carousel" id="shots">
+      <div class="car-track" id="car-track">
+    <figure class="car-slide" data-cap="The podium from Hurontario Street"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-street-480.avif 480w, images/towns/alba-street-800.avif 800w, images/towns/alba-street-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-street-480.webp 480w, images/towns/alba-street-800.webp 800w, images/towns/alba-street-1280.webp 1280w"><img src="images/towns/alba-street.jpg" alt="Alba from Hurontario Street" loading="eager" fetchpriority="high" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="The tower at sunset"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w, images/towns/square-one-hero-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w, images/towns/square-one-hero-1280.webp 1280w"><img src="images/towns/square-one-hero.jpg" alt="Alba tower at sunset" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Fairview Road East at dusk"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-exterior-dusk-480.avif 480w, images/towns/alba-exterior-dusk-800.avif 800w, images/towns/alba-exterior-dusk-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-exterior-dusk-480.webp 480w, images/towns/alba-exterior-dusk-800.webp 800w, images/towns/alba-exterior-dusk-1280.webp 1280w"><img src="images/towns/alba-exterior-dusk.jpg" alt="Alba exterior at dusk" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Double-height hotel-style lobby"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-lobby-480.avif 480w, images/towns/alba-lobby-800.avif 800w, images/towns/alba-lobby-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-lobby-480.webp 480w, images/towns/alba-lobby-800.webp 800w, images/towns/alba-lobby-1280.webp 1280w"><img src="images/towns/alba-lobby.jpg" alt="Double-height hotel-style lobby" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Wellness centre, ground floor"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-wellness-480.avif 480w, images/towns/alba-wellness-800.avif 800w, images/towns/alba-wellness-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-wellness-480.webp 480w, images/towns/alba-wellness-800.webp 800w, images/towns/alba-wellness-1280.webp 1280w"><img src="images/towns/alba-wellness.jpg" alt="Wellness centre" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Fireside lounge, seventh floor"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-fireside-480.avif 480w, images/towns/alba-fireside-800.avif 800w, images/towns/alba-fireside-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-fireside-480.webp 480w, images/towns/alba-fireside-800.webp 800w, images/towns/alba-fireside-1280.webp 1280w"><img src="images/towns/alba-fireside.jpg" alt="Fireside lounge" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Lounge seating and architectural louvers"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-fireside-lounge-480.avif 480w, images/towns/alba-fireside-lounge-800.avif 800w, images/towns/alba-fireside-lounge-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-fireside-lounge-480.webp 480w, images/towns/alba-fireside-lounge-800.webp 800w, images/towns/alba-fireside-lounge-1280.webp 1280w"><img src="images/towns/alba-fireside-lounge.jpg" alt="Lounge seating and louvers" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Terrace lounge, seventh floor"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-terrace-480.avif 480w, images/towns/alba-terrace-800.avif 800w, images/towns/alba-terrace-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-terrace-480.webp 480w, images/towns/alba-terrace-800.webp 800w, images/towns/alba-terrace-1280.webp 1280w"><img src="images/towns/alba-terrace.jpg" alt="Terrace lounge" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Al fresco dining and BBQ stations"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-terrace-dining-480.avif 480w, images/towns/alba-terrace-dining-800.avif 800w, images/towns/alba-terrace-dining-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-terrace-dining-480.webp 480w, images/towns/alba-terrace-dining-800.webp 800w, images/towns/alba-terrace-dining-1280.webp 1280w"><img src="images/towns/alba-terrace-dining.jpg" alt="Outdoor dining" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Living and dining, floor-to-ceiling glass"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-living-480.avif 480w, images/towns/alba-living-800.avif 800w, images/towns/alba-living-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-living-480.webp 480w, images/towns/alba-living-800.webp 800w, images/towns/alba-living-1280.webp 1280w"><img src="images/towns/alba-living.jpg" alt="Living and dining" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Kitchen and dining"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-kitchen-480.avif 480w, images/towns/alba-kitchen-800.avif 800w, images/towns/alba-kitchen-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-kitchen-480.webp 480w, images/towns/alba-kitchen-800.webp 800w, images/towns/alba-kitchen-1280.webp 1280w"><img src="images/towns/alba-kitchen.jpg" alt="Kitchen and dining" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Open plan kitchen with island"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-kitchen-island-480.avif 480w, images/towns/alba-kitchen-island-800.avif 800w, images/towns/alba-kitchen-island-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-kitchen-island-480.webp 480w, images/towns/alba-kitchen-island-800.webp 800w, images/towns/alba-kitchen-island-1280.webp 1280w"><img src="images/towns/alba-kitchen-island.jpg" alt="Open plan kitchen" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Suite interior with city view"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-suite-view-480.avif 480w, images/towns/alba-suite-view-800.avif 800w, images/towns/alba-suite-view-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-suite-view-480.webp 480w, images/towns/alba-suite-view-800.webp 800w, images/towns/alba-suite-view-1280.webp 1280w"><img src="images/towns/alba-suite-view.jpg" alt="Suite with city view" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Bedroom"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w, images/towns/alba-bedroom-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w, images/towns/alba-bedroom-1280.webp 1280w"><img src="images/towns/alba-bedroom.jpg" alt="Bedroom" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Curved balcony"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-balcony-480.avif 480w, images/towns/alba-balcony-800.avif 800w, images/towns/alba-balcony-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-balcony-480.webp 480w, images/towns/alba-balcony-800.webp 800w, images/towns/alba-balcony-1280.webp 1280w"><img src="images/towns/alba-balcony.jpg" alt="Curved balcony" loading="lazy" decoding="async"></picture></figure>
+    <figure class="car-slide" data-cap="Sunrise from the upper floors"><picture><source type="image/avif" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-skyline-480.avif 480w, images/towns/alba-skyline-800.avif 800w, images/towns/alba-skyline-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 900px) 100vw, 56vw" srcset="images/towns/alba-skyline-480.webp 480w, images/towns/alba-skyline-800.webp 800w, images/towns/alba-skyline-1280.webp 1280w"><img src="images/towns/alba-skyline.jpg" alt="Sunrise over the city" loading="lazy" decoding="async"></picture></figure>
+      </div>
+      <button type="button" class="car-prev" aria-label="Previous rendering">&#8249;</button>
+      <button type="button" class="car-next" aria-label="Next rendering">&#8250;</button>
+      <div class="car-count"><b id="car-i">1</b> / 16</div>
+      <div class="car-credit">Artist&rsquo;s concept</div>
+    </div>
+    <div class="intro-copy">
       <div class="sec-eyebrow">Overview</div>
       <h2 class="sec-title">About <em>Alba</em></h2>
-      <p>Alba is a 418-suite community by Edenshaw Developments at the corner of Hurontario Street and Fairview Road East, in Downtown Mississauga. A 25-storey tower rises from a seven-storey black-and-white clad podium, with elegantly curved balconies and unobstructed views &mdash; Lake Ontario to the south, the Toronto skyline to the east, and the Mississauga skyline to the north.</p>
-      <p>Designed with Core Architects and Cecconi Simone, the interiors take a Scandinavian direction: neutral tones, natural textures, warmth and quiet. Over 20,000 square feet of amenities spread across three floors, and the building runs on a geothermal energy system as a LEED Certified Candidate.</p>
-      <p>Suites run from a 427 sq ft one bedroom to an 863 sq ft two bedroom plus den, with four townhomes at the base. Ceilings are 9 ft on floors 3 to 30, and 10 ft on 31 and 32.</p>
-    </div>
-    <div>
-      <h3 class="side-title">What&rsquo;s nearby</h3>
-        <div class="cm-row"><span class="cm-time">Walking distance</span><span class="cm-place">Square One Shopping Centre, Whole Foods and Crate and Barrel on Square One Drive</span></div>
-        <div class="cm-row"><span class="cm-time">Downtown core</span><span class="cm-place">Celebration Square, Art Gallery of Mississauga and the Central Library on City Centre Drive</span></div>
-        <div class="cm-row"><span class="cm-time">Culture</span><span class="cm-place">Living Arts Centre on Living Arts Drive</span></div>
-        <div class="cm-row"><span class="cm-time">Campus</span><span class="cm-place">Sheridan College, Duke of York Boulevard</span></div>
-        <div class="cm-row"><span class="cm-time">Green space</span><span class="cm-place">Mississauga Valley Park and its trails</span></div>
-        <div class="cm-row"><span class="cm-time">Transit</span><span class="cm-place">Hurontario LRT along Hurontario &middot; Cooksville GO mobility hub</span></div>
-        <div class="cm-row"><span class="cm-time">Driving</span><span class="cm-place">Highway 403 to the north, QEW and the lakeshore to the south</span></div>
-        <div class="cm-row"><span class="cm-time">Everyday</span><span class="cm-place">Metro, FreshCo, LCBO and La Novita Bakery within a few minutes</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="offers">
-  <div class="two-col">
-    <div>
-      <div class="sec-eyebrow">VIP broker offers</div>
-      <h2 class="sec-title">What&rsquo;s <em>included</em></h2>
-      <ul class="inc-list">
-        <li><strong>Only 5% deposit</strong> &mdash; for a limited time</li>
-        <li><strong>$0 builder closing costs</strong> on costs within the developer&rsquo;s control</li>
-        <li>One bedroom &amp; one plus den: <strong>one locker included</strong> (value $5,500&nbsp;+&nbsp;HST) and <strong>50% off parking</strong> (value $32,500&nbsp;+&nbsp;HST)</li>
-        <li>Two bedroom &amp; larger: <strong>one locker included</strong> (value $5,500&nbsp;+&nbsp;HST) and <strong>one parking space included</strong> (value $65,000&nbsp;+&nbsp;HST)</li>
-        <li>Flexible closing date &mdash; 30 to 60 days</li>
-        <li>Edenshaw Elevated smart home and smart building package</li>
-      </ul>
-      <p class="tbl-note">Offer ends December 31, 2026. Limited time offers, some conditions apply. The $0 builder closing costs incentive applies exclusively to costs within the control of the developer and does not cover land transfer tax, other government taxes and levies, or the purchaser&rsquo;s own legal fees.</p>
-    </div>
-    <div>
-      <div class="dep-card">
-        <h3 class="side-title">The essentials</h3>
-          <div class="dep-row"><span class="dep-when">Deposit</span><span class="dep-amt">5%</span></div>
-          <div class="dep-row"><span class="dep-when">Maintenance fees</span><span class="dep-amt">Approx. $0.60<span class="dim">per sq ft, monthly</span></span></div>
-          <div class="dep-row"><span class="dep-when">Rogers package</span><span class="dep-amt">$65 + HST<span class="dim">per month</span></span></div>
-          <div class="dep-row"><span class="dep-when">Parking value</span><span class="dep-amt">$65,000 + HST</span></div>
-          <div class="dep-row"><span class="dep-when">Locker value</span><span class="dep-amt">$5,500 + HST</span></div>
-          <div class="dep-row"><span class="dep-when">Closing</span><span class="dep-amt">30 &ndash; 60 days</span></div>
-        <p class="dep-foot">Maintenance fees exclude hydro and water, which are individually metered. Cheques payable to Aird &amp; Berlis LLP, in trust. From the Alba VIP broker price list, October 21, 2026.</p>
+      <p class="car-cap" id="car-cap">The podium from Hurontario Street</p>
+      <p>Alba is a 418-suite community by Edenshaw Developments at the corner of Hurontario Street and Fairview Road East, in Downtown Mississauga &mdash; a short walk from Square One. A 25-storey tower rises from a seven-storey black-and-white clad podium, with elegantly curved balconies and unobstructed views: Lake Ontario to the south, the Toronto skyline to the east, the Mississauga skyline to the north.</p>
+      <p>Designed with Core Architects and Cecconi Simone, the interiors take a Scandinavian direction &mdash; neutral tones, natural textures, warmth and quiet. Over 20,000 square feet of amenities spread across three floors, and the building runs on a geothermal system as a LEED Certified Candidate.</p>
+      <p>Suites run from a 427 sq ft one bedroom to an 863 sq ft two bedroom plus den. Ceilings are 9 ft on floors 3 to 30, and 10 ft on 31 and 32.</p>
+      <div class="intro-cta">
+        <a class="btn-gold" href="#floor-plans">See the 20 floor plans &rarr;</a>
+        <a class="btn-line" href="#register">Get pricing &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="gallery">
-  <div class="sec-eyebrow">Gallery</div>
-  <h2 class="sec-title">Renderings &amp; <em>amenities</em></h2>
-  <div class="gal">
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.avif 480w, images/towns/square-one-hero-800.avif 800w, images/towns/square-one-hero-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/square-one-hero-480.webp 480w, images/towns/square-one-hero-800.webp 800w, images/towns/square-one-hero-1280.webp 1280w">
-        <img src="images/towns/square-one-hero.jpg" alt="Alba tower at sunset over Downtown Mississauga" loading="lazy" decoding="async">
-      </picture><figcaption>The tower at sunset</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.avif 480w, images/towns/alba-street-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.avif 480w, images/towns/alba-street-800.avif 800w, images/towns/alba-street-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.webp 480w, images/towns/alba-street-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-street-480.webp 480w, images/towns/alba-street-800.webp 800w, images/towns/alba-street-1280.webp 1280w">
-        <img src="images/towns/alba-street.jpg" alt="Alba from Hurontario Street" loading="lazy" decoding="async">
-      </picture><figcaption>The podium from Hurontario Street</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.avif 480w, images/towns/alba-exterior-dusk-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.avif 480w, images/towns/alba-exterior-dusk-800.avif 800w, images/towns/alba-exterior-dusk-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.webp 480w, images/towns/alba-exterior-dusk-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-exterior-dusk-480.webp 480w, images/towns/alba-exterior-dusk-800.webp 800w, images/towns/alba-exterior-dusk-1280.webp 1280w">
-        <img src="images/towns/alba-exterior-dusk.jpg" alt="Alba exterior at dusk" loading="lazy" decoding="async">
-      </picture><figcaption>Fairview Road East at dusk</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.avif 480w, images/towns/alba-lobby-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.avif 480w, images/towns/alba-lobby-800.avif 800w, images/towns/alba-lobby-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.webp 480w, images/towns/alba-lobby-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-lobby-480.webp 480w, images/towns/alba-lobby-800.webp 800w, images/towns/alba-lobby-1280.webp 1280w">
-        <img src="images/towns/alba-lobby.jpg" alt="Double-height hotel-style lobby" loading="lazy" decoding="async">
-      </picture><figcaption>Double-height hotel-style lobby</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.avif 480w, images/towns/alba-wellness-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.avif 480w, images/towns/alba-wellness-800.avif 800w, images/towns/alba-wellness-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.webp 480w, images/towns/alba-wellness-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-wellness-480.webp 480w, images/towns/alba-wellness-800.webp 800w, images/towns/alba-wellness-1280.webp 1280w">
-        <img src="images/towns/alba-wellness.jpg" alt="Wellness centre with fitness area and yoga studio" loading="lazy" decoding="async">
-      </picture><figcaption>Wellness centre, ground floor</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.avif 480w, images/towns/alba-fireside-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.avif 480w, images/towns/alba-fireside-800.avif 800w, images/towns/alba-fireside-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.webp 480w, images/towns/alba-fireside-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-480.webp 480w, images/towns/alba-fireside-800.webp 800w, images/towns/alba-fireside-1280.webp 1280w">
-        <img src="images/towns/alba-fireside.jpg" alt="Fireside lounge with suspended fireplace" loading="lazy" decoding="async">
-      </picture><figcaption>Fireside lounge, seventh floor</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.avif 480w, images/towns/alba-fireside-lounge-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.avif 480w, images/towns/alba-fireside-lounge-800.avif 800w, images/towns/alba-fireside-lounge-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.webp 480w, images/towns/alba-fireside-lounge-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-fireside-lounge-480.webp 480w, images/towns/alba-fireside-lounge-800.webp 800w, images/towns/alba-fireside-lounge-1280.webp 1280w">
-        <img src="images/towns/alba-fireside-lounge.jpg" alt="Lounge seating and architectural louvers" loading="lazy" decoding="async">
-      </picture><figcaption>Lounge seating and architectural louvers</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.avif 480w, images/towns/alba-terrace-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.avif 480w, images/towns/alba-terrace-800.avif 800w, images/towns/alba-terrace-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.webp 480w, images/towns/alba-terrace-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-480.webp 480w, images/towns/alba-terrace-800.webp 800w, images/towns/alba-terrace-1280.webp 1280w">
-        <img src="images/towns/alba-terrace.jpg" alt="Landscaped terrace lounge with skyline views" loading="lazy" decoding="async">
-      </picture><figcaption>Terrace lounge, seventh floor</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.avif 480w, images/towns/alba-terrace-dining-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.avif 480w, images/towns/alba-terrace-dining-800.avif 800w, images/towns/alba-terrace-dining-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.webp 480w, images/towns/alba-terrace-dining-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-terrace-dining-480.webp 480w, images/towns/alba-terrace-dining-800.webp 800w, images/towns/alba-terrace-dining-1280.webp 1280w">
-        <img src="images/towns/alba-terrace-dining.jpg" alt="Outdoor dining on the terrace" loading="lazy" decoding="async">
-      </picture><figcaption>Al fresco dining and BBQ stations</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.avif 480w, images/towns/alba-living-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.avif 480w, images/towns/alba-living-800.avif 800w, images/towns/alba-living-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.webp 480w, images/towns/alba-living-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-living-480.webp 480w, images/towns/alba-living-800.webp 800w, images/towns/alba-living-1280.webp 1280w">
-        <img src="images/towns/alba-living.jpg" alt="Living and dining with floor-to-ceiling windows" loading="lazy" decoding="async">
-      </picture><figcaption>Living and dining, floor-to-ceiling glass</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.avif 480w, images/towns/alba-kitchen-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.avif 480w, images/towns/alba-kitchen-800.avif 800w, images/towns/alba-kitchen-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.webp 480w, images/towns/alba-kitchen-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-480.webp 480w, images/towns/alba-kitchen-800.webp 800w, images/towns/alba-kitchen-1280.webp 1280w">
-        <img src="images/towns/alba-kitchen.jpg" alt="Kitchen and dining area" loading="lazy" decoding="async">
-      </picture><figcaption>Kitchen and dining</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.avif 480w, images/towns/alba-kitchen-island-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.avif 480w, images/towns/alba-kitchen-island-800.avif 800w, images/towns/alba-kitchen-island-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.webp 480w, images/towns/alba-kitchen-island-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-kitchen-island-480.webp 480w, images/towns/alba-kitchen-island-800.webp 800w, images/towns/alba-kitchen-island-1280.webp 1280w">
-        <img src="images/towns/alba-kitchen-island.jpg" alt="Open plan kitchen with island" loading="lazy" decoding="async">
-      </picture><figcaption>Open plan kitchen with island</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.avif 480w, images/towns/alba-suite-view-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.avif 480w, images/towns/alba-suite-view-800.avif 800w, images/towns/alba-suite-view-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.webp 480w, images/towns/alba-suite-view-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-suite-view-480.webp 480w, images/towns/alba-suite-view-800.webp 800w, images/towns/alba-suite-view-1280.webp 1280w">
-        <img src="images/towns/alba-suite-view.jpg" alt="Suite interior with city view" loading="lazy" decoding="async">
-      </picture><figcaption>Suite interior with city view</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w, images/towns/alba-bedroom-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w, images/towns/alba-bedroom-1280.webp 1280w">
-        <img src="images/towns/alba-bedroom.jpg" alt="Bedroom with walkout" loading="lazy" decoding="async">
-      </picture><figcaption>Bedroom</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.avif 480w, images/towns/alba-balcony-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.avif 480w, images/towns/alba-balcony-800.avif 800w, images/towns/alba-balcony-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.webp 480w, images/towns/alba-balcony-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-balcony-480.webp 480w, images/towns/alba-balcony-800.webp 800w, images/towns/alba-balcony-1280.webp 1280w">
-        <img src="images/towns/alba-balcony.jpg" alt="Curved balcony with lounge seating" loading="lazy" decoding="async">
-      </picture><figcaption>Curved balcony</figcaption></figure>
-      <figure class="gal-item"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.avif 480w, images/towns/alba-skyline-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.avif 480w, images/towns/alba-skyline-800.avif 800w, images/towns/alba-skyline-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.webp 480w, images/towns/alba-skyline-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 700px) 100vw, 50vw" srcset="images/towns/alba-skyline-480.webp 480w, images/towns/alba-skyline-800.webp 800w, images/towns/alba-skyline-1280.webp 1280w">
-        <img src="images/towns/alba-skyline.jpg" alt="Sunrise over the city from Alba" loading="lazy" decoding="async">
-      </picture><figcaption>Sunrise from the upper floors</figcaption></figure>
+<section id="nearby">
+  <div class="sec-eyebrow">The location</div>
+  <h2 class="sec-title">What&rsquo;s <em>nearby</em></h2>
+  <div class="near-grid">
+    <div class="cm-row"><span class="cm-time">Walking distance</span><span class="cm-place">Square One Shopping Centre, Whole Foods and Crate and Barrel on Square One Drive</span></div>
+    <div class="cm-row"><span class="cm-time">Downtown core</span><span class="cm-place">Celebration Square, Art Gallery of Mississauga and the Central Library on City Centre Drive</span></div>
+    <div class="cm-row"><span class="cm-time">Culture</span><span class="cm-place">Living Arts Centre on Living Arts Drive</span></div>
+    <div class="cm-row"><span class="cm-time">Campus</span><span class="cm-place">Sheridan College, Duke of York Boulevard</span></div>
+    <div class="cm-row"><span class="cm-time">Green space</span><span class="cm-place">Mississauga Valley Park and its trails</span></div>
+    <div class="cm-row"><span class="cm-time">Transit</span><span class="cm-place">Hurontario LRT along Hurontario &middot; Cooksville GO mobility hub</span></div>
+    <div class="cm-row"><span class="cm-time">Driving</span><span class="cm-place">Highway 403 to the north, QEW and the lakeshore to the south</span></div>
+    <div class="cm-row"><span class="cm-time">Everyday</span><span class="cm-place">Metro, FreshCo, LCBO and La Novita Bakery within a few minutes</span></div>
   </div>
 </section>
 
-<section id="amenities">
-  <div class="sec-eyebrow">Amenities</div>
-  <h2 class="sec-title">Over 20,000 sq ft, <em>across three floors</em></h2>
-  <div class="amen">
-    <div class="amen-card">
-      <div class="amen-flr">Ground floor</div>
-      <div class="amen-h">Arrival &amp; wellness</div>
-      <ul class="inc-list">
-        <li>24-hour concierge</li>
-        <li>Double-height hotel-style lobby with chimneyed fireplace and architectural louvers</li>
-        <li>Secure parcel storage and mail room</li>
-        <li>Wellness centre with yoga studio, fitness area and water fill station</li>
-        <li>Wellness deck &mdash; landscaped outdoor recovery space</li>
-      </ul>
+<section class="offers-band">
+  <div class="sec-eyebrow gold">VIP broker offers &middot; ends December 31, 2026</div>
+  <h2 class="sec-title light">Parking is <em>on the house</em></h2>
+  <div class="offer-cards">
+    <div class="offer-card is-hero">
+      <div class="offer-lbl">Two bedroom &amp; larger</div>
+      <div class="offer-val">Parking free</div>
+      <div class="offer-sub">One space included &mdash; a $65,000 + HST value</div>
     </div>
-    <div class="amen-card">
-      <div class="amen-flr">Second floor</div>
-      <div class="amen-h">Guests &amp; laundry</div>
-      <ul class="inc-list">
-        <li>Two hotel-appointed guest suites, available by reservation</li>
-        <li>Spin lounge with oversized commercial washers and dryers</li>
-        <li>Lounge seating to read or work while laundry runs</li>
-      </ul>
+    <div class="offer-card">
+      <div class="offer-lbl">One bedroom &amp; one + den</div>
+      <div class="offer-val">50% off parking</div>
+      <div class="offer-sub">A $32,500 + HST saving</div>
     </div>
-    <div class="amen-card">
-      <div class="amen-flr">Seventh floor</div>
-      <div class="amen-h">Live, work &amp; entertain</div>
-      <ul class="inc-list">
-        <li>East fireside lounge with two dining areas</li>
-        <li>Landscaped terrace lounge with BBQs and lake and skyline views</li>
-        <li>Large demonstration kitchen</li>
-        <li>Co-working lounge with private stations and boardrooms</li>
-        <li>Private dining lounge with its own kitchen, reservable</li>
-        <li>Games room and entertainment lounge with shared partition</li>
-        <li>Kids&rsquo; play area with connected outdoor space</li>
-        <li>Pet spa with attached dog run</li>
-        <li>Makers&rsquo; studio for creative projects</li>
-      </ul>
+    <div class="offer-card">
+      <div class="offer-lbl">Every suite</div>
+      <div class="offer-val">Locker included</div>
+      <div class="offer-sub">A $5,500 + HST value</div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-lbl">To get in</div>
+      <div class="offer-val">Only 5% down</div>
+      <div class="offer-sub">$0 builder closing costs &middot; 30&ndash;60 day closing</div>
     </div>
   </div>
-</section>
-
-<section>
-  <div class="setting">
-    <div class="setting-media"><picture>
-        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w">
-        <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w, images/towns/alba-bedroom-1280.avif 1280w">
-        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w">
-        <source type="image/webp" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w, images/towns/alba-bedroom-1280.webp 1280w">
-        <img src="images/towns/alba-bedroom.jpg" alt="Alba suite interior by Cecconi Simone" loading="lazy" decoding="async">
-      </picture></div>
-    <div>
-      <div class="sec-eyebrow">Features &amp; finishes</div>
-      <h2 class="sec-title">Inside <em>the suites</em></h2>
-      <ul class="inc-list">
-        <li>9 ft smooth ceilings on floors 3 to 30, 10 ft on floors 31 and 32</li>
-        <li>Finishes selected by Cecconi Simone in coordinated design packages</li>
-        <li>Frameless glass shower or 5' acrylic tub, as per plan</li>
-        <li>Porcelain floor tiles in bathrooms, recessed pot lights where indicated</li>
-        <li>Geothermal heating and cooling &mdash; premium, on-demand, year-round hydronic</li>
-        <li>ENERGY STAR rated appliances and Energy Recovery Ventilation</li>
-        <li>Individual suite metering of electricity, cold and hot water</li>
-        <li>Fibre-optic cable to the suite, Rogers 1 Gigabyte internet</li>
-        <li>Eddy Solutions water leak detection in every suite</li>
-        <li>Edenshaw Elevated &mdash; keyless digital entry, in-suite touchpad, smartphone control, licence plate recognition at the garage</li>
-      </ul>
-    </div>
-  </div>
+  <p class="offers-fine">Limited time offers, some conditions apply. The $0 builder closing costs incentive applies exclusively to costs within the control of the developer and does not cover land transfer tax, other government taxes and levies, or the purchaser&rsquo;s own legal fees. The Edenshaw Elevated smart home and smart building package is included in every suite.</p>
 </section>
 
 <section id="floor-plans" class="plans-sec" style="--plan-ratio: 83 / 100" data-param="beds">
@@ -719,6 +633,88 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       </table>
     </div>
     <p class="tbl-note">From the Alba VIP broker price list, October 21, 2026. Exclusive listing: The Greenheart Group, Brokerage. *Effective purchase price after the new enhanced HST rebate, which depends on purchaser eligibility and on legislation being enacted as anticipated. Prices, specifications and promotions subject to change without notice. Brokers protected. E.&amp;O.E.</p>
+  </div>
+  <div class="ess-wrap">
+    <div class="dep-card">
+        <h3 class="side-title">The essentials</h3>
+          <div class="dep-row"><span class="dep-when">Deposit</span><span class="dep-amt">5%</span></div>
+          <div class="dep-row"><span class="dep-when">Maintenance fees</span><span class="dep-amt">Approx. $0.60<span class="dim">per sq ft, monthly</span></span></div>
+          <div class="dep-row"><span class="dep-when">Rogers package</span><span class="dep-amt">$65 + HST<span class="dim">per month</span></span></div>
+          <div class="dep-row"><span class="dep-when">Parking value</span><span class="dep-amt">$65,000 + HST</span></div>
+          <div class="dep-row"><span class="dep-when">Locker value</span><span class="dep-amt">$5,500 + HST</span></div>
+          <div class="dep-row"><span class="dep-when">Closing</span><span class="dep-amt">30 &ndash; 60 days</span></div>
+        <p class="dep-foot">Maintenance fees exclude hydro and water, which are individually metered. Cheques payable to Aird &amp; Berlis LLP, in trust. From the Alba VIP broker price list, October 21, 2026.</p>
+      </div>
+  </div>
+</section>
+
+<section id="amenities">
+  <div class="sec-eyebrow">Amenities</div>
+  <h2 class="sec-title">Over 20,000 sq ft, <em>across three floors</em></h2>
+  <div class="amen">
+    <div class="amen-card">
+      <div class="amen-flr">Ground floor</div>
+      <div class="amen-h">Arrival &amp; wellness</div>
+      <ul class="inc-list">
+        <li>24-hour concierge</li>
+        <li>Double-height hotel-style lobby with chimneyed fireplace and architectural louvers</li>
+        <li>Secure parcel storage and mail room</li>
+        <li>Wellness centre with yoga studio, fitness area and water fill station</li>
+        <li>Wellness deck &mdash; landscaped outdoor recovery space</li>
+      </ul>
+    </div>
+    <div class="amen-card">
+      <div class="amen-flr">Second floor</div>
+      <div class="amen-h">Guests &amp; laundry</div>
+      <ul class="inc-list">
+        <li>Two hotel-appointed guest suites, available by reservation</li>
+        <li>Spin lounge with oversized commercial washers and dryers</li>
+        <li>Lounge seating to read or work while laundry runs</li>
+      </ul>
+    </div>
+    <div class="amen-card">
+      <div class="amen-flr">Seventh floor</div>
+      <div class="amen-h">Live, work &amp; entertain</div>
+      <ul class="inc-list">
+        <li>East fireside lounge with two dining areas</li>
+        <li>Landscaped terrace lounge with BBQs and lake and skyline views</li>
+        <li>Large demonstration kitchen</li>
+        <li>Co-working lounge with private stations and boardrooms</li>
+        <li>Private dining lounge with its own kitchen, reservable</li>
+        <li>Games room and entertainment lounge with shared partition</li>
+        <li>Kids&rsquo; play area with connected outdoor space</li>
+        <li>Pet spa with attached dog run</li>
+        <li>Makers&rsquo; studio for creative projects</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="setting">
+    <div class="setting-media"><picture>
+        <source type="image/avif" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w">
+        <source type="image/avif" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.avif 480w, images/towns/alba-bedroom-800.avif 800w, images/towns/alba-bedroom-1280.avif 1280w">
+        <source type="image/webp" media="(max-width: 700px)" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w">
+        <source type="image/webp" sizes="(max-width: 1000px) 80vw, 320px" srcset="images/towns/alba-bedroom-480.webp 480w, images/towns/alba-bedroom-800.webp 800w, images/towns/alba-bedroom-1280.webp 1280w">
+        <img src="images/towns/alba-bedroom.jpg" alt="Alba suite interior by Cecconi Simone" loading="lazy" decoding="async">
+      </picture></div>
+    <div>
+      <div class="sec-eyebrow">Features &amp; finishes</div>
+      <h2 class="sec-title">Inside <em>the suites</em></h2>
+      <ul class="inc-list">
+        <li>9 ft smooth ceilings on floors 3 to 30, 10 ft on floors 31 and 32</li>
+        <li>Finishes selected by Cecconi Simone in coordinated design packages</li>
+        <li>Frameless glass shower or 5' acrylic tub, as per plan</li>
+        <li>Porcelain floor tiles in bathrooms, recessed pot lights where indicated</li>
+        <li>Geothermal heating and cooling &mdash; premium, on-demand, year-round hydronic</li>
+        <li>ENERGY STAR rated appliances and Energy Recovery Ventilation</li>
+        <li>Individual suite metering of electricity, cold and hot water</li>
+        <li>Fibre-optic cable to the suite, Rogers 1 Gigabyte internet</li>
+        <li>Eddy Solutions water leak detection in every suite</li>
+        <li>Edenshaw Elevated &mdash; keyless digital entry, in-suite touchpad, smartphone control, licence plate recognition at the garage</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -937,6 +933,42 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     land(); window.addEventListener('load', land); setTimeout(land, 600);
     if (fig) show(fig);
   }
+})();
+</script>
+
+<script>
+/* Renderings carousel. The track is a native scroll-snap row, so touch swipe and
+   trackpad flicks already work; this only drives the buttons, counter and caption. */
+(function () {
+  var track = document.getElementById('car-track');
+  if (!track) return;
+  var slides = track.querySelectorAll('.car-slide');
+  var cap = document.getElementById('car-cap'), num = document.getElementById('car-i');
+  var car = document.getElementById('shots');
+
+  function index() { return Math.round(track.scrollLeft / track.clientWidth); }
+  function sync() {
+    var i = Math.min(slides.length - 1, Math.max(0, index()));
+    if (num) num.textContent = i + 1;
+    if (cap) cap.textContent = slides[i].getAttribute('data-cap');
+  }
+  function go(d) {
+    var i = Math.min(slides.length - 1, Math.max(0, index() + d));
+    track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+  }
+  car.querySelector('.car-prev').addEventListener('click', function () { go(-1); });
+  car.querySelector('.car-next').addEventListener('click', function () { go(1); });
+
+  var t;
+  track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 80); }, { passive: true });
+  // arrow keys once the carousel has been used, so they don't fight the page
+  car.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  });
+  car.tabIndex = 0;
+  window.addEventListener('resize', sync);
+  sync();
 })();
 </script>
 
