@@ -96,6 +96,9 @@
       .rental-bar { padding: 14px 24px; gap: 12px; }
       .rental-bar-text { font-size: 12px; }
       nav, .hero, .dark-section { padding-left: 24px; padding-right: 24px; }
+      /* the logo and the four links were colliding at phone width */
+      nav { flex-wrap: wrap; gap: 10px 16px; padding-top: 18px; padding-bottom: 18px; }
+      nav > div { gap: 1rem !important; }
       footer { padding-left: 24px; padding-right: 24px; flex-direction: column; gap: 12px; text-align: center; }
       .neighbourhood-grid { grid-template-columns: 1fr 1fr; }
       .nb-card:nth-child(3n) { border-right: 0.5px solid #d8d4cc; }
@@ -105,6 +108,54 @@
     @media (max-width: 480px) {
       .neighbourhood-grid { grid-template-columns: 1fr; }
       .nb-card { border-right: none !important; }
+    }
+
+    /* ---- live floor-plan browser ---- */
+    .browse { padding: 44px 60px 56px; }
+    .browse-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+                    flex-wrap: wrap; border-bottom: 0.5px solid #d8d4cc; padding-bottom: 16px; margin-bottom: 20px; }
+    .browse-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 400; line-height: 1.1; }
+    .browse-title em { font-style: italic; color: var(--gold); }
+    .browse-count { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .browse-count b { color: #002244; font-size: 15px; font-weight: 600; }
+    .fl-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 9px; }
+    .fl-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+               min-width: 104px; padding-top: 8px; flex-shrink: 0; }
+    .fl-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip { border: 1px solid #d8d4cc; background: #fff; font: inherit; font-size: 11px; letter-spacing: 0.05em;
+             text-transform: uppercase; padding: 7px 13px; cursor: pointer; color: var(--muted); transition: all 0.15s; }
+    .chip:hover { border-color: #002244; color: #002244; }
+    .chip.on { background: #002244; border-color: #002244; color: #fff; }
+    .plan-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 24px; }
+    .pc { background: #fff; border: 0.5px solid #d8d4cc; text-decoration: none; display: flex; flex-direction: column;
+           transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .pc:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,34,68,0.08); }
+    .pc-img { aspect-ratio: 1/1; background: #fff; border-bottom: 0.5px solid #ece8e0; overflow: hidden; }
+    .pc-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .pc-body { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+    .pc-b { font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .pc-n { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #002244; line-height: 1.15; }
+    .pc-t { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+    .pc-m { display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+             margin-top: auto; padding-top: 9px; border-top: 0.5px solid #ece8e0; }
+    .pc-s { font-size: 12px; color: var(--charcoal); }
+    .pc-p { font-size: 13px; font-weight: 600; color: #002244; white-space: nowrap; }
+    .pc-y { font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    .browse-more { margin-top: 24px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .btn-more { background: #fff; border: 1px solid #002244; color: #002244; font: inherit; font-size: 11px;
+                 letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 26px; cursor: pointer; transition: all 0.2s; }
+    .btn-more:hover { background: #002244; color: #fff; }
+    .browse-all { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+    .browse-all:hover { text-decoration: underline; }
+    .browse-empty { padding: 36px 0; color: var(--muted); font-size: 14px; }
+    @media (max-width: 1280px) { .plan-cards { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px)  { .plan-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) {
+      .browse { padding: 32px 24px 40px; }
+      .fl-row { flex-direction: column; gap: 6px; margin-bottom: 14px; }
+      .fl-lbl { padding-top: 0; }
+      .plan-cards { gap: 12px; }
+      .pc-n { font-size: 17px; }
     }
   </style>
 <!-- Meta Pixel Code -->
@@ -127,17 +178,17 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 </head>
 <body>
   <section class="dark-hero">
-    <div class="dark-hero-eyebrow">Toronto &amp; GTA &middot; Pre-Construction</div>
-    <h1 class="dark-hero-heading">Save up to $130,000 in <em>HST</em> on your next condo.</h1>
-    <p class="dark-hero-sub">Ontario&rsquo;s 2026 HST rebate is the biggest buying opportunity in a decade. Browse floor plans from Toronto&rsquo;s top pre-construction buildings &mdash; all with rebate pricing shown.</p>
+    <div class="dark-hero-eyebrow">Toronto &amp; GTA &middot; New construction</div>
+    <h1 class="dark-hero-heading">Every new-build floor plan, <em>in one place.</em></h1>
+    <p class="dark-hero-sub">244 plans across 17 buildings and 7 neighbourhoods &mdash; ready to move into, under construction, or coming soon. Filter by neighbourhood, size, price and occupancy, open any plan full size, and save the ones worth a second look.</p>
     <div class="dark-hero-actions">
-      <a href="pages/under-1800k.html" class="btn-gold">Browse HST Rebate Units</a>
-      <a href="#neighbourhoods" class="btn-outline-light">View All Neighbourhoods</a>
+      <a href="#browse" class="btn-gold">Browse floor plans</a>
+      <a href="#neighbourhoods" class="btn-outline-light">View all neighbourhoods</a>
     </div>
     <div class="dark-hero-stats">
-      <div class="dark-hero-stat"><div class="dark-hero-stat-val">163</div><div class="dark-hero-stat-lbl">Floor Plans</div></div>
-      <div class="dark-hero-stat"><div class="dark-hero-stat-val">9</div><div class="dark-hero-stat-lbl">Neighbourhoods</div></div>
-      <div class="dark-hero-stat"><div class="dark-hero-stat-val">$409K+</div><div class="dark-hero-stat-lbl">Starting From</div></div>
+      <div class="dark-hero-stat"><div class="dark-hero-stat-val">244</div><div class="dark-hero-stat-lbl">Floor plans</div></div>
+      <div class="dark-hero-stat"><div class="dark-hero-stat-val">17</div><div class="dark-hero-stat-lbl">Buildings</div></div>
+      <div class="dark-hero-stat"><div class="dark-hero-stat-val">7</div><div class="dark-hero-stat-lbl">Neighbourhoods</div></div>
     </div>
   </section>
   <nav>
@@ -149,6 +200,26 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <a href="pages/saved.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; position:relative;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">&hearts; Saved</a>
     </div>
   </nav>
+  <section class="browse" id="browse">
+    <div class="browse-head">
+      <h2 class="browse-title">Browse the <em>floor plans</em></h2>
+      <div class="browse-count"><b id="bc">244</b> <span id="bc-word">plans</span> shown</div>
+    </div>
+    <div class="browse-filters">
+      <div class="fl-row"><span class="fl-lbl">Neighbourhood</span><div class="fl-chips" id="f-hood"></div></div>
+      <div class="fl-row"><span class="fl-lbl">Size</span><div class="fl-chips" id="f-size"></div></div>
+      <div class="fl-row"><span class="fl-lbl">Price</span><div class="fl-chips" id="f-price"></div></div>
+      <div class="fl-row"><span class="fl-lbl">Occupancy</span><div class="fl-chips" id="f-year"></div></div>
+    </div>
+    <div class="plan-cards" id="plan-cards"></div>
+    <div class="browse-empty" id="browse-empty" hidden>Nothing matches that combination. Try widening one of the filters.</div>
+    <div class="browse-more">
+      <button type="button" class="btn-more" id="more" hidden>Show more</button>
+      <a class="browse-all" href="pages/under-1800k.html">Open the full browser &rarr;</a>
+      <a class="browse-all" href="buildings/map.html">See them on the map &rarr;</a>
+    </div>
+  </section>
+
   <section class="hero">
     <a href="pages/under-1800k.html" style="display:flex; align-items:center; justify-content:space-between; background:#002244; padding:28px 32px; text-decoration:none; margin-bottom:24px; transition:background 0.2s;" onmouseover="this.style.background='#001a36'" onmouseout="this.style.background='#002244'">
       <div>
@@ -351,5 +422,90 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <script src="js/save.js"></script>
 <script src="js/sofia.js"></script>
 <script src="js/protect.js"></script>
+
+<script>
+/* Homepage floor-plan browser. Reads js/plans-index.json, which
+   scripts/build_plans_index.py generates from the browser pages in pages/. */
+(function () {
+  var grid = document.getElementById('plan-cards');
+  if (!grid) return;
+  var countEl = document.getElementById('bc'), wordEl = document.getElementById('bc-word');
+  var emptyEl = document.getElementById('browse-empty'), moreBtn = document.getElementById('more');
+  var PAGE = 12, shown = PAGE, all = [], filtered = [];
+  var sel = { h: 'all', size: 'all', price: 'all', year: 'all' };
+
+  var SIZE = [['all','All'],['0-600','Under 600'],['600-900','600–900'],['900-1500','900–1,500'],['1500-99999','1,500+']];
+  var PRICE = [['all','All'],['0-700000','Under $700k'],['700000-1000000','$700k–$1M'],['1000000-1800000','$1M–$1.8M'],['1800000-99999999','$1.8M+']];
+
+  function money(n) { return n ? '$' + n.toLocaleString('en-CA') : '—'; }
+  function inRange(v, r) { if (r === 'all') return true; var p = r.split('-'); return v >= +p[0] && v < +p[1]; }
+
+  function match(p) {
+    return (sel.h === 'all' || p.h === sel.h)
+        && inRange(p.s, sel.size) && inRange(p.p, sel.price)
+        && (sel.year === 'all' || p.c === sel.year);
+  }
+
+  function card(p) {
+    var stem = p.img.replace(/\.(jpg|jpeg|png)$/, '');
+    var pic = p.v
+      ? '<picture><source type="image/avif" sizes="(max-width:900px) 50vw, 23vw" srcset="' + stem + '-600.avif 600w, ' + stem + '-1200.avif 1200w">'
+        + '<source type="image/webp" sizes="(max-width:900px) 50vw, 23vw" srcset="' + stem + '-600.webp 600w, ' + stem + '-1200.webp 1200w">'
+        + '<img src="' + p.img + '" alt="' + p.n + ' floor plan" loading="lazy" decoding="async"></picture>'
+      : '<img src="' + p.img + '" alt="' + p.n + ' floor plan" loading="lazy" decoding="async">';
+    return '<a class="pc" href="' + p.u + '">'
+      + '<div class="pc-img">' + pic + '</div>'
+      + '<div class="pc-body"><div class="pc-b">' + p.b + '</div>'
+      + '<div class="pc-n">' + p.n + '</div>'
+      + '<div class="pc-t">' + p.t + '</div>'
+      + '<div class="pc-m"><span class="pc-s">' + p.s.toLocaleString('en-CA') + ' sq ft</span>'
+      + '<span class="pc-p">' + money(p.p) + '</span></div>'
+      + (p.c ? '<div class="pc-y">' + p.c + ' occupancy</div>' : '')
+      + '</div></a>';
+  }
+
+  function render() {
+    filtered = all.filter(match);
+    countEl.textContent = filtered.length;
+    wordEl.textContent = filtered.length === 1 ? 'plan' : 'plans';
+    grid.innerHTML = filtered.slice(0, shown).map(card).join('');
+    emptyEl.hidden = filtered.length > 0;
+    moreBtn.hidden = filtered.length <= shown;
+    moreBtn.textContent = 'Show more (' + (filtered.length - shown) + ' left)';
+  }
+
+  function chips(host, opts, key) {
+    host.innerHTML = opts.map(function (o) {
+      return '<button type="button" class="chip' + (o[0] === 'all' ? ' on' : '') + '" data-v="' + o[0] + '">' + o[1] + '</button>';
+    }).join('');
+    host.addEventListener('click', function (e) {
+      var b = e.target.closest('.chip'); if (!b) return;
+      Array.prototype.forEach.call(host.children, function (c) { c.classList.toggle('on', c === b); });
+      sel[key] = b.getAttribute('data-v'); shown = PAGE; render();
+    });
+  }
+
+  moreBtn.addEventListener('click', function () { shown += PAGE; render(); });
+
+  fetch('js/plans-index.json').then(function (r) { return r.json(); }).then(function (data) {
+    all = data;
+    var hoods = [['all', 'All']].concat(
+      Object.keys(data.reduce(function (m, p) { if (p.h) m[p.h] = 1; return m; }, {})).sort()
+        .map(function (h) { return [h, h]; }));
+    var years = [['all', 'All']].concat(
+      Object.keys(data.reduce(function (m, p) { if (p.c) m[p.c] = 1; return m; }, {})).sort()
+        .map(function (y) { return [y, y]; }));
+    chips(document.getElementById('f-hood'), hoods, 'h');
+    chips(document.getElementById('f-size'), SIZE, 'size');
+    chips(document.getElementById('f-price'), PRICE, 'price');
+    chips(document.getElementById('f-year'), years, 'year');
+    render();
+  }).catch(function () {
+    grid.innerHTML = '';
+    emptyEl.hidden = false;
+    emptyEl.textContent = 'The plan list could not load. Browse by neighbourhood below, or open the full browser.';
+  });
+})();
+</script>
 </body>
 </html>
