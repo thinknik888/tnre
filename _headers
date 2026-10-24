@@ -5,3 +5,6 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /js/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=86400
+# The plan index is data, not a static asset — it must not go stale for a day.
+/js/plans-index.json
+  Cache-Control: public, max-age=0, must-revalidate

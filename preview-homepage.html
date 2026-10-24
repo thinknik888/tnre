@@ -494,7 +494,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   moreBtn.addEventListener('click', function () { shown += PAGE; render(); });
 
-  fetch('js/plans-index.json').then(function (r) { return r.json(); }).then(function (data) {
+  fetch('js/plans-index.json?v=hst1').then(function (r) { return r.json(); }).then(function (data) {
     all = data;
     var hoods = [['all', 'All']].concat(
       Object.keys(data.reduce(function (m, p) { if (p.h) m[p.h] = 1; return m; }, {})).sort()
