@@ -43,21 +43,9 @@
     .nb-count { font-size: 11px; font-weight: 600; color: #002244; letter-spacing: 0.02em; }
     .nb-sqft { font-size: 13px; color: #002244; font-weight: 500; }
     .nb-coming { font-size: 11px; color: var(--text-dim); font-style: italic; font-family: 'Cormorant Garamond', serif; }
-    .dark-hero { background: #002244; padding: 80px 60px 0; }
-    .dark-hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
-    .dark-hero-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 400; color: #ffffff; line-height: 1.1; margin-bottom: 20px; max-width: 720px; }
-    .dark-hero-heading em { font-style: italic; color: #c9a84c; }
-    .dark-hero-sub { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 600px; margin-bottom: 36px; }
-    .dark-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
     .btn-gold { display: inline-block; background: #c9a84c; color: #fff; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 14px 32px; transition: background 0.2s; }
     .btn-gold:hover { background: #b8963e; }
-    .btn-outline-light { display: inline-block; background: transparent; color: var(--text-light); font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s, color 0.2s; }
     .btn-outline-light:hover { border-color: #c9a84c; color: #c9a84c; }
-    .dark-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.1); }
-    .dark-hero-stat { text-align: center; padding: 32px 20px; border-right: 1px solid rgba(255,255,255,0.1); }
-    .dark-hero-stat:last-child { border-right: none; }
-    .dark-hero-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #c9a84c; margin-bottom: 4px; }
-    .dark-hero-stat-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
     .rental-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); padding: 16px 60px; display: flex; align-items: center; justify-content: center; gap: 24px; z-index: 9990; transform: translateY(100%); transition: transform 0.4s ease; flex-wrap: wrap; }
     .rental-bar.visible { transform: translateY(0); }
     .rental-bar-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
@@ -89,10 +77,6 @@
     .footer-logo em { font-style: italic; color: var(--gold); opacity: 0.7; }
     .footer-copy { font-size: 11px; color: #5a5750; letter-spacing: 0.04em; }
     @media (max-width: 768px) {
-      .dark-hero { padding: 48px 24px 0; }
-      .dark-hero-stats { grid-template-columns: repeat(3, 1fr); }
-      .dark-hero-stat { padding: 20px 12px; }
-      .dark-hero-stat-val { font-size: 1.5rem; }
       .rental-bar { padding: 14px 24px; gap: 12px; }
       .rental-bar-text { font-size: 12px; }
       nav, .hero, .dark-section { padding-left: 24px; padding-right: 24px; }
@@ -111,21 +95,22 @@
     }
 
     /* ---- live floor-plan browser ---- */
-    .browse { padding: 44px 60px 56px; }
-    .browse-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
-                    flex-wrap: wrap; border-bottom: 0.5px solid #d8d4cc; padding-bottom: 16px; margin-bottom: 20px; }
-    .browse-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 400; line-height: 1.1; }
-    .browse-title em { font-style: italic; color: var(--gold); }
-    .browse-count { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-    .browse-count b { color: #002244; font-size: 15px; font-weight: 600; }
-    .fl-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 9px; }
-    .fl-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
-               min-width: 104px; padding-top: 8px; flex-shrink: 0; }
-    .fl-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-    .chip { border: 1px solid #d8d4cc; background: #fff; font: inherit; font-size: 11px; letter-spacing: 0.05em;
-             text-transform: uppercase; padding: 7px 13px; cursor: pointer; color: var(--muted); transition: all 0.15s; }
-    .chip:hover { border-color: #002244; color: #002244; }
-    .chip.on { background: #002244; border-color: #002244; color: #fff; }
+    .browse { padding: 18px 60px 48px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+                overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .fbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+             padding-bottom: 14px; border-bottom: 0.5px solid #d8d4cc; }
+    .fsel { font: inherit; font-size: 12px; color: var(--charcoal); background: #fff;
+             border: 1px solid #d8d4cc; padding: 8px 28px 8px 11px; cursor: pointer; border-radius: 0;
+             -webkit-appearance: none; appearance: none;
+             background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6357' fill='none' stroke-width='1.2'/%3E%3C/svg%3E");
+             background-repeat: no-repeat; background-position: right 10px center; }
+    .fsel:hover { border-color: #002244; }
+    .fsel.on { border-color: #002244; color: #002244; font-weight: 500; }
+    .fbar-count { margin-left: auto; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .fbar-count b { color: #002244; font-size: 14px; font-weight: 600; }
+    .fbar-link { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+    .fbar-link:hover { text-decoration: underline; }
     .plan-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 24px; }
     .pc { background: #fff; border: 0.5px solid #d8d4cc; text-decoration: none; display: flex; flex-direction: column;
            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
@@ -151,9 +136,10 @@
     @media (max-width: 1280px) { .plan-cards { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 900px)  { .plan-cards { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) {
-      .browse { padding: 32px 24px 40px; }
-      .fl-row { flex-direction: column; gap: 6px; margin-bottom: 14px; }
-      .fl-lbl { padding-top: 0; }
+      .browse { padding: 16px 24px 32px; }
+      .fbar { gap: 6px; }
+      .fsel { flex: 1 1 calc(50% - 3px); font-size: 11.5px; }
+      .fbar-count { margin-left: 0; width: 100%; }
       .plan-cards { gap: 12px; }
       .pc-n { font-size: 17px; }
     }
@@ -177,20 +163,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body>
-  <section class="dark-hero">
-    <div class="dark-hero-eyebrow">Toronto &amp; GTA &middot; New construction</div>
-    <h1 class="dark-hero-heading">Every new-build floor plan, <em>in one place.</em></h1>
-    <p class="dark-hero-sub">244 plans across 17 buildings and 7 neighbourhoods &mdash; ready to move into, under construction, or coming soon. Filter by neighbourhood, size, price and occupancy, open any plan full size, and save the ones worth a second look.</p>
-    <div class="dark-hero-actions">
-      <a href="#browse" class="btn-gold">Browse floor plans</a>
-      <a href="#neighbourhoods" class="btn-outline-light">View all neighbourhoods</a>
-    </div>
-    <div class="dark-hero-stats">
-      <div class="dark-hero-stat"><div class="dark-hero-stat-val">244</div><div class="dark-hero-stat-lbl">Floor plans</div></div>
-      <div class="dark-hero-stat"><div class="dark-hero-stat-val">17</div><div class="dark-hero-stat-lbl">Buildings</div></div>
-      <div class="dark-hero-stat"><div class="dark-hero-stat-val">7</div><div class="dark-hero-stat-lbl">Neighbourhoods</div></div>
-    </div>
-  </section>
   <nav>
     <a href="/" class="logo">Condos<em>Around</em></a>
     <div style="display:flex; gap:1.5rem;">
@@ -200,17 +172,16 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <a href="pages/saved.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; position:relative;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">&hearts; Saved</a>
     </div>
   </nav>
+  <h1 class="sr-only">Every new-build floor plan in Toronto and the GTA — 244 plans across 17 buildings and 7 neighbourhoods</h1>
   <section class="browse" id="browse">
-    <div class="browse-head">
-      <h2 class="browse-title">Browse the <em>floor plans</em></h2>
-      <div class="browse-count"><b id="bc">244</b> <span id="bc-word">plans</span> shown</div>
-    </div>
-    <div class="browse-filters">
-      <div class="fl-row"><span class="fl-lbl">Neighbourhood</span><div class="fl-chips" id="f-hood"></div></div>
-      <div class="fl-row"><span class="fl-lbl">Size</span><div class="fl-chips" id="f-size"></div></div>
-      <div class="fl-row"><span class="fl-lbl">Price</span><div class="fl-chips" id="f-price"></div></div>
-      <div class="fl-row"><span class="fl-lbl">Occupancy</span><div class="fl-chips" id="f-year"></div></div>
-      <div class="fl-row"><span class="fl-lbl">Sort</span><div class="fl-chips" id="f-sort"></div></div>
+    <div class="fbar">
+      <select class="fsel" id="f-hood" aria-label="Neighbourhood"></select>
+      <select class="fsel" id="f-size" aria-label="Size"></select>
+      <select class="fsel" id="f-price" aria-label="Price"></select>
+      <select class="fsel" id="f-year" aria-label="Occupancy"></select>
+      <select class="fsel" id="f-sort" aria-label="Sort"></select>
+      <span class="fbar-count"><b id="bc">244</b> <span id="bc-word">plans</span></span>
+      <a class="fbar-link" href="buildings/map.html">Map &rarr;</a>
     </div>
     <div class="plan-cards" id="plan-cards"></div>
     <div class="browse-empty" id="browse-empty" hidden>Nothing matches that combination. Try widening one of the filters.</div>
@@ -435,8 +406,8 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   var PAGE = 12, shown = PAGE, all = [], filtered = [];
   var sel = { h: 'all', size: 'all', price: 'all', year: 'all', sort: 'p-desc' };
 
-  var SIZE = [['all','All'],['0-600','Under 600'],['600-900','600–900'],['900-1500','900–1,500'],['1500-99999','1,500+']];
-  var PRICE = [['all','All'],['0-700000','Under $700k'],['700000-1000000','$700k–$1M'],['1000000-1800000','$1M–$1.8M'],['1800000-99999999','$1.8M+']];
+  var SIZE = [['all','Any size'],['0-600','Under 600'],['600-900','600–900'],['900-1500','900–1,500'],['1500-99999','1,500+']];
+  var PRICE = [['all','Any price'],['0-700000','Under $700k'],['700000-1000000','$700k–$1M'],['1000000-1800000','$1M–$1.8M'],['1800000-99999999','$1.8M+']];
   var SORTS = [['p-desc','Price high → low'],['p-asc','Price low → high'],['s-desc','Largest first'],['s-asc','Smallest first']];
 
   /* Plans without a price sort to the back whichever way the list is ordered,
@@ -488,15 +459,16 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     moreBtn.textContent = 'Show more (' + (filtered.length - shown) + ' left)';
   }
 
-  function chips(host, opts, key, active) {
+  function dropdown(host, opts, key, active) {
     active = active || 'all';
     host.innerHTML = opts.map(function (o) {
-      return '<button type="button" class="chip' + (o[0] === active ? ' on' : '') + '" data-v="' + o[0] + '">' + o[1] + '</button>';
+      return '<option value="' + o[0] + '"' + (o[0] === active ? ' selected' : '') + '>' + o[1] + '</option>';
     }).join('');
-    host.addEventListener('click', function (e) {
-      var b = e.target.closest('.chip'); if (!b) return;
-      Array.prototype.forEach.call(host.children, function (c) { c.classList.toggle('on', c === b); });
-      sel[key] = b.getAttribute('data-v'); shown = PAGE; render();
+    host.classList.toggle('on', active !== 'all');
+    host.addEventListener('change', function () {
+      sel[key] = host.value;
+      host.classList.toggle('on', host.value !== 'all' && host.value !== 'p-desc');
+      shown = PAGE; render();
     });
   }
 
@@ -504,17 +476,17 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
 
   fetch('js/plans-index.json').then(function (r) { return r.json(); }).then(function (data) {
     all = data;
-    var hoods = [['all', 'All']].concat(
+    var hoods = [['all', 'All neighbourhoods']].concat(
       Object.keys(data.reduce(function (m, p) { if (p.h) m[p.h] = 1; return m; }, {})).sort()
         .map(function (h) { return [h, h]; }));
-    var years = [['all', 'All']].concat(
+    var years = [['all', 'Any occupancy']].concat(
       Object.keys(data.reduce(function (m, p) { if (p.c) m[p.c] = 1; return m; }, {})).sort()
         .map(function (y) { return [y, y]; }));
-    chips(document.getElementById('f-hood'), hoods, 'h');
-    chips(document.getElementById('f-size'), SIZE, 'size');
-    chips(document.getElementById('f-price'), PRICE, 'price');
-    chips(document.getElementById('f-year'), years, 'year');
-    chips(document.getElementById('f-sort'), SORTS, 'sort', 'p-desc');
+    dropdown(document.getElementById('f-hood'), hoods, 'h');
+    dropdown(document.getElementById('f-size'), SIZE, 'size');
+    dropdown(document.getElementById('f-price'), PRICE, 'price');
+    dropdown(document.getElementById('f-year'), years, 'year');
+    dropdown(document.getElementById('f-sort'), SORTS, 'sort', 'p-desc');
     render();
   }).catch(function () {
     grid.innerHTML = '';
