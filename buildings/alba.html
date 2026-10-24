@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" type="image/avif" media="(min-width: 701px) and (max-width: 1600px)" imagesizes="100vw" imagesrcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w, images/towns/alba-hero-1280.avif 1280w, images/towns/alba-hero-1920.avif 1920w">
   <style>
     :root { --navy: #002244; --navy-deep: #001a35; --gold: #c9a84c; --gold-soft: #e2c684;
              --white: #fff; --off-white: #faf8f4; --cream: #f3ede2; --text: #1a1a18;
@@ -32,27 +31,6 @@
     nav > a { white-space: nowrap; }
     .nav-back .nb-short { display: none; }
 
-    /* Hero is a band, not a screen: the facts bar and the start of the copy
-       should be visible without scrolling on a laptop. */
-    .hero { position: relative; min-height: 42vh; max-height: 420px; display: flex; align-items: flex-end; background: var(--navy-deep); }
-    .hero picture, .hero .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .hero .hero-img { object-fit: cover; object-position: center 38%; }
-    .hero::after { content: ''; position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, rgba(0,18,38,0.22) 0%, rgba(0,18,38,0.52) 42%, rgba(0,18,38,0.92) 100%); }
-    .hero-inner { position: relative; z-index: 2; padding: 2.25rem 3rem 1.75rem; width: 100%; }
-    .hero-builder { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-    .hero-status { display: inline-block; background: rgba(201,168,76,0.96); color: #17130a; font-size: 0.62rem;
-                    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.35rem 0.8rem;
-                    border-radius: 2px; margin-bottom: 0.7rem; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.1rem, 4vw, 3.2rem);
-                   font-weight: 300; line-height: 1.02; color: #fff; margin-bottom: 0.35rem; }
-    .hero-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--gold-soft); margin-bottom: 0.45rem; }
-    .hero-addr { font-size: 0.84rem; color: rgba(255,255,255,0.62); }
-    .hero-credit { position: absolute; right: 1rem; bottom: 0.45rem; z-index: 2; font-size: 0.56rem; color: rgba(255,255,255,0.32); }
-    .hero-cta { display: inline-block; margin-top: 1rem; background: var(--gold); color: #17130a; text-decoration: none;
-                 font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-                 padding: 0.8rem 1.4rem; border-radius: 2px; align-self: flex-start; transition: background 0.2s; }
-    .hero-cta:hover { background: #d6b85e; }
 
     section.reg { background: var(--cream); padding-top: 3.5rem; padding-bottom: 3.5rem; scroll-margin-top: 70px; }
     .reg-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 4rem; align-items: center; max-width: 1180px; }
@@ -200,9 +178,6 @@
       .nav-back .nb-long { display: none; }
       .nav-back .nb-short { display: inline; }
       .nav-cta { padding: 0.6rem 0.95rem; font-size: 0.8rem; }
-      .hero { min-height: 36vh; max-height: 300px; }
-      .hero-inner { padding: 1.75rem 1.25rem 1.5rem; }
-      .hero-tag { font-size: 1rem; }
       section, .cta, .disclaimer, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
       section { padding-top: 3rem; padding-bottom: 3rem; }
       .facts { grid-template-columns: repeat(2, 1fr); }
@@ -235,7 +210,8 @@
                   scrollbar-width: none; -ms-overflow-style: none; }
     .car-track::-webkit-scrollbar { display: none; }
     .car-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; }
-    .car-slide img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+    .car-slide img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    @media (max-width: 900px) { .car-slide img { aspect-ratio: 16/10; } }
     .car-prev, .car-next { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px;
                             border: none; border-radius: 50%; background: rgba(255,255,255,0.88); color: var(--navy);
                             font-size: 1.5rem; line-height: 42px; cursor: pointer; z-index: 2;
@@ -248,9 +224,6 @@
     .car-credit { position: absolute; right: 0.85rem; bottom: 0.9rem; z-index: 2; font-size: 0.56rem;
                    color: rgba(255,255,255,0.75); text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 
-    /* what's nearby, as its own two-column band */
-    .near-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
-    .near-grid .cm-row:nth-last-child(-n+1) { border-bottom: none; }
 
     /* the offer that actually sells the building */
     .offers-band { background: var(--navy); border-bottom: none; }
@@ -271,12 +244,23 @@
     .offers-fine { font-size: 0.68rem; line-height: 1.7; color: rgba(255,255,255,0.4); font-style: italic;
                     margin-top: 1.75rem; max-width: 900px; }
 
+    .intro-addr { font-size: 0.84rem; color: var(--text-mid); margin-bottom: 1rem; }
+    .jot { list-style: none; margin: 0 0 0.5rem; }
+    .jot li { position: relative; padding-left: 1.4rem; margin-bottom: 0.7rem; font-size: 0.92rem;
+               line-height: 1.6; color: var(--text-mid); }
+    .jot li::before { content: ''; position: absolute; left: 0; top: 0.58rem; width: 5px; height: 5px;
+                       border-radius: 50%; background: var(--gold); }
+    .jot b { font-weight: 600; color: var(--text); }
+    .jot-lbl { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+                margin: 1.4rem 0 0.8rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+    .intro-copy .jot-lbl:first-of-type { margin-top: 1.1rem; }
+    .facts { border-top: 1px solid rgba(255,255,255,0.09); }
+
     .ess-wrap { margin-top: 2.5rem; max-width: 460px; }
 
     @media (max-width: 1100px) { .offer-cards { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 900px) {
       .intro-grid { grid-template-columns: 1fr; gap: 1.75rem; }
-      .near-grid { grid-template-columns: 1fr; gap: 0; }
       .ess-wrap { max-width: none; }
     }
     @media (max-width: 700px) {
@@ -371,27 +355,6 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <a href="tel:6479240848" class="nav-cta">647-924-0848</a>
 </nav>
 
-<header class="hero">
-  <picture>
-    <source type="image/avif" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w">
-    <source type="image/avif" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w, images/towns/alba-hero-1280.avif 1280w, images/towns/alba-hero-1920.avif 1920w">
-    <source type="image/avif" sizes="100vw" srcset="images/towns/alba-hero-480.avif 480w, images/towns/alba-hero-800.avif 800w, images/towns/alba-hero-1280.avif 1280w, images/towns/alba-hero-1920.avif 1920w, images/towns/alba-hero-2560.avif 2560w">
-    <source type="image/webp" media="(max-width: 700px)" sizes="100vw" srcset="images/towns/alba-hero-480.webp 480w, images/towns/alba-hero-800.webp 800w">
-    <source type="image/webp" media="(max-width: 1600px)" sizes="100vw" srcset="images/towns/alba-hero-480.webp 480w, images/towns/alba-hero-800.webp 800w, images/towns/alba-hero-1280.webp 1280w, images/towns/alba-hero-1920.webp 1920w">
-    <source type="image/webp" sizes="100vw" srcset="images/towns/alba-hero-480.webp 480w, images/towns/alba-hero-800.webp 800w, images/towns/alba-hero-1280.webp 1280w, images/towns/alba-hero-1920.webp 1920w, images/towns/alba-hero-2560.webp 2560w">
-    <img src="images/towns/alba-hero.jpg" alt="Alba Condos by Edenshaw, curved balcony detail at sunset" loading="eager" fetchpriority="high" decoding="async" class="hero-img">
-  </picture>
-  <div class="hero-inner">
-    <div class="hero-status">VIP broker pricing &middot; Only 5% deposit</div>
-    <div class="hero-builder">Edenshaw Developments &middot; Downtown Mississauga</div>
-    <h1 class="hero-title">Alba</h1>
-    <div class="hero-tag">A new standard on Hurontario, from $419,990.</div>
-    <div class="hero-addr">1 Fairview Road East, Mississauga &middot; Hurontario &amp; Fairview, steps from Square One</div>
-    <a class="hero-cta" href="#floor-plans">See floor plans &amp; prices &rarr;</a>
-  </div>
-  <div class="hero-credit">Artist&rsquo;s concept</div>
-</header>
-
 <div class="facts">
       <div class="fact"><div class="fact-lbl">From</div><div class="fact-val">$419,990*</div></div>
       <div class="fact"><div class="fact-lbl">Size</div><div class="fact-val">427 &ndash; 863 sq&nbsp;ft</div></div>
@@ -428,32 +391,36 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <div class="car-credit">Artist&rsquo;s concept</div>
     </div>
     <div class="intro-copy">
-      <div class="sec-eyebrow">Overview</div>
-      <h2 class="sec-title">About <em>Alba</em></h2>
+      <div class="sec-eyebrow">Edenshaw Developments &middot; Downtown Mississauga</div>
+      <h1 class="sec-title">About <em>Alba</em></h1>
+      <div class="intro-addr">1 Fairview Road East, Mississauga &middot; Hurontario &amp; Fairview, steps from Square One</div>
       <p class="car-cap" id="car-cap">The podium from Hurontario Street</p>
-      <p>Alba is a 418-suite community by Edenshaw Developments at the corner of Hurontario Street and Fairview Road East, in Downtown Mississauga &mdash; a short walk from Square One. A 25-storey tower rises from a seven-storey black-and-white clad podium, with elegantly curved balconies and unobstructed views: Lake Ontario to the south, the Toronto skyline to the east, the Mississauga skyline to the north.</p>
-      <p>Designed with Core Architects and Cecconi Simone, the interiors take a Scandinavian direction &mdash; neutral tones, natural textures, warmth and quiet. Over 20,000 square feet of amenities spread across three floors, and the building runs on a geothermal system as a LEED Certified Candidate.</p>
-      <p>Suites run from a 427 sq ft one bedroom to an 863 sq ft two bedroom plus den. Ceilings are 9 ft on floors 3 to 30, and 10 ft on 31 and 32.</p>
+      <div class="jot-lbl">The building</div>
+      <ul class="jot">
+        <li><b>418 suites</b> by Edenshaw Developments, at Hurontario Street and Fairview Road East</li>
+        <li><b>32 storeys</b> &mdash; a 25-storey tower on a seven-storey black-and-white clad podium</li>
+        <li><b>Curved balconies</b>, unobstructed &mdash; Lake Ontario south, Toronto skyline east, Mississauga skyline north</li>
+        <li><b>Core Architects</b> outside, <b>Cecconi Simone</b> inside &mdash; Scandinavian, neutral tones, natural texture</li>
+        <li><b>20,000+ sq ft of amenities</b> across three floors</li>
+        <li><b>Geothermal</b> energy system &middot; LEED Certified Candidate</li>
+        <li><b>427 &ndash; 863 sq ft</b>, one bedroom to two bedroom + den</li>
+        <li><b>9 ft ceilings</b> floors 3&ndash;30, 10 ft on floors 31 and 32</li>
+      </ul>
+      <div class="jot-lbl">What&rsquo;s nearby</div>
+      <ul class="jot">
+        <li><b>Walk to Square One</b> &mdash; Whole Foods and Crate and Barrel on Square One Drive</li>
+        <li><b>Celebration Square</b>, Art Gallery of Mississauga and the Central Library on City Centre Drive</li>
+        <li><b>Living Arts Centre</b> &middot; <b>Sheridan College</b> on Duke of York Boulevard</li>
+        <li><b>Mississauga Valley Park</b> and its trails</li>
+        <li><b>Hurontario LRT</b> along Hurontario &middot; <b>Cooksville GO</b> mobility hub</li>
+        <li><b>Highway 403</b> north, <b>QEW</b> and the lakeshore south</li>
+        <li><b>Metro, FreshCo, LCBO</b> and La Novita Bakery within a few minutes</li>
+      </ul>
       <div class="intro-cta">
         <a class="btn-gold" href="#floor-plans">See the 20 floor plans &rarr;</a>
         <a class="btn-line" href="#register">Get pricing &rarr;</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="nearby">
-  <div class="sec-eyebrow">The location</div>
-  <h2 class="sec-title">What&rsquo;s <em>nearby</em></h2>
-  <div class="near-grid">
-    <div class="cm-row"><span class="cm-time">Walking distance</span><span class="cm-place">Square One Shopping Centre, Whole Foods and Crate and Barrel on Square One Drive</span></div>
-    <div class="cm-row"><span class="cm-time">Downtown core</span><span class="cm-place">Celebration Square, Art Gallery of Mississauga and the Central Library on City Centre Drive</span></div>
-    <div class="cm-row"><span class="cm-time">Culture</span><span class="cm-place">Living Arts Centre on Living Arts Drive</span></div>
-    <div class="cm-row"><span class="cm-time">Campus</span><span class="cm-place">Sheridan College, Duke of York Boulevard</span></div>
-    <div class="cm-row"><span class="cm-time">Green space</span><span class="cm-place">Mississauga Valley Park and its trails</span></div>
-    <div class="cm-row"><span class="cm-time">Transit</span><span class="cm-place">Hurontario LRT along Hurontario &middot; Cooksville GO mobility hub</span></div>
-    <div class="cm-row"><span class="cm-time">Driving</span><span class="cm-place">Highway 403 to the north, QEW and the lakeshore to the south</span></div>
-    <div class="cm-row"><span class="cm-time">Everyday</span><span class="cm-place">Metro, FreshCo, LCBO and La Novita Bakery within a few minutes</span></div>
   </div>
 </section>
 
