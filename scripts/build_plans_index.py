@@ -69,6 +69,17 @@ for rel in SRC:
         if key in seen or not suite:
             continue
         seen.add(key)
+        # HST state. The "Net of HST rebate" label is reliable (every one of those
+        # is at or under $1.49M). "Contact for HST calculation" is used as a blanket
+        # on the large-plan page — it tags an $18M penthouse — so above $1.5M the
+        # $1.8M cutoff the site states on the homepage decides it instead.
+        price = int(m.group('p') or 0)
+        if 'Net of HST rebate' in body:
+            hst = 2                       # full rebate, net price shown
+        elif price and price < 1800000:
+            hst = 1                       # phased rebate, needs a calculation
+        else:
+            hst = 0                       # over $1.8M, or no price published
         img = re.search(r'<img src="\.\./([^"]+)"', body)
         ipath = img.group(1) if img else ''
         stem = re.sub(r'\.(jpg|jpeg|png)$', '', ipath)
@@ -78,7 +89,7 @@ for rel in SRC:
             't': unesc(pick(body, 'fp-type')),
             's': sqft, 'p': int(m.group('p') or 0),
             'c': m.group('c'),
-            'img': ipath, 'v': 1 if has600 else 0,
+            'img': ipath, 'v': 1 if has600 else 0, 'hst': hst,
             'u': PAGE.get(b, ''),
         })
 
