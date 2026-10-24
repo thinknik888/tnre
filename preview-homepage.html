@@ -147,8 +147,31 @@
       .browse { padding: 32px 24px 40px; }
       .fl-row { flex-direction: column; gap: 6px; margin-bottom: 14px; }
       .fl-lbl { padding-top: 0; }
-      .plan-cards { gap: 12px; }
-      .pc-n { font-size: 17px; }
+      .pc-img { aspect-ratio: 4/3; }
+      .pc-n { font-size: 19px; }
+    }
+
+    /* ---- phones: open on the plans, filters behind a toggle, one plan per row ---- */
+    .ftoggle { display: none; }
+    @media (max-width: 768px) {
+      .browse { padding: 12px 24px 32px; }
+      .browse-head { padding-bottom: 10px; margin-bottom: 0; }
+      .ftoggle { display: flex; align-items: center; gap: 8px; width: 100%; margin: 10px 0 2px;
+                  background: #fff; border: 1px solid #d8d4cc; font: inherit; font-size: 12px;
+                  letter-spacing: 0.1em; text-transform: uppercase; color: #002244;
+                  padding: 12px 14px; cursor: pointer; }
+      .ftoggle-n { background: #002244; color: #fff; border-radius: 999px; font-size: 10px;
+                    padding: 2px 7px; letter-spacing: 0; }
+      .ftoggle-x { margin-left: auto; transition: transform 0.2s; }
+      .ftoggle[aria-expanded="true"] .ftoggle-x { transform: rotate(180deg); }
+      .browse-filters { display: none; padding-top: 8px; }
+      .browse-filters.open { display: block; }
+      .fl-row { flex-direction: column; gap: 6px; margin-bottom: 14px; }
+      .fl-lbl { padding-top: 0; min-width: 0; }
+      .plan-cards { grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
+      .pc-img { aspect-ratio: 4/3; }
+      .pc-n { font-size: 20px; }
+      .pc-body { padding: 14px 16px 16px; }
     }
   </style>
 <!-- Meta Pixel Code -->
@@ -192,7 +215,10 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <div class="browse-head">
       <div class="browse-count"><b id="bc">244</b> <span id="bc-word">plans</span> shown</div>
     </div>
-    <div class="browse-filters">
+    <button type="button" class="ftoggle" id="ftoggle" aria-expanded="false">
+      <span>Filters</span><span class="ftoggle-n" id="ftoggle-n" hidden></span><span class="ftoggle-x">&#9662;</span>
+    </button>
+    <div class="browse-filters" id="browse-filters">
       <div class="fl-row"><span class="fl-lbl">Neighbourhood</span><div class="fl-chips" id="f-hood"></div></div>
       <div class="fl-row"><span class="fl-lbl">Size</span><div class="fl-chips" id="f-size"></div></div>
       <div class="fl-row"><span class="fl-lbl">Price</span><div class="fl-chips" id="f-price"></div></div>
@@ -477,6 +503,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     grid.innerHTML = filtered.slice(0, shown).map(card).join('');
     emptyEl.hidden = filtered.length > 0;
     moreBtn.hidden = filtered.length <= shown;
+    activeCount();
     moreBtn.textContent = 'Show more (' + (filtered.length - shown) + ' left)';
   }
 
@@ -493,6 +520,18 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   }
 
   moreBtn.addEventListener('click', function () { shown += PAGE; render(); });
+
+  var ft = document.getElementById('ftoggle'), fp = document.getElementById('browse-filters'),
+      ftn = document.getElementById('ftoggle-n');
+  ft.addEventListener('click', function () {
+    var open = fp.classList.toggle('open');
+    ft.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  function activeCount() {
+    var n = 0;
+    ['h','size','price','year','hst'].forEach(function (k) { if (sel[k] !== 'all') n++; });
+    ftn.hidden = n === 0; ftn.textContent = n;
+  }
 
   fetch('js/plans-index.json?v=hst1').then(function (r) { return r.json(); }).then(function (data) {
     all = data;
