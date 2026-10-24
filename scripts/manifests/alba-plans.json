@@ -1,0 +1,27 @@
+{
+ "pdf": "~/Downloads/Alba Condos _ Floor Plans.pdf",
+ "out": "buildings/images/plans/alba",
+ "crop": {"top": 0.0, "bottom": 0.885},
+ "plans": [
+  {"slug": "t-1n1-c", "page": 1,  "half": "F"},
+  {"slug": "t-1n1-a", "page": 2,  "half": "F"},
+  {"slug": "p-1n1-b", "page": 3,  "half": "F"},
+  {"slug": "t-1w1-a", "page": 4,  "half": "F"},
+  {"slug": "p-1d1-e", "page": 5,  "half": "F"},
+  {"slug": "t-1d1-e", "page": 6,  "half": "F"},
+  {"slug": "p-1d2-c", "page": 7,  "half": "F"},
+  {"slug": "t-1d1-a", "page": 8,  "half": "F"},
+  {"slug": "p-1d1-b", "page": 9,  "half": "F"},
+  {"slug": "t-1d1-d", "page": 10, "half": "F"},
+  {"slug": "p-1d1-f", "page": 11, "half": "F"},
+  {"slug": "p-2n2-e", "page": 12, "half": "F"},
+  {"slug": "t-2n2-b", "page": 13, "half": "F"},
+  {"slug": "p-2n2-g", "page": 14, "half": "F"},
+  {"slug": "t-2n2-c", "page": 15, "half": "F"},
+  {"slug": "t-2n2-a", "page": 16, "half": "F"},
+  {"slug": "p-2n2-a", "page": 17, "half": "F"},
+  {"slug": "p-2d2-a", "page": 18, "half": "F"},
+  {"slug": "p-2d2-c", "page": 19, "half": "F"},
+  {"slug": "t-2d2-a", "page": 20, "half": "F"}
+ ]
+}

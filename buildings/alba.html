@@ -209,6 +209,65 @@
       .sib-body { padding: 0.85rem 0.95rem 0.95rem; }
       .sib-name { font-size: 1.1rem; }
     }
+
+    /* floor plan book */
+    .plans-sec { scroll-margin-top: 70px; }
+    .plans-intro { font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 640px; }
+    .plans-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 1.25rem; }
+    .plan-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .plan-chip { border: 1px solid #d9d2c2; background: #fff; border-radius: 999px; padding: 0.45rem 0.9rem; font: inherit;
+                 font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--text-mid); }
+    .plan-chip.is-on { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .plans-state { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+    .plan-group { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+                  margin-top: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e3dccb; }
+    .plan-group:first-child { margin-top: 0; }
+    .plan-group[hidden] { display: none; }
+    .plan-group span { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); }
+    .plan-group small { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
+    .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .plan { margin: 0; background: #fff; border: 1px solid #e8e4dc; border-radius: 10px; overflow: hidden; cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s; }
+    .plan:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .plan[hidden] { display: none; }
+    .plan-media { position: relative; aspect-ratio: var(--plan-ratio, 4/3); background: #fff; border-bottom: 1px solid #efebe2; overflow: hidden; }
+    .plan-media picture { display: contents; }
+    .plan-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .plan figcaption { padding: 0.9rem 1rem 1rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
+    .plan-spec { font-size: 0.78rem; color: var(--text-mid); margin-top: 0.2rem; }
+    .plan-level { font-size: 0.66rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .plan-price { margin-top: 0.55rem; font-size: 0.8rem; color: var(--text-mid); line-height: 1.45; }
+    .plan-price .plan-net { font-weight: 600; font-size: 0.95rem; color: var(--navy); }
+    .plan-price s { color: var(--text-muted); font-weight: 300; font-size: 0.75rem; }
+    .row-plan { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+                text-decoration: none; margin-left: 0.4rem; white-space: nowrap; }
+    .row-plan:hover { text-decoration: underline; }
+    .plan-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,18,36,0.95); display: grid;
+                     grid-template-rows: 1fr auto; place-items: center; padding: 3.25rem 1rem 1.25rem; }
+    .plan-lightbox[hidden] { display: none; }
+    .lb-media { width: min(96vw, 1400px); height: 74vh; display: grid; place-items: center; }
+    .lb-media picture { display: contents; }
+    .lb-media img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; background: #fff; border-radius: 8px; }
+    .lb-cap { color: #fff; font-size: 0.85rem; margin-top: 0.75rem; text-align: center; padding: 0 3.5rem; }
+    .lb-cap b { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.3rem; margin-right: 0.5rem; }
+    .lb-close, .lb-prev, .lb-next { position: fixed; background: rgba(255,255,255,0.14); color: #fff; border: none; width: 44px; height: 44px;
+                                    border-radius: 50%; font-size: 1.7rem; line-height: 44px; cursor: pointer; z-index: 1001; }
+    .lb-close { top: 14px; right: 14px; }
+    .lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) {
+      .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .plan figcaption { padding: 0.7rem 0.75rem 0.8rem; }
+      .plan-name { font-size: 1.05rem; }
+      .plan-spec { font-size: 0.72rem; }
+      .plan-level { display: none; }
+      .plan-group span { font-size: 1.35rem; }
+      .lb-media { height: 66vh; }
+      .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
+      .lb-cap { padding: 0 3.5rem 2.75rem; }
+    }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -252,7 +311,7 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
     <h1 class="hero-title">Alba</h1>
     <div class="hero-tag">A new standard on Hurontario, from $419,990.</div>
     <div class="hero-addr">1 Fairview Road East, Mississauga &middot; Hurontario &amp; Fairview, steps from Square One</div>
-    <a class="hero-cta" href="#pricing">See the VIP price list &rarr;</a>
+    <a class="hero-cta" href="#floor-plans">See floor plans &amp; prices &rarr;</a>
   </div>
   <div class="hero-credit">Artist&rsquo;s concept</div>
 </header>
@@ -508,6 +567,116 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section id="floor-plans" class="plans-sec" style="--plan-ratio: 83 / 100" data-param="beds">
+  <div class="sec-eyebrow">Floor plans</div>
+  <h2 class="sec-title">20 plans on the <em>VIP price list</em></h2>
+  <p class="plans-intro">Every released suite, drawn to scale by Edenshaw. Tap any plan to open it full size &mdash; arrow keys move through the set.</p>
+  <div class="plans-bar">
+    <div class="plan-chips">
+      <button type="button" class="plan-chip is-on" data-filter="all">All 20</button>
+      <button type="button" class="plan-chip" data-filter="1">One bedroom</button>
+      <button type="button" class="plan-chip" data-filter="2">Two bedroom</button>
+    </div>
+    <div class="plans-state" id="plans-state">20 plans &middot; tap to enlarge</div>
+  </div>
+  <div class="plan-grid">
+
+    <div class="plan-group" data-key="1" id="plans-1-bed"><span>One bedroom &amp; one + den</span><small>11 plans &middot; 427 &ndash; 672 sq ft &middot; from $419,990</small></div>
+    <figure class="plan is-open" id="plan-t-1n1-c" data-beds="1" data-key="1" data-base="images/plans/alba/t-1n1-c" data-widths="480,800,1280,1920" data-name="T-1N1-C" data-spec="1 bed &middot; 1 bath &middot; 427 sq ft + 77 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1n1-c-480.avif 480w, images/plans/alba/t-1n1-c-800.avif 800w, images/plans/alba/t-1n1-c-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1n1-c-480.webp 480w, images/plans/alba/t-1n1-c-800.webp 800w, images/plans/alba/t-1n1-c-1280.webp 1280w"><img src="images/plans/alba/t-1n1-c.jpg" alt="T-1N1-C floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-1N1-C</div><div class="plan-spec">1 bed &middot; 1 bath &middot; 427 sq ft</div><div class="plan-level">Suite 2210 &middot; Tower, level 22 &middot; West</div><div class="plan-price"><span class="plan-net">$419,990</span> <s>$527,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-1n1-a" data-beds="1" data-key="1" data-base="images/plans/alba/t-1n1-a" data-widths="480,800,1280,1920" data-name="T-1N1-A" data-spec="1 bed &middot; 1 bath &middot; 500 sq ft + 108 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1n1-a-480.avif 480w, images/plans/alba/t-1n1-a-800.avif 800w, images/plans/alba/t-1n1-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1n1-a-480.webp 480w, images/plans/alba/t-1n1-a-800.webp 800w, images/plans/alba/t-1n1-a-1280.webp 1280w"><img src="images/plans/alba/t-1n1-a.jpg" alt="T-1N1-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-1N1-A</div><div class="plan-spec">1 bed &middot; 1 bath &middot; 500 sq ft</div><div class="plan-level">Suite 1806 &middot; Tower, level 18 &middot; North</div><div class="plan-price"><span class="plan-net">$460,990</span> <s>$562,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-1n1-b" data-beds="1" data-key="1" data-base="images/plans/alba/p-1n1-b" data-widths="480,800,1280,1920" data-name="P-1N1-B" data-spec="1 bed &middot; 1 bath &middot; 571 sq ft + 60 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1n1-b-480.avif 480w, images/plans/alba/p-1n1-b-800.avif 800w, images/plans/alba/p-1n1-b-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1n1-b-480.webp 480w, images/plans/alba/p-1n1-b-800.webp 800w, images/plans/alba/p-1n1-b-1280.webp 1280w"><img src="images/plans/alba/p-1n1-b.jpg" alt="P-1N1-B floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-1N1-B</div><div class="plan-spec">1 bed &middot; 1 bath &middot; 571 sq ft</div><div class="plan-level">Suite 611 &middot; Podium, level 6 &middot; North</div><div class="plan-price"><span class="plan-net">$442,990</span> <s>$587,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-1w1-a" data-beds="1" data-key="1" data-base="images/plans/alba/t-1w1-a" data-widths="480,800,1280,1920" data-name="T-1W1-A" data-spec="1 bed + work-from-home &middot; 1 bath &middot; 550 sq ft + 108 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1w1-a-480.avif 480w, images/plans/alba/t-1w1-a-800.avif 800w, images/plans/alba/t-1w1-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1w1-a-480.webp 480w, images/plans/alba/t-1w1-a-800.webp 800w, images/plans/alba/t-1w1-a-1280.webp 1280w"><img src="images/plans/alba/t-1w1-a.jpg" alt="T-1W1-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-1W1-A</div><div class="plan-spec">1 bed + WFH &middot; 1 bath &middot; 550 sq ft</div><div class="plan-level">Suite 913 &middot; Tower, level 9 &middot; South</div><div class="plan-price"><span class="plan-net">$486,990</span> <s>$580,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-1d1-e" data-beds="1" data-key="1" data-base="images/plans/alba/p-1d1-e" data-widths="480,800,1280,1920" data-name="P-1D1-E" data-spec="1 bed + den &middot; 1 bath &middot; 536 sq ft + 100 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d1-e-480.avif 480w, images/plans/alba/p-1d1-e-800.avif 800w, images/plans/alba/p-1d1-e-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d1-e-480.webp 480w, images/plans/alba/p-1d1-e-800.webp 800w, images/plans/alba/p-1d1-e-1280.webp 1280w"><img src="images/plans/alba/p-1d1-e.jpg" alt="P-1D1-E floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-1D1-E</div><div class="plan-spec">1 bed + den &middot; 1 bath &middot; 536 sq ft</div><div class="plan-level">Suite 315 &middot; Podium, level 3 &middot; West</div><div class="plan-price"><span class="plan-net">$460,990</span> <s>$589,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-1d1-e" data-beds="1" data-key="1" data-base="images/plans/alba/t-1d1-e" data-widths="480,800,1280,1920" data-name="T-1D1-E" data-spec="1 bed + den &middot; 1 bath &middot; 559 sq ft + 120 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1d1-e-480.avif 480w, images/plans/alba/t-1d1-e-800.avif 800w, images/plans/alba/t-1d1-e-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1d1-e-480.webp 480w, images/plans/alba/t-1d1-e-800.webp 800w, images/plans/alba/t-1d1-e-1280.webp 1280w"><img src="images/plans/alba/t-1d1-e.jpg" alt="T-1D1-E floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-1D1-E</div><div class="plan-spec">1 bed + den &middot; 1 bath &middot; 559 sq ft</div><div class="plan-level">Suite 812 &middot; Tower, level 8 &middot; South</div><div class="plan-price"><span class="plan-net">$515,990</span> <s>$621,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-1d2-c" data-beds="1" data-key="1" data-base="images/plans/alba/p-1d2-c" data-widths="480,800,1280,1920" data-name="P-1D2-C" data-spec="1 bed + den &middot; 2 bath &middot; 582 sq ft + 116 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d2-c-480.avif 480w, images/plans/alba/p-1d2-c-800.avif 800w, images/plans/alba/p-1d2-c-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d2-c-480.webp 480w, images/plans/alba/p-1d2-c-800.webp 800w, images/plans/alba/p-1d2-c-1280.webp 1280w"><img src="images/plans/alba/p-1d2-c.jpg" alt="P-1D2-C floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-1D2-C</div><div class="plan-spec">1 bed + den &middot; 2 bath &middot; 582 sq ft</div><div class="plan-level">Suite 316 &middot; Podium, level 3 &middot; West</div><div class="plan-price"><span class="plan-net">$500,990</span> <s>$609,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-1d1-a" data-beds="1" data-key="1" data-base="images/plans/alba/t-1d1-a" data-widths="480,800,1280,1920" data-name="T-1D1-A" data-spec="1 bed + den &middot; 1.5 bath &middot; 623 sq ft + 76 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1d1-a-480.avif 480w, images/plans/alba/t-1d1-a-800.avif 800w, images/plans/alba/t-1d1-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1d1-a-480.webp 480w, images/plans/alba/t-1d1-a-800.webp 800w, images/plans/alba/t-1d1-a-1280.webp 1280w"><img src="images/plans/alba/t-1d1-a.jpg" alt="T-1D1-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-1D1-A</div><div class="plan-spec">1 bed + den &middot; 1.5 bath &middot; 623 sq ft</div><div class="plan-level">Suite 2201 &middot; Tower, level 22 &middot; South</div><div class="plan-price"><span class="plan-net">$564,990</span> <s>$688,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-1d1-b" data-beds="1" data-key="1" data-base="images/plans/alba/p-1d1-b" data-widths="480,800,1280,1920" data-name="P-1D1-B" data-spec="1 bed + den &middot; 1 bath &middot; 635 sq ft + 150 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d1-b-480.avif 480w, images/plans/alba/p-1d1-b-800.avif 800w, images/plans/alba/p-1d1-b-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d1-b-480.webp 480w, images/plans/alba/p-1d1-b-800.webp 800w, images/plans/alba/p-1d1-b-1280.webp 1280w"><img src="images/plans/alba/p-1d1-b.jpg" alt="P-1D1-B floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-1D1-B</div><div class="plan-spec">1 bed + den &middot; 1 bath &middot; 635 sq ft</div><div class="plan-level">Suite 505 &middot; Podium, level 5 &middot; South East</div><div class="plan-price"><span class="plan-net">$482,990</span> <s>$654,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-1d1-d" data-beds="1" data-key="1" data-base="images/plans/alba/t-1d1-d" data-widths="480,800,1280,1920" data-name="T-1D1-D" data-spec="1 bed + den &middot; 1.5 bath &middot; 643 sq ft + 78 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1d1-d-480.avif 480w, images/plans/alba/t-1d1-d-800.avif 800w, images/plans/alba/t-1d1-d-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-1d1-d-480.webp 480w, images/plans/alba/t-1d1-d-800.webp 800w, images/plans/alba/t-1d1-d-1280.webp 1280w"><img src="images/plans/alba/t-1d1-d.jpg" alt="T-1D1-D floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-1D1-D</div><div class="plan-spec">1 bed + den &middot; 1.5 bath &middot; 643 sq ft</div><div class="plan-level">Suite 2008 &middot; Tower, level 20 &middot; North</div><div class="plan-price"><span class="plan-net">$544,990</span> <s>$680,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-1d1-f" data-beds="1" data-key="1" data-base="images/plans/alba/p-1d1-f" data-widths="480,800,1280,1920" data-name="P-1D1-F" data-spec="1 bed + den &middot; 1 bath &middot; 672 sq ft + 50 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d1-f-480.avif 480w, images/plans/alba/p-1d1-f-800.avif 800w, images/plans/alba/p-1d1-f-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-1d1-f-480.webp 480w, images/plans/alba/p-1d1-f-800.webp 800w, images/plans/alba/p-1d1-f-1280.webp 1280w"><img src="images/plans/alba/p-1d1-f.jpg" alt="P-1D1-F floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-1D1-F</div><div class="plan-spec">1 bed + den &middot; 1 bath &middot; 672 sq ft</div><div class="plan-level">Suite 319 &middot; Podium, level 3 &middot; South</div><div class="plan-price"><span class="plan-net">$502,990</span> <s>$669,990</s></div></figcaption>
+    </figure>
+
+    <div class="plan-group" data-key="2" id="plans-2-bed"><span>Two bedroom &amp; two + den</span><small>9 plans &middot; 685 &ndash; 863 sq ft &middot; from $556,990</small></div>
+    <figure class="plan is-open" id="plan-p-2n2-e" data-beds="2" data-key="2" data-base="images/plans/alba/p-2n2-e" data-widths="480,800,1280,1920" data-name="P-2N2-E" data-spec="2 bed &middot; 2 bath &middot; 685 sq ft + 101 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2n2-e-480.avif 480w, images/plans/alba/p-2n2-e-800.avif 800w, images/plans/alba/p-2n2-e-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2n2-e-480.webp 480w, images/plans/alba/p-2n2-e-800.webp 800w, images/plans/alba/p-2n2-e-1280.webp 1280w"><img src="images/plans/alba/p-2n2-e.jpg" alt="P-2N2-E floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-2N2-E</div><div class="plan-spec">2 bed &middot; 2 bath &middot; 685 sq ft</div><div class="plan-level">Suite 618 &middot; Podium, level 6 &middot; South West</div><div class="plan-price"><span class="plan-net">$556,990</span> <s>$702,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-2n2-b" data-beds="2" data-key="2" data-base="images/plans/alba/t-2n2-b" data-widths="480,800,1280,1920" data-name="T-2N2-B" data-spec="2 bed &middot; 2 bath &middot; 761 sq ft + 120 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2n2-b-480.avif 480w, images/plans/alba/t-2n2-b-800.avif 800w, images/plans/alba/t-2n2-b-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2n2-b-480.webp 480w, images/plans/alba/t-2n2-b-800.webp 800w, images/plans/alba/t-2n2-b-1280.webp 1280w"><img src="images/plans/alba/t-2n2-b.jpg" alt="T-2N2-B floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-2N2-B</div><div class="plan-spec">2 bed &middot; 2 bath &middot; 761 sq ft</div><div class="plan-level">Suite 1209 &middot; Tower, level 12 &middot; North West</div><div class="plan-price"><span class="plan-net">$638,990</span> <s>$735,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-2n2-g" data-beds="2" data-key="2" data-base="images/plans/alba/p-2n2-g" data-widths="480,800,1280,1920" data-name="P-2N2-G" data-spec="2 bed &middot; 2 bath &middot; 766 sq ft + 56 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2n2-g-480.avif 480w, images/plans/alba/p-2n2-g-800.avif 800w, images/plans/alba/p-2n2-g-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2n2-g-480.webp 480w, images/plans/alba/p-2n2-g-800.webp 800w, images/plans/alba/p-2n2-g-1280.webp 1280w"><img src="images/plans/alba/p-2n2-g.jpg" alt="P-2N2-G floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-2N2-G</div><div class="plan-spec">2 bed &middot; 2 bath &middot; 766 sq ft</div><div class="plan-level">Suite 521 &middot; Podium, level 5 &middot; South East</div><div class="plan-price"><span class="plan-net">$655,990</span> <s>$756,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-2n2-c" data-beds="2" data-key="2" data-base="images/plans/alba/t-2n2-c" data-widths="480,800,1280,1920" data-name="T-2N2-C" data-spec="2 bed &middot; 2 bath &middot; 768 sq ft + 126 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2n2-c-480.avif 480w, images/plans/alba/t-2n2-c-800.avif 800w, images/plans/alba/t-2n2-c-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2n2-c-480.webp 480w, images/plans/alba/t-2n2-c-800.webp 800w, images/plans/alba/t-2n2-c-1280.webp 1280w"><img src="images/plans/alba/t-2n2-c.jpg" alt="T-2N2-C floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-2N2-C</div><div class="plan-spec">2 bed &middot; 2 bath &middot; 768 sq ft</div><div class="plan-level">Suite 2011 &middot; Tower, level 20 &middot; South West</div><div class="plan-price"><span class="plan-net">$709,990</span> <s>$810,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-2n2-a" data-beds="2" data-key="2" data-base="images/plans/alba/t-2n2-a" data-widths="480,800,1280,1920" data-name="T-2N2-A" data-spec="2 bed &middot; 2 bath &middot; 772 sq ft + 162 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2n2-a-480.avif 480w, images/plans/alba/t-2n2-a-800.avif 800w, images/plans/alba/t-2n2-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2n2-a-480.webp 480w, images/plans/alba/t-2n2-a-800.webp 800w, images/plans/alba/t-2n2-a-1280.webp 1280w"><img src="images/plans/alba/t-2n2-a.jpg" alt="T-2N2-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-2N2-A</div><div class="plan-spec">2 bed &middot; 2 bath &middot; 772 sq ft</div><div class="plan-level">Suite 1604 &middot; Tower, level 16 &middot; North East</div><div class="plan-price"><span class="plan-net">$659,990</span> <s>$771,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-2n2-a" data-beds="2" data-key="2" data-base="images/plans/alba/p-2n2-a" data-widths="480,800,1280,1920" data-name="P-2N2-A" data-spec="2 bed &middot; 2 bath &middot; 798 sq ft + 168 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2n2-a-480.avif 480w, images/plans/alba/p-2n2-a-800.avif 800w, images/plans/alba/p-2n2-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2n2-a-480.webp 480w, images/plans/alba/p-2n2-a-800.webp 800w, images/plans/alba/p-2n2-a-1280.webp 1280w"><img src="images/plans/alba/p-2n2-a.jpg" alt="P-2N2-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-2N2-A</div><div class="plan-spec">2 bed &middot; 2 bath &middot; 798 sq ft</div><div class="plan-level">Suite 607 &middot; Podium, level 6 &middot; North East</div><div class="plan-price"><span class="plan-net">$675,990</span> <s>$785,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-2d2-a" data-beds="2" data-key="2" data-base="images/plans/alba/p-2d2-a" data-widths="480,800,1280,1920" data-name="P-2D2-A" data-spec="2 bed + den &middot; 2 bath &middot; 807 sq ft + 60 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2d2-a-480.avif 480w, images/plans/alba/p-2d2-a-800.avif 800w, images/plans/alba/p-2d2-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2d2-a-480.webp 480w, images/plans/alba/p-2d2-a-800.webp 800w, images/plans/alba/p-2d2-a-1280.webp 1280w"><img src="images/plans/alba/p-2d2-a.jpg" alt="P-2D2-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-2D2-A</div><div class="plan-spec">2 bed + den &middot; 2 bath &middot; 807 sq ft</div><div class="plan-level">Suite 601 &middot; Podium, level 6 &middot; South</div><div class="plan-price"><span class="plan-net">$717,990</span> <s>$840,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-p-2d2-c" data-beds="2" data-key="2" data-base="images/plans/alba/p-2d2-c" data-widths="480,800,1280,1920" data-name="P-2D2-C" data-spec="2 bed + den &middot; 2 bath &middot; 852 sq ft + 103 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2d2-c-480.avif 480w, images/plans/alba/p-2d2-c-800.avif 800w, images/plans/alba/p-2d2-c-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/p-2d2-c-480.webp 480w, images/plans/alba/p-2d2-c-800.webp 800w, images/plans/alba/p-2d2-c-1280.webp 1280w"><img src="images/plans/alba/p-2d2-c.jpg" alt="P-2D2-C floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">P-2D2-C</div><div class="plan-spec">2 bed + den &middot; 2 bath &middot; 852 sq ft</div><div class="plan-level">Suite 314 &middot; Podium, level 3 &middot; North West</div><div class="plan-price"><span class="plan-net">$755,990</span> <s>$862,990</s></div></figcaption>
+    </figure>
+    <figure class="plan is-open" id="plan-t-2d2-a" data-beds="2" data-key="2" data-base="images/plans/alba/t-2d2-a" data-widths="480,800,1280,1920" data-name="T-2D2-A" data-spec="2 bed + den &middot; 2 bath &middot; 863 sq ft + 132 sq ft balcony">
+      <div class="plan-media"><picture><source type="image/avif" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2d2-a-480.avif 480w, images/plans/alba/t-2d2-a-800.avif 800w, images/plans/alba/t-2d2-a-1280.avif 1280w"><source type="image/webp" sizes="(max-width: 700px) 50vw, 25vw" srcset="images/plans/alba/t-2d2-a-480.webp 480w, images/plans/alba/t-2d2-a-800.webp 800w, images/plans/alba/t-2d2-a-1280.webp 1280w"><img src="images/plans/alba/t-2d2-a.jpg" alt="T-2D2-A floor plan" loading="lazy" decoding="async"></picture></div>
+      <figcaption><div class="plan-name">T-2D2-A</div><div class="plan-spec">2 bed + den &middot; 2 bath &middot; 863 sq ft</div><div class="plan-level">Suites 1003 &amp; 2203 &middot; Tower, levels 10 &amp; 22 &middot; South East</div><div class="plan-price"><span class="plan-net">from $790,990</span> <s>$946,990</s></div></figcaption>
+    </figure>
+
+  </div>
+
+  <div class="plan-lightbox" id="plan-lb" hidden>
+    <button type="button" class="lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="lb-prev" aria-label="Previous plan">&#8249;</button>
+    <div class="lb-media"></div>
+    <button type="button" class="lb-next" aria-label="Next plan">&#8250;</button>
+    <div class="lb-cap"></div>
+  </div>
+  <p class="tbl-note">Plans are Edenshaw&rsquo;s own drawings for Alba. All dimensions are approximate and subject to normal construction variances; dimensions may exceed the useable floor area. Furniture is shown for illustration only. Suites are sold unfurnished. Balcony and fa&ccedil;ade variations may apply. E.&amp;O.E.</p>
+</section>
+
 <section id="pricing">
   <div class="sec-eyebrow">Pricing</div>
   <h2 class="sec-title">VIP broker <em>price list</em></h2>
@@ -518,30 +687,30 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
         <thead><tr><th>Suite</th><th>Collection</th><th>Level</th><th>Model</th><th>Type</th><th>View</th><th>Bath</th><th>Sq ft</th><th>Original</th><th>VIP broker price</th><th>After enhanced HST*</th></tr></thead>
         <tbody>
         <tr class="grp"><td colspan="11">One bedroom</td></tr>
-        <tr><td>2210</td><td>Tower</td><td>22</td><td>T-1N1-C</td><td>1 bed</td><td>West</td><td>1</td><td>427</td><td class="was">$527,990</td><td class="num">$419,990</td><td class="num">$395,711</td></tr>
-        <tr><td>1806</td><td>Tower</td><td>18</td><td>T-1N1-A</td><td>1 bed</td><td>North</td><td>1</td><td>500</td><td class="was">$562,990</td><td class="num">$460,990</td><td class="num">$430,293</td></tr>
-        <tr><td>611</td><td>Podium</td><td>6</td><td>P-1N1-B</td><td>1 bed</td><td>North</td><td>1</td><td>571</td><td class="was">$587,990</td><td class="num">$442,990</td><td class="num">$415,205</td></tr>
+        <tr><td>2210</td><td>Tower</td><td>22</td><td>T-1N1-C <a class="row-plan" href="#plan-t-1n1-c">plan &rarr;</a></td><td>1 bed</td><td>West</td><td>1</td><td>427</td><td class="was">$527,990</td><td class="num">$419,990</td><td class="num">$395,711</td></tr>
+        <tr><td>1806</td><td>Tower</td><td>18</td><td>T-1N1-A <a class="row-plan" href="#plan-t-1n1-a">plan &rarr;</a></td><td>1 bed</td><td>North</td><td>1</td><td>500</td><td class="was">$562,990</td><td class="num">$460,990</td><td class="num">$430,293</td></tr>
+        <tr><td>611</td><td>Podium</td><td>6</td><td>P-1N1-B <a class="row-plan" href="#plan-p-1n1-b">plan &rarr;</a></td><td>1 bed</td><td>North</td><td>1</td><td>571</td><td class="was">$587,990</td><td class="num">$442,990</td><td class="num">$415,205</td></tr>
         <tr class="grp"><td colspan="11">One bedroom + work-from-home / den</td></tr>
-        <tr><td>913</td><td>Tower</td><td>9</td><td>T-1W1-A</td><td>1 bed + WFH</td><td>South</td><td>1</td><td>550</td><td class="was">$580,990</td><td class="num">$486,990</td><td class="num">$452,204</td></tr>
-        <tr><td>315</td><td>Podium</td><td>3</td><td>P-1D1-E</td><td>1 bed + den</td><td>West</td><td>1</td><td>536</td><td class="was">$589,990</td><td class="num">$460,990</td><td class="num">$430,293</td></tr>
-        <tr><td>812</td><td>Tower</td><td>8</td><td>T-1D1-E</td><td>1 bed + den</td><td>South</td><td>1</td><td>559</td><td class="was">$621,990</td><td class="num">$515,990</td><td class="num">$477,867</td></tr>
-        <tr><td>316</td><td>Podium</td><td>3</td><td>P-1D2-C</td><td>1 bed + den</td><td>West</td><td>2</td><td>582</td><td class="was">$609,990</td><td class="num">$500,990</td><td class="num">$464,593</td></tr>
-        <tr><td>2201</td><td>Tower</td><td>22</td><td>T-1D1-A</td><td>1 bed + den</td><td>South</td><td>1.5</td><td>623</td><td class="was">$688,990</td><td class="num">$564,990</td><td class="num">$521,230</td></tr>
-        <tr><td>505</td><td>Podium</td><td>5</td><td>P-1D1-B</td><td>1 bed + den</td><td>South East</td><td>1</td><td>635</td><td class="was">$654,990</td><td class="num">$482,990</td><td class="num">$448,734</td></tr>
-        <tr><td>2008</td><td>Tower</td><td>20</td><td>T-1D1-D</td><td>1 bed + den</td><td>North</td><td>1.5</td><td>643</td><td class="was">$680,990</td><td class="num">$544,990</td><td class="num">$503,531</td></tr>
-        <tr><td>319</td><td>Podium</td><td>3</td><td>P-1D1-F</td><td>1 bed + den</td><td>South</td><td>1</td><td>672</td><td class="was">$669,990</td><td class="num">$502,990</td><td class="num">$466,363</td></tr>
+        <tr><td>913</td><td>Tower</td><td>9</td><td>T-1W1-A <a class="row-plan" href="#plan-t-1w1-a">plan &rarr;</a></td><td>1 bed + WFH</td><td>South</td><td>1</td><td>550</td><td class="was">$580,990</td><td class="num">$486,990</td><td class="num">$452,204</td></tr>
+        <tr><td>315</td><td>Podium</td><td>3</td><td>P-1D1-E <a class="row-plan" href="#plan-p-1d1-e">plan &rarr;</a></td><td>1 bed + den</td><td>West</td><td>1</td><td>536</td><td class="was">$589,990</td><td class="num">$460,990</td><td class="num">$430,293</td></tr>
+        <tr><td>812</td><td>Tower</td><td>8</td><td>T-1D1-E <a class="row-plan" href="#plan-t-1d1-e">plan &rarr;</a></td><td>1 bed + den</td><td>South</td><td>1</td><td>559</td><td class="was">$621,990</td><td class="num">$515,990</td><td class="num">$477,867</td></tr>
+        <tr><td>316</td><td>Podium</td><td>3</td><td>P-1D2-C <a class="row-plan" href="#plan-p-1d2-c">plan &rarr;</a></td><td>1 bed + den</td><td>West</td><td>2</td><td>582</td><td class="was">$609,990</td><td class="num">$500,990</td><td class="num">$464,593</td></tr>
+        <tr><td>2201</td><td>Tower</td><td>22</td><td>T-1D1-A <a class="row-plan" href="#plan-t-1d1-a">plan &rarr;</a></td><td>1 bed + den</td><td>South</td><td>1.5</td><td>623</td><td class="was">$688,990</td><td class="num">$564,990</td><td class="num">$521,230</td></tr>
+        <tr><td>505</td><td>Podium</td><td>5</td><td>P-1D1-B <a class="row-plan" href="#plan-p-1d1-b">plan &rarr;</a></td><td>1 bed + den</td><td>South East</td><td>1</td><td>635</td><td class="was">$654,990</td><td class="num">$482,990</td><td class="num">$448,734</td></tr>
+        <tr><td>2008</td><td>Tower</td><td>20</td><td>T-1D1-D <a class="row-plan" href="#plan-t-1d1-d">plan &rarr;</a></td><td>1 bed + den</td><td>North</td><td>1.5</td><td>643</td><td class="was">$680,990</td><td class="num">$544,990</td><td class="num">$503,531</td></tr>
+        <tr><td>319</td><td>Podium</td><td>3</td><td>P-1D1-F <a class="row-plan" href="#plan-p-1d1-f">plan &rarr;</a></td><td>1 bed + den</td><td>South</td><td>1</td><td>672</td><td class="was">$669,990</td><td class="num">$502,990</td><td class="num">$466,363</td></tr>
         <tr class="grp"><td colspan="11">Two bedroom</td></tr>
-        <tr><td>618</td><td>Podium</td><td>6</td><td>P-2N2-E</td><td>2 bed</td><td>South West</td><td>2</td><td>685</td><td class="was">$702,990</td><td class="num">$556,990</td><td class="num">$514,150</td></tr>
-        <tr><td>1209</td><td>Tower</td><td>12</td><td>T-2N2-B</td><td>2 bed</td><td>North West</td><td>2</td><td>761</td><td class="was">$735,990</td><td class="num">$638,990</td><td class="num">$586,717</td></tr>
-        <tr><td>521</td><td>Podium</td><td>5</td><td>P-2N2-G</td><td>2 bed</td><td>South East</td><td>2</td><td>766</td><td class="was">$756,990</td><td class="num">$655,990</td><td class="num">$601,761</td></tr>
-        <tr><td>2011</td><td>Tower</td><td>20</td><td>T-2N2-C</td><td>2 bed</td><td>South West</td><td>2</td><td>768</td><td class="was">$810,990</td><td class="num">$709,990</td><td class="num">$649,549</td></tr>
-        <tr><td>1604</td><td>Tower</td><td>16</td><td>T-2N2-A</td><td>2 bed</td><td>North East</td><td>2</td><td>772</td><td class="was">$771,990</td><td class="num">$659,990</td><td class="num">$605,301</td></tr>
-        <tr><td>607</td><td>Podium</td><td>6</td><td>P-2N2-A</td><td>2 bed</td><td>North East</td><td>2</td><td>798</td><td class="was">$785,990</td><td class="num">$675,990</td><td class="num">$619,460</td></tr>
+        <tr><td>618</td><td>Podium</td><td>6</td><td>P-2N2-E <a class="row-plan" href="#plan-p-2n2-e">plan &rarr;</a></td><td>2 bed</td><td>South West</td><td>2</td><td>685</td><td class="was">$702,990</td><td class="num">$556,990</td><td class="num">$514,150</td></tr>
+        <tr><td>1209</td><td>Tower</td><td>12</td><td>T-2N2-B <a class="row-plan" href="#plan-t-2n2-b">plan &rarr;</a></td><td>2 bed</td><td>North West</td><td>2</td><td>761</td><td class="was">$735,990</td><td class="num">$638,990</td><td class="num">$586,717</td></tr>
+        <tr><td>521</td><td>Podium</td><td>5</td><td>P-2N2-G <a class="row-plan" href="#plan-p-2n2-g">plan &rarr;</a></td><td>2 bed</td><td>South East</td><td>2</td><td>766</td><td class="was">$756,990</td><td class="num">$655,990</td><td class="num">$601,761</td></tr>
+        <tr><td>2011</td><td>Tower</td><td>20</td><td>T-2N2-C <a class="row-plan" href="#plan-t-2n2-c">plan &rarr;</a></td><td>2 bed</td><td>South West</td><td>2</td><td>768</td><td class="was">$810,990</td><td class="num">$709,990</td><td class="num">$649,549</td></tr>
+        <tr><td>1604</td><td>Tower</td><td>16</td><td>T-2N2-A <a class="row-plan" href="#plan-t-2n2-a">plan &rarr;</a></td><td>2 bed</td><td>North East</td><td>2</td><td>772</td><td class="was">$771,990</td><td class="num">$659,990</td><td class="num">$605,301</td></tr>
+        <tr><td>607</td><td>Podium</td><td>6</td><td>P-2N2-A <a class="row-plan" href="#plan-p-2n2-a">plan &rarr;</a></td><td>2 bed</td><td>North East</td><td>2</td><td>798</td><td class="was">$785,990</td><td class="num">$675,990</td><td class="num">$619,460</td></tr>
         <tr class="grp"><td colspan="11">Two bedroom + den</td></tr>
-        <tr><td>601</td><td>Podium</td><td>6</td><td>P-2D2-A</td><td>2 bed + den</td><td>South</td><td>2</td><td>807</td><td class="was">$840,990</td><td class="num">$717,990</td><td class="num">$656,628</td></tr>
-        <tr><td>314</td><td>Podium</td><td>3</td><td>P-2D2-C</td><td>2 bed + den</td><td>North West</td><td>2</td><td>852</td><td class="was">$862,990</td><td class="num">$755,990</td><td class="num">$690,257</td></tr>
-        <tr><td>1003</td><td>Tower</td><td>10</td><td>T-2D2-A</td><td>2 bed + den</td><td>South East</td><td>2</td><td>863</td><td class="was">$946,990</td><td class="num">$790,990</td><td class="num">$721,230</td></tr>
-        <tr><td>2203</td><td>Tower</td><td>22</td><td>T-2D2-A</td><td>2 bed + den</td><td>South East</td><td>2</td><td>863</td><td class="was">$958,990</td><td class="num">$812,990</td><td class="num">$740,699</td></tr>
+        <tr><td>601</td><td>Podium</td><td>6</td><td>P-2D2-A <a class="row-plan" href="#plan-p-2d2-a">plan &rarr;</a></td><td>2 bed + den</td><td>South</td><td>2</td><td>807</td><td class="was">$840,990</td><td class="num">$717,990</td><td class="num">$656,628</td></tr>
+        <tr><td>314</td><td>Podium</td><td>3</td><td>P-2D2-C <a class="row-plan" href="#plan-p-2d2-c">plan &rarr;</a></td><td>2 bed + den</td><td>North West</td><td>2</td><td>852</td><td class="was">$862,990</td><td class="num">$755,990</td><td class="num">$690,257</td></tr>
+        <tr><td>1003</td><td>Tower</td><td>10</td><td>T-2D2-A <a class="row-plan" href="#plan-t-2d2-a">plan &rarr;</a></td><td>2 bed + den</td><td>South East</td><td>2</td><td>863</td><td class="was">$946,990</td><td class="num">$790,990</td><td class="num">$721,230</td></tr>
+        <tr><td>2203</td><td>Tower</td><td>22</td><td>T-2D2-A <a class="row-plan" href="#plan-t-2d2-a">plan &rarr;</a></td><td>2 bed + den</td><td>South East</td><td>2</td><td>863</td><td class="was">$958,990</td><td class="num">$812,990</td><td class="num">$740,699</td></tr>
         </tbody>
       </table>
     </div>
@@ -660,6 +829,112 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
   <div class="footer-logo">Condos<em>Around</em></div>
   <div>CondosAround.com &middot; &copy; 2025</div>
 </footer>
+
+<script>
+(function () {
+  var sec = document.getElementById('floor-plans');
+  if (!sec) return;
+  var param = sec.getAttribute('data-param') || 'beds';
+
+  function pictureFor(fig, big) {
+    var base = fig.getAttribute('data-base'), ws = fig.getAttribute('data-widths').split(',');
+    var pic = document.createElement('picture');
+    ['avif', 'webp'].forEach(function (ext) {
+      var s = document.createElement('source'); s.type = 'image/' + ext;
+      s.sizes = big ? '96vw' : '(max-width: 700px) 50vw, 25vw';
+      s.srcset = ws.map(function (w) { return base + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+      pic.appendChild(s);
+    });
+    var img = document.createElement('img');
+    img.src = base + '.jpg'; img.alt = fig.getAttribute('data-name') + ' floor plan'; img.decoding = 'async';
+    if (!big) img.loading = 'lazy';
+    pic.appendChild(img);
+    return pic;
+  }
+
+  var state = document.getElementById('plans-state');
+  // The chosen filter lives in the link (?beds=2#floor-plans), so a shared link opens the same view.
+  function applyFilter(t, remember) {
+    var chip = sec.querySelector('.plan-chip[data-filter="' + t + '"]');
+    if (!chip) return false;
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (c) { c.classList.toggle('is-on', c === chip); });
+    Array.prototype.forEach.call(sec.querySelectorAll('.plan, .plan-group'), function (f) {
+      f.hidden = (t !== 'all' && f.getAttribute('data-key') !== t);
+    });
+    if (state) {
+      var n = sec.querySelectorAll('.plan:not([hidden])').length;
+      state.textContent = n + (n === 1 ? ' plan' : ' plans') + ' · tap to enlarge';
+    }
+    if (remember) setParam(param, t === 'all' ? null : t);
+    return true;
+  }
+  function setParam(key, value) {
+    if (!window.history || !history.replaceState) return;
+    var u = new URL(location.href);
+    if (value === null) u.searchParams.delete(key); else u.searchParams.set(key, value);
+    history.replaceState(null, '', u.pathname + u.search);
+  }
+  // Jump without the page's smooth-scroll animation, which a late layout shift can cancel.
+  function jump(el) {
+    var y = el.getBoundingClientRect().top + (document.scrollingElement || document.documentElement).scrollTop - 70;
+    try { (document.scrollingElement || document.documentElement).scrollTo({ top: y, behavior: 'instant' }); }
+    catch (e) { window.scrollTo(0, y); }
+  }
+  Array.prototype.forEach.call(sec.querySelectorAll('.plan-chip'), function (ch) {
+    ch.addEventListener('click', function () { applyFilter(ch.getAttribute('data-filter'), true); });
+  });
+
+  var lb = document.getElementById('plan-lb'), lbMedia = lb.querySelector('.lb-media'),
+      lbCap = lb.querySelector('.lb-cap'), current = null, before = null;
+  function visible() { return Array.prototype.filter.call(sec.querySelectorAll('.plan'), function (f) { return !f.hidden; }); }
+  function show(fig) {
+    if (lb.hidden) before = location.pathname + location.search + location.hash;
+    current = fig; lbMedia.innerHTML = ''; lbMedia.appendChild(pictureFor(fig, true));
+    lbCap.innerHTML = '<b>' + fig.getAttribute('data-name') + '</b>' + fig.getAttribute('data-spec');
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+    setParam('plan', fig.id.replace(/^plan-/, ''));
+  }
+  function close() {
+    lb.hidden = true; document.body.style.overflow = '';
+    var u = new URL(before || (location.pathname + location.search), location.origin);
+    u.searchParams.delete('plan');
+    if (window.history && history.replaceState) history.replaceState(null, '', u.pathname + u.search);
+    before = null;
+  }
+  function step(d) { var v = visible(), i = v.indexOf(current); if (i < 0 || v.length < 2) return; show(v[(i + d + v.length) % v.length]); }
+
+  document.addEventListener('click', function (e) {
+    var fig = e.target.closest('#floor-plans .plan');
+    if (fig) { show(fig); return; }
+    // a "plan →" link in the price table opens that drawing instead of jumping
+    var row = e.target.closest('a.row-plan');
+    if (row) {
+      var target = document.getElementById(row.getAttribute('href').slice(1));
+      if (target) { e.preventDefault(); if (target.hidden) applyFilter('all', false); show(target); }
+    }
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.lb-next')) return step(1);
+    if (e.target.closest('.lb-prev')) return step(-1);
+    if (e.target.closest('.lb-close') || e.target === lb || e.target === lbMedia) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
+  });
+
+  // A shared link: ?beds=2 opens that group, ?plan=t-2d2-a opens that drawing.
+  var q = new URLSearchParams(location.search), wantBeds = q.get(param), wantPlan = q.get('plan');
+  var fig = wantPlan && document.getElementById('plan-' + wantPlan);
+  var filtered = wantBeds && applyFilter(wantBeds, false);
+  if (fig && fig.hidden) applyFilter('all', false);
+  if (fig || filtered) {
+    var target = fig || sec, land = function () { jump(target); };
+    land(); window.addEventListener('load', land); setTimeout(land, 600);
+    if (fig) show(fig);
+  }
+})();
+</script>
 
 <script src="../js/save.js"></script>
 <script src="../js/sofia.js"></script>
