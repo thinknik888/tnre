@@ -95,6 +95,13 @@
       .nb-card { border-right: none !important; }
     }
 
+    .mini { background: #002244; padding: 22px 60px 24px; }
+    .mini-eyebrow { font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 7px; }
+    .mini-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(21px, 2.5vw, 31px); font-weight: 400; color: #fff; line-height: 1.1; }
+    .mini-title em { font-style: italic; color: #c9a84c; }
+    .mini-meta { font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 7px; }
+    @media (max-width: 768px) { .mini { padding: 18px 24px 20px; } }
+
     /* ---- live floor-plan browser ---- */
     .browse { padding: 44px 60px 56px; }
     .browse-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
@@ -169,6 +176,12 @@ src="https://www.facebook.com/tr?id=1688055534733639&ev=PageView&noscript=1"
       <a href="pages/saved.html" style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; position:relative;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">&hearts; Saved</a>
     </div>
   </nav>
+  <header class="mini">
+    <div class="mini-eyebrow">Toronto &amp; GTA &middot; New construction</div>
+    <h1 class="mini-title">Every new-build floor plan, <em>in one place.</em></h1>
+    <div class="mini-meta">244 plans &middot; 17 buildings &middot; 7 neighbourhoods</div>
+  </header>
+
   <section class="browse" id="browse">
     <div class="browse-head">
       <div class="browse-count"><b id="bc">244</b> <span id="bc-word">plans</span> shown</div>
